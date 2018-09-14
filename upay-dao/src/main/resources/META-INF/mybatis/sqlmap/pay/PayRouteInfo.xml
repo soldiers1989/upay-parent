@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayRouteInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.PayRouteInfoPo">
+		<id column="ID" property="id" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="ROUTE_NAME" property="routeName" />
+		<result column="ORG_NO" property="orgNo" />
+		<result column="CLR_TYPE" property="clrType" />
+		<result column="TRANS_ACCT_NO" property="transAcctNo" />
+		<result column="CLR_ACCT_NO" property="clrAcctNo" />
+		<result column="DEF_USER_ID" property="defUserId" />
+		<result column="CHK_STAT" property="chkStat" />
+		<result column="CHK_DATE" property="chkDate" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="TERMINAL_ID" property="terminalId" />
+		<result column="MERCH_LOGIN_KEY" property="merchLoginKey" />
+		<result column="PUBLIC_KEY_PATH" property="publicKeyPath" />
+		<result column="CERT_FILE_PATH" property="certFilePath" />
+		<result column="CERT_PWD" property="certPwd" />
+		<result column="CALLBACK_RUL" property="callbackRul" />
+		<result column="SERVICE_VERSION" property="serviceVersion" />
+		<result column="APP_ID" property="appId" />
+		<result column="APP_SECRET" property="appSecret" />
+		<result column="FEE_INCOME_ACCT_NO" property="feeIncomeAcctNo" />
+		<result column="FEE_EXPENSE_ACCT_NO" property="feeExpenseAcctNo" />
+		<result column="UNION_ACCT_NO" property="unionAcctNo" />
+		<result column="UNION_AT_CALLBACK_RUL" property="unionAtCallbackRul" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_PAY_ROUTE_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ROUTE_CODE,
+		ROUTE_NAME,
+		ORG_NO,
+		CLR_TYPE,
+		TRANS_ACCT_NO,
+		CLR_ACCT_NO,
+		DEF_USER_ID,
+		CHK_STAT,
+		CHK_DATE,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		TERMINAL_ID,
+		MERCH_LOGIN_KEY,
+		PUBLIC_KEY_PATH,
+		CERT_FILE_PATH,
+		CERT_PWD,
+		CALLBACK_RUL,
+		SERVICE_VERSION,
+		APP_ID,
+		APP_SECRET,
+		FEE_INCOME_ACCT_NO,
+		FEE_EXPENSE_ACCT_NO,
+		UNION_ACCT_NO,
+		UNION_AT_CALLBACK_RUL
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+	           AND 
+		</if>
+		<if test="routeName != null">
+			ROUTE_NAME= #{routeName}
+	           AND 
+		</if>
+		<if test="orgNo != null">
+			ORG_NO= #{orgNo}
+	           AND 
+		</if>
+		<if test="clrType != null">
+			CLR_TYPE= #{clrType}
+	           AND 
+		</if>
+		<if test="transAcctNo != null">
+			TRANS_ACCT_NO= #{transAcctNo}
+	           AND 
+		</if>
+		<if test="clrAcctNo != null">
+			CLR_ACCT_NO= #{clrAcctNo}
+	           AND 
+		</if>
+		<if test="defUserId != null">
+			DEF_USER_ID= #{defUserId}
+	           AND 
+		</if>
+		<if test="chkStat != null">
+			CHK_STAT= #{chkStat}
+	           AND 
+		</if>
+		<if test="chkDate != null">
+			CHK_DATE= #{chkDate}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="terminalId != null">
+			TERMINAL_ID= #{terminalId}
+	           AND 
+		</if>
+		<if test="merchLoginKey != null">
+			MERCH_LOGIN_KEY= #{merchLoginKey}
+	           AND 
+		</if>
+		<if test="publicKeyPath != null">
+			PUBLIC_KEY_PATH= #{publicKeyPath}
+	           AND 
+		</if>
+		<if test="certFilePath != null">
+			CERT_FILE_PATH= #{certFilePath}
+	           AND 
+		</if>
+		<if test="certPwd != null">
+			CERT_PWD= #{certPwd}
+	           AND 
+		</if>
+		<if test="callbackRul != null">
+			CALLBACK_RUL= #{callbackRul}
+	           AND 
+		</if>
+		<if test="serviceVersion != null">
+			SERVICE_VERSION= #{serviceVersion}
+	           AND 
+		</if>
+		<if test="appId != null">
+			APP_ID= #{appId}
+	           AND 
+		</if>
+		<if test="appSecret != null">
+			APP_SECRET= #{appSecret}
+	           AND 
+		</if>
+		<if test="feeIncomeAcctNo != null">
+			FEE_INCOME_ACCT_NO= #{feeIncomeAcctNo}
+	           AND 
+		</if>
+		<if test="feeExpenseAcctNo != null">
+			FEE_EXPENSE_ACCT_NO= #{feeExpenseAcctNo}
+	           AND 
+		</if>
+		<if test="unionAcctNo != null">
+			UNION_ACCT_NO= #{unionAcctNo}
+	           AND 
+		</if>
+		<if test="unionAtCallbackRul != null">
+			UNION_AT_CALLBACK_RUL= #{unionAtCallbackRul}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+	<if test="routeName != null">
+		ROUTE_NAME,
+	</if>
+	<if test="orgNo != null">
+		ORG_NO,
+	</if>
+	<if test="clrType != null">
+		CLR_TYPE,
+	</if>
+	<if test="transAcctNo != null">
+		TRANS_ACCT_NO,
+	</if>
+	<if test="clrAcctNo != null">
+		CLR_ACCT_NO,
+	</if>
+	<if test="defUserId != null">
+		DEF_USER_ID,
+	</if>
+	<if test="chkStat != null">
+		CHK_STAT,
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="terminalId != null">
+		TERMINAL_ID,
+	</if>
+	<if test="merchLoginKey != null">
+		MERCH_LOGIN_KEY,
+	</if>
+	<if test="publicKeyPath != null">
+		PUBLIC_KEY_PATH,
+	</if>
+	<if test="certFilePath != null">
+		CERT_FILE_PATH,
+	</if>
+	<if test="certPwd != null">
+		CERT_PWD,
+	</if>
+	<if test="callbackRul != null">
+		CALLBACK_RUL,
+	</if>
+	<if test="serviceVersion != null">
+		SERVICE_VERSION,
+	</if>
+	<if test="appId != null">
+		APP_ID,
+	</if>
+	<if test="appSecret != null">
+		APP_SECRET,
+	</if>
+	<if test="feeIncomeAcctNo != null">
+		FEE_INCOME_ACCT_NO,
+	</if>
+	<if test="feeExpenseAcctNo != null">
+		FEE_EXPENSE_ACCT_NO,
+	</if>
+	<if test="unionAcctNo != null">
+		UNION_ACCT_NO,
+	</if>
+	<if test="unionAtCallbackRul != null">
+		UNION_AT_CALLBACK_RUL,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+	<if test="routeName != null">
+		#{routeName},
+	</if>
+	<if test="orgNo != null">
+		#{orgNo},
+	</if>
+	<if test="clrType != null">
+		#{clrType},
+	</if>
+	<if test="transAcctNo != null">
+		#{transAcctNo},
+	</if>
+	<if test="clrAcctNo != null">
+		#{clrAcctNo},
+	</if>
+	<if test="defUserId != null">
+		#{defUserId},
+	</if>
+	<if test="chkStat != null">
+		#{chkStat},
+	</if>
+	<if test="chkDate != null">
+		#{chkDate},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="terminalId != null">
+		#{terminalId},
+	</if>
+	<if test="merchLoginKey != null">
+		#{merchLoginKey},
+	</if>
+	<if test="publicKeyPath != null">
+		#{publicKeyPath},
+	</if>
+	<if test="certFilePath != null">
+		#{certFilePath},
+	</if>
+	<if test="certPwd != null">
+		#{certPwd},
+	</if>
+	<if test="callbackRul != null">
+		#{callbackRul},
+	</if>
+	<if test="serviceVersion != null">
+		#{serviceVersion},
+	</if>
+	<if test="appId != null">
+		#{appId},
+	</if>
+	<if test="appSecret != null">
+		#{appSecret},
+	</if>
+	<if test="feeIncomeAcctNo != null">
+		#{feeIncomeAcctNo},
+	</if>
+	<if test="feeExpenseAcctNo != null">
+		#{feeExpenseAcctNo},
+	</if>
+	<if test="unionAcctNo != null">
+		#{unionAcctNo},
+	</if>
+	<if test="unionAtCallbackRul != null">
+		#{unionAtCallbackRul},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+	<if test="routeName != null">
+		ROUTE_NAME=#{routeName},
+	</if>
+	<if test="orgNo != null">
+		ORG_NO=#{orgNo},
+	</if>
+	<if test="clrType != null">
+		CLR_TYPE=#{clrType},
+	</if>
+	<if test="transAcctNo != null">
+		TRANS_ACCT_NO=#{transAcctNo},
+	</if>
+	<if test="clrAcctNo != null">
+		CLR_ACCT_NO=#{clrAcctNo},
+	</if>
+	<if test="defUserId != null">
+		DEF_USER_ID=#{defUserId},
+	</if>
+	<if test="chkStat != null">
+		CHK_STAT=#{chkStat},
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE=#{chkDate},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="terminalId != null">
+		TERMINAL_ID=#{terminalId},
+	</if>
+	<if test="merchLoginKey != null">
+		MERCH_LOGIN_KEY=#{merchLoginKey},
+	</if>
+	<if test="publicKeyPath != null">
+		PUBLIC_KEY_PATH=#{publicKeyPath},
+	</if>
+	<if test="certFilePath != null">
+		CERT_FILE_PATH=#{certFilePath},
+	</if>
+	<if test="certPwd != null">
+		CERT_PWD=#{certPwd},
+	</if>
+	<if test="callbackRul != null">
+		CALLBACK_RUL=#{callbackRul},
+	</if>
+	<if test="serviceVersion != null">
+		SERVICE_VERSION=#{serviceVersion},
+	</if>
+	<if test="appId != null">
+		APP_ID=#{appId},
+	</if>
+	<if test="appSecret != null">
+		APP_SECRET=#{appSecret},
+	</if>
+	<if test="feeIncomeAcctNo != null">
+		FEE_INCOME_ACCT_NO=#{feeIncomeAcctNo},
+	</if>
+	<if test="feeExpenseAcctNo != null">
+		FEE_EXPENSE_ACCT_NO=#{feeExpenseAcctNo},
+	</if>
+	<if test="unionAcctNo != null">
+		UNION_ACCT_NO=#{unionAcctNo},
+	</if>
+	<if test="unionAtCallbackRul != null">
+		UNION_AT_CALLBACK_RUL=#{unionAtCallbackRul},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode},
+			</if>
+			<if test="s.routeName != null">
+                    ROUTE_NAME=#{s.routeName},
+			</if>
+			<if test="s.orgNo != null">
+                    ORG_NO=#{s.orgNo},
+			</if>
+			<if test="s.clrType != null">
+                    CLR_TYPE=#{s.clrType},
+			</if>
+			<if test="s.transAcctNo != null">
+                    TRANS_ACCT_NO=#{s.transAcctNo},
+			</if>
+			<if test="s.clrAcctNo != null">
+                    CLR_ACCT_NO=#{s.clrAcctNo},
+			</if>
+			<if test="s.defUserId != null">
+                    DEF_USER_ID=#{s.defUserId},
+			</if>
+			<if test="s.chkStat != null">
+                    CHK_STAT=#{s.chkStat},
+			</if>
+			<if test="s.chkDate != null">
+                    CHK_DATE=#{s.chkDate},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.terminalId != null">
+                    TERMINAL_ID=#{s.terminalId},
+			</if>
+			<if test="s.merchLoginKey != null">
+                    MERCH_LOGIN_KEY=#{s.merchLoginKey},
+			</if>
+			<if test="s.publicKeyPath != null">
+                    PUBLIC_KEY_PATH=#{s.publicKeyPath},
+			</if>
+			<if test="s.certFilePath != null">
+                    CERT_FILE_PATH=#{s.certFilePath},
+			</if>
+			<if test="s.certPwd != null">
+                    CERT_PWD=#{s.certPwd},
+			</if>
+			<if test="s.callbackRul != null">
+                    CALLBACK_RUL=#{s.callbackRul},
+			</if>
+			<if test="s.serviceVersion != null">
+                    SERVICE_VERSION=#{s.serviceVersion},
+			</if>
+			<if test="s.appId != null">
+                    APP_ID=#{s.appId},
+			</if>
+			<if test="s.appSecret != null">
+                    APP_SECRET=#{s.appSecret},
+			</if>
+			<if test="s.feeIncomeAcctNo != null">
+                    FEE_INCOME_ACCT_NO=#{s.feeIncomeAcctNo},
+			</if>
+			<if test="s.feeExpenseAcctNo != null">
+                    FEE_EXPENSE_ACCT_NO=#{s.feeExpenseAcctNo},
+			</if>
+			<if test="s.unionAcctNo != null">
+                    UNION_ACCT_NO=#{s.unionAcctNo},
+			</if>
+			<if test="s.unionAtCallbackRul != null">
+                    UNION_AT_CALLBACK_RUL=#{s.unionAtCallbackRul}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+                   AND 
+ 			</if>
+			<if test="w.routeName != null">
+                    ROUTE_NAME=#{w.routeName}
+                   AND 
+ 			</if>
+			<if test="w.orgNo != null">
+                    ORG_NO=#{w.orgNo}
+                   AND 
+ 			</if>
+			<if test="w.clrType != null">
+                    CLR_TYPE=#{w.clrType}
+                   AND 
+ 			</if>
+			<if test="w.transAcctNo != null">
+                    TRANS_ACCT_NO=#{w.transAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.clrAcctNo != null">
+                    CLR_ACCT_NO=#{w.clrAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.defUserId != null">
+                    DEF_USER_ID=#{w.defUserId}
+                   AND 
+ 			</if>
+			<if test="w.chkStat != null">
+                    CHK_STAT=#{w.chkStat}
+                   AND 
+ 			</if>
+			<if test="w.chkDate != null">
+                    CHK_DATE=#{w.chkDate}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.terminalId != null">
+                    TERMINAL_ID=#{w.terminalId}
+                   AND 
+ 			</if>
+			<if test="w.merchLoginKey != null">
+                    MERCH_LOGIN_KEY=#{w.merchLoginKey}
+                   AND 
+ 			</if>
+			<if test="w.publicKeyPath != null">
+                    PUBLIC_KEY_PATH=#{w.publicKeyPath}
+                   AND 
+ 			</if>
+			<if test="w.certFilePath != null">
+                    CERT_FILE_PATH=#{w.certFilePath}
+                   AND 
+ 			</if>
+			<if test="w.certPwd != null">
+                    CERT_PWD=#{w.certPwd}
+                   AND 
+ 			</if>
+			<if test="w.callbackRul != null">
+                    CALLBACK_RUL=#{w.callbackRul}
+                   AND 
+ 			</if>
+			<if test="w.serviceVersion != null">
+                    SERVICE_VERSION=#{w.serviceVersion}
+                   AND 
+ 			</if>
+			<if test="w.appId != null">
+                    APP_ID=#{w.appId}
+                   AND 
+ 			</if>
+			<if test="w.appSecret != null">
+                    APP_SECRET=#{w.appSecret}
+                   AND 
+ 			</if>
+			<if test="w.feeIncomeAcctNo != null">
+                    FEE_INCOME_ACCT_NO=#{w.feeIncomeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.feeExpenseAcctNo != null">
+                    FEE_EXPENSE_ACCT_NO=#{w.feeExpenseAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.unionAcctNo != null">
+                    UNION_ACCT_NO=#{w.unionAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.unionAtCallbackRul != null">
+                    UNION_AT_CALLBACK_RUL=#{w.unionAtCallbackRul}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

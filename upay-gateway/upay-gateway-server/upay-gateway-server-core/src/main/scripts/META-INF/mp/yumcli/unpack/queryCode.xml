@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+       <mapping xpath="$.couponInfos[0].validStatus" field="validStatus" />
+       <mapping xpath="$.couponInfos[0].useStatus" field="useStatus" />
+       <mapping xpath="$.couponInfos[0].activatedStatus" field="activatedStatus" />
+	</mappings>
+	
+</config>

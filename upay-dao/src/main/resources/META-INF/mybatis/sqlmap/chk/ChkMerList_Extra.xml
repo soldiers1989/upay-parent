@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkMerListPo">
+	<select id="getListByWhere" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="merNo != null">
+				and MER_NO=#{merNo}
+			</if>
+			<if test="extensionParty != null">
+				and EXTENSION_PARTY=#{extensionParty}
+			</if>
+			<if test="secMerNo != null">
+				and SEC_MER_NO=#{secMerNo}
+			</if>
+			<if test="txnDate != null">
+				and TXN_DATE=#{txnDate}
+			</if>
+			<if test="chkFlag != null">
+				and CHK_FLAG=#{chkFlag}
+			</if>
+			<if test="orderStatList != null">
+				and ORDER_STAT in 
+				<foreach collection="orderStatList" open="(" close=")" item="orderStat" separator=",">
+					#{orderStat}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+
+</mapper>

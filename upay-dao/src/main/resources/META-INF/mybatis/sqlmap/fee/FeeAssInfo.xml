@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeAssInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeAssInfoPo">
+		<id column="ID" property="id" />
+		<result column="ASS_ID" property="assId" />
+		<result column="ASS_ACCT_NO" property="assAcctNo" />
+		<result column="ASS_ACCT_TYPE" property="assAcctType" />
+		<result column="ASS_NAME" property="assName" />
+		<result column="ASS_ACCT_NAME" property="assAcctName" />
+		<result column="CERT_TYPE" property="certType" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="BANK_ID" property="bankId" />
+		<result column="MOBILE" property="mobile" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_ASS_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ASS_ID,
+		ASS_ACCT_NO,
+		ASS_ACCT_TYPE,
+		ASS_NAME,
+		ASS_ACCT_NAME,
+		CERT_TYPE,
+		CERT_NO,
+		BANK_ID,
+		MOBILE,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="assId != null">
+			ASS_ID= #{assId}
+	           AND 
+		</if>
+		<if test="assAcctNo != null">
+			ASS_ACCT_NO= #{assAcctNo}
+	           AND 
+		</if>
+		<if test="assAcctType != null">
+			ASS_ACCT_TYPE= #{assAcctType}
+	           AND 
+		</if>
+		<if test="assName != null">
+			ASS_NAME= #{assName}
+	           AND 
+		</if>
+		<if test="assAcctName != null">
+			ASS_ACCT_NAME= #{assAcctName}
+	           AND 
+		</if>
+		<if test="certType != null">
+			CERT_TYPE= #{certType}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="bankId != null">
+			BANK_ID= #{bankId}
+	           AND 
+		</if>
+		<if test="mobile != null">
+			MOBILE= #{mobile}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="assId != null">
+		ASS_ID,
+	</if>
+	<if test="assAcctNo != null">
+		ASS_ACCT_NO,
+	</if>
+	<if test="assAcctType != null">
+		ASS_ACCT_TYPE,
+	</if>
+	<if test="assName != null">
+		ASS_NAME,
+	</if>
+	<if test="assAcctName != null">
+		ASS_ACCT_NAME,
+	</if>
+	<if test="certType != null">
+		CERT_TYPE,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="bankId != null">
+		BANK_ID,
+	</if>
+	<if test="mobile != null">
+		MOBILE,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="assId != null">
+		#{assId},
+	</if>
+	<if test="assAcctNo != null">
+		#{assAcctNo},
+	</if>
+	<if test="assAcctType != null">
+		#{assAcctType},
+	</if>
+	<if test="assName != null">
+		#{assName},
+	</if>
+	<if test="assAcctName != null">
+		#{assAcctName},
+	</if>
+	<if test="certType != null">
+		#{certType},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="bankId != null">
+		#{bankId},
+	</if>
+	<if test="mobile != null">
+		#{mobile},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="assId != null">
+		ASS_ID=#{assId},
+	</if>
+	<if test="assAcctNo != null">
+		ASS_ACCT_NO=#{assAcctNo},
+	</if>
+	<if test="assAcctType != null">
+		ASS_ACCT_TYPE=#{assAcctType},
+	</if>
+	<if test="assName != null">
+		ASS_NAME=#{assName},
+	</if>
+	<if test="assAcctName != null">
+		ASS_ACCT_NAME=#{assAcctName},
+	</if>
+	<if test="certType != null">
+		CERT_TYPE=#{certType},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="bankId != null">
+		BANK_ID=#{bankId},
+	</if>
+	<if test="mobile != null">
+		MOBILE=#{mobile},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.assId != null">
+                    ASS_ID=#{s.assId},
+			</if>
+			<if test="s.assAcctNo != null">
+                    ASS_ACCT_NO=#{s.assAcctNo},
+			</if>
+			<if test="s.assAcctType != null">
+                    ASS_ACCT_TYPE=#{s.assAcctType},
+			</if>
+			<if test="s.assName != null">
+                    ASS_NAME=#{s.assName},
+			</if>
+			<if test="s.assAcctName != null">
+                    ASS_ACCT_NAME=#{s.assAcctName},
+			</if>
+			<if test="s.certType != null">
+                    CERT_TYPE=#{s.certType},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.bankId != null">
+                    BANK_ID=#{s.bankId},
+			</if>
+			<if test="s.mobile != null">
+                    MOBILE=#{s.mobile},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.assId != null">
+                    ASS_ID=#{w.assId}
+                   AND 
+ 			</if>
+			<if test="w.assAcctNo != null">
+                    ASS_ACCT_NO=#{w.assAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.assAcctType != null">
+                    ASS_ACCT_TYPE=#{w.assAcctType}
+                   AND 
+ 			</if>
+			<if test="w.assName != null">
+                    ASS_NAME=#{w.assName}
+                   AND 
+ 			</if>
+			<if test="w.assAcctName != null">
+                    ASS_ACCT_NAME=#{w.assAcctName}
+                   AND 
+ 			</if>
+			<if test="w.certType != null">
+                    CERT_TYPE=#{w.certType}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.bankId != null">
+                    BANK_ID=#{w.bankId}
+                   AND 
+ 			</if>
+			<if test="w.mobile != null">
+                    MOBILE=#{w.mobile}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerOpenPayPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerOpenPayPo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="MER_NAME" property="merName" />
+		<result column="WECHAT_OPEN" property="wechatOpen" />
+		<result column="WECHAT_BIND_APPID" property="wechatBindAppid" />
+		<result column="WECHAT_AUTH_DIR" property="wechatAuthDir" />
+		<result column="WECHAT_ATTENTION" property="wechatAttention" />
+		<result column="ALIPAY_OPEN" property="alipayOpen" />
+		<result column="UNION_OPEN" property="unionOpen" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_OPEN_PAY
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		MER_NAME,
+		WECHAT_OPEN,
+		WECHAT_BIND_APPID,
+		WECHAT_AUTH_DIR,
+		WECHAT_ATTENTION,
+		ALIPAY_OPEN,
+		UNION_OPEN,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="merName != null">
+			MER_NAME= #{merName}
+	           AND 
+		</if>
+		<if test="wechatOpen != null">
+			WECHAT_OPEN= #{wechatOpen}
+	           AND 
+		</if>
+		<if test="wechatBindAppid != null">
+			WECHAT_BIND_APPID= #{wechatBindAppid}
+	           AND 
+		</if>
+		<if test="wechatAuthDir != null">
+			WECHAT_AUTH_DIR= #{wechatAuthDir}
+	           AND 
+		</if>
+		<if test="wechatAttention != null">
+			WECHAT_ATTENTION= #{wechatAttention}
+	           AND 
+		</if>
+		<if test="alipayOpen != null">
+			ALIPAY_OPEN= #{alipayOpen}
+	           AND 
+		</if>
+		<if test="unionOpen != null">
+			UNION_OPEN= #{unionOpen}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="merName != null">
+		MER_NAME,
+	</if>
+	<if test="wechatOpen != null">
+		WECHAT_OPEN,
+	</if>
+	<if test="wechatBindAppid != null">
+		WECHAT_BIND_APPID,
+	</if>
+	<if test="wechatAuthDir != null">
+		WECHAT_AUTH_DIR,
+	</if>
+	<if test="wechatAttention != null">
+		WECHAT_ATTENTION,
+	</if>
+	<if test="alipayOpen != null">
+		ALIPAY_OPEN,
+	</if>
+	<if test="unionOpen != null">
+		UNION_OPEN,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="merName != null">
+		#{merName},
+	</if>
+	<if test="wechatOpen != null">
+		#{wechatOpen},
+	</if>
+	<if test="wechatBindAppid != null">
+		#{wechatBindAppid},
+	</if>
+	<if test="wechatAuthDir != null">
+		#{wechatAuthDir},
+	</if>
+	<if test="wechatAttention != null">
+		#{wechatAttention},
+	</if>
+	<if test="alipayOpen != null">
+		#{alipayOpen},
+	</if>
+	<if test="unionOpen != null">
+		#{unionOpen},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="merName != null">
+		MER_NAME=#{merName},
+	</if>
+	<if test="wechatOpen != null">
+		WECHAT_OPEN=#{wechatOpen},
+	</if>
+	<if test="wechatBindAppid != null">
+		WECHAT_BIND_APPID=#{wechatBindAppid},
+	</if>
+	<if test="wechatAuthDir != null">
+		WECHAT_AUTH_DIR=#{wechatAuthDir},
+	</if>
+	<if test="wechatAttention != null">
+		WECHAT_ATTENTION=#{wechatAttention},
+	</if>
+	<if test="alipayOpen != null">
+		ALIPAY_OPEN=#{alipayOpen},
+	</if>
+	<if test="unionOpen != null">
+		UNION_OPEN=#{unionOpen},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.merName != null">
+                    MER_NAME=#{s.merName},
+			</if>
+			<if test="s.wechatOpen != null">
+                    WECHAT_OPEN=#{s.wechatOpen},
+			</if>
+			<if test="s.wechatBindAppid != null">
+                    WECHAT_BIND_APPID=#{s.wechatBindAppid},
+			</if>
+			<if test="s.wechatAuthDir != null">
+                    WECHAT_AUTH_DIR=#{s.wechatAuthDir},
+			</if>
+			<if test="s.wechatAttention != null">
+                    WECHAT_ATTENTION=#{s.wechatAttention},
+			</if>
+			<if test="s.alipayOpen != null">
+                    ALIPAY_OPEN=#{s.alipayOpen},
+			</if>
+			<if test="s.unionOpen != null">
+                    UNION_OPEN=#{s.unionOpen},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.merName != null">
+                    MER_NAME=#{w.merName}
+                   AND 
+ 			</if>
+			<if test="w.wechatOpen != null">
+                    WECHAT_OPEN=#{w.wechatOpen}
+                   AND 
+ 			</if>
+			<if test="w.wechatBindAppid != null">
+                    WECHAT_BIND_APPID=#{w.wechatBindAppid}
+                   AND 
+ 			</if>
+			<if test="w.wechatAuthDir != null">
+                    WECHAT_AUTH_DIR=#{w.wechatAuthDir}
+                   AND 
+ 			</if>
+			<if test="w.wechatAttention != null">
+                    WECHAT_ATTENTION=#{w.wechatAttention}
+                   AND 
+ 			</if>
+			<if test="w.alipayOpen != null">
+                    ALIPAY_OPEN=#{w.alipayOpen}
+                   AND 
+ 			</if>
+			<if test="w.unionOpen != null">
+                    UNION_OPEN=#{w.unionOpen}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

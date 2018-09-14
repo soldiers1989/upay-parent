@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrSmsConfPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrSmsConfPo">
+		<id column="ID" property="id" />
+		<result column="EVENT_NO" property="eventNo" />
+		<result column="SMS_SEND_OBJ" property="smsSendObj" />
+		<result column="SMS_SEQ" property="smsSeq" />
+		<result column="SMS_NO" property="smsNo" />
+		<result column="SMS_DESC" property="smsDesc" />
+		<result column="SMS_MSG" property="smsMsg" />
+		<result column="SMS_STAT" property="smsStat" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="LAST_OPER" property="lastOper" />
+		<result column="SMS_START_TIME" property="smsStartTime" />
+		<result column="SMS_END_TIME" property="smsEndTime" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_SMS_CONF
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		EVENT_NO,
+		SMS_SEND_OBJ,
+		SMS_SEQ,
+		SMS_NO,
+		SMS_DESC,
+		SMS_MSG,
+		SMS_STAT,
+		LAST_UPDATE_TIME,
+		LAST_OPER,
+		SMS_START_TIME,
+		SMS_END_TIME
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="eventNo != null">
+			EVENT_NO= #{eventNo}
+	           AND 
+		</if>
+		<if test="smsSendObj != null">
+			SMS_SEND_OBJ= #{smsSendObj}
+	           AND 
+		</if>
+		<if test="smsSeq != null">
+			SMS_SEQ= #{smsSeq}
+	           AND 
+		</if>
+		<if test="smsNo != null">
+			SMS_NO= #{smsNo}
+	           AND 
+		</if>
+		<if test="smsDesc != null">
+			SMS_DESC= #{smsDesc}
+	           AND 
+		</if>
+		<if test="smsMsg != null">
+			SMS_MSG= #{smsMsg}
+	           AND 
+		</if>
+		<if test="smsStat != null">
+			SMS_STAT= #{smsStat}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="lastOper != null">
+			LAST_OPER= #{lastOper}
+	           AND 
+		</if>
+		<if test="smsStartTime != null">
+			SMS_START_TIME= #{smsStartTime}
+	           AND 
+		</if>
+		<if test="smsEndTime != null">
+			SMS_END_TIME= #{smsEndTime}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="eventNo != null">
+		EVENT_NO,
+	</if>
+	<if test="smsSendObj != null">
+		SMS_SEND_OBJ,
+	</if>
+	<if test="smsSeq != null">
+		SMS_SEQ,
+	</if>
+	<if test="smsNo != null">
+		SMS_NO,
+	</if>
+	<if test="smsDesc != null">
+		SMS_DESC,
+	</if>
+	<if test="smsMsg != null">
+		SMS_MSG,
+	</if>
+	<if test="smsStat != null">
+		SMS_STAT,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER,
+	</if>
+	<if test="smsStartTime != null">
+		SMS_START_TIME,
+	</if>
+	<if test="smsEndTime != null">
+		SMS_END_TIME,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="eventNo != null">
+		#{eventNo},
+	</if>
+	<if test="smsSendObj != null">
+		#{smsSendObj},
+	</if>
+	<if test="smsSeq != null">
+		#{smsSeq},
+	</if>
+	<if test="smsNo != null">
+		#{smsNo},
+	</if>
+	<if test="smsDesc != null">
+		#{smsDesc},
+	</if>
+	<if test="smsMsg != null">
+		#{smsMsg},
+	</if>
+	<if test="smsStat != null">
+		#{smsStat},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		#{lastOper},
+	</if>
+	<if test="smsStartTime != null">
+		#{smsStartTime},
+	</if>
+	<if test="smsEndTime != null">
+		#{smsEndTime},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="eventNo != null">
+		EVENT_NO=#{eventNo},
+	</if>
+	<if test="smsSendObj != null">
+		SMS_SEND_OBJ=#{smsSendObj},
+	</if>
+	<if test="smsSeq != null">
+		SMS_SEQ=#{smsSeq},
+	</if>
+	<if test="smsNo != null">
+		SMS_NO=#{smsNo},
+	</if>
+	<if test="smsDesc != null">
+		SMS_DESC=#{smsDesc},
+	</if>
+	<if test="smsMsg != null">
+		SMS_MSG=#{smsMsg},
+	</if>
+	<if test="smsStat != null">
+		SMS_STAT=#{smsStat},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER=#{lastOper},
+	</if>
+	<if test="smsStartTime != null">
+		SMS_START_TIME=#{smsStartTime},
+	</if>
+	<if test="smsEndTime != null">
+		SMS_END_TIME=#{smsEndTime},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.eventNo != null">
+                    EVENT_NO=#{s.eventNo},
+			</if>
+			<if test="s.smsSendObj != null">
+                    SMS_SEND_OBJ=#{s.smsSendObj},
+			</if>
+			<if test="s.smsSeq != null">
+                    SMS_SEQ=#{s.smsSeq},
+			</if>
+			<if test="s.smsNo != null">
+                    SMS_NO=#{s.smsNo},
+			</if>
+			<if test="s.smsDesc != null">
+                    SMS_DESC=#{s.smsDesc},
+			</if>
+			<if test="s.smsMsg != null">
+                    SMS_MSG=#{s.smsMsg},
+			</if>
+			<if test="s.smsStat != null">
+                    SMS_STAT=#{s.smsStat},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.lastOper != null">
+                    LAST_OPER=#{s.lastOper},
+			</if>
+			<if test="s.smsStartTime != null">
+                    SMS_START_TIME=#{s.smsStartTime},
+			</if>
+			<if test="s.smsEndTime != null">
+                    SMS_END_TIME=#{s.smsEndTime}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.eventNo != null">
+                    EVENT_NO=#{w.eventNo}
+                   AND 
+ 			</if>
+			<if test="w.smsSendObj != null">
+                    SMS_SEND_OBJ=#{w.smsSendObj}
+                   AND 
+ 			</if>
+			<if test="w.smsSeq != null">
+                    SMS_SEQ=#{w.smsSeq}
+                   AND 
+ 			</if>
+			<if test="w.smsNo != null">
+                    SMS_NO=#{w.smsNo}
+                   AND 
+ 			</if>
+			<if test="w.smsDesc != null">
+                    SMS_DESC=#{w.smsDesc}
+                   AND 
+ 			</if>
+			<if test="w.smsMsg != null">
+                    SMS_MSG=#{w.smsMsg}
+                   AND 
+ 			</if>
+			<if test="w.smsStat != null">
+                    SMS_STAT=#{w.smsStat}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.lastOper != null">
+                    LAST_OPER=#{w.lastOper}
+                   AND 
+ 			</if>
+			<if test="w.smsStartTime != null">
+                    SMS_START_TIME=#{w.smsStartTime}
+                   AND 
+ 			</if>
+			<if test="w.smsEndTime != null">
+                    SMS_END_TIME=#{w.smsEndTime}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.ComBrcRelPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.ComBrcRelPo">
+		<id column="ID" property="id" />
+		<result column="BRAN_CODE" property="branCode" />
+		<result column="RELATION" property="relation" />
+		<result column="BLG_BRAN_CODE" property="blgBranCode" />
+		<result column="BRC_BLG_ACCT_IDX" property="brcBlgAcctIdx" />
+		<result column="BRC_ACCT_IDX" property="brcAcctIdx" />
+		<result column="REL_LEVEL" property="relLevel" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_COM_BRC_REL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BRAN_CODE,
+		RELATION,
+		BLG_BRAN_CODE,
+		BRC_BLG_ACCT_IDX,
+		BRC_ACCT_IDX,
+		REL_LEVEL,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="branCode != null">
+			BRAN_CODE= #{branCode}
+	           AND 
+		</if>
+		<if test="relation != null">
+			RELATION= #{relation}
+	           AND 
+		</if>
+		<if test="blgBranCode != null">
+			BLG_BRAN_CODE= #{blgBranCode}
+	           AND 
+		</if>
+		<if test="brcBlgAcctIdx != null">
+			BRC_BLG_ACCT_IDX= #{brcBlgAcctIdx}
+	           AND 
+		</if>
+		<if test="brcAcctIdx != null">
+			BRC_ACCT_IDX= #{brcAcctIdx}
+	           AND 
+		</if>
+		<if test="relLevel != null">
+			REL_LEVEL= #{relLevel}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="branCode != null">
+		BRAN_CODE,
+	</if>
+	<if test="relation != null">
+		RELATION,
+	</if>
+	<if test="blgBranCode != null">
+		BLG_BRAN_CODE,
+	</if>
+	<if test="brcBlgAcctIdx != null">
+		BRC_BLG_ACCT_IDX,
+	</if>
+	<if test="brcAcctIdx != null">
+		BRC_ACCT_IDX,
+	</if>
+	<if test="relLevel != null">
+		REL_LEVEL,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="branCode != null">
+		#{branCode},
+	</if>
+	<if test="relation != null">
+		#{relation},
+	</if>
+	<if test="blgBranCode != null">
+		#{blgBranCode},
+	</if>
+	<if test="brcBlgAcctIdx != null">
+		#{brcBlgAcctIdx},
+	</if>
+	<if test="brcAcctIdx != null">
+		#{brcAcctIdx},
+	</if>
+	<if test="relLevel != null">
+		#{relLevel},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="branCode != null">
+		BRAN_CODE=#{branCode},
+	</if>
+	<if test="relation != null">
+		RELATION=#{relation},
+	</if>
+	<if test="blgBranCode != null">
+		BLG_BRAN_CODE=#{blgBranCode},
+	</if>
+	<if test="brcBlgAcctIdx != null">
+		BRC_BLG_ACCT_IDX=#{brcBlgAcctIdx},
+	</if>
+	<if test="brcAcctIdx != null">
+		BRC_ACCT_IDX=#{brcAcctIdx},
+	</if>
+	<if test="relLevel != null">
+		REL_LEVEL=#{relLevel},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.branCode != null">
+                    BRAN_CODE=#{s.branCode},
+			</if>
+			<if test="s.relation != null">
+                    RELATION=#{s.relation},
+			</if>
+			<if test="s.blgBranCode != null">
+                    BLG_BRAN_CODE=#{s.blgBranCode},
+			</if>
+			<if test="s.brcBlgAcctIdx != null">
+                    BRC_BLG_ACCT_IDX=#{s.brcBlgAcctIdx},
+			</if>
+			<if test="s.brcAcctIdx != null">
+                    BRC_ACCT_IDX=#{s.brcAcctIdx},
+			</if>
+			<if test="s.relLevel != null">
+                    REL_LEVEL=#{s.relLevel},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.branCode != null">
+                    BRAN_CODE=#{w.branCode}
+                   AND 
+ 			</if>
+			<if test="w.relation != null">
+                    RELATION=#{w.relation}
+                   AND 
+ 			</if>
+			<if test="w.blgBranCode != null">
+                    BLG_BRAN_CODE=#{w.blgBranCode}
+                   AND 
+ 			</if>
+			<if test="w.brcBlgAcctIdx != null">
+                    BRC_BLG_ACCT_IDX=#{w.brcBlgAcctIdx}
+                   AND 
+ 			</if>
+			<if test="w.brcAcctIdx != null">
+                    BRC_ACCT_IDX=#{w.brcAcctIdx}
+                   AND 
+ 			</if>
+			<if test="w.relLevel != null">
+                    REL_LEVEL=#{w.relLevel}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

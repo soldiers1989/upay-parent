@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+    <previews>
+        <preview id="yumcli" xpath="" datalength="" trancodename="transCode"
+            charset="UTF-8" special="" dataSign="true" faultCodeName=""
+            faultStringName="" soaErrCodeName="" soaErrMsgName=""
+            soaErrCodeSuc="" errCodeName="respCode" errMsgName="respMsg"
+            errCodeSuc="00" bodyheadSpecial="false" appIdName="appId" channelIdName="channelId"
+            transIdName="transId" reqTimeName="reqTime" appSignName="appSign"
+            dataSignName="dataSign" serviceAddressName="serviceAddress" sysName="COP"
+            relationSysId="60" concreteSysId="64" requrl="true">
+            <!-- 当前测试核心调用挡板requrl 为false 正式上线后值为true   -->
+            <urlMappings>
+                <mapping code="generateCode"
+                    reqUrl="placeCoupon" />
+                <mapping code="cancelCode"
+                    reqUrl="cancelCouponCode" />
+<!--                 <mapping code="batchCancelCode" -->
+<!--                     reqUrl="spservice/cmb/revoke" /> -->
+                <mapping code="queryCode"
+                    reqUrl="queryCouponByCouponCodes" />
+                <mapping code="batchQueryCode"
+                    reqUrl="queryCouponByCouponCodes" />
+                 <mapping code="reverseCode"
+                    reqUrl="correctCoupon" />   
+
+               
+                <!-- 核心状态检查 -->
+<!--                    <mapping code="CH2940" -->
+<!--                     reqUrl="proxyService/inquery/origiTransInqeury/acctStatWthdModChk037_v1_0_0_proxy" -->
+<!--                     serviceUrl="inquery/origiTransInqeury/acctStatWthdModChk037_v1_0_0" /> -->
+             </urlMappings>
+        </preview>
+    </previews>
+
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+        
+    <!-- 联网核查 -->
+    <dubbo:reference id="SA_ZJPAY_Pay2320Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2320Handler" check="false"/>
+    <!-- 核心记账接口 -->
+	<dubbo:reference id="coreCliDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="coreCliDipperHandler" check="false"/>
+	<!-- 中金查询 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2502Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2502Handler" check="false"/>
+	<!-- 中金绑卡 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2501Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2501Handler" check="false"/>
+	<!-- 中金解绑 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2503Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2503Handler" check="false"/>
+	
+	<!-- 中金充值  -->
+	<dubbo:reference id="SA_ZJPAY_Pay2511Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2511Handler" check="false"/>
+	<!-- 中金四要素验证  -->
+	<dubbo:reference id="SA_ZJPAY_Pay2340Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2340Handler" check="false"/>
+	<!-- 中金提现  -->
+	<dubbo:reference id="SA_ZJPAY_Pay4530Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4530Handler" check="false"/>
+	
+
+	<!-- 发送短信 -->
+	<dubbo:reference id="SA_GNR_smsSendService" interface="com.pactera.dipper.core.IDipperHandler" group="SA_GNR_smsSendService" check="false"/>
+
+
+</beans>

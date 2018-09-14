@@ -1,0 +1,2381 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.pactera.upay</groupId>
+	<artifactId>upay-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>统一支付</description>
+	<modules>
+		<module>upay-commons</module>
+		<module>upay-batch-dispatch</module>
+		<module>upay-batch-stepservice</module>
+		<module>upay-portal</module>
+		<module>upay-scripts</module>
+		<module>upay-gateway</module>
+		<module>upay-busi</module>
+		<module>upay-flow</module>
+		<module>upay-dao</module>
+		<module>upay-dao-api</module>
+	</modules>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+		<!-- <project.root.path>/Users/dongweizhao/Documents/platform/yx_workspace/upay-parent</project.root.path> -->
+		<!--<project.root.path>${user.home}/IdeaProjects/upay/upay-parent</project.root.path> -->
+
+		<project.root.path>E:\company\upay-parent\</project.root.path>
+
+		<!-- 专用 -->
+		<!-- <project.root.path>D:\DEV_ENV\workspace_hongtabank/upay-parent</project.root.path> -->
+		<!-- <project.root.path>D:/ups/trunk/code/upay-parent</project.root.path> -->
+		<src.main.scripts>src/main/scripts</src.main.scripts>
+		<src.main.config>src/main/config</src.main.config>
+		<src.main.other>src/main/other</src.main.other>
+		<src.main.assembly>src/main/assembly</src.main.assembly>
+		<global.resources>upay-scripts</global.resources>
+		<global.resources.home>${project.root.path}/${global.resources}</global.resources.home>
+		<global.resources.config.home>${global.resources.home}/${src.main.config}</global.resources.config.home>
+		<!-- <global.resources.commons.home>${global.resources.config.home}/commons</global.resources.commons.home> -->
+		<global.resources.busi.home>${global.resources.config.home}/busi</global.resources.busi.home>
+		<global.resources.flow.home>${global.resources.config.home}/flow</global.resources.flow.home>
+		<global.resources.gateway.server.home>${global.resources.config.home}/gateway-server</global.resources.gateway.server.home>
+		<global.resources.gateway.client.home>${global.resources.config.home}/gateway-client</global.resources.gateway.client.home>
+
+		<dipper.groupId>com.pactera</dipper.groupId>
+		<dipper.version>1.0.0-SNAPSHOT</dipper.version>
+
+		<dubbo.version>2.4.9</dubbo.version>
+		<zkclient.version>0.4</zkclient.version>
+		<zookeeper.version>3.4.6</zookeeper.version>
+		<druid.version>1.0.4</druid.version>
+
+		<spring.version>3.2.9.RELEASE</spring.version>
+		<aspectjweaver.version>1.7.3</aspectjweaver.version>
+		<freemarker.version>2.3.21</freemarker.version>
+		<commons-lang.version>2.5</commons-lang.version>
+		<aopalliance.version>1.0</aopalliance.version>
+
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.2</logback.version>
+
+		<junit.version>4.11</junit.version>
+
+		<zxing.version>3.1.0</zxing.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<!-- jetty -->
+		<jetty.version>9.1.4.v20140401</jetty.version>
+		<!--j2ee -->
+		<geronimo-servlet_2.5_spec.version>1.2</geronimo-servlet_2.5_spec.version>
+		<servlet-api.version>3.1.0</servlet-api.version>
+		<jsp-api.version>2.2.1-b03</jsp-api.version>
+		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
+		<taglibs.standard.version>1.1.2</taglibs.standard.version>
+		<struts2-json-plugin.version>2.3.16.3</struts2-json-plugin.version>
+		<freemarker.version>2.3.20</freemarker.version>
+		<struts2-core.version>2.3.16.3</struts2-core.version>
+
+		<!--<commons-codec.version>1.6</commons-codec.version> -->
+		<!---db -->
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<xibatis.version>2.3</xibatis.version>
+		<hibernate-core.version>3.6.4.Final</hibernate-core.version>
+		<jta.version>1.1</jta.version>
+		<!--jackson -->
+		<jackson.version>1.9.9</jackson.version>
+		<jackson-databind.version>2.6.0</jackson-databind.version>
+		<!-- activiti -->
+		<activiti.version>5.12.1</activiti.version>
+		<activiti.diagram.version>5.12</activiti.diagram.version>
+		<batik.version>1.7</batik.version>
+		<jackson.version>1.9.9</jackson.version>
+		<jakarta.version>2.0.8</jakarta.version>
+		<javaGeom.version>0.11.0</javaGeom.version>
+		<jackson.restlet.version>2.0.15</jackson.restlet.version>
+		<png.version>1.5</png.version>
+		<xmlapi.version>1.3.04</xmlapi.version>
+		<rapid.version>4.0.5</rapid.version>
+		<!--<activiti.mybatis.version>3.2.6</activiti.mybatis.version> -->
+	</properties>
+	<dependencies>
+		<!-- 网联jar -->
+		<dependency>
+			<groupId>com.union.UnionAPI3</groupId>
+			<artifactId>UnionAPI3</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- http -->
+		<dependency>
+			<groupId>org.apache.pool2</groupId>
+			<artifactId>pool2</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<!-- <version></version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<!-- zookeeper -->
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>zookeeper</artifactId>
+					<groupId>org.apache.zookeeper</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.netty</groupId>
+					<artifactId>netty</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<!-- 中金 -->
+			<dependency>
+				<groupId>zhongjin</groupId>
+				<artifactId>zhongjin</artifactId>
+				<version>1.1.1</version>
+				<classifier>cpcn-payment-api</classifier>
+			</dependency>
+			<dependency>
+				<groupId>zhongjin</groupId>
+				<artifactId>zhongjin</artifactId>
+				<version>1.1.1</version>
+				<classifier>tools</classifier>
+			</dependency>
+			<!-- 中金 -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+
+			<!-- <dependency> <groupId>aopalliance</groupId> <artifactId>aopalliance</artifactId> 
+				<version>1.0</version> </dependency> -->
+
+			<!-- expression -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.mvel</groupId> -->
+			<!-- <artifactId>mvel2</artifactId> -->
+			<!-- <version>2.2.1.Final</version> -->
+			<!-- </dependency> -->
+			<!-- log -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.7.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>1.7.7</version>
+			</dependency>
+
+
+			<!-- dubbo -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.jboss.netty</groupId>
+						<artifactId>netty</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- freemarker -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+			</dependency>
+
+			<!-- zookeeper -->
+			<dependency>
+				<groupId>com.101tec</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>${zkclient.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>zookeeper</artifactId>
+						<groupId>org.apache.zookeeper</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- spring -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectjweaver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>aopalliance</groupId>
+				<artifactId>aopalliance</artifactId>
+				<version>${aopalliance.version}</version>
+			</dependency>
+			<!-- <dependency> -->
+			<!-- <groupId>org.springframework</groupId> -->
+			<!-- <artifactId>spring-dao</artifactId> -->
+			<!-- <version>2.0.8</version> -->
+			<!-- </dependency> -->
+
+			<!-- apache commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.9.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.7</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>1.10</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>3.3</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-chain</groupId>
+				<artifactId>commons-chain</artifactId>
+				<version>1.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!--jackson -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+			</dependency>
+
+			<!-- cache -->
+			<dependency>
+				<groupId>com.whalin</groupId>
+				<artifactId>Memcached-Java-Client</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.redisson</groupId>
+				<artifactId>redisson</artifactId>
+				<version>2.1.0</version>
+			</dependency>
+
+			<!-- db -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.31</version>
+			</dependency>
+			<!-- atomikos -->
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-api</artifactId>
+				<version>3.9.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-jdbc</artifactId>
+				<version>3.9.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-jms</artifactId>
+				<version>3.9.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.4.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jta_1.1_spec</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+
+
+
+			<!-- dipper -->
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-core</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-dubbo</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-exception</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-dict</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-commons</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-em</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-flow</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-utils</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-cp</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-db</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-db-mybatis</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-db</artifactId>
+				<version>${dipper.version}</version>
+				<classifier>javadoc</classifier>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-tx</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-batch-service</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-cp-ftp-client</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-mp-fixlength</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-batch-step</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-redis-client</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pactera</groupId>
+				<artifactId>dipper-presys-cp-httpsvr</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-cp-server</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>4.4.10</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>4.5.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-cp-client</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-mp</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-mp-json</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-mp-agilexml</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-cp-tcp</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-mp-8583</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${dipper.groupId}</groupId>
+				<artifactId>dipper-presys-cp-http</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pactera</groupId>
+				<artifactId>dipper-presys-mp-basexml</artifactId>
+				<version>${dipper.version}</version>
+			</dependency>
+			<!-- *************************** jasperreports dependency ************************* -->
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>5.5.2</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>itext</artifactId>
+						<groupId>com.lowagie</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>olap4j</artifactId>
+						<groupId>org.olap4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-collections</artifactId>
+						<groupId>commons-collections</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-beanutils</artifactId>
+						<groupId>commons-beanutils</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>jfreechart</artifactId>
+						<groupId>jfree</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>lucene-queryparser</artifactId>
+						<groupId>org.apache.lucene</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>lucene-core</artifactId>
+						<groupId>org.apache.lucene</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>lucene-analyzers-common</artifactId>
+						<groupId>org.apache.lucene</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports-fonts</artifactId>
+				<version>4.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>3.9</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.birt.runtime.3_7_1</groupId>
+				<artifactId>com.lowagie.text</artifactId>
+				<version>2.1.7</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.montnets.mwgate</groupId>
+				<artifactId>com.sms</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.unionpay.acp</groupId>
+				<artifactId>com.pay</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<!-- zxing -->
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>${zxing.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>${zxing.version}</version>
+			</dependency>
+			<!-- commons-codec -->
+			<!--<dependency> -->
+			<!--<groupId>commons-codec</groupId> -->
+			<!--<artifactId>commons-codec</artifactId> -->
+			<!--<version>${commons-codec.version}</version> -->
+			<!--</dependency> -->
+
+			<!-- *************************** jetty dependency ************************* -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>${jetty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-io</artifactId>
+				<version>${jetty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-security</artifactId>
+				<version>${jetty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>7.6.9.v20130131</version>
+			</dependency>
+
+
+
+
+			<!-- *************************** j2ee dependency ************************* -->
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-servlet_2.5_spec</artifactId>
+				<version>${geronimo-servlet_2.5_spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${javax.servlet.jstl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>${taglibs.standard.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-json-plugin</artifactId>
+				<version>${struts2-json-plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>${struts2-core.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>asm</groupId>
+						<artifactId>asm</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.tuckey</groupId>
+				<artifactId>urlrewritefilter</artifactId>
+				<version>4.0.3</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.9</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>3.0.1-b04</version>
+				<scope>provided</scope>
+			</dependency>
+			<!--db -->
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons-dbcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.g4studio</groupId>
+				<artifactId>xibatis</artifactId>
+				<version>${xibatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.0.2.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>jta</artifactId>
+				<version>${jta.version}</version>
+			</dependency>
+			<!--other -->
+			<dependency>
+				<groupId>org.apache.ant</groupId>
+				<artifactId>ant</artifactId>
+				<version>1.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>antlr</groupId>
+				<artifactId>antlr</artifactId>
+				<version>2.7.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity</artifactId>
+				<version>1.6.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>1.3.0</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>1.3.0</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>1.6.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sourceforge.jexcelapi</groupId>
+				<artifactId>jxl</artifactId>
+				<version>2.6.12</version>
+				<exclusions>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>opensymphony</groupId>
+				<artifactId>oscache</artifactId>
+				<version>2.4.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.jms</groupId>
+						<artifactId>jms</artifactId>
+					</exclusion>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.rapid-framework</groupId>
+				<artifactId>rapid-core</artifactId>
+				<version>4.0.5</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>asm</groupId>
+						<artifactId>asm</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>2.3</version>
+				<classifier>jdk15</classifier>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>2.1_3</version>
+			</dependency>
+
+			<!--*************activiti**************** -->
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-bpmn-converter</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-bpmn-model</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-common-rest</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-diagram-rest</artifactId>
+				<version>${activiti.diagram.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-engine</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-explorer</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-json-converter</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-modeler</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+
+			<dependency>
+				<groupId>kft</groupId>
+				<artifactId>activiti-spring</artifactId>
+				<version>${activiti.version}</version>
+				<classifier>kft</classifier>
+			</dependency>
+
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>anim</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>awt-util</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>bridge</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>codec</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>css</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>dom</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>ext</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>gvt</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>js</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>parser</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>script</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>svg-dom</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>svggen</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>transcoder</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>util</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>batik</groupId>
+				<artifactId>xml</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jackson</groupId>
+				<artifactId>core-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jackson</groupId>
+				<artifactId>mapper-asl</artifactId>
+				<version>1.9.7</version>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta</groupId>
+				<artifactId>oro</artifactId>
+				<version>${jakarta.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javaGeom</groupId>
+				<artifactId>javaGeom</artifactId>
+				<version>${javaGeom.version}</version>
+			</dependency>
+
+			<!--<dependency> -->
+			<!--<groupId>mybatis</groupId> -->
+			<!--<artifactId>mybatis</artifactId> -->
+			<!--<version>${activiti.mybatis.version}</version> -->
+			<!--</dependency> -->
+
+			<dependency>
+				<groupId>jackson</groupId>
+				<artifactId>org.restlet.ext</artifactId>
+				<version>${jackson.restlet.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>jackson</groupId>
+				<artifactId>org.restlet</artifactId>
+				<version>${jackson.restlet.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>jackson</groupId>
+				<artifactId>org.restlet.ext.servlet</artifactId>
+				<version>${jackson.restlet.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>png</groupId>
+				<artifactId>encoder</artifactId>
+				<version>${png.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>${xmlapi.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis-ext</artifactId>
+				<version>${xmlapi.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>rapid</groupId>
+				<artifactId>core</artifactId>
+				<version>${rapid.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15</artifactId>
+				<version>1.54</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pactera.upay</groupId>
+				<artifactId>upay-commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+
+
+
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/scripts</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.17</version>
+					<configuration>
+						<skip>true</skip>
+						<testFailureIgnore>true</testFailureIgnore>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.1.4.v20140401</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+						<descriptors>
+							<descriptor>src/main/assembly/assembly.xml</descriptor>
+						</descriptors>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id>
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<excludes>
+							<exclude>*.properties</exclude>
+							<exclude>*.sh</exclude>
+							<exclude>*.conf</exclude>
+							<exclude>logback.xml</exclude>
+							<exclude>dbrouter/**</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-antrun-plugin
+										</artifactId>
+										<versionRange>
+											[1.7,)
+										</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<!-- logback相关配置 -->
+				<dyn.logback.home><![CDATA[${user.home}/logs]]></dyn.logback.home>
+				<dyn.logback.level>debug</dyn.logback.level>
+				<dyn.stdout><![CDATA[<appender-ref ref="STDOUT" />]]></dyn.stdout>
+				<!-- dubbo相关配置 -->
+				<dyn.zookeeper.connect>127.0.0.1:2181</dyn.zookeeper.connect>
+				<dyn.dubbo.provider.timeout>50000</dyn.dubbo.provider.timeout>
+				<dyn.dubbo.provider.retries>0</dyn.dubbo.provider.retries>
+				<dyn.registry.group>upay</dyn.registry.group>
+				<!-- redis相关配置 -->
+				<dyn.redis.ip>localhost</dyn.redis.ip>
+				<dyn.redis.port>6379</dyn.redis.port>
+				<dyn.redis.sentinels></dyn.redis.sentinels>
+				<!-- db相关配置 -->
+				<!-- <dyn.datasource.url><![CDATA[jdbc:oracle:thin:@192.168.1.188:1521/upay]]></dyn.datasource.url> -->
+				<!-- <dyn.datasource.url><![CDATA[jdbc:oracle:thin:@197.4.11.14:1521/upay]]></dyn.datasource.url> -->
+				<!--<dyn.datasource.url><![CDATA[jdbc:oracle:thin:@10.100.205.11:1521/upay]]></dyn.datasource.url> -->
+				<!--<dyn.datasource.url><![CDATA[jdbc:oracle:thin:@10.100.205.11:1521/upay]]></dyn.datasource.url> -->
+				<dyn.datasource.url><![CDATA[jdbc:oracle:thin:@197.5.11.20:1521/upay]]></dyn.datasource.url>
+
+
+				<dyn.datasource.username>upay</dyn.datasource.username>
+				<dyn.datasource.password>upay</dyn.datasource.password>
+				<dyn.datasource.initialSize>1</dyn.datasource.initialSize>
+				<dyn.datasource.minIdle>3</dyn.datasource.minIdle>
+				<dyn.datasource.maxActive>10</dyn.datasource.maxActive>
+				<!-- 密码校验配置 -->
+				<dyn.password.url>http://197.4.11.23:9080/SafekeyboardValidateService/GetEncodePassword?type=1</dyn.password.url>
+				<!-- 启动参数配置 -->
+				<dyn.specJavaOpts.batch><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.batch>
+				<dyn.specJavaOpts.flow><![CDATA["-Xms128m -Xmx256m -Xmn64m -XX:PermSize=32m -XX:MaxPermSize=64m"]]></dyn.specJavaOpts.flow>
+				<dyn.specJavaOpts.gateway><![CDATA["-Xms128m -Xmx256m -Xmn64m -XX:PermSize=32m -XX:MaxPermSize=64m"]]></dyn.specJavaOpts.gateway>
+				<dyn.env.app.dargs><![CDATA["-Ddubbo.provider.threadpool=fixed -Ddubbo.provider.threads=50"]]></dyn.env.app.dargs>
+				<!-- server -->
+				<dyn.server.mac>847b09826c2b2093</dyn.server.mac>
+				<dyn.server.flag>false</dyn.server.flag>
+				<!-- ESB -->
+				<esb.uploadFilePath>D:/</esb.uploadFilePath>
+
+				<!--oms -->
+				<dyn.uploadPath>D:/images/</dyn.uploadPath>
+				<dyn.imgServer>http://localhost:8080/imgsServer/</dyn.imgServer>
+				<dyn.oms.dataExcelPath>D:/oms_excel/</dyn.oms.dataExcelPath>
+				<!--核心url -->
+				<dyn.gateway.client.core.url>tcp://197.3.11.67:50050</dyn.gateway.client.core.url>
+				<!--短信url -->
+				<dyn.gateway.client.sms.url>tcp://197.3.11.76:8504</dyn.gateway.client.sms.url>
+				<!-- MD5 -->
+				<dyn.cspMd5Key>20160721</dyn.cspMd5Key>
+				<!-- wechat -->
+				<wechat.md5.key>b01763152a0c8796d0ebc59042051686</wechat.md5.key>
+				<wechat.merid>1378612302</wechat.merid>
+				<wechat.cert.path>D:\code\DEV_ENV\config-file\apiclient_cert.p12</wechat.cert.path>
+				<wechat.pay.url>https://api.mch.weixin.qq.com/pay/</wechat.pay.url>
+				<wechat.twowayauth.url>https://api.mch.weixin.qq.com/secapi/pay/</wechat.twowayauth.url>
+				<wechat.submchmanage.url>https://api.mch.weixin.qq.com/secapi/mch/submchmanage?action=</wechat.submchmanage.url>
+				<wechat.tools.url>https://api.mch.weixin.qq.com/tools/</wechat.tools.url>
+				<wechat.payitil.url>https://api.mch.weixin.qq.com/payitil/</wechat.payitil.url>
+				<wechat.process.filepath>E:/</wechat.process.filepath>
+				<wechat.mmpaymkttransfers.url>https://api.mch.weixin.qq.com/mmpaymkttransfers/</wechat.mmpaymkttransfers.url>
+
+				<atweixin.mchId>1900009211</atweixin.mchId>
+				<atweixin.subMchId>11386352</atweixin.subMchId>
+				<atweixin.channelId>24006513</atweixin.channelId>
+				<atweixin.appId>wx2421b1c4370ec43b</atweixin.appId>
+				<atweixin.subAppid>wx2b029c08a6232582</atweixin.subAppid>
+
+				<atweixin.frontTransUrl>http://197.5.11.16:8881/wx/v1</atweixin.frontTransUrl>
+				<atweixin.publicKeyPath>C:/T/acp_test_verify_sign.cer</atweixin.publicKeyPath>
+				<atweixin.privateKeyPath>C:/T/00010000new2048.pfx</atweixin.privateKeyPath>
+				<atweixin.privateKeyPassword>000000</atweixin.privateKeyPassword>
+				<!--<wechat.process.filepath>C:/</wechat.process.filepath> -->
+
+				<!-- 邮件发送服务 -->
+				<mail.sender.host>smtp.exmail.qq.com</mail.sender.host>
+				<mail.sender.port>465</mail.sender.port>
+				<mail.sender.username>epay@ynhtbank.com</mail.sender.username>
+				<mail.sender.password>ynhtBank96522</mail.sender.password>
+				<mail.templet>/home/appsvr/global-resources/config/flow/usr/</mail.templet>
+
+				<!-- 烟草批量转账 -->
+				<smoke.server.url>197.5.11.24</smoke.server.url>
+				<smoke.server.port>21</smoke.server.port>
+				<smoke.server.username>appsvr</smoke.server.username>
+				<smoke.server.password>appsvr</smoke.server.password>
+				<smoke.server.remotePath>SMOKE_STL/</smoke.server.remotePath>
+				<smoke.server.localPath>D:/FTPServer/</smoke.server.localPath>
+
+				<!-- 公用批量转账 -->
+				<batch.server.url>197.5.11.24</batch.server.url>
+				<batch.server.port>21</batch.server.port>
+				<batch.server.username>appsvr</batch.server.username>
+				<batch.server.password>appsvr</batch.server.password>
+				<batch.server.remotePath>BATCH_TRANSFER/</batch.server.remotePath>
+				<batch.server.localPath>D:/FTPServer/</batch.server.localPath>
+
+			<!--	<dyn.gateway.client.acp-pay.merNo>777290058153842</dyn.gateway.client.acp-pay.merNo>-->
+				<dyn.gateway.client.acp-pay.merNo>524530160110003</dyn.gateway.client.acp-pay.merNo>
+				<!-- 银联代付 -->
+				<dyn.gateway.client.acp-pay.certsPath>D:\DEV_ENV\config-file\certs\</dyn.gateway.client.acp-pay.certsPath>
+				<dyn.gateway.client.acp-pay.backTransUrl>https://gateway.test.95516.com/gateway/api/backTransReq.do</dyn.gateway.client.acp-pay.backTransUrl>
+				<dyn.gateway.client.acp-pay.backUrl>http://1897g0z001.imwork.net:16803/service/acp/post.do</dyn.gateway.client.acp-pay.backUrl>
+				<dyn.gateway.client.acp-pay.fileTransUrl>https://filedownload.test.95516.com/</dyn.gateway.client.acp-pay.fileTransUrl>
+				<dyn.gateway.client.acp-pay.acpFileRoot>D:\DEV_ENV\config-file\file\</dyn.gateway.client.acp-pay.acpFileRoot>
+
+
+
+				<!--商户版 无跳转支付 -->
+				<acpsdk.frontTransUrl>https://gateway.test.95516.com/gateway/api/frontTransReq.do</acpsdk.frontTransUrl>
+				<acpsdk.singleQueryUrl>https://gateway.test.95516.com/gateway/api/queryTrans.do</acpsdk.singleQueryUrl>
+				<acpsdk.batchTransUrl>https://gateway.test.95516.com/gateway/api/batchTransReq.do</acpsdk.batchTransUrl>
+				<acpsdk.fileTransUrl>https://filedownload.test.95516.com/</acpsdk.fileTransUrl>
+				<acpsdk.backTransUrl>https://gateway.test.95516.com/gateway/api/backTransReq.do</acpsdk.backTransUrl>
+				<acpsdk.backUrl>https://39.130.163.22/acp/backUrl.do</acpsdk.backUrl>
+				<acpsdk.trId>62000000001</acpsdk.trId>
+				<!--银联商户 证书地址 -->
+				<acpsdk.signCert.path>D:/certs1/acp_test_sign.pfx</acpsdk.signCert.path>
+				<acpsdk.encryptCert.path>D:/certs1/acp_test_enc.cer</acpsdk.encryptCert.path>
+				<acpsdk.middleCert.path>D:/certs1/acp_test_middle.cer</acpsdk.middleCert.path>
+				<acpsdk.rootCert.path>D:/certs1/acp_test_root.cer</acpsdk.rootCert.path>
+				<acpsdk.signCert.pwd>000000</acpsdk.signCert.pwd>
+				<!--对账单存放地址 -->
+				<acpsdk.acpFileRoot.path>D:/certs1/</acpsdk.acpFileRoot.path>
+
+
+				<!-- 银联代收 -->
+				<dyn.gateway.client.acp-receive.certsPath>D:\certs\acp_test_sign_inst.pfx</dyn.gateway.client.acp-receive.certsPath>
+				<dyn.gateway.client.acp-receive.backTransUrl>https://gateway.test.95516.com/gateway/api/backTransReq.do</dyn.gateway.client.acp-receive.backTransUrl>
+				<dyn.gateway.client.acp-receive.backUrl>http://1897g0z001.imwork.net:16803/service/acp/post.do</dyn.gateway.client.acp-receive.backUrl>
+				<dyn.gateway.client.acp-receive.fileTransUrl>https://filedownload.test.95516.com/</dyn.gateway.client.acp-receive.fileTransUrl>
+				<dyn.gateway.client.acp-receive.acpFileRoot>D:\code\DEV_ENV\config-file\file\</dyn.gateway.client.acp-receive.acpFileRoot>
+				<!--代收商户号 -->
+				<dyn.gateway.client.acp-receive.merNo>524530160110002</dyn.gateway.client.acp-receive.merNo>
+				<!--代收证书密码 -->
+				<dyn.gateway.client.acp-receive.pwd>000000</dyn.gateway.client.acp-receive.pwd>
+
+
+				<!-- 银联机构接入 -->
+				<acpsdk.qrcB2cIssBackTransUrl>https://c2c.test.95516.com/qrc/api/issBackTransReq.do</acpsdk.qrcB2cIssBackTransUrl>
+				<acpsdk.qrcB2cMerBackTransUrl>https://c2c.test.95516.com/qrc/api/merBackTransReq.do</acpsdk.qrcB2cMerBackTransUrl>
+				<acpsdk.qrcB2cMerBackSynTransUrl>https://c2c.test.95516.com/qrc/api/merBackTransReqSyn.do</acpsdk.qrcB2cMerBackSynTransUrl>
+                 
+
+
+
+
+				<acpsdk.qrcB2csignCertPath>D:\certs\</acpsdk.qrcB2csignCertPath>
+				<acpsdk.qrcB2csignCertPath.signCert>D:\certs\acp_test_sign_inst.pfx</acpsdk.qrcB2csignCertPath.signCert>
+				<acpsdk.qrcB2csignCertPath.pwd>000000</acpsdk.qrcB2csignCertPath.pwd>
+				<acpsdk.qrcB2csignCertPath.encryptCert>D:\certs\acp_test_enc.cer</acpsdk.qrcB2csignCertPath.encryptCert>
+				<dyn.gateway.client.acpqrc-pay.issCode>05247410</dyn.gateway.client.acpqrc-pay.issCode>
+				<dyn.gateway.client.acpqrc-pay.backUrl>http://jimhe1986.vicp.io:25352/service/acp/post</dyn.gateway.client.acpqrc-pay.backUrl>
+				<dyn.gateway.client.acpqrc-pay.notifiyUrl>https://gateway.test.95516.com/gateway/api/batchTransReq.do</dyn.gateway.client.acpqrc-pay.notifiyUrl>
+				<union.chk.path>D:\CHK_FILE\UNION_STL</union.chk.path>
+				<union.chk.path.pattern>*ACOM</union.chk.path.pattern>
+
+				<!-- 商户签名验签 -->
+				<dyn.merchant.no.field.name>merNo</dyn.merchant.no.field.name>
+				<dyn.merchant.key>abcde12345678900987654321edcba01</dyn.merchant.key>
+				<!-- 中金证书路径 -->
+				<payment.config.path>C:/kaifa/config/payment</payment.config.path>
+
+				<!-- portal -->
+				<acp.front.url>http://222.222.222.222:8080/ACPSample_B2C/BackRcvResponse</acp.front.url>
+				<acp.back.url>http://zhong123893.oicp.net/upay/acp/post</acp.back.url>
+				<dyn.redirect.ip>197.4.11.16</dyn.redirect.ip>
+				<dyn.redirect.http>http</dyn.redirect.http>
+				<dyn.redirect.port>8080</dyn.redirect.port>
+
+				<payment.config.path.portal>D:\DEV_ENV\config-file\payment</payment.config.path.portal>
+				<system.config.path.portal>D:\DEV_ENV\config-file\system</system.config.path.portal>
+
+				<mer.isFtpUploadChkFile>/home/appsvr/UploadChkFile</mer.isFtpUploadChkFile>
+				<mer.chkFileDirPath>/home/appsvr/chkFileDirPath</mer.chkFileDirPath>
+
+				<!-- 对账相关 -->
+				<core.ftp.url>197.5.11.24</core.ftp.url>
+				<core.ftp.port>21</core.ftp.port>
+				<core.ftp.username>appsvr</core.ftp.username>
+				<core.ftp.password>appsvr</core.ftp.password>
+				<core.ftp.coreLocalPath>D:/test/</core.ftp.coreLocalPath>
+				<core.ftp.coreRemotePath>CORE_STL</core.ftp.coreRemotePath>
+				<wechat.appid>wx288339422065bc01</wechat.appid>
+				<wechat.downLoad.filePath>/chk/wechat</wechat.downLoad.filePath>
+				<!-- 跳转URL -->
+				<jumpLink.url>http://197.21.3.224:8088/gateway</jumpLink.url>
+
+				<!-- 加密机信息 -->
+				<union.api.encryptIp>197.3.11.54</union.api.encryptIp>
+				<union.api.encryptPort>12002</union.api.encryptPort>
+				<union.api.timeout>7</union.api.timeout>
+				<union.api.appID>TE</union.api.appID>
+				<union.api.sysID>TE</union.api.sysID>
+				<union.api.connNum>5</union.api.connNum>
+				<union.api.keyName>upay.05247410-des.zek</union.api.keyName>
+				<union.api.encryptkeyName>upay.05247410-01.sm2</union.api.encryptkeyName>
+				<union.api.cipherDataLen>2</union.api.cipherDataLen>
+				<union.api.vKindex>01</union.api.vKindex>
+				<union.api.algorthmID>SM2</union.api.algorthmID>
+				<union.api.dataFillMode>08</union.api.dataFillMode>
+				<union.api.format>0</union.api.format>
+
+				<!-- 获取验证码信息 -->
+				<union.otp.ip>197.3.11.109</union.otp.ip>
+				<union.otp.port>8555</union.otp.port>
+				<union.otp.timeout>7</union.otp.timeout>
+				<union.otp.appID>upay</union.otp.appID>
+				<union.otp.sysID>upay</union.otp.sysID>
+				<union.otp.connNum>5</union.otp.connNum>
+
+				<!-- 支付宝 -->
+				<!-- <alipay.url>https://openapi.alipaydev.com/gateway.do</alipay.url> 
+					<alipay.appId>2016090900468878</alipay.appId> -->
+				<!-- 支付宝 对账单要替换的域名 -->
+				<alipay.file.addr>dwbillcenter.alipay.com</alipay.file.addr>
+				<!-- 支付宝 对账单要替换成的IP -->
+				<alipay.file.addrReplace>197.21.4.162</alipay.file.addrReplace>
+				<alipay.url>http://openapi.alipay.com/openalipay/gateway.do</alipay.url>
+				<alipay.appId>2017110109667472</alipay.appId>
+				<alipay.notifyUrl>https://epay.test.ynhtbank.com/upay/alipay/post.do</alipay.notifyUrl>
+				<!-- 支付宝对账单地址 -->
+				<alipay.chk.path>E:/</alipay.chk.path>
+				<alipay.auth.url><![CDATA[https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017110109667472&scope=auth_base&redirect_uri=https://epay.test.ynhtbank.com/PayTreasure/index.html?state=]]></alipay.auth.url>
+
+				<!-- ESB 上传文件 的FTP server IP和端口 -->
+				<dyn.esb.client>http://197.3.11.185:39023/UPP/</dyn.esb.client>
+				<dyn.esb.ftpIP>197.3.11.186</dyn.esb.ftpIP>
+				<dyn.esb.ftpPort>5001</dyn.esb.ftpPort>
+
+				<!-- 银联AT 通道 支付宝参数配置 -->
+				<atalipay.url>https://apay.test.95516.com/ali/aligateway</atalipay.url>
+				<atalipay.appId>2017040606571877</atalipay.appId>
+				<atalipay.notifyUrl></atalipay.notifyUrl>
+				<atalipay.file.addr></atalipay.file.addr>
+				<atalipay.file.addrReplace></atalipay.file.addrReplace>
+				<atalipay.private_key>MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCI5n14+TasTJt+Lp6IjbnTtvPfOP62Oxbtu9aacLLpf9HktfOzzrBpHIwglTKitWsngdRqCSCBC56G4cz+7XTlihE+bvASkQyZNPT7EWX2obDkoBK/ZG1v+wcyWzZuULjRFODkaww3QLVHvNlPKvtwMbiLfxuAEP5XncXW0R2hfeNKPsdLegyAMAVo/MWa4/2z01Co4jaHCD3cWHnZy0mItP7m4l6Uq8zx7H94a0j4GmRFWvV/5Ua6ryxazY2ZKTYNKsxBKBaEOASpkPOir/9r0kSete4WrxIrx7eLJoqQ5UsG08gr7z8/EZwqUUiuGmZKmy7MFccVSkI5yGxssiNPAgMBAAECggEALvZywJctbDnzdXvkoo+L2db/HepdZoIqwW8YlW5n0bYpeL36Vgpndgd3Ao5sCmkV0z20cpOi9OHZhgfb3O/0k/GjLLm93YCow73o9F/pjIu3NRa8l6+J40pIE7w6lelXHVJ+O52FWUb3aR6dpYznKHvGBQSbmHk75y6WebTO52DXMCJrtcNyES7BTLP9yKudDapa9nyFrenPehOSSQOlmrDEEhKX4cMyPhoVZ4rWZUGO3tPwu3LYWYR5/KrxtLL7A24pmeqGwS5u62vEKA4AxM2BmpaQuXTnOukgUOmZO3t83rPq/yRBU0blgEBybbo8hByWc51f6Qd0n+l2OPaQgQKBgQDj/DvY6D7iJLGSS1RYeNBK/5jYkbsTRWUnDlFl3rGLO+QYzswjPZHzyGNBLZ7Stm/zLJom7yTkntmTVsQ5pcE4XMHbsxksjDeDWtfEvM8YhpNMc7VyX40R9B9XVoPsIWjdrx5odCn1hlOgV7ut2CH/IzdLf8KhrARh2Im9k193LwKBgQCZuPv8qiiEArZgZugM+YYSM+HTkCfjKoE1af5Ig2cB+tlW1mZT4uWa7fTJZg5etRV0TauQYJEnGQYWtsb1/YKMaFzy7Ch1Xs/hx2TPqPrJTZ10Arxlwt2Uot9iHj/kltS3j2d33mdLmCxQUq/97CrMbMTxe+DfbD2i5dsF/9MN4QKBgQCoqoIIPgHPwn/QkIRtE6xd3+zPRDlXz34/P7t+lxtYu81LgSrLY5Cn/3dW0A5xK2F1UWkWJtRvgwnKlGWFlJh3P0B4bm7QY0fqmPmKZnj8VwuAgxYY8JHoV2gccDgXKLxxTU48zrwAFgmmVWHXAlBcdkxBQdrXSvDPBqkYpH/7JwKBgDomPrQiTfc563FmHAukbDIAjEFye5Q0JPJmqPkXM+UM1iBCNC0xXHeR4hI5V+A9keMP6oFP9jia/7Gh7HtrLXIdnGOML/XOKscWnSzsmAmEIbabvlakMxuhzOyZ0sOOxuK1DYfLirmO09yCmu5r4vi3gHx0xujdUieH2aVYU6chAoGBAN+7RbWwBfk9MT7rKqV2AtL+TN/wXM6knRPbIBzvE2PRcorXEL2bbaqKJRmg0tZ4VqIarZ6PF7chSOw1D2+4d+9t+h90sKRbu0msAiFrxfqrTkao7aWHEU/e4M+F254+RzEQ3g0Rqu9rNNW7m78ZfPoQZXtt4LvxoglqKv5n/MRm</atalipay.private_key>
+				<atpublic_key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiOZ9ePk2rEybfi6eiI2507bz3zj+tjsW7bvWmnCy6X/R5LXzs86waRyMIJUyorVrJ4HUagkggQuehuHM/u105YoRPm7wEpEMmTT0+xFl9qGw5KASv2Rtb/sHMls2blC40RTg5GsMN0C1R7zZTyr7cDG4i38bgBD+V53F1tEdoX3jSj7HS3oMgDAFaPzFmuP9s9NQqOI2hwg93Fh52ctJiLT+5uJelKvM8ex/eGtI+BpkRVr1f+VGuq8sWs2NmSk2DSrMQSgWhDgEqZDzoq//a9JEnrXuFq8SK8e3iyaKkOVLBtPIK+8/PxGcKlFIrhpmSpsuzBXHFUpCOchsbLIjTwIDAQAB</atpublic_key>
+				<atalipay_public_key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnDXn2QYPX2dYXtgVVJH5oY0AU+ffFb7XzkdAbxnoUo3vSZ7nEaAHsecbDDnrifNcB7UQGvGFPQ0T4HjvUUPzLCqmLgupacl+S9YoGksjkgPUXo0+KO7tZIf6WkbVj4iujhkFW3GcfNFzbdAamFgOPoWPweUMG0U2WYyuEni0qK2ylPiZPuzwnRsd7X4+e7JWvX2LW0ckLrsNHrIVpE8emD5uBzIcXzcGWDis0pmugnjjq/wnfbH/b6dC6uSy9hkRMRtXOXxeguXz7whB4RORyUBZnGWdOoVuIIju+PGAOClXTd7NFt4oxkh2H1TCztSatFWnpYnC8rya4D8B2sWwKQIDAQAB</atalipay_public_key>
+				
+				<atpublicKey_path>D:/config/atalipay/acp_test_verify_sign.cer</atpublicKey_path>  <!-- 公钥文件路径 -->
+				<atprivateKey_path>D:/config/atalipay/00010000new2048.pfx</atprivateKey_path><!-- 私钥文件路径 -->
+				<atprivateKey_password>000000</atprivateKey_password><!-- 私钥密码 -->
+
+				<!-- esb sms 配置 -->
+				<dyn.gateway.client.esb.acctNm>admin</dyn.gateway.client.esb.acctNm>
+				<dyn.gateway.client.esb.pswd>4QrcOUm6Wau+VuBX8g+IPg==</dyn.gateway.client.esb.pswd>
+				<dyn.gateway.client.esb.sndTp>0</dyn.gateway.client.esb.sndTp>
+				<dyn.gateway.client.esb.msgTp>1</dyn.gateway.client.esb.msgTp>
+
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>uat</id>
+			<properties>
+				<!-- logback相关配置 -->
+				<dyn.logback.home>/home/appsvr/logs</dyn.logback.home>
+				<dyn.logback.level>debug</dyn.logback.level>
+				<dyn.stdout></dyn.stdout>
+				<!-- dubbo相关配置 -->
+				<dyn.zookeeper.connect>197.5.11.16:2181</dyn.zookeeper.connect>
+				<dyn.dubbo.provider.timeout>50000</dyn.dubbo.provider.timeout>
+				<dyn.dubbo.provider.retries>0</dyn.dubbo.provider.retries>
+				<dyn.registry.group>upay</dyn.registry.group>
+				<!-- redis相关配置 -->
+				<dyn.redis.ip>197.5.11.16</dyn.redis.ip>
+				<dyn.redis.port>6379</dyn.redis.port>
+				<dyn.redis.sentinels></dyn.redis.sentinels>
+				<!-- db相关配置 -->
+				<dyn.datasource.url><![CDATA[jdbc:oracle:thin:@197.5.11.20:1521/upay]]></dyn.datasource.url>
+				<dyn.datasource.username>upay</dyn.datasource.username>
+				<dyn.datasource.password>upay</dyn.datasource.password>
+				<dyn.datasource.initialSize>1</dyn.datasource.initialSize>
+				<dyn.datasource.minIdle>3</dyn.datasource.minIdle>
+				<dyn.datasource.maxActive>10</dyn.datasource.maxActive>
+				<!-- 密码校验配置 -->
+				<dyn.password.url>http://197.4.11.23:9080/SafekeyboardValidateService/GetEncodePassword?type=1</dyn.password.url>
+				<!-- 启动参数配置 -->
+				<dyn.specJavaOpts.batch><![CDATA["-Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=128m"]]></dyn.specJavaOpts.batch>
+				<dyn.specJavaOpts.flow><![CDATA["-Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=128m"]]></dyn.specJavaOpts.flow>
+				<dyn.specJavaOpts.gateway><![CDATA["-Xms512m -Xmx512m -Xmn256m -XX:PermSize=128m -XX:MaxPermSize=128m"]]></dyn.specJavaOpts.gateway>
+				<dyn.env.app.dargs><![CDATA["-Ddubbo.provider.threadpool=fixed -Ddubbo.provider.threads=50"]]></dyn.env.app.dargs>
+				<!-- server -->
+				<dyn.server.mac>847b09826c2b2093</dyn.server.mac>
+				<dyn.server.flag>false</dyn.server.flag>
+
+				<!-- ESB -->
+				<esb.uploadFilePath>/home/appsvr/ESB_FILE</esb.uploadFilePath>
+				<!--portal -->
+				<dyn.portal.virtualUploadPath>/home/appsvr/mnt/images/</dyn.portal.virtualUploadPath>
+				<dyn.portal.downloadFile>https://epay.test.ynhtbank.com/images/</dyn.portal.downloadFile>
+				<dyn.portal.sharemapp>https://epay.test.ynhtbank.com/images/</dyn.portal.sharemapp>
+				<dyn.redirect.ip>epay.test.ynhtbank.com</dyn.redirect.ip>
+				<dyn.redirect.http>https</dyn.redirect.http>
+				<dyn.redirect.port></dyn.redirect.port>
+				<dyn.portal.weiXinOpenUrl><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx288339422065bc01&redirect_uri=https%3a%2f%2fepay.test.ynhtbank.com%2fWechat%2findex.html%3fbusNo%3d]]></dyn.portal.weiXinOpenUrl>
+
+
+				<acp.front.url>http://222.222.222.222:8080/ACPSample_B2C/BackRcvResponse</acp.front.url>
+				<acp.back.url>http://zhong123893.oicp.net/upay/acp/post</acp.back.url>
+
+				<payment.config.path.portal>/home/appsvr/upaycert/zjpay/config/payment</payment.config.path.portal>
+				<system.config.path.portal>/home/appsvr/upaycert/zjpay/config/system</system.config.path.portal>
+				<!--portal -->
+				<!--oms -->
+				<dyn.uploadPath>/home/appsvr/file/images/</dyn.uploadPath>
+				<dyn.imgServer>http://localhost:8080/imgsServer/</dyn.imgServer>
+				<dyn.oms.dataExcelPath>D:/oms_excel/</dyn.oms.dataExcelPath>
+				<!--核心url -->
+				<dyn.gateway.client.core.url>tcp://197.3.11.67:50051</dyn.gateway.client.core.url>
+				<!--短信url -->
+				<dyn.gateway.client.sms.url>tcp://197.3.11.76:8504</dyn.gateway.client.sms.url>
+				<!-- MD5 -->
+				<dyn.cspMd5Key>20160721</dyn.cspMd5Key>
+				<!-- wechat微信地址 -->
+				<wechat.md5.key>b01763152a0c8796d0ebc59042051686</wechat.md5.key>
+				<wechat.merid>1378612302</wechat.merid>
+				<wechat.cert.path>/home/appsvr/upaycert/weixin/apiclient_cert.p12</wechat.cert.path>
+				<wechat.pay.url>https://api.mch.weixin.qq.com/pay/</wechat.pay.url>
+				<wechat.twowayauth.url>https://api.mch.weixin.qq.com/secapi/pay/</wechat.twowayauth.url>
+				<wechat.submchmanage.url>https://api.mch.weixin.qq.com/secapi/mch/submchmanage?action=</wechat.submchmanage.url>
+				<wechat.tools.url>https://api.mch.weixin.qq.com/tools/</wechat.tools.url>
+				<wechat.payitil.url>https://api.mch.weixin.qq.com/payitil/</wechat.payitil.url>
+				<wechat.process.filepath>/home/appsvr/bill/</wechat.process.filepath>
+				<wechat.mmpaymkttransfers.url>https://api.mch.weixin.qq.com/mmpaymkttransfers/</wechat.mmpaymkttransfers.url>
+
+
+				<!-- 银联微信通道 -->
+				<atweixin.mchId>1900009211</atweixin.mchId>
+				<atweixin.subMchId>11386352</atweixin.subMchId>
+				<atweixin.channelId>24006513</atweixin.channelId>
+				<atweixin.appId>wx2421b1c4370ec43b</atweixin.appId>
+				<atweixin.subAppid>wx2b029c08a6232582</atweixin.subAppid>
+
+				<atweixin.frontTransUrl>http://197.21.3.28/wx/v1</atweixin.frontTransUrl>
+				<atweixin.publicKeyPath>/home/appsvr/AT/T/acp_test_verify_sign.cer</atweixin.publicKeyPath>
+				<atweixin.privateKeyPath>/home/appsvr/AT/T/00010000new2048.pfx</atweixin.privateKeyPath>
+				<atweixin.privateKeyPassword>000000</atweixin.privateKeyPassword>
+
+				<!-- 邮件发送服务 -->
+				<mail.sender.host>197.21.3.223</mail.sender.host>
+				<mail.sender.port>60018</mail.sender.port>
+				<mail.sender.username>epay@ynhtbank.com</mail.sender.username>
+				<mail.sender.password>YNHTbank96522</mail.sender.password>
+				<mail.templet>/home/appsvr/global-resources/config/flow/usr/</mail.templet>
+
+				<!-- 烟草批量转账 -->
+				<smoke.server.url>197.5.11.24</smoke.server.url>
+				<smoke.server.port>21</smoke.server.port>
+				<smoke.server.username>appsvr</smoke.server.username>
+				<smoke.server.password>appsvr</smoke.server.password>
+				<smoke.server.remotePath>SMOKE_STL/</smoke.server.remotePath>
+				<smoke.server.localPath>/home/appsvr/global-resources/config/batch/stepservice/</smoke.server.localPath>
+
+				<!--银联商户 正式商户号 -->
+				<dyn.gateway.client.acp-pay.merNo>524530160110003</dyn.gateway.client.acp-pay.merNo>
+				<!-- 银联代付 -->
+
+				<dyn.gateway.client.acp-pay.certsPath>/home/appsvr/upaycert/acpfile/certs/</dyn.gateway.client.acp-pay.certsPath>
+				<dyn.gateway.client.acp-pay.backTransUrl>http://197.21.3.222/gateway/api/backTransReq.do</dyn.gateway.client.acp-pay.backTransUrl>
+				<dyn.gateway.client.acp-pay.backUrl>https://epay.test.ynhtbank.com/service/acp/post.do</dyn.gateway.client.acp-pay.backUrl>
+				<dyn.gateway.client.acp-pay.fileTransUrl>https://101.231.204.80:9080/</dyn.gateway.client.acp-pay.fileTransUrl>
+				<dyn.gateway.client.acp-pay.acpFileRoot>/oradata/dbank/sharefile/acp/pay/</dyn.gateway.client.acp-pay.acpFileRoot>
+				<!-- 银联代收 -->
+				<dyn.gateway.client.acp-receive.certsPath>/home/appsvr/upaycert/union/acp_test_sign_inst.pfx</dyn.gateway.client.acp-receive.certsPath>
+				<dyn.gateway.client.acp-receive.backTransUrl>https://101.231.204.80:5000/gateway/api/backTransReq.do</dyn.gateway.client.acp-receive.backTransUrl>
+				<dyn.gateway.client.acp-receive.backUrl>http://zx10338331.xicp.net:8088/service/backNotice/post</dyn.gateway.client.acp-receive.backUrl>
+				<dyn.gateway.client.acp-receive.fileTransUrl>https://101.231.204.80:9080/</dyn.gateway.client.acp-receive.fileTransUrl>
+				<dyn.gateway.client.acp-receive.acpFileRoot>/oradata/dbank/sharefile/acp/receive/</dyn.gateway.client.acp-receive.acpFileRoot>
+				<!--代收商户号 -->
+				<dyn.gateway.client.acp-receive.merNo>524530160110002</dyn.gateway.client.acp-receive.merNo>
+				<dyn.gateway.client.acp-receive.pwd>000000</dyn.gateway.client.acp-receive.pwd>
+
+				<!--商户版 无跳转支付 外网地址 -->
+				<acpsdk.frontTransUrl>http://197.134.16.226:8088/acp/frontTransReq.do</acpsdk.frontTransUrl>
+				<acpsdk.singleQueryUrl>http://197.134.16.226:8088/acp/queryTrans.do</acpsdk.singleQueryUrl>
+				<acpsdk.batchTransUrl>http://197.134.16.226:8088/acp/batchTransReq.do</acpsdk.batchTransUrl>
+				<acpsdk.fileTransUrl>http://197.134.16.226:8088/acp/filedownload.do</acpsdk.fileTransUrl>
+				<acpsdk.backTransUrl>http://197.134.16.226:8088/acp/backTransReq.do</acpsdk.backTransUrl>
+				<acpsdk.backUrl>https://39.130.163.22/acp/backUrl.do</acpsdk.backUrl>
+				<acpsdk.trId>62000000001</acpsdk.trId>
+				<!--商户版 无跳转支付 专线地址 -->
+				<!--<acpsdk.frontTransUrl>https://gateway.95516.com/gateway/api/frontTransReq.do</acpsdk.frontTransUrl> 
+					&lt;!&ndash;无专线地址&ndash;&gt; <acpsdk.singleQueryUrl>http://197.64.16.12/gateway/api/queryTrans.do</acpsdk.singleQueryUrl> 
+					<acpsdk.batchTransUrl>http://197.64.16.12/gateway/api/batchTrans.do</acpsdk.batchTransUrl> 
+					<acpsdk.fileTransUrl>https://filedownload.95516.com/</acpsdk.fileTransUrl> 
+					&lt;!&ndash;无专线地址&ndash;&gt; <acpsdk.backTransUrl>http://197.64.16.12/gateway/api/backTransReq.do</acpsdk.backTransUrl> 
+					<acpsdk.backUrl>ZX|http://144.120.64.170:8187/service/acp/post.do</acpsdk.backUrl> 
+					<acpsdk.trId>62000001560</acpsdk.trId> -->
+
+				<!--银联商户 证书地址 -->
+				<acpsdk.signCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_sign.pfx</acpsdk.signCert.path>
+				<acpsdk.encryptCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_enc.cer</acpsdk.encryptCert.path>
+				<acpsdk.middleCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_middle.cer</acpsdk.middleCert.path>
+				<acpsdk.rootCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_root.cer</acpsdk.rootCert.path>
+				<acpsdk.signCert.pwd>000000</acpsdk.signCert.pwd>
+				<!--银联商户 对账单存放地址 -->
+				<acpsdk.acpFileRoot.path>/home/appsvr/CHK_FILE/UNION_STL_MER/</acpsdk.acpFileRoot.path>
+
+
+
+
+
+				<!-- 银联机构接入 -->
+				<acpsdk.qrcB2cIssBackTransUrl>http://197.21.3.222/qrc/api/issBackTransReq.do</acpsdk.qrcB2cIssBackTransUrl>
+				<acpsdk.qrcB2cMerBackTransUrl>http://197.21.3.222/qrc/api/merBackTransReq.do</acpsdk.qrcB2cMerBackTransUrl>
+				<acpsdk.qrcB2cMerBackSynTransUrl>http://197.21.3.222/qrc/api/merBackTransReqSyn.do</acpsdk.qrcB2cMerBackSynTransUrl>
+
+				<acpsdk.qrcB2csignCertPath>/home/appsvr/upaycert/union/</acpsdk.qrcB2csignCertPath>
+				<acpsdk.qrcB2csignCertPath.signCert>/home/appsvr/upaycert/union/acp_test_sign_inst.pfx</acpsdk.qrcB2csignCertPath.signCert>
+				<acpsdk.qrcB2csignCertPath.pwd>000000</acpsdk.qrcB2csignCertPath.pwd>
+				<acpsdk.qrcB2csignCertPath.encryptCert>/home/appsvr/upaycert/union/acp_test_enc.cer</acpsdk.qrcB2csignCertPath.encryptCert>
+
+				<dyn.gateway.client.acpqrc-pay.issCode>05247410</dyn.gateway.client.acpqrc-pay.issCode>
+				<dyn.gateway.client.acpqrc-pay.backUrl>https://epay.test.ynhtbank.com/service/acp/post.do</dyn.gateway.client.acpqrc-pay.backUrl>
+				<dyn.gateway.client.acpqrc-pay.notifiyUrl>https://gateway.test.95516.com/gateway/api/batchTransReq.do</dyn.gateway.client.acpqrc-pay.notifiyUrl>
+				<union.chk.path>/home/appsvr/CHK_FILE/UNION_STL</union.chk.path>
+				<union.chk.path.pattern>*ACOMN</union.chk.path.pattern>
+
+				<!-- 商户签名验签 -->
+				<dyn.merchant.no.field.name>merNo</dyn.merchant.no.field.name>
+				<dyn.merchant.key>abcde12345678900987654321edcba01</dyn.merchant.key>
+
+				<payment.config.path>/home/appsvr/upaycert/zjpay/config/payment</payment.config.path>
+				<system.config.path.portal>/home/appsvr/upaycert/zjpay/config/system</system.config.path.portal>
+
+				<mer.isFtpUploadChkFile>/home/appsvr/UploadChkFile</mer.isFtpUploadChkFile>
+				<mer.chkFileDirPath>/home/appsvr/chkFileDirPath</mer.chkFileDirPath>
+
+				<!-- 对账相关 -->
+				<core.ftp.url>197.5.11.24</core.ftp.url>
+				<core.ftp.port>21</core.ftp.port>
+				<core.ftp.username>appsvr</core.ftp.username>
+				<core.ftp.password>appsvr</core.ftp.password>
+				<core.ftp.coreLocalPath>/home/appsvr/CHK_FILE/CORE_STL/</core.ftp.coreLocalPath>
+				<core.ftp.coreRemotePath>CORE_STL</core.ftp.coreRemotePath>
+				<wechat.appid>wx288339422065bc01</wechat.appid>
+				<wechat.downLoad.filePath>/chk/wechat</wechat.downLoad.filePath>
+
+				<!-- 公用批量转账 -->
+				<batch.server.url>197.5.11.24</batch.server.url>
+				<batch.server.port>21</batch.server.port>
+				<batch.server.username>appsvr</batch.server.username>
+				<batch.server.password>appsvr</batch.server.password>
+				<batch.server.remotePath>BATCH_TRANSFER/</batch.server.remotePath>
+				<batch.server.localPath>/home/appsvr/CHK_FILE/BATCH_TRANSFER/</batch.server.localPath>
+
+				<!-- 跳转URL -->
+				<jumpLink.url>http://197.21.3.223/gateway</jumpLink.url>
+
+				<!-- 加密机信息 -->
+				<union.api.encryptIp>197.3.11.54</union.api.encryptIp>
+				<union.api.encryptPort>12002</union.api.encryptPort>
+				<union.api.timeout>7</union.api.timeout>
+				<union.api.appID>TE</union.api.appID>
+				<union.api.sysID>TE</union.api.sysID>
+				<union.api.connNum>5</union.api.connNum>
+				<union.api.keyName>upay.05247410-des.zek</union.api.keyName>
+				<union.api.encryptkeyName>upay.05247410-01.sm2</union.api.encryptkeyName>
+				<union.api.cipherDataLen>2</union.api.cipherDataLen>
+				<union.api.vKindex>01</union.api.vKindex>
+				<union.api.algorthmID>SM2</union.api.algorthmID>
+				<union.api.dataFillMode>08</union.api.dataFillMode>
+				<union.api.format>0</union.api.format>
+
+				<!-- 获取验证码信息 -->
+				<union.otp.ip>197.3.11.109</union.otp.ip>
+				<union.otp.port>8555</union.otp.port>
+				<union.otp.timeout>7</union.otp.timeout>
+				<union.otp.appID>upay</union.otp.appID>
+				<union.otp.sysID>upay</union.otp.sysID>
+				<union.otp.connNum>5</union.otp.connNum>
+
+				<!-- 支付宝 对账单要替换的域名 -->
+				<alipay.file.addr>dwbillcenter.alipay.com</alipay.file.addr>
+				<!-- 支付宝 对账单要替换成的IP -->
+				<alipay.file.addrReplace>197.21.4.162</alipay.file.addrReplace>
+				<!-- 支付宝 -->
+				<alipay.url>http://openapi.alipay.com/openalipay/gateway.do</alipay.url>
+				<alipay.appId>2017110109667472</alipay.appId>
+				<alipay.notifyUrl>https://epay.test.ynhtbank.com/upay/alipay/post.do</alipay.notifyUrl>
+				<!-- 支付宝对账单地址 -->
+				<alipay.chk.path>/home/appsvr/CHK_FILE/ALIPAY_STL/</alipay.chk.path>
+				<alipay.auth.url><![CDATA[https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017110109667472&scope=auth_base&redirect_uri=https://epay.test.ynhtbank.com/PayTreasure/index.html?state=]]></alipay.auth.url>
+
+				<!-- ESB 上传文件 的FTP server IP和端口 -->
+				<dyn.esb.client>http://197.3.11.185:39023/UPP/</dyn.esb.client>
+				<dyn.esb.ftpIP>197.3.11.186</dyn.esb.ftpIP>
+				<dyn.esb.ftpPort>5001</dyn.esb.ftpPort>
+				<!-- 银联AT 通道   支付宝参数配置 -->
+				<atalipay.url>http://197.21.5.32/ali/aligateway</atalipay.url>
+				<atalipay.appId>2017040606571877</atalipay.appId>
+				<atalipay.notifyUrl></atalipay.notifyUrl>
+				<atalipay.file.addr></atalipay.file.addr>
+				<atalipay.file.addrReplace></atalipay.file.addrReplace>
+				<atalipay.private_key>MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCI5n14+TasTJt+Lp6IjbnTtvPfOP62Oxbtu9aacLLpf9HktfOzzrBpHIwglTKitWsngdRqCSCBC56G4cz+7XTlihE+bvASkQyZNPT7EWX2obDkoBK/ZG1v+wcyWzZuULjRFODkaww3QLVHvNlPKvtwMbiLfxuAEP5XncXW0R2hfeNKPsdLegyAMAVo/MWa4/2z01Co4jaHCD3cWHnZy0mItP7m4l6Uq8zx7H94a0j4GmRFWvV/5Ua6ryxazY2ZKTYNKsxBKBaEOASpkPOir/9r0kSete4WrxIrx7eLJoqQ5UsG08gr7z8/EZwqUUiuGmZKmy7MFccVSkI5yGxssiNPAgMBAAECggEALvZywJctbDnzdXvkoo+L2db/HepdZoIqwW8YlW5n0bYpeL36Vgpndgd3Ao5sCmkV0z20cpOi9OHZhgfb3O/0k/GjLLm93YCow73o9F/pjIu3NRa8l6+J40pIE7w6lelXHVJ+O52FWUb3aR6dpYznKHvGBQSbmHk75y6WebTO52DXMCJrtcNyES7BTLP9yKudDapa9nyFrenPehOSSQOlmrDEEhKX4cMyPhoVZ4rWZUGO3tPwu3LYWYR5/KrxtLL7A24pmeqGwS5u62vEKA4AxM2BmpaQuXTnOukgUOmZO3t83rPq/yRBU0blgEBybbo8hByWc51f6Qd0n+l2OPaQgQKBgQDj/DvY6D7iJLGSS1RYeNBK/5jYkbsTRWUnDlFl3rGLO+QYzswjPZHzyGNBLZ7Stm/zLJom7yTkntmTVsQ5pcE4XMHbsxksjDeDWtfEvM8YhpNMc7VyX40R9B9XVoPsIWjdrx5odCn1hlOgV7ut2CH/IzdLf8KhrARh2Im9k193LwKBgQCZuPv8qiiEArZgZugM+YYSM+HTkCfjKoE1af5Ig2cB+tlW1mZT4uWa7fTJZg5etRV0TauQYJEnGQYWtsb1/YKMaFzy7Ch1Xs/hx2TPqPrJTZ10Arxlwt2Uot9iHj/kltS3j2d33mdLmCxQUq/97CrMbMTxe+DfbD2i5dsF/9MN4QKBgQCoqoIIPgHPwn/QkIRtE6xd3+zPRDlXz34/P7t+lxtYu81LgSrLY5Cn/3dW0A5xK2F1UWkWJtRvgwnKlGWFlJh3P0B4bm7QY0fqmPmKZnj8VwuAgxYY8JHoV2gccDgXKLxxTU48zrwAFgmmVWHXAlBcdkxBQdrXSvDPBqkYpH/7JwKBgDomPrQiTfc563FmHAukbDIAjEFye5Q0JPJmqPkXM+UM1iBCNC0xXHeR4hI5V+A9keMP6oFP9jia/7Gh7HtrLXIdnGOML/XOKscWnSzsmAmEIbabvlakMxuhzOyZ0sOOxuK1DYfLirmO09yCmu5r4vi3gHx0xujdUieH2aVYU6chAoGBAN+7RbWwBfk9MT7rKqV2AtL+TN/wXM6knRPbIBzvE2PRcorXEL2bbaqKJRmg0tZ4VqIarZ6PF7chSOw1D2+4d+9t+h90sKRbu0msAiFrxfqrTkao7aWHEU/e4M+F254+RzEQ3g0Rqu9rNNW7m78ZfPoQZXtt4LvxoglqKv5n/MRm</atalipay.private_key>
+				<atpublic_key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiOZ9ePk2rEybfi6eiI2507bz3zj+tjsW7bvWmnCy6X/R5LXzs86waRyMIJUyorVrJ4HUagkggQuehuHM/u105YoRPm7wEpEMmTT0+xFl9qGw5KASv2Rtb/sHMls2blC40RTg5GsMN0C1R7zZTyr7cDG4i38bgBD+V53F1tEdoX3jSj7HS3oMgDAFaPzFmuP9s9NQqOI2hwg93Fh52ctJiLT+5uJelKvM8ex/eGtI+BpkRVr1f+VGuq8sWs2NmSk2DSrMQSgWhDgEqZDzoq//a9JEnrXuFq8SK8e3iyaKkOVLBtPIK+8/PxGcKlFIrhpmSpsuzBXHFUpCOchsbLIjTwIDAQAB</atpublic_key>
+				<atalipay_public_key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnDXn2QYPX2dYXtgVVJH5oY0AU+ffFb7XzkdAbxnoUo3vSZ7nEaAHsecbDDnrifNcB7UQGvGFPQ0T4HjvUUPzLCqmLgupacl+S9YoGksjkgPUXo0+KO7tZIf6WkbVj4iujhkFW3GcfNFzbdAamFgOPoWPweUMG0U2WYyuEni0qK2ylPiZPuzwnRsd7X4+e7JWvX2LW0ckLrsNHrIVpE8emD5uBzIcXzcGWDis0pmugnjjq/wnfbH/b6dC6uSy9hkRMRtXOXxeguXz7whB4RORyUBZnGWdOoVuIIju+PGAOClXTd7NFt4oxkh2H1TCztSatFWnpYnC8rya4D8B2sWwKQIDAQAB</atalipay_public_key>
+				<atpublicKey_path>/home/appsvr/AT/A/acp_test_verify_sign.cer</atpublicKey_path>
+				<atprivateKey_path>/home/appsvr/AT/A/00010000new2048.pfx</atprivateKey_path>
+				<atprivateKey_password>000000</atprivateKey_password>
+
+				<!-- esb sms 配置 -->
+				<dyn.gateway.client.esb.acctNm>admin</dyn.gateway.client.esb.acctNm>
+				<dyn.gateway.client.esb.pswd>4QrcOUm6Wau+VuBX8g+IPg==</dyn.gateway.client.esb.pswd>
+				<dyn.gateway.client.esb.sndTp>0</dyn.gateway.client.esb.sndTp>
+				<dyn.gateway.client.esb.msgTp>1</dyn.gateway.client.esb.msgTp>
+
+			</properties>
+		</profile>
+
+		<profile>
+			<id>bz</id>
+			<properties>
+				<!-- logback相关配置 -->
+				<dyn.logback.home>/home/appsvr/logs</dyn.logback.home>
+				<dyn.logback.level>debug</dyn.logback.level>
+				<dyn.stdout></dyn.stdout>
+				<!-- dubbo相关配置 -->
+				<dyn.zookeeper.connect>197.52.19.57:2181,197.52.19.56:2181,197.52.19.55:2181</dyn.zookeeper.connect>
+				<dyn.dubbo.provider.timeout>50000</dyn.dubbo.provider.timeout>
+				<dyn.dubbo.provider.retries>0</dyn.dubbo.provider.retries>
+				<dyn.registry.group>upay</dyn.registry.group>
+				<!-- redis相关配置 -->
+				<dyn.redis.ip>197.52.19.57</dyn.redis.ip>
+				<dyn.redis.port>6379</dyn.redis.port>
+				<dyn.redis.sentinels>197.52.19.57:26379,197.52.19.56:26379,197.52.19.55:26379</dyn.redis.sentinels>
+				<!-- db相关配置 -->
+				<dyn.datasource.url><![CDATA[jdbc:oracle:thin:@197.52.19.61:1521/upay]]></dyn.datasource.url>
+				<dyn.datasource.username>upay</dyn.datasource.username>
+				<dyn.datasource.password>upay</dyn.datasource.password>
+				<dyn.datasource.initialSize>1</dyn.datasource.initialSize>
+				<dyn.datasource.minIdle>3</dyn.datasource.minIdle>
+				<dyn.datasource.maxActive>10</dyn.datasource.maxActive>
+				<!-- 密码校验配置 -->
+				<dyn.password.url>http://197.4.11.23:9080/SafekeyboardValidateService/GetEncodePassword?type=1</dyn.password.url>
+				<!-- 启动参数配置 -->
+				<dyn.specJavaOpts.batch><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.batch>
+				<dyn.specJavaOpts.flow><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.flow>
+				<dyn.specJavaOpts.gateway><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.gateway>
+				<dyn.env.app.dargs><![CDATA["-Ddubbo.provider.threadpool=fixed -Ddubbo.provider.threads=50"]]></dyn.env.app.dargs>
+				<!-- server -->
+				<dyn.server.mac>847b09826c2b2093</dyn.server.mac>
+				<dyn.server.flag>false</dyn.server.flag>
+
+				<!-- ESB -->
+				<esb.uploadFilePath>/home/appsvr/ESB_FILE</esb.uploadFilePath>
+				<!--portal -->
+				<dyn.portal.virtualUploadPath>/home/appsvr/mnt/images/</dyn.portal.virtualUploadPath>
+				<dyn.portal.downloadFile>https://epay.test.ynhtbank.com/images/</dyn.portal.downloadFile>
+				<dyn.portal.sharemapp>https://epay.test.ynhtbank.com/images/</dyn.portal.sharemapp>
+				<dyn.redirect.ip>epay.test.ynhtbank.com</dyn.redirect.ip>
+				<dyn.redirect.http>https</dyn.redirect.http>
+				<dyn.redirect.port></dyn.redirect.port>
+				<dyn.portal.weiXinOpenUrl><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx288339422065bc01&redirect_uri=https%3a%2f%2fepay.test.ynhtbank.com%2fWechat%2findex.html%3fbusNo%3d]]></dyn.portal.weiXinOpenUrl>
+
+
+				<acp.front.url>http://222.222.222.222:8080/ACPSample_B2C/BackRcvResponse</acp.front.url>
+				<acp.back.url>http://zhong123893.oicp.net/upay/acp/post</acp.back.url>
+
+				<payment.config.path.portal>/home/appsvr/upaycert/zjpay/config/payment</payment.config.path.portal>
+				<system.config.path.portal>/home/appsvr/upaycert/zjpay/config/system</system.config.path.portal>
+				<!--portal -->
+				<!--oms -->
+				<dyn.uploadPath>/home/appsvr/file/images/</dyn.uploadPath>
+				<dyn.imgServer>http://localhost:8080/imgsServer/</dyn.imgServer>
+				<dyn.oms.dataExcelPath>D:/oms_excel/</dyn.oms.dataExcelPath>
+				<!--核心url -->
+				<dyn.gateway.client.core.url>tcp://197.3.11.67:50051</dyn.gateway.client.core.url>
+				<!--短信url -->
+				<dyn.gateway.client.sms.url>tcp://197.3.11.76:8504</dyn.gateway.client.sms.url>
+				<!-- MD5 -->
+				<dyn.cspMd5Key>20160721</dyn.cspMd5Key>
+				<!-- wechat微信地址 -->
+				<wechat.md5.key>b01763152a0c8796d0ebc59042051686</wechat.md5.key>
+				<wechat.merid>1378612302</wechat.merid>
+				<wechat.cert.path>/home/appsvr/upaycert/weixin/apiclient_cert.p12</wechat.cert.path>
+				<wechat.pay.url>https://api.mch.weixin.qq.com/pay/</wechat.pay.url>
+				<wechat.twowayauth.url>https://api.mch.weixin.qq.com/secapi/pay/</wechat.twowayauth.url>
+				<wechat.submchmanage.url>https://api.mch.weixin.qq.com/secapi/mch/submchmanage?action=</wechat.submchmanage.url>
+				<wechat.tools.url>https://api.mch.weixin.qq.com/tools/</wechat.tools.url>
+				<wechat.payitil.url>https://api.mch.weixin.qq.com/payitil/</wechat.payitil.url>
+				<wechat.process.filepath>/home/appsvr/bill/</wechat.process.filepath>
+				<wechat.mmpaymkttransfers.url>https://api.mch.weixin.qq.com/mmpaymkttransfers/</wechat.mmpaymkttransfers.url>
+
+
+				<!-- 银联微信通道 -->
+				<atweixin.mchId>1900009211</atweixin.mchId>
+				<atweixin.subMchId>11386352</atweixin.subMchId>
+				<atweixin.channelId>24006513</atweixin.channelId>
+				<atweixin.appId>wx2421b1c4370ec43b</atweixin.appId>
+				<atweixin.subAppid>wx2b029c08a6232582</atweixin.subAppid>
+
+				<atweixin.frontTransUrl>http://197.21.3.28/wx/v1</atweixin.frontTransUrl>
+				<atweixin.publicKeyPath>/home/appsvr/AT/T/acp_test_verify_sign.cer</atweixin.publicKeyPath>
+				<atweixin.privateKeyPath>/home/appsvr/AT/T/00010000new2048.pfx</atweixin.privateKeyPath>
+				<atweixin.privateKeyPassword>000000</atweixin.privateKeyPassword>
+
+				<!-- 邮件发送服务 -->
+				<mail.sender.host>197.21.3.223</mail.sender.host>
+				<mail.sender.port>60018</mail.sender.port>
+				<mail.sender.username>epay@ynhtbank.com</mail.sender.username>
+				<mail.sender.password>YNHTbank96522</mail.sender.password>
+				<mail.templet>/home/appsvr/global-resources/config/flow/usr/</mail.templet>
+
+				<!-- 烟草批量转账 -->
+				<smoke.server.url>197.5.11.24</smoke.server.url>
+				<smoke.server.port>21</smoke.server.port>
+				<smoke.server.username>appsvr</smoke.server.username>
+				<smoke.server.password>appsvr</smoke.server.password>
+				<smoke.server.remotePath>SMOKE_STL/</smoke.server.remotePath>
+				<smoke.server.localPath>/home/appsvr/global-resources/config/batch/stepservice/</smoke.server.localPath>
+
+				<!--银联商户 正式商户号 -->
+				<dyn.gateway.client.acp-pay.merNo>524530160110003</dyn.gateway.client.acp-pay.merNo>
+				<!-- 银联代付 -->
+
+				<dyn.gateway.client.acp-pay.certsPath>/home/appsvr/upaycert/acpfile/certs/</dyn.gateway.client.acp-pay.certsPath>
+				<dyn.gateway.client.acp-pay.backTransUrl>http://197.21.3.222/gateway/api/backTransReq.do</dyn.gateway.client.acp-pay.backTransUrl>
+				<dyn.gateway.client.acp-pay.backUrl>https://epay.test.ynhtbank.com/service/acp/post.do</dyn.gateway.client.acp-pay.backUrl>
+				<dyn.gateway.client.acp-pay.fileTransUrl>https://101.231.204.80:9080/</dyn.gateway.client.acp-pay.fileTransUrl>
+				<dyn.gateway.client.acp-pay.acpFileRoot>/oradata/dbank/sharefile/acp/pay/</dyn.gateway.client.acp-pay.acpFileRoot>
+
+
+				<!--商户版 无跳转支付 外网地址 -->
+				<!--<acpsdk.frontTransUrl>http://197.134.16.226:8088/acp/frontTransReq.do</acpsdk.frontTransUrl> 
+					<acpsdk.singleQueryUrl>http://197.134.16.226:8088/acp/queryTrans.do</acpsdk.singleQueryUrl> 
+					<acpsdk.batchTransUrl>http://197.134.16.226:8088/acp/batchTransReq.do</acpsdk.batchTransUrl> 
+					<acpsdk.fileTransUrl>http://197.134.16.226:8088/acp/filedownload.do</acpsdk.fileTransUrl> 
+					<acpsdk.backTransUrl>http://197.134.16.226:8088/acp/backTransReq.do</acpsdk.backTransUrl> 
+					<acpsdk.backUrl>https://39.130.163.22/acp/backUrl.do</acpsdk.backUrl> <acpsdk.trId>62000001560</acpsdk.trId> -->
+				<!--商户版 无跳转支付 专线地址 -->
+				<acpsdk.frontTransUrl>https://gateway.95516.com/gateway/api/frontTransReq.do</acpsdk.frontTransUrl>  <!--无专线地址 -->
+				<!--商户版 无跳转支付 外网地址 -->
+				<!--<acpsdk.frontTransUrl>http://197.134.16.226:8088/acp/frontTransReq.do</acpsdk.frontTransUrl> 
+					<acpsdk.singleQueryUrl>http://197.134.16.226:8088/acp/queryTrans.do</acpsdk.singleQueryUrl> 
+					<acpsdk.batchTransUrl>http://197.134.16.226:8088/acp/batchTransReq.do</acpsdk.batchTransUrl> 
+					<acpsdk.fileTransUrl>http://197.134.16.226:8088/acp/filedownload.do</acpsdk.fileTransUrl> 
+					<acpsdk.backTransUrl>http://197.134.16.226:8088/acp/backTransReq.do</acpsdk.backTransUrl> 
+					<acpsdk.backUrl>https://39.130.163.22/acp/backUrl.do</acpsdk.backUrl> <acpsdk.trId>62000001560</acpsdk.trId> -->
+
+				<!--商户版 无跳转支付 专线地址 -->
+				<acpsdk.frontTransUrl>https://gateway.95516.com/gateway/api/frontTransReq.do</acpsdk.frontTransUrl>  <!--无专线地址 -->
+				<acpsdk.singleQueryUrl>http://197.64.16.12/gateway/api/queryTrans.do</acpsdk.singleQueryUrl>
+				<acpsdk.batchTransUrl>http://197.64.16.12/gateway/api/batchTrans.do</acpsdk.batchTransUrl>
+				<acpsdk.fileTransUrl>https://filedownload.95516.com/</acpsdk.fileTransUrl>  <!--无专线地址 -->
+				<acpsdk.backTransUrl>http://197.64.16.12/gateway/api/backTransReq.do</acpsdk.backTransUrl>
+				<acpsdk.backUrl>ZX|http://144.120.64.170:8187/service/acp/post.do</acpsdk.backUrl>
+				<acpsdk.trId>62000001560</acpsdk.trId>
+
+				<!--银联商户 证书地址 -->
+				<acpsdk.signCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_sign.pfx</acpsdk.signCert.path>
+				<acpsdk.encryptCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_enc.cer</acpsdk.encryptCert.path>
+				<acpsdk.middleCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_middle.cer</acpsdk.middleCert.path>
+				<acpsdk.rootCert.path>/home/appsvr/upaycert/acpfile/certs/acp_test_root.cer</acpsdk.rootCert.path>
+				<acpsdk.signCert.pwd>000000</acpsdk.signCert.pwd>
+				<!--银联商户 对账单存放地址 -->
+				<acpsdk.acpFileRoot.path>/home/appsvr/CHK_FILE/UNION_STL_MER/</acpsdk.acpFileRoot.path>
+
+
+				<!-- 银联代收 -->
+				<dyn.gateway.client.acp-receive.certsPath>/home/appsvr/upaycert/union/acp_test_sign_inst.pfx</dyn.gateway.client.acp-receive.certsPath>
+				<dyn.gateway.client.acp-receive.backTransUrl>https://197.21.3.222/gateway/api/backTransReq.do</dyn.gateway.client.acp-receive.backTransUrl>
+				<dyn.gateway.client.acp-receive.backUrl>https://epay.test.ynhtbank.com/service/acp/post.do</dyn.gateway.client.acp-receive.backUrl>
+				<dyn.gateway.client.acp-receive.fileTransUrl>https://101.231.204.80:9080/</dyn.gateway.client.acp-receive.fileTransUrl>
+				<dyn.gateway.client.acp-receive.acpFileRoot>/oradata/dbank/sharefile/acp/receive/</dyn.gateway.client.acp-receive.acpFileRoot>
+				<!--代收商户号 -->
+				<dyn.gateway.client.acp-receive.merNo>524530160110002</dyn.gateway.client.acp-receive.merNo>
+				<dyn.gateway.client.acp-receive.pwd>501623</dyn.gateway.client.acp-receive.pwd>
+
+
+				<!-- 银联机构接入 -->
+				<acpsdk.qrcB2cIssBackTransUrl>http://197.21.3.222/qrc/api/issBackTransReq.do</acpsdk.qrcB2cIssBackTransUrl>
+				<acpsdk.qrcB2cMerBackTransUrl>http://197.21.3.222/qrc/api/merBackTransReq.do</acpsdk.qrcB2cMerBackTransUrl>
+				<acpsdk.qrcB2cMerBackSynTransUrl>http://197.21.3.222/qrc/api/merBackTransReqSyn.do</acpsdk.qrcB2cMerBackSynTransUrl>
+
+				<acpsdk.qrcB2csignCertPath>/home/appsvr/upaycert/union/</acpsdk.qrcB2csignCertPath>
+				<acpsdk.qrcB2csignCertPath.signCert>/home/appsvr/upaycert/union/acp_test_sign_inst.pfx</acpsdk.qrcB2csignCertPath.signCert>
+				<acpsdk.qrcB2csignCertPath.encryptCert>/home/appsvr/upaycert/union/acp_test_enc.cer</acpsdk.qrcB2csignCertPath.encryptCert>
+
+				<dyn.gateway.client.acpqrc-pay.issCode>05247410</dyn.gateway.client.acpqrc-pay.issCode>
+				<dyn.gateway.client.acpqrc-pay.backUrl>https://epay.test.ynhtbank.com/service/acp/post.do</dyn.gateway.client.acpqrc-pay.backUrl>
+				<dyn.gateway.client.acpqrc-pay.notifiyUrl>https://gateway.test.95516.com/gateway/api/batchTransReq.do</dyn.gateway.client.acpqrc-pay.notifiyUrl>
+				<union.chk.path>/home/appsvr/CHK_FILE/UNION_STL</union.chk.path>
+				<union.chk.path.pattern>*ACOMN</union.chk.path.pattern>
+
+				<!-- 商户签名验签 -->
+				<dyn.merchant.no.field.name>merNo</dyn.merchant.no.field.name>
+				<dyn.merchant.key>abcde12345678900987654321edcba01</dyn.merchant.key>
+
+				<payment.config.path>/home/appsvr/upaycert/zjpay/config/payment</payment.config.path>
+				<system.config.path.portal>/home/appsvr/upaycert/zjpay/config/system</system.config.path.portal>
+
+				<mer.isFtpUploadChkFile>/home/appsvr/UploadChkFile</mer.isFtpUploadChkFile>
+				<mer.chkFileDirPath>/home/appsvr/chkFileDirPath</mer.chkFileDirPath>
+
+				<!-- 对账相关 -->
+				<core.ftp.url>197.5.11.24</core.ftp.url>
+				<core.ftp.port>21</core.ftp.port>
+				<core.ftp.username>appsvr</core.ftp.username>
+				<core.ftp.password>appsvr</core.ftp.password>
+				<core.ftp.coreLocalPath>/home/appsvr/CHK_FILE/CORE_STL/</core.ftp.coreLocalPath>
+				<core.ftp.coreRemotePath>CORE_STL</core.ftp.coreRemotePath>
+				<wechat.appid>wx288339422065bc01</wechat.appid>
+				<wechat.downLoad.filePath>/chk/wechat</wechat.downLoad.filePath>
+
+				<!-- 公用批量转账 -->
+				<batch.server.url>197.5.11.24</batch.server.url>
+				<batch.server.port>21</batch.server.port>
+				<batch.server.username>appsvr</batch.server.username>
+				<batch.server.password>appsvr</batch.server.password>
+				<batch.server.remotePath>BATCH_TRANSFER/</batch.server.remotePath>
+				<batch.server.localPath>/home/appsvr/CHK_FILE/BATCH_TRANSFER/</batch.server.localPath>
+
+				<!-- 跳转URL -->
+				<jumpLink.url>http://197.21.3.223/gateway</jumpLink.url>
+
+				<!-- 加密机信息 -->
+				<union.api.encryptIp>197.3.11.54</union.api.encryptIp>
+				<union.api.encryptPort>12002</union.api.encryptPort>
+				<union.api.timeout>7</union.api.timeout>
+				<union.api.appID>TE</union.api.appID>
+				<union.api.sysID>TE</union.api.sysID>
+				<union.api.connNum>5</union.api.connNum>
+				<union.api.keyName>upay.05247410-des.zek</union.api.keyName>
+				<union.api.encryptkeyName>upay.05247410-01.sm2</union.api.encryptkeyName>
+				<union.api.cipherDataLen>2</union.api.cipherDataLen>
+				<union.api.vKindex>01</union.api.vKindex>
+				<union.api.algorthmID>SM2</union.api.algorthmID>
+				<union.api.dataFillMode>08</union.api.dataFillMode>
+				<union.api.format>0</union.api.format>
+
+				<!-- 获取验证码信息 -->
+				<union.otp.ip>197.3.11.109</union.otp.ip>
+				<union.otp.port>8555</union.otp.port>
+				<union.otp.timeout>7</union.otp.timeout>
+				<union.otp.appID>upay</union.otp.appID>
+				<union.otp.sysID>upay</union.otp.sysID>
+				<union.otp.connNum>5</union.otp.connNum>
+
+				<!-- 支付宝 对账单要替换的域名 -->
+				<alipay.file.addr>dwbillcenter.alipay.com</alipay.file.addr>
+				<!-- 支付宝 对账单要替换成的IP -->
+				<alipay.file.addrReplace>197.21.4.162</alipay.file.addrReplace>
+				<!-- 支付宝 -->
+				<alipay.url>http://openapi.alipay.com/openalipay/gateway.do</alipay.url>
+				<alipay.appId>2017110109667472</alipay.appId>
+				<alipay.notifyUrl>https://epay.test.ynhtbank.com/upay/alipay/post.do</alipay.notifyUrl>
+				<!-- 支付宝对账单地址 -->
+				<alipay.chk.path>/home/appsvr/CHK_FILE/ALIPAY_STL/</alipay.chk.path>
+				<alipay.auth.url><![CDATA[https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017110109667472&scope=auth_base&redirect_uri=https://epay.test.ynhtbank.com/PayTreasure/index.html?state=]]></alipay.auth.url>
+
+				<!-- ESB 上传文件 的FTP server IP和端口 -->
+				<dyn.esb.client>http://197.3.11.185:39023/UPP/</dyn.esb.client>
+				<dyn.esb.ftpIP>197.3.11.186</dyn.esb.ftpIP>
+				<dyn.esb.ftpPort>5001</dyn.esb.ftpPort>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>product</id>
+			<properties>
+				<!-- logback相关配置 -->
+				<dyn.logback.home>/home/appsvr/logs</dyn.logback.home>
+				<dyn.logback.level>debug</dyn.logback.level>
+				<dyn.stdout></dyn.stdout>
+				<!-- dubbo相关配置 -->
+				<dyn.zookeeper.connect>197.128.16.72:2181,197.128.16.73:2181,197.128.16.74:2181</dyn.zookeeper.connect>
+				<dyn.dubbo.provider.timeout>50000</dyn.dubbo.provider.timeout>
+				<dyn.dubbo.provider.retries>0</dyn.dubbo.provider.retries>
+				<dyn.registry.group>upay</dyn.registry.group>
+				<!-- redis相关配置 -->
+				<dyn.redis.ip>197.128.16.72</dyn.redis.ip>
+				<dyn.redis.port>6379</dyn.redis.port>
+				<dyn.redis.sentinels>197.128.16.72:26379,197.128.16.73:26379,197.128.16.74:26379</dyn.redis.sentinels>
+				<!-- db相关配置 -->
+				<dyn.datasource.url><![CDATA[jdbc:oracle:thin:@197.128.16.131:1521/upay]]></dyn.datasource.url>
+				<dyn.datasource.username>upay</dyn.datasource.username>
+				<dyn.datasource.password>upay321</dyn.datasource.password>
+				<dyn.datasource.initialSize>20</dyn.datasource.initialSize>
+				<dyn.datasource.minIdle>10</dyn.datasource.minIdle>
+				<dyn.datasource.maxActive>300</dyn.datasource.maxActive>
+				<!-- 密码校验配置 -->
+				<dyn.password.url>http://197.128.16.76:9080/SafekeyboardValidateService/GetEncodePassword?type=1</dyn.password.url>
+				<!-- 启动参数配置 -->
+				<dyn.specJavaOpts.batch><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.batch>
+				<dyn.specJavaOpts.flow><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.flow>
+				<dyn.specJavaOpts.gateway><![CDATA["-Xms2048m -Xmx2048m -Xmn512m -XX:PermSize=256m -XX:MaxPermSize=256m"]]></dyn.specJavaOpts.gateway>
+				<dyn.env.app.dargs><![CDATA["-Ddubbo.provider.threadpool=fixed -Ddubbo.provider.threads=300 -Ddubbo.provider.connections=10"]]></dyn.env.app.dargs>
+
+				<!--portal -->
+				<dyn.portal.virtualUploadPath>/home/weblogic/file/nfsfile/images/</dyn.portal.virtualUploadPath>
+				<dyn.portal.downloadFile>https://epay.ynhtbank.com/images/</dyn.portal.downloadFile>
+				<dyn.portal.sharemapp>https://epay.ynhtbank.com/images/</dyn.portal.sharemapp>
+				<dyn.redirect.ip>epay.ynhtbank.com</dyn.redirect.ip>
+				<dyn.redirect.http>https</dyn.redirect.http>
+				<dyn.redirect.port></dyn.redirect.port>
+				<dyn.portal.weiXinOpenUrl><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7ca539dccf75a2b0&redirect_uri=https%3a%2f%2fepay.ynhtbank.com%2fWechat%2findex.html%3fbusNo%3d]]></dyn.portal.weiXinOpenUrl>
+
+				<acp.front.url>http://222.222.222.222:8080/ACPSample_B2C/BackRcvResponse</acp.front.url>
+				<acp.back.url>http://zhong123893.oicp.net/upay/acp/post</acp.back.url>
+
+				<payment.config.path.portal>/home/appsvr/upaycert/zjpay/config/payment</payment.config.path.portal>
+				<system.config.path.portal>/home/appsvr/upaycert/zjpay/config/system</system.config.path.portal>
+				<!--portal -->
+				<!--oms -->
+				<dyn.uploadPath>/home/appsvr/file/images/</dyn.uploadPath>
+				<dyn.imgServer>http://localhost:8080/imgsServer/</dyn.imgServer>
+				<dyn.oms.dataExcelPath>D:/oms_excel/</dyn.oms.dataExcelPath>
+
+				<!--核心url -->
+				<dyn.gateway.client.core.url>tcp://198.1.0.172:50050</dyn.gateway.client.core.url>
+				<!--短信url -->
+				<dyn.gateway.client.sms.url>tcp://197.1.11.77:8504</dyn.gateway.client.sms.url>
+
+				<!-- MD5 -->
+				<dyn.cspMd5Key>20160721</dyn.cspMd5Key>
+				<!-- wechat微信地址 -->
+				<wechat.md5.key>b01763152a0c8796d0ebc59042051686</wechat.md5.key>
+				<wechat.merid>1378612302</wechat.merid>
+				<wechat.cert.path>/home/appsvr/upaycert/weixin/apiclient_cert.p12</wechat.cert.path>
+				<wechat.pay.url>https://api.mch.weixin.qq.com/pay/</wechat.pay.url>
+				<wechat.twowayauth.url>https://api.mch.weixin.qq.com/secapi/pay/</wechat.twowayauth.url>
+				<wechat.submchmanage.url>https://api.mch.weixin.qq.com/secapi/mch/submchmanage?action=</wechat.submchmanage.url>
+				<wechat.tools.url>https://api.mch.weixin.qq.com/tools/</wechat.tools.url>
+				<wechat.payitil.url>https://api.mch.weixin.qq.com/payitil/</wechat.payitil.url>
+				<wechat.process.filepath>/home/appsvr/file/bill/WEIXIN_STL/</wechat.process.filepath>
+				<wechat.mmpaymkttransfers.url>https://api.mch.weixin.qq.com/mmpaymkttransfers/</wechat.mmpaymkttransfers.url>
+
+				<!-- 银联微信通道 -->
+				<atweixin.mchId>1378612302</atweixin.mchId>
+				<atweixin.subMchId>222153522</atweixin.subMchId>
+				<atweixin.channelId>36058364</atweixin.channelId>
+				<atweixin.appId>wx7ca539dccf75a2b0</atweixin.appId>
+				<atweixin.subAppid>wx7ca539dccf75a2b0</atweixin.subAppid>
+
+				<atweixin.frontTransUrl>http://197.21.5.16/wx/v1</atweixin.frontTransUrl>
+				<atweixin.publicKeyPath>/home/appsvr/upaycert/union/AT/T/sha256-T.cer</atweixin.publicKeyPath>
+				<atweixin.privateKeyPath>/home/appsvr/upaycert/union/AT/T/AT-HTB-weixin-priv.pfx</atweixin.privateKeyPath>
+				<atweixin.privateKeyPassword>htb96522</atweixin.privateKeyPassword>
+				<!-- 邮件发送服务 -->
+				<mail.sender.host>197.128.16.13</mail.sender.host>
+				<mail.sender.port>60018</mail.sender.port>
+				<mail.sender.username>epay@ynhtbank.com</mail.sender.username>
+				<mail.sender.password>YNHTbank96522</mail.sender.password>
+				<mail.templet>/home/appsvr/global-resources/config/flow/usr/</mail.templet>
+
+				<!-- 烟草批量转账 -->
+				<smoke.server.url>197.64.16.13</smoke.server.url>
+				<smoke.server.port>21</smoke.server.port>
+				<smoke.server.username>appsvr</smoke.server.username>
+				<smoke.server.password>htbappsvr321</smoke.server.password>
+				<smoke.server.remotePath>SMOKE_STL/</smoke.server.remotePath>
+				<smoke.server.localPath>/home/appsvr/CHK_FILE/SMOKE_STL/</smoke.server.localPath>
+				<dyn.gateway.client.acp-pay.merNo>524530160110003</dyn.gateway.client.acp-pay.merNo>
+				<!-- 银联代付 -->
+				<dyn.gateway.client.acp-pay.certsPath>/oradata/dbank/certs/pay/</dyn.gateway.client.acp-pay.certsPath>
+				<dyn.gateway.client.acp-pay.backTransUrl>https://gateway.95516.com/gateway/api/backTransReq.do</dyn.gateway.client.acp-pay.backTransUrl>
+				<dyn.gateway.client.acp-pay.backUrl>http://zx10338331.xicp.net:8088/service/backNoticePay/post</dyn.gateway.client.acp-pay.backUrl>
+				<dyn.gateway.client.acp-pay.fileTransUrl>https://101.231.204.80:9080/</dyn.gateway.client.acp-pay.fileTransUrl>
+				<dyn.gateway.client.acp-pay.acpFileRoot>/oradata/dbank/sharefile/acp/pay/</dyn.gateway.client.acp-pay.acpFileRoot>
+
+
+				<!--商户版 无跳转支付 外网地址 -->
+				<!--<acpsdk.frontTransUrl>https://gateway.95516.com/gateway/api/frontTransReq.do</acpsdk.frontTransUrl> 
+					<acpsdk.singleQueryUrl>https://gateway.95516.com/gateway/api/queryTrans.do</acpsdk.singleQueryUrl> 
+					<acpsdk.batchTransUrl>https://gateway.95516.com/gateway/api/batchTransReq.do</acpsdk.batchTransUrl> 
+					<acpsdk.fileTransUrl>https://filedownload.95516.com/</acpsdk.fileTransUrl> 
+					<acpsdk.backTransUrl>https://gateway.95516.com/gateway/api/backTransReq.do</acpsdk.backTransUrl> 
+					<acpsdk.backUrl>https://39.130.163.22/acp/backUrl.do</acpsdk.backUrl> -->
+
+
+				<!--商户版 无跳转支付 专线地址 -->
+				<acpsdk.frontTransUrl>https://gateway.95516.com/gateway/api/frontTransReq.do</acpsdk.frontTransUrl>  <!--无专线地址 -->
+				<acpsdk.singleQueryUrl>http://197.21.5.26/gateway/api/queryTrans.do</acpsdk.singleQueryUrl>
+				<acpsdk.batchTransUrl>http://197.21.5.26/gateway/api/batchTrans.do</acpsdk.batchTransUrl>
+				<acpsdk.fileTransUrl>http://197.128.16.13/unionMer/</acpsdk.fileTransUrl>  <!--无专线地址 -->
+				<acpsdk.backTransUrl>http://197.21.5.26/gateway/api/backTransReq.do</acpsdk.backTransUrl>
+				<acpsdk.backUrl>ZX|http://144.120.64.170:8187/service/acp/post.do</acpsdk.backUrl>
+				<acpsdk.trId>62000001560</acpsdk.trId>
+				<!--银联商户 证书地址 -->
+				<acpsdk.signCert.path>/home/appsvr/upaycert/acpfile/mercerts/htbank_mer_piv.pfx</acpsdk.signCert.path>
+				<acpsdk.encryptCert.path>/home/appsvr/upaycert/acpfile/mercerts/acp_prod_enc.cer</acpsdk.encryptCert.path>
+				<acpsdk.middleCert.path>/home/appsvr/upaycert/acpfile/mercerts/acp_prod_middle.cer</acpsdk.middleCert.path>
+				<acpsdk.rootCert.path>/home/appsvr/upaycert/acpfile/mercerts/acp_prod_root.cer</acpsdk.rootCert.path>
+				<acpsdk.signCert.pwd>789123</acpsdk.signCert.pwd>
+				<!--银联商户 对账单存放地址 -->
+				<acpsdk.acpFileRoot.path>/home/appsvr/CHK_FILE/UNION_STL_MER/</acpsdk.acpFileRoot.path>
+
+				<!-- 银联代收 -->
+				<dyn.gateway.client.acp-receive.certsPath>/home/appsvr/upaycert/union/acp_prod_sign_inst.pfx</dyn.gateway.client.acp-receive.certsPath>
+				<dyn.gateway.client.acp-receive.backTransUrl>http://197.21.5.26/gateway/api/backTransReq.do</dyn.gateway.client.acp-receive.backTransUrl>
+				<dyn.gateway.client.acp-receive.backUrl>ZX|http://144.120.64.170:8188/service/acp/post.do</dyn.gateway.client.acp-receive.backUrl>
+				<dyn.gateway.client.acp-receive.fileTransUrl>http://197.128.16.13/unionMer/</dyn.gateway.client.acp-receive.fileTransUrl>
+				<dyn.gateway.client.acp-receive.acpFileRoot>/home/appsvr/CHK_FILE/UNION_STL</dyn.gateway.client.acp-receive.acpFileRoot>
+				<!--代收商户号 -->
+				<dyn.gateway.client.acp-receive.merNo>524530160110002</dyn.gateway.client.acp-receive.merNo>
+				<dyn.gateway.client.acp-receive.pwd>501623</dyn.gateway.client.acp-receive.pwd>
+
+
+				<!-- 银联机构接入 -->
+				<acpsdk.qrcB2cIssBackTransUrl>http://197.21.3.14/qrc/api/issBackTransReq.do</acpsdk.qrcB2cIssBackTransUrl>
+				<acpsdk.qrcB2cMerBackTransUrl>http://197.21.3.14/qrc/api/merBackTransReq.do</acpsdk.qrcB2cMerBackTransUrl>
+				<acpsdk.qrcB2cMerBackSynTransUrl>http://197.21.3.14/qrc/api/merBackTransReqSyn.do</acpsdk.qrcB2cMerBackSynTransUrl>
+
+				<acpsdk.qrcB2csignCertPath>/home/appsvr/upaycert/union/</acpsdk.qrcB2csignCertPath>
+				<acpsdk.qrcB2csignCertPath.signCert>/home/appsvr/upaycert/union/acp_prod_sign_inst.pfx</acpsdk.qrcB2csignCertPath.signCert>
+				<acpsdk.qrcB2csignCertPath.pwd>510623</acpsdk.qrcB2csignCertPath.pwd>
+				<acpsdk.qrcB2csignCertPath.encryptCert>/home/appsvr/upaycert/union/acp_prod_enc.cer</acpsdk.qrcB2csignCertPath.encryptCert>
+
+				<dyn.gateway.client.acpqrc-pay.issCode>05247410</dyn.gateway.client.acpqrc-pay.issCode>
+				<dyn.gateway.client.acpqrc-pay.backUrl>ZX|http://144.120.64.149:8084/service/acp/post.do</dyn.gateway.client.acpqrc-pay.backUrl>
+				<dyn.gateway.client.acpqrc-pay.notifiyUrl>https://gateway.test.95516.com/gateway/api/batchTransReq.do</dyn.gateway.client.acpqrc-pay.notifiyUrl>
+				<union.chk.path>/home/appsvr/CHK_FILE/UNION_STL</union.chk.path>
+				<union.chk.path.pattern>*ACOMN</union.chk.path.pattern>
+
+				<!-- 商户签名验签 -->
+				<dyn.merchant.no.field.name>merNo</dyn.merchant.no.field.name>
+				<dyn.merchant.key>abcde12345678900987654321edcba01</dyn.merchant.key>
+
+				<payment.config.path>/home/appsvr/upaycert/zjpay/config/payment</payment.config.path>
+
+				<mer.isFtpUploadChkFile>/home/appsvr/UploadChkFile</mer.isFtpUploadChkFile>
+				<mer.chkFileDirPath>/home/appsvr/chkFileDirPath</mer.chkFileDirPath>
+
+
+
+				<!-- ESB -->
+				<esb.uploadFilePath>/home/appsvr/ESB_FILE</esb.uploadFilePath>
+
+				<!-- 对账相关 -->
+				<core.ftp.url>197.128.16.75</core.ftp.url>
+				<core.ftp.port>21</core.ftp.port>
+				<core.ftp.username>appsvr</core.ftp.username>
+				<core.ftp.password>appsvr</core.ftp.password>
+				<core.ftp.coreLocalPath>/home/appsvr/CHK_FILE/CORE_STL/</core.ftp.coreLocalPath>
+				<core.ftp.coreRemotePath>CORE_STL</core.ftp.coreRemotePath>
+				<wechat.appid>wx288339422065bc01</wechat.appid>
+				<wechat.downLoad.filePath>/home/appsvr/wechat/</wechat.downLoad.filePath>
+
+				<!-- 公用批量转账 -->
+				<batch.server.url>197.128.16.75</batch.server.url>
+				<batch.server.port>21</batch.server.port>
+				<batch.server.username>appsvr</batch.server.username>
+				<batch.server.password>appsvr</batch.server.password>
+				<batch.server.remotePath>BATCH_TRANSFER/</batch.server.remotePath>
+				<batch.server.localPath>/home/appsvr/CHK_FILE/BATCH_TRANSFER/</batch.server.localPath>
+
+				<!-- 跳转URL -->
+				<jumpLink.url>http://197.128.16.13:8088/gateway</jumpLink.url>
+
+				<!-- 加密机信息 -->
+				<union.api.encryptIp>197.1.11.65</union.api.encryptIp>
+				<union.api.encryptPort>12002</union.api.encryptPort>
+				<union.api.timeout>7</union.api.timeout>
+				<union.api.appID>TE</union.api.appID>
+				<union.api.sysID>TE</union.api.sysID>
+				<union.api.connNum>5</union.api.connNum>
+				<union.api.keyName>upay.05247410-sm4.zek</union.api.keyName>
+				<union.api.encryptkeyName>upay.05247410-01.sm2</union.api.encryptkeyName>
+				<union.api.cipherDataLen>2</union.api.cipherDataLen>
+				<union.api.vKindex>01</union.api.vKindex>
+				<union.api.algorthmID>SM2</union.api.algorthmID>
+				<union.api.dataFillMode>08</union.api.dataFillMode>
+				<union.api.format>1</union.api.format>
+
+				<!-- 获取验证码信息 -->
+				<union.otp.ip>197.1.11.138</union.otp.ip>
+				<union.otp.port>8555</union.otp.port>
+				<union.otp.timeout>7</union.otp.timeout>
+				<union.otp.appID>upay</union.otp.appID>
+				<union.otp.sysID>upay</union.otp.sysID>
+				<union.otp.connNum>5</union.otp.connNum>
+
+				<!-- 支付宝 -->
+				<!-- <alipay.url>http://openapi.alipay.com/openalipay/gateway.do</alipay.url> -->
+				<alipay.url>http://197.21.4.160/gateway.do</alipay.url>
+				<alipay.appId>2017122101031415</alipay.appId>
+				<!-- 支付宝 对账单要替换的域名 -->
+				<alipay.file.addr>dwbillcenter.alipay.com</alipay.file.addr>
+				<!-- 支付宝 对账单要替换成的IP -->
+				<alipay.file.addrReplace>197.21.4.162</alipay.file.addrReplace>
+				<alipay.notifyUrl>http://197.21.16.224:8081/upay/alipay/post.do</alipay.notifyUrl>
+				<!-- 支付宝对账单地址 -->
+				<alipay.chk.path>/home/appsvr/CHK_FILE/ALIPAY_STL/</alipay.chk.path>
+				<!-- <alipay.auth.url><![CDATA[https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017110109667472&scope=auth_base&redirect_uri=https://epay.ynhtbank.com/PayTreasure/index.html?state=]]></alipay.auth.url> -->
+				<alipay.auth.url><![CDATA[https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017122101031415&scope=auth_base&redirect_uri=https://epay.ynhtbank.com/PayTreasure/index.html?state=]]></alipay.auth.url>
+				<!-- ESB 上传文件 的FTP server IP和端口 -->
+				<dyn.esb.client>http://197.32.16.52:39023/UPP/</dyn.esb.client>
+				<dyn.esb.ftpIP>197.32.16.66</dyn.esb.ftpIP>
+				<dyn.esb.ftpPort>5001</dyn.esb.ftpPort>
+				<!-- 银联AT 通道   支付宝参数配置 -->
+				<atalipay.url>http://197.21.5.32/ali/aligateway</atalipay.url>
+				<atalipay.appId>2017040606571877</atalipay.appId>
+				<atalipay.notifyUrl></atalipay.notifyUrl>
+				<atalipay.file.addr></atalipay.file.addr>
+				<atalipay.file.addrReplace></atalipay.file.addrReplace>
+				<atalipay.private_key>MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCI5n14+TasTJt+Lp6IjbnTtvPfOP62Oxbtu9aacLLpf9HktfOzzrBpHIwglTKitWsngdRqCSCBC56G4cz+7XTlihE+bvASkQyZNPT7EWX2obDkoBK/ZG1v+wcyWzZuULjRFODkaww3QLVHvNlPKvtwMbiLfxuAEP5XncXW0R2hfeNKPsdLegyAMAVo/MWa4/2z01Co4jaHCD3cWHnZy0mItP7m4l6Uq8zx7H94a0j4GmRFWvV/5Ua6ryxazY2ZKTYNKsxBKBaEOASpkPOir/9r0kSete4WrxIrx7eLJoqQ5UsG08gr7z8/EZwqUUiuGmZKmy7MFccVSkI5yGxssiNPAgMBAAECggEALvZywJctbDnzdXvkoo+L2db/HepdZoIqwW8YlW5n0bYpeL36Vgpndgd3Ao5sCmkV0z20cpOi9OHZhgfb3O/0k/GjLLm93YCow73o9F/pjIu3NRa8l6+J40pIE7w6lelXHVJ+O52FWUb3aR6dpYznKHvGBQSbmHk75y6WebTO52DXMCJrtcNyES7BTLP9yKudDapa9nyFrenPehOSSQOlmrDEEhKX4cMyPhoVZ4rWZUGO3tPwu3LYWYR5/KrxtLL7A24pmeqGwS5u62vEKA4AxM2BmpaQuXTnOukgUOmZO3t83rPq/yRBU0blgEBybbo8hByWc51f6Qd0n+l2OPaQgQKBgQDj/DvY6D7iJLGSS1RYeNBK/5jYkbsTRWUnDlFl3rGLO+QYzswjPZHzyGNBLZ7Stm/zLJom7yTkntmTVsQ5pcE4XMHbsxksjDeDWtfEvM8YhpNMc7VyX40R9B9XVoPsIWjdrx5odCn1hlOgV7ut2CH/IzdLf8KhrARh2Im9k193LwKBgQCZuPv8qiiEArZgZugM+YYSM+HTkCfjKoE1af5Ig2cB+tlW1mZT4uWa7fTJZg5etRV0TauQYJEnGQYWtsb1/YKMaFzy7Ch1Xs/hx2TPqPrJTZ10Arxlwt2Uot9iHj/kltS3j2d33mdLmCxQUq/97CrMbMTxe+DfbD2i5dsF/9MN4QKBgQCoqoIIPgHPwn/QkIRtE6xd3+zPRDlXz34/P7t+lxtYu81LgSrLY5Cn/3dW0A5xK2F1UWkWJtRvgwnKlGWFlJh3P0B4bm7QY0fqmPmKZnj8VwuAgxYY8JHoV2gccDgXKLxxTU48zrwAFgmmVWHXAlBcdkxBQdrXSvDPBqkYpH/7JwKBgDomPrQiTfc563FmHAukbDIAjEFye5Q0JPJmqPkXM+UM1iBCNC0xXHeR4hI5V+A9keMP6oFP9jia/7Gh7HtrLXIdnGOML/XOKscWnSzsmAmEIbabvlakMxuhzOyZ0sOOxuK1DYfLirmO09yCmu5r4vi3gHx0xujdUieH2aVYU6chAoGBAN+7RbWwBfk9MT7rKqV2AtL+TN/wXM6knRPbIBzvE2PRcorXEL2bbaqKJRmg0tZ4VqIarZ6PF7chSOw1D2+4d+9t+h90sKRbu0msAiFrxfqrTkao7aWHEU/e4M+F254+RzEQ3g0Rqu9rNNW7m78ZfPoQZXtt4LvxoglqKv5n/MRm</atalipay.private_key>
+				<atpublic_key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiOZ9ePk2rEybfi6eiI2507bz3zj+tjsW7bvWmnCy6X/R5LXzs86waRyMIJUyorVrJ4HUagkggQuehuHM/u105YoRPm7wEpEMmTT0+xFl9qGw5KASv2Rtb/sHMls2blC40RTg5GsMN0C1R7zZTyr7cDG4i38bgBD+V53F1tEdoX3jSj7HS3oMgDAFaPzFmuP9s9NQqOI2hwg93Fh52ctJiLT+5uJelKvM8ex/eGtI+BpkRVr1f+VGuq8sWs2NmSk2DSrMQSgWhDgEqZDzoq//a9JEnrXuFq8SK8e3iyaKkOVLBtPIK+8/PxGcKlFIrhpmSpsuzBXHFUpCOchsbLIjTwIDAQAB</atpublic_key>
+				<atalipay_public_key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnDXn2QYPX2dYXtgVVJH5oY0AU+ffFb7XzkdAbxnoUo3vSZ7nEaAHsecbDDnrifNcB7UQGvGFPQ0T4HjvUUPzLCqmLgupacl+S9YoGksjkgPUXo0+KO7tZIf6WkbVj4iujhkFW3GcfNFzbdAamFgOPoWPweUMG0U2WYyuEni0qK2ylPiZPuzwnRsd7X4+e7JWvX2LW0ckLrsNHrIVpE8emD5uBzIcXzcGWDis0pmugnjjq/wnfbH/b6dC6uSy9hkRMRtXOXxeguXz7whB4RORyUBZnGWdOoVuIIju+PGAOClXTd7NFt4oxkh2H1TCztSatFWnpYnC8rya4D8B2sWwKQIDAQAB</atalipay_public_key>
+				<atpublicKey_path>/home/appsvr/AT/A/acp_test_verify_sign.cer</atpublicKey_path>
+				<atprivateKey_path>/home/appsvr/AT/A/00010000new2048.pfx</atprivateKey_path>
+				<atprivateKey_password>000000</atprivateKey_password>
+
+				<!-- esb sms 配置 -->
+				<dyn.gateway.client.esb.acctNm>admin</dyn.gateway.client.esb.acctNm>
+				<dyn.gateway.client.esb.pswd>4QrcOUm6Wau+VuBX8g+IPg==</dyn.gateway.client.esb.pswd>
+				<dyn.gateway.client.esb.sndTp>0</dyn.gateway.client.esb.sndTp>
+				<dyn.gateway.client.esb.msgTp>1</dyn.gateway.client.esb.msgTp>
+			</properties>
+		</profile>
+	</profiles>
+
+	<scm>
+		<connection>https://117.122.204.180/svn/ups/trunk/code/upay-parent</connection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>pactors</id>
+			<name>pactors</name>
+		</developer>
+	</developers>
+	<organization>
+		<name>pactera</name>
+		<url>http://www.pactera.com</url>
+	</organization>
+</project>

@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	 <!-- 账户限额查询接口服务 -->
+	<dipper:flow service-id="SI_ACC0008">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易前处理 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 账户限额查询 -->
+					<dipper:service ref="AccLimitQueryService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+
+</beans>

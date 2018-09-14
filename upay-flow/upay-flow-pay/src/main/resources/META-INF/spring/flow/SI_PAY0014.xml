@@ -1,0 +1,44 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+  <!-- 确认收货 -->
+  <dipper:flow service-id="SI_PAY0014">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke><!-- 支付密码校验 -->
+					<dipper:service ref="UserTrPwdCheckService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- 查询订单 -->
+					<dipper:service ref="QueryOrderService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- 校验商户状态 -->
+					<dipper:service ref="MerStatChkService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- 确认收货 -->
+					<dipper:service ref="ConfirmReceiptChkService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="fault.code=='BISUSR0016'||fault.code=='BISUSR0015'||fault.code=='BISUSR0021'||fault.code=='BISUSR0026'">
+						<!-- 用户密码错误次数统计 -->
+						<dipper:service ref="UserTrPwdCountService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

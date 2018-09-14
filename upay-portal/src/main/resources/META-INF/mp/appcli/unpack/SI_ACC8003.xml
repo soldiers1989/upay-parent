@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+<!-- 	<mappings>vbindBankCode -->
+	<mappings>
+ 		<mapping xpath="$.body.V_BIND_ACCT_NO" field="vbindAcctNo" /><!-- 卡号 -->
+ 		<mapping xpath="$.body.TRANS_AMT_STR" field="transAmtStr" /><!-- 交易金额 -->
+ 		<mapping xpath="$.body.TRADE_PWD" field="tradePwd" /><!-- 交易密码 -->
+ 		<mapping xpath="$.body.MOBILE" field="mobile"/><!-- 接收验证手机号 -->
+ 		<mapping xpath="$.body.SMS_CODE" field="smsCode"/><!-- 短信验证码 -->
+ 		<mapping xpath="$.body.COMMENT" field="comment" must="not"/><!-- 临时加的 -->
+ 		<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

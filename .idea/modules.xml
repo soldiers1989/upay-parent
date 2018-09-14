@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/upay-batch-dispatch/upay-batch-dispatch.iml" filepath="$PROJECT_DIR$/upay-batch-dispatch/upay-batch-dispatch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-batch-stepservice/upay-batch-stepservice.iml" filepath="$PROJECT_DIR$/upay-batch-stepservice/upay-batch-stepservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi-acc/upay-busi-acc.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi-acc/upay-busi-acc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi-fee/upay-busi-fee.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi-fee/upay-busi-fee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi-gnr/upay-busi-gnr.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi-gnr/upay-busi-gnr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi-mer/upay-busi-mer.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi-mer/upay-busi-mer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi-pay/upay-busi-pay.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi-pay/upay-busi-pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-busi/upay-busi-usr/upay-busi-usr.iml" filepath="$PROJECT_DIR$/upay-busi/upay-busi-usr/upay-busi-usr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-commons/upay-commons.iml" filepath="$PROJECT_DIR$/upay-commons/upay-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-dao/upay-dao.iml" filepath="$PROJECT_DIR$/upay-dao/upay-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-dao-api/upay-dao-api.iml" filepath="$PROJECT_DIR$/upay-dao-api/upay-dao-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-flow/upay-flow.iml" filepath="$PROJECT_DIR$/upay-flow/upay-flow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-flow/upay-flow-acc/upay-flow-acc.iml" filepath="$PROJECT_DIR$/upay-flow/upay-flow-acc/upay-flow-acc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-flow/upay-flow-gnr/upay-flow-gnr.iml" filepath="$PROJECT_DIR$/upay-flow/upay-flow-gnr/upay-flow-gnr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-flow/upay-flow-mer/upay-flow-mer.iml" filepath="$PROJECT_DIR$/upay-flow/upay-flow-mer/upay-flow-mer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-flow/upay-flow-pay/upay-flow-pay.iml" filepath="$PROJECT_DIR$/upay-flow/upay-flow-pay/upay-flow-pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-flow/upay-flow-usr/upay-flow-usr.iml" filepath="$PROJECT_DIR$/upay-flow/upay-flow-usr/upay-flow-usr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acp/upay-gateway-client-acp.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acp/upay-gateway-client-acp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acpmer/upay-gateway-client-acpmer.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acpmer/upay-gateway-client-acpmer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acppay/upay-gateway-client-acppay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acppay/upay-gateway-client-acppay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acpreceive/upay-gateway-client-acpreceive.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acpreceive/upay-gateway-client-acpreceive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-alipay/upay-gateway-client-alipay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-alipay/upay-gateway-client-alipay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-atalipay/upay-gateway-client-atalipay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-atalipay/upay-gateway-client-atalipay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-atweixin/upay-gateway-client-atweixn.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-atweixin/upay-gateway-client-atweixn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-core/upay-gateway-client-core.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-core/upay-gateway-client-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-esb/upay-gateway-client-esb.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-esb/upay-gateway-client-esb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-mail/upay-gateway-client-mail.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-mail/upay-gateway-client-mail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-notify/upay-gateway-client-notify.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-notify/upay-gateway-client-notify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-nuccalipay/upay-gateway-client-nuccalipay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-nuccalipay/upay-gateway-client-nuccalipay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-sms/upay-gateway-client-sms.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-sms/upay-gateway-client-sms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-weixin/upay-gateway-client-weixin.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-weixin/upay-gateway-client-weixin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-weixinopenid/upay-gateway-client-weixinopenid.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-weixinopenid/upay-gateway-client-weixinopenid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-zjpay/upay-gateway-client-zjpay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-zjpay/upay-gateway-client-zjpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acp/upay-gateway-server-acp.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acp/upay-gateway-server-acp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acpmer/upay-gateway-server-acpmer.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acpmer/upay-gateway-server-acpmer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acppay/upay-gateway-server-acppay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acppay/upay-gateway-server-acppay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acpreceive/upay-gateway-server-acpreceive.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acpreceive/upay-gateway-server-acpreceive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-alipay/upay-gateway-server-alipay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-alipay/upay-gateway-server-alipay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-atalipay/upay-gateway-server-atalipay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-atalipay/upay-gateway-server-atalipay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-atweixin/upay-gateway-server-atweixin.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-atweixin/upay-gateway-server-atweixin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-core/upay-gateway-server-core.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-core/upay-gateway-server-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-esb/upay-gateway-server-esb.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-esb/upay-gateway-server-esb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-weixin/upay-gateway-server-weixin.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-weixin/upay-gateway-server-weixin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-zjpay/upay-gateway-server-zjpay.iml" filepath="$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-zjpay/upay-gateway-server-zjpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-parent.iml" filepath="$PROJECT_DIR$/upay-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-portal/upay-portal.iml" filepath="$PROJECT_DIR$/upay-portal/upay-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upay-scripts/upay-scripts.iml" filepath="$PROJECT_DIR$/upay-scripts/upay-scripts.iml" />
+    </modules>
+  </component>
+</project>

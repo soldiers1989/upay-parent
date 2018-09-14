@@ -1,0 +1,83 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+	<!-- 银联交易 -->
+	<bean id="abstractAcpClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.AbstractAcpClientDipperHandler"
+		  abstract="true">
+		<property name="acpMerId" value="${acpReceiveMerId}" />
+		<property name="acpConnectionTimeout" value="${acpConnectionTimeout}" />
+		<property name="acpReadTimeout" value="${acpReadTimeout}" />
+		<property name="backUrl" value="${receiveBackUrl}" />
+		<property name="acpFileRoot" value="${receiveAcpFileRoot}" />
+		<property name="acpVersion" value="${acpVersion}" />
+	</bean>
+
+	<bean id="defaultAcpClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.DefaultAcpClientDipperHandler">
+		<property name="channelType" value="07" />
+		<property name="accessType" value="1" />
+		<property name="acqInsCode" value="${qrcissCode}" />
+		<property name="merCatCode" value="6012" />
+		<property name="merName" value="云南红塔银行股份有限公司（实时）" />
+		<property name="merAbbr" value="红塔银行(实时)" />
+	</bean>
+
+	<!-- 银联代收交易退货 -->
+	<bean id="unionPayRufundClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayRufundClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+	<!-- 银联商户对账文件下载 -->
+	<bean id="unionPayFileTransferDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayFileTransferDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+	<!-- 银联交易查询 -->
+	<bean id="unionPayReceiveTranQueryClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayTranQueryClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+
+	<!-- 银联代付 -->
+	<bean id="unionPayCollectionClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayCollectionClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+	<!-- 银联代付消费撤销 -->
+	<bean id="unionPayConsumeUndoClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayConsumeUndoClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+
+	<!-- 银联代收授权 -->
+	<bean id="unionPayReceiveAuthorizeClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayReceiveAuthorizeClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+	<!-- 银联代收授权撤销 -->
+	<bean id="unionPayReceiveAuthorizeUndoClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayReceiveAuthorizeUndoClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+
+	<!-- 银联代收消费 -->
+	<bean id="unionPayReceiveConsumeClientDipperHandler"
+		  class="com.upay.gateway.client.acpreceive.service.UnionPayReceiveConsumeClientDipperHandler"
+		  parent="abstractAcpClientDipperHandler">
+	</bean>
+
+
+
+
+</beans>	

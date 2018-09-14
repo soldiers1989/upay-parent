@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.NEW_TRADE_PWD" field="newTradePwd" />
+	<mapping xpath="$.body.PWD_FLAG" field="pwdFlag" />
+	<mapping xpath="$.body.SMS_CODE" field="smsCode"/>
+	<mapping xpath="$.body.MOBILE" field="mobile"/>
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

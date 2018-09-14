@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- SI_PAY20009撤销订单暂不提供-->
+	<dipper:flow service-id="SI_PAY2009">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+				   <!--  校验订单状态  如果支付中则可关闭、如果支付成功则提示已支付成功不能撤销 -->
+					<dipper:service ref="PayOrderStatAndBackUrlQryService" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException/>
+		<dipper:finally/>
+	</dipper:flow>
+</beans>    

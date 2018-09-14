@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+     <bean class="com.pactera.dipper.context.DipperParm" init-method="init">
+        <property name="daoService" ref="daoService" />
+    </bean>
+    
+
+	<!-- 批量必需的公共配置 -->
+
+	<bean id="stepService" class="com.pactera.dipper.batch.service.StepService">
+		<constructor-arg value="${threadPoolSize}" />
+		<property name="jobService" ref="jobService" />
+		<property name="stepExecutorContainer" ref="stepExecutorContainer" />
+		<property name="stepServiceContainer" ref="stepServiceContainer" />
+	</bean>
+
+	<!-- 用于引用远程的stepExecutor -->
+	<bean id="stepExecutorContainer" class="com.pactera.dipper.batch.StepExecutorContainer">
+		<constructor-arg ref="batchServiceApplication" />
+		<constructor-arg ref="registryCenter" />
+	</bean>
+
+	<!-- 用于引用远程的stepService -->
+	<bean id="stepServiceContainer" class="com.pactera.dipper.batch.StepServiceContainer">
+		<constructor-arg ref="batchServiceApplication" />
+		<constructor-arg ref="registryCenter" />
+	</bean>
+
+	<!-- ebc batch step 专用业务抽象父类 -->
+	<bean id="abstractStepExecutor" class="com.pactera.dipper.batch.service.AbstractStepExecutor"
+		abstract="true">
+		<property name="daoService" ref="daoService" />
+	</bean>
+	
+	<!-- 日切开始 -->
+	<bean id="CutStart" class="com.upay.batch.stepservice.schedule.CutStart" parent="abstractStepExecutor" />
+	<!-- 日切结束 -->
+	<bean id="CutEnd" class="com.upay.batch.stepservice.schedule.CutEnd" parent="abstractStepExecutor" />
+	
+	
+	<bean id="SynchRefundMerStlAmt" class="com.upay.batch.stepservice.schedule.SynchRefundMerStlAmt" parent="abstractStepExecutor" />
+</beans>

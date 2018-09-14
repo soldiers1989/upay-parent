@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 条码支付 -->
+	<dubbo:service ref="AlipayPayHandler" group="AlipayPayHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 交易查询 -->
+	<dubbo:service ref="AlipayQueryHandler" group="AlipayQueryHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 扫码支付预创建订单 -->
+	<dubbo:service ref="AlipayPreCreateHandler" group="AlipayPreCreateHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 支付宝交易创建接口 -->
+	<dubbo:service ref="AlipayCreateHandler" group="AlipayCreateHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!--退款  -->
+	<dubbo:service ref="AlipayRefundHandler" group="AlipayRefundHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 退款查询 -->
+	<dubbo:service ref="AlipayRefundQueryHandler" group="AlipayRefundQueryHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 交易撤销 -->
+	<dubbo:service ref="AlipayCancelHandler" group="AlipayCancelHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 交易关闭 -->
+	<dubbo:service ref="AlipayCloseHandler" group="AlipayCloseHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 获取对账单-->
+	<dubbo:service ref="AlipayDownloadHandler" group="AlipayDownloadHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 支付宝授权，获取userId -->
+	<dubbo:service ref="AliPayGetUserIdHandler" group="AliPayGetUserIdHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 商户入驻 -->
+	<dubbo:service ref="AlipaySubMchAddMerHandler" group="AlipaySubMchAddMerHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 商户信息查询 -->
+	<dubbo:service ref="AlipaySubMchQueryMerHandler" group="AlipaySubMchQueryMerHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 商户信息修改 -->
+	<dubbo:service ref="AlipaySubMchUpdateMerHandler" group="AlipaySubMchUpdateMerHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+
+</beans>

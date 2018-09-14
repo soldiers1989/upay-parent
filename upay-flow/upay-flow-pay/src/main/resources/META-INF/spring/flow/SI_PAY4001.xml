@@ -1,0 +1,190 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+  <!-- 差错处理 -->
+  <dipper:flow service-id="SI_PAY4001">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 校验差错类型是否与处理方式匹配 -->
+					<dipper:service ref="CheckErrTypeService"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>			
+				<dipper:invoke>
+					<dipper:if expression="target.bodys contains 'isDeal'&amp;&amp; target.bodys.isDeal == 'Y' &amp;&amp; (target.bodys.dealType == '01' || target.bodys.dealType == '02')">
+						<!-- 处理与核心对账产生的差错 -->
+						<dipper:service ref="DealChkHostErrService"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys contains 'isDeal'&amp;&amp; target.bodys.isDeal == 'Y' &amp;&amp;  (target.bodys.dealType == '03' || target.bodys.dealType == '04')">
+						<!-- 处理与微信、中金、银联对账产生的差错 -->
+						<dipper:service ref="DealChkWeChatErrService"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.dealType == '07'">
+						<!-- 处理特殊差错 -->
+						<dipper:service ref="AdjustFlowListService"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<dipper:if expression="target.bodys contains 'stlErr' &amp;&amp; target.bodys.stlErr == 'Y'">
+						<!-- 处理商户结算差错 -->
+						<dipper:service ref="DealStlChkErrService"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 是否使用esb连接核心检查-->
+					<dipper:service ref="UseEsbCoreChkService" param-ref="initUseEsbCoreMethod" />
+				</dipper:invoke>
+				
+			</dipper:route>
+			
+			<dipper:route>
+
+				<dipper:invoke>
+					<!-- 核心记账 -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08001' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initCoreDebitCardDealChkErr" beforeDictConv-ref="CoreDealChkErrBefDict"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- esb核心记账 -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08001' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<dipper:service ref="esbCliDipperHandler" param-ref="initEsbCorePayAlipay" beforeDictConv-ref="CoreEsbDealChkErrBefDict"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				
+				<dipper:invoke>
+					<!-- 核心记账（贷记卡接口） -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08011' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initCoreCreditCardDealChkErr" beforeDictConv-ref="CoreDealChkErrBefDict"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- esb核心记账（贷记卡接口） -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08011' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<dipper:service ref="esbCliDipperHandler" param-ref="initEsbCorePayAlipay" beforeDictConv-ref="CoreEsbDealChkErrBefDict"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 借记卡冲正 -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08002' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initCore08002" beforeDictConv-ref="CoreDealTranSeqBefore"/>
+					</dipper:if>
+				</dipper:invoke>
+			    <dipper:invoke>
+					<!-- esb借记卡冲正 -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08002' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<dipper:service ref="esbCliDipperHandler" param-ref="initEsbCorePayAlipay" beforeDictConv-ref="CoreEsbDealTranSeqBefore"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				
+				<dipper:invoke>
+					<!-- 贷记卡冲正 -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08013' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initCore08013" beforeDictConv-ref="CoreDealTranSeqBefore"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- esb贷记卡冲正 -->
+					<dipper:if expression="target.bodys contains 'coreTranCode' &amp;&amp; target.bodys.coreTranCode == '08013' &amp;&amp; target.bodys contains 'isReqCore' &amp;&amp;  target.bodys.isReqCore == 'Y' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<dipper:service ref="esbCliDipperHandler" param-ref="initCoreEsb08013" beforeDictConv-ref="CoreEsbDealTranSeqBefore"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				
+            </dipper:route>
+            <dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="(target.bodys contains 'isDeal' &amp;&amp; target.bodys.isDeal == 'Y') || (target.bodys contains 'stlErr' &amp;&amp; target.bodys.stlErr == 'Y')">
+						<!-- 获取需要更新的状态 -->
+	            		<dipper:service ref="PayErrHandleService"/>
+	            		<!-- 更新流水 -->
+	            		<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="dealChkErrFlowList"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>	
+			
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys contains 'isAddFee' &amp;&amp; target.bodys.isAddFee != null">
+						<dipper:service ref="CheckInFeeFlowListService"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 手续费冲账 -->
+					<dipper:if expression="target.bodys contains 'isAddFee' &amp;&amp; target.bodys.isAddFee != null &amp;&amp; target.bodys contains 'coreFeeCode' &amp;&amp; target.bodys.coreFeeCode == '08001' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initCoreDebitCardDealChkErr" beforeDictConv-ref="dealChkErrHostFee"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- esb手续费冲账 -->
+					<dipper:if expression="target.bodys contains 'isAddFee' &amp;&amp; target.bodys.isAddFee != null &amp;&amp; target.bodys contains 'coreFeeCode' &amp;&amp; target.bodys.coreFeeCode == '08001' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<dipper:service ref="esbCliDipperHandler" param-ref="initEsbCorePayAlipay" beforeDictConv-ref="dealChkErrHostFee"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				
+				<dipper:invoke>
+					<!-- 借记卡冲正 -->
+					<dipper:if expression="target.bodys contains 'isAddFee' &amp;&amp; target.bodys.isAddFee != null &amp;&amp; target.bodys contains 'coreFeeCode' &amp;&amp; target.bodys.coreFeeCode == '08002' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initCore08002"/>
+					</dipper:if>
+				</dipper:invoke>
+			    <dipper:invoke>
+					<!-- esb借记卡冲正 -->
+					<dipper:if expression="target.bodys contains 'isAddFee' &amp;&amp; target.bodys.isAddFee != null &amp;&amp; target.bodys contains 'coreFeeCode' &amp;&amp; target.bodys.coreFeeCode == '08002' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<dipper:service ref="esbCliDipperHandler" param-ref="initEsbCorePayAlipay"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<dipper:if expression="target.bodys contains 'isAddFee' &amp;&amp; target.bodys.isAddFee != null">
+						<!-- 获取需要更新的状态 -->
+	            		<dipper:service ref="PayErrHandleService"/>
+	            		<!-- 更新流水 -->
+	            		<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="dealChkErrFeeFlowList"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			
+			<dipper:route>				
+				<!-- 登记差错处理结果信息 并且更新差错表信息-->
+				<dipper:invoke>
+            		<dipper:service ref="CheckInChkErrDealResultService"/>
+				</dipper:invoke>
+			</dipper:route>		
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 更新支付流水状态 -->
+					<dipper:if expression="target.bodys contains 'coreSubSeq' &amp;&amp;target.bodys.coreSubSeq != null">					
+						<!-- 获取要修改的流水状态和资金通道返回信息 -->
+						<dipper:service ref="PayErrHandleService"/>
+						<!-- 更新流水 -->
+						<dipper:service ref="SeqStatusManageService"/>
+					</dipper:if>
+				</dipper:invoke>					
+			</dipper:route>
+		</dipper:catchException>
+	</dipper:flow>
+</beans>

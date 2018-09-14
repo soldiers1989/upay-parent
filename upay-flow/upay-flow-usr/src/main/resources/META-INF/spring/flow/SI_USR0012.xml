@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 用户注册标识检查 -->
+	<dipper:flow service-id="SI_USR0012">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="RegistIdentityCheckService" /><!-- 用户注册标识检查 -->
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+	</dipper:flow>
+</beans>    

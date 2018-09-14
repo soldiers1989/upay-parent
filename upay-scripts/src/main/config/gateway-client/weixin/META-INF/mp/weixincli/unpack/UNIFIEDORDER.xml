@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+      <mapping xpath="appid" field="appId" must="not"/>
+        <mapping xpath="mch_id" field="mchId" must="not"/>       
+        <mapping xpath="sub_appid" field="subAppid" must="not"/>
+        <mapping xpath="sub_mch_id" field="subMchId" must="not"/>
+        <mapping xpath="device_info" field="deviceInfo" must="not"/>
+        <mapping xpath="nonce_str" field="nonceStr" must="not"/>
+        <mapping xpath="sign" field="sign" must="not"/>
+        <mapping xpath="trade_type" field="tradeType" must="not"/>
+        <mapping xpath="prepay_id" field="prepayId" must="not"/>
+        <mapping xpath="code_url" field="codeUrl" must="not"/>
+        
+	</mappings>
+</config>

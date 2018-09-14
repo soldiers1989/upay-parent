@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.SmokeStlPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.SmokeStlPo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="TRANS_DATE" property="transDate" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="RESULT" property="result" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="SUCC_AMT" property="succAmt" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_SMOKE_STL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		TRANS_DATE,
+		TRANS_AMT,
+		RESULT,
+		REMARK1,
+		REMARK2,
+		SUCC_AMT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="transDate != null">
+			TRANS_DATE= #{transDate}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="result != null">
+			RESULT= #{result}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="succAmt != null">
+			SUCC_AMT= #{succAmt}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="result != null">
+		RESULT,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="succAmt != null">
+		SUCC_AMT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="transDate != null">
+		#{transDate},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="result != null">
+		#{result},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="succAmt != null">
+		#{succAmt},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE=#{transDate},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="result != null">
+		RESULT=#{result},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="succAmt != null">
+		SUCC_AMT=#{succAmt},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.transDate != null">
+                    TRANS_DATE=#{s.transDate},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.result != null">
+                    RESULT=#{s.result},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.succAmt != null">
+                    SUCC_AMT=#{s.succAmt}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.transDate != null">
+                    TRANS_DATE=#{w.transDate}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.result != null">
+                    RESULT=#{w.result}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.succAmt != null">
+                    SUCC_AMT=#{w.succAmt}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

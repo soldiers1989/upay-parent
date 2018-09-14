@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			">
+
+	<context:component-scan base-package="com.upay" />
+
+	<!--<bean id="unionAPI" class="com.upay.commons.encryptor.UnionAPI" init-method="getLongConnection"> --><!-- 使用长链时打开注释 -->
+	<bean id="unionAPI" class="com.upay.commons.encryptor.UnionAPI">
+<!-- 		<property name="ipList"> -->
+<!-- 			<list> -->
+<!-- 				<value>197.3.11.54</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="portList"> -->
+<!-- 			<list> -->
+<!-- 				<value>12002</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="encryptIp" value="197.3.11.54" /> -->
+<!-- 		<property name="encryptPort" value="12002" /> -->
+
+<!-- 		<property name="timeout" value="7" /> -->
+<!-- 		<property name="appID" value="TE" /> -->
+<!-- 		<property name="sysID" value="TE" /> -->
+<!-- 		<property name="connNum" value="5" /> -->
+<!-- 		<property name="keyName" value="upay.05247410-des.zek" /> -->
+		
+<!-- 		<property name="encryptkeyName" value="upay.05247410-01.sm2" /> -->
+<!-- 		<property name="cipherDataLen" value="2" /> -->
+<!-- 		<property name="vKindex" value="01" /> -->
+<!-- 		<property name="algorthmID" value="SM2" /> -->
+<!-- 		<property name="dataFillMode" value="08" /> -->
+<!-- 		<property name="format" value="0" /> -->
+
+<!-- 		<property name="encryptIp" value="${union.api.encryptIp}" /> -->
+<!-- 		<property name="encryptPort" value="${union.api.encryptPort}" /> -->
+
+<!-- 		<property name="timeout" value="${union.api.timeout}" /> -->
+<!-- 		<property name="appID" value="${union.api.appID}" /> -->
+<!-- 		<property name="sysID" value="${union.api.sysID}" /> -->
+<!-- 		<property name="connNum" value="${union.api.connNum}" /> -->
+<!-- 		<property name="keyName" value="${union.api.keyName}" /> -->
+		
+<!-- 		<property name="encryptkeyName" value="${union.api.encryptkeyName}" /> -->
+<!-- 		<property name="cipherDataLen" value="${union.api.cipherDataLen}" /> -->
+<!-- 		<property name="vKindex" value="${union.api.vKindex}" /> -->
+<!-- 		<property name="algorthmID" value="${union.api.algorthmID}" /> -->
+<!-- 		<property name="dataFillMode" value="${union.api.dataFillMode}" /> -->
+<!-- 		<property name="format" value="${union.api.format}" /> -->
+	</bean>
+
+	<bean id="unionOtpAPI" class="com.upay.commons.encryptor.UnionOtpAPI">
+<!-- 		<property name="ipList"> -->
+<!-- 			<list> -->
+<!-- 				<value>197.3.11.109</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="portList"> -->
+<!-- 			<list> -->
+<!-- 				<value>8555</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="unionOtpIP" value="197.3.11.109" /> -->
+<!-- 		<property name="unionOtpPort" value="8555" /> -->
+		
+<!-- 		<property name="timeout" value="7" /> -->
+<!-- 		<property name="appID" value="upay" /> -->
+<!-- 		<property name="sysID" value="upay" /> -->
+<!-- 		<property name="connNum" value="5" /> -->
+
+<!-- 		<property name="unionOtpIP" value="${union.otp.ip}" /> -->
+<!-- 		<property name="unionOtpPort" value="${union.otp.port}" /> -->
+		
+<!-- 		<property name="timeout" value="${union.otp.timeout}" /> -->
+<!-- 		<property name="appID" value="${union.otp.appID}" /> -->
+<!-- 		<property name="sysID" value="${union.otp.sysID}" /> -->
+<!-- 		<property name="connNum" value="${union.otp.connNum}" /> -->
+	</bean>
+
+</beans>

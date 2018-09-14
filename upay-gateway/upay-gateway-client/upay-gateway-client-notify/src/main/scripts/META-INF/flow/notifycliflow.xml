@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+<!-- 	<bean id="defaultNotifyClientHandler" class="com.upay.gateway.client.notify.DefaultNotifyClientHandler">
+		<property name="flow" ref="SI_notifycliFlow" />
+		<property name="channel" ref="notifycli" />
+	</bean> -->
+
+	<dipper:flow service-id="SI_notifycliFlow">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.tranCode== 'notify'">
+						<dipper:service ref="notifySignHandler"/>
+					</dipper:if>
+					<dipper:service ref="M_PACK" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service client="true" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service ref="M_UNPACK" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally />
+	</dipper:flow>
+	
+</beans>

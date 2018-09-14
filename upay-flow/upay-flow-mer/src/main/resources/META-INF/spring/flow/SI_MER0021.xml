@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 特约商户申请 后台交易对外提供-->
+	<dipper:flow service-id="SI_MER0021">
+		<dipper:try>
+			<dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" /><!-- 交易前处理 -->
+                </dipper:invoke>
+       		</dipper:route>
+      		<dipper:route transaction="lazy">
+      			 <dipper:invoke>
+					<!-- 用户商户信息注册  -->
+					<dipper:service ref="CreateOrUpdateFirstMerService" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException/>
+		<dipper:finally>
+        	<dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" /><!-- 交易后处理 -->
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:finally>
+	</dipper:flow>   
+</beans>	

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:cfg.properties,classpath:remote-dubbo.properties,classpath:remote-zookeeper.properties,classpath:remote-db.properties,classpath:remote-jedis.properties" />
+        
+    <dubbo:application name="flow-pay"  /><!-- 197.5.11.21:2181,197.5.11.22:2181,197.5.11.23:2181 -->
+    <dubbo:registry default="true" protocol="dipper" address="127.0.0.1:2181" group="${registry.group}" />
+    <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
+    <dubbo:provider timeout="${dubbo.provider.timeout}" retries="${dubbo.provider.retries}"  filter="dipperFilter,exceptionFilter,loggerFilter" />
+    <dubbo:consumer filter="loggerFilter" />
+    <!--demo-->
+	<dubbo:reference id="SI_DEMO" interface="com.pactera.dipper.core.IDipperHandler" group="SI_DEMO"/>
+	<dubbo:reference id="SI_PAY0004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0004"/>
+	<dubbo:reference id="SI_PAY1007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1007"/>
+	<dubbo:reference id="SI_PAY2061" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2061"/>
+	<dubbo:reference id="SI_PAY2005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2005"/>
+    <dubbo:reference id="SI_PAY2065" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2065"/>
+	<dubbo:reference id="SI_PAY2006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2006"/>
+    <dubbo:reference id="SI_PAY2066" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2066"/>
+	<dubbo:reference id="SI_PAY2010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2010"/>
+	<dubbo:reference id="SI_PAY2100" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2100"/>
+    <dubbo:reference id="SI_PAY2125" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2125"/>
+	<dubbo:reference id="SI_PAY3001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3001"/>
+	
+	<dubbo:reference id="SI_PAY0015" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0015"/>
+	
+	<dubbo:reference id="SI_PAY2011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2011"/>
+
+	<dubbo:reference id="SI_PAY3007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3007"/>
+    <dubbo:reference id="SI_PAY3006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3006"/>
+	<dubbo:reference id="SI_PAY3008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3008"/>
+    <dubbo:reference id="SI_PAY3011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3011"/> 
+	<dubbo:reference id="SI_PAY2020" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2020"/>
+		<dubbo:reference id="SI_PAY2068" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2068"/>
+	
+	<dubbo:reference id="SI_PAY2021" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2021"/>
+	<dubbo:reference id="SI_PAY2121" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2121"/>
+	<dubbo:reference id="SI_PAY2022" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2022"/>
+	
+	<dubbo:reference id="SI_PAY2023" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2023"/>
+	
+	<dubbo:reference id="SI_PAY3062" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3062"/>
+	<dubbo:reference id="SI_PAY2025" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2025"/>
+    
+    <dubbo:reference id="SI_PAY1010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1010"/>
+    <dubbo:reference id="SI_PAY1011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1011"/>
+    <!--<dubbo:reference id="SI_PAY2100" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2100"/>-->
+</beans>

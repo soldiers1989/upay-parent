@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="upay-portal:war">
+    <output-path>$PROJECT_DIR$/upay-portal/target</output-path>
+    <root id="archive" name="upay-portal.war">
+      <element id="artifact" artifact-name="upay-portal:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+	<mappings>
+		<!-- 微信发红包接口 -->
+		<mapping xpath="merNo" field="merNo" />
+		<mapping xpath="outerOrderNo" field="outerOrderNo" />
+		<mapping xpath="msgappid" field="msgappid" must="not" />
+		<mapping xpath="reOpenid" field="reOpenid" must="not" />
+		<mapping xpath="totalAmount" field="totalAmount" type="java.math.BigDecimal"/><!-- 付款金额 -->
+		<!-- <mapping xpath="totalNo" field="totalNo" must="not" /> --><!-- 红包发放总人数 -->
+		<mapping xpath="sendName" field="sendName" must="not" /><!-- 红包发送者名称 -->
+		
+		<!-- <mapping xpath="amtType" field="amtType" must="not"/> -->
+		<mapping xpath="wishing" field="wishing" must="not"/><!-- 红包祝福语 -->
+		<mapping xpath="clientIp" field="clientIp" must="not"/><!-- Ip地址 -->
+		<mapping xpath="actName" field="actName" must="not"/><!-- 活动名称  -->
+		<mapping xpath="remark" field="remark" must="not"/><!--   -->
+		<mapping xpath="sceneId" field="sceneId" must="not"/><!-- 场景id  -->
+		<mapping xpath="riskInfo" field="riskInfo" must="not"/><!-- 活动信息  -->
+		<mapping xpath="consumeMchId" field="consumeMchIdNO" must="not"/><!-- 扣钱方mchid  -->
+		<!-- <mapping xpath="sendListid" field="sendListid" must="not"/>
+		<mapping xpath="redpackType" field="redpackType" must="not"/> -->
+		<!-- <mapping xpath="redpackType" field="redpackType" must="not"/> -->	<!-- 红包类型  -->
+		<mapping xpath="remark1" field="remark1" must="not"/><!--   -->
+	</mappings>
+</config>

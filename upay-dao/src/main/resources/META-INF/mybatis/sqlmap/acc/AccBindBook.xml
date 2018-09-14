@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccBindBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccBindBookPo">
+		<id column="ID" property="id" />
+		<result column="BIND_TIME" property="bindTime" />
+		<result column="BIND_CHNL_ID" property="bindChnlId" />
+		<result column="V_ACCT_NO" property="vacctNo" />
+		<result column="DEFAULT_FLAG" property="defaultFlag" />
+		<result column="BIND_ACCT_TYPE" property="bindAcctType" />
+		<result column="V_BIND_BANK_FLAG" property="vbindBankFlag" />
+		<result column="V_BIND_BANK_CODE" property="vbindBankCode" />
+		<result column="V_BIND_BANK_NAME" property="vbindBankName" />
+		<result column="V_BIND_ACCT_NO" property="vbindAcctNo" />
+		<result column="V_BIND_OPEN_CODE" property="vbindOpenCode" />
+		<result column="BIND_STAT" property="bindStat" />
+		<result column="V_BIND_FLAG" property="vbindFlag" />
+		<result column="THIRD_AUTH_CHNL" property="thirdAuthChnl" />
+		<result column="TRANSFER_VERIFY_AMT" property="transferVerifyAmt" />
+		<result column="TRANSFER_VERIFY_DATE" property="transferVerifyDate" />
+		<result column="ACTIVE_TIME" property="activeTime" />
+		<result column="UNBIND_TIME" property="unbindTime" />
+		<result column="UNBIND_CHNL_ID" property="unbindChnlId" />
+		<result column="UNBIND_REASON_FLAG" property="unbindReasonFlag" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="V_BIND_OPEN_NAME" property="vbindOpenName" />
+		<result column="CARD_FIST_PAY" property="cardFistPay" />
+		<result column="CARD_BIN" property="cardBin" />
+		<result column="RESERVE_MOBILE" property="reserveMobile" />
+		<result column="VALID_DATE" property="validDate" />
+		<result column="CVN2" property="cvn2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_BIND_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BIND_TIME,
+		BIND_CHNL_ID,
+		V_ACCT_NO,
+		DEFAULT_FLAG,
+		BIND_ACCT_TYPE,
+		V_BIND_BANK_FLAG,
+		V_BIND_BANK_CODE,
+		V_BIND_BANK_NAME,
+		V_BIND_ACCT_NO,
+		V_BIND_OPEN_CODE,
+		BIND_STAT,
+		V_BIND_FLAG,
+		THIRD_AUTH_CHNL,
+		TRANSFER_VERIFY_AMT,
+		TRANSFER_VERIFY_DATE,
+		ACTIVE_TIME,
+		UNBIND_TIME,
+		UNBIND_CHNL_ID,
+		UNBIND_REASON_FLAG,
+		REMARK1,
+		REMARK2,
+		V_BIND_OPEN_NAME,
+		CARD_FIST_PAY,
+		CARD_BIN,
+		RESERVE_MOBILE,
+		VALID_DATE,
+		CVN2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="bindTime != null">
+			BIND_TIME= #{bindTime}
+	           AND 
+		</if>
+		<if test="bindChnlId != null">
+			BIND_CHNL_ID= #{bindChnlId}
+	           AND 
+		</if>
+		<if test="vacctNo != null">
+			V_ACCT_NO= #{vacctNo}
+	           AND 
+		</if>
+		<if test="defaultFlag != null">
+			DEFAULT_FLAG= #{defaultFlag}
+	           AND 
+		</if>
+		<if test="bindAcctType != null">
+			BIND_ACCT_TYPE= #{bindAcctType}
+	           AND 
+		</if>
+		<if test="vbindBankFlag != null">
+			V_BIND_BANK_FLAG= #{vbindBankFlag}
+	           AND 
+		</if>
+		<if test="vbindBankCode != null">
+			V_BIND_BANK_CODE= #{vbindBankCode}
+	           AND 
+		</if>
+		<if test="vbindBankName != null">
+			V_BIND_BANK_NAME= #{vbindBankName}
+	           AND 
+		</if>
+		<if test="vbindAcctNo != null">
+			V_BIND_ACCT_NO= #{vbindAcctNo}
+	           AND 
+		</if>
+		<if test="vbindOpenCode != null">
+			V_BIND_OPEN_CODE= #{vbindOpenCode}
+	           AND 
+		</if>
+		<if test="bindStat != null">
+			BIND_STAT= #{bindStat}
+	           AND 
+		</if>
+		<if test="vbindFlag != null">
+			V_BIND_FLAG= #{vbindFlag}
+	           AND 
+		</if>
+		<if test="thirdAuthChnl != null">
+			THIRD_AUTH_CHNL= #{thirdAuthChnl}
+	           AND 
+		</if>
+		<if test="transferVerifyAmt != null">
+			TRANSFER_VERIFY_AMT= #{transferVerifyAmt}
+	           AND 
+		</if>
+		<if test="transferVerifyDate != null">
+			TRANSFER_VERIFY_DATE= #{transferVerifyDate}
+	           AND 
+		</if>
+		<if test="activeTime != null">
+			ACTIVE_TIME= #{activeTime}
+	           AND 
+		</if>
+		<if test="unbindTime != null">
+			UNBIND_TIME= #{unbindTime}
+	           AND 
+		</if>
+		<if test="unbindChnlId != null">
+			UNBIND_CHNL_ID= #{unbindChnlId}
+	           AND 
+		</if>
+		<if test="unbindReasonFlag != null">
+			UNBIND_REASON_FLAG= #{unbindReasonFlag}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="vbindOpenName != null">
+			V_BIND_OPEN_NAME= #{vbindOpenName}
+	           AND 
+		</if>
+		<if test="cardFistPay != null">
+			CARD_FIST_PAY= #{cardFistPay}
+	           AND 
+		</if>
+		<if test="cardBin != null">
+			CARD_BIN= #{cardBin}
+	           AND 
+		</if>
+		<if test="reserveMobile != null">
+			RESERVE_MOBILE= #{reserveMobile}
+	           AND 
+		</if>
+		<if test="validDate != null">
+			VALID_DATE= #{validDate}
+	           AND 
+		</if>
+		<if test="cvn2 != null">
+			CVN2= #{cvn2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="bindTime != null">
+		BIND_TIME,
+	</if>
+	<if test="bindChnlId != null">
+		BIND_CHNL_ID,
+	</if>
+	<if test="vacctNo != null">
+		V_ACCT_NO,
+	</if>
+	<if test="defaultFlag != null">
+		DEFAULT_FLAG,
+	</if>
+	<if test="bindAcctType != null">
+		BIND_ACCT_TYPE,
+	</if>
+	<if test="vbindBankFlag != null">
+		V_BIND_BANK_FLAG,
+	</if>
+	<if test="vbindBankCode != null">
+		V_BIND_BANK_CODE,
+	</if>
+	<if test="vbindBankName != null">
+		V_BIND_BANK_NAME,
+	</if>
+	<if test="vbindAcctNo != null">
+		V_BIND_ACCT_NO,
+	</if>
+	<if test="vbindOpenCode != null">
+		V_BIND_OPEN_CODE,
+	</if>
+	<if test="bindStat != null">
+		BIND_STAT,
+	</if>
+	<if test="vbindFlag != null">
+		V_BIND_FLAG,
+	</if>
+	<if test="thirdAuthChnl != null">
+		THIRD_AUTH_CHNL,
+	</if>
+	<if test="transferVerifyAmt != null">
+		TRANSFER_VERIFY_AMT,
+	</if>
+	<if test="transferVerifyDate != null">
+		TRANSFER_VERIFY_DATE,
+	</if>
+	<if test="activeTime != null">
+		ACTIVE_TIME,
+	</if>
+	<if test="unbindTime != null">
+		UNBIND_TIME,
+	</if>
+	<if test="unbindChnlId != null">
+		UNBIND_CHNL_ID,
+	</if>
+	<if test="unbindReasonFlag != null">
+		UNBIND_REASON_FLAG,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="vbindOpenName != null">
+		V_BIND_OPEN_NAME,
+	</if>
+	<if test="cardFistPay != null">
+		CARD_FIST_PAY,
+	</if>
+	<if test="cardBin != null">
+		CARD_BIN,
+	</if>
+	<if test="reserveMobile != null">
+		RESERVE_MOBILE,
+	</if>
+	<if test="validDate != null">
+		VALID_DATE,
+	</if>
+	<if test="cvn2 != null">
+		CVN2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="bindTime != null">
+		#{bindTime},
+	</if>
+	<if test="bindChnlId != null">
+		#{bindChnlId},
+	</if>
+	<if test="vacctNo != null">
+		#{vacctNo},
+	</if>
+	<if test="defaultFlag != null">
+		#{defaultFlag},
+	</if>
+	<if test="bindAcctType != null">
+		#{bindAcctType},
+	</if>
+	<if test="vbindBankFlag != null">
+		#{vbindBankFlag},
+	</if>
+	<if test="vbindBankCode != null">
+		#{vbindBankCode},
+	</if>
+	<if test="vbindBankName != null">
+		#{vbindBankName},
+	</if>
+	<if test="vbindAcctNo != null">
+		#{vbindAcctNo},
+	</if>
+	<if test="vbindOpenCode != null">
+		#{vbindOpenCode},
+	</if>
+	<if test="bindStat != null">
+		#{bindStat},
+	</if>
+	<if test="vbindFlag != null">
+		#{vbindFlag},
+	</if>
+	<if test="thirdAuthChnl != null">
+		#{thirdAuthChnl},
+	</if>
+	<if test="transferVerifyAmt != null">
+		#{transferVerifyAmt},
+	</if>
+	<if test="transferVerifyDate != null">
+		#{transferVerifyDate},
+	</if>
+	<if test="activeTime != null">
+		#{activeTime},
+	</if>
+	<if test="unbindTime != null">
+		#{unbindTime},
+	</if>
+	<if test="unbindChnlId != null">
+		#{unbindChnlId},
+	</if>
+	<if test="unbindReasonFlag != null">
+		#{unbindReasonFlag},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="vbindOpenName != null">
+		#{vbindOpenName},
+	</if>
+	<if test="cardFistPay != null">
+		#{cardFistPay},
+	</if>
+	<if test="cardBin != null">
+		#{cardBin},
+	</if>
+	<if test="reserveMobile != null">
+		#{reserveMobile},
+	</if>
+	<if test="validDate != null">
+		#{validDate},
+	</if>
+	<if test="cvn2 != null">
+		#{cvn2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="bindTime != null">
+		BIND_TIME=#{bindTime},
+	</if>
+	<if test="bindChnlId != null">
+		BIND_CHNL_ID=#{bindChnlId},
+	</if>
+	<if test="vacctNo != null">
+		V_ACCT_NO=#{vacctNo},
+	</if>
+	<if test="defaultFlag != null">
+		DEFAULT_FLAG=#{defaultFlag},
+	</if>
+	<if test="bindAcctType != null">
+		BIND_ACCT_TYPE=#{bindAcctType},
+	</if>
+	<if test="vbindBankFlag != null">
+		V_BIND_BANK_FLAG=#{vbindBankFlag},
+	</if>
+	<if test="vbindBankCode != null">
+		V_BIND_BANK_CODE=#{vbindBankCode},
+	</if>
+	<if test="vbindBankName != null">
+		V_BIND_BANK_NAME=#{vbindBankName},
+	</if>
+	<if test="vbindAcctNo != null">
+		V_BIND_ACCT_NO=#{vbindAcctNo},
+	</if>
+	<if test="vbindOpenCode != null">
+		V_BIND_OPEN_CODE=#{vbindOpenCode},
+	</if>
+	<if test="bindStat != null">
+		BIND_STAT=#{bindStat},
+	</if>
+	<if test="vbindFlag != null">
+		V_BIND_FLAG=#{vbindFlag},
+	</if>
+	<if test="thirdAuthChnl != null">
+		THIRD_AUTH_CHNL=#{thirdAuthChnl},
+	</if>
+	<if test="transferVerifyAmt != null">
+		TRANSFER_VERIFY_AMT=#{transferVerifyAmt},
+	</if>
+	<if test="transferVerifyDate != null">
+		TRANSFER_VERIFY_DATE=#{transferVerifyDate},
+	</if>
+	<if test="activeTime != null">
+		ACTIVE_TIME=#{activeTime},
+	</if>
+	<if test="unbindTime != null">
+		UNBIND_TIME=#{unbindTime},
+	</if>
+	<if test="unbindChnlId != null">
+		UNBIND_CHNL_ID=#{unbindChnlId},
+	</if>
+	<if test="unbindReasonFlag != null">
+		UNBIND_REASON_FLAG=#{unbindReasonFlag},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="vbindOpenName != null">
+		V_BIND_OPEN_NAME=#{vbindOpenName},
+	</if>
+	<if test="cardFistPay != null">
+		CARD_FIST_PAY=#{cardFistPay},
+	</if>
+	<if test="cardBin != null">
+		CARD_BIN=#{cardBin},
+	</if>
+	<if test="reserveMobile != null">
+		RESERVE_MOBILE=#{reserveMobile},
+	</if>
+	<if test="validDate != null">
+		VALID_DATE=#{validDate},
+	</if>
+	<if test="cvn2 != null">
+		CVN2=#{cvn2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.bindTime != null">
+                    BIND_TIME=#{s.bindTime},
+			</if>
+			<if test="s.bindChnlId != null">
+                    BIND_CHNL_ID=#{s.bindChnlId},
+			</if>
+			<if test="s.vacctNo != null">
+                    V_ACCT_NO=#{s.vacctNo},
+			</if>
+			<if test="s.defaultFlag != null">
+                    DEFAULT_FLAG=#{s.defaultFlag},
+			</if>
+			<if test="s.bindAcctType != null">
+                    BIND_ACCT_TYPE=#{s.bindAcctType},
+			</if>
+			<if test="s.vbindBankFlag != null">
+                    V_BIND_BANK_FLAG=#{s.vbindBankFlag},
+			</if>
+			<if test="s.vbindBankCode != null">
+                    V_BIND_BANK_CODE=#{s.vbindBankCode},
+			</if>
+			<if test="s.vbindBankName != null">
+                    V_BIND_BANK_NAME=#{s.vbindBankName},
+			</if>
+			<if test="s.vbindAcctNo != null">
+                    V_BIND_ACCT_NO=#{s.vbindAcctNo},
+			</if>
+			<if test="s.vbindOpenCode != null">
+                    V_BIND_OPEN_CODE=#{s.vbindOpenCode},
+			</if>
+			<if test="s.bindStat != null">
+                    BIND_STAT=#{s.bindStat},
+			</if>
+			<if test="s.vbindFlag != null">
+                    V_BIND_FLAG=#{s.vbindFlag},
+			</if>
+			<if test="s.thirdAuthChnl != null">
+                    THIRD_AUTH_CHNL=#{s.thirdAuthChnl},
+			</if>
+			<if test="s.transferVerifyAmt != null">
+                    TRANSFER_VERIFY_AMT=#{s.transferVerifyAmt},
+			</if>
+			<if test="s.transferVerifyDate != null">
+                    TRANSFER_VERIFY_DATE=#{s.transferVerifyDate},
+			</if>
+			<if test="s.activeTime != null">
+                    ACTIVE_TIME=#{s.activeTime},
+			</if>
+			<if test="s.unbindTime != null">
+                    UNBIND_TIME=#{s.unbindTime},
+			</if>
+			<if test="s.unbindChnlId != null">
+                    UNBIND_CHNL_ID=#{s.unbindChnlId},
+			</if>
+			<if test="s.unbindReasonFlag != null">
+                    UNBIND_REASON_FLAG=#{s.unbindReasonFlag},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.vbindOpenName != null">
+                    V_BIND_OPEN_NAME=#{s.vbindOpenName},
+			</if>
+			<if test="s.cardFistPay != null">
+                    CARD_FIST_PAY=#{s.cardFistPay},
+			</if>
+			<if test="s.cardBin != null">
+                    CARD_BIN=#{s.cardBin},
+			</if>
+			<if test="s.reserveMobile != null">
+                    RESERVE_MOBILE=#{s.reserveMobile},
+			</if>
+			<if test="s.validDate != null">
+                    VALID_DATE=#{s.validDate},
+			</if>
+			<if test="s.cvn2 != null">
+                    CVN2=#{s.cvn2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.bindTime != null">
+                    BIND_TIME=#{w.bindTime}
+                   AND 
+ 			</if>
+			<if test="w.bindChnlId != null">
+                    BIND_CHNL_ID=#{w.bindChnlId}
+                   AND 
+ 			</if>
+			<if test="w.vacctNo != null">
+                    V_ACCT_NO=#{w.vacctNo}
+                   AND 
+ 			</if>
+			<if test="w.defaultFlag != null">
+                    DEFAULT_FLAG=#{w.defaultFlag}
+                   AND 
+ 			</if>
+			<if test="w.bindAcctType != null">
+                    BIND_ACCT_TYPE=#{w.bindAcctType}
+                   AND 
+ 			</if>
+			<if test="w.vbindBankFlag != null">
+                    V_BIND_BANK_FLAG=#{w.vbindBankFlag}
+                   AND 
+ 			</if>
+			<if test="w.vbindBankCode != null">
+                    V_BIND_BANK_CODE=#{w.vbindBankCode}
+                   AND 
+ 			</if>
+			<if test="w.vbindBankName != null">
+                    V_BIND_BANK_NAME=#{w.vbindBankName}
+                   AND 
+ 			</if>
+			<if test="w.vbindAcctNo != null">
+                    V_BIND_ACCT_NO=#{w.vbindAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.vbindOpenCode != null">
+                    V_BIND_OPEN_CODE=#{w.vbindOpenCode}
+                   AND 
+ 			</if>
+			<if test="w.bindStat != null">
+                    BIND_STAT=#{w.bindStat}
+                   AND 
+ 			</if>
+			<if test="w.vbindFlag != null">
+                    V_BIND_FLAG=#{w.vbindFlag}
+                   AND 
+ 			</if>
+			<if test="w.thirdAuthChnl != null">
+                    THIRD_AUTH_CHNL=#{w.thirdAuthChnl}
+                   AND 
+ 			</if>
+			<if test="w.transferVerifyAmt != null">
+                    TRANSFER_VERIFY_AMT=#{w.transferVerifyAmt}
+                   AND 
+ 			</if>
+			<if test="w.transferVerifyDate != null">
+                    TRANSFER_VERIFY_DATE=#{w.transferVerifyDate}
+                   AND 
+ 			</if>
+			<if test="w.activeTime != null">
+                    ACTIVE_TIME=#{w.activeTime}
+                   AND 
+ 			</if>
+			<if test="w.unbindTime != null">
+                    UNBIND_TIME=#{w.unbindTime}
+                   AND 
+ 			</if>
+			<if test="w.unbindChnlId != null">
+                    UNBIND_CHNL_ID=#{w.unbindChnlId}
+                   AND 
+ 			</if>
+			<if test="w.unbindReasonFlag != null">
+                    UNBIND_REASON_FLAG=#{w.unbindReasonFlag}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.vbindOpenName != null">
+                    V_BIND_OPEN_NAME=#{w.vbindOpenName}
+                   AND 
+ 			</if>
+			<if test="w.cardFistPay != null">
+                    CARD_FIST_PAY=#{w.cardFistPay}
+                   AND 
+ 			</if>
+			<if test="w.cardBin != null">
+                    CARD_BIN=#{w.cardBin}
+                   AND 
+ 			</if>
+			<if test="w.reserveMobile != null">
+                    RESERVE_MOBILE=#{w.reserveMobile}
+                   AND 
+ 			</if>
+			<if test="w.validDate != null">
+                    VALID_DATE=#{w.validDate}
+                   AND 
+ 			</if>
+			<if test="w.cvn2 != null">
+                    CVN2=#{w.cvn2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

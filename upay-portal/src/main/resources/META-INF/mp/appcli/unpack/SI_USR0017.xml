@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.NEW_MOBILE" field="newMobile" />
+	<mapping xpath="$.body.SMS_CODE" field="smsCode" />
+	<mapping xpath="$.body.CERT_FRONT" field="certFront" />
+	<mapping xpath="$.body.CERT_BACK" field="certBack" />
+	<mapping xpath="$.body.CERT_PERSON" field="certPerson" />
+	<mapping xpath="$.body.LOGIN_PWD" field="loginPwd" />
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

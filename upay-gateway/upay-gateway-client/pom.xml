@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.pactera.upay</groupId>
+        <artifactId>upay-gateway</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>upay-gateway-client</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>upay-gateway-client-acp</module>
+        <module>upay-gateway-client-acpmer</module>
+        <module>upay-gateway-client-zjpay</module>
+        <module>upay-gateway-client-core</module>
+        <module>upay-gateway-client-weixin</module>
+        <module>upay-gateway-client-sms</module>
+        <module>upay-gateway-client-mail</module>
+        <module>upay-gateway-client-notify</module>
+        <module>upay-gateway-client-weixinopenid</module>
+        <module>upay-gateway-client-alipay</module>
+        <module>upay-gateway-client-esb</module>
+        <module>upay-gateway-client-atweixin</module>
+        <module>upay-gateway-client-atalipay</module>
+        <module>upay-gateway-client-acppay</module>
+        <module>upay-gateway-client-acpreceive</module>
+        <module>upay-gateway-client-nuccalipay</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>upay-commons</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+
+    </dependencies>
+</project>

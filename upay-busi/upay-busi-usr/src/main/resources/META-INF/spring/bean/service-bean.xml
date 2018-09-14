@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 测试 -->
+	<bean id="DemoAtomHandler" class="com.upay.busi.usr.service.impl.DemoAtomHandler">
+	</bean>
+
+	<!-- 查询个人基本信息 -->
+	<bean id="UserBaseInfoService" class="com.upay.busi.usr.service.impl.UserBaseInfoService"></bean>
+
+	<!-- 用户注册 -->
+	<bean id="UserRegInfoService" class="com.upay.busi.usr.service.impl.UserRegInfoService">
+	</bean>
+
+	<!-- 登陆失败处理 -->
+	<bean id="LoginFailService" class="com.upay.busi.usr.service.impl.LoginFailService"></bean>
+
+	<!-- 修改最后登录时间 -->
+	<bean id="UpdateLastLoginTimeService"
+		class="com.upay.busi.usr.service.impl.UpdateLastLoginTimeService"></bean>
+
+	<!-- 预计用户登录信息 -->
+	<bean id="UserPreloginService" class="com.upay.busi.usr.service.impl.UserPreloginService"></bean>
+
+	<!-- 登录成功后session处理 -->
+	<bean id="LogSuccessSessionDealService"
+		class="com.upay.busi.usr.service.impl.LogSuccessSessionDealService"></bean>
+
+	<!-- 查询注册信息 -->
+	<bean id="UserRegQueryService" class="com.upay.busi.usr.service.impl.UserRegQueryService"></bean>
+
+	<!-- 查询用户是否设置支付密码 -->
+	<bean id="UserPayPwdFlagSearchService"
+		class="com.upay.busi.usr.service.impl.UserPayPwdFlagSearchService"></bean>
+
+	<!-- 校验登录状态 -->
+	<bean id="CheckLoginStatService" class="com.upay.busi.usr.service.impl.CheckLoginStatService"></bean>
+
+	<!-- 安全退出 -->
+	<bean id="SafeLogoffService" class="com.upay.busi.usr.service.impl.SafeLogoffService"></bean>
+
+	<!-- 用户密码修改 -->
+	<bean id="PwdChgService" class="com.upay.busi.usr.service.impl.PwdChgService">
+	</bean>
+
+	<!-- 个人信息修改 -->
+	<bean id="BaseInfoChgService" class="com.upay.busi.usr.service.impl.BaseInfoChgService"></bean>
+	<!-- 对用户登陆密码进行解锁 -->
+	<bean id="UnlockLogPwdService" class="com.upay.busi.usr.service.impl.UnlockLogPwdService" />
+
+	<!-- 对用户交易密码进行解锁 -->
+	<bean id="UnlockTradePwdService" class="com.upay.busi.usr.service.impl.UnlockTradePwdService"></bean>
+	<!-- 用户密码校验 -->
+	<bean id="UserPwdCheckServiceImpl" class="com.upay.busi.usr.service.impl.UserPwdCheckServiceImpl">
+	</bean>
+	<!-- 用户登录密码错误次数统计 -->
+	<bean id="UserPwdCountDealService" class="com.upay.busi.usr.service.impl.UserPwdCountDealService"></bean>
+	<!-- 用户用户状态检查 -->
+	<bean id="UserStatCheckService" class="com.upay.busi.usr.service.impl.UserStatCheckService"></bean>
+	<!-- 用户交易密码校验 -->
+	<bean id="UserTrPwdCheckService" class="com.upay.busi.usr.service.impl.UserTrPwdCheckService">
+	</bean>
+	<!-- 用户交易密码错误次数统计 -->
+	<bean id="UserTrPwdCountService" class="com.upay.busi.usr.service.impl.UserTrPwdCountService"></bean>
+
+	<!-- 用户交易权限检查 -->
+	<bean id="CheckUsrOptControlService"
+		class="com.upay.busi.usr.service.impl.CheckUsrOptControlService"></bean>
+
+	<!-- 用户绑卡开户检查处理 -->
+	<bean id="BindCardUserStatChkService"
+		class="com.upay.busi.usr.service.impl.BindCardUserStatChkService"></bean>
+
+	<!-- 用户身份验证，验证用户身份信息 -->
+	<bean id="CertCheckService" class="com.upay.busi.usr.service.impl.CertCheckService" />
+
+
+	<!-- 身份信息唯一性检查 -->
+	<bean id="CertUniqueCheckService" class="com.upay.busi.usr.service.impl.CertUniqueCheckService" />
+
+
+	<!-- 身份证联网核查登记记录 -->
+	<bean id="UserCertListRegService" class="com.upay.busi.usr.service.impl.UserCertListRegService" />
+
+
+	<!-- 用户实名认证 -->
+	<bean id="WeakAuthService" class="com.upay.busi.usr.service.impl.WeakAuthService" />
+
+	<!-- 注删标识检查 -->
+	<bean id="RegistIdentityCheckService"
+		class="com.upay.busi.usr.service.impl.RegistIdentityCheckService" />
+
+	<!-- 验证用户是否有待审批的重置密码申请 -->
+	<bean id="ResetPwdCheckService" class="com.upay.busi.usr.service.impl.ResetPwdCheckService" />
+
+	<!-- 交易密码重置申请结果查询 -->
+	<bean id="ResetPwdQueryService" class="com.upay.busi.usr.service.impl.ResetPwdQueryService" />
+
+	<!-- 密码重置登记 -->
+	<bean id="ResetPwdRegiserService" class="com.upay.busi.usr.service.impl.ResetPwdRegiserService" >
+	</bean>
+
+	<!-- 授权免密检查 -->
+	<bean id="FreePwdAuthorizeCheckService"
+		class="com.upay.busi.usr.service.impl.FreePwdAuthorizeCheckService" />
+		
+	<!-- 用户手机号变更 -->
+	<bean id="ResetMobileRegisterService" class="com.upay.busi.usr.service.impl.ResetMobileRegisterService" />
+	<!-- 重置手机号申请结果查询 -->
+	<bean id="ResetMobileQueryService" class="com.upay.busi.usr.service.impl.ResetMobileQueryService" />
+	<!-- 登录图形码验证 -->
+	<bean id="CheckVerifyCodeService" class="com.upay.busi.usr.service.impl.CheckVerifyCodeService" />
+	<!-- 邮箱加签，内容拼接 -->
+	<bean id="MailSignService" class="com.upay.busi.usr.service.impl.MailSignService" >
+		<property name="mailTemplet" value="${mailTemplet}"></property>
+	</bean>
+	<!-- 企业注册 -->
+	<bean id="ComRegService" class="com.upay.busi.usr.service.impl.ComRegService" />
+	<!-- 验证签名，有效期 -->
+	<bean id="CheckSignService" class="com.upay.busi.usr.service.impl.CheckSignService" />
+	<!-- 商户重置登录密码邮件注册登记 -->
+	<bean id="MerResetPwdService" class="com.upay.busi.usr.service.impl.MerResetPwdService" />
+	<!-- 验证签名，有效期（重置登录密码） -->
+	<bean id="CheckSignService2" class="com.upay.busi.usr.service.impl.CheckSignService2" />
+	<!-- 验证签名，有效期（重置登录密码） -->
+	<bean id="ChangeMailStatusService" class="com.upay.busi.usr.service.impl.ChangeMailStatusService" />
+	<!-- 登陆唯一标识检查 -->
+	<bean id="CheckLoginFlagService" class="com.upay.busi.usr.service.impl.CheckLoginFlagService" />
+	<!-- 邮箱重置登录密码，校验是否本人-->
+	<bean id="CheckUsrService" class="com.upay.busi.usr.service.impl.CheckUsrService" />
+	<!--  -->
+	<bean id="CheckOrderStatForReceiptService" class="com.upay.busi.usr.service.impl.CheckOrderStatForReceiptService" />
+	
+	<!-- 用户重置登录密码，设置验证码是否通过-->
+	<bean id="SetMobileCacheServiceImpl" class="com.upay.busi.usr.service.impl.SetMobileCacheServiceImpl" />
+	<!-- 用户重置登录密码，验证验证码是否通过-->
+	<bean id="VerifyMobileCacheServiceImpl" class="com.upay.busi.usr.service.impl.VerifyMobileCacheServiceImpl" />
+
+	<!--根据用户邮箱或者手机号查询 用户信息-->
+	<bean id="UsrRegQueryListService" class="com.upay.busi.usr.service.impl.UsrRegQueryListService" />
+	
+	<!--查询用户名是否己存在-->
+	<bean id="QueryUserNameIsExistService" class="com.upay.busi.usr.service.impl.QueryUserNameIsExistService" />
+	
+	<!--更新用户名-->
+	<bean id="UpdateUserNameService" class="com.upay.busi.usr.service.impl.UpdateUserNameService" />
+</beans>

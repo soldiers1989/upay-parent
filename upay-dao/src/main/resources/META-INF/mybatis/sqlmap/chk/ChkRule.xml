@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkRulePo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.ChkRulePo">
+		<id column="ID" property="id" />
+		<result column="BENCHMARK_FLAG" property="benchmarkFlag" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="CHK_FLAG" property="chkFlag" />
+		<result column="CHK_CYCLE" property="chkCycle" />
+		<result column="CHK_DATE_FLAG" property="chkDateFlag" />
+		<result column="CHK_TYPE" property="chkType" />
+		<result column="STAT" property="stat" />
+		<result column="RESERVE1" property="reserve1" />
+		<result column="RESERVE2" property="reserve2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHK_RULE
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BENCHMARK_FLAG,
+		ROUTE_CODE,
+		CHK_FLAG,
+		CHK_CYCLE,
+		CHK_DATE_FLAG,
+		CHK_TYPE,
+		STAT,
+		RESERVE1,
+		RESERVE2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="benchmarkFlag != null">
+			BENCHMARK_FLAG= #{benchmarkFlag}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+	           AND 
+		</if>
+		<if test="chkFlag != null">
+			CHK_FLAG= #{chkFlag}
+	           AND 
+		</if>
+		<if test="chkCycle != null">
+			CHK_CYCLE= #{chkCycle}
+	           AND 
+		</if>
+		<if test="chkDateFlag != null">
+			CHK_DATE_FLAG= #{chkDateFlag}
+	           AND 
+		</if>
+		<if test="chkType != null">
+			CHK_TYPE= #{chkType}
+	           AND 
+		</if>
+		<if test="stat != null">
+			STAT= #{stat}
+	           AND 
+		</if>
+		<if test="reserve1 != null">
+			RESERVE1= #{reserve1}
+	           AND 
+		</if>
+		<if test="reserve2 != null">
+			RESERVE2= #{reserve2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="benchmarkFlag != null">
+		BENCHMARK_FLAG,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG,
+	</if>
+	<if test="chkCycle != null">
+		CHK_CYCLE,
+	</if>
+	<if test="chkDateFlag != null">
+		CHK_DATE_FLAG,
+	</if>
+	<if test="chkType != null">
+		CHK_TYPE,
+	</if>
+	<if test="stat != null">
+		STAT,
+	</if>
+	<if test="reserve1 != null">
+		RESERVE1,
+	</if>
+	<if test="reserve2 != null">
+		RESERVE2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="benchmarkFlag != null">
+		#{benchmarkFlag},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+	<if test="chkFlag != null">
+		#{chkFlag},
+	</if>
+	<if test="chkCycle != null">
+		#{chkCycle},
+	</if>
+	<if test="chkDateFlag != null">
+		#{chkDateFlag},
+	</if>
+	<if test="chkType != null">
+		#{chkType},
+	</if>
+	<if test="stat != null">
+		#{stat},
+	</if>
+	<if test="reserve1 != null">
+		#{reserve1},
+	</if>
+	<if test="reserve2 != null">
+		#{reserve2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="benchmarkFlag != null">
+		BENCHMARK_FLAG=#{benchmarkFlag},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG=#{chkFlag},
+	</if>
+	<if test="chkCycle != null">
+		CHK_CYCLE=#{chkCycle},
+	</if>
+	<if test="chkDateFlag != null">
+		CHK_DATE_FLAG=#{chkDateFlag},
+	</if>
+	<if test="chkType != null">
+		CHK_TYPE=#{chkType},
+	</if>
+	<if test="stat != null">
+		STAT=#{stat},
+	</if>
+	<if test="reserve1 != null">
+		RESERVE1=#{reserve1},
+	</if>
+	<if test="reserve2 != null">
+		RESERVE2=#{reserve2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.benchmarkFlag != null">
+                    BENCHMARK_FLAG=#{s.benchmarkFlag},
+			</if>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode},
+			</if>
+			<if test="s.chkFlag != null">
+                    CHK_FLAG=#{s.chkFlag},
+			</if>
+			<if test="s.chkCycle != null">
+                    CHK_CYCLE=#{s.chkCycle},
+			</if>
+			<if test="s.chkDateFlag != null">
+                    CHK_DATE_FLAG=#{s.chkDateFlag},
+			</if>
+			<if test="s.chkType != null">
+                    CHK_TYPE=#{s.chkType},
+			</if>
+			<if test="s.stat != null">
+                    STAT=#{s.stat},
+			</if>
+			<if test="s.reserve1 != null">
+                    RESERVE1=#{s.reserve1},
+			</if>
+			<if test="s.reserve2 != null">
+                    RESERVE2=#{s.reserve2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.benchmarkFlag != null">
+                    BENCHMARK_FLAG=#{w.benchmarkFlag}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+                   AND 
+ 			</if>
+			<if test="w.chkFlag != null">
+                    CHK_FLAG=#{w.chkFlag}
+                   AND 
+ 			</if>
+			<if test="w.chkCycle != null">
+                    CHK_CYCLE=#{w.chkCycle}
+                   AND 
+ 			</if>
+			<if test="w.chkDateFlag != null">
+                    CHK_DATE_FLAG=#{w.chkDateFlag}
+                   AND 
+ 			</if>
+			<if test="w.chkType != null">
+                    CHK_TYPE=#{w.chkType}
+                   AND 
+ 			</if>
+			<if test="w.stat != null">
+                    STAT=#{w.stat}
+                   AND 
+ 			</if>
+			<if test="w.reserve1 != null">
+                    RESERVE1=#{w.reserve1}
+                   AND 
+ 			</if>
+			<if test="w.reserve2 != null">
+                    RESERVE2=#{w.reserve2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

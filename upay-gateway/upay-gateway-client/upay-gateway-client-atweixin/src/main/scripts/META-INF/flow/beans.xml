@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+	<bean id="abstractAtWeiXinClientDipperHandler"
+		class="com.upay.gateway.client.atweixin.service.AbstractAtWeiXinClientDipperHandler"
+		abstract="true">
+	</bean>
+	
+	
+	<!-- 统一下单 -->
+	<bean id="unionPayOrderPerPayClientDipperHandlr" 
+		 class="com.upay.gateway.client.atweixin.service.UnionPayOrderPerPayClientDipperHandlr"
+		 parent="abstractAtWeiXinClientDipperHandler">
+	</bean>
+
+
+	<!-- 刷卡支付 -->
+	<bean id="unionPayMicropayClientDipperHandlr" 
+		 class="com.upay.gateway.client.atweixin.service.UnionPayMicropayClientDipperHandlr"
+		 parent="abstractAtWeiXinClientDipperHandler">
+	</bean>
+	
+		<!-- 订单查询 -->
+	<bean id="unionPayOrderQueryClientDipperHandlr" 
+		 class="com.upay.gateway.client.atweixin.service.UnionPayOrderQueryClientDipperHandlr"
+		 parent="abstractAtWeiXinClientDipperHandler">
+	</bean>
+	
+		
+		<!-- 申请退款 -->
+	<bean id="unionPayOrderRefundClientDipperHandlr" 
+		 class="com.upay.gateway.client.atweixin.service.UnionPayOrderRefundClientDipperHandlr"
+		 parent="abstractAtWeiXinClientDipperHandler">
+	</bean>
+	
+	
+			<!-- 申请退款查询 -->
+	<bean id="unionPayOrderRefundQueryClientDipperHandlr" 
+		 class="com.upay.gateway.client.atweixin.service.UnionPayOrderRefundQueryClientDipperHandlr"
+		 parent="abstractAtWeiXinClientDipperHandler">
+	</bean>
+	
+	
+				<!-- 商户入驻 -->
+	<bean id="unionPaySubMerADDClientDipperHandlr" 
+		 class="com.upay.gateway.client.atweixin.service.UnionPaySubMerADDClientDipperHandlr"
+		 parent="abstractAtWeiXinClientDipperHandler">
+	</bean>
+	
+</beans>	

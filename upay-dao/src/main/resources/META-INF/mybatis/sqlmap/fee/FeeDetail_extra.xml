@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeDetailPo">
+	<select id="getFeeUseCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select 
+		count(id) as count 
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="accNo != null">
+				AND ACCT_NO=#{accNo} 
+			</if>
+			<if test="merNo != null">
+				AND MER_NO=#{merNo}
+			</if>
+			<if test="feeId != null">
+				AND FEE_ID=#{feeId}
+			</if>
+			<if test="startTime != null">
+				AND TXN_TIME <![CDATA[>=]]>#{startTime}
+			</if>
+			<if test="endTime != null">
+				AND TXN_TIME <![CDATA[<=]]>#{endTime}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

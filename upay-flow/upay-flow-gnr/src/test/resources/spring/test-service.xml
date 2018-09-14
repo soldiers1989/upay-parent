@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:cfg.properties,classpath:remote-dubbo.properties,classpath:remote-zookeeper.properties,classpath:remote-db.properties,classpath:remote-jedis.properties" />
+        
+    <dubbo:application name="flow-usr"  />
+    <dubbo:registry default="true" protocol="dipper" address="127.0.0.1:2181" group="${registry.group}" />
+    <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
+    <dubbo:provider timeout="${dubbo.provider.timeout}" retries="${dubbo.provider.retries}"  filter="dipperFilter,exceptionFilter,loggerFilter" />
+    <dubbo:consumer filter="loggerFilter" />
+    <!--用户注册-->
+	<dubbo:reference id="SI_USR0001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0001"/>
+	
+	<dubbo:reference id="SI_GNR0003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0003"/>
+</beans>

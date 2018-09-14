@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.MER_NO" field="merNo" />
+		<mapping xpath="$.body.NOTIFY_ID" field="notifyId" />
+	</mappings>
+</config>

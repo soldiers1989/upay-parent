@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkThirdDetailPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.ChkThirdDetailPo">
+		<id column="ID" property="id" />
+		<result column="CHNL_DATE" property="chnlDate" />
+		<result column="CHNL_TIME" property="chnlTime" />
+		<result column="CHNL_SEQ" property="chnlSeq" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="ORG_CODE" property="orgCode" />
+		<result column="PAY_ACCT" property="payAcct" />
+		<result column="PAY_BANKNO" property="payBankno" />
+		<result column="PAYEE_ACCT" property="payeeAcct" />
+		<result column="PAYEE_BANKNO" property="payeeBankno" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="CCY" property="ccy" />
+		<result column="THIRD_STAT" property="thirdStat" />
+		<result column="THIRD_DATE" property="thirdDate" />
+		<result column="THIRD_SEQ" property="thirdSeq" />
+		<result column="CANCEL_FLAG" property="cancelFlag" />
+		<result column="REV_FLAG" property="revFlag" />
+		<result column="TRANS_STAT" property="transStat" />
+		<result column="REMARK" property="remark" />
+		<result column="CHK_BATCH_NO" property="chkBatchNo" />
+		<result column="CHK_DATE" property="chkDate" />
+		<result column="MER_ID" property="merId" />
+		<result column="IS_REGISTER_FEEAMT" property="isRegisterFeeamt" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHK_THIRD_DETAIL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CHNL_DATE,
+		CHNL_TIME,
+		CHNL_SEQ,
+		ORDER_NO,
+		ORG_CODE,
+		PAY_ACCT,
+		PAY_BANKNO,
+		PAYEE_ACCT,
+		PAYEE_BANKNO,
+		TRANS_AMT,
+		FEE_AMT,
+		CCY,
+		THIRD_STAT,
+		THIRD_DATE,
+		THIRD_SEQ,
+		CANCEL_FLAG,
+		REV_FLAG,
+		TRANS_STAT,
+		REMARK,
+		CHK_BATCH_NO,
+		CHK_DATE,
+		MER_ID,
+		IS_REGISTER_FEEAMT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="chnlDate != null">
+			CHNL_DATE= #{chnlDate}
+	           AND 
+		</if>
+		<if test="chnlTime != null">
+			CHNL_TIME= #{chnlTime}
+	           AND 
+		</if>
+		<if test="chnlSeq != null">
+			CHNL_SEQ= #{chnlSeq}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="orgCode != null">
+			ORG_CODE= #{orgCode}
+	           AND 
+		</if>
+		<if test="payAcct != null">
+			PAY_ACCT= #{payAcct}
+	           AND 
+		</if>
+		<if test="payBankno != null">
+			PAY_BANKNO= #{payBankno}
+	           AND 
+		</if>
+		<if test="payeeAcct != null">
+			PAYEE_ACCT= #{payeeAcct}
+	           AND 
+		</if>
+		<if test="payeeBankno != null">
+			PAYEE_BANKNO= #{payeeBankno}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="ccy != null">
+			CCY= #{ccy}
+	           AND 
+		</if>
+		<if test="thirdStat != null">
+			THIRD_STAT= #{thirdStat}
+	           AND 
+		</if>
+		<if test="thirdDate != null">
+			THIRD_DATE= #{thirdDate}
+	           AND 
+		</if>
+		<if test="thirdSeq != null">
+			THIRD_SEQ= #{thirdSeq}
+	           AND 
+		</if>
+		<if test="cancelFlag != null">
+			CANCEL_FLAG= #{cancelFlag}
+	           AND 
+		</if>
+		<if test="revFlag != null">
+			REV_FLAG= #{revFlag}
+	           AND 
+		</if>
+		<if test="transStat != null">
+			TRANS_STAT= #{transStat}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="chkBatchNo != null">
+			CHK_BATCH_NO= #{chkBatchNo}
+	           AND 
+		</if>
+		<if test="chkDate != null">
+			CHK_DATE= #{chkDate}
+	           AND 
+		</if>
+		<if test="merId != null">
+			MER_ID= #{merId}
+	           AND 
+		</if>
+		<if test="isRegisterFeeamt != null">
+			IS_REGISTER_FEEAMT= #{isRegisterFeeamt}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="chnlDate != null">
+		CHNL_DATE,
+	</if>
+	<if test="chnlTime != null">
+		CHNL_TIME,
+	</if>
+	<if test="chnlSeq != null">
+		CHNL_SEQ,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE,
+	</if>
+	<if test="payAcct != null">
+		PAY_ACCT,
+	</if>
+	<if test="payBankno != null">
+		PAY_BANKNO,
+	</if>
+	<if test="payeeAcct != null">
+		PAYEE_ACCT,
+	</if>
+	<if test="payeeBankno != null">
+		PAYEE_BANKNO,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="ccy != null">
+		CCY,
+	</if>
+	<if test="thirdStat != null">
+		THIRD_STAT,
+	</if>
+	<if test="thirdDate != null">
+		THIRD_DATE,
+	</if>
+	<if test="thirdSeq != null">
+		THIRD_SEQ,
+	</if>
+	<if test="cancelFlag != null">
+		CANCEL_FLAG,
+	</if>
+	<if test="revFlag != null">
+		REV_FLAG,
+	</if>
+	<if test="transStat != null">
+		TRANS_STAT,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO,
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE,
+	</if>
+	<if test="merId != null">
+		MER_ID,
+	</if>
+	<if test="isRegisterFeeamt != null">
+		IS_REGISTER_FEEAMT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="chnlDate != null">
+		#{chnlDate},
+	</if>
+	<if test="chnlTime != null">
+		#{chnlTime},
+	</if>
+	<if test="chnlSeq != null">
+		#{chnlSeq},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="orgCode != null">
+		#{orgCode},
+	</if>
+	<if test="payAcct != null">
+		#{payAcct},
+	</if>
+	<if test="payBankno != null">
+		#{payBankno},
+	</if>
+	<if test="payeeAcct != null">
+		#{payeeAcct},
+	</if>
+	<if test="payeeBankno != null">
+		#{payeeBankno},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="ccy != null">
+		#{ccy},
+	</if>
+	<if test="thirdStat != null">
+		#{thirdStat},
+	</if>
+	<if test="thirdDate != null">
+		#{thirdDate},
+	</if>
+	<if test="thirdSeq != null">
+		#{thirdSeq},
+	</if>
+	<if test="cancelFlag != null">
+		#{cancelFlag},
+	</if>
+	<if test="revFlag != null">
+		#{revFlag},
+	</if>
+	<if test="transStat != null">
+		#{transStat},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="chkBatchNo != null">
+		#{chkBatchNo},
+	</if>
+	<if test="chkDate != null">
+		#{chkDate},
+	</if>
+	<if test="merId != null">
+		#{merId},
+	</if>
+	<if test="isRegisterFeeamt != null">
+		#{isRegisterFeeamt},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="chnlDate != null">
+		CHNL_DATE=#{chnlDate},
+	</if>
+	<if test="chnlTime != null">
+		CHNL_TIME=#{chnlTime},
+	</if>
+	<if test="chnlSeq != null">
+		CHNL_SEQ=#{chnlSeq},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE=#{orgCode},
+	</if>
+	<if test="payAcct != null">
+		PAY_ACCT=#{payAcct},
+	</if>
+	<if test="payBankno != null">
+		PAY_BANKNO=#{payBankno},
+	</if>
+	<if test="payeeAcct != null">
+		PAYEE_ACCT=#{payeeAcct},
+	</if>
+	<if test="payeeBankno != null">
+		PAYEE_BANKNO=#{payeeBankno},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="ccy != null">
+		CCY=#{ccy},
+	</if>
+	<if test="thirdStat != null">
+		THIRD_STAT=#{thirdStat},
+	</if>
+	<if test="thirdDate != null">
+		THIRD_DATE=#{thirdDate},
+	</if>
+	<if test="thirdSeq != null">
+		THIRD_SEQ=#{thirdSeq},
+	</if>
+	<if test="cancelFlag != null">
+		CANCEL_FLAG=#{cancelFlag},
+	</if>
+	<if test="revFlag != null">
+		REV_FLAG=#{revFlag},
+	</if>
+	<if test="transStat != null">
+		TRANS_STAT=#{transStat},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO=#{chkBatchNo},
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE=#{chkDate},
+	</if>
+	<if test="merId != null">
+		MER_ID=#{merId},
+	</if>
+	<if test="isRegisterFeeamt != null">
+		IS_REGISTER_FEEAMT=#{isRegisterFeeamt},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.chnlDate != null">
+                    CHNL_DATE=#{s.chnlDate},
+			</if>
+			<if test="s.chnlTime != null">
+                    CHNL_TIME=#{s.chnlTime},
+			</if>
+			<if test="s.chnlSeq != null">
+                    CHNL_SEQ=#{s.chnlSeq},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.orgCode != null">
+                    ORG_CODE=#{s.orgCode},
+			</if>
+			<if test="s.payAcct != null">
+                    PAY_ACCT=#{s.payAcct},
+			</if>
+			<if test="s.payBankno != null">
+                    PAY_BANKNO=#{s.payBankno},
+			</if>
+			<if test="s.payeeAcct != null">
+                    PAYEE_ACCT=#{s.payeeAcct},
+			</if>
+			<if test="s.payeeBankno != null">
+                    PAYEE_BANKNO=#{s.payeeBankno},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.ccy != null">
+                    CCY=#{s.ccy},
+			</if>
+			<if test="s.thirdStat != null">
+                    THIRD_STAT=#{s.thirdStat},
+			</if>
+			<if test="s.thirdDate != null">
+                    THIRD_DATE=#{s.thirdDate},
+			</if>
+			<if test="s.thirdSeq != null">
+                    THIRD_SEQ=#{s.thirdSeq},
+			</if>
+			<if test="s.cancelFlag != null">
+                    CANCEL_FLAG=#{s.cancelFlag},
+			</if>
+			<if test="s.revFlag != null">
+                    REV_FLAG=#{s.revFlag},
+			</if>
+			<if test="s.transStat != null">
+                    TRANS_STAT=#{s.transStat},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.chkBatchNo != null">
+                    CHK_BATCH_NO=#{s.chkBatchNo},
+			</if>
+			<if test="s.chkDate != null">
+                    CHK_DATE=#{s.chkDate},
+			</if>
+			<if test="s.merId != null">
+                    MER_ID=#{s.merId},
+			</if>
+			<if test="s.isRegisterFeeamt != null">
+                    IS_REGISTER_FEEAMT=#{s.isRegisterFeeamt}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.chnlDate != null">
+                    CHNL_DATE=#{w.chnlDate}
+                   AND 
+ 			</if>
+			<if test="w.chnlTime != null">
+                    CHNL_TIME=#{w.chnlTime}
+                   AND 
+ 			</if>
+			<if test="w.chnlSeq != null">
+                    CHNL_SEQ=#{w.chnlSeq}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.orgCode != null">
+                    ORG_CODE=#{w.orgCode}
+                   AND 
+ 			</if>
+			<if test="w.payAcct != null">
+                    PAY_ACCT=#{w.payAcct}
+                   AND 
+ 			</if>
+			<if test="w.payBankno != null">
+                    PAY_BANKNO=#{w.payBankno}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcct != null">
+                    PAYEE_ACCT=#{w.payeeAcct}
+                   AND 
+ 			</if>
+			<if test="w.payeeBankno != null">
+                    PAYEE_BANKNO=#{w.payeeBankno}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.ccy != null">
+                    CCY=#{w.ccy}
+                   AND 
+ 			</if>
+			<if test="w.thirdStat != null">
+                    THIRD_STAT=#{w.thirdStat}
+                   AND 
+ 			</if>
+			<if test="w.thirdDate != null">
+                    THIRD_DATE=#{w.thirdDate}
+                   AND 
+ 			</if>
+			<if test="w.thirdSeq != null">
+                    THIRD_SEQ=#{w.thirdSeq}
+                   AND 
+ 			</if>
+			<if test="w.cancelFlag != null">
+                    CANCEL_FLAG=#{w.cancelFlag}
+                   AND 
+ 			</if>
+			<if test="w.revFlag != null">
+                    REV_FLAG=#{w.revFlag}
+                   AND 
+ 			</if>
+			<if test="w.transStat != null">
+                    TRANS_STAT=#{w.transStat}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.chkBatchNo != null">
+                    CHK_BATCH_NO=#{w.chkBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.chkDate != null">
+                    CHK_DATE=#{w.chkDate}
+                   AND 
+ 			</if>
+			<if test="w.merId != null">
+                    MER_ID=#{w.merId}
+                   AND 
+ 			</if>
+			<if test="w.isRegisterFeeamt != null">
+                    IS_REGISTER_FEEAMT=#{w.isRegisterFeeamt}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

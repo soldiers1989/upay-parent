@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示解析文件还是生成文件 
+split分隔符 "\|" , 读文件时竖线分隔需要带转换符，写文件时不需要
+headLength文件头的长度，带换行符的表示文件头占了多少行，不带换行符的应该是字节长度
+endingLength文件尾
+lineSeparator换行符，若无，则表示不换行，换行一般是\r\n 字节文件一般是固定长度不带分隔符不换行
+-->
+<data templateType="READ"
+	split="\," 
+	clazz="com.upay.batch.stepservice.chk.alipay.bean.ChkAlipayBean"
+	charSet="gbk"
+	headLength="5"
+	endingLength="4"
+	lineSeparator="\r\n"
+	>
+<!-- 
+regex正则表达式 
+dateFormat日期格式
+numMultiple数字类型需要转换到倍数
+tranSrc要转换到源值，逗号分隔
+tranDest要转换到目标值，逗号分隔
+-->	
+
+	<column name="tradeNo"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="支付宝交易号" tranSrc=""  tranDest=""/>
+	<column name="outTradeNo"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="商户订单号" tranSrc=""  tranDest=""/>
+	<column name="subType"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="业务类型" tranSrc=""  tranDest=""/>
+	<column name="goodsName"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="商品名称" tranSrc=""  tranDest=""/>
+	<column name="createTime"  length=""   regex=""    dateFormat="yyyy-MM-dd HH:mm:ss"   numMultiple=""  desc="创建时间" tranSrc=""  tranDest=""/>
+	<column name="endTime"  length=""   regex=""    dateFormat="yyyy-MM-dd HH:mm:ss"   numMultiple=""  desc="完成时间" tranSrc=""  tranDest=""/>
+	<column name="storeId"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="门店编号" tranSrc=""  tranDest=""/>
+	<column name="storeName"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="门店名称" tranSrc=""  tranDest=""/>
+	<column name="operatorId"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="操作员" tranSrc=""  tranDest=""/>
+	<column name="terminalId"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="终端号" tranSrc=""  tranDest=""/>
+	<column name="payErNo"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="对方账户" tranSrc=""  tranDest=""/>
+	<column name="orderAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="订单金额（元）" tranSrc=""  tranDest=""/>
+	<column name="txnAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="商家实收（元）" tranSrc=""  tranDest=""/>
+	<column name="redPgAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="支付宝红包（元）" tranSrc=""  tranDest=""/>
+	<column name="ctAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="集分宝（元）" tranSrc=""  tranDest=""/>
+	<column name="aliPreferAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="支付宝优惠（元）" tranSrc=""  tranDest=""/>
+	<column name="merPreferAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="商家优惠（元）" tranSrc=""  tranDest=""/>
+	<column name="ticketAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="券核销金额（元）" tranSrc=""  tranDest=""/>
+	<column name="ticketName"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="券名称" tranSrc=""  tranDest=""/>
+	<column name="merRedPgAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="商家红包消费金额（元）" tranSrc=""  tranDest=""/>
+	<column name="cardConsureAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="卡消费金额（元）" tranSrc=""  tranDest=""/>
+	<column name="refundNo"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="退款批次号/请求号" tranSrc=""  tranDest=""/>
+	<column name="serviceCharge"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="服务费（元）" tranSrc=""  tranDest=""/>
+	<column name="receiptAmt"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="实收净额（元）" tranSrc=""  tranDest=""/>
+	<column name="merchantId"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="商户识别号" tranSrc=""  tranDest=""/>
+	<column name="payType"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="交易方式" tranSrc=""  tranDest=""/>
+	<column name="remark"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="备注" tranSrc=""  tranDest=""/>
+
+</data>

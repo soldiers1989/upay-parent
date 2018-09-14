@@ -1,0 +1,14 @@
+<returnCode>${returnCode!""}</returnCode>
+<returnMsg>${returnMsg!""}</returnMsg>
+<outerOrderNo>${outerOrderNo!""}</outerOrderNo>
+<orderNo>${orderNo!""}</orderNo>
+<tradeState>${tradeState!""}</tradeState>
+<tradeStateDesc>${tradeStateDesc!""}</tradeStateDesc>
+<attach>${attach!""}</attach>
+<bankType>${bankType!""}</bankType>
+<transAmt>${transAmt!""}</transAmt>
+<subAppid>${subAppid!""}</subAppid>
+<subOpenid>${subOpenid!""}</subOpenid>
+<subIsSubscribe>${subIsSubscribe!""}</subIsSubscribe>
+<timeEnd>${timeEnd!""}</timeEnd>
+<merFeeAmt>${merFeeAmt!""}</merFeeAmt>

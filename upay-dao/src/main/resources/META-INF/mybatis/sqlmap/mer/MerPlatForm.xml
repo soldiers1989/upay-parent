@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerPlatFormPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerPlatFormPo">
+		<id column="ID" property="id" />
+		<result column="MER_PLAT_NO" property="merPlatNo" />
+		<result column="PLAT_STATUS" property="platStatus" />
+		<result column="MER_PLAT_DESC" property="merPlatDesc" />
+		<result column="LAST_UPDATE_DATE" property="lastUpdateDate" />
+		<result column="MER_CERT_TYPE" property="merCertType" />
+		<result column="MER_CERT" property="merCert" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_PLAT_FORM
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_PLAT_NO,
+		PLAT_STATUS,
+		MER_PLAT_DESC,
+		LAST_UPDATE_DATE,
+		MER_CERT_TYPE,
+		MER_CERT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merPlatNo != null">
+			MER_PLAT_NO= #{merPlatNo}
+	           AND 
+		</if>
+		<if test="platStatus != null">
+			PLAT_STATUS= #{platStatus}
+	           AND 
+		</if>
+		<if test="merPlatDesc != null">
+			MER_PLAT_DESC= #{merPlatDesc}
+	           AND 
+		</if>
+		<if test="lastUpdateDate != null">
+			LAST_UPDATE_DATE= #{lastUpdateDate}
+	           AND 
+		</if>
+		<if test="merCertType != null">
+			MER_CERT_TYPE= #{merCertType}
+	           AND 
+		</if>
+		<if test="merCert != null">
+			MER_CERT= #{merCert}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merPlatNo != null">
+		MER_PLAT_NO,
+	</if>
+	<if test="platStatus != null">
+		PLAT_STATUS,
+	</if>
+	<if test="merPlatDesc != null">
+		MER_PLAT_DESC,
+	</if>
+	<if test="lastUpdateDate != null">
+		LAST_UPDATE_DATE,
+	</if>
+	<if test="merCertType != null">
+		MER_CERT_TYPE,
+	</if>
+	<if test="merCert != null">
+		MER_CERT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merPlatNo != null">
+		#{merPlatNo},
+	</if>
+	<if test="platStatus != null">
+		#{platStatus},
+	</if>
+	<if test="merPlatDesc != null">
+		#{merPlatDesc},
+	</if>
+	<if test="lastUpdateDate != null">
+		#{lastUpdateDate},
+	</if>
+	<if test="merCertType != null">
+		#{merCertType},
+	</if>
+	<if test="merCert != null">
+		#{merCert},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merPlatNo != null">
+		MER_PLAT_NO=#{merPlatNo},
+	</if>
+	<if test="platStatus != null">
+		PLAT_STATUS=#{platStatus},
+	</if>
+	<if test="merPlatDesc != null">
+		MER_PLAT_DESC=#{merPlatDesc},
+	</if>
+	<if test="lastUpdateDate != null">
+		LAST_UPDATE_DATE=#{lastUpdateDate},
+	</if>
+	<if test="merCertType != null">
+		MER_CERT_TYPE=#{merCertType},
+	</if>
+	<if test="merCert != null">
+		MER_CERT=#{merCert},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merPlatNo != null">
+                    MER_PLAT_NO=#{s.merPlatNo},
+			</if>
+			<if test="s.platStatus != null">
+                    PLAT_STATUS=#{s.platStatus},
+			</if>
+			<if test="s.merPlatDesc != null">
+                    MER_PLAT_DESC=#{s.merPlatDesc},
+			</if>
+			<if test="s.lastUpdateDate != null">
+                    LAST_UPDATE_DATE=#{s.lastUpdateDate},
+			</if>
+			<if test="s.merCertType != null">
+                    MER_CERT_TYPE=#{s.merCertType},
+			</if>
+			<if test="s.merCert != null">
+                    MER_CERT=#{s.merCert}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merPlatNo != null">
+                    MER_PLAT_NO=#{w.merPlatNo}
+                   AND 
+ 			</if>
+			<if test="w.platStatus != null">
+                    PLAT_STATUS=#{w.platStatus}
+                   AND 
+ 			</if>
+			<if test="w.merPlatDesc != null">
+                    MER_PLAT_DESC=#{w.merPlatDesc}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateDate != null">
+                    LAST_UPDATE_DATE=#{w.lastUpdateDate}
+                   AND 
+ 			</if>
+			<if test="w.merCertType != null">
+                    MER_CERT_TYPE=#{w.merCertType}
+                   AND 
+ 			</if>
+			<if test="w.merCert != null">
+                    MER_CERT=#{w.merCert}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

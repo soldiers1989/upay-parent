@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrCcyPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrCcyPo">
+		<id column="ID" property="id" />
+		<result column="CCY" property="ccy" />
+		<result column="CCY_NAME" property="ccyName" />
+		<result column="CCY_UNIT" property="ccyUnit" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="LAST_OPER" property="lastOper" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_CCY
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CCY,
+		CCY_NAME,
+		CCY_UNIT,
+		LAST_UPDATE_TIME,
+		LAST_OPER,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="ccy != null">
+			CCY= #{ccy}
+	           AND 
+		</if>
+		<if test="ccyName != null">
+			CCY_NAME= #{ccyName}
+	           AND 
+		</if>
+		<if test="ccyUnit != null">
+			CCY_UNIT= #{ccyUnit}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="lastOper != null">
+			LAST_OPER= #{lastOper}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="ccy != null">
+		CCY,
+	</if>
+	<if test="ccyName != null">
+		CCY_NAME,
+	</if>
+	<if test="ccyUnit != null">
+		CCY_UNIT,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="ccy != null">
+		#{ccy},
+	</if>
+	<if test="ccyName != null">
+		#{ccyName},
+	</if>
+	<if test="ccyUnit != null">
+		#{ccyUnit},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		#{lastOper},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="ccy != null">
+		CCY=#{ccy},
+	</if>
+	<if test="ccyName != null">
+		CCY_NAME=#{ccyName},
+	</if>
+	<if test="ccyUnit != null">
+		CCY_UNIT=#{ccyUnit},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER=#{lastOper},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.ccy != null">
+                    CCY=#{s.ccy},
+			</if>
+			<if test="s.ccyName != null">
+                    CCY_NAME=#{s.ccyName},
+			</if>
+			<if test="s.ccyUnit != null">
+                    CCY_UNIT=#{s.ccyUnit},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.lastOper != null">
+                    LAST_OPER=#{s.lastOper},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.ccy != null">
+                    CCY=#{w.ccy}
+                   AND 
+ 			</if>
+			<if test="w.ccyName != null">
+                    CCY_NAME=#{w.ccyName}
+                   AND 
+ 			</if>
+			<if test="w.ccyUnit != null">
+                    CCY_UNIT=#{w.ccyUnit}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.lastOper != null">
+                    LAST_OPER=#{w.lastOper}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

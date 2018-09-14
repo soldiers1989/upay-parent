@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<!-- 开通支付宝支付 -->
+	<mappings>
+		<mapping xpath="merNo" field="merNo"/><!-- 商户号 -->
+		<mapping xpath="categoryId" field="categoryId"/><!-- 经营类目 -->
+		<mapping xpath="alipaySource" field="alipaySource" must="not"/><!-- 商户来源机构标识，填写机构在支付宝的PID 商户邀请人pid -->
+	</mappings>
+</config>

@@ -1,0 +1,70 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 用户手机号变更（原手机可以接收验证码） -->
+	<dipper:flow service-id="SI_USR0018">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易前检查 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<!-- 检查登录状态 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 验证手机验证码 -->
+					<dipper:service ref="SmsVerifyServiceImpl" beforeDictConv-ref="dataUsrNewMobileChgMobile" />
+				</dipper:invoke>
+				<!--<dipper:invoke>
+                    <dipper:service ref="RegistIdentityCheckService"  beforeDictConv-ref="dataUsrNewMobileChgMobile"/>&lt;!&ndash; 用户注册标识检查 &ndash;&gt;
+                </dipper:invoke>-->
+				<dipper:invoke>
+                    <dipper:service ref="UserRegQueryService" />
+                </dipper:invoke>
+                <dipper:invoke>
+                    <dipper:if expression="target.bodys.userCertLevel!='02'">
+                    	<dipper:service ref="CertCheckService" param-ref="initUsrCertFlagParam"/>
+                    </dipper:if>
+                </dipper:invoke>
+				<dipper:invoke>
+                    <dipper:service ref="UserPwdCheckServiceImpl" param-ref="initUsrTestLogin" />
+                </dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<!-- 用户变更手机申请登记-->
+                <dipper:invoke>
+                    <dipper:service ref="ResetMobileRegisterService"  beforeDictConv-ref="dataUsrMobileChgOldMobile" param-ref="initUsrApplyTypeParamOne"/>
+                </dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route>
+				 <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>
+           		<!-- 密码错误累计 -->
+				<dipper:invoke>
+					<dipper:if expression="fault.code=='BISUSR0015' || fault.code=='BISUSR0016' || fault.code=='BISUSR0021' ||fault.code=='BISUSR0023'">
+						<dipper:service ref="UserPwdCountDealService" param-ref="initUsrTestLogin" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+	
+</beans>

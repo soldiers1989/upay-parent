@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeStatisticsPo">
+    <select id="selectByTime" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column"/>
+        from
+        <include refid="Table_Name"/>
+        <where>
+            <trim suffixOverrides="AND">
+                <if test="statisticsTime != null">
+                    <![CDATA[to_char(STATISTICS_TIME,'yyyymmdd')=to_char(#{statisticsTime},'yyyymmdd')]]>
+                    AND
+                </if>
+                <if test="txnTime != null">
+                    <![CDATA[to_char(TXN_TIME,'yyyymmdd')=to_char(#{txnTime},'yyyymmdd')]]>
+                    AND
+                </if>
+                <if test="bizType != null">
+                    BIZ_TYPE= #{bizType}
+                    AND
+                </if>
+                <if test="routeCode != null">
+                    ROUTE_CODE= #{routeCode}
+                </if>
+            </trim>
+        </where>
+        order by TXN_TIME
+    </select>
+</mapper>

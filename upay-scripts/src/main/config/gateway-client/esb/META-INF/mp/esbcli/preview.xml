@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+    <previews>
+        <preview id="esbcli" xpath="" datalength="" trancodename="transCode"
+            charset="UTF-8" faultCodeName="retCd" sysName="UPAY" 
+            faultStringName="retMsg" errCodeName="retCd" errMsgName="retMsg"
+            errCodeSuc="000000" relationSysId="60" concreteSysId="64" requrl="true">
+        </preview>
+    </previews>
+
+</config>

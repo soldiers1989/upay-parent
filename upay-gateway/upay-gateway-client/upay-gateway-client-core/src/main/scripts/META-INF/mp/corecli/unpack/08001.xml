@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<!-- <mapping xpath="resp.bk_date" field="bkDate" /> -->
+		<mapping xpath="resp.hx_date" field="bkDate" />
+		<mapping xpath="resp.bk_serialno" field="bkSerseqno" />
+		<mapping xpath="resp.bk_serseqno" field="bkSerialNo" />
+	</mappings>
+</config>

@@ -1,0 +1,100 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+
+
+	<!-- *************************** 初始化参数 ****************************** -->
+	<bean id="initUsrLoginFail" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="loginMode" value="7"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 身份认证方式 -->
+	<bean id="certFlagOnlineParam" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="certFlag" value="3" /><!-- 身份认证方式：3 联机认证 -->
+			</map>
+		</constructor-arg>
+	</bean>
+    <bean id="initUsrCertFlagParam" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="certFlag" value="1" /><!-- 身份认证方式：1 实时认证 -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+	<!-- 弱实名认证方式 -->
+	<bean id="certWeakWayParam" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="certWeakWay" value="02" /><!-- 弱实名认证方式：02：核查身份证信息 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 联网核查身份信息 -->
+	<bean id="userCertRegChnl" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="certCheckChnl" value="01" /><!-- 核查渠道 01:帮付宝 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initUsrTestLogin" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="pwdFlag" value="1" /> <!-- 登录密码 --><!-- 调用原子前,传入静态参数 -->
+            </map>
+        </constructor-arg>
+    </bean>
+     <!-- 申请方式-->
+    <bean id="initUsrApplyTypeParamOne" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="applyType" value="1" /><!-- 申请方式：1：联机修改 -->
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 申请方式 -->
+    <bean id="initUsrApplyTypeParamTwo" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="applyType" value="2" /><!-- 申请方式：2：审核修改 -->
+            </map>
+        </constructor-arg>
+    </bean> 
+	
+	
+	<!-- *************************** 参数转换 ****************************** -->
+	<data:dicts id="TestCertFlagParm">
+        <data:mappings>
+            <data:mapping in="certFlag" out="certVerifyFlag" />
+        </data:mappings>
+    </data:dicts>
+    
+    <data:dicts id="dataUsrNewMobileChgMobile">
+		<data:mappings>
+			<data:mapping in="mobile" out="newMobile" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="dataUsrMobileChgOldMobile">
+		<data:mappings>
+			<data:mapping in="oldMobile" out="mobile" />
+		</data:mappings>
+	</data:dicts>
+</beans>

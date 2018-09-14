@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrCurviewpicInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrCurviewpicInfoPo">
+		<id column="ID" property="id" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="DEV_TYPE" property="devType" />
+		<result column="PIC_LINK" property="picLink" />
+		<result column="EVENT_ID" property="eventId" />
+		<result column="REL_TIME" property="relTime" />
+		<result column="PRIORITY" property="priority" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_CURVIEWPIC_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CHNL_ID,
+		DEV_TYPE,
+		PIC_LINK,
+		EVENT_ID,
+		REL_TIME,
+		PRIORITY,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="devType != null">
+			DEV_TYPE= #{devType}
+	           AND 
+		</if>
+		<if test="picLink != null">
+			PIC_LINK= #{picLink}
+	           AND 
+		</if>
+		<if test="eventId != null">
+			EVENT_ID= #{eventId}
+	           AND 
+		</if>
+		<if test="relTime != null">
+			REL_TIME= #{relTime}
+	           AND 
+		</if>
+		<if test="priority != null">
+			PRIORITY= #{priority}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="devType != null">
+		DEV_TYPE,
+	</if>
+	<if test="picLink != null">
+		PIC_LINK,
+	</if>
+	<if test="eventId != null">
+		EVENT_ID,
+	</if>
+	<if test="relTime != null">
+		REL_TIME,
+	</if>
+	<if test="priority != null">
+		PRIORITY,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="devType != null">
+		#{devType},
+	</if>
+	<if test="picLink != null">
+		#{picLink},
+	</if>
+	<if test="eventId != null">
+		#{eventId},
+	</if>
+	<if test="relTime != null">
+		#{relTime},
+	</if>
+	<if test="priority != null">
+		#{priority},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="devType != null">
+		DEV_TYPE=#{devType},
+	</if>
+	<if test="picLink != null">
+		PIC_LINK=#{picLink},
+	</if>
+	<if test="eventId != null">
+		EVENT_ID=#{eventId},
+	</if>
+	<if test="relTime != null">
+		REL_TIME=#{relTime},
+	</if>
+	<if test="priority != null">
+		PRIORITY=#{priority},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.devType != null">
+                    DEV_TYPE=#{s.devType},
+			</if>
+			<if test="s.picLink != null">
+                    PIC_LINK=#{s.picLink},
+			</if>
+			<if test="s.eventId != null">
+                    EVENT_ID=#{s.eventId},
+			</if>
+			<if test="s.relTime != null">
+                    REL_TIME=#{s.relTime},
+			</if>
+			<if test="s.priority != null">
+                    PRIORITY=#{s.priority},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.devType != null">
+                    DEV_TYPE=#{w.devType}
+                   AND 
+ 			</if>
+			<if test="w.picLink != null">
+                    PIC_LINK=#{w.picLink}
+                   AND 
+ 			</if>
+			<if test="w.eventId != null">
+                    EVENT_ID=#{w.eventId}
+                   AND 
+ 			</if>
+			<if test="w.relTime != null">
+                    REL_TIME=#{w.relTime}
+                   AND 
+ 			</if>
+			<if test="w.priority != null">
+                    PRIORITY=#{w.priority}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

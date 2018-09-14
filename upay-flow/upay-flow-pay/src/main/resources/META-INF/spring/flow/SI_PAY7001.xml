@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+  <!-- 批量转账文件通知-->
+  <dipper:flow service-id="SI_PAY7001">
+	<dipper:try>
+		<dipper:route>
+			<!-- 批量转账文件通知  登记文件名 -->
+			<dipper:invoke>
+				<dipper:service ref="RegTransferFileService" />
+			</dipper:invoke>
+		</dipper:route>
+	</dipper:try>
+	<dipper:catchException/>
+	<dipper:finally>
+			<dipper:route>
+				<dipper:invoke><!-- esb参数 -->
+					<dipper:service ref="EsbPublicParmService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+  </dipper:flow>
+</beans>

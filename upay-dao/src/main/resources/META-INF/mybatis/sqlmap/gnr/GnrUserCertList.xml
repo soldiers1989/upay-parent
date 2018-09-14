@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrUserCertListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrUserCertListPo">
+		<id column="ID" property="id" />
+		<result column="CERT_CHECK_CHNL" property="certCheckChnl" />
+		<result column="CERT_TYPE" property="certType" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="CERT_CHECK_RESULT" property="certCheckResult" />
+		<result column="CERT_CHECK_FAIL_MSG" property="certCheckFailMsg" />
+		<result column="CERT_CHECK_TIME" property="certCheckTime" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_USER_CERT_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CERT_CHECK_CHNL,
+		CERT_TYPE,
+		CERT_NO,
+		CERT_CHECK_RESULT,
+		CERT_CHECK_FAIL_MSG,
+		CERT_CHECK_TIME
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="certCheckChnl != null">
+			CERT_CHECK_CHNL= #{certCheckChnl}
+	           AND 
+		</if>
+		<if test="certType != null">
+			CERT_TYPE= #{certType}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="certCheckResult != null">
+			CERT_CHECK_RESULT= #{certCheckResult}
+	           AND 
+		</if>
+		<if test="certCheckFailMsg != null">
+			CERT_CHECK_FAIL_MSG= #{certCheckFailMsg}
+	           AND 
+		</if>
+		<if test="certCheckTime != null">
+			CERT_CHECK_TIME= #{certCheckTime}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="certCheckChnl != null">
+		CERT_CHECK_CHNL,
+	</if>
+	<if test="certType != null">
+		CERT_TYPE,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="certCheckResult != null">
+		CERT_CHECK_RESULT,
+	</if>
+	<if test="certCheckFailMsg != null">
+		CERT_CHECK_FAIL_MSG,
+	</if>
+	<if test="certCheckTime != null">
+		CERT_CHECK_TIME,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="certCheckChnl != null">
+		#{certCheckChnl},
+	</if>
+	<if test="certType != null">
+		#{certType},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="certCheckResult != null">
+		#{certCheckResult},
+	</if>
+	<if test="certCheckFailMsg != null">
+		#{certCheckFailMsg},
+	</if>
+	<if test="certCheckTime != null">
+		#{certCheckTime},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="certCheckChnl != null">
+		CERT_CHECK_CHNL=#{certCheckChnl},
+	</if>
+	<if test="certType != null">
+		CERT_TYPE=#{certType},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="certCheckResult != null">
+		CERT_CHECK_RESULT=#{certCheckResult},
+	</if>
+	<if test="certCheckFailMsg != null">
+		CERT_CHECK_FAIL_MSG=#{certCheckFailMsg},
+	</if>
+	<if test="certCheckTime != null">
+		CERT_CHECK_TIME=#{certCheckTime},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.certCheckChnl != null">
+                    CERT_CHECK_CHNL=#{s.certCheckChnl},
+			</if>
+			<if test="s.certType != null">
+                    CERT_TYPE=#{s.certType},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.certCheckResult != null">
+                    CERT_CHECK_RESULT=#{s.certCheckResult},
+			</if>
+			<if test="s.certCheckFailMsg != null">
+                    CERT_CHECK_FAIL_MSG=#{s.certCheckFailMsg},
+			</if>
+			<if test="s.certCheckTime != null">
+                    CERT_CHECK_TIME=#{s.certCheckTime}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.certCheckChnl != null">
+                    CERT_CHECK_CHNL=#{w.certCheckChnl}
+                   AND 
+ 			</if>
+			<if test="w.certType != null">
+                    CERT_TYPE=#{w.certType}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.certCheckResult != null">
+                    CERT_CHECK_RESULT=#{w.certCheckResult}
+                   AND 
+ 			</if>
+			<if test="w.certCheckFailMsg != null">
+                    CERT_CHECK_FAIL_MSG=#{w.certCheckFailMsg}
+                   AND 
+ 			</if>
+			<if test="w.certCheckTime != null">
+                    CERT_CHECK_TIME=#{w.certCheckTime}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

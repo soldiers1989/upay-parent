@@ -1,0 +1,81 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+    
+    
+	<!-- *************************** 初始化参数 ****************************** -->
+	<bean id="initGnrSmsGetService" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+<!-- 				<entry key="smsNo" value="GSN20160903000009999"></entry> -->
+			</map>
+		</constructor-arg>
+	</bean>
+    
+    <bean id="initGnrSendMessage" class="java.util.HashMap" >
+    	<constructor-arg>
+    		<map>
+    			<entry key="tranCode" value="610006"></entry>
+    			<entry key="branchNo" value="1010"></entry>
+    		</map>
+    	</constructor-arg>
+    </bean>
+    
+    <bean id="initEsbSms" class="java.util.HashMap" >
+    	<constructor-arg>
+    		<map>
+    			<entry key="isEsbSms" value="610006"></entry>
+    		</map>
+    	</constructor-arg>
+    </bean>
+    
+    <bean id="init_gnr_sendSms" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!--发送短信  -->
+				<entry key="smsEventParams" value="vAcctNo|sysTime|transAmt|useBal" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- *************************** 参数转换 ****************************** -->
+	<data:dicts id="dataGnrBeforeGnrMsg01">
+      <data:mappings>
+	      <data:mapping in="phoneNo" out="mobile"/> 
+	      <data:mapping in="sendMsg" out="sendMessage"/>
+      </data:mappings>
+     </data:dicts>
+	
+	
+	
+		   
+    <bean id="initUseEsbCoreMethod" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payRouteMethod" value="USR_ESB_CORE"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+	
+	
+	
+	
+	
+	
+</beans>
+	
+

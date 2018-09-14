@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联交易状态查询
+ -->
+<data templateType="OUT"
+	transCode="00"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+
+	<column oldName="txnType" newName="txnType" type="" must="false" dateFormat="" />
+	<column oldName="txnSubType" newName="txnSubType" type="" must="false" dateFormat="" />
+	<column oldName="accessType" newName="accessType" type="" must="false" dateFormat="" />
+	<column oldName="txnTime" newName="txnTime" type="" must="false" dateFormat="" />
+	<column oldName="orderId" newName="orderId" type="" must="false" dateFormat="" />
+	<column oldName="reqReserved" newName="reqReserved" type="" must="false" dateFormat="" />
+	<column oldName="reserved" newName="reserved" type="" must="false" dateFormat="" />
+	<column oldName="queryId" newName="queryId" type="" must="false" dateFormat="" />
+	<column oldName="traceNo" newName="traceNo" type="" must="false" dateFormat="" />
+	<column oldName="traceTime" newName="traceTime" type="" must="false" dateFormat="" />
+	<column oldName="settleDate" newName="settleDate" type="" must="false" dateFormat="" />
+	<column oldName="settleCurrencyCode" newName="settleCurrencyCode" type="" must="false" dateFormat="" />
+	<column oldName="settleAmt" newName="settleAmt" type="java.math.BigDecimal" must="false" dateFormat="" numMultiple="0.01" />
+	<column oldName="exchangeRate" newName="exchangeRate" type="" must="false" dateFormat="" />
+	<column oldName="exchangeDate" newName="exchangeDate" type="" must="false" dateFormat="" />
+	<column oldName="currencyCode" newName="currencyCode" type="" must="false" dateFormat="" />
+	<column oldName="txnAmt" newName="txnAmt" type="java.math.BigDecimal" must="false" dateFormat=""  numMultiple="0.01" />
+	<column oldName="origRespCode" newName="origRespCode" type="" must="false" dateFormat="" />
+	<column oldName="origRespMsg" newName="origRespMsg" type="" must="false" dateFormat="" />
+	<column oldName="respCode" newName="respCode" type="" must="true" dateFormat="" />
+	<column oldName="respMsg" newName="respMsg" type="" must="true" dateFormat="" />
+	<column oldName="accNo" newName="accNo" type="" must="false" dateFormat="" />
+	<column oldName="payCardType" newName="payCardType" type="" must="false" dateFormat="" />
+	<column oldName="payType" newName="payType" type="" must="false" dateFormat="" />
+	<column oldName="payCardNo" newName="payCardNo" type="" must="false" dateFormat="" />
+	<column oldName="payCardIssueName" newName="payCardIssueName" type="" must="false" dateFormat="" />
+	<column oldName="vpcTransData" newName="vpcTransData" type="" must="false" dateFormat="" />
+	<column oldName="cardTransData" newName="cardTransData" type="" must="false" dateFormat="" />
+	<column oldName="preAuthId" newName="preAuthId" type="" must="false" dateFormat="" />
+	<column oldName="issuerIdentifyMode" newName="issuerIdentifyMode" type="" must="false" dateFormat="" />
+	<column oldName="bindId" newName="bindId" type="" must="false" dateFormat="" />
+	<column oldName="balance" newName="balance" type="" must="false" dateFormat="" />
+	<column oldName="merId"	must="false" newName="merId" type="" dateFormat="" />
+</data>

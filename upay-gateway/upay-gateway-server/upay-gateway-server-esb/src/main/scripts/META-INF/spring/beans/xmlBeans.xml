@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+	<bean class="com.pactera.dipper.presys.mp.agilexml.Initial" init-method="init">
+	   <property name="channels">
+	       <list>
+                <value>esbsvr</value>
+            </list>
+	   </property>
+	</bean>
+	
+	
+</beans>	

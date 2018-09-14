@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+	<previews>
+		<preview id="paysvr" xpath="transCode"
+			trancodename="transCode" charset="UTF-8" dataSign="true" dataSignName="key" errCodeName="errCode" errMsgName="errMsg"
+			errCodeSuc="0000000000" sysName="UPAY" concreteSysId="81" svrflag="true">
+		</preview>
+	</previews>
+
+</config>

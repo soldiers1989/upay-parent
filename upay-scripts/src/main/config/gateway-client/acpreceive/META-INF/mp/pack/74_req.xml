@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联代收授权删除
+ -->
+<data templateType="IN"
+    transCode="74"
+    >
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<column oldName="tranCode" newName="txnType" type="" must="true" dateFormat="" />
+	<column oldName="txnSubType" newName="txnSubType" type="" must="false" dateFormat="" />
+	<column oldName="bizType" newName="bizType" type="" must="false" dateFormat="" />
+    <column oldName="encryptCertId" newName="encryptCertId" type="" must="false" dateFormat="" />
+	<column oldName="accessType" newName="accessType" type="" must="false" dateFormat="" />
+	<column oldName="txnTime" newName="txnTime" type="" must="false" dateFormat="" />
+	<column oldName="orderId" newName="orderId" type="" must="false" dateFormat="" />
+	<column oldName="accType" newName="accType" type="" must="false" dateFormat="" />
+	<column oldName="merId" newName="merId" type="" must="false" dateFormat="" />
+    <column oldName="tokenPayData" newName="tokenPayData" type="" must="false" dateFormat="" />
+    <column oldName="accNo" newName="accNo" type="" must="true" dateFormat="" />
+	<column oldName="acqInsCode" newName="acqInsCode" type="" must="false" dateFormat="" />
+	<column oldName="merCatCode" newName="merCatCode" type="" must="false" dateFormat="" />
+	<column oldName="merName" newName="merName" type="" must="false" dateFormat="" />
+	<column oldName="merAbbr" newName="merAbbr" type="" must="false" dateFormat="" />
+</data>

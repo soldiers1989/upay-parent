@@ -1,0 +1,12 @@
+    <BnkAcctNo>${bankCardNo}</BnkAcctNo>
+    <Ccy>${currency}</Ccy>
+    <TxnTp>${trantype}</TxnTp>
+    <TxnAmt>${amount}</TxnAmt>
+    <PcdFee>${charge!""}</PcdFee>
+    <InnrAcctNo>${setAccount!""}</InnrAcctNo>
+    <CVV2>${cvv2!""}</CVV2>
+    <CrCardVldDt>${validdate!""}</CrCardVldDt>
+    <OrigTrnsctnSeqNo>${orgBizSerialNo!""}</OrigTrnsctnSeqNo>
+    <OrigTxnDt>${orgBizDate!""}</OrigTxnDt>
+    <BsnSeqNo>${bizSerialNo}</BsnSeqNo>
+    <BsnDt>${machineDate}</BsnDt>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.trans.TransTemplateCtrlPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.trans.TransTemplateCtrlPo">
+		<id column="ID" property="id" />
+		<result column="TEMPLATE_ID" property="templateId" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="PAY_TYPE" property="payType" />
+		<result column="PAY_CARD_TYPE" property="payCardType" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="PAY_SERVIC" property="payServic" />
+		<result column="STATUS" property="status" />
+		<result column="DATE_LAST_MAINT" property="dateLastMaint" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_TRANS_TEMPLATE_CTRL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TEMPLATE_ID,
+		TRANS_CODE,
+		PAY_TYPE,
+		PAY_CARD_TYPE,
+		CHNL_ID,
+		PAY_SERVIC,
+		STATUS,
+		DATE_LAST_MAINT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="templateId != null">
+			TEMPLATE_ID= #{templateId}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="payType != null">
+			PAY_TYPE= #{payType}
+	           AND 
+		</if>
+		<if test="payCardType != null">
+			PAY_CARD_TYPE= #{payCardType}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="payServic != null">
+			PAY_SERVIC= #{payServic}
+	           AND 
+		</if>
+		<if test="status != null">
+			STATUS= #{status}
+	           AND 
+		</if>
+		<if test="dateLastMaint != null">
+			DATE_LAST_MAINT= #{dateLastMaint}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="templateId != null">
+		TEMPLATE_ID,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="payType != null">
+		PAY_TYPE,
+	</if>
+	<if test="payCardType != null">
+		PAY_CARD_TYPE,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="payServic != null">
+		PAY_SERVIC,
+	</if>
+	<if test="status != null">
+		STATUS,
+	</if>
+	<if test="dateLastMaint != null">
+		DATE_LAST_MAINT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="templateId != null">
+		#{templateId},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="payType != null">
+		#{payType},
+	</if>
+	<if test="payCardType != null">
+		#{payCardType},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="payServic != null">
+		#{payServic},
+	</if>
+	<if test="status != null">
+		#{status},
+	</if>
+	<if test="dateLastMaint != null">
+		#{dateLastMaint},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="templateId != null">
+		TEMPLATE_ID=#{templateId},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="payType != null">
+		PAY_TYPE=#{payType},
+	</if>
+	<if test="payCardType != null">
+		PAY_CARD_TYPE=#{payCardType},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="payServic != null">
+		PAY_SERVIC=#{payServic},
+	</if>
+	<if test="status != null">
+		STATUS=#{status},
+	</if>
+	<if test="dateLastMaint != null">
+		DATE_LAST_MAINT=#{dateLastMaint},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.templateId != null">
+                    TEMPLATE_ID=#{s.templateId},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.payType != null">
+                    PAY_TYPE=#{s.payType},
+			</if>
+			<if test="s.payCardType != null">
+                    PAY_CARD_TYPE=#{s.payCardType},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.payServic != null">
+                    PAY_SERVIC=#{s.payServic},
+			</if>
+			<if test="s.status != null">
+                    STATUS=#{s.status},
+			</if>
+			<if test="s.dateLastMaint != null">
+                    DATE_LAST_MAINT=#{s.dateLastMaint}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.templateId != null">
+                    TEMPLATE_ID=#{w.templateId}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.payType != null">
+                    PAY_TYPE=#{w.payType}
+                   AND 
+ 			</if>
+			<if test="w.payCardType != null">
+                    PAY_CARD_TYPE=#{w.payCardType}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.payServic != null">
+                    PAY_SERVIC=#{w.payServic}
+                   AND 
+ 			</if>
+			<if test="w.status != null">
+                    STATUS=#{w.status}
+                   AND 
+ 			</if>
+			<if test="w.dateLastMaint != null">
+                    DATE_LAST_MAINT=#{w.dateLastMaint}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

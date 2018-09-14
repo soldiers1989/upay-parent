@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeGetPo">
+<resultMap id="BaseResultMap2" type="java.util.HashMap">
+		<id column="ID" property="id" />
+		<result column="FEE_NAME" property="feeName" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="MER_NO" property="merNo" />
+		<result column="SEC_MER_NO" property="secMerNo" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="FEE_CODE" property="feeCode" />
+		<result column="ASS_CODE" property="assCode" />
+		<result column="START_DATE" property="startDate" javaType="java.util.Date"/>
+		<result column="END_DATE" property="endDate"  javaType="java.util.Date"/>
+		<result column="FREE_CYCLE" property="freeCycle" />
+		<result column="FREE_COUNT" property="freeCount" />
+		<result column="PER_FEE" property="perFee" />
+		<result column="GET_TYPE" property="getType" />
+		<result column="LAST_UPD_USER_ID" property="lastUpdUserId" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime"  javaType="java.util.Date"/>
+		<result column="MEMO" property="memo" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="FEE_ID" property="feeId" />
+	</resultMap>
+	<select id="getOneActive" parameterType="java.util.HashMap" resultMap="BaseResultMap2">
+		select 
+		<include refid="Base_Column"/>
+		 from 
+		 <include refid="Table_Name"/>
+		 <where>
+		 	<if test="merNo != null">
+		 		AND MER_NO=#{merNo}
+		 	</if>
+		 	<if test="merNo == null">
+		 		AND MER_NO IS NULL
+		 	</if>
+		 	<if test="secMerNo != null">
+		 		AND SEC_MER_NO=#{secMerNo}
+		 	</if>
+		 	<if test="secMerNo == null">
+		 		AND SEC_MER_NO IS NULL
+		 	</if>
+		 	<if test="transCode">
+		 		AND TRANS_CODE=#{transCode}
+		 	</if>
+		 	<if test="accType != null">
+		 		AND ACCT_TYPE=#{accType}
+		 	</if>
+		 	<if test="chnlId != null">
+		 		AND CHNL_ID=#{chnlId}
+		 	</if>
+		 	<if test="routeCode != null">
+		 		AND ROUTE_CODE=#{routeCode}
+		 	</if>
+		 	<if test="userType != null and userTypeAll != null">
+		 		AND (USER_TYPE=#{userType} OR USER_TYPE=#{userTypeAll}) 
+		 	</if>
+		 	<if test="userType == null">
+		 		AND USER_TYPE IS NULL
+		 	</if>
+		 	<if test="now != null">
+			 	AND START_DATE<![CDATA[<=]]> to_date(#{now},'yyyy-MM-dd') 
+			 	AND END_DATE <![CDATA[>=]]>  to_date(#{now},'yyyy-MM-dd') 
+		 	</if>
+		 </where>
+	</select>
+	
+	<select id="selectOneExtra" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Extra_Where" />
+		</where>
+	</select>
+	
+	<sql id="Extra_Where">
+		<trim suffixOverrides="AND">
+			<if test="id != null">
+				ID= #{id}
+				AND
+			</if>
+			<if test="feeName != null">
+				FEE_NAME= #{feeName}
+				AND
+			</if>
+			<if test="acctType != null">
+				ACCT_TYPE= #{acctType}
+				AND
+			</if>
+			<if test="chnlId != null">
+				CHNL_ID= #{chnlId}
+				AND
+			</if>
+			<if test="merNo != null">
+				MER_NO= #{merNo}
+				AND
+			</if>
+			<if test="secMerNo != null">
+				SEC_MER_NO= #{secMerNo}
+				AND
+			</if>
+			<if test="transCode != null">
+				TRANS_CODE= #{transCode}
+				AND
+			</if>
+			<if test="feeCode != null">
+				FEE_CODE= #{feeCode}
+				AND
+			</if>
+			<if test="assCode != null">
+				ASS_CODE= #{assCode}
+				AND
+			</if>
+			<if test="startDate != null">
+				START_DATE= #{startDate}
+				AND
+			</if>
+			<if test="endDate != null">
+				END_DATE= #{endDate}
+				AND
+			</if>
+			<if test="feeCollectDate != null">
+				START_DATE &lt;= #{feeCollectDate}
+				AND END_DATE &gt;= #{feeCollectDate}
+				AND
+			</if>
+			<if test="freeCycle != null">
+				FREE_CYCLE= #{freeCycle}
+				AND
+			</if>
+			<if test="freeCount != null">
+				FREE_COUNT= #{freeCount}
+				AND
+			</if>
+			<if test="perFee != null">
+				PER_FEE= #{perFee}
+				AND
+			</if>
+			<if test="getType != null">
+				GET_TYPE= #{getType}
+				AND
+			</if>
+			<if test="lastUpdUserId != null">
+				LAST_UPD_USER_ID= #{lastUpdUserId}
+				AND
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME= #{lastUpdateTime}
+				AND
+			</if>
+			<if test="memo != null">
+				MEMO= #{memo}
+				AND
+			</if>
+			<if test="routeCode != null">
+				ROUTE_CODE= #{routeCode}
+				AND
+			</if>
+			<if test="feeId != null">
+				FEE_ID= #{feeId}
+			</if>
+		</trim>
+	</sql>
+</mapper>

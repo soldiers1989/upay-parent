@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    
+    <!--    银联交易状态查询 -->
+    <dubbo:service ref="SA_PMT_UnionPayTranStatQuery" group="SA_PMT_UnionPayTranStatQuery" interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 银联二维码被扫 -->
+	<dubbo:service ref="SA_CODE_UnionPayCodeSwept" group="SA_CODE_UnionPayCodeSwept" interface="com.pactera.dipper.core.IDipperHandler" />
+    <!--银联之二维码主扫模式-->
+    <dubbo:service ref="UnionPayApplyQrCodeDipperHandler" group="UnionPayApplyQrCodeDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" />
+    <!--银联之消费撤销类-->
+    <dubbo:service ref="UnionPayConsumeUndoDipperHandler" group="UnionPayConsumeUndoDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" />
+    <!--银联之冲正-->
+    <dubbo:service ref="UnionPayWashedDipperHandler" group="UnionPayWashedDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" />
+    <!--银联之营销活动余额查询-->
+    <dubbo:service ref="UnionPayMarketingActivityBalanceInquiryDipperHandler" group="UnionPayMarketingActivityBalanceInquiryDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" />
+    <!--银联之退货-->
+    <dubbo:service ref="UnionReFoundDipperHandler" group="UnionReFoundDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" />
+
+
+</beans>

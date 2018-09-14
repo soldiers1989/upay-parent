@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	   <mapping xpath="BODY.IdentNo" field="identNo" must="not"/>
+	   <mapping xpath="BODY.IdentTp" field="identTp" must="not"/>
+	   <mapping xpath="BODY.CstNm" field="cstNm" must="not"/>
+	   <mapping xpath="BODY.CstTp" field="cstTp" must="not"/>
+	   <mapping xpath="BODY.MblNo" field="mblNo" must="not"/>
+	</mappings>
+</config>

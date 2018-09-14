@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联二维码被扫
+ -->
+<data templateType="IN"
+    transCode="02"
+    >
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<column oldName="areaInfo"	must="true" newName="areaInfo" type="" dateFormat="" />
+    <column oldName="backUrl" newName="backUrl" type="" must="true" dateFormat="" />
+    <column oldName="orderNo" newName="orderNo" type="" must="true" dateFormat="" />
+    <column oldName="orderTime" newName="orderTime" type="" must="true" dateFormat="" />
+    <column oldName="currencyCode" newName="currencyCode" type="" must="true" dateFormat="" />
+    <column oldName="reqType" newName="reqType" type="" must="true" dateFormat="" />   
+    <column oldName="termId" newName="termId" type="" must="true" dateFormat="" />  
+    <column oldName="merId" newName="merId" type="" must="true" dateFormat="" /> 
+    <column oldName="merName" newName="merName" type="" must="true" dateFormat="" />
+    <column oldName="merCatCode" newName="merCatCode" type="" must="true" dateFormat="" />
+    <column oldName="txnAmt" newName="txnAmt" type="" must="true" dateFormat="" />
+    <column oldName="currencyCode" newName="currencyCode" type="" must="true" dateFormat="" /> 
+    <column oldName="qrNo" newName="qrNo" type="" must="true" dateFormat="" /> 
+    <column oldName="invoiceSt" newName="invoiceSt" type="" must="true" dateFormat="" /> 
+</data>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         version="2.5"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>upay-portal</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+        </auth-constraint>
+    </security-constraint>
+    <distributable/>
+    <display-name>upay-portal</display-name>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+     <error-page>
+        <error-code>403</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <!-- 缺省首页 -->
+    <welcome-file-list>
+        <welcome-file>app/login/login.html</welcome-file>
+    </welcome-file-list>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:META-INF/spring/**/*.xml
+        </param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>Set Character Encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ForceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>PressureFilter</filter-name>
+        <filter-class>com.dubhe.common.servlet.filter.PressureFilter</filter-class>
+        <init-param>
+        	<!-- 抢购,单个portal应用,最大并发处理数 -->
+        	<param-name>maxAcitiveRequest</param-name>
+        	<param-value>3000</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>PressureFilter</filter-name>
+        <url-pattern>/JSONServer/panicBuy.do</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    
+    <!-- 验证码的servlet -->
+    <servlet>
+        <servlet-name>SecurityCodeServlet</servlet-name>
+        <servlet-class>com.dubhe.common.util.SecurityCodeUtil</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SecurityCodeServlet</servlet-name>
+        <url-pattern>/securityCode.do</url-pattern>
+    </servlet-mapping>
+    
+     <!-- 获取token 的servlet -->
+    <servlet>
+        <servlet-name>GetTokenCodeServlet</servlet-name>
+        <servlet-class>com.dubhe.common.util.GetTokenCodeUtil</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetTokenCodeServlet</servlet-name>
+        <url-pattern>/getTokenCode.do</url-pattern>
+    </servlet-mapping>
+  <!-- <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping> -->
+    
+    <!-- <filter>
+        <filter-name>XssSqlFilter</filter-name>
+        <filter-class>com.dubhe.common.servlet.filter.XssFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>XssSqlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>-->
+
+<!--      <filter>
+        <filter-name>CacheSessionFilter</filter-name>
+        <filter-class>com.dubhe.common.servlet.filter.session.CacheSessionFilter</filter-class>
+        <init-param>
+            <description>sessionId在Cookie中的名称</description>
+            <param-name>sessionCookieName</param-name>
+            <param-value>dubheSessionId</param-value>
+        </init-param>
+        <init-param>
+            <description>Session的最大不活动时间(秒)</description>
+            <param-name>maxInactiveInterval</param-name>
+            <param-value>1800</param-value>
+        </init-param>
+        <init-param>
+            <description>session监听器</description>
+            <param-name>sessionListeners</param-name>
+            <param-value>com.dubhe.common.servlet.listener.SessionListener</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CacheSessionFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>  -->
+
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 系统服务初始化 -->
+    <listener>
+        <listener-class>com.dubhe.common.servlet.listener.SystemInitListener</listener-class>
+    </listener>
+    <!-- csrf安全控制 -->
+   <!-- <listener>
+		<listener-class>org.owasp.csrfguard.CsrfGuardServletContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.owasp.csrfguard.CsrfGuardHttpSessionListener</listener-class>
+	</listener>
+	
+	<filter>
+		<filter-name>CSRFGuard</filter-name>
+		<filter-class>org.owasp.csrfguard.CsrfGuardFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>CSRFGuard</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>JavaScriptServlet</servlet-name>
+		<servlet-class>org.owasp.csrfguard.servlet.JavaScriptServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JavaScriptServlet</servlet-name>
+		<url-pattern>/JavaScriptServlet.do</url-pattern>
+	</servlet-mapping>
+	-->
+    <!--&lt;!&ndash; session会话监听 &ndash;&gt;-->
+    <!--<listener>-->
+        <!--<listener-class>com.dubhe.common.context.SessionListener</listener-class>-->
+    <!--</listener>-->
+    <servlet>
+        <servlet-name>spring-mvc</servlet-name>
+        <servlet-class>com.dubhe.common.servlet.listener.DispatcherServletImpl</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:META-INF/spring/controller/spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring-mvc</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/dict-tags</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/dict.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/gmms-tags</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/gmms-tags.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/elf-tags</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/elfuns-tags.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/international-span</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/international-span.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+</web-app>

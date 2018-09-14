@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联代付
+ -->
+<data templateType="OUT"
+	transCode="12"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+
+	<column oldName="respCode" newName="respCode" type="" must="false" dateFormat="" />
+	<column oldName="respMsg" newName="respMsg" type="" must="false" dateFormat="" />
+	<column oldName="accNo" newName="accNo" type="" must="false" dateFormat="" />
+    <column oldName="txnAmt" newName="txnAmt" type="" must="false" dateFormat="" />
+	<column oldName="orderId" newName="orderId" type="" must="false" dateFormat="" />
+    <column oldName="txnTime" newName="txnTime" type="" must="false" dateFormat="" />
+    <column oldName="queryId" newName="queryId" type="" must="false" dateFormat="" />
+</data>

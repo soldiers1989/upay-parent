@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-batch-dispatch" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-batch-stepservice" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi/upay-busi-acc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi/upay-busi-fee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi/upay-busi-gnr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi/upay-busi-mer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi/upay-busi-pay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-busi/upay-busi-usr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-commons" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-dao-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-flow" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-flow/upay-flow-acc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-flow/upay-flow-gnr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-flow/upay-flow-mer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-flow/upay-flow-pay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-flow/upay-flow-usr" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acpmer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acppay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-acpreceive" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-alipay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-atalipay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-atweixin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-esb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-mail" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-notify" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-nuccalipay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-sms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-weixin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-weixinopenid" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-client/upay-gateway-client-zjpay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acpmer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acppay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-acpreceive" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-alipay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-atalipay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-atweixin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-esb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-weixin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-gateway/upay-gateway-server/upay-gateway-server-zjpay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-portal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/upay-scripts" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrCancelBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.usr.UsrCancelBookPo">
+		<id column="ID" property="id" />
+		<result column="USER_ID" property="userId" />
+		<result column="CANCEL_TIME" property="cancelTime" />
+		<result column="CANCEL_CHNL_ID" property="cancelChnlId" />
+		<result column="CANCEL_MODE" property="cancelMode" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USR_CANCEL_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		USER_ID,
+		CANCEL_TIME,
+		CANCEL_CHNL_ID,
+		CANCEL_MODE,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="cancelTime != null">
+			CANCEL_TIME= #{cancelTime}
+	           AND 
+		</if>
+		<if test="cancelChnlId != null">
+			CANCEL_CHNL_ID= #{cancelChnlId}
+	           AND 
+		</if>
+		<if test="cancelMode != null">
+			CANCEL_MODE= #{cancelMode}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="cancelTime != null">
+		CANCEL_TIME,
+	</if>
+	<if test="cancelChnlId != null">
+		CANCEL_CHNL_ID,
+	</if>
+	<if test="cancelMode != null">
+		CANCEL_MODE,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="cancelTime != null">
+		#{cancelTime},
+	</if>
+	<if test="cancelChnlId != null">
+		#{cancelChnlId},
+	</if>
+	<if test="cancelMode != null">
+		#{cancelMode},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="cancelTime != null">
+		CANCEL_TIME=#{cancelTime},
+	</if>
+	<if test="cancelChnlId != null">
+		CANCEL_CHNL_ID=#{cancelChnlId},
+	</if>
+	<if test="cancelMode != null">
+		CANCEL_MODE=#{cancelMode},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.cancelTime != null">
+                    CANCEL_TIME=#{s.cancelTime},
+			</if>
+			<if test="s.cancelChnlId != null">
+                    CANCEL_CHNL_ID=#{s.cancelChnlId},
+			</if>
+			<if test="s.cancelMode != null">
+                    CANCEL_MODE=#{s.cancelMode},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.cancelTime != null">
+                    CANCEL_TIME=#{w.cancelTime}
+                   AND 
+ 			</if>
+			<if test="w.cancelChnlId != null">
+                    CANCEL_CHNL_ID=#{w.cancelChnlId}
+                   AND 
+ 			</if>
+			<if test="w.cancelMode != null">
+                    CANCEL_MODE=#{w.cancelMode}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

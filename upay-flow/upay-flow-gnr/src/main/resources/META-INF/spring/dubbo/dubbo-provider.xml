@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+	<!-- H5抢购下单 -->
+<!-- 	<dubbo:service ref="SI_ORD0045" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ORD0045" /> -->
+
+<dubbo:service ref="SI_GNR0003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0003" />
+<!-- 菜单查询  -->
+<dubbo:service ref="SI_GNR0008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0008" />
+
+<!-- 手机验证码校验  -->
+<dubbo:service ref="SI_GNR0004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0004" />
+
+<!-- 菜单查询   -->
+<dubbo:service ref="SI_GNR0001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0001" />
+<!-- 获取地区码对应地区集合  -->
+<dubbo:service ref="SI_GNR0002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0002" />
+<!-- 轮波图列表  -->
+<dubbo:service ref="SI_GNR0006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0006" />
+<!-- 根据县区获取省市  -->
+<dubbo:service ref="SI_GNR0005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_GNR0005" />
+</beans>

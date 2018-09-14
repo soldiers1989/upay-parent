@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+        <mapping xpath="merchant_name" field="merchantName" must="not"/>    
+        <mapping xpath="merchant_shortname" field="merchantShortname" must="not"/>   
+        <mapping xpath="service_phone" field="servicePhone" must="not"/>    
+        <mapping xpath="contact" field="contact" must="not"/>    
+        <mapping xpath="contact_phone" field="contactPhone" must="not"/>    
+        <mapping xpath="contact_email" field="contactEmail" must="not"/>
+        <mapping xpath="business" field="business" must="not"/>    
+        <mapping xpath="channel_id" field="channelId" must="not"/>    
+        <mapping xpath="channel_name" field="channelName" must="not"/>    
+        <mapping xpath="total" field="total" must="not"/>
+	</mappings>
+</config>

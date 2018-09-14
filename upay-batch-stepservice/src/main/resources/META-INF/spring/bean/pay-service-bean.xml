@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 支付后台通知 -->
+	<bean id="merPayNotify" class="com.upay.batch.stepservice.schedule.NotifyMerAfterPay" parent="abstractStepExecutor" >
+		<property name="jumpLink" value="${jumpLink.url}"></property>
+	</bean>
+	<!-- 订单超时批量 -->
+	<bean id="CheckOrderTimeOut" class="com.upay.batch.stepservice.schedule.CheckOrderTimeOut" parent="abstractStepExecutor"/>
+	<!-- 自动确认收货 -->
+	<bean id="ConfirmReceipt" class="com.upay.batch.stepservice.schedule.ConfirmReceipt" parent="abstractStepExecutor"/>
+	<!-- 订单状态同步 -->
+	<bean id="CheckPayFlowStat" class="com.upay.batch.stepservice.schedule.CheckPayFlowStat" parent="abstractStepExecutor"/>
+	<!-- 补单 -->
+	<bean id="ContinueOrderService" class="com.upay.batch.stepservice.schedule.ContinueOrderService" parent="abstractStepExecutor"/>
+
+	<!-- 烟草清算  开始 -->
+	<bean id="batchCommon" class="com.upay.batch.stepservice.schedule.BatchCommon" >
+		<property name="SI_ACC1006"  ref="SI_ACC1006"/>
+		<property name="SI_ACC1007"  ref="SI_ACC1007"/>
+		<property name="SI_PAY1007"  ref="SI_PAY1007"/>
+		<property name="SI_PAY0019"  ref="SI_PAY0019"/>
+		<property name="SI_PAY0020"  ref="SI_PAY0020"/>
+		<property name="SI_PAY0023"  ref="SI_PAY0023"/>
+	</bean>
+	<!-- 获取转账文件 -->
+	<bean id="GetSmokeFile" class="com.upay.batch.stepservice.chk.smoke.GetSmokeFile" parent="abstractStepExecutor">
+		<property name="serverUrl" value="${smoke.server.url}"></property>
+		<property name="serverPort" value="${smoke.server.port}"></property>
+		<property name="userName" value="${smoke.server.username}"></property>
+		<property name="password" value="${smoke.server.password}"></property>
+		<property name="remotePath" value="${smoke.server.remotePath}"></property>
+		<property name="localPath" value="${smoke.server.localPath}"></property>
+	</bean>
+	<!-- 同步处理中的转账明细 -->
+	<bean id="QueryProcessingTransfer" class="com.upay.batch.stepservice.chk.smoke.QueryProcessingTransfer" parent="abstractStepExecutor"/>
+	
+	<!-- 转账总金额检查 -->
+	<bean id="CheckTransferAmount" class="com.upay.batch.stepservice.chk.smoke.CheckTransferAmount" parent="abstractStepExecutor">
+		<property name="batchCommon"  ref="batchCommon"/>
+	</bean>
+	
+	<!-- 商户提现到待清算账户 -->
+	<bean id="SmokeMerWithdraw" class="com.upay.batch.stepservice.chk.smoke.SmokeMerWithdraw" parent="abstractStepExecutor">
+		<property name="batchCommon"  ref="batchCommon"/>
+	</bean>
+	<!-- 转账到卡 -->
+	<bean id="SmokeTransferAccount" class="com.upay.batch.stepservice.chk.smoke.SmokeTransferAccount" parent="abstractStepExecutor">
+		<property name="batchCommon"  ref="batchCommon"/>
+	</bean>
+	<!-- 返回处理结果记录 -->
+	<bean id="SmokeStlReturn" class="com.upay.batch.stepservice.chk.smoke.SmokeStlReturn" parent="abstractStepExecutor">
+		<property name="serverUrl" value="${smoke.server.url}"></property>
+		<property name="serverPort" value="${smoke.server.port}"></property>
+		<property name="userName" value="${smoke.server.username}"></property>
+		<property name="password" value="${smoke.server.password}"></property>
+		<property name="remotePath" value="${smoke.server.remotePath}"></property>
+	</bean>
+	
+	<!--批量转账 获取转账文件   Step 1 -->
+	<bean id="DownloadTransferFileStep" class="com.upay.batch.stepservice.transfer.DownloadTransferFileStep" parent="abstractStepExecutor">
+		<property name="host" value="${batch.server.url}"></property>
+		<property name="port" value="${batch.server.port}"></property>
+		<property name="username" value="${batch.server.username}"></property>
+		<property name="password" value="${batch.server.password}"></property>
+		<property name="remotePath" value="${batch.server.remotePath}"></property>
+		<property name="localPath" value="${batch.server.localPath}"></property>
+	</bean>
+	<!--批量转账 转账明细入库   Step 2 -->
+	<bean id="GetTransferDataStep" class="com.upay.batch.stepservice.transfer.GetTransferDataStep" parent="abstractStepExecutor">
+		<property name="localPath" value="${batch.server.localPath}"></property>
+	</bean>
+	<!--批量转账 转账   Step 3 -->
+	<bean id="BatchTransferStep" class="com.upay.batch.stepservice.transfer.BatchTransferStep" parent="abstractStepExecutor">
+		<property name="batchCommon"  ref="batchCommon"/>
+	</bean>
+	<!--批量转账 生成回盘文件信息(复制一个转账文件)   Step 4 -->
+	<bean id="GenBackFileStep" class="com.upay.batch.stepservice.transfer.GenBackFileStep" parent="abstractStepExecutor">
+		<property name="localPath" value="${batch.server.localPath}"></property>
+	</bean>
+	<!--批量转账 更新支付结果到回盘文件中   Step 5 -->
+	<bean id="UpdatePayResult2BackFileStep" class="com.upay.batch.stepservice.transfer.UpdatePayResult2BackFileStep" parent="abstractStepExecutor">
+		<property name="localPath" value="${batch.server.localPath}"></property>
+	</bean>
+
+	<!--批量转账 上传回盘文件   Step 6 -->
+	<bean id="UploadBackFileStep" class="com.upay.batch.stepservice.transfer.UploadBackFileStep" parent="abstractStepExecutor">
+		<property name="host" value="${batch.server.url}"></property>
+		<property name="port" value="${batch.server.port}"></property>
+		<property name="username" value="${batch.server.username}"></property>
+		<property name="password" value="${batch.server.password}"></property>
+		<property name="remotePath" value="${batch.server.remotePath}"></property>
+<!-- 		<property name="localPath" value="${batch.server.localPath}"></property> -->
+		<property name="localPath" value="${batch.server.localPath}"></property>
+	</bean>
+	<!--更新处理payflowDetail的处理状态 step 7-->
+	<bean id="UpdatePayFlowDetailForProcessState" class="com.upay.batch.stepservice.transfer.UpdatePayFlowDetailForProcessState" parent="abstractStepExecutor"/>
+	<!-- 商户交易日累计清零 -->
+	<bean id="DailyAcmleAmtClear" class="com.upay.batch.stepservice.schedule.DailyAcmleAmtClear" parent="abstractStepExecutor"/>
+
+
+	<!--手续费收入和支出统计-->
+	<bean id="FeeStatistics" class="com.upay.batch.stepservice.clearing.fee.FeeStatistics" parent="abstractStepExecutor">
+		<property name="batchCommon"  ref="batchCommon"/>
+		<property name="acpMerId"  value="${acpPayMerId}"/>
+		<property name="acpPayMerId"  value="524530160110004"/>
+		<property name="acpReceiveMerId"  value="${acpReceiveMerId}"/>
+		<property name="issCode"  value="${qrcissCode}"/>
+	</bean>
+	
+</beans>

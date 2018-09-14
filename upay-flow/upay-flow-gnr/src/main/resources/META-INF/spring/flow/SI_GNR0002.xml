@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 获取地区码对应地区集合  -->
+	<dipper:flow service-id="SI_GNR0002">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="AreaCodeListGetServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally/>
+	</dipper:flow>
+</beans>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeKindPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeKindPo">
+		<id column="ID" property="id" />
+		<result column="FEE_CODE" property="feeCode" />
+		<result column="FEE_NAME" property="feeName" />
+		<result column="FEE_MODE" property="feeMode" />
+		<result column="FIX_FEE" property="fixFee" />
+		<result column="RATION_FEE" property="rationFee" />
+		<result column="HIGH_FEE" property="highFee" />
+		<result column="LOW_FEE" property="lowFee" />
+		<result column="MEMO" property="memo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_KIND
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		FEE_CODE,
+		FEE_NAME,
+		FEE_MODE,
+		FIX_FEE,
+		RATION_FEE,
+		HIGH_FEE,
+		LOW_FEE,
+		MEMO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="feeCode != null">
+			FEE_CODE= #{feeCode}
+	           AND 
+		</if>
+		<if test="feeName != null">
+			FEE_NAME= #{feeName}
+	           AND 
+		</if>
+		<if test="feeMode != null">
+			FEE_MODE= #{feeMode}
+	           AND 
+		</if>
+		<if test="fixFee != null">
+			FIX_FEE= #{fixFee}
+	           AND 
+		</if>
+		<if test="rationFee != null">
+			RATION_FEE= #{rationFee}
+	           AND 
+		</if>
+		<if test="highFee != null">
+			HIGH_FEE= #{highFee}
+	           AND 
+		</if>
+		<if test="lowFee != null">
+			LOW_FEE= #{lowFee}
+	           AND 
+		</if>
+		<if test="memo != null">
+			MEMO= #{memo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="feeCode != null">
+		FEE_CODE,
+	</if>
+	<if test="feeName != null">
+		FEE_NAME,
+	</if>
+	<if test="feeMode != null">
+		FEE_MODE,
+	</if>
+	<if test="fixFee != null">
+		FIX_FEE,
+	</if>
+	<if test="rationFee != null">
+		RATION_FEE,
+	</if>
+	<if test="highFee != null">
+		HIGH_FEE,
+	</if>
+	<if test="lowFee != null">
+		LOW_FEE,
+	</if>
+	<if test="memo != null">
+		MEMO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="feeCode != null">
+		#{feeCode},
+	</if>
+	<if test="feeName != null">
+		#{feeName},
+	</if>
+	<if test="feeMode != null">
+		#{feeMode},
+	</if>
+	<if test="fixFee != null">
+		#{fixFee},
+	</if>
+	<if test="rationFee != null">
+		#{rationFee},
+	</if>
+	<if test="highFee != null">
+		#{highFee},
+	</if>
+	<if test="lowFee != null">
+		#{lowFee},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="feeCode != null">
+		FEE_CODE=#{feeCode},
+	</if>
+	<if test="feeName != null">
+		FEE_NAME=#{feeName},
+	</if>
+	<if test="feeMode != null">
+		FEE_MODE=#{feeMode},
+	</if>
+	<if test="fixFee != null">
+		FIX_FEE=#{fixFee},
+	</if>
+	<if test="rationFee != null">
+		RATION_FEE=#{rationFee},
+	</if>
+	<if test="highFee != null">
+		HIGH_FEE=#{highFee},
+	</if>
+	<if test="lowFee != null">
+		LOW_FEE=#{lowFee},
+	</if>
+	<if test="memo != null">
+		MEMO=#{memo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.feeCode != null">
+                    FEE_CODE=#{s.feeCode},
+			</if>
+			<if test="s.feeName != null">
+                    FEE_NAME=#{s.feeName},
+			</if>
+			<if test="s.feeMode != null">
+                    FEE_MODE=#{s.feeMode},
+			</if>
+			<if test="s.fixFee != null">
+                    FIX_FEE=#{s.fixFee},
+			</if>
+			<if test="s.rationFee != null">
+                    RATION_FEE=#{s.rationFee},
+			</if>
+			<if test="s.highFee != null">
+                    HIGH_FEE=#{s.highFee},
+			</if>
+			<if test="s.lowFee != null">
+                    LOW_FEE=#{s.lowFee},
+			</if>
+			<if test="s.memo != null">
+                    MEMO=#{s.memo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.feeCode != null">
+                    FEE_CODE=#{w.feeCode}
+                   AND 
+ 			</if>
+			<if test="w.feeName != null">
+                    FEE_NAME=#{w.feeName}
+                   AND 
+ 			</if>
+			<if test="w.feeMode != null">
+                    FEE_MODE=#{w.feeMode}
+                   AND 
+ 			</if>
+			<if test="w.fixFee != null">
+                    FIX_FEE=#{w.fixFee}
+                   AND 
+ 			</if>
+			<if test="w.rationFee != null">
+                    RATION_FEE=#{w.rationFee}
+                   AND 
+ 			</if>
+			<if test="w.highFee != null">
+                    HIGH_FEE=#{w.highFee}
+                   AND 
+ 			</if>
+			<if test="w.lowFee != null">
+                    LOW_FEE=#{w.lowFee}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    MEMO=#{w.memo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

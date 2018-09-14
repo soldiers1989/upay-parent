@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrOptControlInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.usr.UsrOptControlInfoPo">
+		<id column="ID" property="id" />
+		<result column="USER_CERT_LEVEL" property="userCertLevel" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="OP_PERMISSION" property="opPermission" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USR_OPT_CONTROL_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		USER_CERT_LEVEL,
+		CHNL_ID,
+		TRANS_CODE,
+		OP_PERMISSION,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="userCertLevel != null">
+			USER_CERT_LEVEL= #{userCertLevel}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="opPermission != null">
+			OP_PERMISSION= #{opPermission}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="opPermission != null">
+		OP_PERMISSION,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="userCertLevel != null">
+		#{userCertLevel},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="opPermission != null">
+		#{opPermission},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL=#{userCertLevel},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="opPermission != null">
+		OP_PERMISSION=#{opPermission},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.userCertLevel != null">
+                    USER_CERT_LEVEL=#{s.userCertLevel},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.opPermission != null">
+                    OP_PERMISSION=#{s.opPermission},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.userCertLevel != null">
+                    USER_CERT_LEVEL=#{w.userCertLevel}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.opPermission != null">
+                    OP_PERMISSION=#{w.opPermission}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

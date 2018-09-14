@@ -1,0 +1,92 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+    
+    <bean id="config" class="com.upay.gateway.client.atalipay.util.AlipayConfig" init-method="init" />
+    <bean id="alipays" class="com.upay.gateway.client.atalipay.util.Alipay">
+    	<property name="config">
+			<ref bean="config" />
+		</property>
+    </bean>
+    <bean id="DefaultAlipayClientHandler" class="com.upay.gateway.client.atalipay.handler.DefaultAlipayClientHandler">
+    </bean>
+    
+    <bean class="com.upay.gateway.client.atalipay.util.AliPayUtils">
+    	<property name="config">
+			<ref bean="config" />
+		</property>
+    </bean>
+
+	<bean id="AT_AliPayGetUserIdHandler" class="com.upay.gateway.client.atalipay.handler.AT_AliPayGetUserIdHandler" >
+		<property name="appId" value="${alipay.appId}"></property>	
+	</bean>
+
+	<bean id="abstractAliPayClientDipperHandler"
+		class="com.upay.gateway.client.atalipay.handler.AbstractAlipayClientDipperHandler"
+		abstract="true">
+		<property name="appId" value="${alipay.appId}"></property>
+		<property name="alipay">
+			<ref bean="alipays" />
+		</property>
+	</bean>
+ 	<!-- 条码支付 -->
+	<bean id="AT_AlipayPayHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayPayHandler"
+		parent="abstractAliPayClientDipperHandler" />
+		
+	<!-- 交易查询 -->
+	<bean id="AT_AlipayQueryHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayQueryHandler"
+		parent="abstractAliPayClientDipperHandler" />
+		
+	<!-- 扫码支付预创建订单 -->
+	<bean id="AT_AlipayPreCreateHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayPreCreateHandler"
+		parent="abstractAliPayClientDipperHandler" />
+		
+	<!-- 支付宝交易创建接口 -->
+	<bean id="AT_AlipayCreateHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayCreateHandler"
+		parent="abstractAliPayClientDipperHandler" />
+		
+	<!-- 退款 -->
+	<bean id="AT_AlipayRefundHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayRefundHandler"
+		parent="abstractAliPayClientDipperHandler" />
+	<!-- 退款查询 -->
+	<bean id="AT_AlipayRefundQueryHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayRefundQueryHandler"
+		parent="abstractAliPayClientDipperHandler" />
+	<!-- 交易撤销 -->
+	<bean id="AT_AlipayCancelHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayCancelHandler"
+		parent="abstractAliPayClientDipperHandler" />
+	<!-- 交易关闭 -->
+	<bean id="AT_AlipayCloseHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayCloseHandler"
+		parent="abstractAliPayClientDipperHandler" />
+	<!-- 获取对账单 -->
+	<bean id="AT_AlipayDownloadHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipayDownloadHandler"
+		parent="abstractAliPayClientDipperHandler" />
+	<!--商户入驻 -->
+	<bean id="AT_AlipaySubMchAddMerHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipaySubMchAddMerHandler"
+		parent="abstractAliPayClientDipperHandler" />	
+	<!--商户信息查询-->
+	<bean id="AT_AlipaySubMchQueryMerHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipaySubMchQueryMerHandler"
+		parent="abstractAliPayClientDipperHandler" />	
+	<!--商户信息修改 -->
+	<bean id="AT_AlipaySubMchUpdateMerHandler"
+		class="com.upay.gateway.client.atalipay.handler.AT_AlipaySubMchUpdateMerHandler"
+		parent="abstractAliPayClientDipperHandler" />	
+		
+		
+		
+		
+		
+</beans>

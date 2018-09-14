@@ -1,0 +1,51 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <!-- 绑卡修改支付密码校验 --> 
+    <dipper:flow service-id="SI_USR0019">
+        <dipper:try>
+            <dipper:route>
+            	<!-- 交易前处理 -->
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>            
+             <dipper:route>
+             	<!-- 校验登陆状态 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+             	<dipper:invoke>
+	                <!-- 手机验证码校验 -->            		
+	                    <dipper:service ref="SmsVerifyServiceImpl"/>
+                </dipper:invoke>
+                <dipper:invoke>
+	             	<!-- 用户身份信息验证 -->
+                    <dipper:service ref="CertCheckService"/>
+                </dipper:invoke> 
+                <dipper:invoke>
+	             	<!-- 根据卡号查询预留手机号 -->
+                    <dipper:service ref="BindCheckService"/>
+                </dipper:invoke> 
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException />
+        <dipper:finally>
+            <dipper:route>
+            	<!-- 交易后处理 -->
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>            
+            </dipper:route>
+        </dipper:finally>
+    </dipper:flow>
+</beans>    

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+<!--        <mapping xpath="$.couponInfos" field="couponInfoList" type="list" must="not"> -->
+<!--          <element name="couponCode" field="ticket" /> -->
+<!--          <element name="qrcode" field="ticket2dbc" /> -->
+<!--        </mapping> -->
+	   <mapping xpath="$.couponInfos[0].couponCode" field="ticket"/>
+	   <mapping xpath="$.couponInfos[0].barCode" field="code2dbc" />
+	   <mapping xpath="$.couponInfos[0].couponCode" field="referenceId" />
+	</mappings>
+</config>

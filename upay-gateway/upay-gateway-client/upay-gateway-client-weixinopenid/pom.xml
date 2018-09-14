@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.pactera.upay</groupId>
+    <artifactId>upay-gateway-client</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>upay-gateway-client-weixinopenid</artifactId>
+  
+  <dependencies>
+		<dependency>
+			<groupId>com.pactera</groupId>
+			<artifactId>dipper-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-dubbo</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!--             <groupId>${dipper.groupId}</groupId> -->
+<!--             <artifactId>dipper-em</artifactId> -->
+<!--         </dependency> -->
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-flow</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-presys-cp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-presys-cp-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-presys-mp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.pactera</groupId>
+			<artifactId>dipper-presys-cp-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.pactera</groupId>
+			<artifactId>dipper-presys-mp-agilexml</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<target>
+								<echo message="--- copy start ---" />
+								<copy todir="${basedir}/${src.main.scripts}">
+									<fileset dir="${global.resources.gateway.client.home}/weixinopenid" />
+								</copy>
+								<echo message="--- copy end   ---" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+  
+</project>

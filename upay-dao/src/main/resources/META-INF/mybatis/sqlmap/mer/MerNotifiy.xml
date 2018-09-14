@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerNotifiyPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerNotifiyPo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="TRANS_DATE" property="transDate" />
+		<result column="NOTIFY_TYPE" property="notifyType" />
+		<result column="NOTIFY_STATUS" property="notifyStatus" />
+		<result column="TRANS_SEQ" property="transSeq" />
+		<result column="PLAIN" property="plain" />
+		<result column="SIGN_ATURE" property="signAture" />
+		<result column="MER_URL" property="merUrl" />
+		<result column="SEND_TIMES" property="sendTimes" />
+		<result column="OUTER_ORDER_NO" property="outerOrderNo" />
+		<result column="NOTIFY_ID" property="notifyId" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_NOTIFIY
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		TRANS_DATE,
+		NOTIFY_TYPE,
+		NOTIFY_STATUS,
+		TRANS_SEQ,
+		PLAIN,
+		SIGN_ATURE,
+		MER_URL,
+		SEND_TIMES,
+		OUTER_ORDER_NO,
+		NOTIFY_ID
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="transDate != null">
+			TRANS_DATE= #{transDate}
+	           AND 
+		</if>
+		<if test="notifyType != null">
+			NOTIFY_TYPE= #{notifyType}
+	           AND 
+		</if>
+		<if test="notifyStatus != null">
+			NOTIFY_STATUS= #{notifyStatus}
+	           AND 
+		</if>
+		<if test="transSeq != null">
+			TRANS_SEQ= #{transSeq}
+	           AND 
+		</if>
+		<if test="plain != null">
+			PLAIN= #{plain}
+	           AND 
+		</if>
+		<if test="signAture != null">
+			SIGN_ATURE= #{signAture}
+	           AND 
+		</if>
+		<if test="merUrl != null">
+			MER_URL= #{merUrl}
+	           AND 
+		</if>
+		<if test="sendTimes != null">
+			SEND_TIMES &lt;= #{sendTimes}
+	           AND 
+		</if>
+		<if test="outerOrderNo != null">
+			OUTER_ORDER_NO= #{outerOrderNo}
+	           AND 
+		</if>
+		<if test="notifyId != null">
+			NOTIFY_ID= #{notifyId}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE,
+	</if>
+	<if test="notifyType != null">
+		NOTIFY_TYPE,
+	</if>
+	<if test="notifyStatus != null">
+		NOTIFY_STATUS,
+	</if>
+	<if test="transSeq != null">
+		TRANS_SEQ,
+	</if>
+	<if test="plain != null">
+		PLAIN,
+	</if>
+	<if test="signAture != null">
+		SIGN_ATURE,
+	</if>
+	<if test="merUrl != null">
+		MER_URL,
+	</if>
+	<if test="sendTimes != null">
+		SEND_TIMES,
+	</if>
+	<if test="outerOrderNo != null">
+		OUTER_ORDER_NO,
+	</if>
+	<if test="notifyId != null">
+		NOTIFY_ID,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="transDate != null">
+		#{transDate},
+	</if>
+	<if test="notifyType != null">
+		#{notifyType},
+	</if>
+	<if test="notifyStatus != null">
+		#{notifyStatus},
+	</if>
+	<if test="transSeq != null">
+		#{transSeq},
+	</if>
+	<if test="plain != null">
+		#{plain},
+	</if>
+	<if test="signAture != null">
+		#{signAture},
+	</if>
+	<if test="merUrl != null">
+		#{merUrl},
+	</if>
+	<if test="sendTimes != null">
+		#{sendTimes},
+	</if>
+	<if test="outerOrderNo != null">
+		#{outerOrderNo},
+	</if>
+	<if test="notifyId != null">
+		#{notifyId},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE=#{transDate},
+	</if>
+	<if test="notifyType != null">
+		NOTIFY_TYPE=#{notifyType},
+	</if>
+	<if test="notifyStatus != null">
+		NOTIFY_STATUS=#{notifyStatus},
+	</if>
+	<if test="transSeq != null">
+		TRANS_SEQ=#{transSeq},
+	</if>
+	<if test="plain != null">
+		PLAIN=#{plain},
+	</if>
+	<if test="signAture != null">
+		SIGN_ATURE=#{signAture},
+	</if>
+	<if test="merUrl != null">
+		MER_URL=#{merUrl},
+	</if>
+	<if test="sendTimes != null">
+		SEND_TIMES=#{sendTimes},
+	</if>
+	<if test="outerOrderNo != null">
+		OUTER_ORDER_NO=#{outerOrderNo},
+	</if>
+	<if test="notifyId != null">
+		NOTIFY_ID=#{notifyId},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.transDate != null">
+                    TRANS_DATE=#{s.transDate},
+			</if>
+			<if test="s.notifyType != null">
+                    NOTIFY_TYPE=#{s.notifyType},
+			</if>
+			<if test="s.notifyStatus != null">
+                    NOTIFY_STATUS=#{s.notifyStatus},
+			</if>
+			<if test="s.transSeq != null">
+                    TRANS_SEQ=#{s.transSeq},
+			</if>
+			<if test="s.plain != null">
+                    PLAIN=#{s.plain},
+			</if>
+			<if test="s.signAture != null">
+                    SIGN_ATURE=#{s.signAture},
+			</if>
+			<if test="s.merUrl != null">
+                    MER_URL=#{s.merUrl},
+			</if>
+			<if test="s.sendTimes != null">
+                    SEND_TIMES=#{s.sendTimes},
+			</if>
+			<if test="s.outerOrderNo != null">
+                    OUTER_ORDER_NO=#{s.outerOrderNo},
+			</if>
+			<if test="s.notifyId != null">
+                    NOTIFY_ID=#{s.notifyId}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.transDate != null">
+                    TRANS_DATE=#{w.transDate}
+                   AND 
+ 			</if>
+			<if test="w.notifyType != null">
+                    NOTIFY_TYPE=#{w.notifyType}
+                   AND 
+ 			</if>
+			<if test="w.notifyStatus != null">
+                    NOTIFY_STATUS=#{w.notifyStatus}
+                   AND 
+ 			</if>
+			<if test="w.transSeq != null">
+                    TRANS_SEQ=#{w.transSeq}
+                   AND 
+ 			</if>
+			<if test="w.plain != null">
+                    PLAIN=#{w.plain}
+                   AND 
+ 			</if>
+			<if test="w.signAture != null">
+                    SIGN_ATURE=#{w.signAture}
+                   AND 
+ 			</if>
+			<if test="w.merUrl != null">
+                    MER_URL=#{w.merUrl}
+                   AND 
+ 			</if>
+			<if test="w.sendTimes != null">
+                    SEND_TIMES=#{w.sendTimes}
+                   AND 
+ 			</if>
+			<if test="w.outerOrderNo != null">
+                    OUTER_ORDER_NO=#{w.outerOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.notifyId != null">
+                    NOTIFY_ID=#{w.notifyId}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrNoticeConfPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrNoticeConfPo">
+		<id column="ID" property="id" />
+		<result column="EVENT_NO" property="eventNo" />
+		<result column="NOTICE_SEND_OBJ" property="noticeSendObj" />
+		<result column="NOTICE_SEQ" property="noticeSeq" />
+		<result column="NOTICE_NO" property="noticeNo" />
+		<result column="NOTICE_DESC" property="noticeDesc" />
+		<result column="NOTICE_SEND_TYPE" property="noticeSendType" />
+		<result column="NOTICE_MSG" property="noticeMsg" />
+		<result column="NOTICE_STAT" property="noticeStat" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="LAST_OPER" property="lastOper" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_NOTICE_CONF
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		EVENT_NO,
+		NOTICE_SEND_OBJ,
+		NOTICE_SEQ,
+		NOTICE_NO,
+		NOTICE_DESC,
+		NOTICE_SEND_TYPE,
+		NOTICE_MSG,
+		NOTICE_STAT,
+		LAST_UPDATE_TIME,
+		LAST_OPER
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="eventNo != null">
+			EVENT_NO= #{eventNo}
+	           AND 
+		</if>
+		<if test="noticeSendObj != null">
+			NOTICE_SEND_OBJ= #{noticeSendObj}
+	           AND 
+		</if>
+		<if test="noticeSeq != null">
+			NOTICE_SEQ= #{noticeSeq}
+	           AND 
+		</if>
+		<if test="noticeNo != null">
+			NOTICE_NO= #{noticeNo}
+	           AND 
+		</if>
+		<if test="noticeDesc != null">
+			NOTICE_DESC= #{noticeDesc}
+	           AND 
+		</if>
+		<if test="noticeSendType != null">
+			NOTICE_SEND_TYPE= #{noticeSendType}
+	           AND 
+		</if>
+		<if test="noticeMsg != null">
+			NOTICE_MSG= #{noticeMsg}
+	           AND 
+		</if>
+		<if test="noticeStat != null">
+			NOTICE_STAT= #{noticeStat}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="lastOper != null">
+			LAST_OPER= #{lastOper}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="eventNo != null">
+		EVENT_NO,
+	</if>
+	<if test="noticeSendObj != null">
+		NOTICE_SEND_OBJ,
+	</if>
+	<if test="noticeSeq != null">
+		NOTICE_SEQ,
+	</if>
+	<if test="noticeNo != null">
+		NOTICE_NO,
+	</if>
+	<if test="noticeDesc != null">
+		NOTICE_DESC,
+	</if>
+	<if test="noticeSendType != null">
+		NOTICE_SEND_TYPE,
+	</if>
+	<if test="noticeMsg != null">
+		NOTICE_MSG,
+	</if>
+	<if test="noticeStat != null">
+		NOTICE_STAT,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="eventNo != null">
+		#{eventNo},
+	</if>
+	<if test="noticeSendObj != null">
+		#{noticeSendObj},
+	</if>
+	<if test="noticeSeq != null">
+		#{noticeSeq},
+	</if>
+	<if test="noticeNo != null">
+		#{noticeNo},
+	</if>
+	<if test="noticeDesc != null">
+		#{noticeDesc},
+	</if>
+	<if test="noticeSendType != null">
+		#{noticeSendType},
+	</if>
+	<if test="noticeMsg != null">
+		#{noticeMsg},
+	</if>
+	<if test="noticeStat != null">
+		#{noticeStat},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		#{lastOper},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="eventNo != null">
+		EVENT_NO=#{eventNo},
+	</if>
+	<if test="noticeSendObj != null">
+		NOTICE_SEND_OBJ=#{noticeSendObj},
+	</if>
+	<if test="noticeSeq != null">
+		NOTICE_SEQ=#{noticeSeq},
+	</if>
+	<if test="noticeNo != null">
+		NOTICE_NO=#{noticeNo},
+	</if>
+	<if test="noticeDesc != null">
+		NOTICE_DESC=#{noticeDesc},
+	</if>
+	<if test="noticeSendType != null">
+		NOTICE_SEND_TYPE=#{noticeSendType},
+	</if>
+	<if test="noticeMsg != null">
+		NOTICE_MSG=#{noticeMsg},
+	</if>
+	<if test="noticeStat != null">
+		NOTICE_STAT=#{noticeStat},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER=#{lastOper},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.eventNo != null">
+                    EVENT_NO=#{s.eventNo},
+			</if>
+			<if test="s.noticeSendObj != null">
+                    NOTICE_SEND_OBJ=#{s.noticeSendObj},
+			</if>
+			<if test="s.noticeSeq != null">
+                    NOTICE_SEQ=#{s.noticeSeq},
+			</if>
+			<if test="s.noticeNo != null">
+                    NOTICE_NO=#{s.noticeNo},
+			</if>
+			<if test="s.noticeDesc != null">
+                    NOTICE_DESC=#{s.noticeDesc},
+			</if>
+			<if test="s.noticeSendType != null">
+                    NOTICE_SEND_TYPE=#{s.noticeSendType},
+			</if>
+			<if test="s.noticeMsg != null">
+                    NOTICE_MSG=#{s.noticeMsg},
+			</if>
+			<if test="s.noticeStat != null">
+                    NOTICE_STAT=#{s.noticeStat},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.lastOper != null">
+                    LAST_OPER=#{s.lastOper}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.eventNo != null">
+                    EVENT_NO=#{w.eventNo}
+                   AND 
+ 			</if>
+			<if test="w.noticeSendObj != null">
+                    NOTICE_SEND_OBJ=#{w.noticeSendObj}
+                   AND 
+ 			</if>
+			<if test="w.noticeSeq != null">
+                    NOTICE_SEQ=#{w.noticeSeq}
+                   AND 
+ 			</if>
+			<if test="w.noticeNo != null">
+                    NOTICE_NO=#{w.noticeNo}
+                   AND 
+ 			</if>
+			<if test="w.noticeDesc != null">
+                    NOTICE_DESC=#{w.noticeDesc}
+                   AND 
+ 			</if>
+			<if test="w.noticeSendType != null">
+                    NOTICE_SEND_TYPE=#{w.noticeSendType}
+                   AND 
+ 			</if>
+			<if test="w.noticeMsg != null">
+                    NOTICE_MSG=#{w.noticeMsg}
+                   AND 
+ 			</if>
+			<if test="w.noticeStat != null">
+                    NOTICE_STAT=#{w.noticeStat}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.lastOper != null">
+                    LAST_OPER=#{w.lastOper}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrOperateListPo">
+		<delete id="deleteDataByDate" >
+		delete from
+		<include refid="Table_Name" />
+		where
+<!-- 		<if test="startDate != null">   -->
+<!-- 				 <![CDATA[ORDER_DATE >= TO_DATE(#{startDate}, 'yyyy-MM-dd') AND ]]> -->
+<!-- 			</if> -->
+			<if test="endDate != null">
+				 <![CDATA[OPER_TIME <  TO_DATE(#{endDate}, 'yyyy-MM-dd')]]>
+			</if>
+	</delete>
+</mapper>

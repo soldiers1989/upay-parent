@@ -1,0 +1,91 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+
+	<bean id="abstractAcpClientDipperHandler" class="com.upay.gateway.client.acp.service.AbstractAcpClientDipperHandler" abstract="true">
+		<property name="issCode" value="${qrcissCode}"/>
+		<property name="acpConnectionTimeout" value="${acpConnectionTimeout}"/>
+		<property name="acpReadTimeout" value="${acpReadTimeout}"/>
+		<property name="backUrl" value="${qrcpayBackUrl}"/>
+		<property name="acpFileRoot" value="${payQrcAcpFileRoot}"/>
+		<property name="qrcAcpVersion" value="${qrcAcpVersion}"/>
+	</bean>
+	
+	
+    <!--二维码主扫-->
+    <bean id="UnionPayApplyQrCodeDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionPayApplyQrCodeDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+    </bean>
+    
+        
+   <!-- 二维码被扫     -->
+    <bean id="SA_CODE_UnionPayCodeSwept"
+        class="com.upay.gateway.client.acp.service.UnionPayCodeSweptHandler"
+        parent="abstractAcpClientDipperHandler" >
+         <property name="merId" value="${acpPayMerId}"/>
+    </bean>
+	
+     <!-- 交易状态查询     -->
+    <bean id="SA_PMT_UnionPayTranStatQuery"
+        class="com.upay.gateway.client.acp.service.UnionPayTranStatQuery"
+        parent="abstractAcpClientDipperHandler" >
+    </bean>
+    
+    <!--银联之退货-->
+    <bean id="UnionReFoundDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionReFoundDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+    </bean>
+    
+     <!--银联之消费撤销类-->
+    <bean id="UnionPayConsumeUndoDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionPayConsumeUndoDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+    </bean>
+    
+<!--银联之冲正
+* 冲正必须与原始消费在同一天（准确讲是昨日23:00至本日23:00之间）。
+冲正交易，仅用于超时无应答等异常场景，只有发生支付系统超时或者支付结果未知时可调用冲正，
+其他正常支付的订单如果需要实现相通功能，请调用消费撤销或者退货。-->
+    <bean id="UnionPayWashedDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionPayWashedDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+    </bean>
+    
+      <!--银联之二维码撤销类-->
+    <bean id="UnionPayConsumeUndoQRCodeDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionPayConsumeUndoQRCodeDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+    </bean> 
+    
+       
+
+    <!--银联之营销活动余额查询-->
+    <bean id="UnionPayMarketingActivityBalanceInquiryDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionPayMarketingActivityBalanceInquiryDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+        <property name="txnType" value="70"/>
+        <property name="txnSubType" value="02"/>
+        <property name="bizType" value="000000"/>
+        <property name="accessType" value="0"/>
+        <property name="tranCode" value="84"/>
+        <property name="merId" value="${acpPayMerId}"/>
+    </bean>
+
+    <!--银联之文件传输接口（对账文件下载）-->
+    <bean id="UnionPayFileTransferDipperHandler"
+          class="com.upay.gateway.client.acp.service.UnionPayFileTransferDipperHandler"
+          parent="abstractAcpClientDipperHandler">
+        <property name="txnSubType" value="01"/>
+        <property name="bizType" value="000000"/>
+        <property name="accessType" value="0"/>
+        <property name="tranCode" value="76"/>
+        <property name="settleDate" value="0119"/>
+        <property name="fileType" value="00"/>
+    </bean>
+</beans>	

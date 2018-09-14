@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <!-- 用户身份信息验证 --> 
+    <dipper:flow service-id="SI_USR0014">
+        <dipper:try>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>            
+             <dipper:route>
+                <dipper:invoke>
+	             	<!-- 用户注册信息查询 -->
+                    <dipper:service ref="UserRegQueryService" />
+                </dipper:invoke>
+             	<dipper:invoke>
+	                <!-- 手机验证码校验 -->
+             		<dipper:if expression="target.bodys.smsCode != null &amp;&amp; target.bodys.smsCode != ''">
+	                    <dipper:service ref="SmsVerifyServiceImpl"/>
+	                    <!-- 手机验证码校验通过设置通过标志 -->
+	                    <dipper:service ref="SetMobileCacheServiceImpl"/>
+             		</dipper:if>
+                </dipper:invoke>
+                <dipper:invoke>
+	             	<!-- 用户身份信息验证 -->
+                    <dipper:service ref="CertCheckService" beforeDictConv-ref="TestCertFlagParm"/>
+                </dipper:invoke> 
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException />
+        <dipper:finally>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>            
+            </dipper:route>
+        </dipper:finally>
+    </dipper:flow>
+</beans>    

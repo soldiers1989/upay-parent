@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.ComBrcPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.ComBrcPo">
+		<id column="ID" property="id" />
+		<result column="BRAN_CODE" property="branCode" />
+		<result column="BRAN_NAME" property="branName" />
+		<result column="BRAN_STATUS" property="branStatus" />
+		<result column="BRAN_TYPE" property="branType" />
+		<result column="BRAN_LEVEL" property="branLevel" />
+		<result column="AREA_CODE" property="areaCode" />
+		<result column="ADDR" property="addr" />
+		<result column="ZIP_CODE" property="zipCode" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_COM_BRC
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BRAN_CODE,
+		BRAN_NAME,
+		BRAN_STATUS,
+		BRAN_TYPE,
+		BRAN_LEVEL,
+		AREA_CODE,
+		ADDR,
+		ZIP_CODE,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="branCode != null">
+			BRAN_CODE= #{branCode}
+	           AND 
+		</if>
+		<if test="branName != null">
+			BRAN_NAME= #{branName}
+	           AND 
+		</if>
+		<if test="branStatus != null">
+			BRAN_STATUS= #{branStatus}
+	           AND 
+		</if>
+		<if test="branType != null">
+			BRAN_TYPE= #{branType}
+	           AND 
+		</if>
+		<if test="branLevel != null">
+			BRAN_LEVEL= #{branLevel}
+	           AND 
+		</if>
+		<if test="areaCode != null">
+			AREA_CODE= #{areaCode}
+	           AND 
+		</if>
+		<if test="addr != null">
+			ADDR= #{addr}
+	           AND 
+		</if>
+		<if test="zipCode != null">
+			ZIP_CODE= #{zipCode}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="branCode != null">
+		BRAN_CODE,
+	</if>
+	<if test="branName != null">
+		BRAN_NAME,
+	</if>
+	<if test="branStatus != null">
+		BRAN_STATUS,
+	</if>
+	<if test="branType != null">
+		BRAN_TYPE,
+	</if>
+	<if test="branLevel != null">
+		BRAN_LEVEL,
+	</if>
+	<if test="areaCode != null">
+		AREA_CODE,
+	</if>
+	<if test="addr != null">
+		ADDR,
+	</if>
+	<if test="zipCode != null">
+		ZIP_CODE,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="branCode != null">
+		#{branCode},
+	</if>
+	<if test="branName != null">
+		#{branName},
+	</if>
+	<if test="branStatus != null">
+		#{branStatus},
+	</if>
+	<if test="branType != null">
+		#{branType},
+	</if>
+	<if test="branLevel != null">
+		#{branLevel},
+	</if>
+	<if test="areaCode != null">
+		#{areaCode},
+	</if>
+	<if test="addr != null">
+		#{addr},
+	</if>
+	<if test="zipCode != null">
+		#{zipCode},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="branCode != null">
+		BRAN_CODE=#{branCode},
+	</if>
+	<if test="branName != null">
+		BRAN_NAME=#{branName},
+	</if>
+	<if test="branStatus != null">
+		BRAN_STATUS=#{branStatus},
+	</if>
+	<if test="branType != null">
+		BRAN_TYPE=#{branType},
+	</if>
+	<if test="branLevel != null">
+		BRAN_LEVEL=#{branLevel},
+	</if>
+	<if test="areaCode != null">
+		AREA_CODE=#{areaCode},
+	</if>
+	<if test="addr != null">
+		ADDR=#{addr},
+	</if>
+	<if test="zipCode != null">
+		ZIP_CODE=#{zipCode},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.branCode != null">
+                    BRAN_CODE=#{s.branCode},
+			</if>
+			<if test="s.branName != null">
+                    BRAN_NAME=#{s.branName},
+			</if>
+			<if test="s.branStatus != null">
+                    BRAN_STATUS=#{s.branStatus},
+			</if>
+			<if test="s.branType != null">
+                    BRAN_TYPE=#{s.branType},
+			</if>
+			<if test="s.branLevel != null">
+                    BRAN_LEVEL=#{s.branLevel},
+			</if>
+			<if test="s.areaCode != null">
+                    AREA_CODE=#{s.areaCode},
+			</if>
+			<if test="s.addr != null">
+                    ADDR=#{s.addr},
+			</if>
+			<if test="s.zipCode != null">
+                    ZIP_CODE=#{s.zipCode},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.branCode != null">
+                    BRAN_CODE=#{w.branCode}
+                   AND 
+ 			</if>
+			<if test="w.branName != null">
+                    BRAN_NAME=#{w.branName}
+                   AND 
+ 			</if>
+			<if test="w.branStatus != null">
+                    BRAN_STATUS=#{w.branStatus}
+                   AND 
+ 			</if>
+			<if test="w.branType != null">
+                    BRAN_TYPE=#{w.branType}
+                   AND 
+ 			</if>
+			<if test="w.branLevel != null">
+                    BRAN_LEVEL=#{w.branLevel}
+                   AND 
+ 			</if>
+			<if test="w.areaCode != null">
+                    AREA_CODE=#{w.areaCode}
+                   AND 
+ 			</if>
+			<if test="w.addr != null">
+                    ADDR=#{w.addr}
+                   AND 
+ 			</if>
+			<if test="w.zipCode != null">
+                    ZIP_CODE=#{w.zipCode}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

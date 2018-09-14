@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 网银他行代收 -->
+		<mapping xpath="payerAcctNo" field="payerAcctNo" />
+		<mapping xpath="payerAcctName" field="payerAcctName"/>
+		<mapping xpath="payerCertNo" field="payerCertNo" />
+		<mapping xpath="payerMobile" field="payerMobile" must="not"/>
+		<mapping xpath="payeeAcctNo" field="payeeAcctNo"/>
+		<mapping xpath="payeeAcctName" field="payeeAcctName" />
+		<mapping xpath="payeeCertNo" field="payeeCertNo"/>
+		<mapping xpath="payeeMobile" field="payeeMobile" must="not"/>
+		<mapping xpath="outerOrderNo" field="outerOrderNo"/>
+		<mapping xpath="outerOrderDate" field="outerOrderDate"/>
+		<mapping xpath="transAmt" field="transAmt" type="java.math.BigDecimal"/>
+		<mapping xpath="CURR" field="CURR"/>
+		<mapping xpath="ChnlTp" field="chnlId"/>
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp"/>
+		<mapping xpath="transComments" field="transComments" must="not"/>
+		
+		<mapping xpath="SvcCd" field="SvcCd"/>
+		<mapping xpath="SvcScn" field="SvcScn"/>
+		<mapping xpath="CnsmSysId" field="CnsmSysId"/>
+		<mapping xpath="CnsmSysSeqNo" field="CnsmSysSeqNo"/>
+<!-- 		<mapping xpath="PrvdSysSeqNo" field="PrvdSysSeqNo"/> -->
+		<mapping xpath="SrcSysSeqNo" field="SrcSysSeqNo"/>
+		<mapping xpath="TranDt" field="TranDt"/>
+		<mapping xpath="TranTm" field="TranTm"/>
+	</mappings>
+</config>

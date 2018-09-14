@@ -1,0 +1,14 @@
+<BODY>
+	<OrdrNo>${orderNo}</OrdrNo>
+	<OrdrNm>${orderName}</OrdrNm>
+	<OrdrSt>${orderStat}</OrdrSt>
+	<RfndSt>${refundStat}</OrdrNm>
+	<PayMth>${payServicType}</PayMth>
+	<TxnTp>${transType}</TxnTp>
+	<Ccy>${curr}</Ccy>
+	<OthrOrdrNo>${outerOrderNo}</OthrOrdrNo>
+	<RfndOrdrNo>${outRefundNo}</RfndOrdrNo>
+	<PyTm>${payTime}</PyTm>
+	<PcdFee>${feeAmt}</PcdFee>
+	<TxnAmt>${transAmt}</TxnAmt>
+</BODY>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerCallbackPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerCallbackPo">
+		<id column="ID" property="id" />
+		<result column="ORI_TRANS_SEQ" property="oriTransSeq" />
+		<result column="MER_N0" property="merN0" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="CALL_BACK_STATUS" property="callBackStatus" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_CALLBACK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ORI_TRANS_SEQ,
+		MER_N0,
+		ORDER_NO,
+		CALL_BACK_STATUS
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="oriTransSeq != null">
+			ORI_TRANS_SEQ= #{oriTransSeq}
+	           AND 
+		</if>
+		<if test="merN0 != null">
+			MER_N0= #{merN0}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="callBackStatus != null">
+			CALL_BACK_STATUS= #{callBackStatus}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="oriTransSeq != null">
+		ORI_TRANS_SEQ,
+	</if>
+	<if test="merN0 != null">
+		MER_N0,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="callBackStatus != null">
+		CALL_BACK_STATUS,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="oriTransSeq != null">
+		#{oriTransSeq},
+	</if>
+	<if test="merN0 != null">
+		#{merN0},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="callBackStatus != null">
+		#{callBackStatus},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="oriTransSeq != null">
+		ORI_TRANS_SEQ=#{oriTransSeq},
+	</if>
+	<if test="merN0 != null">
+		MER_N0=#{merN0},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="callBackStatus != null">
+		CALL_BACK_STATUS=#{callBackStatus},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.oriTransSeq != null">
+                    ORI_TRANS_SEQ=#{s.oriTransSeq},
+			</if>
+			<if test="s.merN0 != null">
+                    MER_N0=#{s.merN0},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.callBackStatus != null">
+                    CALL_BACK_STATUS=#{s.callBackStatus}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.oriTransSeq != null">
+                    ORI_TRANS_SEQ=#{w.oriTransSeq}
+                   AND 
+ 			</if>
+			<if test="w.merN0 != null">
+                    MER_N0=#{w.merN0}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.callBackStatus != null">
+                    CALL_BACK_STATUS=#{w.callBackStatus}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

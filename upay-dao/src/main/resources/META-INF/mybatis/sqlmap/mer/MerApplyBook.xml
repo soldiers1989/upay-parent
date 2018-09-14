@@ -1,0 +1,1671 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerApplyBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerApplyBookPo">
+		<id column="ID" property="id" />
+		<result column="MER_APPLY_NO" property="merApplyNo" />
+		<result column="MER_NAME" property="merName" />
+		<result column="MER_WITHOUT_PWD_SIGN" property="merWithoutPwdSign" />
+		<result column="PAY_OPEN_FLAG" property="payOpenFlag" />
+		<result column="MER_BUSI_TYPE" property="merBusiType" />
+		<result column="CONTACT" property="contact" />
+		<result column="CONTACT_TEL" property="contactTel" />
+		<result column="CONTACT_MOBILE" property="contactMobile" />
+		<result column="CONTACT_EMAIL" property="contactEmail" />
+		<result column="MER_TEL" property="merTel" />
+		<result column="MER_FAX" property="merFax" />
+		<result column="MER_ADDR" property="merAddr" />
+		<result column="MER_POSTAL_CODE" property="merPostalCode" />
+		<result column="WEBSITE_CODE" property="websiteCode" />
+		<result column="WEBSITE_NAME" property="websiteName" />
+		<result column="WEBSITE_DOMAIN" property="websiteDomain" />
+		<result column="WEBSITE_SCOP" property="websiteScop" />
+		<result column="COMPANY_NAME" property="companyName" />
+		<result column="EGAL_PERSON_NAME" property="egalPersonName" />
+		<result column="EGAL_PERSON_ID_TYPE" property="egalPersonIdType" />
+		<result column="EGAL_PERSON_ID_NO" property="egalPersonIdNo" />
+		<result column="COMPANY_ID_TYPE" property="companyIdType" />
+		<result column="COMPANY_ID_NO" property="companyIdNo" />
+		<result column="ORG_DEPT_NO" property="orgDeptNo" />
+		<result column="BUSI_LICENSE_ID" property="busiLicenseId" />
+		<result column="APPLY_DATE" property="applyDate" />
+		<result column="APPLY_STATE" property="applyState" />
+		<result column="ANSWER_APPLY" property="answerApply" />
+		<result column="PARENT_MER_NO" property="parentMerNo" />
+		<result column="USER_ID" property="userId" />
+		<result column="WF_ID" property="wfId" />
+		<result column="WF_STATUS" property="wfStatus" />
+		<result column="SUBMITTER" property="submitter" />
+		<result column="SUBMITTER_NAME" property="submitterName" />
+		<result column="SUBMIT_DATE" property="submitDate" />
+		<result column="REVIEWER" property="reviewer" />
+		<result column="REVIEWER_NAME" property="reviewerName" />
+		<result column="REVIEW_DATE" property="reviewDate" />
+		<result column="APPROVER" property="approver" />
+		<result column="APPROVER_NAME" property="approverName" />
+		<result column="APPROVE_DATE" property="approveDate" />
+		<result column="AUDITOR" property="auditor" />
+		<result column="AUDITOR_NAME" property="auditorName" />
+		<result column="AUDIT_DATE" property="auditDate" />
+		<result column="HEAD_AUDITOR" property="headAuditor" />
+		<result column="HEAD_AUDITOR_NAME" property="headAuditorName" />
+		<result column="HEAD_AUDIT_DATE" property="headAuditDate" />
+		<result column="SUB_MCH_ID" property="subMchId" />
+		<result column="EXTENSION_PARTY" property="extensionParty" />
+		<result column="STATE" property="state" />
+		<result column="MER_STATE" property="merState" />
+		<result column="ALIAS_NAME" property="aliasName" />
+		<result column="PROMOTER_NAME" property="promoterName" />
+		<result column="PROMOTER_IPHONE" property="promoterIphone" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+		<result column="PROMOTER_DEPT_NAME" property="promoterDeptName" />
+		<result column="QRCODE_USR_WECHAT" property="qrcodeUsrWechat" />
+		<result column="QRCODE_USR_ALIPAY" property="qrcodeUsrAlipay" />
+		<result column="STL_ACCT_NO" property="stlAcctNo" />
+		<result column="STL_ACCT_TYPE" property="stlAcctType" />
+		<result column="STL_ACCT_NAME" property="stlAcctName" />
+		<result column="BANK_ID" property="bankId" />
+		<result column="BANK_NAME" property="bankName" />
+		<result column="KEY_3DES" property="key3des" />
+		<result column="MER_NO" property="merNo" />
+		<result column="QR_MER" property="qrMer" />
+		<result column="QR_CODE" property="qrCode" />
+		<result column="QR_LIMIT_COUNT" property="qrLimitCount" />
+		<result column="QR_VALID_TIME" property="qrValidTime" />
+		<result column="QR_ORDER_NO" property="qrOrderNo" />
+		<result column="ALIPAY_MERCHANT_ID" property="alipayMerchantId" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_APPLY_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_APPLY_NO,
+		MER_NAME,
+		MER_WITHOUT_PWD_SIGN,
+		PAY_OPEN_FLAG,
+		MER_BUSI_TYPE,
+		CONTACT,
+		CONTACT_TEL,
+		CONTACT_MOBILE,
+		CONTACT_EMAIL,
+		MER_TEL,
+		MER_FAX,
+		MER_ADDR,
+		MER_POSTAL_CODE,
+		WEBSITE_CODE,
+		WEBSITE_NAME,
+		WEBSITE_DOMAIN,
+		WEBSITE_SCOP,
+		COMPANY_NAME,
+		EGAL_PERSON_NAME,
+		EGAL_PERSON_ID_TYPE,
+		EGAL_PERSON_ID_NO,
+		COMPANY_ID_TYPE,
+		COMPANY_ID_NO,
+		ORG_DEPT_NO,
+		BUSI_LICENSE_ID,
+		APPLY_DATE,
+		APPLY_STATE,
+		ANSWER_APPLY,
+		PARENT_MER_NO,
+		USER_ID,
+		WF_ID,
+		WF_STATUS,
+		SUBMITTER,
+		SUBMITTER_NAME,
+		SUBMIT_DATE,
+		REVIEWER,
+		REVIEWER_NAME,
+		REVIEW_DATE,
+		APPROVER,
+		APPROVER_NAME,
+		APPROVE_DATE,
+		AUDITOR,
+		AUDITOR_NAME,
+		AUDIT_DATE,
+		HEAD_AUDITOR,
+		HEAD_AUDITOR_NAME,
+		HEAD_AUDIT_DATE,
+		SUB_MCH_ID,
+		EXTENSION_PARTY,
+		STATE,
+		MER_STATE,
+		ALIAS_NAME,
+		PROMOTER_NAME,
+		PROMOTER_IPHONE,
+		PROMOTER_DEPT_NO,
+		PROMOTER_DEPT_NAME,
+		QRCODE_USR_WECHAT,
+		QRCODE_USR_ALIPAY,
+		STL_ACCT_NO,
+		STL_ACCT_TYPE,
+		STL_ACCT_NAME,
+		BANK_ID,
+		BANK_NAME,
+		KEY_3DES,
+		MER_NO,
+		QR_MER,
+		QR_CODE,
+		QR_LIMIT_COUNT,
+		QR_VALID_TIME,
+		QR_ORDER_NO,
+		ALIPAY_MERCHANT_ID
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merApplyNo != null">
+			MER_APPLY_NO= #{merApplyNo}
+	           AND 
+		</if>
+		<if test="merName != null">
+			MER_NAME= #{merName}
+	           AND 
+		</if>
+		<if test="merWithoutPwdSign != null">
+			MER_WITHOUT_PWD_SIGN= #{merWithoutPwdSign}
+	           AND 
+		</if>
+		<if test="payOpenFlag != null">
+			PAY_OPEN_FLAG= #{payOpenFlag}
+	           AND 
+		</if>
+		<if test="merBusiType != null">
+			MER_BUSI_TYPE= #{merBusiType}
+	           AND 
+		</if>
+		<if test="contact != null">
+			CONTACT= #{contact}
+	           AND 
+		</if>
+		<if test="contactTel != null">
+			CONTACT_TEL= #{contactTel}
+	           AND 
+		</if>
+		<if test="contactMobile != null">
+			CONTACT_MOBILE= #{contactMobile}
+	           AND 
+		</if>
+		<if test="contactEmail != null">
+			CONTACT_EMAIL= #{contactEmail}
+	           AND 
+		</if>
+		<if test="merTel != null">
+			MER_TEL= #{merTel}
+	           AND 
+		</if>
+		<if test="merFax != null">
+			MER_FAX= #{merFax}
+	           AND 
+		</if>
+		<if test="merAddr != null">
+			MER_ADDR= #{merAddr}
+	           AND 
+		</if>
+		<if test="merPostalCode != null">
+			MER_POSTAL_CODE= #{merPostalCode}
+	           AND 
+		</if>
+		<if test="websiteCode != null">
+			WEBSITE_CODE= #{websiteCode}
+	           AND 
+		</if>
+		<if test="websiteName != null">
+			WEBSITE_NAME= #{websiteName}
+	           AND 
+		</if>
+		<if test="websiteDomain != null">
+			WEBSITE_DOMAIN= #{websiteDomain}
+	           AND 
+		</if>
+		<if test="websiteScop != null">
+			WEBSITE_SCOP= #{websiteScop}
+	           AND 
+		</if>
+		<if test="companyName != null">
+			COMPANY_NAME= #{companyName}
+	           AND 
+		</if>
+		<if test="egalPersonName != null">
+			EGAL_PERSON_NAME= #{egalPersonName}
+	           AND 
+		</if>
+		<if test="egalPersonIdType != null">
+			EGAL_PERSON_ID_TYPE= #{egalPersonIdType}
+	           AND 
+		</if>
+		<if test="egalPersonIdNo != null">
+			EGAL_PERSON_ID_NO= #{egalPersonIdNo}
+	           AND 
+		</if>
+		<if test="companyIdType != null">
+			COMPANY_ID_TYPE= #{companyIdType}
+	           AND 
+		</if>
+		<if test="companyIdNo != null">
+			COMPANY_ID_NO= #{companyIdNo}
+	           AND 
+		</if>
+		<if test="orgDeptNo != null">
+			ORG_DEPT_NO= #{orgDeptNo}
+	           AND 
+		</if>
+		<if test="busiLicenseId != null">
+			BUSI_LICENSE_ID= #{busiLicenseId}
+	           AND 
+		</if>
+		<if test="applyDate != null">
+			APPLY_DATE= #{applyDate}
+	           AND 
+		</if>
+		<if test="applyState != null">
+			APPLY_STATE= #{applyState}
+	           AND 
+		</if>
+		<if test="answerApply != null">
+			ANSWER_APPLY= #{answerApply}
+	           AND 
+		</if>
+		<if test="parentMerNo != null">
+			PARENT_MER_NO= #{parentMerNo}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="wfId != null">
+			WF_ID= #{wfId}
+	           AND 
+		</if>
+		<if test="wfStatus != null">
+			WF_STATUS= #{wfStatus}
+	           AND 
+		</if>
+		<if test="submitter != null">
+			SUBMITTER= #{submitter}
+	           AND 
+		</if>
+		<if test="submitterName != null">
+			SUBMITTER_NAME= #{submitterName}
+	           AND 
+		</if>
+		<if test="submitDate != null">
+			SUBMIT_DATE= #{submitDate}
+	           AND 
+		</if>
+		<if test="reviewer != null">
+			REVIEWER= #{reviewer}
+	           AND 
+		</if>
+		<if test="reviewerName != null">
+			REVIEWER_NAME= #{reviewerName}
+	           AND 
+		</if>
+		<if test="reviewDate != null">
+			REVIEW_DATE= #{reviewDate}
+	           AND 
+		</if>
+		<if test="approver != null">
+			APPROVER= #{approver}
+	           AND 
+		</if>
+		<if test="approverName != null">
+			APPROVER_NAME= #{approverName}
+	           AND 
+		</if>
+		<if test="approveDate != null">
+			APPROVE_DATE= #{approveDate}
+	           AND 
+		</if>
+		<if test="auditor != null">
+			AUDITOR= #{auditor}
+	           AND 
+		</if>
+		<if test="auditorName != null">
+			AUDITOR_NAME= #{auditorName}
+	           AND 
+		</if>
+		<if test="auditDate != null">
+			AUDIT_DATE= #{auditDate}
+	           AND 
+		</if>
+		<if test="headAuditor != null">
+			HEAD_AUDITOR= #{headAuditor}
+	           AND 
+		</if>
+		<if test="headAuditorName != null">
+			HEAD_AUDITOR_NAME= #{headAuditorName}
+	           AND 
+		</if>
+		<if test="headAuditDate != null">
+			HEAD_AUDIT_DATE= #{headAuditDate}
+	           AND 
+		</if>
+		<if test="subMchId != null">
+			SUB_MCH_ID= #{subMchId}
+	           AND 
+		</if>
+		<if test="extensionParty != null">
+			EXTENSION_PARTY= #{extensionParty}
+	           AND 
+		</if>
+		<if test="state != null">
+			STATE= #{state}
+	           AND 
+		</if>
+		<if test="merState != null">
+			MER_STATE= #{merState}
+	           AND 
+		</if>
+		<if test="aliasName != null">
+			ALIAS_NAME= #{aliasName}
+	           AND 
+		</if>
+		<if test="promoterName != null">
+			PROMOTER_NAME= #{promoterName}
+	           AND 
+		</if>
+		<if test="promoterIphone != null">
+			PROMOTER_IPHONE= #{promoterIphone}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+	           AND 
+		</if>
+		<if test="promoterDeptName != null">
+			PROMOTER_DEPT_NAME= #{promoterDeptName}
+	           AND 
+		</if>
+		<if test="qrcodeUsrWechat != null">
+			QRCODE_USR_WECHAT= #{qrcodeUsrWechat}
+	           AND 
+		</if>
+		<if test="qrcodeUsrAlipay != null">
+			QRCODE_USR_ALIPAY= #{qrcodeUsrAlipay}
+	           AND 
+		</if>
+		<if test="stlAcctNo != null">
+			STL_ACCT_NO= #{stlAcctNo}
+	           AND 
+		</if>
+		<if test="stlAcctType != null">
+			STL_ACCT_TYPE= #{stlAcctType}
+	           AND 
+		</if>
+		<if test="stlAcctName != null">
+			STL_ACCT_NAME= #{stlAcctName}
+	           AND 
+		</if>
+		<if test="bankId != null">
+			BANK_ID= #{bankId}
+	           AND 
+		</if>
+		<if test="bankName != null">
+			BANK_NAME= #{bankName}
+	           AND 
+		</if>
+		<if test="key3des != null">
+			KEY_3DES= #{key3des}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="qrMer != null">
+			QR_MER= #{qrMer}
+	           AND 
+		</if>
+		<if test="qrCode != null">
+			QR_CODE= #{qrCode}
+	           AND 
+		</if>
+		<if test="qrLimitCount != null">
+			QR_LIMIT_COUNT= #{qrLimitCount}
+	           AND 
+		</if>
+		<if test="qrValidTime != null">
+			QR_VALID_TIME= #{qrValidTime}
+	           AND 
+		</if>
+		<if test="qrOrderNo != null">
+			QR_ORDER_NO= #{qrOrderNo}
+	           AND 
+		</if>
+		<if test="alipayMerchantId != null">
+			ALIPAY_MERCHANT_ID= #{alipayMerchantId}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merApplyNo != null">
+		MER_APPLY_NO,
+	</if>
+	<if test="merName != null">
+		MER_NAME,
+	</if>
+	<if test="merWithoutPwdSign != null">
+		MER_WITHOUT_PWD_SIGN,
+	</if>
+	<if test="payOpenFlag != null">
+		PAY_OPEN_FLAG,
+	</if>
+	<if test="merBusiType != null">
+		MER_BUSI_TYPE,
+	</if>
+	<if test="contact != null">
+		CONTACT,
+	</if>
+	<if test="contactTel != null">
+		CONTACT_TEL,
+	</if>
+	<if test="contactMobile != null">
+		CONTACT_MOBILE,
+	</if>
+	<if test="contactEmail != null">
+		CONTACT_EMAIL,
+	</if>
+	<if test="merTel != null">
+		MER_TEL,
+	</if>
+	<if test="merFax != null">
+		MER_FAX,
+	</if>
+	<if test="merAddr != null">
+		MER_ADDR,
+	</if>
+	<if test="merPostalCode != null">
+		MER_POSTAL_CODE,
+	</if>
+	<if test="websiteCode != null">
+		WEBSITE_CODE,
+	</if>
+	<if test="websiteName != null">
+		WEBSITE_NAME,
+	</if>
+	<if test="websiteDomain != null">
+		WEBSITE_DOMAIN,
+	</if>
+	<if test="websiteScop != null">
+		WEBSITE_SCOP,
+	</if>
+	<if test="companyName != null">
+		COMPANY_NAME,
+	</if>
+	<if test="egalPersonName != null">
+		EGAL_PERSON_NAME,
+	</if>
+	<if test="egalPersonIdType != null">
+		EGAL_PERSON_ID_TYPE,
+	</if>
+	<if test="egalPersonIdNo != null">
+		EGAL_PERSON_ID_NO,
+	</if>
+	<if test="companyIdType != null">
+		COMPANY_ID_TYPE,
+	</if>
+	<if test="companyIdNo != null">
+		COMPANY_ID_NO,
+	</if>
+	<if test="orgDeptNo != null">
+		ORG_DEPT_NO,
+	</if>
+	<if test="busiLicenseId != null">
+		BUSI_LICENSE_ID,
+	</if>
+	<if test="applyDate != null">
+		APPLY_DATE,
+	</if>
+	<if test="applyState != null">
+		APPLY_STATE,
+	</if>
+	<if test="answerApply != null">
+		ANSWER_APPLY,
+	</if>
+	<if test="parentMerNo != null">
+		PARENT_MER_NO,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="wfId != null">
+		WF_ID,
+	</if>
+	<if test="wfStatus != null">
+		WF_STATUS,
+	</if>
+	<if test="submitter != null">
+		SUBMITTER,
+	</if>
+	<if test="submitterName != null">
+		SUBMITTER_NAME,
+	</if>
+	<if test="submitDate != null">
+		SUBMIT_DATE,
+	</if>
+	<if test="reviewer != null">
+		REVIEWER,
+	</if>
+	<if test="reviewerName != null">
+		REVIEWER_NAME,
+	</if>
+	<if test="reviewDate != null">
+		REVIEW_DATE,
+	</if>
+	<if test="approver != null">
+		APPROVER,
+	</if>
+	<if test="approverName != null">
+		APPROVER_NAME,
+	</if>
+	<if test="approveDate != null">
+		APPROVE_DATE,
+	</if>
+	<if test="auditor != null">
+		AUDITOR,
+	</if>
+	<if test="auditorName != null">
+		AUDITOR_NAME,
+	</if>
+	<if test="auditDate != null">
+		AUDIT_DATE,
+	</if>
+	<if test="headAuditor != null">
+		HEAD_AUDITOR,
+	</if>
+	<if test="headAuditorName != null">
+		HEAD_AUDITOR_NAME,
+	</if>
+	<if test="headAuditDate != null">
+		HEAD_AUDIT_DATE,
+	</if>
+	<if test="subMchId != null">
+		SUB_MCH_ID,
+	</if>
+	<if test="extensionParty != null">
+		EXTENSION_PARTY,
+	</if>
+	<if test="state != null">
+		STATE,
+	</if>
+	<if test="merState != null">
+		MER_STATE,
+	</if>
+	<if test="aliasName != null">
+		ALIAS_NAME,
+	</if>
+	<if test="promoterName != null">
+		PROMOTER_NAME,
+	</if>
+	<if test="promoterIphone != null">
+		PROMOTER_IPHONE,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+	<if test="promoterDeptName != null">
+		PROMOTER_DEPT_NAME,
+	</if>
+	<if test="qrcodeUsrWechat != null">
+		QRCODE_USR_WECHAT,
+	</if>
+	<if test="qrcodeUsrAlipay != null">
+		QRCODE_USR_ALIPAY,
+	</if>
+	<if test="stlAcctNo != null">
+		STL_ACCT_NO,
+	</if>
+	<if test="stlAcctType != null">
+		STL_ACCT_TYPE,
+	</if>
+	<if test="stlAcctName != null">
+		STL_ACCT_NAME,
+	</if>
+	<if test="bankId != null">
+		BANK_ID,
+	</if>
+	<if test="bankName != null">
+		BANK_NAME,
+	</if>
+	<if test="key3des != null">
+		KEY_3DES,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="qrMer != null">
+		QR_MER,
+	</if>
+	<if test="qrCode != null">
+		QR_CODE,
+	</if>
+	<if test="qrLimitCount != null">
+		QR_LIMIT_COUNT,
+	</if>
+	<if test="qrValidTime != null">
+		QR_VALID_TIME,
+	</if>
+	<if test="qrOrderNo != null">
+		QR_ORDER_NO,
+	</if>
+	<if test="alipayMerchantId != null">
+		ALIPAY_MERCHANT_ID,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merApplyNo != null">
+		#{merApplyNo},
+	</if>
+	<if test="merName != null">
+		#{merName},
+	</if>
+	<if test="merWithoutPwdSign != null">
+		#{merWithoutPwdSign},
+	</if>
+	<if test="payOpenFlag != null">
+		#{payOpenFlag},
+	</if>
+	<if test="merBusiType != null">
+		#{merBusiType},
+	</if>
+	<if test="contact != null">
+		#{contact},
+	</if>
+	<if test="contactTel != null">
+		#{contactTel},
+	</if>
+	<if test="contactMobile != null">
+		#{contactMobile},
+	</if>
+	<if test="contactEmail != null">
+		#{contactEmail},
+	</if>
+	<if test="merTel != null">
+		#{merTel},
+	</if>
+	<if test="merFax != null">
+		#{merFax},
+	</if>
+	<if test="merAddr != null">
+		#{merAddr},
+	</if>
+	<if test="merPostalCode != null">
+		#{merPostalCode},
+	</if>
+	<if test="websiteCode != null">
+		#{websiteCode},
+	</if>
+	<if test="websiteName != null">
+		#{websiteName},
+	</if>
+	<if test="websiteDomain != null">
+		#{websiteDomain},
+	</if>
+	<if test="websiteScop != null">
+		#{websiteScop},
+	</if>
+	<if test="companyName != null">
+		#{companyName},
+	</if>
+	<if test="egalPersonName != null">
+		#{egalPersonName},
+	</if>
+	<if test="egalPersonIdType != null">
+		#{egalPersonIdType},
+	</if>
+	<if test="egalPersonIdNo != null">
+		#{egalPersonIdNo},
+	</if>
+	<if test="companyIdType != null">
+		#{companyIdType},
+	</if>
+	<if test="companyIdNo != null">
+		#{companyIdNo},
+	</if>
+	<if test="orgDeptNo != null">
+		#{orgDeptNo},
+	</if>
+	<if test="busiLicenseId != null">
+		#{busiLicenseId},
+	</if>
+	<if test="applyDate != null">
+		#{applyDate},
+	</if>
+	<if test="applyState != null">
+		#{applyState},
+	</if>
+	<if test="answerApply != null">
+		#{answerApply},
+	</if>
+	<if test="parentMerNo != null">
+		#{parentMerNo},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="wfId != null">
+		#{wfId},
+	</if>
+	<if test="wfStatus != null">
+		#{wfStatus},
+	</if>
+	<if test="submitter != null">
+		#{submitter},
+	</if>
+	<if test="submitterName != null">
+		#{submitterName},
+	</if>
+	<if test="submitDate != null">
+		#{submitDate},
+	</if>
+	<if test="reviewer != null">
+		#{reviewer},
+	</if>
+	<if test="reviewerName != null">
+		#{reviewerName},
+	</if>
+	<if test="reviewDate != null">
+		#{reviewDate},
+	</if>
+	<if test="approver != null">
+		#{approver},
+	</if>
+	<if test="approverName != null">
+		#{approverName},
+	</if>
+	<if test="approveDate != null">
+		#{approveDate},
+	</if>
+	<if test="auditor != null">
+		#{auditor},
+	</if>
+	<if test="auditorName != null">
+		#{auditorName},
+	</if>
+	<if test="auditDate != null">
+		#{auditDate},
+	</if>
+	<if test="headAuditor != null">
+		#{headAuditor},
+	</if>
+	<if test="headAuditorName != null">
+		#{headAuditorName},
+	</if>
+	<if test="headAuditDate != null">
+		#{headAuditDate},
+	</if>
+	<if test="subMchId != null">
+		#{subMchId},
+	</if>
+	<if test="extensionParty != null">
+		#{extensionParty},
+	</if>
+	<if test="state != null">
+		#{state},
+	</if>
+	<if test="merState != null">
+		#{merState},
+	</if>
+	<if test="aliasName != null">
+		#{aliasName},
+	</if>
+	<if test="promoterName != null">
+		#{promoterName},
+	</if>
+	<if test="promoterIphone != null">
+		#{promoterIphone},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+	<if test="promoterDeptName != null">
+		#{promoterDeptName},
+	</if>
+	<if test="qrcodeUsrWechat != null">
+		#{qrcodeUsrWechat},
+	</if>
+	<if test="qrcodeUsrAlipay != null">
+		#{qrcodeUsrAlipay},
+	</if>
+	<if test="stlAcctNo != null">
+		#{stlAcctNo},
+	</if>
+	<if test="stlAcctType != null">
+		#{stlAcctType},
+	</if>
+	<if test="stlAcctName != null">
+		#{stlAcctName},
+	</if>
+	<if test="bankId != null">
+		#{bankId},
+	</if>
+	<if test="bankName != null">
+		#{bankName},
+	</if>
+	<if test="key3des != null">
+		#{key3des},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="qrMer != null">
+		#{qrMer},
+	</if>
+	<if test="qrCode != null">
+		#{qrCode},
+	</if>
+	<if test="qrLimitCount != null">
+		#{qrLimitCount},
+	</if>
+	<if test="qrValidTime != null">
+		#{qrValidTime},
+	</if>
+	<if test="qrOrderNo != null">
+		#{qrOrderNo},
+	</if>
+	<if test="alipayMerchantId != null">
+		#{alipayMerchantId},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merApplyNo != null">
+		MER_APPLY_NO=#{merApplyNo},
+	</if>
+	<if test="merName != null">
+		MER_NAME=#{merName},
+	</if>
+	<if test="merWithoutPwdSign != null">
+		MER_WITHOUT_PWD_SIGN=#{merWithoutPwdSign},
+	</if>
+	<if test="payOpenFlag != null">
+		PAY_OPEN_FLAG=#{payOpenFlag},
+	</if>
+	<if test="merBusiType != null">
+		MER_BUSI_TYPE=#{merBusiType},
+	</if>
+	<if test="contact != null">
+		CONTACT=#{contact},
+	</if>
+	<if test="contactTel != null">
+		CONTACT_TEL=#{contactTel},
+	</if>
+	<if test="contactMobile != null">
+		CONTACT_MOBILE=#{contactMobile},
+	</if>
+	<if test="contactEmail != null">
+		CONTACT_EMAIL=#{contactEmail},
+	</if>
+	<if test="merTel != null">
+		MER_TEL=#{merTel},
+	</if>
+	<if test="merFax != null">
+		MER_FAX=#{merFax},
+	</if>
+	<if test="merAddr != null">
+		MER_ADDR=#{merAddr},
+	</if>
+	<if test="merPostalCode != null">
+		MER_POSTAL_CODE=#{merPostalCode},
+	</if>
+	<if test="websiteCode != null">
+		WEBSITE_CODE=#{websiteCode},
+	</if>
+	<if test="websiteName != null">
+		WEBSITE_NAME=#{websiteName},
+	</if>
+	<if test="websiteDomain != null">
+		WEBSITE_DOMAIN=#{websiteDomain},
+	</if>
+	<if test="websiteScop != null">
+		WEBSITE_SCOP=#{websiteScop},
+	</if>
+	<if test="companyName != null">
+		COMPANY_NAME=#{companyName},
+	</if>
+	<if test="egalPersonName != null">
+		EGAL_PERSON_NAME=#{egalPersonName},
+	</if>
+	<if test="egalPersonIdType != null">
+		EGAL_PERSON_ID_TYPE=#{egalPersonIdType},
+	</if>
+	<if test="egalPersonIdNo != null">
+		EGAL_PERSON_ID_NO=#{egalPersonIdNo},
+	</if>
+	<if test="companyIdType != null">
+		COMPANY_ID_TYPE=#{companyIdType},
+	</if>
+	<if test="companyIdNo != null">
+		COMPANY_ID_NO=#{companyIdNo},
+	</if>
+	<if test="orgDeptNo != null">
+		ORG_DEPT_NO=#{orgDeptNo},
+	</if>
+	<if test="busiLicenseId != null">
+		BUSI_LICENSE_ID=#{busiLicenseId},
+	</if>
+	<if test="applyDate != null">
+		APPLY_DATE=#{applyDate},
+	</if>
+	<if test="applyState != null">
+		APPLY_STATE=#{applyState},
+	</if>
+	<if test="answerApply != null">
+		ANSWER_APPLY=#{answerApply},
+	</if>
+	<if test="parentMerNo != null">
+		PARENT_MER_NO=#{parentMerNo},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="wfId != null">
+		WF_ID=#{wfId},
+	</if>
+	<if test="wfStatus != null">
+		WF_STATUS=#{wfStatus},
+	</if>
+	<if test="submitter != null">
+		SUBMITTER=#{submitter},
+	</if>
+	<if test="submitterName != null">
+		SUBMITTER_NAME=#{submitterName},
+	</if>
+	<if test="submitDate != null">
+		SUBMIT_DATE=#{submitDate},
+	</if>
+	<if test="reviewer != null">
+		REVIEWER=#{reviewer},
+	</if>
+	<if test="reviewerName != null">
+		REVIEWER_NAME=#{reviewerName},
+	</if>
+	<if test="reviewDate != null">
+		REVIEW_DATE=#{reviewDate},
+	</if>
+	<if test="approver != null">
+		APPROVER=#{approver},
+	</if>
+	<if test="approverName != null">
+		APPROVER_NAME=#{approverName},
+	</if>
+	<if test="approveDate != null">
+		APPROVE_DATE=#{approveDate},
+	</if>
+	<if test="auditor != null">
+		AUDITOR=#{auditor},
+	</if>
+	<if test="auditorName != null">
+		AUDITOR_NAME=#{auditorName},
+	</if>
+	<if test="auditDate != null">
+		AUDIT_DATE=#{auditDate},
+	</if>
+	<if test="headAuditor != null">
+		HEAD_AUDITOR=#{headAuditor},
+	</if>
+	<if test="headAuditorName != null">
+		HEAD_AUDITOR_NAME=#{headAuditorName},
+	</if>
+	<if test="headAuditDate != null">
+		HEAD_AUDIT_DATE=#{headAuditDate},
+	</if>
+	<if test="subMchId != null">
+		SUB_MCH_ID=#{subMchId},
+	</if>
+	<if test="extensionParty != null">
+		EXTENSION_PARTY=#{extensionParty},
+	</if>
+	<if test="state != null">
+		STATE=#{state},
+	</if>
+	<if test="merState != null">
+		MER_STATE=#{merState},
+	</if>
+	<if test="aliasName != null">
+		ALIAS_NAME=#{aliasName},
+	</if>
+	<if test="promoterName != null">
+		PROMOTER_NAME=#{promoterName},
+	</if>
+	<if test="promoterIphone != null">
+		PROMOTER_IPHONE=#{promoterIphone},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+	<if test="promoterDeptName != null">
+		PROMOTER_DEPT_NAME=#{promoterDeptName},
+	</if>
+	<if test="qrcodeUsrWechat != null">
+		QRCODE_USR_WECHAT=#{qrcodeUsrWechat},
+	</if>
+	<if test="qrcodeUsrAlipay != null">
+		QRCODE_USR_ALIPAY=#{qrcodeUsrAlipay},
+	</if>
+	<if test="stlAcctNo != null">
+		STL_ACCT_NO=#{stlAcctNo},
+	</if>
+	<if test="stlAcctType != null">
+		STL_ACCT_TYPE=#{stlAcctType},
+	</if>
+	<if test="stlAcctName != null">
+		STL_ACCT_NAME=#{stlAcctName},
+	</if>
+	<if test="bankId != null">
+		BANK_ID=#{bankId},
+	</if>
+	<if test="bankName != null">
+		BANK_NAME=#{bankName},
+	</if>
+	<if test="key3des != null">
+		KEY_3DES=#{key3des},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="qrMer != null">
+		QR_MER=#{qrMer},
+	</if>
+	<if test="qrCode != null">
+		QR_CODE=#{qrCode},
+	</if>
+	<if test="qrLimitCount != null">
+		QR_LIMIT_COUNT=#{qrLimitCount},
+	</if>
+	<if test="qrValidTime != null">
+		QR_VALID_TIME=#{qrValidTime},
+	</if>
+	<if test="qrOrderNo != null">
+		QR_ORDER_NO=#{qrOrderNo},
+	</if>
+	<if test="alipayMerchantId != null">
+		ALIPAY_MERCHANT_ID=#{alipayMerchantId},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merApplyNo != null">
+                    MER_APPLY_NO=#{s.merApplyNo},
+			</if>
+			<if test="s.merName != null">
+                    MER_NAME=#{s.merName},
+			</if>
+			<if test="s.merWithoutPwdSign != null">
+                    MER_WITHOUT_PWD_SIGN=#{s.merWithoutPwdSign},
+			</if>
+			<if test="s.payOpenFlag != null">
+                    PAY_OPEN_FLAG=#{s.payOpenFlag},
+			</if>
+			<if test="s.merBusiType != null">
+                    MER_BUSI_TYPE=#{s.merBusiType},
+			</if>
+			<if test="s.contact != null">
+                    CONTACT=#{s.contact},
+			</if>
+			<if test="s.contactTel != null">
+                    CONTACT_TEL=#{s.contactTel},
+			</if>
+			<if test="s.contactMobile != null">
+                    CONTACT_MOBILE=#{s.contactMobile},
+			</if>
+			<if test="s.contactEmail != null">
+                    CONTACT_EMAIL=#{s.contactEmail},
+			</if>
+			<if test="s.merTel != null">
+                    MER_TEL=#{s.merTel},
+			</if>
+			<if test="s.merFax != null">
+                    MER_FAX=#{s.merFax},
+			</if>
+			<if test="s.merAddr != null">
+                    MER_ADDR=#{s.merAddr},
+			</if>
+			<if test="s.merPostalCode != null">
+                    MER_POSTAL_CODE=#{s.merPostalCode},
+			</if>
+			<if test="s.websiteCode != null">
+                    WEBSITE_CODE=#{s.websiteCode},
+			</if>
+			<if test="s.websiteName != null">
+                    WEBSITE_NAME=#{s.websiteName},
+			</if>
+			<if test="s.websiteDomain != null">
+                    WEBSITE_DOMAIN=#{s.websiteDomain},
+			</if>
+			<if test="s.websiteScop != null">
+                    WEBSITE_SCOP=#{s.websiteScop},
+			</if>
+			<if test="s.companyName != null">
+                    COMPANY_NAME=#{s.companyName},
+			</if>
+			<if test="s.egalPersonName != null">
+                    EGAL_PERSON_NAME=#{s.egalPersonName},
+			</if>
+			<if test="s.egalPersonIdType != null">
+                    EGAL_PERSON_ID_TYPE=#{s.egalPersonIdType},
+			</if>
+			<if test="s.egalPersonIdNo != null">
+                    EGAL_PERSON_ID_NO=#{s.egalPersonIdNo},
+			</if>
+			<if test="s.companyIdType != null">
+                    COMPANY_ID_TYPE=#{s.companyIdType},
+			</if>
+			<if test="s.companyIdNo != null">
+                    COMPANY_ID_NO=#{s.companyIdNo},
+			</if>
+			<if test="s.orgDeptNo != null">
+                    ORG_DEPT_NO=#{s.orgDeptNo},
+			</if>
+			<if test="s.busiLicenseId != null">
+                    BUSI_LICENSE_ID=#{s.busiLicenseId},
+			</if>
+			<if test="s.applyDate != null">
+                    APPLY_DATE=#{s.applyDate},
+			</if>
+			<if test="s.applyState != null">
+                    APPLY_STATE=#{s.applyState},
+			</if>
+			<if test="s.answerApply != null">
+                    ANSWER_APPLY=#{s.answerApply},
+			</if>
+			<if test="s.parentMerNo != null">
+                    PARENT_MER_NO=#{s.parentMerNo},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.wfId != null">
+                    WF_ID=#{s.wfId},
+			</if>
+			<if test="s.wfStatus != null">
+                    WF_STATUS=#{s.wfStatus},
+			</if>
+			<if test="s.submitter != null">
+                    SUBMITTER=#{s.submitter},
+			</if>
+			<if test="s.submitterName != null">
+                    SUBMITTER_NAME=#{s.submitterName},
+			</if>
+			<if test="s.submitDate != null">
+                    SUBMIT_DATE=#{s.submitDate},
+			</if>
+			<if test="s.reviewer != null">
+                    REVIEWER=#{s.reviewer},
+			</if>
+			<if test="s.reviewerName != null">
+                    REVIEWER_NAME=#{s.reviewerName},
+			</if>
+			<if test="s.reviewDate != null">
+                    REVIEW_DATE=#{s.reviewDate},
+			</if>
+			<if test="s.approver != null">
+                    APPROVER=#{s.approver},
+			</if>
+			<if test="s.approverName != null">
+                    APPROVER_NAME=#{s.approverName},
+			</if>
+			<if test="s.approveDate != null">
+                    APPROVE_DATE=#{s.approveDate},
+			</if>
+			<if test="s.auditor != null">
+                    AUDITOR=#{s.auditor},
+			</if>
+			<if test="s.auditorName != null">
+                    AUDITOR_NAME=#{s.auditorName},
+			</if>
+			<if test="s.auditDate != null">
+                    AUDIT_DATE=#{s.auditDate},
+			</if>
+			<if test="s.headAuditor != null">
+                    HEAD_AUDITOR=#{s.headAuditor},
+			</if>
+			<if test="s.headAuditorName != null">
+                    HEAD_AUDITOR_NAME=#{s.headAuditorName},
+			</if>
+			<if test="s.headAuditDate != null">
+                    HEAD_AUDIT_DATE=#{s.headAuditDate},
+			</if>
+			<if test="s.subMchId != null">
+                    SUB_MCH_ID=#{s.subMchId},
+			</if>
+			<if test="s.extensionParty != null">
+                    EXTENSION_PARTY=#{s.extensionParty},
+			</if>
+			<if test="s.state != null">
+                    STATE=#{s.state},
+			</if>
+			<if test="s.merState != null">
+                    MER_STATE=#{s.merState},
+			</if>
+			<if test="s.aliasName != null">
+                    ALIAS_NAME=#{s.aliasName},
+			</if>
+			<if test="s.promoterName != null">
+                    PROMOTER_NAME=#{s.promoterName},
+			</if>
+			<if test="s.promoterIphone != null">
+                    PROMOTER_IPHONE=#{s.promoterIphone},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo},
+			</if>
+			<if test="s.promoterDeptName != null">
+                    PROMOTER_DEPT_NAME=#{s.promoterDeptName},
+			</if>
+			<if test="s.qrcodeUsrWechat != null">
+                    QRCODE_USR_WECHAT=#{s.qrcodeUsrWechat},
+			</if>
+			<if test="s.qrcodeUsrAlipay != null">
+                    QRCODE_USR_ALIPAY=#{s.qrcodeUsrAlipay},
+			</if>
+			<if test="s.stlAcctNo != null">
+                    STL_ACCT_NO=#{s.stlAcctNo},
+			</if>
+			<if test="s.stlAcctType != null">
+                    STL_ACCT_TYPE=#{s.stlAcctType},
+			</if>
+			<if test="s.stlAcctName != null">
+                    STL_ACCT_NAME=#{s.stlAcctName},
+			</if>
+			<if test="s.bankId != null">
+                    BANK_ID=#{s.bankId},
+			</if>
+			<if test="s.bankName != null">
+                    BANK_NAME=#{s.bankName},
+			</if>
+			<if test="s.key3des != null">
+                    KEY_3DES=#{s.key3des},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.qrMer != null">
+                    QR_MER=#{s.qrMer},
+			</if>
+			<if test="s.qrCode != null">
+                    QR_CODE=#{s.qrCode},
+			</if>
+			<if test="s.qrLimitCount != null">
+                    QR_LIMIT_COUNT=#{s.qrLimitCount},
+			</if>
+			<if test="s.qrValidTime != null">
+                    QR_VALID_TIME=#{s.qrValidTime},
+			</if>
+			<if test="s.qrOrderNo != null">
+                    QR_ORDER_NO=#{s.qrOrderNo},
+			</if>
+			<if test="s.alipayMerchantId != null">
+                    ALIPAY_MERCHANT_ID=#{s.alipayMerchantId}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merApplyNo != null">
+                    MER_APPLY_NO=#{w.merApplyNo}
+                   AND 
+ 			</if>
+			<if test="w.merName != null">
+                    MER_NAME=#{w.merName}
+                   AND 
+ 			</if>
+			<if test="w.merWithoutPwdSign != null">
+                    MER_WITHOUT_PWD_SIGN=#{w.merWithoutPwdSign}
+                   AND 
+ 			</if>
+			<if test="w.payOpenFlag != null">
+                    PAY_OPEN_FLAG=#{w.payOpenFlag}
+                   AND 
+ 			</if>
+			<if test="w.merBusiType != null">
+                    MER_BUSI_TYPE=#{w.merBusiType}
+                   AND 
+ 			</if>
+			<if test="w.contact != null">
+                    CONTACT=#{w.contact}
+                   AND 
+ 			</if>
+			<if test="w.contactTel != null">
+                    CONTACT_TEL=#{w.contactTel}
+                   AND 
+ 			</if>
+			<if test="w.contactMobile != null">
+                    CONTACT_MOBILE=#{w.contactMobile}
+                   AND 
+ 			</if>
+			<if test="w.contactEmail != null">
+                    CONTACT_EMAIL=#{w.contactEmail}
+                   AND 
+ 			</if>
+			<if test="w.merTel != null">
+                    MER_TEL=#{w.merTel}
+                   AND 
+ 			</if>
+			<if test="w.merFax != null">
+                    MER_FAX=#{w.merFax}
+                   AND 
+ 			</if>
+			<if test="w.merAddr != null">
+                    MER_ADDR=#{w.merAddr}
+                   AND 
+ 			</if>
+			<if test="w.merPostalCode != null">
+                    MER_POSTAL_CODE=#{w.merPostalCode}
+                   AND 
+ 			</if>
+			<if test="w.websiteCode != null">
+                    WEBSITE_CODE=#{w.websiteCode}
+                   AND 
+ 			</if>
+			<if test="w.websiteName != null">
+                    WEBSITE_NAME=#{w.websiteName}
+                   AND 
+ 			</if>
+			<if test="w.websiteDomain != null">
+                    WEBSITE_DOMAIN=#{w.websiteDomain}
+                   AND 
+ 			</if>
+			<if test="w.websiteScop != null">
+                    WEBSITE_SCOP=#{w.websiteScop}
+                   AND 
+ 			</if>
+			<if test="w.companyName != null">
+                    COMPANY_NAME=#{w.companyName}
+                   AND 
+ 			</if>
+			<if test="w.egalPersonName != null">
+                    EGAL_PERSON_NAME=#{w.egalPersonName}
+                   AND 
+ 			</if>
+			<if test="w.egalPersonIdType != null">
+                    EGAL_PERSON_ID_TYPE=#{w.egalPersonIdType}
+                   AND 
+ 			</if>
+			<if test="w.egalPersonIdNo != null">
+                    EGAL_PERSON_ID_NO=#{w.egalPersonIdNo}
+                   AND 
+ 			</if>
+			<if test="w.companyIdType != null">
+                    COMPANY_ID_TYPE=#{w.companyIdType}
+                   AND 
+ 			</if>
+			<if test="w.companyIdNo != null">
+                    COMPANY_ID_NO=#{w.companyIdNo}
+                   AND 
+ 			</if>
+			<if test="w.orgDeptNo != null">
+                    ORG_DEPT_NO=#{w.orgDeptNo}
+                   AND 
+ 			</if>
+			<if test="w.busiLicenseId != null">
+                    BUSI_LICENSE_ID=#{w.busiLicenseId}
+                   AND 
+ 			</if>
+			<if test="w.applyDate != null">
+                    APPLY_DATE=#{w.applyDate}
+                   AND 
+ 			</if>
+			<if test="w.applyState != null">
+                    APPLY_STATE=#{w.applyState}
+                   AND 
+ 			</if>
+			<if test="w.answerApply != null">
+                    ANSWER_APPLY=#{w.answerApply}
+                   AND 
+ 			</if>
+			<if test="w.parentMerNo != null">
+                    PARENT_MER_NO=#{w.parentMerNo}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.wfId != null">
+                    WF_ID=#{w.wfId}
+                   AND 
+ 			</if>
+			<if test="w.wfStatus != null">
+                    WF_STATUS=#{w.wfStatus}
+                   AND 
+ 			</if>
+			<if test="w.submitter != null">
+                    SUBMITTER=#{w.submitter}
+                   AND 
+ 			</if>
+			<if test="w.submitterName != null">
+                    SUBMITTER_NAME=#{w.submitterName}
+                   AND 
+ 			</if>
+			<if test="w.submitDate != null">
+                    SUBMIT_DATE=#{w.submitDate}
+                   AND 
+ 			</if>
+			<if test="w.reviewer != null">
+                    REVIEWER=#{w.reviewer}
+                   AND 
+ 			</if>
+			<if test="w.reviewerName != null">
+                    REVIEWER_NAME=#{w.reviewerName}
+                   AND 
+ 			</if>
+			<if test="w.reviewDate != null">
+                    REVIEW_DATE=#{w.reviewDate}
+                   AND 
+ 			</if>
+			<if test="w.approver != null">
+                    APPROVER=#{w.approver}
+                   AND 
+ 			</if>
+			<if test="w.approverName != null">
+                    APPROVER_NAME=#{w.approverName}
+                   AND 
+ 			</if>
+			<if test="w.approveDate != null">
+                    APPROVE_DATE=#{w.approveDate}
+                   AND 
+ 			</if>
+			<if test="w.auditor != null">
+                    AUDITOR=#{w.auditor}
+                   AND 
+ 			</if>
+			<if test="w.auditorName != null">
+                    AUDITOR_NAME=#{w.auditorName}
+                   AND 
+ 			</if>
+			<if test="w.auditDate != null">
+                    AUDIT_DATE=#{w.auditDate}
+                   AND 
+ 			</if>
+			<if test="w.headAuditor != null">
+                    HEAD_AUDITOR=#{w.headAuditor}
+                   AND 
+ 			</if>
+			<if test="w.headAuditorName != null">
+                    HEAD_AUDITOR_NAME=#{w.headAuditorName}
+                   AND 
+ 			</if>
+			<if test="w.headAuditDate != null">
+                    HEAD_AUDIT_DATE=#{w.headAuditDate}
+                   AND 
+ 			</if>
+			<if test="w.subMchId != null">
+                    SUB_MCH_ID=#{w.subMchId}
+                   AND 
+ 			</if>
+			<if test="w.extensionParty != null">
+                    EXTENSION_PARTY=#{w.extensionParty}
+                   AND 
+ 			</if>
+			<if test="w.state != null">
+                    STATE=#{w.state}
+                   AND 
+ 			</if>
+			<if test="w.merState != null">
+                    MER_STATE=#{w.merState}
+                   AND 
+ 			</if>
+			<if test="w.aliasName != null">
+                    ALIAS_NAME=#{w.aliasName}
+                   AND 
+ 			</if>
+			<if test="w.promoterName != null">
+                    PROMOTER_NAME=#{w.promoterName}
+                   AND 
+ 			</if>
+			<if test="w.promoterIphone != null">
+                    PROMOTER_IPHONE=#{w.promoterIphone}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptName != null">
+                    PROMOTER_DEPT_NAME=#{w.promoterDeptName}
+                   AND 
+ 			</if>
+			<if test="w.qrcodeUsrWechat != null">
+                    QRCODE_USR_WECHAT=#{w.qrcodeUsrWechat}
+                   AND 
+ 			</if>
+			<if test="w.qrcodeUsrAlipay != null">
+                    QRCODE_USR_ALIPAY=#{w.qrcodeUsrAlipay}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctNo != null">
+                    STL_ACCT_NO=#{w.stlAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctType != null">
+                    STL_ACCT_TYPE=#{w.stlAcctType}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctName != null">
+                    STL_ACCT_NAME=#{w.stlAcctName}
+                   AND 
+ 			</if>
+			<if test="w.bankId != null">
+                    BANK_ID=#{w.bankId}
+                   AND 
+ 			</if>
+			<if test="w.bankName != null">
+                    BANK_NAME=#{w.bankName}
+                   AND 
+ 			</if>
+			<if test="w.key3des != null">
+                    KEY_3DES=#{w.key3des}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.qrMer != null">
+                    QR_MER=#{w.qrMer}
+                   AND 
+ 			</if>
+			<if test="w.qrCode != null">
+                    QR_CODE=#{w.qrCode}
+                   AND 
+ 			</if>
+			<if test="w.qrLimitCount != null">
+                    QR_LIMIT_COUNT=#{w.qrLimitCount}
+                   AND 
+ 			</if>
+			<if test="w.qrValidTime != null">
+                    QR_VALID_TIME=#{w.qrValidTime}
+                   AND 
+ 			</if>
+			<if test="w.qrOrderNo != null">
+                    QR_ORDER_NO=#{w.qrOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.alipayMerchantId != null">
+                    ALIPAY_MERCHANT_ID=#{w.alipayMerchantId}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

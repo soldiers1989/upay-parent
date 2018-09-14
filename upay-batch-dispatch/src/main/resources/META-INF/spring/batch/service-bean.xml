@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="stepServiceContainer"
+		class="com.pactera.dipper.batch.StepServiceContainer" >
+		<constructor-arg ref="batchDispatchServiceApplication" />
+		<constructor-arg ref="registryCenter" />
+	</bean>
+
+	<bean id="jobGroupService"
+		class="com.pactera.dipper.batch.service.impl.JobGroupServiceImpl">
+		<property name="jobService" ref="jobService" />
+		<property name="dipperSequenceService" ref="DIPPER_SEQUENCE_SERVICE" />
+		<property name="batchJobgrpExecutionDAO" ref="batchJobgrpExecutionDAO" />
+		<property name="batchJobExecutionDAO" ref="batchJobExecutionDAO" />
+		<property name="batchJobGroupDAO" ref="batchJobGroupDAO" />
+		<property name="batchJobDAO" ref="batchJobDAO" />
+		<property name="sysinfoDAO" ref="sysinfoDAO" />
+	</bean>
+
+	<bean id="jobService" class="com.pactera.dipper.batch.service.impl.JobService">
+		<property name="batchObjectExecutionDAO" ref="batchObjectExecutionDAO" />
+		<property name="batchJobExecutionDAO" ref="batchJobExecutionDAO" />
+		<property name="batchStepExecutionDAO" ref="batchStepExecutionDAO" />
+		<property name="batchJobDAO" ref="batchJobDAO" />
+		<property name="batchStepDAO" ref="batchStepDAO" />
+		<property name="sysinfoDAO" ref="sysinfoDAO" />
+		<property name="stepServiceContainer" ref="stepServiceContainer" />
+		<property name="jobGroupService" ref="jobGroupService" />
+	</bean>
+
+	<bean id="batchExecutionService"
+		class="com.pactera.dipper.batch.service.impl.BatchExecutionServiceImpl">
+		<property name="batchJobgrpExecutionDAO" ref="batchJobgrpExecutionDAO" />
+		<property name="batchJobExecutionDAO" ref="batchJobExecutionDAO" />
+		<property name="batchStepExecutionDAO" ref="batchStepExecutionDAO" />
+	</bean>
+
+	<!-- 定时任务启动 -->
+	<bean id="batchSchedulerInvoker"
+		class="com.pactera.dipper.batch.scheduler.BatchSchedulerInvoker"
+		init-method="start">
+		<property name="daoService" ref="daoService" />
+		<property name="jobGroupService" ref="jobGroupService" />
+	</bean>
+
+	<!-- -->
+	<bean id="batchObjectExecutionDAO" class="com.pactera.dipper.batch.dao.BatchObjectExecutionDAO">
+		<property name="daoService" ref="daoService" />
+	</bean>
+	
+	<bean id="batchJobDAO" class="com.pactera.dipper.batch.dao.BatchJobDAO">
+		<property name="daoService" ref="daoService" />
+	</bean>
+
+	<bean id="batchJobExecutionDAO" class="com.pactera.dipper.batch.dao.BatchJobExecutionDAO">
+		<property name="dipperSequenceService" ref="DIPPER_SEQUENCE_SERVICE" />
+		<property name="daoService" ref="daoService" />
+	</bean>
+
+	<bean id="batchJobGroupDAO" class="com.pactera.dipper.batch.dao.BatchJobGroupDAO">
+		<property name="daoService" ref="daoService" />
+	</bean>
+
+	<bean id="batchJobgrpExecutionDAO" class="com.pactera.dipper.batch.dao.BatchJobgrpExecutionDAO">
+		<property name="dipperSequenceService" ref="DIPPER_SEQUENCE_SERVICE" />
+		<property name="daoService" ref="daoService" />
+	</bean>
+
+	<bean id="batchStepDAO" class="com.pactera.dipper.batch.dao.BatchStepDAO">
+		<property name="daoService" ref="daoService" />
+	</bean>
+
+	<bean id="batchStepExecutionDAO" class="com.pactera.dipper.batch.dao.BatchStepExecutionDAO">
+		<property name="dipperSequenceService" ref="DIPPER_SEQUENCE_SERVICE" />
+		<property name="daoService" ref="daoService" />
+	</bean>
+
+	<bean id="sysinfoDAO" class="com.pactera.dipper.batch.dao.SysinfoDAO">
+		<property name="daoService" ref="daoService" />
+		<property name="useDB" value="true" />
+	</bean>
+	
+	<!-- 自动冲正类 -->
+	<bean class="com.upay.batch.dispatch.SaftranInvoker">
+		<property name="sequenceService" ref="sequenceService" />
+		<property name="dipperHandlerContainer">
+			<bean class="com.upay.batch.dispatch.DipperHandlerContainer" >
+				<constructor-arg ref="batchDispatchServiceApplication" />
+				<constructor-arg ref="registryCenter" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>

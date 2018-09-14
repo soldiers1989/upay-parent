@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.FileInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.FileInfoPo">
+		<id column="ID" property="id" />
+		<result column="REAL_TRANS_DATE" property="realTransDate" />
+		<result column="BATCH_NO" property="batchNo" />
+		<result column="TASK_CODE" property="taskCode" />
+		<result column="FILE_NAME" property="fileName" />
+		<result column="FILE_TYPE" property="fileType" />
+		<result column="FILE_SERINO" property="fileSerino" />
+		<result column="FILE_STAT" property="fileStat" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FILE_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		REAL_TRANS_DATE,
+		BATCH_NO,
+		TASK_CODE,
+		FILE_NAME,
+		FILE_TYPE,
+		FILE_SERINO,
+		FILE_STAT,
+		CREATE_TIME,
+		UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="realTransDate != null">
+			REAL_TRANS_DATE= #{realTransDate}
+	           AND 
+		</if>
+		<if test="batchNo != null">
+			BATCH_NO= #{batchNo}
+	           AND 
+		</if>
+		<if test="taskCode != null">
+			TASK_CODE= #{taskCode}
+	           AND 
+		</if>
+		<if test="fileName != null">
+			FILE_NAME= #{fileName}
+	           AND 
+		</if>
+		<if test="fileType != null">
+			FILE_TYPE= #{fileType}
+	           AND 
+		</if>
+		<if test="fileSerino != null">
+			FILE_SERINO= #{fileSerino}
+	           AND 
+		</if>
+		<if test="fileStat != null">
+			FILE_STAT= #{fileStat}
+	           AND 
+		</if>
+		<if test="createTime != null">
+			CREATE_TIME= #{createTime}
+	           AND 
+		</if>
+		<if test="updateTime != null">
+			UPDATE_TIME= #{updateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="realTransDate != null">
+		REAL_TRANS_DATE,
+	</if>
+	<if test="batchNo != null">
+		BATCH_NO,
+	</if>
+	<if test="taskCode != null">
+		TASK_CODE,
+	</if>
+	<if test="fileName != null">
+		FILE_NAME,
+	</if>
+	<if test="fileType != null">
+		FILE_TYPE,
+	</if>
+	<if test="fileSerino != null">
+		FILE_SERINO,
+	</if>
+	<if test="fileStat != null">
+		FILE_STAT,
+	</if>
+	<if test="createTime != null">
+		CREATE_TIME,
+	</if>
+	<if test="updateTime != null">
+		UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="realTransDate != null">
+		#{realTransDate},
+	</if>
+	<if test="batchNo != null">
+		#{batchNo},
+	</if>
+	<if test="taskCode != null">
+		#{taskCode},
+	</if>
+	<if test="fileName != null">
+		#{fileName},
+	</if>
+	<if test="fileType != null">
+		#{fileType},
+	</if>
+	<if test="fileSerino != null">
+		#{fileSerino},
+	</if>
+	<if test="fileStat != null">
+		#{fileStat},
+	</if>
+	<if test="createTime != null">
+		#{createTime},
+	</if>
+	<if test="updateTime != null">
+		#{updateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="realTransDate != null">
+		REAL_TRANS_DATE=#{realTransDate},
+	</if>
+	<if test="batchNo != null">
+		BATCH_NO=#{batchNo},
+	</if>
+	<if test="taskCode != null">
+		TASK_CODE=#{taskCode},
+	</if>
+	<if test="fileName != null">
+		FILE_NAME=#{fileName},
+	</if>
+	<if test="fileType != null">
+		FILE_TYPE=#{fileType},
+	</if>
+	<if test="fileSerino != null">
+		FILE_SERINO=#{fileSerino},
+	</if>
+	<if test="fileStat != null">
+		FILE_STAT=#{fileStat},
+	</if>
+	<if test="createTime != null">
+		CREATE_TIME=#{createTime},
+	</if>
+	<if test="updateTime != null">
+		UPDATE_TIME=#{updateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.realTransDate != null">
+                    REAL_TRANS_DATE=#{s.realTransDate},
+			</if>
+			<if test="s.batchNo != null">
+                    BATCH_NO=#{s.batchNo},
+			</if>
+			<if test="s.taskCode != null">
+                    TASK_CODE=#{s.taskCode},
+			</if>
+			<if test="s.fileName != null">
+                    FILE_NAME=#{s.fileName},
+			</if>
+			<if test="s.fileType != null">
+                    FILE_TYPE=#{s.fileType},
+			</if>
+			<if test="s.fileSerino != null">
+                    FILE_SERINO=#{s.fileSerino},
+			</if>
+			<if test="s.fileStat != null">
+                    FILE_STAT=#{s.fileStat},
+			</if>
+			<if test="s.createTime != null">
+                    CREATE_TIME=#{s.createTime},
+			</if>
+			<if test="s.updateTime != null">
+                    UPDATE_TIME=#{s.updateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.realTransDate != null">
+                    REAL_TRANS_DATE=#{w.realTransDate}
+                   AND 
+ 			</if>
+			<if test="w.batchNo != null">
+                    BATCH_NO=#{w.batchNo}
+                   AND 
+ 			</if>
+			<if test="w.taskCode != null">
+                    TASK_CODE=#{w.taskCode}
+                   AND 
+ 			</if>
+			<if test="w.fileName != null">
+                    FILE_NAME=#{w.fileName}
+                   AND 
+ 			</if>
+			<if test="w.fileType != null">
+                    FILE_TYPE=#{w.fileType}
+                   AND 
+ 			</if>
+			<if test="w.fileSerino != null">
+                    FILE_SERINO=#{w.fileSerino}
+                   AND 
+ 			</if>
+			<if test="w.fileStat != null">
+                    FILE_STAT=#{w.fileStat}
+                   AND 
+ 			</if>
+			<if test="w.createTime != null">
+                    CREATE_TIME=#{w.createTime}
+                   AND 
+ 			</if>
+			<if test="w.updateTime != null">
+                    UPDATE_TIME=#{w.updateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

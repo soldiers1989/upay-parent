@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	  <mapping xpath="$.body.QUERY_SCOPE" field="queryScope" must="not" /><!--  查询日期起始标志 -->
+	  <mapping xpath="$.body.TRANS_TYPE" field="transType" must="not"/> <!-- 交易类型 -->
+	  <mapping xpath="$.body.ORDER_STAT" field="orderStat" must="not"/> <!-- 订单状态 -->
+	  <mapping xpath="$.body.QUERY_START" field="startDate" must="not"/> <!-- 查询范围开始时间标志 -->
+	  <mapping xpath="$.body.QUERY_END" field="endDate" must="not"/> <!-- 查询范围结束时间标志 -->
+	  <mapping xpath="$.body.SEC_MER_NO" field="secMerNo" must="not"/> <!-- 二级商户号 -->
+	  <mapping xpath="$.body.ROUTE_CODE" field="routeCode" must="not"/> <!-- 支付方式 -->
+	  <mapping xpath="$.body.STL_FLAG" field="stlFlag" must="not"/> <!--结算方式 -->
+	  <mapping xpath="$.body.ORDER_NO" field="orderNo" must="not"/> <!-- 内部订单号 -->
+	  <mapping xpath="$.body.OUTER_ORDER_NO" field="outerOrderNo" must="not"/> <!-- 外部订单号 -->
+	  <mapping xpath="$.body.MER_NO" field="merNo" must="not"/> <!--商户号  为了通用接口 -->
+	</mappings>
+</config>

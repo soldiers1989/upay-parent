@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+    <previews>
+     <!--    <preview id="weixincli" xpath="" datalength="" trancodename="tranCode"
+            charset="UTF-8" faultCodeName="faultCode" sysName="UPAY" 
+            faultStringName="faultString" errCodeName="returnCode" errMsgName="returnMsg"
+            errCodeSuc="SUCCESS" relationSysId="60" concreteSysId="63" requrl="true">
+            当前测试核心调用挡板requrl 为false 正式上线后值为true  
+            <urlMappings>
+            <mapping code="UNIFIEDORDER" reqUrl="unifiedorder" />
+            <mapping code="DOWNLOADBILL" reqUrl="downloadbill" />
+            <mapping code="ORDERQUERY" reqUrl="orderquery" />
+            <mapping code="REFUNDQUERY" reqUrl="refundquery" />
+            <mapping code="MICROPAY" reqUrl="micropay" />
+            <mapping code="ORDERQUERYPAY" reqUrl="orderquery" />
+            <mapping code="CLOSEORDER" reqUrl="closeorder" />
+            </urlMappings>
+        </preview> -->
+    </previews>
+
+</config>

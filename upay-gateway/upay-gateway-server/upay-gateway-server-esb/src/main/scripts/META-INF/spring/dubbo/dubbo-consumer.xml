@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+	<bean id="testHandler" class="com.upay.gateway.server.esb.TestHandler" />
+	<dubbo:reference id="FLOW_SI_ACC1008" group="SI_ACC1008"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />
+	<dubbo:reference id="FLOW_SI_PAY0024" group="SI_PAY0024"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />
+	<dubbo:reference id="FLOW_SI_PAY0013" group="SI_PAY0013"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />	
+	<dubbo:reference id="FLOW_SI_PAY0019" group="SI_PAY0019"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />	
+	<dubbo:reference id="FLOW_SI_PAY0020" group="SI_PAY0020"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />		
+    <dubbo:reference id="FLOW_SI_PAY1010" group="SI_PAY1010"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />
+	<dubbo:reference id="FLOW_SI_PAY1011" group="SI_PAY1011"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />	
+	 <dubbo:reference id="FLOW_SI_PAY3011" group="SI_PAY3011"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />		
+	<dubbo:reference id="FLOW_SI_PAY7001" group="SI_PAY7001"
+		interface="com.pactera.dipper.core.IDipperHandler" check="false" />	
+</beans>

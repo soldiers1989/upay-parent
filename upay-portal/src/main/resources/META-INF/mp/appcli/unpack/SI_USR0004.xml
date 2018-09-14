@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.LOGIN_PWD" field="loginPwd" />
+	<mapping xpath="$.body.NEW_LOGIN_PWD" field="newLoginPwd" />
+	<mapping xpath="$.body.PWD_FLAG" field="pwdFlag" />
+	<mapping xpath="$.body.REPEAT_CHECK_FLAG" field="repeatCheckFlag" />
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

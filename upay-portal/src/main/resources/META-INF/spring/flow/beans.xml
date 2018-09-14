@@ -1,0 +1,136 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+	<!-- 支付网关后台调用接口映射 -->
+	<bean id="defaultServerDipperHandler"
+		class="com.dubhe.common.handler.PayGateDefaultServerDipperHandler"
+		parent="abstractServerDipperHandler">
+		<property name="serviceMapping">
+			<map>
+				<!-- 支付 -->
+				<entry key="pay" value="SI_PAY1001" />
+				<!-- 快速下单并支付 -->
+				<entry key="quickPay" value="SI_PAY1008" />
+				<!-- 注册 -->
+				<entry key="registe" value="SI_USR0001" />
+				<!-- 登陆标识检查 -->
+				<entry key="checkLoginFlag" value="SI_USR0027" />
+				<!-- 通知id查询接口 -->
+				<entry key="checkNotify" value="SI_PAY0011" />
+				<!-- 退款接口 -->
+				<entry key="refund" value="SI_PAY0015"/>
+				<!-- 确认收货接口 -->
+				<entry key="confirmDelivery" value="SI_PAY0016"/>
+				<!-- 订单查询 -->
+				<entry key="queryOrder" value="SI_PAY0013" />
+				<!-- 对账单下载 -->
+				<entry key="reconDown" value="SI_PAY1005" />
+				<!-- 商户结算账户余额查询 -->
+				<entry key="queryAcctBalance" value="SI_PAY1007" />
+				<!-- 微信退款 -->
+				<entry key="wxRefund" value="SI_PAY0018" />
+				<!-- 微信退款 -->
+				<entry key="realNameAuth" value="SI_ACC1005" />
+				
+				<!-- 单笔代收 -->
+				<entry key="singleCollection" value="SI_PAY0019" />
+				<!-- 单笔代付 -->
+				<entry key="singlePayment" value="SI_PAY0020" />
+				<!-- 发放普通红包 -->
+				<entry key="sendredpack" value="SI_PAY2010" />
+				<!-- 发放裂变红包 -->
+				<entry key="sendgroupredpack" value="SI_PAY2011" />
+				<!-- 查询红包记录 -->
+				<entry key="gethbinfo" value="SI_PAY2012" />
+				
+				<!-- 本行网银他行代收-->
+				<entry key="onlineBankDS" value="SI_PAY0024" />
+			    <!-- 银联二维码 被扫支付-->
+				<entry key="unionQrCodeBeSwept" value="SI_PAY3007" />
+			     <!--银联二维码刷卡支付查询-->
+				<entry key="unionCoreQry" value="SI_PAY3021" />
+				<!-- 银联二维码 线下二维码申请-->
+				<entry key="unionQrCodeUnOlineApply" value="SI_PAY3008" />
+				<!--银联全渠道平台-申请二维码（主扫）-->
+				<entry key="unionQrCodeOlineApply" value="SI_PAY3006" />
+				
+				
+				<!--一级商户注册-->
+				<entry key="createOrUpdateFirstMer" value="SI_MER0021" />
+				<!--一级商户注销或启用-->
+				<entry key="firstMerCancel" value="SI_MER0022" />
+				<!--服务商特约商户关注配置-->
+				<entry key="merWechatConfig" value="SI_MER0023" />
+				
+				<!--根据授权码获取 微信用户ID-->
+				<entry key="getOpenIdByAuthCode" value="SI_PAY5001" />
+				
+				<!-- 支付宝条码支付-->
+				<entry key="alipayBarPay" value="SI_PAY2020" />
+				
+				
+				<!-- 微信条码支付查询-->
+				<entry key="alipayBarPayQry" value="SI_PAY2021" />
+			   
+
+				<!-- 支付宝创建订单-->
+				<entry key="alipayCreatePay" value="SI_PAY2024" />
+				
+				<!-- 支付宝订单查询-->
+				<entry key="alipayOrderQry" value="SI_PAY2026" />
+				
+				
+				
+				<!-- 开通支付宝支付-->
+				<entry key="openAlipay" value="SI_MER0026" />
+
+				<!-- 查询支付宝商户信息-->
+				<entry key="queryAlipayMer" value="SI_MER0027" />
+
+				<!-- 修改支付宝商户信息-->
+				<entry key="updateAlipayMer" value="SI_MER0028" />
+				
+		         <!-- 用户快速注册 下单   返回微信支付二维码 -->
+				<entry key="wxPay" value="SI_PAY1009" />
+				<!-- 微信刷卡支付 -->
+               <entry key="micropay" value="SI_PAY2006" />
+				
+				<!-- 微信公众号支付 -->
+				<entry key="unifiedorderpay" value="SI_PAY3002" />
+
+				
+				<!-- 微信公众号支付查询 -->
+				<entry key="unifiedorderQry" value="SI_PAY3003" />
+		   
+				
+				<!-- 微信刷卡支付查询 -->
+				<entry key="micropayQry" value="SI_PAY2008" />
+				
+				<!--一级商户开通微信支付-->
+				<entry key="openWechatPay" value="SI_MER0024" />
+				
+				
+				
+			</map>
+		</property>
+	</bean>
+	
+	<!--<bean id="UNPACK_HTTP" class="com.dubhe.common.handler.mp.DeepLinkUnpackHandler" 
+		/> -->
+	<bean id="UNPACK_HTTP" class="com.dubhe.common.handler.mp.XmlUnpackHandler">
+		<property name="merNoName" value="${merchant.no.field.name}" />
+		<property name="key" value="${merchant.key}" />
+	</bean>
+
+	<bean id="PACK_HTTP" class="com.dubhe.common.handler.mp.XmlPackHandler">
+		<property name="merNoName" value="${merchant.no.field.name}" />
+		<property name="key" value="${merchant.key}" />
+	</bean>
+
+	<!-- 前台通知签名 -->
+	<bean id="PageNotifySignHandler" class="com.dubhe.common.handler.PageNotifySignHandler" />
+</beans>

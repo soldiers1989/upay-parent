@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:cfg.properties,classpath:remote-dubbo.properties,classpath:remote-zookeeper.properties,classpath:remote-db.properties,classpath:remote-jedis.properties" />
+        
+    <dubbo:application name="flow-mer"  /><!-- 197.5.11.21:2181,197.5.11.22:2181,197.5.11.23:2181 -->
+   <dubbo:registry default="true" protocol="dipper" address="127.0.0.1:2181" group="${registry.group}" />
+    <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
+    <dubbo:provider timeout="${dubbo.provider.timeout}" retries="${dubbo.provider.retries}"  filter="dipperFilter,exceptionFilter,loggerFilter" />
+    <dubbo:consumer filter="loggerFilter" />
+    <!--demo-->
+	<dubbo:reference id="SI_MER0028" interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0028"/>
+	<dubbo:reference id="SI_MER0026" interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0026"/>
+    <dubbo:reference id="SI_MER0126" interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0126"/>
+   <dubbo:reference id="SI_MER0064" interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0064"/>
+</beans>

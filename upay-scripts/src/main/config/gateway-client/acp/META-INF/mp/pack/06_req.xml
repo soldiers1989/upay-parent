@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联二维码撤销
+ -->
+<data templateType="IN"
+    transCode="06"
+    >
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<column oldName="qrCode" newName="qrCode" type="" must="false" dateFormat="" />
+    <column oldName="reqType" newName="reqType" type="" must="true" dateFormat="" />
+</data>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	   <mapping xpath="resp.bkacc_no" field="bkAccNo" must="not"/>
+	   <mapping xpath="resp.open_org" field="openOrg" />
+	   <mapping xpath="resp.CardStat" field="cardStat" />
+	   <mapping xpath="resp.ValidDate" field="validDate" />
+	</mappings>
+</config>

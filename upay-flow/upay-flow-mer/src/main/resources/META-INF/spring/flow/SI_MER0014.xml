@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 微信特约商户删除{关闭微信支付}-->
+	<dipper:flow service-id="SI_MER0014">
+		<dipper:try>
+        <dipper:route>
+        		<!-- 商户信息校验 -->
+	        	<dipper:invoke>
+					<dipper:service ref="MerInfoQryAndChkService" />
+				</dipper:invoke>
+        		<!-- 资金通道信息查询 -->
+				<dipper:invoke>
+					<dipper:service ref="PayRouteInfoQryService" param-ref="initPayWebChatInitMer0014"
+							afterDictConv-ref="dataPayAfterRouteInfoQryMer0014" />
+				</dipper:invoke>
+		</dipper:route>	
+		<dipper:route transaction="lazy">
+			 	<!-- 商户删除[微信识别码] -->
+                <dipper:invoke>
+                    	<dipper:service ref="ChkWeiXinMerDelInfoService" />
+                </dipper:invoke>
+		</dipper:route>
+		</dipper:try>
+		<dipper:catchException/>
+		<dipper:finally/>
+	</dipper:flow>   
+</beans>	

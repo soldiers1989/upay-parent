@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.MER_APPLY_NO" field="merApplyNo" must="not"/>
+		<mapping xpath="$.body.SEC_MER_NAME" field="secMerName" must="not"/>
+		<mapping xpath="$.body.OPERATION" field="operation" />
+		<mapping xpath="$.body.MER_NAME" field="merName" must="not" />
+		<mapping xpath="$.body.CONTACT" field="contact" must="not" />
+		<mapping xpath="$.body.CONTACT_TEL" field="contactTel" must="not" />
+		<mapping xpath="$.body.CONTACT_MOBILE" field="contactMobile" must="not" />
+		<mapping xpath="$.body.CONTACT_EMAIL" field="contactEmail" must="not" />
+		<mapping xpath="$.body.MER_TEL" field="merTel" must="not" />
+		<mapping xpath="$.body.MER_FAX" field="merFax" must="not" />
+		<mapping xpath="$.body.MER_ADDR" field="merAddr" must="not" />
+		<mapping xpath="$.body.MER_POSTAL_CODE" field="merPostalCode" must="not" />
+		<mapping xpath="$.body.WEBSITE_CODE" field="websiteCode" must="not"/>
+		<mapping xpath="$.body.WEBSITE_NAME" field="websiteName" must="not"/>
+		<mapping xpath="$.body.WEBSITE_DOMAIN" field="websiteDomain" must="not"/>
+		<mapping xpath="$.body.WEBSITE_SCOP" field="websiteScop" must="not"/>
+		<mapping xpath="$.body.COMPANY_NAME" field="companyName" must="not"/>
+		<mapping xpath="$.body.EGAL_PERSON_NAME" field="egalPersonName" must="not"/>
+		<mapping xpath="$.body.EGAL_PERSON_ID_TYPE" field="egalPersonIdType" must="not"/>
+		<mapping xpath="$.body.EGAL_PERSON_ID_NO" field="egalPersonIdNo" must="not"/>
+		<mapping xpath="$.body.COMPANY_ID_TYPE" field="companyIdType" must="not"/>
+		<mapping xpath="$.body.COMPANY_ID_NO" field="companyIdNo" must="not"/>
+		<mapping xpath="$.body.ORG_DEPT_NO" field="orgDeptNo" must="not"/>
+		<mapping xpath="$.body.BUSI_LICENSE_ID" field="busiLicenseId" must="not"/>
+	</mappings>
+</config>

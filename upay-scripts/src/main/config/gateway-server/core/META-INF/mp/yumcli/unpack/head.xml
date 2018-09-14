@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	   <mapping xpath="$.respCode" field="respCode" must="not"/>
+	   <mapping xpath="$.respMsg" field="respMsg" must="not"/>
+	</mappings>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.TRADE_PWD" field="tradePwd" />
+	<mapping xpath="$.body.NEW_TRADE_PWD" field="newTradePwd" />
+	<mapping xpath="$.body.REPEAT_CHECK_FLAG" field="repeatCheckFlag" />
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

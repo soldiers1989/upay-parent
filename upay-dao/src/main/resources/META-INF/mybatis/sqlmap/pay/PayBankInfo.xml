@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayBankInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.PayBankInfoPo">
+		<id column="ID" property="id" />
+		<result column="BANK_NO" property="bankNo" />
+		<result column="BANK_NAME" property="bankName" />
+		<result column="LOGO_ID" property="logoId" />
+		<result column="STAT" property="stat" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_PAY_BANK_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BANK_NO,
+		BANK_NAME,
+		LOGO_ID,
+		STAT,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="bankNo != null">
+			BANK_NO= #{bankNo}
+	           AND 
+		</if>
+		<if test="bankName != null">
+			BANK_NAME= #{bankName}
+	           AND 
+		</if>
+		<if test="logoId != null">
+			LOGO_ID= #{logoId}
+	           AND 
+		</if>
+		<if test="stat != null">
+			STAT= #{stat}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="bankNo != null">
+		BANK_NO,
+	</if>
+	<if test="bankName != null">
+		BANK_NAME,
+	</if>
+	<if test="logoId != null">
+		LOGO_ID,
+	</if>
+	<if test="stat != null">
+		STAT,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="bankNo != null">
+		#{bankNo},
+	</if>
+	<if test="bankName != null">
+		#{bankName},
+	</if>
+	<if test="logoId != null">
+		#{logoId},
+	</if>
+	<if test="stat != null">
+		#{stat},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="bankNo != null">
+		BANK_NO=#{bankNo},
+	</if>
+	<if test="bankName != null">
+		BANK_NAME=#{bankName},
+	</if>
+	<if test="logoId != null">
+		LOGO_ID=#{logoId},
+	</if>
+	<if test="stat != null">
+		STAT=#{stat},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.bankNo != null">
+                    BANK_NO=#{s.bankNo},
+			</if>
+			<if test="s.bankName != null">
+                    BANK_NAME=#{s.bankName},
+			</if>
+			<if test="s.logoId != null">
+                    LOGO_ID=#{s.logoId},
+			</if>
+			<if test="s.stat != null">
+                    STAT=#{s.stat},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.bankNo != null">
+                    BANK_NO=#{w.bankNo}
+                   AND 
+ 			</if>
+			<if test="w.bankName != null">
+                    BANK_NAME=#{w.bankName}
+                   AND 
+ 			</if>
+			<if test="w.logoId != null">
+                    LOGO_ID=#{w.logoId}
+                   AND 
+ 			</if>
+			<if test="w.stat != null">
+                    STAT=#{w.stat}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

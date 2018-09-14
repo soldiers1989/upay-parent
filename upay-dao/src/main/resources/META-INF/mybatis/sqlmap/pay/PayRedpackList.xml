@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayRedpackListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.PayRedpackListPo">
+		<id column="ID" property="id" />
+		<result column="OUTER_ORDER_NO" property="outerOrderNo" />
+		<result column="MER_NO" property="merNo" />
+		<result column="MSGAPPID" property="msgappid" />
+		<result column="SEND_NAME" property="sendName" />
+		<result column="RE_OPENID" property="reOpenid" />
+		<result column="TOTAL_AMOUNT" property="totalAmount" />
+		<result column="TOTAL_NUM" property="totalNum" />
+		<result column="AMT_TYPE" property="amtType" />
+		<result column="WISHING" property="wishing" />
+		<result column="CLIENT_IP" property="clientIp" />
+		<result column="ACT_NAME" property="actName" />
+		<result column="SCENE_ID" property="sceneId" />
+		<result column="RISK_INFO" property="riskInfo" />
+		<result column="CONSUME_MCH_ID" property="consumeMchId" />
+		<result column="SEND_LISTID" property="sendListid" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="ORDER_STATE" property="orderState" />
+		<result column="REDPACK_TYPE" property="redpackType" />
+		<result column="TRANS_DATE" property="transDate" />
+		<result column="TRANS_TIME" property="transTime" />
+		<result column="REMARK" property="remark" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_PAY_REDPACK_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		OUTER_ORDER_NO,
+		MER_NO,
+		MSGAPPID,
+		SEND_NAME,
+		RE_OPENID,
+		TOTAL_AMOUNT,
+		TOTAL_NUM,
+		AMT_TYPE,
+		WISHING,
+		CLIENT_IP,
+		ACT_NAME,
+		SCENE_ID,
+		RISK_INFO,
+		CONSUME_MCH_ID,
+		SEND_LISTID,
+		ORDER_NO,
+		ORDER_STATE,
+		REDPACK_TYPE,
+		TRANS_DATE,
+		TRANS_TIME,
+		REMARK,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="outerOrderNo != null">
+			OUTER_ORDER_NO= #{outerOrderNo}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="msgappid != null">
+			MSGAPPID= #{msgappid}
+	           AND 
+		</if>
+		<if test="sendName != null">
+			SEND_NAME= #{sendName}
+	           AND 
+		</if>
+		<if test="reOpenid != null">
+			RE_OPENID= #{reOpenid}
+	           AND 
+		</if>
+		<if test="totalAmount != null">
+			TOTAL_AMOUNT= #{totalAmount}
+	           AND 
+		</if>
+		<if test="totalNum != null">
+			TOTAL_NUM= #{totalNum}
+	           AND 
+		</if>
+		<if test="amtType != null">
+			AMT_TYPE= #{amtType}
+	           AND 
+		</if>
+		<if test="wishing != null">
+			WISHING= #{wishing}
+	           AND 
+		</if>
+		<if test="clientIp != null">
+			CLIENT_IP= #{clientIp}
+	           AND 
+		</if>
+		<if test="actName != null">
+			ACT_NAME= #{actName}
+	           AND 
+		</if>
+		<if test="sceneId != null">
+			SCENE_ID= #{sceneId}
+	           AND 
+		</if>
+		<if test="riskInfo != null">
+			RISK_INFO= #{riskInfo}
+	           AND 
+		</if>
+		<if test="consumeMchId != null">
+			CONSUME_MCH_ID= #{consumeMchId}
+	           AND 
+		</if>
+		<if test="sendListid != null">
+			SEND_LISTID= #{sendListid}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="orderState != null">
+			ORDER_STATE= #{orderState}
+	           AND 
+		</if>
+		<if test="redpackType != null">
+			REDPACK_TYPE= #{redpackType}
+	           AND 
+		</if>
+		<if test="transDate != null">
+			TRANS_DATE= #{transDate}
+	           AND 
+		</if>
+		<if test="transTime != null">
+			TRANS_TIME= #{transTime}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="outerOrderNo != null">
+		OUTER_ORDER_NO,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="msgappid != null">
+		MSGAPPID,
+	</if>
+	<if test="sendName != null">
+		SEND_NAME,
+	</if>
+	<if test="reOpenid != null">
+		RE_OPENID,
+	</if>
+	<if test="totalAmount != null">
+		TOTAL_AMOUNT,
+	</if>
+	<if test="totalNum != null">
+		TOTAL_NUM,
+	</if>
+	<if test="amtType != null">
+		AMT_TYPE,
+	</if>
+	<if test="wishing != null">
+		WISHING,
+	</if>
+	<if test="clientIp != null">
+		CLIENT_IP,
+	</if>
+	<if test="actName != null">
+		ACT_NAME,
+	</if>
+	<if test="sceneId != null">
+		SCENE_ID,
+	</if>
+	<if test="riskInfo != null">
+		RISK_INFO,
+	</if>
+	<if test="consumeMchId != null">
+		CONSUME_MCH_ID,
+	</if>
+	<if test="sendListid != null">
+		SEND_LISTID,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="orderState != null">
+		ORDER_STATE,
+	</if>
+	<if test="redpackType != null">
+		REDPACK_TYPE,
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE,
+	</if>
+	<if test="transTime != null">
+		TRANS_TIME,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="outerOrderNo != null">
+		#{outerOrderNo},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="msgappid != null">
+		#{msgappid},
+	</if>
+	<if test="sendName != null">
+		#{sendName},
+	</if>
+	<if test="reOpenid != null">
+		#{reOpenid},
+	</if>
+	<if test="totalAmount != null">
+		#{totalAmount},
+	</if>
+	<if test="totalNum != null">
+		#{totalNum},
+	</if>
+	<if test="amtType != null">
+		#{amtType},
+	</if>
+	<if test="wishing != null">
+		#{wishing},
+	</if>
+	<if test="clientIp != null">
+		#{clientIp},
+	</if>
+	<if test="actName != null">
+		#{actName},
+	</if>
+	<if test="sceneId != null">
+		#{sceneId},
+	</if>
+	<if test="riskInfo != null">
+		#{riskInfo},
+	</if>
+	<if test="consumeMchId != null">
+		#{consumeMchId},
+	</if>
+	<if test="sendListid != null">
+		#{sendListid},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="orderState != null">
+		#{orderState},
+	</if>
+	<if test="redpackType != null">
+		#{redpackType},
+	</if>
+	<if test="transDate != null">
+		#{transDate},
+	</if>
+	<if test="transTime != null">
+		#{transTime},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="outerOrderNo != null">
+		OUTER_ORDER_NO=#{outerOrderNo},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="msgappid != null">
+		MSGAPPID=#{msgappid},
+	</if>
+	<if test="sendName != null">
+		SEND_NAME=#{sendName},
+	</if>
+	<if test="reOpenid != null">
+		RE_OPENID=#{reOpenid},
+	</if>
+	<if test="totalAmount != null">
+		TOTAL_AMOUNT=#{totalAmount},
+	</if>
+	<if test="totalNum != null">
+		TOTAL_NUM=#{totalNum},
+	</if>
+	<if test="amtType != null">
+		AMT_TYPE=#{amtType},
+	</if>
+	<if test="wishing != null">
+		WISHING=#{wishing},
+	</if>
+	<if test="clientIp != null">
+		CLIENT_IP=#{clientIp},
+	</if>
+	<if test="actName != null">
+		ACT_NAME=#{actName},
+	</if>
+	<if test="sceneId != null">
+		SCENE_ID=#{sceneId},
+	</if>
+	<if test="riskInfo != null">
+		RISK_INFO=#{riskInfo},
+	</if>
+	<if test="consumeMchId != null">
+		CONSUME_MCH_ID=#{consumeMchId},
+	</if>
+	<if test="sendListid != null">
+		SEND_LISTID=#{sendListid},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="orderState != null">
+		ORDER_STATE=#{orderState},
+	</if>
+	<if test="redpackType != null">
+		REDPACK_TYPE=#{redpackType},
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE=#{transDate},
+	</if>
+	<if test="transTime != null">
+		TRANS_TIME=#{transTime},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.outerOrderNo != null">
+                    OUTER_ORDER_NO=#{s.outerOrderNo},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.msgappid != null">
+                    MSGAPPID=#{s.msgappid},
+			</if>
+			<if test="s.sendName != null">
+                    SEND_NAME=#{s.sendName},
+			</if>
+			<if test="s.reOpenid != null">
+                    RE_OPENID=#{s.reOpenid},
+			</if>
+			<if test="s.totalAmount != null">
+                    TOTAL_AMOUNT=#{s.totalAmount},
+			</if>
+			<if test="s.totalNum != null">
+                    TOTAL_NUM=#{s.totalNum},
+			</if>
+			<if test="s.amtType != null">
+                    AMT_TYPE=#{s.amtType},
+			</if>
+			<if test="s.wishing != null">
+                    WISHING=#{s.wishing},
+			</if>
+			<if test="s.clientIp != null">
+                    CLIENT_IP=#{s.clientIp},
+			</if>
+			<if test="s.actName != null">
+                    ACT_NAME=#{s.actName},
+			</if>
+			<if test="s.sceneId != null">
+                    SCENE_ID=#{s.sceneId},
+			</if>
+			<if test="s.riskInfo != null">
+                    RISK_INFO=#{s.riskInfo},
+			</if>
+			<if test="s.consumeMchId != null">
+                    CONSUME_MCH_ID=#{s.consumeMchId},
+			</if>
+			<if test="s.sendListid != null">
+                    SEND_LISTID=#{s.sendListid},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.orderState != null">
+                    ORDER_STATE=#{s.orderState},
+			</if>
+			<if test="s.redpackType != null">
+                    REDPACK_TYPE=#{s.redpackType},
+			</if>
+			<if test="s.transDate != null">
+                    TRANS_DATE=#{s.transDate},
+			</if>
+			<if test="s.transTime != null">
+                    TRANS_TIME=#{s.transTime},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.outerOrderNo != null">
+                    OUTER_ORDER_NO=#{w.outerOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.msgappid != null">
+                    MSGAPPID=#{w.msgappid}
+                   AND 
+ 			</if>
+			<if test="w.sendName != null">
+                    SEND_NAME=#{w.sendName}
+                   AND 
+ 			</if>
+			<if test="w.reOpenid != null">
+                    RE_OPENID=#{w.reOpenid}
+                   AND 
+ 			</if>
+			<if test="w.totalAmount != null">
+                    TOTAL_AMOUNT=#{w.totalAmount}
+                   AND 
+ 			</if>
+			<if test="w.totalNum != null">
+                    TOTAL_NUM=#{w.totalNum}
+                   AND 
+ 			</if>
+			<if test="w.amtType != null">
+                    AMT_TYPE=#{w.amtType}
+                   AND 
+ 			</if>
+			<if test="w.wishing != null">
+                    WISHING=#{w.wishing}
+                   AND 
+ 			</if>
+			<if test="w.clientIp != null">
+                    CLIENT_IP=#{w.clientIp}
+                   AND 
+ 			</if>
+			<if test="w.actName != null">
+                    ACT_NAME=#{w.actName}
+                   AND 
+ 			</if>
+			<if test="w.sceneId != null">
+                    SCENE_ID=#{w.sceneId}
+                   AND 
+ 			</if>
+			<if test="w.riskInfo != null">
+                    RISK_INFO=#{w.riskInfo}
+                   AND 
+ 			</if>
+			<if test="w.consumeMchId != null">
+                    CONSUME_MCH_ID=#{w.consumeMchId}
+                   AND 
+ 			</if>
+			<if test="w.sendListid != null">
+                    SEND_LISTID=#{w.sendListid}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.orderState != null">
+                    ORDER_STATE=#{w.orderState}
+                   AND 
+ 			</if>
+			<if test="w.redpackType != null">
+                    REDPACK_TYPE=#{w.redpackType}
+                   AND 
+ 			</if>
+			<if test="w.transDate != null">
+                    TRANS_DATE=#{w.transDate}
+                   AND 
+ 			</if>
+			<if test="w.transTime != null">
+                    TRANS_TIME=#{w.transTime}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

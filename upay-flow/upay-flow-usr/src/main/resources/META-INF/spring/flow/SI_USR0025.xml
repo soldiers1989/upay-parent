@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 企业登录密码重置，发送邮件 -->
+	<dipper:flow service-id="SI_USR0025">
+		<dipper:try>
+			<dipper:route>
+				<!-- 邮箱重置登录密码，校验是否本人 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckUsrService" />
+				</dipper:invoke>
+				<!-- 邮箱加签，内容拼接 -->
+				<dipper:invoke>
+					<dipper:service ref="MailSignService" />
+				</dipper:invoke>
+				<!-- 商户重置登录密码邮件注册登记-->
+				<dipper:invoke>
+					<dipper:service ref="MerResetPwdService" />
+				</dipper:invoke>
+				<!-- 发送邮件 -->
+				<dipper:invoke>
+					<dipper:service ref="htmlMailSender" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally />
+	</dipper:flow>
+</beans>	

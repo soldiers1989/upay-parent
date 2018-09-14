@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--测试例子 -->
+	<bean id="demoAtomHandler" class="com.upay.busi.pay.service.impl.DemoAtomHandler">
+	</bean>
+	<bean id="demoAtomHandler2" class="com.upay.busi.pay.service.impl.DemoAtomHandler2">
+	</bean>
+</beans>

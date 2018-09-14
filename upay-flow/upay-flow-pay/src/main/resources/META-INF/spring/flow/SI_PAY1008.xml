@@ -1,0 +1,57 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <!-- 用户快速注册 下单 -->
+   <dipper:flow service-id="SI_PAY1008">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="MerStatChkService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.?mobile!=null &amp;&amp; target.bodys.mobile != null">
+						<dipper:service ref="CheckLoginFlagService" beforeDictConv-ref="dataLoginFlag"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 用户没有注册就注册 并且手机号不能为空 -->
+					<dipper:if expression="target.bodys.?platformUserNo!=null &amp;&amp; target.bodys.platformUserNo != null &amp;&amp; target.bodys.?ifExist!=null &amp;&amp; target.bodys.ifExist == 'N'">
+						<!-- 用户注册  -->
+						<dipper:service ref="UserRegInfoService" />
+						<!-- 预计用户登录信息 -->
+						<dipper:service ref="UserPreloginService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.?platformUserNo!=null &amp;&amp; target.bodys.platformUserNo != null">
+						<dipper:service ref="FreePwdAuthorizeCheckService" /> <!-- 授权免密检查 -->
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service ref="PayOrderCheckService" /> <!-- 生成订单前检查 -->
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isCreateOrder == 'true'">
+						<dipper:service ref="PayOrderRegisterService" param-ref="initPayOrderPayType01"/> <!-- 订单预生成 -->
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

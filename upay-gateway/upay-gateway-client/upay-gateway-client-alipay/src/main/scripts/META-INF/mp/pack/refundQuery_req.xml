@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝订单退款查询-->
+<data templateType="IN" 
+transCode="refundQuery">
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 支付宝交易号 -->
+	<column oldName="tradeNo" newName="trade_no"/>
+	<!-- 订单支付时传入的商户订单号,和支付宝交易号不能同时为空。 trade_no,out_trade_no如果同时存在优先取trade_no -->
+	<column oldName="outTradeNo" newName="out_trade_no"/>
+	<!-- 请求退款接口时，传入的退款请求号，如果在退款请求时未传入，则该值为创建交易时的外部交易 -->
+	<column oldName="outRequestNo" newName="out_request_no"/>
+</data>

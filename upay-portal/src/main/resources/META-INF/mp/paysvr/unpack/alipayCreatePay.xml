@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+		<mapping xpath="merNo" field="offlineMerNo"/>
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/>
+		<mapping xpath="outerOrderNo" field="outerOrderNo"/>
+		<mapping xpath="transAmt" field="transAmt" type="java.math.BigDecimal"/>
+		<mapping xpath="CURR" field="curr"/>
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp"/>
+		<mapping xpath="outerOrderStartDate" field="outerOrderStartDate" must="not"/>
+		<mapping xpath="outerOrderEndDate" field="outerOrderEndDate" must="not"/>
+		<mapping xpath="buyerId" field="alipayUserId"/><!-- 买家的支付宝唯一用户号 -->
+		<mapping xpath="disAmount" field="disAmount" must="not"/><!-- 参与优惠计算的金额，单位为元 -->
+		<mapping xpath="body" field="body" must="not"/><!-- 订单描述 -->
+		<mapping xpath="storeId" field="storeId" must="not"/><!-- 商户门店编号 -->
+		<mapping xpath="terminalId" field="terminalId" must="not"/><!-- 商户机具终端编号 -->
+		<mapping xpath="timeoutExpress" field="timeoutExpress" must="not"/><!--该笔订单允许的最晚付款时间，逾期将关闭交易 1m～15d。m-分钟，h-小时，d-天，1c-当天 -->
+		<mapping xpath="notifyUrl" field="returnNotifyUrl" />
+		<mapping xpath="returnUrl" field="returnUrl" must="not"/>
+		<mapping xpath="merFeeAmt" field="merFeeAmt" type="java.math.BigDecimal" must="not"/></mappings>
+</config>

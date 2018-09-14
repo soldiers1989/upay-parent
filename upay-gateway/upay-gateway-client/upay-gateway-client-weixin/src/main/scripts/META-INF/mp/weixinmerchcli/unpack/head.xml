@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+    
+    <mappings>
+        
+        <mapping xpath="return_code" field="returnCode" must="not"/>
+        <mapping xpath="result_code" field="resultCode" must="not"/>
+        <mapping xpath="return_msg" field="returnMsg" must="not"/>
+         <mapping xpath="result_msg" field="resultMsg" must="not"/>
+        <mapping xpath="err_code" field="returnCode" must="not"/>
+        <mapping xpath="err_code_des" field="returnMsg" must="not"/>
+        
+    </mappings>
+</config>

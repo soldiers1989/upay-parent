@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.NEW_LOGIN_PWD" field="newLoginPwd" />
+	<mapping xpath="$.body.PWD_FLAG" field="pwdFlag" />
+	<mapping xpath="$.body.MOBILE" field="mobile" must="not"/>
+	<mapping xpath="$.body.EMAIL" field="email" must="not"/>
+	<mapping xpath="$.body.USER_NAME" field="userName" must="not"/>
+	<mapping xpath="$.body.USE_FLAG" field="useFlag" must="not"/>
+	<mapping xpath="$.body.SID" field="sid" must="not"/>	
+	<mapping xpath="$.body.TRANS" field="trans" must="not"/>
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>		
+	</mappings>
+</config>

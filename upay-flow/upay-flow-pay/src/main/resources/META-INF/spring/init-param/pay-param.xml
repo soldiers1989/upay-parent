@@ -1,0 +1,4037 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+       xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+
+    <!-- *************************** 初始化参数 ****************************** -->
+
+
+
+<!--测试    银联无跳转支付 手机验证码  正式需要考虑   移除验证码   -->
+    <bean id="iniUnionPayTokenConsumeClient" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="smsCode" value="111111"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!--订单失败 进行冲正-->
+    <bean id="initFailToWashed" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transCode" value="818899"></entry>
+                <entry key="svcCd" value="30140001"></entry>
+                <entry key="svcScn" value="03"></entry>
+                <!---->
+               <!-- <entry key="machineDate" value="20180530"></entry>
+                <entry key="machineTime" value="20180530"></entry>-->
+                <entry key="channelId" value="74"></entry>
+                <entry key="fileFlg" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!--订单成功或者失败 进行 贷款状态更新-->
+    <bean id="initStatusUpdate" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transCode" value="471011"></entry>
+                <entry key="svcCd" value="30220010"></entry>
+                <entry key="svcScn" value="01"></entry>
+                <!--<entry key="machineDate" value="20180530"></entry>
+                <entry key="machineTime" value="20180530"></entry>-->
+                <entry key="channelId" value="74"></entry>
+                <entry key="fileFlg" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+
+    <!--初始化代付参数-->
+    <bean id="initPriorityPayMethod" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payRouteMethod" value="PAY_PRIORITY_PAY"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+
+
+    <!--初始化代收参数-->
+    <bean id="initPriorityCollectionMethod" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payRouteMethod" value="PAY_PRIORITY_COLLECTION"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+
+    <!--初始化AT微信参数-->
+    <bean id="initATWeixinMethod" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payRouteMethod" value="WECHAT_USE_AT_ROUTE"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <!--初始化AT支付宝参数-->
+    <bean id="initATAlipayMethod" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payRouteMethod" value="ALIPAY_USE_AT_ROUTE"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+   
+    <bean id="initUseEsbCoreMethod" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payRouteMethod" value="USR_ESB_CORE"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+
+    <!-- 更新银联支付的内管平台标识 -->
+	<bean id="initParmMer3008" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="updateFlag" value="6"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+    <bean id="initWeixinToolParm" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="tranCode" value="AUTHCODETOOPENID"/>
+			</map>
+		</constructor-arg>
+	</bean>
+    <bean id="init_zjTrans2011" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="zjTransCode" value="2011"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initClearFlag" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="clearFlag" value="8"/>
+                <entry key="orgRouteCode" value="0003"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="initClearFlagUnion" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="clearFlag" value="8"/>
+                <entry key="orgRouteCode" value="0002"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initOrgRouteCode0001" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orgRouteCode" value="0001"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initOrgRouteCode0004" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orgRouteCode" value="0004"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="initClearFlagAlipay" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="clearFlag" value="8"/>
+                <entry key="orgRouteCode" value="0005"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="updateRouteCodeTo0001" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0001"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="updateRouteCodeTo0002" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0002"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="updateRouteCodeTo0003" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0003"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="updateRouteCodeTo0004" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0004"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayUpdateOrdToY" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="ifUpdateOrd" value="Y"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayUpdateOrdToN" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="ifUpdateOrd" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="zjRouteRefundParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0004"/>
+                <entry key="routeFunCode" value="05"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayOrderStatNo" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orderStat" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayChnlId" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="chnlId" value="03"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initAcpPayChnlId" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="chnlId" value="02"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+     <bean id="initAcpMerFlay" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="flay" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="initCollectionOpenTokenQuery" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="flay" value="2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+      <bean id="initOrderDes" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orderDes" value="银联二维码支付回调"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+     <bean id="initOrderDes3007" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orderDes" value="银联二维码线下主扫支付回调"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayOrderPayType01" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transType" value="01"/>
+                <entry key="orderType" value="02"/>
+                <entry key="orderDes" value="商户预生成支付订单"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="WebChatChangeInit" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="body" value="扫码支付"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="alipayChangeInit" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="body" value="聚合支付"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="WebChatChangeInit2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="body" value="刷卡支付"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="WebChatChangeInit2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="body" value="扫码支付"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="WebChatChangeInit3002" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="body" value="扫码支付"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayTranAmt" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="changFlag" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayInitPayType" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--调用核心 -->
+                <entry key="payType" value="00"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParm2001" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--微信公众号 -->
+                <entry key="transType" value="01"></entry>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <entry key="payServicType" value="0002"></entry>
+                <entry key="payType" value="11"/>
+                <entry key="checkUserLmt" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initAcpPayParm3007" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--微信刷卡支付 -->
+                <entry key="transType" value="01"></entry>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <entry key="payServicType" value="0002"></entry>
+                <entry key="payType" value="41"/>
+                <entry key="checkUserLmt" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initAcpPayParm3009" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--微信刷卡支付 -->
+                <entry key="transType" value="01"></entry>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <entry key="payServicType" value="0002"></entry>
+                <entry key="payType" value="42"/>
+                <entry key="checkUserLmt" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParm2006" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--微信刷卡支付 -->
+                <entry key="transType" value="01"></entry>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <entry key="payServicType" value="0002"></entry>
+                <entry key="payType" value="12"/>
+                <entry key="checkUserLmt" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParm2005" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--微信线上扫码 -->
+                <entry key="payType" value="10"/>
+                <entry key="checkUserLmt" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayFeeGet" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="feeResource" value="1"></entry>
+                <entry key="feeGetType" value="0"></entry>
+                <entry key="isMer" value="N"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayFeeGet2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="feeResource" value="1"></entry>
+                <entry key="feeGetType" value="0"></entry>
+                <entry key="isMer" value="N"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayFeeGet2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="feeResource" value="1"></entry>
+                <entry key="feeGetType" value="0"></entry>
+                <entry key="isMer" value="N"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 后台下单 返回微信二维码 -->
+    <bean id="initPayFeeGet1009" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="feeResource" value="1"></entry>
+                <entry key="feeGetType" value="0"></entry>
+                <entry key="isMer" value="N"></entry>
+                <entry key="transType" value="01"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 后台下单 返回微信二维码 -->
+    <bean id="initPayParm1009" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--微信线上扫码 -->
+                <entry key="payType" value="10"/>
+                <entry key="checkUserLmt" value="N"/>
+                <entry key="transType" value="01"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayOrderStatToPaying" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orderStat" value="2"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayUpdatePayFlowListStatSuccess" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transStat" value="N"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayLmtAmtN" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="sysLmtType" value="01"></entry>
+                <entry key="lmtAccountFlag" value="1"></entry>
+                <entry key="checkUserLmt" value="N"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayLmtAmt" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="sysLmtType" value="01"></entry>
+                <entry key="lmtAccountFlag" value="1"></entry>
+                <entry key="checkUserLmt" value="Y"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayLmtAmtMobile" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="sysLmtType" value="02"></entry>
+                <entry key="lmtAccountFlag" value="1"></entry>
+                <entry key="checkUserLmt" value="Y"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagc" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlag" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagCore" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="routeCode" value="0001"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="payerAccType" value="21"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagCoreMerStla" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="routeCode" value="0001"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="payerAccType" value="11"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagCoreMerStlb" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="3"></entry>
+                <entry key="routeCode" value="0001"></entry>
+                <entry key="payeeAccType" value="11"></entry>
+                <entry key="payerAccType" value="21"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagCoreMerStlc" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="4"></entry>
+                <entry key="routeCode" value="0001"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="payerAccType" value="21"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagCoreMerStld" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="routeCode" value="0001"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="payerAccType" value="23"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPaySrFlagCoreMerStle" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="routeCode" value="0001"></entry>
+                <entry key="payeeAccType" value="23"></entry>
+                <entry key="payerAccType" value="21"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayRecordPayFlowListFist" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联二维码被扫支付"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="initPayRecordPayFlowListFist3009" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联二维码线下主扫支付"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayRecordPayFlowListForEBank" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayRecordPayFlowListFist2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payerAccType" value="21"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="微信线下刷卡支付微信流水"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayRecordPayFlowListFist2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="线上扫码支付订单"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+     <bean id="initPayRecordPayFlowListFist2065" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联微信通道线上扫码支付订单"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayCheckRoute" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initRefundCheckRoute" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeFuncCode" value="05"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信扫码退款 -->
+    <bean id="initRefundWeixinScan" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="REFUNDPAY"/>
+                <entry key="mchId" value="1378612302"></entry>
+                <entry key="appId" value="wx288339422065bc01"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信公众号退款 -->
+    <bean id="initRefundWeixinPub" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="REFUNDPAY"/>
+                <entry key="mchId" value="1378612302"></entry>
+                <entry key="appId" value="wx288339422065bc01"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+     <bean id="initRefundWeixinPubNew" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="ORDERREFUND"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+
+    <!-- 微信统一下单接口 初始化参数 -->
+    <bean id="parm_SI_PAY2001" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="UNIFIEDORDER"/>
+                <entry key="tradeType" value="JSAPI"></entry>
+                <entry key="feeType" value="CNY"></entry>
+                <entry key="attach" value="11"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信现金红包 普通红包 -->
+    <bean id="parm_SI_PAY2010" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="SENDREDPACK"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信现金红包 裂变红包 -->
+    <bean id="parm_SI_PAY2011" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="SENDGROUPREDPACK"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信现金红包查询 -->
+    <bean id="parm_SI_PAY2012" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="GETHBINFO"/>
+                <entry key="billType" value="MCHT"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 微信统一下单接口 初始化参数 -->
+    <bean id="parm_SI_PAY2006" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="MICROPAY"/>
+                <entry key="feeType" value="CNY"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+      <!-- 微信统一下单接口 初始化参数 -->
+    <bean id="parm_SI_PAY2066" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="MICROPAY"/>
+                <entry key="feeType" value="CNY"></entry>
+                 <entry key="tradeType" value="NATIVE"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 微信统一下单接口 初始化参数 线上扫码支付 -->
+    <bean id="parm_SI_PAY2005" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="UNIFIEDORDER"/>
+                <entry key="tradeType" value="NATIVE"></entry>
+                <entry key="feeType" value="CNY"></entry>
+                <entry key="attach" value="10"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+        <!-- 微信统一下单接口 初始化参数 线上扫码支付 -->
+    <bean id="parm_SI_PAY2065" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="ORDERPREPAY"/>
+                <entry key="tradeType" value="NATIVE"></entry>
+                <entry key="feeType" value="CNY"></entry>
+                <entry key="attach" value="10"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+        <!-- 微信统一下单接口 初始化参数 线上扫码支付 -->
+    <bean id="parm_SI_PAY3062" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="ORDERPREPAY"/>
+                <entry key="tradeType" value="JSAPI"></entry>
+                <entry key="feeType" value="CNY"></entry>
+                <entry key="attach" value="11"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="parm_PAYORDERQRY" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="parm_PAYORDERQRY_core" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="routeCode" value="0001"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="parm_PAYINIT_ACCTYPE" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="payerAccType" value="21"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="parm_PAYORDERQRY_weixin" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+     <bean id="parm_PAYORDERQRY_union" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="routeCode" value="0002"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="parm_PAYORDERQRY_Acp" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="routeCode" value="0002"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initCorePayAcp" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="currency" value="156"></entry>
+                <entry key="trantype" value="9"></entry>
+                <entry key="charge" value=""></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="initCorePayweixin" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="currency" value="156"></entry>
+                <entry key="trantype" value="4"></entry>
+                <entry key="charge" value=""></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initCoreCollection" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="currency" value="156"></entry>
+                <entry key="trantype" value="9"></entry>
+                <entry key="charge" value=""></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayCoreBankToPay" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="1"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayCoreBankToPay11" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="1"></entry>
+                <entry key="tranCode" value="08011"></entry>
+                <entry key="channelId" value="74"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+      <bean id="initEsbPayCoreBankToPay11" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08011"></entry>
+                <entry key="svcCd" value="30310003"></entry>
+                <entry key="svcScn" value="04"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="fileFlg" value="0"></entry>
+                <entry key="trantype" value="1"></entry> 
+                <entry key="currency" value="156"></entry> 
+            </map>
+        </constructor-arg>
+    </bean>
+    
+     <bean id="initEsbPayCoreBankToPay22" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08011"></entry>
+                <entry key="svcCd" value="30310003"></entry>
+                <entry key="svcScn" value="04"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="fileFlg" value="0"></entry>
+                <entry key="trantype" value="2"></entry> 
+                <entry key="currency" value="156"></entry> 
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+    
+    <bean id="initPayCoreBankToPay2" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="4"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayCoreBankToPayMerStla" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="1"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayCoreBankToPayMerStlb" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="3"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayCoreBankToPayMerStlc" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="4"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayCoreBankToPayMerStld" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="8"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="pay0019CoreConvert" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="initPayCoreBankToPayMerStle" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="trantype" value="6"></entry>
+                <entry key="tranCode" value="08001"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信支付查询初始化 -->
+    <bean id="parm_SI_PAY2003" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="ORDERQUERY"/>
+                <!-- <entry key="appId" value="wx79a5e9fc140020eb" /> -->
+                <!-- <entry key="mchId" value="1225034102" /> -->
+                <!-- <entry key="merchantLoginKey" value="abdfsdgfhgjfy6567dfgbcgfdretab69"
+					/> -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 微信回调接口参数初始化，默认为00 -->
+    <bean id="WxInit" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="chnlId" value="00"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="orderStatusErr" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 订单状态：已删除 -->
+                <entry key="orderStatus" value="4"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="orderStatusRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 订单状态：已退款 -->
+                <entry key="orderStatus" value="6"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="orderStatusInRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 订单状态：退款中 -->
+                <entry key="orderStatus" value="7"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codepdStatusSuc" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 出券状态：已出券 -->
+                <entry key="codepdStatus" value="2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="transStatusSuc" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 支付状态：支付成功 -->
+                <entry key="transStatus" value="2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="transStatusErr" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 支付状态：支付失败 -->
+                <entry key="transStatus" value="3"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="transStatusPay" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 支付状态：支付中 -->
+                <entry key="transStatus" value="5"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="transCodeOrdBuy" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 交易类型：购买 -->
+                <entry key="transCodeOrd" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="transCodeOrdRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 交易类型：退货 -->
+                <entry key="transCodeOrd" value="2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="transCodeOrdOneGo" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 交易类型：一招付 -->
+                <entry key="transCodeOrd" value="3"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="copTransCodeBuy" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP交易类型：出券 -->
+                <entry key="copTransCode" value="1"/>
+                <entry key="srFlag" value="0"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="copTransCodeRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP交易类型：退券 -->
+                <entry key="copTransCode" value="2"/>
+                <entry key="srFlag" value="0"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="copTransCodeUseZero" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP交易类型：往账验券 -->
+                <entry key="copTransCode" value="3"/>
+                <entry key="srFlag" value="0"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="copTransCodeUseOne" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP交易类型：来账验券 -->
+                <entry key="copTransCode" value="3"/>
+                <entry key="srFlag" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="copTransCodeBackoutZero" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP交易类型：往账撤销验券 -->
+                <entry key="copTransCode" value="4"/>
+                <entry key="srFlag" value="0"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="copTransCodeBackoutOne" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP交易类型：来账撤销验券 -->
+                <entry key="copTransCode" value="4"/>
+                <entry key="srFlag" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="copStatusSuc" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- COP状态：成功 -->
+                <entry key="copStatus" value="2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 券状态：退券 -->
+                <entry key="codeStatus" value="4"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusRtnSuc" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 券状态：退券成功 -->
+                <entry key="codeStatus" value="5"/>
+                <entry key="confirmationResult">
+                    <bean class="java.lang.Boolean">
+                        <constructor-arg value="true" type="java.lang.String"/>
+                    </bean>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusUseSuc" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 券状态：验券成功 -->
+                <entry key="codeStatus" value="2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusBeforUse" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 券状态：可使用 -->
+                <entry key="codeStatus" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusOnUse" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 券状态：验证中 -->
+                <entry key="codeStatus" value="9"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="SynRtnTime" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 48后退货 -->
+                <entry key="taskType" value="3"/>
+                <entry key="codeStatus" value="4"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusSynRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 48后退货 -->
+                <entry key="orderNo" value="999999999"/>
+                <entry key="codeStatus" value="4"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="SynRtn" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 同步后退货 -->
+                <entry key="taskType" value="2"/>
+                <entry key="codeStatus" value="4"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="SynUse" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 同步后验证 -->
+                <entry key="taskType" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="codeStatusOverdue" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <!-- 券状态：作废 -->
+                <entry key="codeStatus" value="3"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 绑卡支付初始化参数 -->
+    <bean id="initPayEventParmInitService_SIACCP10001" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="sendSmsObjMyself" value="mobile"/>
+                <entry key="sendSmsObjRalationShipStr" value=""/>
+                <entry key="smsEventParams" value="eCardNo"/>
+                <entry key="sendNoticeObjMyself" value="userId"/>
+                <entry key="sendNoticeObjRalationShipStr" value=""/>
+                <entry key="noticeEventParams" value="eCardNo"/>
+                <entry key="shrtInfCd" value="931"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 本行卡账户验证调用核心接口，初始参数设置 -->
+    <bean id="initPayInvokeCoreCliParams" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="08009"></entry><!-- 核心客户信息认证交易码 -->
+                <entry key="channelId" value="74"></entry><!-- 渠道 -->
+                <entry key="certType" value="01"></entry><!-- 渠道 -->
+                <entry key="isCheckmobilePhone" value="Y"></entry>
+                <entry key="isCheckAccountName" value="Y"></entry>
+                <entry key="isCheckCertificateNo" value="Y"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+   <bean id="initEsbPayInvokeCoreCliParams180028" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="180028"></entry>
+                <entry key="svcCd" value="20130001"></entry>
+                <entry key="svcScn" value="11"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+        <!-- 本行卡账户验证调用核心接口，初始参数设置 -->
+    <bean id="initEsbPayInvokeCoreCliParams" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="tranCode" value="08009"></entry><!-- 核心客户信息认证交易码 -->
+                <entry key="channelId" value="74"></entry><!-- 渠道 -->
+                <entry key="certType" value="01"></entry><!-- 渠道 -->
+                <entry key="isCheckmobilePhone" value="Y"></entry>
+                <entry key="isCheckAccountName" value="Y"></entry>
+                <entry key="isCheckCertificateNo" value="Y"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+    <bean id="initPayCertFlagOnlineParamp" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="certFlag" value="3"/><!-- 身份认证方式：3 联机认证 -->
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 弱实名认证方式 -->
+    <bean id="initPayCertWeakWayParamp" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="certWeakWay" value="02"/><!-- 弱实名认证方式：02：核查身份证信息 -->
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayEOpenFlagp" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="eOpenFlag" value="1"/>
+                <entry key="eAcctCertLevel" value="0"/>
+                <entry key="eBindFlag" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 联网核查身份信息 -->
+    <bean id="initPayUserCertRegChnlp" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="certCheckChnl" value="01"/><!-- 核查渠道 01:帮付宝 -->
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- SI_PAY20001 微信统一支付 -->
+    <bean id="initPayParmFeeGet" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transTyp" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayWebChatInit" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayAcpInit3007" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0002"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="initPayWebChatInit2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayWebChatInit2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initUnionPayInit3006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0002"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayFuncCodeInit2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 微信下单，后台返回微信的支付链接 -->
+	<bean id="initPayFuncCodeInit1009" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+            	<entry key="routeCode" value="0003"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="AcpinitPayParmRegistOrder" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+					网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="41"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="银联二维码被扫支付"></entry>
+                <entry key="transComments" value="银联二维码被扫支付"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+
+    <bean id="AcpinitPayParmRegistOrder3009" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+					网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="42"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="银联二维码线下主扫支付"></entry>
+                <entry key="transComments" value="银联二维码线下主扫支付"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="initPayParmRegistOrder" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="01"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+					网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="线下公众号支付订单"></entry>
+                <entry key="transComments" value="微信公众号支付"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmRegistOrder3002" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+					网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="线下公众号支付订单"></entry>
+                <entry key="transComments" value="微信公众号支付"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmRegistOrder2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+					网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="12"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="微信线下刷卡支付订单"></entry>
+                <entry key="transComments" value="微信线下刷卡支付订单"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmRegistOrder2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <entry key="payServiceType" value="0001"></entry>
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+					网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="10"></entry>
+                <entry key="transType" value="01"></entry>
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="线上扫码支付订单"></entry>
+                <entry key="transComments" value="线上扫码支付"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayStateInitPayment2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="2"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayParmChangFlag" class="java.util.HashMap">
+        <constructor-arg>
+            <map><!-- changFlag 0：分到元 1:元到分 -->
+                <entry key="changFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmChangFlag2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map><!-- changFlag 0：分到元 1:元到分 -->
+                <entry key="changFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmChangFlag2005" class="java.util.HashMap">
+        <constructor-arg>
+            <map><!-- changFlag 0：分到元 1:元到分 -->
+                <entry key="changFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayRecordPayFlowListSec" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="flowRouteCode" value="0004"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- SI_PAY20002 通用通知接口 -->
+    <bean id="initPayRecordPayFlowList" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="flowRouteCode" value="0003"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayRecordPayFlowList2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payerAccType" value="21"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="routeCode" value="0001"/> <!-- 通道代码 -->
+                <entry key="orderDes" value="微信线下刷卡支付核心流水"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+     <bean id="initPayUnionRecordPayFlowList2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payerAccType" value="21"></entry>
+                <entry key="payeeAccType" value="21"></entry>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="routeCode" value="0001"/> <!-- 通道代码 -->
+                <entry key="orderDes" value="银联支付核心流水"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+    <bean id="initPayNotifyCoreSys" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="isNotifyCoreSys" value="false"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayStateInitRecive" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayStateInitFail" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayStateInitFail2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="1"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayStateInit2001" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="2"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayStateInit2006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="2"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmChangFlagzero" class="java.util.HashMap">
+        <constructor-arg>
+            <map><!-- changFlag 0：分到元 1:元到分 -->
+                <entry key="changFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayAccessTokenReq" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map>
+                <entry key="searchFlag" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayWebChatInitOfAccessToken" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayAlipayAccessToken" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0005"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayAccessTokenCheck" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="searchFlag" value="2"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayAccessTokenRefresh" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="searchFlag" value="3"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayWebChatInitOfOpenId" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0003"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="init_pay_coreBindCredit" class="java.util.HashMap">
+        <constructor-arg>
+            <map><!-- 核心信用卡客户信息认证接口 -->
+                <entry key="tranCode" value="08014"></entry><!-- 核心客户信息认证交易码 -->
+                <entry key="channelId" value="74"></entry><!-- 渠道 -->
+                <entry key="certType" value="01"></entry><!-- 渠道 -->
+                <entry key="isCheckmobilePhone" value="Y"></entry>
+                <entry key="isCheckAccountName" value="Y"></entry>
+                <entry key="isCheckCertificateNo" value="Y"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="init_pay_coreEsbBindCredit" class="java.util.HashMap">
+        <constructor-arg>
+            <map><!-- 核心信用卡客户信息认证接口 -->
+                <entry key="tranCode" value="08014"></entry><!-- 核心客户信息认证交易码 -->
+                <entry key="channelId" value="74"></entry><!-- 渠道 -->
+                <entry key="svcCd" value="30330005"></entry>
+                <entry key="svcScn" value="03"></entry>
+                <entry key="isCheckmobilePhone" value="Y"></entry>
+                <entry key="isCheckAccountName" value="Y"></entry>
+                <entry key="isCheckCertificateNo" value="Y"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+
+    <!-- 核心通道退货参数 -->
+    <bean id="coreRouteRefundParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0001"/> <!-- 通道代码 -->
+                <entry key="routeFuncCode" value="05"/> <!-- -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退货调用核心借记卡记账接口08001初始化参数 -->
+    <bean id="coreRefundInitParm_08001" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08001"/> <!-- 核心借记卡记账接口 -->
+                <entry key="trantype" value="2"/> <!-- 核心交易类型：1-支付；2-退货；3-提现；4-内转内； -->
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退货调用核心贷记卡记账接口08011初始化参数 -->
+    <bean id="coreRefundInitParm_08011" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08011"/>
+                <entry key="trantype" value="2"/> <!-- 核心交易类型：1-支付；2-退货；3-提现；4-内转内； -->
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退款减账户余额初始参数 -->
+    <bean id="refundSubtractAcctBalParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="operFlag" value="2"/> <!-- 1-余额加；2-余额减； -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退款加账户余额初始参数 -->
+    <bean id="refundAddAcctBalParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="operFlag" value="1"/> <!-- 1-余额加；2-余额减； -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 资金通道退款成功后，更新退款订单前参数设置 -->
+    <bean id="upRefundOrderParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orderStat" value="0"/> <!-- 订单状态 0-支付成功 -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 资金通道退款失败后，更新退款订单前参数设置 -->
+    <bean id="upRefundOrderFailParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="orderStat" value="3"/> <!-- 订单状态 3-支付失败 -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退款商户、用户账户状态检查初始参数 -->
+    <bean id="refundAcctStatChkParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="dcFlag" value="D"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退还商户手续费处理，修改支付流水状态为支付中 -->
+    <bean id="upRefundFeeStatParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transStat" value="8"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退还商户手续费，商户支付平台虚拟账户状态检查初始参数 -->
+    <bean id="refundFeeMerAcctChkParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="dcFlag" value="C"/>
+                <entry key="routeCode" value="0001"/>
+                <entry key="transType" value="02"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 退货退还商户手续费调用核心借记卡记账接口08001初始化参数 -->
+    <bean id="coreRefundFeeInitParm_08001" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08001"/>
+                <entry key="trantype" value="1"/> <!-- 核心交易类型：1-支付；2-退货；3-提现；4-内转内； -->
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 退款流水原路退回初始化 参数 -->
+    <bean id="initRefundMerFlowList" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="isUseOriPayer" value="N"/>
+                <entry key="isUseOriPayee" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 退款扣除商户余额流水初始化 参数 -->
+    <bean id="initRefundMerAccAmtFlow" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="isUseOriPayer" value="Y"/>
+                <entry key="isUseOriPayee" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 退还商户手续费初始化参数 -->
+    <bean id="initRefundMerFeeFlow" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="isUseOriPayer" value="Y"/>
+                <entry key="isUseOriPayee" value="Y"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 余额修改初始化参数，增加 -->
+    <bean id="initPayAccAmtUpdateAdd" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="addOrSub" value="0"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayOrderClearFlagSuc" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="clearFlag" value="7"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 余额修改初始化参数，减去 -->
+    <bean id="initPayAccAmtUpdateSub" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="addOrSub" value="1"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayFlowToNull" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="payerAccType" value=""/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initAccPayCheck" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="acctType" value="01"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 内部账户查询参数初始化 -->
+    <bean id="initInternalAcctQuery" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08007"/>
+                <entry key="channelId" value="74"/>
+                <entry key="currency" value="156"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 内部账户查询参数初始化 -->
+    <bean id="initInternalAcctQuery08008" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08008"/>
+                <entry key="channelId" value="74"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 普通红包参数初始化 -->
+    <bean id="initRedPackSingle" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="totalNo" value="1"/>
+                <entry key="redpackType" value="single"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 裂变红包参数初始化 -->
+    <bean id="initRedPackGroup" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="redpackType" value="group"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!--银联二维码之主扫模式 -->
+    <bean id="initPayParm3006" class="java.util.HashMap">
+        <constructor-arg type="java.util.Map">
+            <map><!--银联二维码之主扫模式 -->
+                <entry key="transType" value="01"></entry>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <entry key="payServicType" value="0002"></entry>
+                <entry key="payType" value="40"/>
+                <entry key="checkUserLmt" value="N"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 银联流水登记 -->
+    <bean id="initPayRecordPayFlowListFist3006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联之二维码线上主扫模式"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayRecordPayFlowListFist3012" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联之消费撤销类"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayRecordPayFlowListFist3013" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联之银联冲正"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayRecordPayFlowListFist3014" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联之退货"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayRecordPayFlowListFist3015" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="srFlag" value="1"></entry>
+                <entry key="orderDes" value="银联之营销活动余额查询"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 银联 资金通道状态检查 -->
+    <bean id="initPayUPayInit3006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeCode" value="0002"></entry>
+                <entry key="routeFuncCode" value="04"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="initPayParmRegistOrder3006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+                    网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="银联二维码主扫模式订单"></entry>
+                <entry key="transComments" value="银联二维码主扫模式"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayParmRegistOrder3012" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+                    网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="银联消费撤销类订单"></entry>
+                <entry key="transComments" value="银联消费撤销类"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayParmRegistOrder3013" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+                    网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value=" 银联冲正订单"></entry>
+                <entry key="transComments" value=" 银联冲正"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayParmRegistOrder3014" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+                    网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="银联退货订单"></entry>
+                <entry key="transComments" value="银联退货"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initPayParmRegistOrder3015" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!-- payServiceType0001担保支付0002即时到账 -->
+                <!-- <entry key="payServicType" value="0002"></entry> -->
+                <!-- orderType00：非订单管理01：平台订单02：外部预先生成订单03：外部联机生成订单 -->
+                <entry key="orderType" value="03"></entry>
+                <!-- 00 本行快捷支付01 他行快捷支付02 平台账户支付10 微信支付（扫码支付）11 微信支付（公众号支付）20 银联网关支付60
+                    网银支付(个人)61 网银支付(企业)77 退款 -->
+                <entry key="payType" value="11"></entry>
+                <!-- <entry key="transType" value="01"></entry> -->
+                <entry key="curr" value="CNY"></entry>
+                <entry key="orderName" value="银联之营销活动余额查询订单"></entry>
+                <entry key="transComments" value="银联之营销活动余额查询"></entry>
+                <entry key="cleraFlag" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="initPayStateInit3006" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="statFlag" value="2"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="initPayParm2020" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="transType" value="01"></entry>
+				<!-- payServiceType0001担保支付0002即时到账 -->
+				<entry key="payServicType" value="0002"></entry>
+				<entry key="payType" value="31" />
+				<entry key="checkUserLmt" value="N" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="initPayWebChatInit2020" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="routeCode" value="0005"></entry>
+				<entry key="routeFuncCode" value="04"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayWebChatInit3012" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="routeCode" value="0002"></entry>
+				<entry key="routeFuncCode" value="04"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayParmRegistOrder2020" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="orderType" value="03"></entry>
+				<entry key="payType" value="31"></entry>
+				<!-- <entry key="transType" value="01"></entry> -->
+				<entry key="curr" value="CNY"></entry>
+				<entry key="orderName" value="支付宝线下条码支付订单"></entry>
+				<entry key="transComments" value="支付宝线下条码支付订单"></entry>
+				<entry key="cleraFlag" value="0"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="initPayRecordPayFlowListFist2020" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="srFlag" value="1"></entry>
+				<entry key="orderDes" value="支付宝线下条码支付流水"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="parm_SI_PAY2020" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="scene" value="bar_code"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="initPayRecordPayFlowList2020" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="payerAccType" value="21"></entry>
+				<entry key="payeeAccType" value="21"></entry>
+				<entry key="srFlag" value="1"></entry>
+				<entry key="routeCode" value="0001" /> <!-- 通道代码 -->
+				<entry key="orderDes" value="支付宝线下条码支付核心流水"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="parm_PAYORDERQRY_alipay" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="routeCode" value="0005"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="parm_alipay_2022" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="routeCode" value="0005"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="initCorePayAlipay" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="156"></entry>
+				<entry key="trantype" value="9"></entry>
+				<entry key="charge" value=""></entry>
+				<entry key="tranCode" value="08001"></entry>
+				<entry key="channelId" value="74"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	
+     <bean id="initEsbCorePayAlipay" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="transCode" value="801001"></entry>
+				<entry key="svcCd" value="30110001"></entry>
+				<entry key="svcScn" value="15"></entry>
+				<entry key="ccy" value="01"></entry>
+				<entry key="channelId" value="74"></entry>
+				<entry key="fileFlg" value="0"></entry>
+				<entry key="acctNoDataSrcFlg" value="2"></entry>
+				<entry key="AcctNoSrc" value="2"></entry>
+				<entry key="wthdwMd" value="0"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+    <!--esb  接入核心初始化参数-->
+    <bean id="initEsbCorePay0019" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="transCode" value="801001"></entry>
+                <entry key="svcCd" value="30110001"></entry>
+                <entry key="svcScn" value="15"></entry>
+                <entry key="ccy" value="01"></entry>
+                <entry key="channelId" value="74"></entry>
+                <entry key="fileFlg" value="0"></entry>
+               <!-- <entry key="acctNoDataSrcFlg" value="2"></entry>
+                <entry key="AcctNoSrc" value="4"></entry>-->
+                <entry key="wthdwMd" value="0"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+	
+	<bean id="initPayRecordPayFlowListFist2025" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="srFlag" value="1"></entry>
+				<entry key="orderDes" value="支付宝线上扫码支付"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+    <bean id="initPayParm2021" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="transType" value="01"></entry>
+				<!-- payServiceType0001担保支付0002即时到账 -->
+				<entry key="payServicType" value="0002"></entry>
+				<entry key="payType" value="30" />
+				<entry key="checkUserLmt" value="N" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayParm2024" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="transType" value="01"></entry>
+				<!-- payServiceType0001担保支付0002即时到账 -->
+				<entry key="payServicType" value="0002"></entry>
+				<entry key="payType" value="32" />
+				<entry key="checkUserLmt" value="N" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayParmRegistOrder2021" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="orderType" value="03"></entry>
+				<entry key="payType" value="30"></entry>
+				<!-- <entry key="transType" value="01"></entry> -->
+				<entry key="curr" value="CNY"></entry>
+				<entry key="orderName" value="支付宝扫码支付订单"></entry>
+				<entry key="transComments" value="支付宝扫码支付订单"></entry>
+				<entry key="cleraFlag" value="0"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayParmRegistOrder2024" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="orderType" value="03"></entry>
+				<entry key="payType" value="32"></entry>
+				<!-- <entry key="transType" value="01"></entry> -->
+				<entry key="curr" value="CNY"></entry>
+				<entry key="orderName" value="支付宝聚合支付订单"></entry>
+				<entry key="transComments" value="支付宝聚合支付订单"></entry>
+				<entry key="cleraFlag" value="0"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayRecordPayFlowList2021" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="srFlag" value="1"></entry>
+				<entry key="orderDes" value="支付宝扫码支付"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initPayRecordPayFlowList2024" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="srFlag" value="1"></entry>
+				<entry key="orderDes" value="支付宝聚合支付"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="initRefundDaily" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="refundDailyFlag" value="Y"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+    <!-- *************************** 参数转换 ****************************** -->
+
+
+    <data:dicts id="afEsbCore">
+        <data:mappings>
+            <data:mapping in="tempTransSubSeq" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataZJGetBankId">
+        <data:mappings>
+            <data:mapping in="eBindAcctNo" out="bankAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataZJDebitCard">
+        <data:mappings>
+            <data:mapping in="accountName" out="certName"/>
+            <data:mapping in="accountNumber" out="bankAccNo"/>
+            <data:mapping in="identificationNumber" out="certNo"/>
+            <data:mapping in="cvn2" out="cvv2"/>
+            <data:mapping in="bankID" out="logoId"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 微信公众号退款参数转换 -->
+    <data:dicts id="dataRefundWeixinPub">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/><!-- 微信二级 商户号 -->
+            <data:mapping in="outTradeNo" out="oriTransSubSeq"/><!--
+				商户订单号 -->
+            <data:mapping in="outRefundNo" out="transSubSeq"/><!-- 商户退款单号 -->
+            <data:mapping in="totalFee" out="oriTotalFee"/><!-- 订单金额 -->
+            <data:mapping in="refundFee" out="totalFeeRefund"/><!--
+				退款 金额 -->
+            <data:mapping in="opUserId" out="subMchId"/><!-- 操作员，默认为商户号 -->
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataRefundZJ2521Init">
+        <data:mappings>
+            <data:mapping in="totalFee" out="totalFeeRefund"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 他行快捷退款参数转换 -->
+    <data:dicts id="dataRefundZJ2521">
+        <data:mappings>
+            <data:mapping in="txSN" out="routeSeq"/>
+            <data:mapping in="paymentNo" out="oriRouteSeq"/>
+            <data:mapping in="amount" out="totalFee"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 本行快捷退款参数转换 -->
+    <data:dicts id="coreRefundBefDictConv1">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="payeeAccNo"/>
+            <data:mapping in="amount" out="totalFee"/>
+            <data:mapping in="setAccount" out="payerAccNo"/>
+            <data:mapping in="orgBizSerialNo" out="oriTransSubSeq"/>
+            <data:mapping in="orgBizDate" out="oriRouteCharDate"/>
+        </data:mappings>
+    </data:dicts>
+    
+    <data:dicts id="coreEsbRefundBefDictConv1">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="payeeAccNo"/>
+            <data:mapping in="amount" out="totalFee"/>
+            <data:mapping in="setAccount" out="payerAccNo"/>
+            <data:mapping in="orgBizSerialNo" out="oriTransSubSeq"/>
+            <data:mapping in="orgBizDate" out="oriRouteCharDate"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    
+    <data:dicts id="coreRefundBefDictConv2">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="payerAccNo"/>
+            <data:mapping in="amount" out="totalFee"/>
+            <data:mapping in="setAccount" out="payeeAccNo"/>
+            <data:mapping in="orgBizSerialNo" out="oriTransSubSeq"/>
+            <data:mapping in="orgBizDate" out="oriRouteCharDate"/>
+        </data:mappings>
+    </data:dicts>
+    
+    <data:dicts id="coreEsbRefundBefDictConv2">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="payerAccNo"/>
+            <data:mapping in="amount" out="totalFee"/>
+            <data:mapping in="setAccount" out="payeeAccNo"/>
+            <data:mapping in="orgBizSerialNo" out="oriTransSubSeq"/>
+            <data:mapping in="orgBizDate" out="oriRouteCharDate"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    <data:dicts id="coreRefundBefDictConvMerStla">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="merStlAccNo"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="setAccount" out="coreStlAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="coreRefundBefDictConvMerStlb">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="coreStlAccNo"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="setAccount" out="merStlAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="coreRefundBefDictConvMerStlc">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="coreTransAccNo"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="setAccount" out="coreStlAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="coreRefundBefDictConvMerStld">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="coreStlAccNo"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="setAccount" out="coreTransAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="coreRefundBefDictConvMerStl2011">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="zjTransAccount"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="setAccount" out="coreStlAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="coreRefundBefDictConvMerStl4530">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+            <data:mapping in="bankCardNo" out="coreStlAccNo"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="setAccount" out="zjTransAccount"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退款余额修改字段转换 -->
+    <data:dicts id="dataRefundMerAccAmtUpdate">
+        <data:mappings>
+            <data:mapping in="payType" out="oriPayType"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 清算后退款，扣除商户余额 -->
+    <data:dicts id="dataPayMerAccAmtUpdate2">
+        <data:mappings>
+            <data:mapping in="updateAmt" out="refundMerStlAmt"/>
+            <data:mapping in="accNo" out="merStlAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 退还商户手续费商户余额修改，参数转换 -->
+    <data:dicts id="dataPayMerAccAmtUpdate">
+        <data:mappings>
+            <data:mapping in="updateAmt" out="oriFeeAmt"/>
+            <data:mapping in="accNo" out="merAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 余额支付时余额修改，字段转换 -->
+    <data:dicts id="dataPayAccAmtUpdateRefund">
+        <data:mappings>
+            <data:mapping in="updateAmt" out="transAmt"/>
+            <data:mapping in="accNo" out="userAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 余额支付时余额修改，字段转换 -->
+    <data:dicts id="dataPayAccAmtUpdate">
+        <data:mappings>
+            <data:mapping in="updateAmt" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="data_pay_coreBindCredit">
+        <data:mappings><!-- 调用核心信用卡客户信息接口时参数转换 -->
+            <data:mapping in="bankCardNo" out="eBindAcctNo"/>
+            <data:mapping in="accountName" out="certName"/>
+            <data:mapping in="mobilePhone" out="reserveMobile"/>
+            <data:mapping in="bizSerialNo" out="sysSeq"/>
+            <data:mapping in="EXPIREDATE" out="validDate"/>
+            <data:mapping in="CVV2" out="cvn2"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    <data:dicts id="data_pay_coreEsbBindCredit">
+        <data:mappings><!-- 调用核心信用卡客户信息接口时参数转换 -->
+            <data:mapping in="bankCardNo" out="eBindAcctNo"/>
+            <data:mapping in="accountName" out="certName"/>
+            <data:mapping in="mobilePhone" out="reserveMobile"/>
+            <data:mapping in="EXPIREDATE" out="validDate"/>
+            <data:mapping in="CVV2" out="cvn2"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    <data:dicts id="dataPayCheckUserConvert">
+        <data:mappings><!-- 调用中金实名认证转换 -->
+            <data:mapping in="userName" out="certName"/>
+            <data:mapping in="identificationNumber" out="certNo"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeCheckAccount001">
+        <data:mappings>
+            <data:mapping in="accNo" out="vAcctNo"/>
+            <data:mapping in="bankAccNo" out="eBindAcctNo"/>
+            <data:mapping in="cvv2" out="cvn2"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeBalanceToPay">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="transAcctNo0001"/>
+            <data:mapping in="setAccount" out="clrAcctNo0001"/>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+    
+     <data:dicts id="dataEsbPayBeforeBalanceToPay">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="transAcctNo0001"/>
+            <data:mapping in="setAccount" out="clrAcctNo0001"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    
+    <data:dicts id="dataPayBeforeRefundMerFeeCore">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="transAcctNo"/>
+            <data:mapping in="setAccount" out="clrAcctNo"/>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeBalanceToPay2">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="transAcctNo0004"/>
+            <data:mapping in="setAccount" out="clrAcctNo0001"/>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeUnionPayForHost">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="transAcctNo0002"/>
+            <data:mapping in="setAccount" out="clrAcctNo0001"/>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeUnionRufundForHost">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="clrAcctNo0001"/>
+            <data:mapping in="setAccount" out="transAcctNo0002"/>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeCoreBankToPay">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="bankAccNo"/>
+            <data:mapping in="setAccount" out="clrAcctNo0001"/>
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeUpdateFeeDetail001">
+        <data:mappings>
+            <data:mapping in="txnStat" out="orderStat" notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- -->
+    <data:dicts id="dataPayBeforeRefundUserId">
+        <data:mappings>
+            <data:mapping in="userId" out="oriUserId"/>
+            <data:mapping in="dcFlag" out="merDcFlag"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayAfterUserRefundUserId">
+        <data:mappings>
+            <data:mapping in="accNo" out="userAccNo"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 退款流水参数转换 -->
+    <data:dicts id="dataPayBeforeRefundFlowList">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="transAcctNo" notNull="true"/>
+            <data:mapping in="ccy" out="oriCcy" notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 退还 手续费 -->
+    <data:dicts id="dataPayBeforeRefundMerFee">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="clrAcctNo" notNull="true"/>
+            <data:mapping in="payeeAccNo" out="transAcctNo" notNull="true"/>
+            <data:mapping in="ccy" out="oriCcy" notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 余额 -->
+    <data:dicts id="dataPayBeforeFlowList002">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="transAcctNo0001"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="clrAcctNo0001"
+                          notNull="true"/>
+            <data:mapping in="payerUserId" out="userId" notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeFlowListMerStlAdd">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="coreStlAccNo"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="merStlAccNo" notNull="true"/>
+            <data:mapping in="transAmt" out="refundMerStlAmt"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeFlowListMerStlSub">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="merStlAccNo" notNull="true"/>
+            <data:mapping in="payeeAccNo" out="coreStlAccNo"
+                          notNull="true"/>
+            <data:mapping in="transAmt" out="refundMerStlAmt"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 退款代收参数 -->
+    <data:dicts id="dataPayBeforeFlowListZJ2011">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="zjTransAccount"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="coreStlAccNo"
+                          notNull="true"/>
+            <data:mapping in="transAmt" out="refundMerStlAmt"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退款代付参数 -->
+    <data:dicts id="dataPayBeforeFlowListZJ4530">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="coreStlAccNo"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="zjTransAccount"
+                          notNull="true"/>
+            <data:mapping in="transAmt" out="refundMerStlAmt"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 他行快捷二次 -->
+    <data:dicts id="dataPayBeforeFlowList003">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="transAcctNo0004"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="clrAcctNo0001"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeUnionForFlowList">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="transAcctNo0002"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="clrAcctNo0001"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 本行快捷 -->
+    <data:dicts id="dataPayBeforeFlowList001">
+        <data:mappings>
+            <data:mapping in="payerUserId" out="userId" notNull="true"/>
+            <data:mapping in="payerAccNo" out="bankAccNo" notNull="true"/>
+            <data:mapping in="payeeAccNo" out="clrAcctNo0001"
+                          notNull="true"/>
+            <data:mapping in="payerOrgName" out="vbindOpenCode"/>
+            <data:mapping in="payerBankNo" out="bindBankCode"/>
+            <data:mapping in="payerBankName" out="bindBankName"/>
+            <data:mapping in="payerAccType" out="accType"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 他行快捷首次 -->
+    <data:dicts id="dataPayBeforeFlowList004">
+        <data:mappings>
+            <data:mapping in="payerUserId" out="userId" notNull="true"/>
+            <data:mapping in="payerAccNo" out="bankAccNo" notNull="true"/>
+            <!-- <data:mapping in="payeeAccNo" out="clrAcctNo" notNull="true"/> -->
+            <data:mapping in="payerOrgName" out="vbindOpenCode"/>
+            <data:mapping in="payerBankNo" out="bindBankCode"/>
+            <data:mapping in="payerAccType" out="accType"/>
+            <data:mapping in="payerBankName" out="bindBankName"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 绑卡支付 -->
+    <data:dicts id="dataPayEAcctNoParmSwitch">
+        <data:mappings>
+            <data:mapping in="acctNo" out="eAcctNo"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayCertNameParmSwitch">
+        <data:mappings>
+            <data:mapping in="eBindAcctName" out="certName"/>
+            <data:mapping in="eCardName" out="certName"/>
+            <data:mapping in="effectDate" out="sysDate"/>
+            <data:mapping in="mobile" out="mobile"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBindParmSwitchp">
+        <data:mappings>
+            <data:mapping in="eBindBankCode" out="cupBankNo"/> <!-- 绑定卡行号 -->
+            <data:mapping in="eBindBankName" out="cupBankName"/> <!-- 绑定卡行号 -->
+            <data:mapping in="eBindBankFlag" out="bankBinFlag"/> <!-- 银行标识01 直销银行 02他行 03本行核心系统 -->
+            <data:mapping in="eBindBankCode" out="cupBankNo"/> <!-- 绑定卡行号 -->
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayUnitPaySwitch">
+        <data:mappings>
+            <data:mapping in="orderId" out="sysSeq"/> <!-- 流水号 -->
+            <!-- <data:mapping in="customerName" out="certName" /> 客户姓名 -->
+            <data:mapping in="customerNm" out="certName"/> <!-- 客户姓名 -->
+            <data:mapping in="certifTp" out="certType"/> <!-- 证件类型 -->
+            <data:mapping in="certifId" out="certNo"/> <!-- 证件号 -->
+            <data:mapping in="phoneNo" out="mobile"/> <!-- 电话 -->
+            <data:mapping in="accNo" out="eBindAcctNo"/> <!-- 绑定卡卡号 -->
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="data_acc_bindZJCardCovert">
+        <data:mappings>
+            <data:mapping in="bankID" out="logoId"/> <!-- 银行ID号 -->
+            <data:mapping in="mobile" out="reserveMobile"/><!-- 预留手机号 -->
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayTransferp">
+        <data:mappings>
+            <data:mapping in="eBindBankCode" out="cupBankNo"/> <!-- 绑定卡行号 -->
+        </data:mappings>
+    </data:dicts>
+    <!-- 调用核心鉴权接口时需要对参数进行转换，转换成符合行方的数据参数名 -->
+    <data:dicts id="dataPayInvokeCodeInterface">
+        <data:mappings>
+            <!-- data:mapping in="BizFctnCd" out="bizFctnCd" 需要绑定的银行卡号 -->
+            <data:mapping in="Acct" out="eBindAcctNo"/> <!-- 需要绑定的银行卡号 -->
+            <data:mapping in="Pwd" out="cardPwd"/> <!-- 需要绑定的银行卡密码 -->
+        </data:mappings>
+    </data:dicts>
+    <!-- 本行卡账户验证调用核心接口，交易前外部字典转内部字典 -->
+    <data:dicts id="dataPayInvokeCoreCliBefDictConv" desc="本行卡账户验证调用核心接口，交易前外部字典转内部字典">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="eBindAcctNo"/>
+            <data:mapping in="accountName" out="certName"/>
+            <data:mapping in="mobilePhone" out="reserveMobile"/>
+            <data:mapping in="bizSerialNo" out="sysSeq"></data:mapping>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- SI_PAY20001 微信统一支付 -->
+    <data:dicts id="dataPayBeforeUpdateAssFee001">
+        <data:mappings>
+            <data:mapping in="txnStat" out="orderStat"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeUpdateOrdSt2002">
+        <data:mappings>
+            <data:mapping in="payType" out="attach"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeUpdateAssFee0012005">
+        <data:mappings>
+            <data:mapping in="txnStat" out="orderStat"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeFlowList022">
+        <data:mappings>
+            <data:mapping in="flowRouteCode" out="routeCode"
+                          notNull="true"/>
+            <data:mapping in="payAmount" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeFlowList041">
+        <data:mappings>
+            <data:mapping in="totalFee" out="txnAmt"/>
+            <data:mapping in="transSubSeq" out="orderNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataAcpinitPayParmRegistOrder3007">
+        <data:mappings>
+            <data:mapping in="orderNo" out="unionOrderNo"/>
+        </data:mappings>
+    </data:dicts>
+    
+     <data:dicts id="transformRespCode">
+        <data:mappings>
+            <data:mapping in="origRespMsg" out="respMsg"/>
+            <data:mapping in="origRespCode" out="respCode"/>
+        </data:mappings>
+    </data:dicts>
+    
+
+
+    <data:dicts id="dataPayBeforeFlowList3002">
+        <data:mappings>
+            <data:mapping in="flowRouteCode" out="routeCode"
+                          notNull="true"/>
+            <data:mapping in="payAmount" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeFlowList2006">
+        <data:mappings>
+            <data:mapping in="flowRouteCode" out="routeCode"
+                          notNull="true"/>
+            <data:mapping in="payAmount" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataRefundBeforeFlowList">
+        <data:mappings>
+            <data:mapping in="userTransAmt" out="transAmt"/>
+            <!-- <data:mapping in="oriRouteCode" out="routeCode" /> -->
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataRefundBeforeFlowListCode">
+        <data:mappings>
+            <!-- <data:mapping in="userTransAmt" out="transAmt" /> -->
+            <data:mapping in="oriRouteCode" out="routeCode"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataRefundBeforeClrType">
+        <data:mappings>
+            <data:mapping in="clrType" out="clrTypeHost"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeFlowList2005">
+        <data:mappings>
+            <data:mapping in="flowRouteCode" out="routeCode"
+                          notNull="true"/>
+            <data:mapping in="payAmount" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforepay">
+        <data:mappings>
+            <data:mapping in="merNo" out="offlineMerNo"/>
+            <!-- <data:mapping in="outTradeNo" out="orderNo" /> -->
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforepay2005">
+        <data:mappings>
+            <data:mapping in="merNo" out="offlineMerNo"/>
+            <!-- <data:mapping in="outTradeNo" out="orderNo" /> -->
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforepay2003">
+        <data:mappings>
+            <data:mapping in="merNo" out="offlineMerNo"/>
+            <!-- <data:mapping in="outTradeNo" out="orderNo" /> -->
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataQryPayBeforepay">
+        <data:mappings>
+            <data:mapping in="merNo" out="offlineMerNo"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayBeforeweixinpay">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="outTradeNo" out="transSubSeq"/>
+            <!-- <data:mapping in="attach" out="merName" /> -->
+            <data:mapping in="mchId" out="orgNo"/>
+            <!-- remark1存储是否限制信用卡支付 -->
+            <data:mapping in="limitPay" out="remark1"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeweixinpay3002">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="outTradeNo" out="transSubSeq"/>
+            <!-- <data:mapping in="attach" out="merName" /> -->
+            <data:mapping in="mchId" out="orgNo"/>
+            <!-- remark1存储是否限制信用卡支付 -->
+            <data:mapping in="limitPay" out="remark1"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeAcp3007">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="queryId" out="routeSeq"/>
+            <!-- <data:mapping in="attach" out="merName" /> -->
+            <data:mapping in="mchId" out="orgNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeweixinpay2006">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="outTradeNo" out="transSubSeq"/>
+            <!-- <data:mapping in="attach" out="merName" /> -->
+            <data:mapping in="mchId" out="orgNo"/>
+            <!-- remark1存储是否限制信用卡支付 -->
+            <data:mapping in="limitPay" out="remark1"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayBeforeweixinpay2005">
+        <data:mappings>
+            <!-- <data:mapping in="subMchId" out="offlineMerNo" /> -->
+            <data:mapping in="outTradeNo" out="transSubSeq"/>
+            <!-- <data:mapping in="attach" out="merName" /> -->
+            <data:mapping in="mchId" out="orgNo"/>
+            <!-- remark1存储是否限制信用卡支付 -->
+            <data:mapping in="limitPay" out="remark1"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayBeforeweixinpayQry">
+        <data:mappings>
+            <!-- <data:mapping in="subMchId" out="merNo" /> -->
+            <data:mapping in="outTradeNo" out="transSubSeq"/>
+            <data:mapping in="mchId" out="orgNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry">
+        <data:mappings>
+            <data:mapping in="callbackRul" out="notifyUrl"/>
+            <data:mapping in="orgNo" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry3002">
+        <data:mappings>
+            <data:mapping in="callbackRul" out="notifyUrl"/>
+            <data:mapping in="orgNo" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry2006">
+        <data:mappings>
+            <data:mapping in="callbackRul" out="notifyUrl"/>
+            <data:mapping in="orgNo" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry2005">
+        <data:mappings>
+            <data:mapping in="callbackRul" out="notifyUrl"/>
+            <data:mapping in="orgNo" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+    
+    <data:dicts id="dataPayAfterRouteInfoAT">
+        <data:mappings>
+            <data:mapping in="unionatcallbackrul" out="notifyUrl"/>
+            <data:mapping in="orgNo" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+    
+
+    <data:dicts id="dataPayAfterRouteInfoQry_weixin">
+        <data:mappings>
+            <data:mapping in="transAcctNo" out="bankCardNo"/>
+            <data:mapping in="transAcctNo" out="payerAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry_Acp">
+        <data:mappings>
+            <data:mapping in="transAcctNo" out="bankCardNo"/>
+            <data:mapping in="transAcctNo" out="payerAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry_weixin2006">
+        <data:mappings>
+            <data:mapping in="transAcctNo" out="bankCardNo"/>
+            <data:mapping in="transAcctNo" out="payerAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry_core2006">
+        <data:mappings>
+            <data:mapping in="clrAcctNo" out="setAccount"/>
+            <data:mapping in="clrAcctNo" out="payeeAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayAfterRouteInfoQry_weixin2008">
+        <data:mappings>
+            <data:mapping in="transAcctNo" out="bankCardNo"/>
+            <data:mapping in="transAcctNo" out="payerAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry_core2008">
+        <data:mappings>
+            <data:mapping in="clrAcctNo" out="setAccount"/>
+            <data:mapping in="clrAcctNo" out="payeeAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayAfterRouteInfoQry_core">
+        <data:mappings>
+            <data:mapping in="clrAcctNo" out="setAccount"/>
+            <data:mapping in="clrAcctNo" out="payeeAccNo"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayAfterRouteInfoQryChg">
+        <data:mappings>
+            <data:mapping in="orgNo" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayConvertMobile">
+        <data:mappings><!-- 转换mobile -->
+            <data:mapping in="mobile" out="reserveMobile"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayBeforeweixinpayNotice">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="transactionId"/>
+            <data:mapping in="payerBankName" out="bankType"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeUpdateMicWinXin2006">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="transactionId"/>
+            <data:mapping in="payerBankName" out="bankType"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayBeforeCoreResult">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="bkSerialNo"/>
+            <data:mapping in="routeDate" out="bkDate"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeCoreResult2008">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="bkSerialNo"/>
+            <data:mapping in="routeDate" out="bkDate"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="dataPayBeforeCoreResult2006">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="bkSerialNo"/>
+            <data:mapping in="routeDate" out="bkDate"/>
+        </data:mappings>
+    </data:dicts>
+    
+     <data:dicts id="dataPayBeforeCoreResult2018">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="bkSerialNo"/>
+        </data:mappings>
+    </data:dicts>
+    
+    <data:dicts id="dataPayBeforeCoreResult2017">
+        <data:mappings>
+            <data:mapping in="machineDate" out="bkDate"/>
+            <data:mapping in="transSubSeq" out="bkSerialNo"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    <data:dicts id="dataPayweixinToCore">
+        <data:mappings>
+            <!-- <data:mapping in="bankCardNo" out="transAcctNo"/> -->
+            <!-- <data:mapping in="machineDate" out="date"/> <data:mapping in="machineTime"
+				out="hours"/> <data:mapping in="bizDate" out="sDate"/> -->
+            <data:mapping in="amount" out="totalFee"/>
+            <!-- <data:mapping in="setAccount" out="clrAcctNo"/> -->
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+    
+    
+    <data:dicts id="esbDataPayweixinToCore">
+        <data:mappings>
+            <!-- <data:mapping in="bankCardNo" out="transAcctNo"/> -->
+            <!-- <data:mapping in="machineDate" out="date"/> <data:mapping in="machineTime"
+				out="hours"/> <data:mapping in="bizDate" out="sDate"/> -->
+            <data:mapping in="amount" out="totalFee"/>
+            <!-- <data:mapping in="setAccount" out="clrAcctNo"/> -->
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+    
+
+    <!-- 退货调用核心借贷记卡记账接口，前字典转换 -->
+    <data:dicts id="coreRefundBefDictConv">
+        <data:mappings>
+            <data:mapping in="bizDate" out="flowTransCharDate"/> <!-- 支付流水日期 -->
+            <data:mapping in="bizSerialNo" out="transSubSeq"/> <!-- 支付流水流水号 -->
+            <data:mapping in="bankCardNo" out="payerAccNo"/> <!-- 借方账户 -->
+            <data:mapping in="setAccount" out="payeeAccNo"/> <!-- 内部账户 -->
+            <data:mapping in="amount" out="refundAmt"/> <!-- 退款金额，单位：分 -->
+            <data:mapping in="orgBizDate" out="oriFlowTransCharDate"/> <!-- 原支付流水交易日期 -->
+            <data:mapping in="orgBizSerialNo" out="oriTransSubSeq"/> <!-- 原支付流水流水号 -->
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退货调用核心借贷记卡记账接口，前字典转换 -->
+    <data:dicts id="coreRefundAftDictConv">
+        <data:mappings>
+            <data:mapping in="bkDate" out="routeDate"/> <!-- 核心支付流水日期 -->
+            <data:mapping in="bkSerialNo" out="routeSeq"/> <!-- 核心支付流水流水号 -->
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退款修改商户账户余额前字典转换 -->
+    <data:dicts id="refundUpMerAcctBalBefDict">
+        <data:mappings>
+            <data:mapping in="vAcctNo" out="merVacctNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退款修改用户账户余额前字典转换 -->
+    <data:dicts id="refundUpUserAcctBalBefDict">
+        <data:mappings>
+            <data:mapping in="vAcctNo" out="userVacctNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退款交易更新订单前外部字典转内部字典 -->
+    <data:dicts id="upRefundOrderBefDictConv" desc="退款交易更新订单前外部字典转内部字典">
+        <data:mappings>
+            <data:mapping in="orderNo" out="refundOrderNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退还商户手续费处理，修改支付流水状态前字典转换 -->
+    <data:dicts id="upRefundFeeStatBefDict">
+        <data:mappings>
+            <data:mapping in="transSubSeq" out="refundFeeTransSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退不商户手续费，商户支付平台虚拟账户状态检查前字典转换 -->
+    <data:dicts id="refundFeeMerAcctChkBefDict">
+        <data:mappings>
+            <data:mapping in="accNo" out="merVacctNo"/>
+            <data:mapping in="transAmt" out="feeAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退货退还商户手续费调用核心借贷记卡记账接口，前字典转换 -->
+    <data:dicts id="coreRefundFeeBefDictConv">
+        <data:mappings>
+            <data:mapping in="bizDate" out="refundFeeFlowTransCharDate"/> <!-- 支付流水日期 -->
+            <data:mapping in="bizSerialNo" out="refundFeeTransSubSeq"/> <!-- 支付流水流水号 -->
+            <data:mapping in="bankCardNo" out="refundFeePayeeAcctNo"/> <!-- 借方账户 -->
+            <data:mapping in="setAccount" out="refundFeePayerAcctNo"/> <!-- 内部账户 -->
+            <data:mapping in="amount" out="feeCharAmt"/> <!-- 退款金额，单位：分 -->
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 退货退还商户手续费修改商户账户余额前字典转换 -->
+    <data:dicts id="refundFeeUpMerAcctBalBefDict">
+        <data:mappings>
+            <data:mapping in="vAcctNo" out="merVacctNo"/>
+            <data:mapping in="transAmt" out="feeAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="weixinSeq">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="refundId"/>
+            <data:mapping in="clrType" out="clrTypeWechat"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="alipaySeq">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="tradeNo"/>
+            <data:mapping in="clrType" out="clrTypeAlipay"/>
+        </data:mappings>
+    </data:dicts>
+
+    
+     <data:dicts id="unionSeq">
+        <data:mappings>
+            <data:mapping in="routeSeq" out="transactionId"/>
+            <data:mapping in="clrType" out="clrTypeUnion"/>
+        </data:mappings>
+    </data:dicts>
+    
+
+    <data:dicts id="weixinClrType">
+        <data:mappings>
+            <data:mapping in="clrType" out="clrTypeWechat"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 异步生成对账单文件并上传到服务器，初始参数 -->
+    <bean id="genMerChkFileParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="isFtpUpload" value="${mer.isFtpUploadChkFile}"/>
+                <entry key="chkFileDirPath" value="${mer.chkFileDirPath}"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!-- 内部账户查询参数转换 -->
+    <data:dicts id="InternalAcctQueryDict">
+        <data:mappings>
+            <data:mapping in="bankDate" out="queryDate"/> <!-- 查询业务日期 -->
+            <data:mapping in="machineDate" out="queryDate"/> <!-- 自然日期 -->
+            <data:mapping in="machineTime" out="queryTime"/><!-- 自然时间 -->
+            <data:mapping in="bizDate" out="tranDate"/><!-- 业务日期 -->
+            <data:mapping in="bizSerialNo" out="querySeq"/><!-- 支付流水流水号 -->
+            <data:mapping in="setAccount" out="stlAcctNo"/> <!-- 内部账户 -->
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 内部账户查询参数转换08008 -->
+    <data:dicts id="InternalAcctQueryDict08008">
+        <data:mappings>
+            <data:mapping in="machineDate" out="queryDate"/> <!-- 自然日期 -->
+            <data:mapping in="machineTime" out="queryTime"/><!-- 自然时间 -->
+            <data:mapping in="bizDate" out="tranDate"/><!-- 业务日期 -->
+            <data:mapping in="bizSerialNo" out="querySeq"/><!-- 支付流水流水号 -->
+            <data:mapping in="bankCardNo" out="stlAcctNo"/> <!-- 内部账户 -->
+        </data:mappings>
+    </data:dicts>
+
+
+    <bean id="initCoreDebitCardDealChkErr" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08001"/>
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+                <entry key="trantype" value="9"></entry>
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+                <entry key="currency" value="156"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initCoreCreditCardDealChkErr" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08011"/>
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+                <entry key="currency" value="156"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initCore08002" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08002"/>
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+                <entry key="currency" value="156"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="initCore08013" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08013"/>
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+                <entry key="cvv2" value=""></entry>
+                <entry key="validdate" value=""></entry>
+                <entry key="currency" value="156"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    
+    <bean id="initCoreEsb08013" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="tranCode" value="08013"/>
+                <entry key="channelId" value="74"/> <!-- 74:统一支付平台 -->
+                <entry key="svcCd" value="30340002"></entry>
+                <entry key="svcScn" value="06"></entry>
+                <entry key="currency" value="156"></entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <data:dicts id="CoreDealTranSeqBefore">
+        <data:mappings>
+            <data:mapping in="bizSerialNo" out="coreSubSeq"/> <!-- 支付流水流水号 -->
+        </data:mappings>
+    </data:dicts>
+    
+     <data:dicts id="CoreEsbDealTranSeqBefore">
+        <data:mappings>
+            <data:mapping in="transSubSeq" out="coreSubSeq"/> <!-- 支付流水流水号 -->
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="CoreDealChkErrBefDict">
+        <data:mappings>
+            <data:mapping in="trantype" out="tranType"/>
+            <data:mapping in="bizSerialNo" out="coreSubSeq"/> <!-- 支付流水流水号 -->
+            <data:mapping in="bankCardNo" out="payErAcctNo"/> <!-- 借方账户 -->
+            <data:mapping in="setAccount" out="payEeAcctNo"/> <!-- 内部账户 -->
+            <data:mapping in="amount" out="tranAmt"/> <!-- 退款金额，单位：分 -->
+        </data:mappings>
+    </data:dicts>
+    
+    <data:dicts id="CoreEsbDealChkErrBefDict">
+        <data:mappings>
+            <data:mapping in="transSubSeq" out="coreSubSeq"/> <!-- 支付流水流水号 -->
+            <data:mapping in="bankCardNo" out="payErAcctNo"/> <!-- 借方账户 -->
+            <data:mapping in="setAccount" out="payEeAcctNo"/> <!-- 内部账户 -->
+            <data:mapping in="amount" out="tranAmt"/> <!-- 退款金额，单位：分 -->
+        </data:mappings>
+    </data:dicts>
+    
+
+    <data:dicts id="dataPayBeforeFlowListForEBank">
+        <data:mappings>
+            <data:mapping in="payerUserId" out="userId"/>
+            <data:mapping in="dcFlag" out="merDcFlag"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 代收转换开始 -->
+
+    <!-- 新的 -->
+
+    <data:dicts id="data_ajSingle_sysSeq">
+        <data:mappings><!-- 调用4530提现 需要保存流水号 -->
+            <data:mapping in="routeSeq" out="txSN"/>
+            <data:mapping in="clrType" out="thirdClrType"/>
+        </data:mappings>
+    </data:dicts>
+
+
+
+    <data:dicts id="data_ajSingle_sysSeq_union">
+        <data:mappings><!-- 调用银联代付 需要保存流水号 -->
+            <data:mapping in="routeSeq" out="queryId"/>
+            <data:mapping in="clrType" out="thirdClrType"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 核心清算类型转换 -->
+    <data:dicts id="data_pay_coreClrType">
+        <data:mappings>
+            <data:mapping in="clrType" out="coreClrType"/> <!-- -->
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="data_singleCollection_flowPaymentNo">
+        <data:mappings><!-- 参数转换 -->
+            <data:mapping in="paymentNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="data_singleCollection_seqConvert">
+        <data:mappings><!-- 调用核心记账接口 参数转换 -->
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+
+
+    <!-- 本行 代扣参数转换 -->
+    <data:dicts id="data_singleCollection_coreFlowConvert">
+        <data:mappings><!-- 调用核心记账接口 参数转换 -->
+            <data:mapping in="payerAccNo" out="acctNo"/>
+            <data:mapping in="payerName" out="acctName"/>
+            <data:mapping in="payerOrgName" out="cupBankName"/>
+            <data:mapping in="payerBankNo" out="cnapsBankNo"/>
+            <data:mapping in="payerBankName" out="cupBankName"/>
+            <data:mapping in="payerUserId" out="userId"/>
+            <data:mapping in="payerAccType" out="cardBinType"/>
+
+            <data:mapping in="payeeAccNo" out="coreClrAcctNo"/>
+            <data:mapping in="payeeAccType" out="coreAcctType"/>
+            <data:mapping in="payeeName" out="coreName"/>
+            <data:mapping in="payeeOrgName" out="coreBankName"/>
+            <!-- <data:mapping in="payeeBankNo" out="" /> -->
+            <data:mapping in="payeeBankName" out="coreBankName"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="data_SIPAY0024_otherBankFist">
+        <data:mappings><!-- 网银他行代扣充值第一笔流水参数转换 -->
+            <data:mapping in="payerAccNo" out="payerAcctNo"/>
+            <data:mapping in="payerName" out="payerAcctName"/>
+            <data:mapping in="payerOrgName" out="cupBankName"/>
+            <data:mapping in="payerBankNo" out="cnapsBankNo"/>
+            <data:mapping in="payerBankName" out="cupBankName"/>
+            <data:mapping in="payerUserId" out="userId"/>
+            <data:mapping in="payerAccType" out="cardBinType"/>
+
+            <data:mapping in="payeeAccNo" out="paymentAccountNumber"/>
+            <data:mapping in="payeeName" out="paymentAccountName"/>
+            <data:mapping in="payeeOrgName" out="coreBankName"/>
+            <data:mapping in="payeeBankName" out="coreBankName"/>
+            <data:mapping in="payeeAccType" out="paymentAccountType"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="data_singleCollection_otherBankFist">
+        <data:mappings><!-- 他行代扣第一笔流水参数转换 -->
+            <data:mapping in="payerAccNo" out="acctNo"/>
+            <data:mapping in="payerName" out="acctName"/>
+            <data:mapping in="payerOrgName" out="cupBankName"/>
+            <data:mapping in="payerBankNo" out="cnapsBankNo"/>
+            <data:mapping in="payerBankName" out="cupBankName"/>
+            <data:mapping in="payerUserId" out="userId"/>
+            <data:mapping in="payerAccType" out="cardBinType"/>
+
+            <data:mapping in="payeeAccNo" out="paymentAccountNumber"/>
+            <data:mapping in="payeeName" out="paymentAccountName"/>
+            <data:mapping in="payeeOrgName" out="coreBankName"/>
+            <data:mapping in="payeeBankName" out="coreBankName"/>
+            <data:mapping in="payeeAccType" out="paymentAccountType"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="data_singleCollection_otherBankSecond">
+        <data:mappings><!-- 他行代收第二笔流水参数转换 -->
+            <data:mapping in="payeeAccNo" out="coreClrAcctNo"/>
+            <data:mapping in="payeeName" out="coreName"/>
+            <data:mapping in="payeeOrgName" out="coreBankName"/>
+            <data:mapping in="payeeBankName" out="coreBankName"/>
+            <data:mapping in="payeeUserId" out="coreUserId"/>
+            <data:mapping in="payeeAccType" out="coreAcctType"/>
+
+            <data:mapping in="payerAccNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payerAccType" out="thirdAcctType"/>
+            <data:mapping in="payerName" out="thirdName"/>
+            <data:mapping in="payerOrgName" out="thirdBankName"/>
+            <data:mapping in="payerBankNo" out="thirdBankNo"/>
+            <data:mapping in="payerBankName" out="thirdBankName"/>
+
+            <data:mapping in="routeCode" out="coreRouteCode"/>
+        </data:mappings>
+    </data:dicts>
+    
+        <data:dicts id="data_SIPAY0024_otherBankSecond">
+        <data:mappings><!-- 他行代收第二笔流水参数转换 -->
+            <data:mapping in="payeeAccNo" out="payeeAcctNo"/>
+            <data:mapping in="payeeName" out="coreName"/>
+            <data:mapping in="payeeOrgName" out="coreBankName"/>
+            <data:mapping in="payeeBankName" out="coreBankName"/>
+            <data:mapping in="payeeUserId" out="coreUserId"/>
+            <data:mapping in="payeeAccType" out="payeeAccounttype"/>
+
+            <data:mapping in="payerAccNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payerAccType" out="thirdAcctType"/>
+            <data:mapping in="payerName" out="thirdName"/>
+            <data:mapping in="payerOrgName" out="thirdBankName"/>
+            <data:mapping in="payerBankNo" out="thirdBankNo"/>
+            <data:mapping in="payerBankName" out="thirdBankName"/>
+
+            <data:mapping in="routeCode" out="coreRouteCode"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 新的 结束 -->
+
+
+<!--银联 代付    金额转换    证件类型   证件号    卡号转换-->
+    <data:dicts id="dataUnionParamForPay">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="totalFee"/>
+            <data:mapping in="accNo" out="payeeAccNo"/>
+            <data:mapping in="certifTp" out="payeeCertNo"/>
+            <data:mapping in="certifId" out="payeeCertType"/>
+        </data:mappings>
+    </data:dicts>
+    <!--银联 代收   金额转换    证件类型   证件号    卡号转换-->
+    <data:dicts id="dataUnionParamForCollection">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="totalFee"/>
+         <!--   <data:mapping in="accNo" out="acctNo"/>
+            <data:mapping in="certifTp" out="certType"/>
+            <data:mapping in="certifId" out="certNo"/>
+            <data:mapping in="phoneNo" out="mobile"/>
+            <data:mapping in="customerNm" out="acctName"/>-->
+            <!--信用卡情况-->
+            <data:mapping in="cvn2" out="cvn2"/>
+            <data:mapping in="expired" out="valiDate"/>
+        </data:mappings>
+    </data:dicts>
+
+<!--查询银联授权token  账号参数转换-->
+    <data:dicts id="dataCollectionOpenTokenQuery">
+        <data:mappings>
+            <!--<data:mapping in="bindacctno" out="acctNo"/>-->
+            <data:mapping in="accNo" out="acctNo"/>
+            <data:mapping in="phoneNo" out="mobile"/>
+            <!--证件号  证件类型  姓名-->
+            <data:mapping in="customerNm" out="acctName"/>
+            <data:mapping in="certifTp" out="certType"/>
+            <data:mapping in="certifId" out="certNo"/>
+        </data:mappings>
+    </data:dicts>
+<!--银联无跳转支付-->
+    <data:dicts id="dataUnionPayTokenConsumeClient">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="totalFee"/>
+        </data:mappings>
+    </data:dicts>
+
+
+
+
+    <!-- 单笔代收卡BIN信息查询，前字典转换 -->
+    <data:dicts id="singleCollectionCardBinInfoQryBefDict">
+        <data:mappings>
+            <data:mapping in="eBindAcctNo" out="acctNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 单笔代收卡BIN信息查询，后字典转换 -->
+    <data:dicts id="singleCollectionCardBinInfoQryAftDict">
+        <data:mappings>
+            <data:mapping in="cardBinType" out="acctType"/>
+            <data:mapping in="cupBankNo" out="bankNo"/>
+            <data:mapping in="cupBankName" out="bankName"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 单笔代收交易限额检查 -->
+    <data:dicts id="singleCollectionLimitAmtChkBefDict">
+        <data:mappings>
+            <data:mapping in="payCardType" out="acctType"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 本行 代付参数转换 -->
+    <data:dicts id="data_singlePayment_coreFlowConvert">
+        <data:mappings><!-- 调用核心记账接口 参数转换 -->
+            <data:mapping in="payerAccNo" out="stlAcctNo"/>
+            <data:mapping in="payerName" out="stlAcctName"/>
+            <data:mapping in="payerOrgName" out="coreBankName"/>
+            <!-- <data:mapping in="payerBankNo" out="" /> -->
+            <data:mapping in="payerBankName" out="coreBankName"/>
+            <!-- <data:mapping in="payerUserId" out="userId" /> -->
+            <data:mapping in="payerAccType" out="stlAcctType"/>
+
+            <data:mapping in="payeeAccNo" out="acctNo"/>
+            <data:mapping in="payeeAccType" out="cardBinType"/>
+            <data:mapping in="payeeName" out="acctName"/>
+            <data:mapping in="payeeOrgName" out="cupBankName"/>
+            <data:mapping in="payeeBankNo" out="cnapsBankNo"/>
+            <data:mapping in="payeeBankName" out="cupBankName"/>
+            <data:mapping in="payeeUserId" out="userId"/>
+
+            <data:mapping in="feeAmt" out="routeFeeAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="data_singlePayment_otherBankFist">
+        <data:mappings><!-- 他行代扣第一笔流水参数转换 -->
+            <data:mapping in="payerAccNo" out="paymentAccountNumber"/>
+            <data:mapping in="payerName" out="paymentAccountName"/>
+            <data:mapping in="payerOrgName" out="coreBankName"/>
+            <data:mapping in="payerBankNo" out="cnapsBankNo"/>
+            <data:mapping in="payerBankName" out="coreBankName"/>
+            <data:mapping in="payerAccType" out="paymentAccountType"/>
+
+            <data:mapping in="payeeAccNo" out="acctNo"/>
+            <data:mapping in="payeeName" out="acctName"/>
+            <data:mapping in="payeeOrgName" out="cupBankName"/>
+            <data:mapping in="payeeBankName" out="cupBankName"/>
+            <data:mapping in="payeeAccType" out="cardBinType"/>
+            <data:mapping in="payeeUserId" out="userId"/>
+
+            <data:mapping in="feeAmt" out="routeFeeAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="data_singlePayment_otherBankSecond">
+        <data:mappings><!-- 他行代付第二笔流水参数转换 -->
+            <data:mapping in="payerAccNo" out="stlAcctNo"/>
+            <data:mapping in="payerAccType" out="stlAcctType"/>
+            <data:mapping in="payerName" out="stlAcctName"/>
+            <data:mapping in="payerOrgName" out="coreBankName"/>
+            <!-- <data:mapping in="payerBankNo" out="thirdBankNo" /> -->
+            <data:mapping in="payerBankName" out="coreBankName"/>
+            <data:mapping in="payerUserId" out="coreUserId"/>
+
+            <data:mapping in="payeeAccNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeName" out="thirdName"/>
+            <data:mapping in="payeeOrgName" out="thirdBankName"/>
+            <data:mapping in="payeeBankName" out="thirdBankName"/>
+            <data:mapping in="payeeUserId" out="thirdUserId"/>
+            <data:mapping in="payeeAccType" out="thirdAcctType"/>
+            <data:mapping in="payeeBankNo" out="thirdBankNo"/>
+
+            <data:mapping in="routeCode" out="coreRouteCode"/>
+            <data:mapping in="feeAmt" out="routeFeeAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="data_singlePayment_routeFeeCovert">
+        <data:mappings><!-- 他行代付第二笔流水计算资金通道手续费参数转换 -->
+            <data:mapping in="routeCode" out="coreRouteCode"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="data_singleCollection_convertSeq">
+        <data:mappings><!-- 他行代扣接口 流水号转换 -->
+            <data:mapping in="zjSeq" out="routeSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <!-- 单笔代收中金资金通道状态检查初始参数 -->
+    <bean id="singleCollectionRouteChkParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeFuncCode" value="06"/> <!-- 06单笔代收 -->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 单笔代收中金资金通道状态检查初始参数 -->
+    <bean id="singlePaymentRouteChkParam" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="routeFuncCode" value="07"/> <!-- 06单笔代收 -->
+            </map>
+        </constructor-arg>
+    </bean>
+    <data:dicts id="refundReqZJRecordFlowList2011">
+        <data:mappings>
+            <data:mapping in="payerAccType" out="zjPayEeAcctType"/>
+            <data:mapping in="payerAccNo" out="paymentAccountNumber"/>
+            <data:mapping in="payeeAccType" out="zjPayErAcctType"/>
+            <data:mapping in="payeeAccNo" out="zjVbindAcctNo"/>
+            <data:mapping in="routeCode" out="zjRouteCode"/>
+            <data:mapping in="transAmt" out="refundMerStlAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="refundReqZJRecordFlowList4530">
+        <data:mappings>
+            <data:mapping in="payerAccType" out="zjPayErAcctType"/>
+            <data:mapping in="payerAccNo" out="paymentAccountNumber"/>
+            <data:mapping in="payeeAccType" out="zjPayErAcctType"/>
+            <data:mapping in="payeeAccNo" out="zjVbindAcctNo"/>
+            <data:mapping in="routeCode" out="zjRouteCode"/>
+            <data:mapping in="transAmt" out="refundMerStlAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="refundReqZJService2011">
+        <data:mappings>
+            <data:mapping in="logoId" out="bankId"/>
+            <data:mapping in="accountName" out="paymentAccountName"/>
+            <data:mapping in="accountNumber" out="paymentAccountNumber"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="zjSeq" out="routeSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="refundReqZJService4530">
+        <data:mappings>
+            <data:mapping in="totalFee" out="refundMerStlAmtF"/>
+            <data:mapping in="vbindAcctNo" out="zjVbindAcctNo"/>
+            <data:mapping in="sysSeq" out="routeSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <data:dicts id="refundClrTypeZJ">
+        <data:mappings>
+            <data:mapping in="clrType" out="clrTypeZJ"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 差错处理——冲微信流水参数转换 -->
+    <data:dicts id="dealChkErrWeChat">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="outTradeNo" out="thiredSeq"/>
+            <data:mapping in="outRefundNo" out="coreSubSeq"/>
+            <data:mapping in="totalFee" out="totalFee"/>
+            <data:mapping in="refundFee" out="tranAmt"/>
+            <data:mapping in="opUserId" out="subMchId"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 差错处理——冲中金快捷支付流水参数转换 -->
+    <data:dicts id="dealChkErrZJ2521">
+        <data:mappings>
+            <data:mapping in="txSN" out="zjRouteSeq"/>
+            <data:mapping in="paymentNo" out="thiredSeq"/>
+            <data:mapping in="amount" out="tranAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 差错处理——调用中金代收参数转换 -->
+    <data:dicts id="dealChkErrZJ2011">
+        <data:mappings>
+            <data:mapping in="logoId" out="bankId"/>
+            <data:mapping in="amount" out="refundMerStlAmtF"/>
+            <data:mapping in="zjSeq" out="zjRouteSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 差错处理——调用中金代付参数转换 -->
+    <data:dicts id="dealChkErrZJ4530">
+        <data:mappings>
+            <data:mapping in="totalFee" out="tranAmt"/>
+            <data:mapping in="routeSeq" out="zjRouteSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 差错处理——冲手续费参数转换 -->
+    <data:dicts id="dealChkErrHostFee">
+        <data:mappings>
+            <data:mapping in="bankCardNo" out="feePayErAcctNo"/>
+            <data:mapping in="setAccount" out="feePayEeAcctNo"/>
+            <data:mapping in="bizSerialNo" out="feePaySeq"/>
+            <data:mapping in="amount" out="tranFee"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 差错处理—— 核心、微信、中金流水处理 -->
+    <data:dicts id="dealChkErrFlowList">
+        <data:mappings>
+            <data:mapping in="transSubSeq" out="coreSubSeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 差错处理—— 手续费流水处理 -->
+    <data:dicts id="dealChkErrFeeFlowList">
+        <data:mappings>
+            <data:mapping in="transSubSeq" out="feePaySeq"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 银联退款接口参数转换 -->
+    <data:dicts id="dataUnionRufund">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="totalFeeRefund"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 银联退款回调接口参数转换 -->
+    <data:dicts id="dataPayBeforeUnionRufundFLow">
+        <data:mappings>
+            <data:mapping in="payerAccNo" out="clrAcctNo0001"
+                          notNull="true"/>
+            <data:mapping in="payeeAccNo" out="transAcctNo0002"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 网银支付回调 订单清算状态参数转换 -->
+    <data:dicts id="dataPayBeforeReturnClearFlag">
+        <data:mappings>
+            <data:mapping in="clearFlag" out="orderClearFlag"
+                          notNull="true"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 差错处理..银联退款接口参数转换 -->
+    <data:dicts id="dataStrikeUnionRufund">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="totalFee"/>
+            <data:mapping in="orderId" out="coreSubSeq"/>
+            <data:mapping in="origQryId" out="thiredSeq"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 现金红包参数转换 -->
+    <data:dicts id="dataPayBeforeRedPacket">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="mchBillno" out="transSubSeq"/>
+            <data:mapping in="mchId" out="orgNo"/>
+            <data:mapping in="appid" out="appId"/>
+            <data:mapping in="totalAmount" out="totalFee"/>
+            <data:mapping in="consumeMchId" out="orgNo"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 现金红包参数转换 -->
+    <data:dicts id="dataPayBeforeRedPacketTranAmtChang">
+        <data:mappings>
+            <data:mapping in="transAmt" out="totalAmount"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 现金红包查询参数转换 -->
+    <data:dicts id="dataPayBeforeRedPacketQuery">
+        <data:mappings>
+            <data:mapping in="subMchId" out="subMchId"/>
+            <data:mapping in="mchBillno" out="transSubSeq"/>
+            <data:mapping in="mchId" out="orgNo"/>
+            <data:mapping in="appid" out="appId"/>
+        </data:mappings>
+    </data:dicts>
+
+    <!-- 本行网银转账付款方账号转换 -->
+    <data:dicts id="onlineBankDSConvert">
+        <data:mappings>
+            <data:mapping in="eBindAcctNo" out="payerAcctNo"/>
+        </data:mappings>
+    </data:dicts>
+
+
+    <data:dicts id="dataPayBeforeFlowList3006">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <data:dicts id="dataPayAfterFlowList3006">
+        <data:mappings>
+             <data:mapping in="orderNo" out="oriOrderNo"/>
+            <data:mapping in="transSubSeq" out="orderNo"/>
+            <data:mapping in="totalFee" out="txnAmt"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 银联 资金通道信息查询-->
+    <data:dicts id="dataPayAfterRouteInfoQry3006">
+        <data:mappings>
+            <data:mapping in="backUrl" out="notifyUrl"/>
+            <data:mapping in="merId" out="mchId"/>
+        </data:mappings>
+    </data:dicts>
+    <!-- 银联订单登记 -->
+    <data:dicts id="dataPayBeforeFlowListApplyQrCode3006">
+        <data:mappings>
+            <data:mapping in="txnAmt" out="transAmt"/>
+        </data:mappings>
+    </data:dicts>
+
+	<data:dicts id="dataPayAcpToCore">
+		<data:mappings>
+			<!-- <data:mapping in="bankCardNo" out="transAcctNo"/> -->
+			<!-- <data:mapping in="machineDate" out="date"/> <data:mapping in="machineTime" 
+				out="hours"/> <data:mapping in="bizDate" out="sDate"/> -->
+            <data:mapping in="amount" out="totalFee"/>
+            <!-- <data:mapping in="setAccount" out="clrAcctNo"/> -->
+            <data:mapping in="bizSerialNo" out="transSubSeq"/>
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="parm_BeforeReqAlipay2020">
+		<data:mappings>
+			<data:mapping in="outTradeNo" out="transSubSeq" />
+			<data:mapping in="totalAmount" out="transAmt" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="parm_BeforeReqAlipay2024">
+		<data:mappings>
+			<data:mapping in="outTradeNo" out="transSubSeq" />
+			<data:mapping in="totalAmount" out="transAmt" />
+			<data:mapping in="buyerId" out="alipayUserId" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="parm_BeforeDeal2021">
+		<data:mappings>
+			<data:mapping in="gmtPayment" out="sendPayDate" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="parm_BeforeReqAlipay2025">
+		<data:mappings>
+			<data:mapping in="outTradeNo" out="transSubSeq" />
+			<data:mapping in="totalAmount" out="transAmt" />
+		</data:mappings>
+	</data:dicts>
+	<!-- 支付宝退款参数转换 -->
+	<data:dicts id="dataRefundAlipay">
+		<data:mappings>
+			<data:mapping in="outTradeNo" out="oriTransSubSeq" />
+			<data:mapping in="refundAmount" out="transAmt" />
+			<data:mapping in="outRequestNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+	<!-- 获取open id -->
+	<data:dicts id="dataGetOpenId">
+		<data:mappings>
+			<data:mapping in="mchId" out="orgNo" />
+		</data:mappings>
+	</data:dicts>
+	
+	<!-- 第三方快速注册下单 -->
+	<data:dicts id="dataLoginFlag">
+		<data:mappings>
+			<data:mapping in="loginFlag" out="mobile" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="dataOrgRouteCode">
+		<data:mappings>
+			<data:mapping in="orgRouteCode" out="routeType" />
+		</data:mappings>
+	</data:dicts>
+
+    <!--
+      代收（代扣）
+    订单中
+    收款方卡号     收款方卡类型
+
+    付款方卡号   付款方卡类型   转换
+    -->
+    <data:dicts id="dataPayOrderRegisterForCollection">
+        <data:mappings>
+           <!-- <data:mapping in="payerAcctType" out="accountType" />
+            <data:mapping in="payerAcctNo" out="acctNo" />
+            <data:mapping in="payeeAcctType" out="payeeAccountType" />
+            <data:mapping in="payeeAcctNo" out="payeeAccountNo" />-->
+            <data:mapping in="payeeAcctNo" out="coreClrAcctNo"/>
+            <data:mapping in="payeeAcctType" out="coreAcctType"/>
+            <data:mapping in="payerAcctNo" out="acctNo"/>
+            <data:mapping in="payerAcctType" out="cardBinType"/>
+        </data:mappings>
+    </data:dicts>
+
+
+
+    <!--
+     代付
+   订单中
+   收款方卡号     收款方卡类型
+
+   付款方卡号   付款方卡类型   转换
+   -->
+    <data:dicts id="dataPayOrderRegisterForPay">
+        <data:mappings>
+           <!-- <data:mapping in="payerAcctType" out="payerAccountType" />
+            <data:mapping in="payerAcctNo" out="payerAccountNo" />
+            <data:mapping in="payeeAcctType" out="accountType" />
+            <data:mapping in="payeeAcctNo" out="acctNo" />-->
+            <data:mapping in="payerAcctNo" out="stlAcctNo"/>
+            <data:mapping in="payerAcctType" out="stlAcctType"/>
+            <data:mapping in="payeeAcctNo" out="acctNo"/>
+            <data:mapping in="payeeAcctType" out="cardBinType"/>
+            <!--<data:mapping in="payeeAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeAcctType" out="thirdAcctType"/>-->
+
+        </data:mappings>
+    </data:dicts>
+
+   <!--<&#45;&#45; 付款方卡号   付款方卡类型   转换
+    &ndash;&gt;-->
+    <!--代付 登记订单   针对与内部转账的情况-->
+    <data:dicts id="dataPayOrderRegisterForPayToInter">
+        <data:mappings>
+            <!-- <data:mapping in="payerAcctType" out="payerAccountType" />
+             <data:mapping in="payerAcctNo" out="payerAccountNo" />
+             <data:mapping in="payeeAcctType" out="accountType" />
+             <data:mapping in="payeeAcctNo" out="acctNo" />-->
+            <data:mapping in="payerAcctNo" out="stlAcctNo"/>
+            <data:mapping in="payerAcctType" out="stlAcctType"/>
+            <data:mapping in="payeeAcctNo" out="acctNo"/>
+            <data:mapping in="payeeAcctType" out="cardBinType"/>
+            <!--<data:mapping in="payeeAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeAcctType" out="thirdAcctType"/>-->
+
+        </data:mappings>
+    </data:dicts>
+    <!--代付 登记订单   针对与非内部转账的情况-->
+    <data:dicts id="dataPayOrderRegisterForPayToOuter">
+        <data:mappings>
+            <!-- <data:mapping in="payerAcctType" out="payerAccountType" />
+             <data:mapping in="payerAcctNo" out="payerAccountNo" />
+             <data:mapping in="payeeAcctType" out="accountType" />
+             <data:mapping in="payeeAcctNo" out="acctNo" />-->
+            <data:mapping in="payerAcctNo" out="stlAcctNo"/>
+            <data:mapping in="payerAcctType" out="stlAcctType"/>
+            <data:mapping in="payeeAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeAcctType" out="thirdAcctType"/>
+            <!--<data:mapping in="payeeAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeAcctType" out="thirdAcctType"/>-->
+
+        </data:mappings>
+    </data:dicts>
+
+    <!--代收 登记订单   针对与内部转账的情况-->
+    <data:dicts id="dataPayOrderRegisterForCollectionToInter">
+        <data:mappings>
+            <!-- <data:mapping in="payerAcctType" out="payerAccountType" />
+             <data:mapping in="payerAcctNo" out="payerAccountNo" />
+             <data:mapping in="payeeAcctType" out="accountType" />
+             <data:mapping in="payeeAcctNo" out="acctNo" />-->
+            <data:mapping in="payeeAcctNo" out="coreClrAcctNo"/>
+            <data:mapping in="payeeAcctType" out="coreAcctType"/>
+            <data:mapping in="payerAcctNo" out="acctNo"/>
+            <data:mapping in="payerAcctType" out="cardBinType"/>
+            <!--<data:mapping in="payeeAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeAcctType" out="thirdAcctType"/>-->
+
+        </data:mappings>
+    </data:dicts>
+    <!--代收 登记订单   针对与非内部转账的情况-->
+    <data:dicts id="dataPayOrderRegisterForCollectionToOuter">
+        <data:mappings>
+            <!-- <data:mapping in="payerAcctType" out="payerAccountType" />
+             <data:mapping in="payerAcctNo" out="payerAccountNo" />
+             <data:mapping in="payeeAcctType" out="accountType" />
+             <data:mapping in="payeeAcctNo" out="acctNo" />-->
+            <data:mapping in="payeeAcctNo" out="coreClrAcctNo"/>
+            <data:mapping in="payeeAcctType" out="coreAcctType"/>
+            <data:mapping in="payerAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payerAcctType" out="thirdAcctType"/>
+            <!--<data:mapping in="payeeAcctNo" out="thirdTransAcctNo"/>
+            <data:mapping in="payeeAcctType" out="thirdAcctType"/>-->
+
+        </data:mappings>
+    </data:dicts>
+
+
+<!--失败冲正 -->
+    <data:dicts id="dataFailToWashed">
+        <data:mappings>
+            <data:mapping in="OrigDevStan" out="outerOrderNo"/>
+            <data:mapping in="OrigDate" out="merDate"/>
+        </data:mappings>
+    </data:dicts>
+
+  <!--失败或成功  贷款状态更新-->
+    <data:dicts id="dataStatusUpdate">
+        <data:mappings>
+            <data:mapping in="TranDate1" out="tranDt"/>
+            <data:mapping in="SndSeqNo1" out="outerOrderNo"/>
+            <data:mapping in="OrdrNo" out="orderNo"/>
+            <data:mapping in="ProcStatus" out="orderStat"/>
+        </data:mappings>
+    </data:dicts>
+
+
+   <!-- <data:dicts id="dataUnionPay">
+        <data:mappings>
+            <data:mapping in="orderId" out="transSubSeq"/>
+        </data:mappings>
+    </data:dicts>-->
+
+
+</beans>

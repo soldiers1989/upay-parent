@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<!-- 银联二维码 线下二维码申请 -->
+		<mapping xpath="merNo" field="merNo" />
+		<mapping xpath="limitCount" field="limitCount" />
+	    <mapping xpath="qrValidTime" field="qrValidTime" />
+	</mappings>
+</config>

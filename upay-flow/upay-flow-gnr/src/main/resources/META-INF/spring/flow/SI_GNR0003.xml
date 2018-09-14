@@ -1,0 +1,72 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 发送短信验证码  -->
+	<dipper:flow service-id="SI_GNR0003">
+		<dipper:try>
+			<dipper:route>			
+				<dipper:invoke>
+					<!-- 交易前检查 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 是否使用esb连接核心检查-->
+					<dipper:service ref="UseEsbCoreChkService" param-ref="initUseEsbCoreMethod" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+			
+				<dipper:invoke>
+					<dipper:service ref="SmsGetServiceImpl" param-ref="init_gnr_sendSms"/>
+				</dipper:invoke>
+
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isEsbCore=='N' ">
+					<dipper:service ref="SA_GNR_smsSendService" param-ref="initGnrSendMessage"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isEsbCore=='Y' ">
+					<dipper:service ref="esbCliDipperHandler" param-ref="initEsbSms"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 短信发送成功登记记录 -->
+                	<dipper:service ref="SmsListRegServiceImpl"/>
+				</dipper:invoke>
+				
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="FailSmsCodeServiceImpl"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+	
+</beans>	
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:service ref="defaultZJPayClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="defaultZJPayClientHandler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2501Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2501Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2502Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2502Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2503Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2503Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2511Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2511Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2512Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2512Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2521Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2521Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay2522Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2522Handler" />
+		
+	<dubbo:service ref="SA_ZJPAY_Pay2561Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2561Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay4510Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4510Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay4512Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4512Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay4530Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4530Handler" />
+
+	<dubbo:service ref="SA_ZJPAY_Pay4532Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4532Handler" />
+	<!-- 账户验证 -->
+	<dubbo:service ref="SA_ZJPAY_Pay2310Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2310Handler" />
+	<!-- 身份验证 -->
+	<dubbo:service ref="SA_ZJPAY_Pay2320Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2320Handler" />
+	<!--四要素 身份验证 -->
+	<dubbo:service ref="SA_ZJPAY_Pay2340Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2340Handler" />
+		
+	<!-- 中金账务查询1810 -->
+	<dubbo:service ref="SA_ZJPAY_Pay1810Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1810Handler" />
+
+	<!-- 中金账务查询（分页）1811 -->
+	<dubbo:service ref="SA_ZJPAY_Pay1811Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1811Handler" />
+
+	<!-- 商户订单支付（直通车） -->
+	<dubbo:service ref="SA_ZJPAY_Pay1111Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1111Handler" />
+		
+	<!-- 商户订单支付查询 -->
+	<dubbo:service ref="SA_ZJPAY_Pay1120Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1120Handler" />
+		
+	<!-- 商户订单退款 -->
+	<dubbo:service ref="SA_ZJPAY_Pay1131Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1131Handler" />
+		
+	<!-- 商户订单退款查询 -->
+	<dubbo:service ref="SA_ZJPAY_Pay1132Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1132Handler" />
+		
+	<!-- 商户订单原路退款 -->
+	<dubbo:service ref="SA_ZJPAY_Pay1133Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1133Handler" />
+			
+	<!-- 单笔代收-->
+	<dubbo:service ref="SA_ZJPAY_Pay2011Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2011Handler" />
+		
+	<!-- 单笔代收查询-->
+	<dubbo:service ref="SA_ZJPAY_Pay2020Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2020Handler" />
+	
+	<!-- 批量代收-->
+	<dubbo:service ref="SA_ZJPAY_Pay1610Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1610Handler" />
+		
+	<!-- 批量代收查询-->
+	<dubbo:service ref="SA_ZJPAY_Pay1620Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1620Handler" />
+	
+	<!-- 批量代收明细查询-->
+	<dubbo:service ref="SA_ZJPAY_Pay1630Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1630Handler" />
+</beans>

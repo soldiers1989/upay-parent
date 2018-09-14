@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkMerListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.ChkMerListPo">
+		<id column="ID" property="id" />
+		<result column="CHK_DATE" property="chkDate" />
+		<result column="MER_FLAG" property="merFlag" />
+		<result column="MER_NO" property="merNo" />
+		<result column="CHK_FILE" property="chkFile" />
+		<result column="REC_NUM" property="recNum" />
+		<result column="TXN_DATE" property="txnDate" />
+		<result column="TXN_TIME" property="txnTime" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="MER_ORDER" property="merOrder" />
+		<result column="TRANS_TYPE" property="transType" />
+		<result column="MER_TIME" property="merTime" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="CARDMER_CODE" property="cardmerCode" />
+		<result column="REL_ACCT" property="relAcct" />
+		<result column="BEF_AMT" property="befAmt" />
+		<result column="TXN_AMT" property="txnAmt" />
+		<result column="ORI_TXN_DATE" property="oriTxnDate" />
+		<result column="ORI_ORDER_NO" property="oriOrderNo" />
+		<result column="CHK_FLAG" property="chkFlag" />
+		<result column="CHK_BATCH_NO" property="chkBatchNo" />
+		<result column="MEMO" property="memo" />
+		<result column="ORDER_STAT" property="orderStat" />
+		<result column="SEC_MER_NO" property="secMerNo" />
+		<result column="MER_FEE_AMT" property="merFeeAmt" />
+		<result column="SEC_MER_FEE_AMT" property="secMerFeeAmt" />
+		<result column="MER_DATE" property="merDate" />
+		<result column="EXTENSION_PARTY" property="extensionParty" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHK_MER_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CHK_DATE,
+		MER_FLAG,
+		MER_NO,
+		CHK_FILE,
+		REC_NUM,
+		TXN_DATE,
+		TXN_TIME,
+		ORDER_NO,
+		MER_ORDER,
+		TRANS_TYPE,
+		MER_TIME,
+		ACCT_NO,
+		CARDMER_CODE,
+		REL_ACCT,
+		BEF_AMT,
+		TXN_AMT,
+		ORI_TXN_DATE,
+		ORI_ORDER_NO,
+		CHK_FLAG,
+		CHK_BATCH_NO,
+		MEMO,
+		ORDER_STAT,
+		SEC_MER_NO,
+		MER_FEE_AMT,
+		SEC_MER_FEE_AMT,
+		MER_DATE,
+		EXTENSION_PARTY,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="chkDate != null">
+			CHK_DATE= #{chkDate}
+	           AND 
+		</if>
+		<if test="merFlag != null">
+			MER_FLAG= #{merFlag}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="chkFile != null">
+			CHK_FILE= #{chkFile}
+	           AND 
+		</if>
+		<if test="recNum != null">
+			REC_NUM= #{recNum}
+	           AND 
+		</if>
+		<if test="txnDate != null">
+			TXN_DATE= #{txnDate}
+	           AND 
+		</if>
+		<if test="txnTime != null">
+			TXN_TIME= #{txnTime}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="merOrder != null">
+			MER_ORDER= #{merOrder}
+	           AND 
+		</if>
+		<if test="transType != null">
+			TRANS_TYPE= #{transType}
+	           AND 
+		</if>
+		<if test="merTime != null">
+			MER_TIME= #{merTime}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="cardmerCode != null">
+			CARDMER_CODE= #{cardmerCode}
+	           AND 
+		</if>
+		<if test="relAcct != null">
+			REL_ACCT= #{relAcct}
+	           AND 
+		</if>
+		<if test="befAmt != null">
+			BEF_AMT= #{befAmt}
+	           AND 
+		</if>
+		<if test="txnAmt != null">
+			TXN_AMT= #{txnAmt}
+	           AND 
+		</if>
+		<if test="oriTxnDate != null">
+			ORI_TXN_DATE= #{oriTxnDate}
+	           AND 
+		</if>
+		<if test="oriOrderNo != null">
+			ORI_ORDER_NO= #{oriOrderNo}
+	           AND 
+		</if>
+		<if test="chkFlag != null">
+			CHK_FLAG= #{chkFlag}
+	           AND 
+		</if>
+		<if test="chkBatchNo != null">
+			CHK_BATCH_NO= #{chkBatchNo}
+	           AND 
+		</if>
+		<if test="memo != null">
+			MEMO= #{memo}
+	           AND 
+		</if>
+		<if test="orderStat != null">
+			ORDER_STAT= #{orderStat}
+	           AND 
+		</if>
+		<if test="secMerNo != null">
+			SEC_MER_NO= #{secMerNo}
+	           AND 
+		</if>
+		<if test="merFeeAmt != null">
+			MER_FEE_AMT= #{merFeeAmt}
+	           AND 
+		</if>
+		<if test="secMerFeeAmt != null">
+			SEC_MER_FEE_AMT= #{secMerFeeAmt}
+	           AND 
+		</if>
+		<if test="merDate != null">
+			MER_DATE= #{merDate}
+	           AND 
+		</if>
+		<if test="extensionParty != null">
+			EXTENSION_PARTY= #{extensionParty}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE,
+	</if>
+	<if test="merFlag != null">
+		MER_FLAG,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="chkFile != null">
+		CHK_FILE,
+	</if>
+	<if test="recNum != null">
+		REC_NUM,
+	</if>
+	<if test="txnDate != null">
+		TXN_DATE,
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="merOrder != null">
+		MER_ORDER,
+	</if>
+	<if test="transType != null">
+		TRANS_TYPE,
+	</if>
+	<if test="merTime != null">
+		MER_TIME,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="cardmerCode != null">
+		CARDMER_CODE,
+	</if>
+	<if test="relAcct != null">
+		REL_ACCT,
+	</if>
+	<if test="befAmt != null">
+		BEF_AMT,
+	</if>
+	<if test="txnAmt != null">
+		TXN_AMT,
+	</if>
+	<if test="oriTxnDate != null">
+		ORI_TXN_DATE,
+	</if>
+	<if test="oriOrderNo != null">
+		ORI_ORDER_NO,
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG,
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO,
+	</if>
+	<if test="memo != null">
+		MEMO,
+	</if>
+	<if test="orderStat != null">
+		ORDER_STAT,
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO,
+	</if>
+	<if test="merFeeAmt != null">
+		MER_FEE_AMT,
+	</if>
+	<if test="secMerFeeAmt != null">
+		SEC_MER_FEE_AMT,
+	</if>
+	<if test="merDate != null">
+		MER_DATE,
+	</if>
+	<if test="extensionParty != null">
+		EXTENSION_PARTY,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="chkDate != null">
+		#{chkDate},
+	</if>
+	<if test="merFlag != null">
+		#{merFlag},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="chkFile != null">
+		#{chkFile},
+	</if>
+	<if test="recNum != null">
+		#{recNum},
+	</if>
+	<if test="txnDate != null">
+		#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		#{txnTime},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="merOrder != null">
+		#{merOrder},
+	</if>
+	<if test="transType != null">
+		#{transType},
+	</if>
+	<if test="merTime != null">
+		#{merTime},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="cardmerCode != null">
+		#{cardmerCode},
+	</if>
+	<if test="relAcct != null">
+		#{relAcct},
+	</if>
+	<if test="befAmt != null">
+		#{befAmt},
+	</if>
+	<if test="txnAmt != null">
+		#{txnAmt},
+	</if>
+	<if test="oriTxnDate != null">
+		#{oriTxnDate},
+	</if>
+	<if test="oriOrderNo != null">
+		#{oriOrderNo},
+	</if>
+	<if test="chkFlag != null">
+		#{chkFlag},
+	</if>
+	<if test="chkBatchNo != null">
+		#{chkBatchNo},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+	<if test="orderStat != null">
+		#{orderStat},
+	</if>
+	<if test="secMerNo != null">
+		#{secMerNo},
+	</if>
+	<if test="merFeeAmt != null">
+		#{merFeeAmt},
+	</if>
+	<if test="secMerFeeAmt != null">
+		#{secMerFeeAmt},
+	</if>
+	<if test="merDate != null">
+		#{merDate},
+	</if>
+	<if test="extensionParty != null">
+		#{extensionParty},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE=#{chkDate},
+	</if>
+	<if test="merFlag != null">
+		MER_FLAG=#{merFlag},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="chkFile != null">
+		CHK_FILE=#{chkFile},
+	</if>
+	<if test="recNum != null">
+		REC_NUM=#{recNum},
+	</if>
+	<if test="txnDate != null">
+		TXN_DATE=#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME=#{txnTime},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="merOrder != null">
+		MER_ORDER=#{merOrder},
+	</if>
+	<if test="transType != null">
+		TRANS_TYPE=#{transType},
+	</if>
+	<if test="merTime != null">
+		MER_TIME=#{merTime},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="cardmerCode != null">
+		CARDMER_CODE=#{cardmerCode},
+	</if>
+	<if test="relAcct != null">
+		REL_ACCT=#{relAcct},
+	</if>
+	<if test="befAmt != null">
+		BEF_AMT=#{befAmt},
+	</if>
+	<if test="txnAmt != null">
+		TXN_AMT=#{txnAmt},
+	</if>
+	<if test="oriTxnDate != null">
+		ORI_TXN_DATE=#{oriTxnDate},
+	</if>
+	<if test="oriOrderNo != null">
+		ORI_ORDER_NO=#{oriOrderNo},
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG=#{chkFlag},
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO=#{chkBatchNo},
+	</if>
+	<if test="memo != null">
+		MEMO=#{memo},
+	</if>
+	<if test="orderStat != null">
+		ORDER_STAT=#{orderStat},
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO=#{secMerNo},
+	</if>
+	<if test="merFeeAmt != null">
+		MER_FEE_AMT=#{merFeeAmt},
+	</if>
+	<if test="secMerFeeAmt != null">
+		SEC_MER_FEE_AMT=#{secMerFeeAmt},
+	</if>
+	<if test="merDate != null">
+		MER_DATE=#{merDate},
+	</if>
+	<if test="extensionParty != null">
+		EXTENSION_PARTY=#{extensionParty},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.chkDate != null">
+                    CHK_DATE=#{s.chkDate},
+			</if>
+			<if test="s.merFlag != null">
+                    MER_FLAG=#{s.merFlag},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.chkFile != null">
+                    CHK_FILE=#{s.chkFile},
+			</if>
+			<if test="s.recNum != null">
+                    REC_NUM=#{s.recNum},
+			</if>
+			<if test="s.txnDate != null">
+                    TXN_DATE=#{s.txnDate},
+			</if>
+			<if test="s.txnTime != null">
+                    TXN_TIME=#{s.txnTime},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.merOrder != null">
+                    MER_ORDER=#{s.merOrder},
+			</if>
+			<if test="s.transType != null">
+                    TRANS_TYPE=#{s.transType},
+			</if>
+			<if test="s.merTime != null">
+                    MER_TIME=#{s.merTime},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.cardmerCode != null">
+                    CARDMER_CODE=#{s.cardmerCode},
+			</if>
+			<if test="s.relAcct != null">
+                    REL_ACCT=#{s.relAcct},
+			</if>
+			<if test="s.befAmt != null">
+                    BEF_AMT=#{s.befAmt},
+			</if>
+			<if test="s.txnAmt != null">
+                    TXN_AMT=#{s.txnAmt},
+			</if>
+			<if test="s.oriTxnDate != null">
+                    ORI_TXN_DATE=#{s.oriTxnDate},
+			</if>
+			<if test="s.oriOrderNo != null">
+                    ORI_ORDER_NO=#{s.oriOrderNo},
+			</if>
+			<if test="s.chkFlag != null">
+                    CHK_FLAG=#{s.chkFlag},
+			</if>
+			<if test="s.chkBatchNo != null">
+                    CHK_BATCH_NO=#{s.chkBatchNo},
+			</if>
+			<if test="s.memo != null">
+                    MEMO=#{s.memo},
+			</if>
+			<if test="s.orderStat != null">
+                    ORDER_STAT=#{s.orderStat},
+			</if>
+			<if test="s.secMerNo != null">
+                    SEC_MER_NO=#{s.secMerNo},
+			</if>
+			<if test="s.merFeeAmt != null">
+                    MER_FEE_AMT=#{s.merFeeAmt},
+			</if>
+			<if test="s.secMerFeeAmt != null">
+                    SEC_MER_FEE_AMT=#{s.secMerFeeAmt},
+			</if>
+			<if test="s.merDate != null">
+                    MER_DATE=#{s.merDate},
+			</if>
+			<if test="s.extensionParty != null">
+                    EXTENSION_PARTY=#{s.extensionParty},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.chkDate != null">
+                    CHK_DATE=#{w.chkDate}
+                   AND 
+ 			</if>
+			<if test="w.merFlag != null">
+                    MER_FLAG=#{w.merFlag}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.chkFile != null">
+                    CHK_FILE=#{w.chkFile}
+                   AND 
+ 			</if>
+			<if test="w.recNum != null">
+                    REC_NUM=#{w.recNum}
+                   AND 
+ 			</if>
+			<if test="w.txnDate != null">
+                    TXN_DATE=#{w.txnDate}
+                   AND 
+ 			</if>
+			<if test="w.txnTime != null">
+                    TXN_TIME=#{w.txnTime}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.merOrder != null">
+                    MER_ORDER=#{w.merOrder}
+                   AND 
+ 			</if>
+			<if test="w.transType != null">
+                    TRANS_TYPE=#{w.transType}
+                   AND 
+ 			</if>
+			<if test="w.merTime != null">
+                    MER_TIME=#{w.merTime}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.cardmerCode != null">
+                    CARDMER_CODE=#{w.cardmerCode}
+                   AND 
+ 			</if>
+			<if test="w.relAcct != null">
+                    REL_ACCT=#{w.relAcct}
+                   AND 
+ 			</if>
+			<if test="w.befAmt != null">
+                    BEF_AMT=#{w.befAmt}
+                   AND 
+ 			</if>
+			<if test="w.txnAmt != null">
+                    TXN_AMT=#{w.txnAmt}
+                   AND 
+ 			</if>
+			<if test="w.oriTxnDate != null">
+                    ORI_TXN_DATE=#{w.oriTxnDate}
+                   AND 
+ 			</if>
+			<if test="w.oriOrderNo != null">
+                    ORI_ORDER_NO=#{w.oriOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.chkFlag != null">
+                    CHK_FLAG=#{w.chkFlag}
+                   AND 
+ 			</if>
+			<if test="w.chkBatchNo != null">
+                    CHK_BATCH_NO=#{w.chkBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    MEMO=#{w.memo}
+                   AND 
+ 			</if>
+			<if test="w.orderStat != null">
+                    ORDER_STAT=#{w.orderStat}
+                   AND 
+ 			</if>
+			<if test="w.secMerNo != null">
+                    SEC_MER_NO=#{w.secMerNo}
+                   AND 
+ 			</if>
+			<if test="w.merFeeAmt != null">
+                    MER_FEE_AMT=#{w.merFeeAmt}
+                   AND 
+ 			</if>
+			<if test="w.secMerFeeAmt != null">
+                    SEC_MER_FEE_AMT=#{w.secMerFeeAmt}
+                   AND 
+ 			</if>
+			<if test="w.merDate != null">
+                    MER_DATE=#{w.merDate}
+                   AND 
+ 			</if>
+			<if test="w.extensionParty != null">
+                    EXTENSION_PARTY=#{w.extensionParty}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccPermissionPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccPermissionPo">
+		<id column="ID" property="id" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="V_ACCT_CERT_LEVEL" property="vacctCertLevel" />
+		<result column="SUIT_V_ACCT_STAT" property="suitVacctStat" />
+		<result column="SUIT_STP_STAT" property="suitStpStat" />
+		<result column="SUIT_FRZ_STAT" property="suitFrzStat" />
+		<result column="SUIT_CHNL_ID" property="suitChnlId" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="PRM_STAT" property="prmStat" />
+		<result column="LAST_UPDATE_OPER" property="lastUpdateOper" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_PERMISSION
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ACCT_TYPE,
+		V_ACCT_CERT_LEVEL,
+		SUIT_V_ACCT_STAT,
+		SUIT_STP_STAT,
+		SUIT_FRZ_STAT,
+		SUIT_CHNL_ID,
+		TRANS_CODE,
+		PRM_STAT,
+		LAST_UPDATE_OPER,
+		LAST_UPDATE_TIME,
+		REMARK1
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="vacctCertLevel != null">
+			V_ACCT_CERT_LEVEL= #{vacctCertLevel}
+	           AND 
+		</if>
+		<if test="suitVacctStat != null">
+			SUIT_V_ACCT_STAT= #{suitVacctStat}
+	           AND 
+		</if>
+		<if test="suitStpStat != null">
+			SUIT_STP_STAT= #{suitStpStat}
+	           AND 
+		</if>
+		<if test="suitFrzStat != null">
+			SUIT_FRZ_STAT= #{suitFrzStat}
+	           AND 
+		</if>
+		<if test="suitChnlId != null">
+			SUIT_CHNL_ID= #{suitChnlId}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="prmStat != null">
+			PRM_STAT= #{prmStat}
+	           AND 
+		</if>
+		<if test="lastUpdateOper != null">
+			LAST_UPDATE_OPER= #{lastUpdateOper}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="vacctCertLevel != null">
+		V_ACCT_CERT_LEVEL,
+	</if>
+	<if test="suitVacctStat != null">
+		SUIT_V_ACCT_STAT,
+	</if>
+	<if test="suitStpStat != null">
+		SUIT_STP_STAT,
+	</if>
+	<if test="suitFrzStat != null">
+		SUIT_FRZ_STAT,
+	</if>
+	<if test="suitChnlId != null">
+		SUIT_CHNL_ID,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="prmStat != null">
+		PRM_STAT,
+	</if>
+	<if test="lastUpdateOper != null">
+		LAST_UPDATE_OPER,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="vacctCertLevel != null">
+		#{vacctCertLevel},
+	</if>
+	<if test="suitVacctStat != null">
+		#{suitVacctStat},
+	</if>
+	<if test="suitStpStat != null">
+		#{suitStpStat},
+	</if>
+	<if test="suitFrzStat != null">
+		#{suitFrzStat},
+	</if>
+	<if test="suitChnlId != null">
+		#{suitChnlId},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="prmStat != null">
+		#{prmStat},
+	</if>
+	<if test="lastUpdateOper != null">
+		#{lastUpdateOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="vacctCertLevel != null">
+		V_ACCT_CERT_LEVEL=#{vacctCertLevel},
+	</if>
+	<if test="suitVacctStat != null">
+		SUIT_V_ACCT_STAT=#{suitVacctStat},
+	</if>
+	<if test="suitStpStat != null">
+		SUIT_STP_STAT=#{suitStpStat},
+	</if>
+	<if test="suitFrzStat != null">
+		SUIT_FRZ_STAT=#{suitFrzStat},
+	</if>
+	<if test="suitChnlId != null">
+		SUIT_CHNL_ID=#{suitChnlId},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="prmStat != null">
+		PRM_STAT=#{prmStat},
+	</if>
+	<if test="lastUpdateOper != null">
+		LAST_UPDATE_OPER=#{lastUpdateOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.vacctCertLevel != null">
+                    V_ACCT_CERT_LEVEL=#{s.vacctCertLevel},
+			</if>
+			<if test="s.suitVacctStat != null">
+                    SUIT_V_ACCT_STAT=#{s.suitVacctStat},
+			</if>
+			<if test="s.suitStpStat != null">
+                    SUIT_STP_STAT=#{s.suitStpStat},
+			</if>
+			<if test="s.suitFrzStat != null">
+                    SUIT_FRZ_STAT=#{s.suitFrzStat},
+			</if>
+			<if test="s.suitChnlId != null">
+                    SUIT_CHNL_ID=#{s.suitChnlId},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.prmStat != null">
+                    PRM_STAT=#{s.prmStat},
+			</if>
+			<if test="s.lastUpdateOper != null">
+                    LAST_UPDATE_OPER=#{s.lastUpdateOper},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.vacctCertLevel != null">
+                    V_ACCT_CERT_LEVEL=#{w.vacctCertLevel}
+                   AND 
+ 			</if>
+			<if test="w.suitVacctStat != null">
+                    SUIT_V_ACCT_STAT=#{w.suitVacctStat}
+                   AND 
+ 			</if>
+			<if test="w.suitStpStat != null">
+                    SUIT_STP_STAT=#{w.suitStpStat}
+                   AND 
+ 			</if>
+			<if test="w.suitFrzStat != null">
+                    SUIT_FRZ_STAT=#{w.suitFrzStat}
+                   AND 
+ 			</if>
+			<if test="w.suitChnlId != null">
+                    SUIT_CHNL_ID=#{w.suitChnlId}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.prmStat != null">
+                    PRM_STAT=#{w.prmStat}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateOper != null">
+                    LAST_UPDATE_OPER=#{w.lastUpdateOper}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

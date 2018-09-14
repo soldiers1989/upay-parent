@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerTransLimitPo">
+	
+	<select id="getMerTransLimitByCode" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column"/>
+		FROM 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="merTransCtrlCode != null">
+				AND MER_TRANS_CTRL_CODE=#{merTransCtrlCode}
+			</if>
+			<if test="userType != null and userTypeAll != null">
+		 		AND (USER_TYPE=#{userType} OR USER_TYPE=#{userTypeAll}) 
+		 	</if>
+		 	<if test="userType == null">
+		 		AND USER_TYPE IS NULL
+		 	</if>
+			<if test="now != null">
+				AND to_date(to_char(OPEN_DATE,'yyyymmdd'),'yyyymmdd') <![CDATA[<=]]> to_date(to_char(#{now},'yyyymmdd'),'yyyymmdd')
+				AND to_date(to_char(CLOSE_DATE,'yyyymmdd'),'yyyymmdd') <![CDATA[>=]]> to_date(to_char(#{now},'yyyymmdd'),'yyyymmdd')
+			</if>
+			<if test="status != null">
+				AND STATUS=#{status}
+			</if>
+		</where>
+	</select>
+
+</mapper>

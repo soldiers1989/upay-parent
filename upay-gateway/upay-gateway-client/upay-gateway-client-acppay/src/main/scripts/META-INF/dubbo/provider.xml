@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 银联代收授权-->
+    <dubbo:service ref="unionPayReceiveAuthorizeClientDipperHandler"  group="unionPayReceiveAuthorizeClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+    <!-- 银联代收授权撤销-->
+    <dubbo:service ref="unionPayReceiveAuthorizeUndoClientDipperHandler"  group="unionPayReceiveAuthorizeUndoClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+
+    <!-- 银联代收消费-->
+    <dubbo:service ref="unionPayReceiveConsumeClientDipperHandler"    group="unionPayReceiveConsumeClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler"  />
+
+    <!-- 银联交易查询-->
+    <dubbo:service ref="unionPayTranQueryClientDipperHandler"    group="unionPayTranQueryClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+
+    <!-- 银联代收交易撤销-->
+    <dubbo:service ref="unionPayConsumeUndoClientDipperHandler"    group="unionPayConsumeUndoClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+
+    <!-- 银联代收交易退货-->
+    <dubbo:service ref="unionPayRufundClientDipperHandler"    group="unionPayRufundClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+
+    <!-- 银联对账文件下载-->
+    <dubbo:service ref="unionPayFileTransferDipperHandler"    group="unionPayFileTransferDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+
+
+    <!-- 银联代付-->
+    <dubbo:service ref="unionPayCollectionClientDipperHandler"    group="unionPayCollectionClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+
+
+
+</beans>

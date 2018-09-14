@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 校验验证码 -->
+	<bean id="SmsVerifyServiceImpl" class="com.upay.busi.gnr.service.impl.SmsVerifyServiceImpl" />
+	<!-- 交易前检查 -->
+	<bean id="SrvPreProcessingServiceImpl"
+		class="com.upay.busi.gnr.service.impl.SrvPreProcessingServiceImpl" />
+	<!-- 交易后检查 -->
+	<bean id="SrvPostProcessingServiceImpl"
+		class="com.upay.busi.gnr.service.impl.SrvPostProcessingServiceImpl" />
+
+
+	<!-- 无交易前处理后处理的事件处理工具 -->
+	<!-- <bean name="EventDealServiceImpl" class="com.upay.busi.gnr.service.impl.EventDealServiceImpl" /> -->
+	<!-- 事件初始化参数 -->
+<!-- 	<bean name="EventParmInitServiceImpl" class="com.upay.busi.gnr.service.impl.EventParmInitServiceImpl" /> -->
+	<!-- 获取短信验证码 -->
+	<bean id="SmsGetServiceImpl" class="com.upay.busi.gnr.service.impl.SmsGetServiceImpl" />
+	<!-- 短信发送成功登记记录 -->
+	<bean id="SmsListRegServiceImpl" class="com.upay.busi.gnr.service.impl.SmsListRegServiceImpl" />
+
+	<!-- 发送短信失败处理 -->
+	<bean id="FailSmsCodeServiceImpl" class="com.upay.busi.gnr.service.impl.FailSmsCodeServiceImpl" />
+	
+	<!-- 微信处理结果通知处理 -->
+	<bean id="GeneralNoticeReqServiceImpl" class="com.upay.busi.gnr.service.impl.GeneralNoticeReqServiceImpl" />
+    <bean id="UnionReqServiceImpl" class="com.upay.busi.gnr.service.impl.UnionReqServiceImpl" />
+    <bean id="AtGeneralNoticeReqServiceImpl" class="com.upay.busi.gnr.service.impl.AtGeneralNoticeReqServiceImpl" />
+	
+   <!-- 银联处理结果通知处理 -->
+	<bean id="ApcNoticeReqServiceImpl" class="com.upay.busi.gnr.service.impl.ApcNoticeReqServiceImpl" />
+	
+	<!-- 菜单查询 -->
+	<bean id="MenuQueryServiceImpl" class="com.upay.busi.gnr.service.impl.MenuQueryServiceImpl" />
+	
+	<!-- 地区代码获取-->
+	<bean id="AreaCodeGetServiceImpl" class="com.upay.busi.gnr.service.impl.AreaCodeGetServiceImpl">
+	</bean>
+	
+	<!-- 获取地区码对应地区集合 -->
+	<bean id="AreaCodeListGetServiceImpl" class="com.upay.busi.gnr.service.impl.AreaCodeListGetServiceImpl"/>
+	
+	<!-- 获取地区码对应地区集合 -->
+	<bean id="ViewPicListQueryServiceImpl" class="com.upay.busi.gnr.service.impl.ViewPicListQueryServiceImpl"/>
+	<!-- 获取地区码对应地区集合 -->
+	<bean id="AreaCodeGetByCountyServiceImpl" class="com.upay.busi.gnr.service.impl.AreaCodeGetByCountyServiceImpl">
+	</bean>
+</beans>

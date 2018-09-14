@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 注册 -->
+		<mapping xpath="userId" field="platformUserNo"/>
+		<mapping xpath="userName" field="userName" must="not"/>
+		<mapping xpath="certName" field="name" must="not"/>
+		<mapping xpath="certType" field="certType" must="not"/>
+		<mapping xpath="certNo" field="certNo" must="not"/>
+		<mapping xpath="sex" field="sex" must="not"/>
+		<mapping xpath="mobile" field="mobile" must="not"/>
+		<mapping xpath="email" field="email" must="not"/>
+		<mapping xpath="address" field="address" must="not"/>
+		<mapping xpath="merNo" field="merNo"/>
+	</mappings>
+</config>

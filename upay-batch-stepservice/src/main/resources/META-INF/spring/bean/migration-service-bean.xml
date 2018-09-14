@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 批量备份订单表到订单历史表-->
+	<bean id="BackupPayOrderList" class="com.upay.batch.stepservice.migration.BackupPayOrderList" parent="abstractStepExecutor" />
+
+
+	<!-- 批量备份流水表到流水历史表-->
+	<bean id="BackupPayFlowList" class="com.upay.batch.stepservice.migration.BackupPayFlowList" parent="abstractStepExecutor" />
+
+	<!-- 删除操作日志表-->
+	<bean id="RemoveBatchAndGnrOperateLog" class="com.upay.batch.stepservice.migration.RemoveBatchAndGnrOperateLog" parent="abstractStepExecutor" />
+</beans>

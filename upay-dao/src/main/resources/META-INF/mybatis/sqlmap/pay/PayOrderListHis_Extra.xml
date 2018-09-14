@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayOrderListHisPo">
+	<insert id="dataMove" parameterType="java.util.HashMap">
+		INSERT INTO T_PAY_ORDER_LIST_HIS 
+        SELECT ID,
+		CHNL_ID,
+		PAY_SERVIC_TYPE,
+		MER_DATE,
+		MER_SEQ,
+		MER_NO,
+		SEC_MER_NO,
+		OUTER_ORDER_NO,
+		OUTER_ORDER_START_DATE,
+		OUTER_ORDER_END_DATE,
+		ORDER_TYPE,
+		PAY_TYPE,
+		ORDER_NO,
+		ORDER_NAME,
+		TRANS_CODE,
+		USER_ID,
+		ORDER_DATE,
+		ORDER_TIME,
+		ORDER_LMT_TIME,
+		CURR,
+		TRANS_AMT,
+		OTHER_TRAN_AMT,
+		PRODUCT_AMT,
+		MER_FEE_AMT,
+		FEE_AMT,
+		ORI_DATE,
+		ORI_ORDER_NO,
+		EJECT_AMT,
+		ORDER_STAT,
+		SPBILL_CREATE_IP,
+		NOTIFY_URL,
+		RETURN_URL,
+		TRANS_COMMENTS,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		CHK_FLAG,
+		CHK_BATCH_NO,
+		STL_FLAG,
+		CHK_DATE,
+		STL_BATCH_NO,
+		STL_DATE,
+		ORDER_DES,
+		OPEN_ID,
+		PAY_TIME,
+		PAY_ACCT_NO,
+		TRANS_TYPE,
+		CLEAR_FLAG,
+		CLEAR_BATCH_NO,
+		CLEAR_DATE,
+		SEC_MER_FEE_AMT,
+		EXTENSION_PARTY,
+		ROUTE_CODE FROM T_PAY_ORDER_LIST　
+		WHERE 
+		<if test="endDate != null">
+				 <![CDATA[ORDER_DATE <  TO_DATE(#{endDate}, 'yyyy-MM-dd')]]>
+		</if>
+	</insert>
+</mapper>

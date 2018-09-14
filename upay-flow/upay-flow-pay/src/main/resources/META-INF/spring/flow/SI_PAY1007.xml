@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <!-- 商户结算账户余额查询 -->
+    <dipper:flow service-id="SI_PAY1007">
+        <dipper:try>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route>
+                <dipper:invoke>
+                    <!-- 商户状态检查 -->
+                    <dipper:service ref="MerStatChkService"/>
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route transaction="lazy">
+				 <dipper:invoke>
+                    <!-- 请求核心接口参数初始化 -->
+                    <dipper:service ref="InitReqHostService"/>
+				 </dipper:invoke>
+            	 <dipper:invoke>
+                    <dipper:if expression="target.bodys contains 'stlAcctType' &amp;&amp; target.bodys.stlAcctType == '21' || target.bodys contains 'stlAcctType' &amp;&amp; target.bodys.stlAcctType == '23'">
+	                    <!-- 核心查询中间账户（本行对公账户和内部账户） -->
+	                    <dipper:service ref="coreCliDipperHandler" param-ref="initInternalAcctQuery" beforeDictConv-ref="InternalAcctQueryDict"/>				
+                    </dipper:if>
+                </dipper:invoke>
+            	 <dipper:invoke>
+                    <dipper:if expression="target.bodys contains 'stlAcctType' &amp;&amp; target.bodys.stlAcctType == '11'">
+	                    <!-- 本行借记卡查询 -->
+	                    <dipper:service ref="coreCliDipperHandler" param-ref="initInternalAcctQuery08008" beforeDictConv-ref="InternalAcctQueryDict08008"/>				
+                    </dipper:if>
+                </dipper:invoke>
+                <dipper:invoke>
+                	<!-- 处理核心返回结果 -->
+                    <dipper:service ref="DealReqHostResultService"/>
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException />
+        <dipper:finally>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:finally>
+    </dipper:flow>
+
+
+</beans>

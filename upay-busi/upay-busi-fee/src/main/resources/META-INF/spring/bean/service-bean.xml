@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 费用明细登记 -->
+	<bean id="FeeDetailRecordService" class="com.upay.busi.fee.service.impl.FeeDetailRecordService" />
+	
+	<!-- 手续费计算并记录 -->
+	<bean id="FeeGetBaseService" class="com.upay.busi.fee.service.impl.FeeGetBaseService" />
+	
+	<!-- 更新分润明细的交易状态 -->
+	<bean id="UpdateFeeAssDetailOrderStatService" class="com.upay.busi.fee.service.impl.UpdateFeeAssDetailOrderStatService" />
+	
+
+	<!-- 更新手续费明细的交易状态 -->
+	<bean id="UpdateFeeDetailOrderStatService" class="com.upay.busi.fee.service.impl.UpdateFeeDetailOrderStatService" />
+	
+	
+	<!-- 更新手续费明细的交易状态 -->
+	<bean id="CalculateFeeService" class="com.upay.busi.fee.service.impl.CalculateFeeService" />
+	<!-- 更据资金通道计算手续费 -->
+	<bean id="GetFeeByRouteCodeService" class="com.upay.busi.fee.service.impl.GetFeeByRouteCodeService" />
+</beans>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrUserNoticeListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrUserNoticeListPo">
+		<id column="ID" property="id" />
+		<result column="USER_ID" property="userId" />
+		<result column="NOTICE_NO" property="noticeNo" />
+		<result column="NOTICE_SEND_TYPE" property="noticeSendType" />
+		<result column="NOTICE_USER" property="noticeUser" />
+		<result column="NOTICE_RIGHT_MSG" property="noticeRightMsg" />
+		<result column="NOTICE_EFFECT_TIME" property="noticeEffectTime" />
+		<result column="IS_NOTICE_READ" property="isNoticeRead" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_USER_NOTICE_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		USER_ID,
+		NOTICE_NO,
+		NOTICE_SEND_TYPE,
+		NOTICE_USER,
+		NOTICE_RIGHT_MSG,
+		NOTICE_EFFECT_TIME,
+		IS_NOTICE_READ
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="noticeNo != null">
+			NOTICE_NO= #{noticeNo}
+	           AND 
+		</if>
+		<if test="noticeSendType != null">
+			NOTICE_SEND_TYPE= #{noticeSendType}
+	           AND 
+		</if>
+		<if test="noticeUser != null">
+			NOTICE_USER= #{noticeUser}
+	           AND 
+		</if>
+		<if test="noticeRightMsg != null">
+			NOTICE_RIGHT_MSG= #{noticeRightMsg}
+	           AND 
+		</if>
+		<if test="noticeEffectTime != null">
+			NOTICE_EFFECT_TIME= #{noticeEffectTime}
+	           AND 
+		</if>
+		<if test="isNoticeRead != null">
+			IS_NOTICE_READ= #{isNoticeRead}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="noticeNo != null">
+		NOTICE_NO,
+	</if>
+	<if test="noticeSendType != null">
+		NOTICE_SEND_TYPE,
+	</if>
+	<if test="noticeUser != null">
+		NOTICE_USER,
+	</if>
+	<if test="noticeRightMsg != null">
+		NOTICE_RIGHT_MSG,
+	</if>
+	<if test="noticeEffectTime != null">
+		NOTICE_EFFECT_TIME,
+	</if>
+	<if test="isNoticeRead != null">
+		IS_NOTICE_READ,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="noticeNo != null">
+		#{noticeNo},
+	</if>
+	<if test="noticeSendType != null">
+		#{noticeSendType},
+	</if>
+	<if test="noticeUser != null">
+		#{noticeUser},
+	</if>
+	<if test="noticeRightMsg != null">
+		#{noticeRightMsg},
+	</if>
+	<if test="noticeEffectTime != null">
+		#{noticeEffectTime},
+	</if>
+	<if test="isNoticeRead != null">
+		#{isNoticeRead},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="noticeNo != null">
+		NOTICE_NO=#{noticeNo},
+	</if>
+	<if test="noticeSendType != null">
+		NOTICE_SEND_TYPE=#{noticeSendType},
+	</if>
+	<if test="noticeUser != null">
+		NOTICE_USER=#{noticeUser},
+	</if>
+	<if test="noticeRightMsg != null">
+		NOTICE_RIGHT_MSG=#{noticeRightMsg},
+	</if>
+	<if test="noticeEffectTime != null">
+		NOTICE_EFFECT_TIME=#{noticeEffectTime},
+	</if>
+	<if test="isNoticeRead != null">
+		IS_NOTICE_READ=#{isNoticeRead},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.noticeNo != null">
+                    NOTICE_NO=#{s.noticeNo},
+			</if>
+			<if test="s.noticeSendType != null">
+                    NOTICE_SEND_TYPE=#{s.noticeSendType},
+			</if>
+			<if test="s.noticeUser != null">
+                    NOTICE_USER=#{s.noticeUser},
+			</if>
+			<if test="s.noticeRightMsg != null">
+                    NOTICE_RIGHT_MSG=#{s.noticeRightMsg},
+			</if>
+			<if test="s.noticeEffectTime != null">
+                    NOTICE_EFFECT_TIME=#{s.noticeEffectTime},
+			</if>
+			<if test="s.isNoticeRead != null">
+                    IS_NOTICE_READ=#{s.isNoticeRead}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.noticeNo != null">
+                    NOTICE_NO=#{w.noticeNo}
+                   AND 
+ 			</if>
+			<if test="w.noticeSendType != null">
+                    NOTICE_SEND_TYPE=#{w.noticeSendType}
+                   AND 
+ 			</if>
+			<if test="w.noticeUser != null">
+                    NOTICE_USER=#{w.noticeUser}
+                   AND 
+ 			</if>
+			<if test="w.noticeRightMsg != null">
+                    NOTICE_RIGHT_MSG=#{w.noticeRightMsg}
+                   AND 
+ 			</if>
+			<if test="w.noticeEffectTime != null">
+                    NOTICE_EFFECT_TIME=#{w.noticeEffectTime}
+                   AND 
+ 			</if>
+			<if test="w.isNoticeRead != null">
+                    IS_NOTICE_READ=#{w.isNoticeRead}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

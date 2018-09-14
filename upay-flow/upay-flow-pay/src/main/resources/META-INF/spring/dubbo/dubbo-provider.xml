@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+	<!-- H5抢购下单 -->
+<!-- 	<dubbo:service ref="SI_ORD0045" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ORD0045" /> -->
+ 	<!-- 收银台logo对应查询 -->
+	<dubbo:service ref="SI_PAY0001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0001"/>
+ 	<!-- 收银台资金渠道查询 -->
+	<dubbo:service ref="SI_PAY0002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0002"/>
+	<!-- 流水号查询单笔订单状态 -->
+	<dubbo:service ref="SI_PAY0003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0003" />
+	<!-- 订单详细信息查询 -->
+	<dubbo:service ref="SI_PAY0004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0004" />
+	<!-- 收银台初始化 -->
+	<dubbo:service ref="SI_PAY0005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0005" />
+	<!-- 请求微信accessToken -->
+	<dubbo:service ref="SI_PAY0006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0006" />
+	<!-- 检查accessToken的失效时间 -->
+	<dubbo:service ref="SI_PAY0007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0007" />
+	<!-- 刷新accessToken的时间 -->
+	<dubbo:service ref="SI_PAY0008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0008" />
+	<!-- 支付 -->
+	<dubbo:service ref="SI_PAY0009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0009" />
+	<!-- 支付 -->
+	<dubbo:service ref="SI_PAY0010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0010" />
+	<!-- 通知ID 查询 -->
+	<dubbo:service ref="SI_PAY0011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0011" />
+	<!-- 登记流水 -->
+	<dubbo:service ref="SI_PAY0012" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0012" />
+	<!-- 商户订单查询 -->
+	<dubbo:service ref="SI_PAY0013" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0013" />
+	<!-- 确认收货 -->
+	<dubbo:service ref="SI_PAY0014" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0014" />
+	<!-- 退款 -->
+	<dubbo:service ref="SI_PAY0015" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0015" />
+	<!-- 确认收货检查 -->
+	<dubbo:service ref="SI_PAY0016" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0016" />
+	<!-- 平台退款 -->
+	<dubbo:service ref="SI_PAY0017" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0017" />
+	<!-- 微信退款 -->
+	<dubbo:service ref="SI_PAY0018" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0018" />
+	<!-- 商户对账单下载 -->
+	<dubbo:service ref="SI_PAY1005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1005" />
+	<!-- 商户结算账户余额查询 -->
+	<dubbo:service ref="SI_PAY1007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1007" />
+	<!-- 微信统一支付-->
+	<dubbo:service ref="SI_PAY2001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2001" />
+		<!-- 微信统一支付-->
+	<dubbo:service ref="SI_PAY2061" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2061" />
+	<!-- 通用通知接口-->
+	<dubbo:service ref="SI_PAY2002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2002" />
+	
+	<!-- 微信订单查询-->
+	<dubbo:service ref="SI_PAY2003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2003" />
+	<!-- 微信特约商户信息查询-->
+	<dubbo:service ref="SI_PAY2004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2004" />
+	<!-- 微信线上扫码支付接口-->
+	<dubbo:service ref="SI_PAY2005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2005" />
+	
+	<!-- 微信刷卡支付接口-->
+	<dubbo:service ref="SI_PAY2006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2006" />
+	
+	
+	<!-- 查询订单状态支付回调-->
+	<dubbo:service ref="SI_PAY2007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2007" />
+	<!-- 查询微信刷卡订单api-->
+	<dubbo:service ref="SI_PAY2008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2008" />
+	
+	
+	<!-- 微信刷卡撤销订单api-->
+	<dubbo:service ref="SI_PAY2009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2009" />
+	<!-- 支付网关订单预生成 -->
+	<dubbo:service ref="SI_PAY1001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1001" />
+	<!-- 支付网关注册订单预生成 -->
+	<dubbo:service ref="SI_PAY1008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1008" />
+	<!-- 快速下单 返回微信支付二维码 -->
+	<dubbo:service ref="SI_PAY1009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1009" />
+	 <!-- 报表交易明细查询-->
+	<dubbo:service ref="SI_PAY1010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1010" />
+	<!-- 报表交易按天汇总查询 -->
+	<dubbo:service ref="SI_PAY1011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1011" />
+	<!-- 支付回调 -->
+	<dubbo:service ref="SI_PAY3001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3001" />
+	<!-- 微信统一支付  外部使用-->
+	<dubbo:service ref="SI_PAY3002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3002" />
+	<!-- 微信统一支付公众号支付查询  外部使用-->
+	<dubbo:service ref="SI_PAY3003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3003" />
+
+	<!-- 差错处理-->
+	<dubbo:service ref="SI_PAY4001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY4001" />
+
+	<!-- 单笔代收-->
+	<dubbo:service ref="SI_PAY0019" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0019" />
+	<!-- 单笔代付-->
+	<dubbo:service ref="SI_PAY0020" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0020" />
+	<!-- 二级商户、分润 结算转账    代付-->
+	<dubbo:service ref="SI_PAY0023" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0023" />
+
+	
+	<!-- 银联退款回调 -->
+	<dubbo:service ref="SI_PAY3005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3005" />
+    <dubbo:service ref="SI_PAY3010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3010" />
+    <dubbo:service ref="SI_PAY3020" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3020" />
+
+	<!-- 银联二维码支付-被扫 -->
+	<dubbo:service ref="SI_PAY3007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3007" />
+
+	<!--银联主扫描模式-->
+	<dubbo:service ref="SI_PAY3006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3006"/>
+    <dubbo:service ref="SI_PAY3008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3008" />
+    <dubbo:service ref="SI_PAY3009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3009" />
+	
+	<!-- 发放普通红包-->
+	<dubbo:service ref="SI_PAY2010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2010" />
+	<!-- 发放裂变红包-->
+	<dubbo:service ref="SI_PAY2011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2011" />
+	<!-- 查询红包记录-->
+	<dubbo:service ref="SI_PAY2012" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2012" />
+	
+	<!-- 单笔代收  免收手续费  本行网银他行充值-->
+	<dubbo:service ref="SI_PAY0024" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0024" />
+
+	
+	<!-- 支付宝条码支付-->
+	<dubbo:service ref="SI_PAY2020" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2020" />
+	
+	<!-- 支付宝 查询刷卡支付订单状态-->
+	<dubbo:service ref="SI_PAY2021" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2021" />
+	
+	<!-- 银联 查询刷卡支付订单状态-->
+	<dubbo:service ref="SI_PAY3021" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3021" />
+	
+	
+	<!-- 支付宝扫码支付-->
+	<dubbo:service ref="SI_PAY2022" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2022" />
+	
+	<!-- 支付宝扫码支付通知回调-->
+	<dubbo:service ref="SI_PAY2023" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2023" />
+	
+	<!-- 支付宝聚合支付-->
+	<dubbo:service ref="SI_PAY2024" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2024" />
+	
+	<!-- 支付宝 线上扫码支付（收银台）-->
+	<dubbo:service ref="SI_PAY2025" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2025" />
+
+	
+	<!-- 根据授权码获取 微信用户ID）-->
+	<dubbo:service ref="SI_PAY5001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY5001" />
+	<!-- 支付宝 获取accessToken -->
+	<dubbo:service ref="SI_PAY0030" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0030" />
+	<!-- 支付宝 刷新accessToken -->
+	<dubbo:service ref="SI_PAY0031" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0031" />
+	
+	<!-- 支付宝订单查询 -->
+	<dubbo:service ref="SI_PAY2026" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2026" />
+	
+	<!-- 商户信息检查 -->
+	<dubbo:service ref="SI_PAY2027" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY2027" />
+
+	<!--查询所有支付渠道-->
+	<dubbo:service ref="SI_PAY6001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY6001" />
+	<!--查询资金结算登记薄-->
+	<dubbo:service ref="SI_PAY6002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY6002" />
+
+	<!--下载资金结算登记薄-->
+	<dubbo:service ref="SI_PAY6003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY6003" />
+	
+	
+    <!--银联无跳转支付授权-->
+	<dubbo:service ref="SI_PAY3011" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY3011" />
+	
+	<!--批量转账文件通知-->
+	<dubbo:service ref="SI_PAY7001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY7001" />
+
+
+	<!--银联代收  无跳转支付 代付 支付回调 -->
+	<dubbo:service ref="SI_PAY7002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY7002" />
+</beans>

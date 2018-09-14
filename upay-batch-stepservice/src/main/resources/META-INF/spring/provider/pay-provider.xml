@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+    <!-- 批量修改未使用的券状态在过了有效期后，将其状态修改为已过期 -->
+<!--     <dubbo:service ref="UpdateCouStatusToInvalidBatch" group="UpdateCouStatusToInvalidBatch" -->
+<!--                    interface="com.pactera.dipper.batch.service.IStepExecutor"/> -->
+
+	<dubbo:service ref="merPayNotify" interface="com.pactera.dipper.batch.service.IStepExecutor" group="merPayNotify" />
+	<!-- 修改超时订单为超时状态 -->
+	<dubbo:service ref="CheckOrderTimeOut" interface="com.pactera.dipper.batch.service.IStepExecutor" group="CheckOrderTimeOut" />
+	<!-- 订单状态同步 -->
+	<dubbo:service ref="CheckPayFlowStat" interface="com.pactera.dipper.batch.service.IStepExecutor" group="CheckPayFlowStat" />
+	<!-- 补单 -->
+	<dubbo:service ref="ContinueOrderService" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ContinueOrderService" />
+	<!-- 自动确认收货 -->
+	<dubbo:service ref="ConfirmReceipt" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ConfirmReceipt" />
+
+	<!-- 烟草清算  开始 -->
+	<!-- 获取转账文件 -->
+	<dubbo:service ref="GetSmokeFile" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetSmokeFile"/>
+	<dubbo:service ref="SmokeMerWithdraw" interface="com.pactera.dipper.batch.service.IStepExecutor" group="SmokeMerWithdraw"/>
+	<!-- 检查昨日处理中的转账明细 -->
+	<dubbo:service ref="QueryProcessingTransfer" interface="com.pactera.dipper.batch.service.IStepExecutor" group="QueryProcessingTransfer"/>
+	<!-- 检查本日转账各商户的结算账户的余额（只查询内部户） -->
+	<dubbo:service ref="CheckTransferAmount" interface="com.pactera.dipper.batch.service.IStepExecutor" group="CheckTransferAmount"/>
+	<!-- 转账 -->
+	<dubbo:service ref="SmokeTransferAccount" interface="com.pactera.dipper.batch.service.IStepExecutor" group="SmokeTransferAccount"/>
+	<!-- 返回处理结果记录 -->
+	<dubbo:service ref="SmokeStlReturn" interface="com.pactera.dipper.batch.service.IStepExecutor" group="SmokeStlReturn"/>
+	
+	<dubbo:service ref="SynchRefundMerStlAmt" interface="com.pactera.dipper.batch.service.IStepExecutor" group="SynchRefundMerStlAmt"/>
+	
+	<!-- 批量转账 开始 -->
+	<!-- 批量转账 获取转账文件 step 1 -->
+	<dubbo:service ref="DownloadTransferFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="DownloadTransferFileStep"/>
+	<!--批量转账 转账明细入库   Step 2 -->
+	<dubbo:service ref="GetTransferDataStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetTransferDataStep"/>
+	<!--批量转账 转账   Step 3 -->
+	<dubbo:service ref="BatchTransferStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="BatchTransferStep"/>
+	<!--批量转账 生成回盘文件信息(复制一个转账文件)   Step 4 -->
+	<dubbo:service ref="GenBackFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GenBackFileStep"/>
+	<!--批量转账 更新支付结果到回盘文件中   Step 5 -->
+	<dubbo:service ref="UpdatePayResult2BackFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="UpdatePayResult2BackFileStep"/>
+	<!--批量转账 上传回盘文件   Step 6 -->
+	<dubbo:service ref="UploadBackFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="UploadBackFileStep"/>
+	<!--更新处理payflowDetail的处理状态 step 7-->
+	<dubbo:service ref="UpdatePayFlowDetailForProcessState" interface="com.pactera.dipper.batch.service.IStepExecutor" group="UpdatePayFlowDetailForProcessState"/>
+	<!-- 批量转账 结束 -->
+	
+	<!-- 商户交易日累计清零 -->
+	<dubbo:service ref="DailyAcmleAmtClear" interface="com.pactera.dipper.batch.service.IStepExecutor" group="DailyAcmleAmtClear"/>
+
+   <!--手续费支出统计-->
+	<dubbo:service ref="FeeStatistics" interface="com.pactera.dipper.batch.service.IStepExecutor" group="FeeStatistics"/>
+	
+	
+</beans>

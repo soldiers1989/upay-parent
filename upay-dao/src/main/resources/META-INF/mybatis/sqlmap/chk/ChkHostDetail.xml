@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkHostDetailPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.ChkHostDetailPo">
+		<id column="ID" property="id" />
+		<result column="ORG_CODE" property="orgCode" />
+		<result column="ORG_TYPE" property="orgType" />
+		<result column="CHK_ACT_NO" property="chkActNo" />
+		<result column="CLEAR_DATE" property="clearDate" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="CHNL_DATE" property="chnlDate" />
+		<result column="CHNL_SEQ" property="chnlSeq" />
+		<result column="TRAN_DATE" property="tranDate" />
+		<result column="TELLER_SEQ" property="tellerSeq" />
+		<result column="TRAN_STAT" property="tranStat" />
+		<result column="PLAT_DATE" property="platDate" />
+		<result column="PLAT_SEQ" property="platSeq" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="BRCH_NO" property="brchNo" />
+		<result column="TELLER_NO" property="tellerNo" />
+		<result column="CURR_NO" property="currNo" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="OTH_ACCT_NO" property="othAcctNo" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="CHK_FLAG" property="chkFlag" />
+		<result column="CHK_BATCH_NO" property="chkBatchNo" />
+		<result column="CHK_DATE" property="chkDate" />
+		<result column="RESERVE1" property="reserve1" />
+		<result column="RESERVE2" property="reserve2" />
+		<result column="BANK_FLAG" property="bankFlag" />
+		<result column="INOUT_FLAG" property="inoutFlag" />
+		<result column="ACCT_NAME" property="acctName" />
+		<result column="REL_ACCT_NAME" property="relAcctName" />
+		<result column="FEE_AMT" property="feeAmt" />
+		
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHK_HOST_DETAIL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ORG_CODE,
+		ORG_TYPE,
+		CHK_ACT_NO,
+		CLEAR_DATE,
+		CHNL_ID,
+		CHNL_DATE,
+		CHNL_SEQ,
+		TRAN_DATE,
+		TELLER_SEQ,
+		TRAN_STAT,
+		PLAT_DATE,
+		PLAT_SEQ,
+		TRANS_CODE,
+		BRCH_NO,
+		TELLER_NO,
+		CURR_NO,
+		ACCT_NO,
+		OTH_ACCT_NO,
+		TRANS_AMT,
+		CHK_FLAG,
+		CHK_BATCH_NO,
+		CHK_DATE,
+		RESERVE1,
+		RESERVE2,
+		BANK_FLAG,
+		INOUT_FLAG,
+		ACCT_NAME,
+		REL_ACCT_NAME,
+		FEE_AMT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="orgCode != null">
+			ORG_CODE= #{orgCode}
+	           AND 
+		</if>
+		<if test="orgType != null">
+			ORG_TYPE= #{orgType}
+	           AND 
+		</if>
+		<if test="chkActNo != null">
+			CHK_ACT_NO= #{chkActNo}
+	           AND 
+		</if>
+		<if test="clearDate != null">
+			CLEAR_DATE= #{clearDate}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="chnlDate != null">
+			CHNL_DATE= #{chnlDate}
+	           AND 
+		</if>
+		<if test="chnlSeq != null">
+			CHNL_SEQ= #{chnlSeq}
+	           AND 
+		</if>
+		<if test="tranDate != null">
+			TRAN_DATE= #{tranDate}
+	           AND 
+		</if>
+		<if test="tellerSeq != null">
+			TELLER_SEQ= #{tellerSeq}
+	           AND 
+		</if>
+		<if test="tranStat != null">
+			TRAN_STAT= #{tranStat}
+	           AND 
+		</if>
+		<if test="platDate != null">
+			PLAT_DATE= #{platDate}
+	           AND 
+		</if>
+		<if test="platSeq != null">
+			PLAT_SEQ= #{platSeq}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="brchNo != null">
+			BRCH_NO= #{brchNo}
+	           AND 
+		</if>
+		<if test="tellerNo != null">
+			TELLER_NO= #{tellerNo}
+	           AND 
+		</if>
+		<if test="currNo != null">
+			CURR_NO= #{currNo}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="othAcctNo != null">
+			OTH_ACCT_NO= #{othAcctNo}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="chkFlag != null">
+			CHK_FLAG= #{chkFlag}
+	           AND 
+		</if>
+		<if test="chkBatchNo != null">
+			CHK_BATCH_NO= #{chkBatchNo}
+	           AND 
+		</if>
+		<if test="chkDate != null">
+			CHK_DATE= #{chkDate}
+	           AND 
+		</if>
+		<if test="reserve1 != null">
+			RESERVE1= #{reserve1}
+	           AND 
+		</if>
+		<if test="reserve2 != null">
+			RESERVE2= #{reserve2}
+	           AND 
+		</if>
+		<if test="bankFlag != null">
+			BANK_FLAG= #{bankFlag}
+	           AND 
+		</if>
+		<if test="inoutFlag != null">
+			INOUT_FLAG= #{inoutFlag}
+	           AND 
+		</if>
+		<if test="acctName != null">
+			ACCT_NAME= #{acctName}
+	           AND 
+		</if>
+		<if test="relAcctName != null">
+			REL_ACCT_NAME= #{relAcctName}
+				AND
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+		</if>
+		
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE,
+	</if>
+	<if test="orgType != null">
+		ORG_TYPE,
+	</if>
+	<if test="chkActNo != null">
+		CHK_ACT_NO,
+	</if>
+	<if test="clearDate != null">
+		CLEAR_DATE,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="chnlDate != null">
+		CHNL_DATE,
+	</if>
+	<if test="chnlSeq != null">
+		CHNL_SEQ,
+	</if>
+	<if test="tranDate != null">
+		TRAN_DATE,
+	</if>
+	<if test="tellerSeq != null">
+		TELLER_SEQ,
+	</if>
+	<if test="tranStat != null">
+		TRAN_STAT,
+	</if>
+	<if test="platDate != null">
+		PLAT_DATE,
+	</if>
+	<if test="platSeq != null">
+		PLAT_SEQ,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="brchNo != null">
+		BRCH_NO,
+	</if>
+	<if test="tellerNo != null">
+		TELLER_NO,
+	</if>
+	<if test="currNo != null">
+		CURR_NO,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="othAcctNo != null">
+		OTH_ACCT_NO,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG,
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO,
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE,
+	</if>
+	<if test="reserve1 != null">
+		RESERVE1,
+	</if>
+	<if test="reserve2 != null">
+		RESERVE2,
+	</if>
+	<if test="bankFlag != null">
+		BANK_FLAG,
+	</if>
+	<if test="inoutFlag != null">
+		INOUT_FLAG,
+	</if>
+	<if test="acctName != null">
+		ACCT_NAME,
+	</if>
+	<if test="relAcctName != null">
+		REL_ACCT_NAME,
+	</if>
+	<if test="feeAmt != null">
+			FEE_AMT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="orgCode != null">
+		#{orgCode},
+	</if>
+	<if test="orgType != null">
+		#{orgType},
+	</if>
+	<if test="chkActNo != null">
+		#{chkActNo},
+	</if>
+	<if test="clearDate != null">
+		#{clearDate},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="chnlDate != null">
+		#{chnlDate},
+	</if>
+	<if test="chnlSeq != null">
+		#{chnlSeq},
+	</if>
+	<if test="tranDate != null">
+		#{tranDate},
+	</if>
+	<if test="tellerSeq != null">
+		#{tellerSeq},
+	</if>
+	<if test="tranStat != null">
+		#{tranStat},
+	</if>
+	<if test="platDate != null">
+		#{platDate},
+	</if>
+	<if test="platSeq != null">
+		#{platSeq},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="brchNo != null">
+		#{brchNo},
+	</if>
+	<if test="tellerNo != null">
+		#{tellerNo},
+	</if>
+	<if test="currNo != null">
+		#{currNo},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="othAcctNo != null">
+		#{othAcctNo},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="chkFlag != null">
+		#{chkFlag},
+	</if>
+	<if test="chkBatchNo != null">
+		#{chkBatchNo},
+	</if>
+	<if test="chkDate != null">
+		#{chkDate},
+	</if>
+	<if test="reserve1 != null">
+		#{reserve1},
+	</if>
+	<if test="reserve2 != null">
+		#{reserve2},
+	</if>
+	<if test="bankFlag != null">
+		#{bankFlag},
+	</if>
+	<if test="inoutFlag != null">
+		#{inoutFlag},
+	</if>
+	<if test="acctName != null">
+		#{acctName},
+	</if>
+	<if test="relAcctName != null">
+		#{relAcctName},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE=#{orgCode},
+	</if>
+	<if test="orgType != null">
+		ORG_TYPE=#{orgType},
+	</if>
+	<if test="chkActNo != null">
+		CHK_ACT_NO=#{chkActNo},
+	</if>
+	<if test="clearDate != null">
+		CLEAR_DATE=#{clearDate},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="chnlDate != null">
+		CHNL_DATE=#{chnlDate},
+	</if>
+	<if test="chnlSeq != null">
+		CHNL_SEQ=#{chnlSeq},
+	</if>
+	<if test="tranDate != null">
+		TRAN_DATE=#{tranDate},
+	</if>
+	<if test="tellerSeq != null">
+		TELLER_SEQ=#{tellerSeq},
+	</if>
+	<if test="tranStat != null">
+		TRAN_STAT=#{tranStat},
+	</if>
+	<if test="platDate != null">
+		PLAT_DATE=#{platDate},
+	</if>
+	<if test="platSeq != null">
+		PLAT_SEQ=#{platSeq},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="brchNo != null">
+		BRCH_NO=#{brchNo},
+	</if>
+	<if test="tellerNo != null">
+		TELLER_NO=#{tellerNo},
+	</if>
+	<if test="currNo != null">
+		CURR_NO=#{currNo},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="othAcctNo != null">
+		OTH_ACCT_NO=#{othAcctNo},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG=#{chkFlag},
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO=#{chkBatchNo},
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE=#{chkDate},
+	</if>
+	<if test="reserve1 != null">
+		RESERVE1=#{reserve1},
+	</if>
+	<if test="reserve2 != null">
+		RESERVE2=#{reserve2},
+	</if>
+	<if test="bankFlag != null">
+		BANK_FLAG=#{bankFlag},
+	</if>
+	<if test="inoutFlag != null">
+		INOUT_FLAG=#{inoutFlag},
+	</if>
+	<if test="acctName != null">
+		ACCT_NAME=#{acctName},
+	</if>
+	<if test="relAcctName != null">
+		REL_ACCT_NAME=#{relAcctName},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT= #{feeAmt},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.orgCode != null">
+                    ORG_CODE=#{s.orgCode},
+			</if>
+			<if test="s.orgType != null">
+                    ORG_TYPE=#{s.orgType},
+			</if>
+			<if test="s.chkActNo != null">
+                    CHK_ACT_NO=#{s.chkActNo},
+			</if>
+			<if test="s.clearDate != null">
+                    CLEAR_DATE=#{s.clearDate},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.chnlDate != null">
+                    CHNL_DATE=#{s.chnlDate},
+			</if>
+			<if test="s.chnlSeq != null">
+                    CHNL_SEQ=#{s.chnlSeq},
+			</if>
+			<if test="s.tranDate != null">
+                    TRAN_DATE=#{s.tranDate},
+			</if>
+			<if test="s.tellerSeq != null">
+                    TELLER_SEQ=#{s.tellerSeq},
+			</if>
+			<if test="s.tranStat != null">
+                    TRAN_STAT=#{s.tranStat},
+			</if>
+			<if test="s.platDate != null">
+                    PLAT_DATE=#{s.platDate},
+			</if>
+			<if test="s.platSeq != null">
+                    PLAT_SEQ=#{s.platSeq},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.brchNo != null">
+                    BRCH_NO=#{s.brchNo},
+			</if>
+			<if test="s.tellerNo != null">
+                    TELLER_NO=#{s.tellerNo},
+			</if>
+			<if test="s.currNo != null">
+                    CURR_NO=#{s.currNo},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.othAcctNo != null">
+                    OTH_ACCT_NO=#{s.othAcctNo},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.chkFlag != null">
+                    CHK_FLAG=#{s.chkFlag},
+			</if>
+			<if test="s.chkBatchNo != null">
+                    CHK_BATCH_NO=#{s.chkBatchNo},
+			</if>
+			<if test="s.chkDate != null">
+                    CHK_DATE=#{s.chkDate},
+			</if>
+			<if test="s.reserve1 != null">
+                    RESERVE1=#{s.reserve1},
+			</if>
+			<if test="s.reserve2 != null">
+                    RESERVE2=#{s.reserve2},
+			</if>
+			<if test="s.bankFlag != null">
+                    BANK_FLAG=#{s.bankFlag},
+			</if>
+			<if test="s.inoutFlag != null">
+                    INOUT_FLAG=#{s.inoutFlag},
+			</if>
+			<if test="s.acctName != null">
+                    ACCT_NAME=#{s.acctName},
+			</if>
+			<if test="s.relAcctName != null">
+                    REL_ACCT_NAME=#{s.relAcctName},
+			</if>
+			<if test="s.feeAmt != null">
+					FEE_AMT= #{s.feeAmt}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.orgCode != null">
+                    ORG_CODE=#{w.orgCode}
+                   AND 
+ 			</if>
+			<if test="w.orgType != null">
+                    ORG_TYPE=#{w.orgType}
+                   AND 
+ 			</if>
+			<if test="w.chkActNo != null">
+                    CHK_ACT_NO=#{w.chkActNo}
+                   AND 
+ 			</if>
+			<if test="w.clearDate != null">
+                    CLEAR_DATE=#{w.clearDate}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.chnlDate != null">
+                    CHNL_DATE=#{w.chnlDate}
+                   AND 
+ 			</if>
+			<if test="w.chnlSeq != null">
+                    CHNL_SEQ=#{w.chnlSeq}
+                   AND 
+ 			</if>
+			<if test="w.tranDate != null">
+                    TRAN_DATE=#{w.tranDate}
+                   AND 
+ 			</if>
+			<if test="w.tellerSeq != null">
+                    TELLER_SEQ=#{w.tellerSeq}
+                   AND 
+ 			</if>
+			<if test="w.tranStat != null">
+                    TRAN_STAT=#{w.tranStat}
+                   AND 
+ 			</if>
+			<if test="w.platDate != null">
+                    PLAT_DATE=#{w.platDate}
+                   AND 
+ 			</if>
+			<if test="w.platSeq != null">
+                    PLAT_SEQ=#{w.platSeq}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.brchNo != null">
+                    BRCH_NO=#{w.brchNo}
+                   AND 
+ 			</if>
+			<if test="w.tellerNo != null">
+                    TELLER_NO=#{w.tellerNo}
+                   AND 
+ 			</if>
+			<if test="w.currNo != null">
+                    CURR_NO=#{w.currNo}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.othAcctNo != null">
+                    OTH_ACCT_NO=#{w.othAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.chkFlag != null">
+                    CHK_FLAG=#{w.chkFlag}
+                   AND 
+ 			</if>
+			<if test="w.chkBatchNo != null">
+                    CHK_BATCH_NO=#{w.chkBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.chkDate != null">
+                    CHK_DATE=#{w.chkDate}
+                   AND 
+ 			</if>
+			<if test="w.reserve1 != null">
+                    RESERVE1=#{w.reserve1}
+                   AND 
+ 			</if>
+			<if test="w.reserve2 != null">
+                    RESERVE2=#{w.reserve2}
+                   AND 
+ 			</if>
+			<if test="w.bankFlag != null">
+                    BANK_FLAG=#{w.bankFlag}
+                   AND 
+ 			</if>
+			<if test="w.inoutFlag != null">
+                    INOUT_FLAG=#{w.inoutFlag}
+                   AND 
+ 			</if>
+			<if test="w.acctName != null">
+                    ACCT_NAME=#{w.acctName}
+                   AND 
+ 			</if>
+			<if test="w.relAcctName != null">
+                    REL_ACCT_NAME=#{w.relAcctName}
+                    AND
+ 			</if>
+ 			<if test="w.feeAmt != null">
+					FEE_AMT= #{w.feeAmt}
+			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

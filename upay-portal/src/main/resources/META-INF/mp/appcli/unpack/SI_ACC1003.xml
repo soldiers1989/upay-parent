@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+<!-- 	<mappings>vbindBankCode -->
+<mappings>
+		<mapping xpath="$.body.V_BIND_ACCT_NO" field="vBindAcctNo" />
+		<mapping xpath="$.body.TRADE_PWD" field="tradePwd" /><!-- 交易密码 -->
+		<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>
+	</mappings>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+		<mapping xpath="merNo" field="merNo"/>
+		<mapping xpath="operateFlag" field="operateFlag"/>
+		<mapping xpath="jsapiPath" field="jsapiPath" must="not"/>
+		<mapping xpath="subAppid" field="subAppid" must="not"/>
+		<mapping xpath="subscribeAppid" field="subscribeAppid" must="not"/>
+	</mappings>
+</config>

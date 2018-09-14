@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+    <bean id="abstractDipperHandler" class="com.pactera.dipper.presys.cp.client.AbstractClientDipperHandler" abstract="true"/>
+
+
+	<bean id="defaultYumCliDipperHandler" class="com.cmbchina.cop.gateway.client.yum.DefaultYumClientHandler" parent="abstractDipperHandler">     
+        <property name="flow" ref="SI_yumcliFlow" />
+        <property name="channel" ref="yumcli" />
+	</bean>
+	<!-- 百胜冲正服务 -->
+	<bean id="reverseYumCliDipperHandler" class="com.cmbchina.cop.gateway.client.yum.ReverseYumClientHandler" parent="abstractDipperHandler">     
+        <property name="flow" ref="SI_yumcliFlow" />
+        <property name="channel" ref="yumcli" />
+	</bean>
+	<!-- md5加密 -->
+	<bean id="encryptMd5Handler" class="com.cmbchina.cop.gateway.client.yum.encrypt.EncryptMd5Handler" >     
+        <property name="md5Key" value="${yumKey}" />
+        <property name="channelId" value="${yumChannelId}" />
+        <property name="packKeyMapping">
+			<map>
+				<entry key="generateCode" value="activityId|userCodes|transTime|transactionID|channelId" />
+				<entry key="queryCode" value="couponCodes|transTime|transactionID|channelId" />
+				<entry key="cancelCode" value="couponCodes|transTime|transactionID|transType|channelId" />
+<!-- 				<entry key="batchCancelCode" value="multiReferenceId|transactionID" /> -->
+				<entry key="batchQueryCode" value="couponCodes|transTime|transactionID|channelId" />
+				<entry key="reverseCode" value="originalTransactionId|transType|transTime|transactionID|channelId" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

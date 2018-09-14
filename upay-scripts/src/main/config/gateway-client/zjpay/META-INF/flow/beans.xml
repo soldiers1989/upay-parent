@@ -1,0 +1,118 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+	<bean id="abstractZJPayClientDipperHandler"
+		class="com.upay.gateway.client.zjpay.pay.AbstractZJPayClientDipperHandler"
+		abstract="true" />
+
+	<bean id="defaultZJPayClientHandler"
+		class="com.upay.gateway.client.zjpay.pay.DefaultZJPayClientHandler"
+		parent="abstractZJPayClientDipperHandler">
+		<property name="channelId" value="zjpaycli" />
+	</bean>
+
+	<!-- 建立绑定关系 -->
+	<bean id="SA_ZJPAY_Pay2501Handler" class="com.upay.gateway.client.zjpay.service.Pay2501Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 查询绑定关系 -->
+	<bean id="SA_ZJPAY_Pay2502Handler" class="com.upay.gateway.client.zjpay.service.Pay2502Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 解除绑定关系 -->
+	<bean id="SA_ZJPAY_Pay2503Handler" class="com.upay.gateway.client.zjpay.service.Pay2503Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 快捷支付 -->
+	<bean id="SA_ZJPAY_Pay2511Handler" class="com.upay.gateway.client.zjpay.service.Pay2511Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 快捷支付查询 -->
+	<bean id="SA_ZJPAY_Pay2512Handler" class="com.upay.gateway.client.zjpay.service.Pay2512Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 快捷支付退款 -->
+	<bean id="SA_ZJPAY_Pay2521Handler" class="com.upay.gateway.client.zjpay.service.Pay2521Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 快捷支付退款查询 -->
+	<bean id="SA_ZJPAY_Pay2522Handler" class="com.upay.gateway.client.zjpay.service.Pay2522Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 快捷支付退款查询 -->
+	<bean id="SA_ZJPAY_Pay2561Handler" class="com.upay.gateway.client.zjpay.service.Pay2561Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 机构支付账户余额查询 -->
+	<bean id="SA_ZJPAY_Pay4510Handler" class="com.upay.gateway.client.zjpay.service.Pay4510Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 机构支付账户交易明细查询 -->
+	<bean id="SA_ZJPAY_Pay4512Handler" class="com.upay.gateway.client.zjpay.service.Pay4512Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 代付 -->
+	<bean id="SA_ZJPAY_Pay4530Handler" class="com.upay.gateway.client.zjpay.service.Pay4530Handler"
+		parent="abstractZJPayClientDipperHandler">
+<!-- 		<property name="paymentAccountName" value="${paymentAccountName}"></property> -->
+<!-- 		<property name="paymentAccountNumber" value="${paymentAccountNumber}"></property> -->
+<!-- 		<property name="accountType" value="${accountType}"></property> -->
+	</bean>
+	<!-- 代付查询 -->
+	<bean id="SA_ZJPAY_Pay4532Handler" class="com.upay.gateway.client.zjpay.service.Pay4532Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+
+	<!-- 账户验证 -->
+	<bean id="SA_ZJPAY_Pay2310Handler" class="com.upay.gateway.client.zjpay.service.Pay2310Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 身份验证 -->
+	<bean id="SA_ZJPAY_Pay2320Handler" class="com.upay.gateway.client.zjpay.service.Pay2320Handler"
+		parent="abstractZJPayClientDipperHandler" />
+		
+	<!-- 四要素  身份验证 -->
+	<bean id="SA_ZJPAY_Pay2340Handler" class="com.upay.gateway.client.zjpay.service.Pay2340Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 中金账户查询1810 -->
+	<bean id="SA_ZJPAY_Pay1810Handler" class="com.upay.gateway.client.zjpay.service.Pay1810Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 中金账户查询（分页）1811 -->
+	<bean id="SA_ZJPAY_Pay1811Handler" class="com.upay.gateway.client.zjpay.service.Pay1811Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 商户订单支付（直通车） -->
+	<bean id="SA_ZJPAY_Pay1111Handler" class="com.upay.gateway.client.zjpay.service.Pay1111Handler"
+		parent="abstractZJPayClientDipperHandler" />
+		
+	<!-- 商户订单支付查询 -->
+	<bean id="SA_ZJPAY_Pay1120Handler" class="com.upay.gateway.client.zjpay.service.Pay1120Handler"
+		parent="abstractZJPayClientDipperHandler" />
+		
+	<!-- 商户订单退款 -->
+	<bean id="SA_ZJPAY_Pay1131Handler" class="com.upay.gateway.client.zjpay.service.Pay1131Handler"
+		parent="abstractZJPayClientDipperHandler" />
+		
+	<!-- 商户订单退款查询 -->
+	<bean id="SA_ZJPAY_Pay1132Handler" class="com.upay.gateway.client.zjpay.service.Pay1132Handler"
+		parent="abstractZJPayClientDipperHandler" />
+		
+	<!-- 商户订单原路退款-->
+	<bean id="SA_ZJPAY_Pay1133Handler" class="com.upay.gateway.client.zjpay.service.Pay1133Handler"
+		parent="abstractZJPayClientDipperHandler" />
+
+	<!-- 单笔代收-->
+	<bean id="SA_ZJPAY_Pay2011Handler" class="com.upay.gateway.client.zjpay.service.Pay2011Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 单笔代收查询-->
+	<bean id="SA_ZJPAY_Pay2020Handler" class="com.upay.gateway.client.zjpay.service.Pay2020Handler"
+		parent="abstractZJPayClientDipperHandler" />
+		
+	<!-- 批量代收-->
+	<bean id="SA_ZJPAY_Pay1610Handler" class="com.upay.gateway.client.zjpay.service.Pay1610Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 批量代收查询-->
+	<bean id="SA_ZJPAY_Pay1620Handler" class="com.upay.gateway.client.zjpay.service.Pay1620Handler"
+		parent="abstractZJPayClientDipperHandler" />
+	<!-- 批量代收明细查询-->
+	<bean id="SA_ZJPAY_Pay1630Handler" class="com.upay.gateway.client.zjpay.service.Pay1630Handler"
+		parent="abstractZJPayClientDipperHandler" />
+</beans>

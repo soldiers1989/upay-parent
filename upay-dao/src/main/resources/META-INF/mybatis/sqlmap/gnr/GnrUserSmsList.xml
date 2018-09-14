@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrUserSmsListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrUserSmsListPo">
+		<id column="ID" property="id" />
+		<result column="SMS_SEND_NO" property="smsSendNo" />
+		<result column="MOBILE" property="mobile" />
+		<result column="SMS_NO" property="smsNo" />
+		<result column="SMS_RIGHT_MSG" property="smsRightMsg" />
+		<result column="SMS_SEND_TIME" property="smsSendTime" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_USER_SMS_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		SMS_SEND_NO,
+		MOBILE,
+		SMS_NO,
+		SMS_RIGHT_MSG,
+		SMS_SEND_TIME
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="smsSendNo != null">
+			SMS_SEND_NO= #{smsSendNo}
+	           AND 
+		</if>
+		<if test="mobile != null">
+			MOBILE= #{mobile}
+	           AND 
+		</if>
+		<if test="smsNo != null">
+			SMS_NO= #{smsNo}
+	           AND 
+		</if>
+		<if test="smsRightMsg != null">
+			SMS_RIGHT_MSG= #{smsRightMsg}
+	           AND 
+		</if>
+		<if test="smsSendTime != null">
+			SMS_SEND_TIME= #{smsSendTime}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="smsSendNo != null">
+		SMS_SEND_NO,
+	</if>
+	<if test="mobile != null">
+		MOBILE,
+	</if>
+	<if test="smsNo != null">
+		SMS_NO,
+	</if>
+	<if test="smsRightMsg != null">
+		SMS_RIGHT_MSG,
+	</if>
+	<if test="smsSendTime != null">
+		SMS_SEND_TIME,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="smsSendNo != null">
+		#{smsSendNo},
+	</if>
+	<if test="mobile != null">
+		#{mobile},
+	</if>
+	<if test="smsNo != null">
+		#{smsNo},
+	</if>
+	<if test="smsRightMsg != null">
+		#{smsRightMsg},
+	</if>
+	<if test="smsSendTime != null">
+		#{smsSendTime},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="smsSendNo != null">
+		SMS_SEND_NO=#{smsSendNo},
+	</if>
+	<if test="mobile != null">
+		MOBILE=#{mobile},
+	</if>
+	<if test="smsNo != null">
+		SMS_NO=#{smsNo},
+	</if>
+	<if test="smsRightMsg != null">
+		SMS_RIGHT_MSG=#{smsRightMsg},
+	</if>
+	<if test="smsSendTime != null">
+		SMS_SEND_TIME=#{smsSendTime},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.smsSendNo != null">
+                    SMS_SEND_NO=#{s.smsSendNo},
+			</if>
+			<if test="s.mobile != null">
+                    MOBILE=#{s.mobile},
+			</if>
+			<if test="s.smsNo != null">
+                    SMS_NO=#{s.smsNo},
+			</if>
+			<if test="s.smsRightMsg != null">
+                    SMS_RIGHT_MSG=#{s.smsRightMsg},
+			</if>
+			<if test="s.smsSendTime != null">
+                    SMS_SEND_TIME=#{s.smsSendTime}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.smsSendNo != null">
+                    SMS_SEND_NO=#{w.smsSendNo}
+                   AND 
+ 			</if>
+			<if test="w.mobile != null">
+                    MOBILE=#{w.mobile}
+                   AND 
+ 			</if>
+			<if test="w.smsNo != null">
+                    SMS_NO=#{w.smsNo}
+                   AND 
+ 			</if>
+			<if test="w.smsRightMsg != null">
+                    SMS_RIGHT_MSG=#{w.smsRightMsg}
+                   AND 
+ 			</if>
+			<if test="w.smsSendTime != null">
+                    SMS_SEND_TIME=#{w.smsSendTime}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

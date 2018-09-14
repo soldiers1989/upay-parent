@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.ORDER_NO" field="orderNo" />
+		<mapping xpath="$.body.PAY_PWD" field="tradePwd" />
+		<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

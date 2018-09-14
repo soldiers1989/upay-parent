@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+    <bean id="abstractServerDipperHandler"
+        class="com.pactera.dipper.presys.cp.server.AbstractServerDipperHandler"
+        abstract="true">
+        <property name="errorCodeName" value="errCode" />
+        <property name="errorMsgName" value="errMsg" />
+        <property name="errorCodeMapping">
+            <map>
+                <entry key="0000000000" value="0000000000" />
+                <entry key="*" value="9999" />
+            </map>
+        </property>
+    </bean>
+    
+    
+
+    <!-- <bean id="defaultServerDipperHandler"
+        class="com.upay.gateway.server.acp.DefaultHttpServerDipperHandler"
+        parent="abstractServerDipperHandler">
+        <property name="serviceMapping">
+            <map>
+                <entry key="ACP0001" value="FLOW_SI_PAY3001" />
+                <entry key="W001" value="testHandler" />
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="acpVerifySignHandler" class="com.upay.gateway.server.unionpay.AcpVerifySignHandler">
+    	<property name="keyName" value="sign"/>
+        <property name="md5Key" value="${wechat.md5.key}"/>
+        <property name="columnsMap">
+        	<map>
+        		<entry key="ACP0001" >
+        			<map>
+	        			<entry key="version" value="version" />
+	        			<entry key="encoding" value="encoding" />
+	        			<entry key="certId" value="certId" />
+	        			<entry key="signMethod" value="signMethod" />
+	        			<entry key="signature" value="signature" />
+	        			<entry key="txnType" value="txnType" />
+	        			<entry key="txnSubType" value="txnSubType" />
+	        			<entry key="bizType" value="bizType" />
+	        			<entry key="accessType" value="accessType" />
+	        			<entry key="merId" value="merId" />
+	        			<entry key="orderId" value="orderId" />
+	        			<entry key="currencyCode" value="currencyCode" />
+	        			<entry key="txnAmt" value="txnAmt" />
+	        			<entry key="txnTime" value="txnTime" />
+	        			<entry key="payType" value="payType" />
+	        			<entry key="accNo" value="accNo" />
+	        			<entry key="payCardType" value="payCardType" />
+	        			<entry key="reqReserved" value="reqReserved" />
+	        			<entry key="reserved" value="reserved" />
+	        			<entry key="queryId" value="queryId" />
+	        			<entry key="traceNo" value="traceNo" />
+	        			<entry key="traceTime" value="traceTime" />
+	        			<entry key="settleDate" value="settleDate" />
+	        			<entry key="settleCurrencyCode" value="settleCurrencyCode" />
+	        			<entry key="settleAmt" value="settleAmt" />
+	        			<entry key="respCode" value="respCode" />
+	        			<entry key="respMsg" value="respMsg" />
+        			</map>
+        		</entry>
+        	</map>
+        </property>
+    </bean> -->
+</beans>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝交易查询 -->
+<data templateType="OUT"
+	transCode="query"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 支付宝交易号 -->
+	<column oldName="trade_no" newName="tradeNo"/>
+	<!--商户订单号  -->
+	<column oldName="out_trade_no" newName="outTradeNo"/>
+	<!--买家支付宝用户号，该字段将废弃，不要使用  -->
+	<column oldName="open_id" newName="openId"/>
+	<!-- 买家支付宝账号-->
+	<column oldName="buyer_logon_id" newName="buyerLogonId"/>
+	<!-- 交易状态：WAIT_BUYER_PAY（交易创建，等待买家付款）、TRADE_CLOSED（未付款交易超时关闭，或支付完成后全额退款）、TRADE_SUCCESS（交易支付成功）、TRADE_FINISHED（交易结束，不可退款）-->
+	<column oldName="trade_status" newName="tradeStatus"/>
+	
+	<!-- 交易金额 -->
+	<column oldName="total_amount" newName="totalAmount"/>
+	<!-- 实收金额 -->
+	<column oldName="receipt_amount" newName="receiptAmount"/>
+	<!-- 买家付款的金额 -->
+	<column oldName="buyer_pay_amount" newName="buyerPayAmount"/>
+	<!--  使用积分宝付款的金额-->
+	<column oldName="point_amount" newName="pointAmount"/>
+	<!-- 交易中可给用户开具发票的金额 -->
+	<column oldName="invoice_amount" newName="invoiceAmount"/>
+	<!-- 本次交易打款给卖家的时间 -->
+	<column oldName="send_pay_date" newName="sendPayDate"/>
+	<!-- 支付宝店铺编号 -->
+	<column oldName="alipay_store_id" newName="alipayStoreId"/>
+	<!-- 商户门店编号 -->
+	<column oldName="store_id" newName="storeId"/>
+	<!--商户机具终端编号 -->
+	<column oldName="terminal_id" newName="terminalId"/>
+	<!-- 交易支付使用的资金渠道 -->
+	<column oldName="fund_bill_list" newName="fundBillList" type="List">
+		<column oldName="fund_channel" newName="fundChannel"/><!--交易使用的资金渠道 -->
+		<column oldName="amount" newName="amount"/><!-- 该支付工具类型所使用的金额 -->
+		<column oldName="real_amount" newName="realAmount"/><!-- 渠道实际付款金额 -->
+	</column>
+	<!-- 发生支付交易的商户门店名称 -->
+	<column oldName="store_name" newName="storeName"/>
+	<!-- 买家在支付宝的用户id -->
+	<column oldName="buyer_user_id" newName="buyerUserId"/>
+	<!--  本次交易支付所使用的单品券优惠的商品优惠信息-->
+	<column oldName="discount_goods_detail" newName="discountGoodsDetail"/>
+	<!--  行业特殊信息（例如在医保卡支付业务中，向用户返回医疗信息）-->
+	<column oldName="industry_sepc_detail" newName="industrySepcDetail"/>
+	<!-- 本交易支付时使用的所有优惠券信息 -->
+	<column oldName="voucher_detail_list" newName="voucherDetailList"  type="List">
+		<column oldName="id" newName="voucherId"/><!-- 券id	 -->
+		<column oldName="name" newName="voucherName"/><!-- 券名称 -->
+		<column oldName="type" newName="voucherType"/><!--当前有三种类型： ALIPAY_FIX_VOUCHER - 全场代金券 ALIPAY_DISCOUNT_VOUCHER - 折扣券 ALIPAY_ITEM_VOUCHER - 单品优惠   -->
+		<column oldName="amount" newName="amount"/><!-- 优惠券面额，它应该会等于商家出资加上其他出资方出资 -->
+		<column oldName="merchant_contribute" newName="merchantContribute"/><!-- 商家出资（特指发起交易的商家出资金额） -->
+		<column oldName="other_contribute" newName="otherContribute"/><!-- 他出资方出资金额，可能是支付宝，可能是品牌商，或者其他方，也可能是他们的一起出资 -->
+		<column oldName="memo" newName="memo"/><!--优惠券备注信息  -->
+		<column oldName="template_id" newName="templateId"/><!-- 券模板id -->
+		<column oldName="purchase_buyer_contribute" newName="purchaseBuyerContribute"/><!-- 如果使用的这张券是用户购买的，则该字段代表用户在购买这张券时用户实际付款的金额 -->
+		<column oldName="purchase_merchant_contribute" newName="purchaseMerchantContribute"/><!-- 如果使用的这张券是用户购买的，则该字段代表用户在购买这张券时商户优惠的金额 -->
+		<column oldName="purchase_ant_contribute" newName="purchaseAntContribute"/><!--  如果使用的这张券是用户购买的，则该字段代表用户在购买这张券时平台优惠的金额-->
+	</column>
+</data>

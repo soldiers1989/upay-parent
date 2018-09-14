@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccSysLmtBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccSysLmtBookPo">
+		<id column="ID" property="id" />
+		<result column="SYS_LMT_ID" property="sysLmtId" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="LMT_TYPE" property="lmtType" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="USER_LEVEL" property="userLevel" />
+		<result column="DC_FLAG" property="dcFlag" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="SINGLE_AMT_LIMIT" property="singleAmtLimit" />
+		<result column="DAY_SUM_AMT_LIMIT" property="daySumAmtLimit" />
+		<result column="MON_SUM_AMT_LIMIT" property="monSumAmtLimit" />
+		<result column="DAY_SUM_TIMES_LIMIT" property="daySumTimesLimit" />
+		<result column="MON_SUM_TIMES_LIMIT" property="monSumTimesLimit" />
+		<result column="BEG_DATE" property="begDate" />
+		<result column="END_DATE" property="endDate" />
+		<result column="LMT_STAT" property="lmtStat" />
+		<result column="STOP_DATE" property="stopDate" />
+		<result column="LAST_UPDATE_OPER" property="lastUpdateOper" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="YEAR_SUM_AMT_LIMIT" property="yearSumAmtLimit" />
+		<result column="YEAR_SUM_TIMES_LIMIT" property="yearSumTimesLimit" />
+		<result column="USER_TYPE" property="userType" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_SYS_LMT_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		SYS_LMT_ID,
+		ACCT_TYPE,
+		TRANS_CODE,
+		LMT_TYPE,
+		CHNL_ID,
+		USER_LEVEL,
+		DC_FLAG,
+		CREATE_TIME,
+		SINGLE_AMT_LIMIT,
+		DAY_SUM_AMT_LIMIT,
+		MON_SUM_AMT_LIMIT,
+		DAY_SUM_TIMES_LIMIT,
+		MON_SUM_TIMES_LIMIT,
+		BEG_DATE,
+		END_DATE,
+		LMT_STAT,
+		STOP_DATE,
+		LAST_UPDATE_OPER,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		YEAR_SUM_AMT_LIMIT,
+		YEAR_SUM_TIMES_LIMIT,
+		USER_TYPE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="sysLmtId != null">
+			SYS_LMT_ID= #{sysLmtId}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="lmtType != null">
+			LMT_TYPE= #{lmtType}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="userLevel != null">
+			USER_LEVEL= #{userLevel}
+	           AND 
+		</if>
+		<if test="dcFlag != null">
+			DC_FLAG= #{dcFlag}
+	           AND 
+		</if>
+		<if test="createTime != null">
+			CREATE_TIME= #{createTime}
+	           AND 
+		</if>
+		<if test="singleAmtLimit != null">
+			SINGLE_AMT_LIMIT= #{singleAmtLimit}
+	           AND 
+		</if>
+		<if test="daySumAmtLimit != null">
+			DAY_SUM_AMT_LIMIT= #{daySumAmtLimit}
+	           AND 
+		</if>
+		<if test="monSumAmtLimit != null">
+			MON_SUM_AMT_LIMIT= #{monSumAmtLimit}
+	           AND 
+		</if>
+		<if test="daySumTimesLimit != null">
+			DAY_SUM_TIMES_LIMIT= #{daySumTimesLimit}
+	           AND 
+		</if>
+		<if test="monSumTimesLimit != null">
+			MON_SUM_TIMES_LIMIT= #{monSumTimesLimit}
+	           AND 
+		</if>
+		<if test="begDate != null">
+			BEG_DATE= #{begDate}
+	           AND 
+		</if>
+		<if test="endDate != null">
+			END_DATE= #{endDate}
+	           AND 
+		</if>
+		<if test="lmtStat != null">
+			LMT_STAT= #{lmtStat}
+	           AND 
+		</if>
+		<if test="stopDate != null">
+			STOP_DATE= #{stopDate}
+	           AND 
+		</if>
+		<if test="lastUpdateOper != null">
+			LAST_UPDATE_OPER= #{lastUpdateOper}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="yearSumAmtLimit != null">
+			YEAR_SUM_AMT_LIMIT= #{yearSumAmtLimit}
+	           AND 
+		</if>
+		<if test="yearSumTimesLimit != null">
+			YEAR_SUM_TIMES_LIMIT= #{yearSumTimesLimit}
+	           AND 
+		</if>
+		<if test="userType != null">
+			USER_TYPE= #{userType}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="sysLmtId != null">
+		SYS_LMT_ID,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="lmtType != null">
+		LMT_TYPE,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="userLevel != null">
+		USER_LEVEL,
+	</if>
+	<if test="dcFlag != null">
+		DC_FLAG,
+	</if>
+	<if test="createTime != null">
+		CREATE_TIME,
+	</if>
+	<if test="singleAmtLimit != null">
+		SINGLE_AMT_LIMIT,
+	</if>
+	<if test="daySumAmtLimit != null">
+		DAY_SUM_AMT_LIMIT,
+	</if>
+	<if test="monSumAmtLimit != null">
+		MON_SUM_AMT_LIMIT,
+	</if>
+	<if test="daySumTimesLimit != null">
+		DAY_SUM_TIMES_LIMIT,
+	</if>
+	<if test="monSumTimesLimit != null">
+		MON_SUM_TIMES_LIMIT,
+	</if>
+	<if test="begDate != null">
+		BEG_DATE,
+	</if>
+	<if test="endDate != null">
+		END_DATE,
+	</if>
+	<if test="lmtStat != null">
+		LMT_STAT,
+	</if>
+	<if test="stopDate != null">
+		STOP_DATE,
+	</if>
+	<if test="lastUpdateOper != null">
+		LAST_UPDATE_OPER,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="yearSumAmtLimit != null">
+		YEAR_SUM_AMT_LIMIT,
+	</if>
+	<if test="yearSumTimesLimit != null">
+		YEAR_SUM_TIMES_LIMIT,
+	</if>
+	<if test="userType != null">
+		USER_TYPE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="sysLmtId != null">
+		#{sysLmtId},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="lmtType != null">
+		#{lmtType},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="userLevel != null">
+		#{userLevel},
+	</if>
+	<if test="dcFlag != null">
+		#{dcFlag},
+	</if>
+	<if test="createTime != null">
+		#{createTime},
+	</if>
+	<if test="singleAmtLimit != null">
+		#{singleAmtLimit},
+	</if>
+	<if test="daySumAmtLimit != null">
+		#{daySumAmtLimit},
+	</if>
+	<if test="monSumAmtLimit != null">
+		#{monSumAmtLimit},
+	</if>
+	<if test="daySumTimesLimit != null">
+		#{daySumTimesLimit},
+	</if>
+	<if test="monSumTimesLimit != null">
+		#{monSumTimesLimit},
+	</if>
+	<if test="begDate != null">
+		#{begDate},
+	</if>
+	<if test="endDate != null">
+		#{endDate},
+	</if>
+	<if test="lmtStat != null">
+		#{lmtStat},
+	</if>
+	<if test="stopDate != null">
+		#{stopDate},
+	</if>
+	<if test="lastUpdateOper != null">
+		#{lastUpdateOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="yearSumAmtLimit != null">
+		#{yearSumAmtLimit},
+	</if>
+	<if test="yearSumTimesLimit != null">
+		#{yearSumTimesLimit},
+	</if>
+	<if test="userType != null">
+		#{userType},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="sysLmtId != null">
+		SYS_LMT_ID=#{sysLmtId},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="lmtType != null">
+		LMT_TYPE=#{lmtType},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="userLevel != null">
+		USER_LEVEL=#{userLevel},
+	</if>
+	<if test="dcFlag != null">
+		DC_FLAG=#{dcFlag},
+	</if>
+	<if test="createTime != null">
+		CREATE_TIME=#{createTime},
+	</if>
+	<if test="singleAmtLimit != null">
+		SINGLE_AMT_LIMIT=#{singleAmtLimit},
+	</if>
+	<if test="daySumAmtLimit != null">
+		DAY_SUM_AMT_LIMIT=#{daySumAmtLimit},
+	</if>
+	<if test="monSumAmtLimit != null">
+		MON_SUM_AMT_LIMIT=#{monSumAmtLimit},
+	</if>
+	<if test="daySumTimesLimit != null">
+		DAY_SUM_TIMES_LIMIT=#{daySumTimesLimit},
+	</if>
+	<if test="monSumTimesLimit != null">
+		MON_SUM_TIMES_LIMIT=#{monSumTimesLimit},
+	</if>
+	<if test="begDate != null">
+		BEG_DATE=#{begDate},
+	</if>
+	<if test="endDate != null">
+		END_DATE=#{endDate},
+	</if>
+	<if test="lmtStat != null">
+		LMT_STAT=#{lmtStat},
+	</if>
+	<if test="stopDate != null">
+		STOP_DATE=#{stopDate},
+	</if>
+	<if test="lastUpdateOper != null">
+		LAST_UPDATE_OPER=#{lastUpdateOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="yearSumAmtLimit != null">
+		YEAR_SUM_AMT_LIMIT=#{yearSumAmtLimit},
+	</if>
+	<if test="yearSumTimesLimit != null">
+		YEAR_SUM_TIMES_LIMIT=#{yearSumTimesLimit},
+	</if>
+	<if test="userType != null">
+		USER_TYPE=#{userType},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.sysLmtId != null">
+                    SYS_LMT_ID=#{s.sysLmtId},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.lmtType != null">
+                    LMT_TYPE=#{s.lmtType},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.userLevel != null">
+                    USER_LEVEL=#{s.userLevel},
+			</if>
+			<if test="s.dcFlag != null">
+                    DC_FLAG=#{s.dcFlag},
+			</if>
+			<if test="s.createTime != null">
+                    CREATE_TIME=#{s.createTime},
+			</if>
+			<if test="s.singleAmtLimit != null">
+                    SINGLE_AMT_LIMIT=#{s.singleAmtLimit},
+			</if>
+			<if test="s.daySumAmtLimit != null">
+                    DAY_SUM_AMT_LIMIT=#{s.daySumAmtLimit},
+			</if>
+			<if test="s.monSumAmtLimit != null">
+                    MON_SUM_AMT_LIMIT=#{s.monSumAmtLimit},
+			</if>
+			<if test="s.daySumTimesLimit != null">
+                    DAY_SUM_TIMES_LIMIT=#{s.daySumTimesLimit},
+			</if>
+			<if test="s.monSumTimesLimit != null">
+                    MON_SUM_TIMES_LIMIT=#{s.monSumTimesLimit},
+			</if>
+			<if test="s.begDate != null">
+                    BEG_DATE=#{s.begDate},
+			</if>
+			<if test="s.endDate != null">
+                    END_DATE=#{s.endDate},
+			</if>
+			<if test="s.lmtStat != null">
+                    LMT_STAT=#{s.lmtStat},
+			</if>
+			<if test="s.stopDate != null">
+                    STOP_DATE=#{s.stopDate},
+			</if>
+			<if test="s.lastUpdateOper != null">
+                    LAST_UPDATE_OPER=#{s.lastUpdateOper},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.yearSumAmtLimit != null">
+                    YEAR_SUM_AMT_LIMIT=#{s.yearSumAmtLimit},
+			</if>
+			<if test="s.yearSumTimesLimit != null">
+                    YEAR_SUM_TIMES_LIMIT=#{s.yearSumTimesLimit},
+			</if>
+			<if test="s.userType != null">
+                    USER_TYPE=#{s.userType}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.sysLmtId != null">
+                    SYS_LMT_ID=#{w.sysLmtId}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.lmtType != null">
+                    LMT_TYPE=#{w.lmtType}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.userLevel != null">
+                    USER_LEVEL=#{w.userLevel}
+                   AND 
+ 			</if>
+			<if test="w.dcFlag != null">
+                    DC_FLAG=#{w.dcFlag}
+                   AND 
+ 			</if>
+			<if test="w.createTime != null">
+                    CREATE_TIME=#{w.createTime}
+                   AND 
+ 			</if>
+			<if test="w.singleAmtLimit != null">
+                    SINGLE_AMT_LIMIT=#{w.singleAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.daySumAmtLimit != null">
+                    DAY_SUM_AMT_LIMIT=#{w.daySumAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.monSumAmtLimit != null">
+                    MON_SUM_AMT_LIMIT=#{w.monSumAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.daySumTimesLimit != null">
+                    DAY_SUM_TIMES_LIMIT=#{w.daySumTimesLimit}
+                   AND 
+ 			</if>
+			<if test="w.monSumTimesLimit != null">
+                    MON_SUM_TIMES_LIMIT=#{w.monSumTimesLimit}
+                   AND 
+ 			</if>
+			<if test="w.begDate != null">
+                    BEG_DATE=#{w.begDate}
+                   AND 
+ 			</if>
+			<if test="w.endDate != null">
+                    END_DATE=#{w.endDate}
+                   AND 
+ 			</if>
+			<if test="w.lmtStat != null">
+                    LMT_STAT=#{w.lmtStat}
+                   AND 
+ 			</if>
+			<if test="w.stopDate != null">
+                    STOP_DATE=#{w.stopDate}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateOper != null">
+                    LAST_UPDATE_OPER=#{w.lastUpdateOper}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.yearSumAmtLimit != null">
+                    YEAR_SUM_AMT_LIMIT=#{w.yearSumAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.yearSumTimesLimit != null">
+                    YEAR_SUM_TIMES_LIMIT=#{w.yearSumTimesLimit}
+                   AND 
+ 			</if>
+			<if test="w.userType != null">
+                    USER_TYPE=#{w.userType}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

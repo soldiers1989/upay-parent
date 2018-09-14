@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+    
+    <mappings>
+            <!--         <mapping xpath="return_code" field="returnCode" must="not"/> -->
+            <!--         <mapping xpath="return_msg" field="returnMsg" must="not"/> -->
+            <!--SYS_HEAD-->
+            <mapping xpath="tran_code" field="transCode"/>
+            <mapping xpath="BranchId" field="branchId" must="not"/>
+            <mapping xpath="TlrNo" field="tlrNo" must="not"/>
+            <mapping xpath="TlrPswd" field="tlrPswd" must="not"/>
+            <mapping xpath="TlrLvl" field="tlrLvl" must="not"/>
+            <mapping xpath="TlrTp" field="tlrTp" must="not"/>
+            <mapping xpath="TlrVrfyMode" field="tlrVrfyMode" must="not"/>
+
+            <!--APP-HEAD-->
+            <mapping xpath="CnsmSysSeqNo" field="cnsmSysSeqNo"/>
+            <mapping xpath="TranDt" field="tranDt"/>
+            <mapping xpath="TranTm" field="tranTm"/>
+            <mapping xpath="ChnlTp" field="chnlTp" must="not"/>
+            <mapping xpath="SvcCd" field="svcCd"/>
+            <mapping xpath="SvcScn" field="svcScn"/>
+            <mapping xpath="CnsmSysId" field="cnsmSysId"/>
+            <mapping xpath="SrcSysId" field="srcSysId"/>
+            <mapping xpath="SrcSysSeqNo" field="srcSysSeqNo"/>
+            <mapping xpath="Mac" field="mac" must="not"/>
+            <mapping xpath="TmnlNo" field="tmnlNo" must="not"/>
+            <mapping xpath="SrcSysTmnlNo" field="srcSysTmnlNo" must="not"/>
+            <mapping xpath="CnsmSysSvrId" field="cnsmSysSvrId" must="not"/>
+            <mapping xpath="SrcSysSvrId" field="srcSysSvrId" must="not"/>
+            <mapping xpath="FileFlg" field="fileFlg"/>
+    </mappings>
+</config>

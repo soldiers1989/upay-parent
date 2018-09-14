@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrWithoutPwdBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.usr.UsrWithoutPwdBookPo">
+		<id column="ID" property="id" />
+		<result column="BIND_TIME" property="bindTime" />
+		<result column="BIND_CHNL_ID" property="bindChnlId" />
+		<result column="USER_ID" property="userId" />
+		<result column="MER_NO" property="merNo" />
+		<result column="MOBILE" property="mobile" />
+		<result column="BIND_STAT" property="bindStat" />
+		<result column="UNION_PLAT_TYPE" property="unionPlatType" />
+		<result column="UNION_PLAT_NO" property="unionPlatNo" />
+		<result column="ACTIVE_TIME" property="activeTime" />
+		<result column="UNBIND_TIME" property="unbindTime" />
+		<result column="UNBIND_CHNL_ID" property="unbindChnlId" />
+		<result column="UNBIND_REASON_FLAG" property="unbindReasonFlag" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USR_WITHOUT_PWD_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BIND_TIME,
+		BIND_CHNL_ID,
+		USER_ID,
+		MER_NO,
+		MOBILE,
+		BIND_STAT,
+		UNION_PLAT_TYPE,
+		UNION_PLAT_NO,
+		ACTIVE_TIME,
+		UNBIND_TIME,
+		UNBIND_CHNL_ID,
+		UNBIND_REASON_FLAG,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="bindTime != null">
+			BIND_TIME= #{bindTime}
+	           AND 
+		</if>
+		<if test="bindChnlId != null">
+			BIND_CHNL_ID= #{bindChnlId}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="mobile != null">
+			MOBILE= #{mobile}
+	           AND 
+		</if>
+		<if test="bindStat != null">
+			BIND_STAT= #{bindStat}
+	           AND 
+		</if>
+		<if test="unionPlatType != null">
+			UNION_PLAT_TYPE= #{unionPlatType}
+	           AND 
+		</if>
+		<if test="unionPlatNo != null">
+			UNION_PLAT_NO= #{unionPlatNo}
+	           AND 
+		</if>
+		<if test="activeTime != null">
+			ACTIVE_TIME= #{activeTime}
+	           AND 
+		</if>
+		<if test="unbindTime != null">
+			UNBIND_TIME= #{unbindTime}
+	           AND 
+		</if>
+		<if test="unbindChnlId != null">
+			UNBIND_CHNL_ID= #{unbindChnlId}
+	           AND 
+		</if>
+		<if test="unbindReasonFlag != null">
+			UNBIND_REASON_FLAG= #{unbindReasonFlag}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="bindTime != null">
+		BIND_TIME,
+	</if>
+	<if test="bindChnlId != null">
+		BIND_CHNL_ID,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="mobile != null">
+		MOBILE,
+	</if>
+	<if test="bindStat != null">
+		BIND_STAT,
+	</if>
+	<if test="unionPlatType != null">
+		UNION_PLAT_TYPE,
+	</if>
+	<if test="unionPlatNo != null">
+		UNION_PLAT_NO,
+	</if>
+	<if test="activeTime != null">
+		ACTIVE_TIME,
+	</if>
+	<if test="unbindTime != null">
+		UNBIND_TIME,
+	</if>
+	<if test="unbindChnlId != null">
+		UNBIND_CHNL_ID,
+	</if>
+	<if test="unbindReasonFlag != null">
+		UNBIND_REASON_FLAG,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="bindTime != null">
+		#{bindTime},
+	</if>
+	<if test="bindChnlId != null">
+		#{bindChnlId},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="mobile != null">
+		#{mobile},
+	</if>
+	<if test="bindStat != null">
+		#{bindStat},
+	</if>
+	<if test="unionPlatType != null">
+		#{unionPlatType},
+	</if>
+	<if test="unionPlatNo != null">
+		#{unionPlatNo},
+	</if>
+	<if test="activeTime != null">
+		#{activeTime},
+	</if>
+	<if test="unbindTime != null">
+		#{unbindTime},
+	</if>
+	<if test="unbindChnlId != null">
+		#{unbindChnlId},
+	</if>
+	<if test="unbindReasonFlag != null">
+		#{unbindReasonFlag},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="bindTime != null">
+		BIND_TIME=#{bindTime},
+	</if>
+	<if test="bindChnlId != null">
+		BIND_CHNL_ID=#{bindChnlId},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="mobile != null">
+		MOBILE=#{mobile},
+	</if>
+	<if test="bindStat != null">
+		BIND_STAT=#{bindStat},
+	</if>
+	<if test="unionPlatType != null">
+		UNION_PLAT_TYPE=#{unionPlatType},
+	</if>
+	<if test="unionPlatNo != null">
+		UNION_PLAT_NO=#{unionPlatNo},
+	</if>
+	<if test="activeTime != null">
+		ACTIVE_TIME=#{activeTime},
+	</if>
+	<if test="unbindTime != null">
+		UNBIND_TIME=#{unbindTime},
+	</if>
+	<if test="unbindChnlId != null">
+		UNBIND_CHNL_ID=#{unbindChnlId},
+	</if>
+	<if test="unbindReasonFlag != null">
+		UNBIND_REASON_FLAG=#{unbindReasonFlag},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.bindTime != null">
+                    BIND_TIME=#{s.bindTime},
+			</if>
+			<if test="s.bindChnlId != null">
+                    BIND_CHNL_ID=#{s.bindChnlId},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.mobile != null">
+                    MOBILE=#{s.mobile},
+			</if>
+			<if test="s.bindStat != null">
+                    BIND_STAT=#{s.bindStat},
+			</if>
+			<if test="s.unionPlatType != null">
+                    UNION_PLAT_TYPE=#{s.unionPlatType},
+			</if>
+			<if test="s.unionPlatNo != null">
+                    UNION_PLAT_NO=#{s.unionPlatNo},
+			</if>
+			<if test="s.activeTime != null">
+                    ACTIVE_TIME=#{s.activeTime},
+			</if>
+			<if test="s.unbindTime != null">
+                    UNBIND_TIME=#{s.unbindTime},
+			</if>
+			<if test="s.unbindChnlId != null">
+                    UNBIND_CHNL_ID=#{s.unbindChnlId},
+			</if>
+			<if test="s.unbindReasonFlag != null">
+                    UNBIND_REASON_FLAG=#{s.unbindReasonFlag},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.bindTime != null">
+                    BIND_TIME=#{w.bindTime}
+                   AND 
+ 			</if>
+			<if test="w.bindChnlId != null">
+                    BIND_CHNL_ID=#{w.bindChnlId}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.mobile != null">
+                    MOBILE=#{w.mobile}
+                   AND 
+ 			</if>
+			<if test="w.bindStat != null">
+                    BIND_STAT=#{w.bindStat}
+                   AND 
+ 			</if>
+			<if test="w.unionPlatType != null">
+                    UNION_PLAT_TYPE=#{w.unionPlatType}
+                   AND 
+ 			</if>
+			<if test="w.unionPlatNo != null">
+                    UNION_PLAT_NO=#{w.unionPlatNo}
+                   AND 
+ 			</if>
+			<if test="w.activeTime != null">
+                    ACTIVE_TIME=#{w.activeTime}
+                   AND 
+ 			</if>
+			<if test="w.unbindTime != null">
+                    UNBIND_TIME=#{w.unbindTime}
+                   AND 
+ 			</if>
+			<if test="w.unbindChnlId != null">
+                    UNBIND_CHNL_ID=#{w.unbindChnlId}
+                   AND 
+ 			</if>
+			<if test="w.unbindReasonFlag != null">
+                    UNBIND_REASON_FLAG=#{w.unbindReasonFlag}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

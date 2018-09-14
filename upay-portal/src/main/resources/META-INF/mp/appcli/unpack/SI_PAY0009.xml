@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.PAY_PWD" field="tradePwd" must="not"/>
+		<mapping xpath="$.body.BANK_CARD_NO" field="bankAccNo" must="not"/>
+		<mapping xpath="$.body.ROUTE_CODE" field="routeCode" must="not"/>
+		<mapping xpath="$.body.ORDER_NO" field="orderNo" />
+		<mapping xpath="$.body.SMS_CODE" field="smsCode" must="not"/>
+		<mapping xpath="$.body.PAY_TYPE" field="payType" must="not"/>
+		<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

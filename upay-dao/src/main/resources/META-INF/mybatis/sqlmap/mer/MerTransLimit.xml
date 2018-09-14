@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerTransLimitPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerTransLimitPo">
+		<id column="ID" property="id" />
+		<result column="MER_TRANS_CTRL_CODE" property="merTransCtrlCode" />
+		<result column="TRANS_LIMIT" property="transLimit" />
+		<result column="STATUS" property="status" />
+		<result column="OPEN_DATE" property="openDate" />
+		<result column="OPEN_USER_ID" property="openUserId" />
+		<result column="CLOSE_DATE" property="closeDate" />
+		<result column="CLOSE_USER_ID" property="closeUserId" />
+		<result column="MODIFY_USER_ID" property="modifyUserId" />
+		<result column="DATE_LAST_MAINT" property="dateLastMaint" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="IS_DEFAULT" property="isDefault" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_TRANS_LIMIT
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_TRANS_CTRL_CODE,
+		TRANS_LIMIT,
+		STATUS,
+		OPEN_DATE,
+		OPEN_USER_ID,
+		CLOSE_DATE,
+		CLOSE_USER_ID,
+		MODIFY_USER_ID,
+		DATE_LAST_MAINT,
+		USER_TYPE,
+		IS_DEFAULT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merTransCtrlCode != null">
+			MER_TRANS_CTRL_CODE= #{merTransCtrlCode}
+	           AND 
+		</if>
+		<if test="transLimit != null">
+			TRANS_LIMIT= #{transLimit}
+	           AND 
+		</if>
+		<if test="status != null">
+			STATUS= #{status}
+	           AND 
+		</if>
+		<if test="openDate != null">
+			OPEN_DATE= #{openDate}
+	           AND 
+		</if>
+		<if test="openUserId != null">
+			OPEN_USER_ID= #{openUserId}
+	           AND 
+		</if>
+		<if test="closeDate != null">
+			CLOSE_DATE= #{closeDate}
+	           AND 
+		</if>
+		<if test="closeUserId != null">
+			CLOSE_USER_ID= #{closeUserId}
+	           AND 
+		</if>
+		<if test="modifyUserId != null">
+			MODIFY_USER_ID= #{modifyUserId}
+	           AND 
+		</if>
+		<if test="dateLastMaint != null">
+			DATE_LAST_MAINT= #{dateLastMaint}
+	           AND 
+		</if>
+		<if test="userType != null">
+			USER_TYPE= #{userType}
+	           AND 
+		</if>
+		<if test="isDefault != null">
+			IS_DEFAULT= #{isDefault}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merTransCtrlCode != null">
+		MER_TRANS_CTRL_CODE,
+	</if>
+	<if test="transLimit != null">
+		TRANS_LIMIT,
+	</if>
+	<if test="status != null">
+		STATUS,
+	</if>
+	<if test="openDate != null">
+		OPEN_DATE,
+	</if>
+	<if test="openUserId != null">
+		OPEN_USER_ID,
+	</if>
+	<if test="closeDate != null">
+		CLOSE_DATE,
+	</if>
+	<if test="closeUserId != null">
+		CLOSE_USER_ID,
+	</if>
+	<if test="modifyUserId != null">
+		MODIFY_USER_ID,
+	</if>
+	<if test="dateLastMaint != null">
+		DATE_LAST_MAINT,
+	</if>
+	<if test="userType != null">
+		USER_TYPE,
+	</if>
+	<if test="isDefault != null">
+		IS_DEFAULT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merTransCtrlCode != null">
+		#{merTransCtrlCode},
+	</if>
+	<if test="transLimit != null">
+		#{transLimit},
+	</if>
+	<if test="status != null">
+		#{status},
+	</if>
+	<if test="openDate != null">
+		#{openDate},
+	</if>
+	<if test="openUserId != null">
+		#{openUserId},
+	</if>
+	<if test="closeDate != null">
+		#{closeDate},
+	</if>
+	<if test="closeUserId != null">
+		#{closeUserId},
+	</if>
+	<if test="modifyUserId != null">
+		#{modifyUserId},
+	</if>
+	<if test="dateLastMaint != null">
+		#{dateLastMaint},
+	</if>
+	<if test="userType != null">
+		#{userType},
+	</if>
+	<if test="isDefault != null">
+		#{isDefault},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merTransCtrlCode != null">
+		MER_TRANS_CTRL_CODE=#{merTransCtrlCode},
+	</if>
+	<if test="transLimit != null">
+		TRANS_LIMIT=#{transLimit},
+	</if>
+	<if test="status != null">
+		STATUS=#{status},
+	</if>
+	<if test="openDate != null">
+		OPEN_DATE=#{openDate},
+	</if>
+	<if test="openUserId != null">
+		OPEN_USER_ID=#{openUserId},
+	</if>
+	<if test="closeDate != null">
+		CLOSE_DATE=#{closeDate},
+	</if>
+	<if test="closeUserId != null">
+		CLOSE_USER_ID=#{closeUserId},
+	</if>
+	<if test="modifyUserId != null">
+		MODIFY_USER_ID=#{modifyUserId},
+	</if>
+	<if test="dateLastMaint != null">
+		DATE_LAST_MAINT=#{dateLastMaint},
+	</if>
+	<if test="userType != null">
+		USER_TYPE=#{userType},
+	</if>
+	<if test="isDefault != null">
+		IS_DEFAULT=#{isDefault},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merTransCtrlCode != null">
+                    MER_TRANS_CTRL_CODE=#{s.merTransCtrlCode},
+			</if>
+			<if test="s.transLimit != null">
+                    TRANS_LIMIT=#{s.transLimit},
+			</if>
+			<if test="s.status != null">
+                    STATUS=#{s.status},
+			</if>
+			<if test="s.openDate != null">
+                    OPEN_DATE=#{s.openDate},
+			</if>
+			<if test="s.openUserId != null">
+                    OPEN_USER_ID=#{s.openUserId},
+			</if>
+			<if test="s.closeDate != null">
+                    CLOSE_DATE=#{s.closeDate},
+			</if>
+			<if test="s.closeUserId != null">
+                    CLOSE_USER_ID=#{s.closeUserId},
+			</if>
+			<if test="s.modifyUserId != null">
+                    MODIFY_USER_ID=#{s.modifyUserId},
+			</if>
+			<if test="s.dateLastMaint != null">
+                    DATE_LAST_MAINT=#{s.dateLastMaint},
+			</if>
+			<if test="s.userType != null">
+                    USER_TYPE=#{s.userType},
+			</if>
+			<if test="s.isDefault != null">
+                    IS_DEFAULT=#{s.isDefault}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merTransCtrlCode != null">
+                    MER_TRANS_CTRL_CODE=#{w.merTransCtrlCode}
+                   AND 
+ 			</if>
+			<if test="w.transLimit != null">
+                    TRANS_LIMIT=#{w.transLimit}
+                   AND 
+ 			</if>
+			<if test="w.status != null">
+                    STATUS=#{w.status}
+                   AND 
+ 			</if>
+			<if test="w.openDate != null">
+                    OPEN_DATE=#{w.openDate}
+                   AND 
+ 			</if>
+			<if test="w.openUserId != null">
+                    OPEN_USER_ID=#{w.openUserId}
+                   AND 
+ 			</if>
+			<if test="w.closeDate != null">
+                    CLOSE_DATE=#{w.closeDate}
+                   AND 
+ 			</if>
+			<if test="w.closeUserId != null">
+                    CLOSE_USER_ID=#{w.closeUserId}
+                   AND 
+ 			</if>
+			<if test="w.modifyUserId != null">
+                    MODIFY_USER_ID=#{w.modifyUserId}
+                   AND 
+ 			</if>
+			<if test="w.dateLastMaint != null">
+                    DATE_LAST_MAINT=#{w.dateLastMaint}
+                   AND 
+ 			</if>
+			<if test="w.userType != null">
+                    USER_TYPE=#{w.userType}
+                   AND 
+ 			</if>
+			<if test="w.isDefault != null">
+                    IS_DEFAULT=#{w.isDefault}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

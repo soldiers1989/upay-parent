@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayFlowDetailPo">
+
+	<!-- 根据处理批次号分组查询支付明细 -->
+	<select id="selectGroupByProcessBatchNo" resultType="hashmap">
+		select
+		REMARK2 AS "remark2", MER_NO AS "merNo", min(TRANS_TIME) as TRANS_TIME
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+		GROUP BY REMARK2, MER_NO
+        <include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+    </select>
+
+	<!-- 根据订单号分组查询支付明细 -->
+	<select id="selectGroupByOrderNo" resultType="hashmap">
+		select
+		ORDER_NO AS "orderNo", MER_NO AS "merNo"
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+		GROUP BY ORDER_NO, MER_NO
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+	<!-- 根据订单号统计支付明细信息 -->
+	<select id="statisticsByOrderNo" resultType="hashmap">
+		select
+		COALESCE(sum(TRANS_AMT), 0) AS "totalTransAmt", COALESCE(sum(FEE_AMT), 0) AS "totalFeeAmt"
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+	
+	<select id="getRushCorrectFlowDetail" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="sysDate != null">
+					SYS_DATE &lt; #{sysDate} AND 
+				</if>
+				<if test = "transStat != null">
+					TRANS_STAT = #{transStat} and 
+				</if>
+				<if test="merNo != null">
+					MER_NO = #{merNo} and 
+				</if>
+				<if test="id != null">
+					ID= #{id} AND 
+				</if>
+				<if test="orderNo != null">
+					ORDER_NO= #{orderNo} AND 
+				</if>
+				<if test="orderDes != null">
+					ORDER_DES= #{orderDes} AND 
+				</if>
+				<if test="secMerNo != null">
+					SEC_MER_NO= #{secMerNo} AND 
+				</if>
+				<if test="routeCode != null">
+					ROUTE_CODE= #{routeCode} AND 
+				</if>
+				<if test="payUserId != null">
+					PAY_USER_ID= #{payUserId} AND 
+				</if>
+				<if test="payerAcctType != null">
+					PAYER_ACCT_TYPE= #{payerAcctType} AND 
+				</if>
+				<if test="payerAcctNo != null">
+					PAYER_ACCT_NO= #{payerAcctNo} AND
+				</if>
+				<if test="payerName != null">
+					PAYER_NAME= #{payerName} AND 
+				</if>
+				<if test="payerOrgName != null">
+					PAYER_ORG_NAME= #{payerOrgName} AND 
+				</if>
+				<if test="payerBankNo != null">
+					PAYER_BANK_NO= #{payerBankNo} AND 
+				</if>
+				<if test="payerBankName != null">
+					PAYER_BANK_NAME= #{payerBankName} AND 
+				</if>
+				<if test="payeeAcctType != null">
+					PAYEE_ACCT_TYPE= #{payeeAcctType} AND 
+				</if>
+				<if test="payeeAcctNo != null">
+					PAYEE_ACCT_NO= #{payeeAcctNo} AND 
+				</if>
+				<if test="payeeName != null">
+					PAYEE_NAME= #{payeeName} AND 
+				</if>
+				<if test="payeeOrgName != null">
+					PAYEE_ORG_NAME= #{payeeOrgName} AND 
+				</if>
+				<if test="payeeBankNo != null">
+					PAYEE_BANK_NO= #{payeeBankNo} AND
+				</if>
+				<if test="payeeBankName != null">
+					PAYEE_BANK_NAME= #{payeeBankName} AND 
+				</if>
+				<if test="ccy != null">
+					CCY= #{ccy} AND 
+				</if>
+				<if test="transAmt != null">
+					TRANS_AMT= #{transAmt} AND 
+				</if>
+				<if test="transTime != null">
+					TRANS_TIME= #{transTime} AND 
+				</if>
+				<if test="lastUpdateTime != null">
+					LAST_UPDATE_TIME= #{lastUpdateTime} AND 
+				</if>
+				<if test="remark1 != null">
+					REMARK1= #{remark1} AND 
+				</if>
+				<if test="remark2 != null">
+					REMARK2= #{remark2} AND 
+				</if>
+				<if test="remark3 != null">
+					REMARK3= #{remark3} AND 
+				</if>
+				<if test="feeAmt != null">
+					FEE_AMT= #{feeAmt} AND 
+				</if>
+				<if test="transSubSeq != null">
+					TRANS_SUB_SEQ= #{transSubSeq} AND 
+				</if>
+				<if test="merTransDate != null">
+					MER_TRANS_DATE= #{merTransDate} AND 
+				</if>
+				<if test="merTransSeq != null">
+					MER_TRANS_SEQ= #{merTransSeq} AND 
+				</if>
+				<if test="brchNo != null">
+					BRCH_NO= #{brchNo} AND 
+				</if>
+				<if test="tellerNo != null">
+					TELLER_NO= #{tellerNo} AND 
+				</if>
+				<if test="transferType != null">
+					TRANSFER_TYPE= #{transferType}
+				</if>
+			</trim>
+		</where>
+	</select>
+
+	<!-- 更新分布式处理或多线程处理批次号到转账明细中。 -->
+	<update id="updateDisBatchNo">
+		update
+		<include refid="Table_Name"/>
+		<set>
+			DIS_BATCH_NO = #{disBatchNo}
+		</set>
+		<where>
+			DIS_BATCH_NO is NULL
+			AND TRANS_STAT = '0'
+			AND TRANSFER_TYPE != '05'
+		</where>
+	</update>
+	
+	
+	<select id="getTransferData" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<!--AND TRANS_STAT IN (#{transStat1},#{transStat2})-->
+				<include refid="Base_Where" />
+		</where>
+	</select>
+
+</mapper>

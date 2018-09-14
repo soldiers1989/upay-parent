@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerTransTemplatePo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerTransTemplatePo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="TEMPLATE_ID" property="templateId" />
+		<result column="STATUS" property="status" />
+		<result column="REMARK" property="remark" />
+		<result column="REMARK1" property="remark1" />
+		<result column="MER_TRANS_CTRL_CODE" property="merTransCtrlCode" />
+		<result column="DAILY_ACMLATIVE_AMT" property="dailyAcmlativeAmt" />
+		<result column="DAILY_ACMLATIVE_LIMIT" property="dailyAcmlativeLimit" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_TRANS_TEMPLATE
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		TEMPLATE_ID,
+		STATUS,
+		REMARK,
+		REMARK1,
+		MER_TRANS_CTRL_CODE,
+		DAILY_ACMLATIVE_AMT,
+		DAILY_ACMLATIVE_LIMIT,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="templateId != null">
+			TEMPLATE_ID= #{templateId}
+	           AND 
+		</if>
+		<if test="status != null">
+			STATUS= #{status}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="merTransCtrlCode != null">
+			MER_TRANS_CTRL_CODE= #{merTransCtrlCode}
+	           AND 
+		</if>
+		<if test="dailyAcmlativeAmt != null">
+			DAILY_ACMLATIVE_AMT= #{dailyAcmlativeAmt}
+	           AND 
+		</if>
+		<if test="dailyAcmlativeLimit != null">
+			DAILY_ACMLATIVE_LIMIT= #{dailyAcmlativeLimit}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="templateId != null">
+		TEMPLATE_ID,
+	</if>
+	<if test="status != null">
+		STATUS,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="merTransCtrlCode != null">
+		MER_TRANS_CTRL_CODE,
+	</if>
+	<if test="dailyAcmlativeAmt != null">
+		DAILY_ACMLATIVE_AMT,
+	</if>
+	<if test="dailyAcmlativeLimit != null">
+		DAILY_ACMLATIVE_LIMIT,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="templateId != null">
+		#{templateId},
+	</if>
+	<if test="status != null">
+		#{status},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="merTransCtrlCode != null">
+		#{merTransCtrlCode},
+	</if>
+	<if test="dailyAcmlativeAmt != null">
+		#{dailyAcmlativeAmt},
+	</if>
+	<if test="dailyAcmlativeLimit != null">
+		#{dailyAcmlativeLimit},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="templateId != null">
+		TEMPLATE_ID=#{templateId},
+	</if>
+	<if test="status != null">
+		STATUS=#{status},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="merTransCtrlCode != null">
+		MER_TRANS_CTRL_CODE=#{merTransCtrlCode},
+	</if>
+	<if test="dailyAcmlativeAmt != null">
+		DAILY_ACMLATIVE_AMT=#{dailyAcmlativeAmt},
+	</if>
+	<if test="dailyAcmlativeLimit != null">
+		DAILY_ACMLATIVE_LIMIT=#{dailyAcmlativeLimit},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.templateId != null">
+                    TEMPLATE_ID=#{s.templateId},
+			</if>
+			<if test="s.status != null">
+                    STATUS=#{s.status},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.merTransCtrlCode != null">
+                    MER_TRANS_CTRL_CODE=#{s.merTransCtrlCode},
+			</if>
+			<if test="s.dailyAcmlativeAmt != null">
+                    DAILY_ACMLATIVE_AMT=#{s.dailyAcmlativeAmt},
+			</if>
+			<if test="s.dailyAcmlativeLimit != null">
+                    DAILY_ACMLATIVE_LIMIT=#{s.dailyAcmlativeLimit},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.templateId != null">
+                    TEMPLATE_ID=#{w.templateId}
+                   AND 
+ 			</if>
+			<if test="w.status != null">
+                    STATUS=#{w.status}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.merTransCtrlCode != null">
+                    MER_TRANS_CTRL_CODE=#{w.merTransCtrlCode}
+                   AND 
+ 			</if>
+			<if test="w.dailyAcmlativeAmt != null">
+                    DAILY_ACMLATIVE_AMT=#{w.dailyAcmlativeAmt}
+                   AND 
+ 			</if>
+			<if test="w.dailyAcmlativeLimit != null">
+                    DAILY_ACMLATIVE_LIMIT=#{w.dailyAcmlativeLimit}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

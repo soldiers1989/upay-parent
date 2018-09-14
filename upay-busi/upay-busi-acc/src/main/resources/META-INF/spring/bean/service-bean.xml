@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<!-- 查询绑卡信息 -->
+	<bean id="AccBindQueryService" class="com.upay.busi.acc.service.impl.AccBindQueryService"></bean>
+	
+	<!-- 查询开户状态 -->
+	<bean id="AccOpenStatusService" class="com.upay.busi.acc.service.impl.AccOpenStatusService"></bean>
+	
+	<!-- 用户账户状态检查 -->
+	<bean id="CheckUserAccountStatService" class="com.upay.busi.acc.service.impl.CheckUserAccountStatService"></bean>
+	
+	<!-- 绑定卡状态检查 -->
+	<bean id="CheckBindCardStatService" class="com.upay.busi.acc.service.impl.CheckBindCardStatService"></bean>
+	<!-- 微信单笔限额检查 -->
+	<bean id="AccLimitChkService" class="com.upay.busi.acc.service.impl.AccLimitChkService"></bean>
+	
+	<!-- 绑定账户唯一性检查 -->
+	<bean id="UniqueBindAccCheckService" class="com.upay.busi.acc.service.impl.UniqueBindAccCheckService"/>
+	
+	<!-- 虚拟账号生成 -->
+	<bean id="CardNoCreateService" class="com.upay.busi.acc.service.impl.CardNoCreateService"/>
+	
+	<!-- 虚拟账户开户 -->
+	<bean id="AccVBookOpenService" class="com.upay.busi.acc.service.impl.AccVBookOpenService"/>
+
+	<!-- 虚拟账户绑卡 -->
+	<bean id="BindBookService" class="com.upay.busi.acc.service.impl.BindBookService"/>
+	<!-- 虚拟账户登记 -->
+	<bean id="TransferActiveService" class="com.upay.busi.acc.service.impl.TransferActiveService"/>
+
+	<!-- 虚拟账户信息查询 -->
+	<bean id="AccInfoQueryService" class="com.upay.busi.acc.service.impl.AccInfoQueryService"/>
+	<!-- 虚拟账户变更绑定卡前检查 -->
+	<bean id="BindChgCheckService" class="com.upay.busi.acc.service.impl.BindChgCheckService"/>
+	<!-- 绑定账户解绑 -->
+	<bean id="AccUnbindService" class="com.upay.busi.acc.service.impl.AccUnbindService"/>
+	<!-- 账户限额查询 -->
+	<bean id="AccLmtQueryService" class="com.upay.busi.acc.service.impl.AccLmtQueryService"/>
+	
+	<!-- 账户交易权限检查 -->
+	<bean id="PermissionCheckService" class="com.upay.busi.acc.service.impl.PermissionCheckService"/>
+
+	<!-- 更改账户余额 -->
+	<bean id="SubtractAccountAmtService" class="com.upay.busi.acc.service.impl.SubtractAccountAmtService"/>
+
+	
+	<!--用户电子账户开户标识查询-->
+	<bean id="VacctOpenFlagQueryService" class="com.upay.busi.acc.service.impl.VacctOpenFlagQueryServiceImpl"/>
+
+	<!--查询资金通道和收款人 和 付款人信息-->
+	<bean id="QueryRouteByBindCardNoService" class="com.upay.busi.acc.service.impl.QueryRouteByBindCardNoService"/>
+	
+	<!--更新虚拟账户余额-->
+	<bean id="UpdateAcctBalService" class="com.upay.busi.acc.service.impl.UpdateAcctBalService"/>
+	
+	<!--调用中金绑卡之前需要得到一个流水号  -->
+	<bean id="ZjpaySysSeqService" class="com.upay.busi.acc.service.impl.ZjpaySysSeqService"/>
+	<!--中金解卡状态判断  -->
+	<bean id="AccZJUnbindCardService" class="com.upay.busi.acc.service.impl.AccZJUnbindCardService"/>
+	
+	<!--中金绑卡状态判断  -->
+	<bean id="AccZJBindCardService" class="com.upay.busi.acc.service.impl.AccZJBindCardService"/>
+	
+	<!--查询 绑卡时的流水号  -->
+	<bean id="QuerySysSeqByCardService" class="com.upay.busi.acc.service.impl.QuerySysSeqByCardService"/>
+	
+	<!--查询 绑卡时的流水号  -->
+	<bean id="BindCheckService" class="com.upay.busi.acc.service.impl.BindCheckService"/>
+	
+	<!--账户交易明细查询  -->
+	<bean id="AccOrderListQueryService" class="com.upay.busi.acc.service.impl.AccOrderListQueryService"/>
+	
+	<!--账户交易明细下载  -->
+	<bean id="AccOrderListDownLoadService" class="com.upay.busi.acc.service.impl.AccOrderListDownLoadService"/>
+	
+	<!--账户交易明细查询  -->
+	<bean id="CheckBindCardService" class="com.upay.busi.acc.service.impl.CheckBindCardService"/>
+	
+	<!--核心绑卡状态验证  -->
+	<bean id="BindCoreCardStatChkService" class="com.upay.busi.acc.service.impl.BindCoreCardStatChkService"/>
+	
+	<!--绑定卡查询单个  -->
+	<bean id="AccUnbindQueryService" class="com.upay.busi.acc.service.impl.AccUnbindQueryService"/>
+	
+	<!--限额查询  -->
+	<bean id="AccLimitQueryService" class="com.upay.busi.acc.service.impl.AccLimitQueryService"/>
+	<!--查询网银logo  -->
+	<bean id="QueryOnlineBankService" class="com.upay.busi.acc.service.impl.QueryOnlineBankService"/>
+	<!--转账前检查  -->
+	<bean id="TransferAccountCheckService" class="com.upay.busi.acc.service.impl.TransferAccountCheckService"/>
+	<!-- 更新绑定流水 -->
+	<bean id="UpdateAccBindingService" class="com.upay.busi.acc.service.impl.UpdateAccBindingService"/>
+	<!-- 富农汇客户信息验证 -->
+	<bean id="UserInfoCheckService" class="com.upay.busi.acc.service.impl.UserInfoCheckService"/>
+	<!-- 富农汇客户信息银行卡资金通道检查 -->
+	<bean id="UserInfoCheckRouteCodeService" class="com.upay.busi.acc.service.impl.UserInfoCheckRouteCodeService"/>
+	
+	<!-- 批量时用， 根据商户号查询user id -->
+	<bean id="QueryUserIdByMerNoService" class="com.upay.busi.acc.service.impl.QueryUserIdByMerNoService"/>
+	<!-- 批量时用， 查询收款 付款信息为流水数据作准备 -->
+	<bean id="SmokeTransferAccountDataService" class="com.upay.busi.acc.service.impl.SmokeTransferAccountDataService"/>
+	<!--平台转账失败时，但付款方余额己回退，需要扣减收款方的账户余额-->
+	<bean id="UpdatePayeeActBalAndOrderService" class="com.upay.busi.acc.service.impl.UpdatePayeeActBalAndOrderService"/>
+</beans>

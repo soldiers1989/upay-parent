@@ -1,0 +1,60 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 用户登录密码修改-->
+	<dipper:flow service-id="SI_USR0004">
+		<dipper:try>
+			<dipper:route>
+				<!-- 交易前处理 -->
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route>
+            	<!-- 校验登陆状态 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+				<!-- 用户注册信息查询-->
+            	<dipper:invoke>
+                    <dipper:service ref="UserRegQueryService" />
+                </dipper:invoke>
+                <!-- 用户登录密码检验 -->
+                <dipper:invoke>
+                    <dipper:service ref="UserPwdCheckServiceImpl" />
+                </dipper:invoke>
+			</dipper:route>		
+			<dipper:route  transaction="lazy">
+				<!-- 用户密码修改-->
+				<dipper:invoke>
+					<dipper:service ref="PwdChgService" />
+				</dipper:invoke>
+			</dipper:route>		
+		</dipper:try>
+		<dipper:catchException/>
+		 <dipper:finally>
+        	 <dipper:route>  
+        	 	<!-- 交易后处理 -->  	 		
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>
+                <!-- 密码错误累计 -->
+				<dipper:invoke>
+					<dipper:if expression="fault.code=='BISUSR0016'||fault.code=='BISUSR0023'||fault.code=='BISUSR0015'||fault.code=='BISUSR0021'">
+						<dipper:service ref="UserPwdCountDealService"/>
+					</dipper:if>
+				</dipper:invoke>	          	
+            </dipper:route>
+        </dipper:finally>
+	</dipper:flow>   
+</beans>	

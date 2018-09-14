@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccFrzBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccFrzBookPo">
+		<id column="ID" property="id" />
+		<result column="FRZ_TIME" property="frzTime" />
+		<result column="FRZ_NO" property="frzNo" />
+		<result column="FRZ_FILE_NO" property="frzFileNo" />
+		<result column="FRZ_AUTHORITY" property="frzAuthority" />
+		<result column="FRZ_AUTHORITY_NAME" property="frzAuthorityName" />
+		<result column="FRZ_AUTHORITY_CODE" property="frzAuthorityCode" />
+		<result column="USER_ID" property="userId" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="CERT_NAME" property="certName" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="REMAIN_FRZ_AMT" property="remainFrzAmt" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="FRZ_ORDER_NUM" property="frzOrderNum" />
+		<result column="IS_UNFRZ" property="isUnfrz" />
+		<result column="FRZ_FILE_ADDR" property="frzFileAddr" />
+		<result column="UNFRZ_OPER" property="unfrzOper" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_FRZ_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		FRZ_TIME,
+		FRZ_NO,
+		FRZ_FILE_NO,
+		FRZ_AUTHORITY,
+		FRZ_AUTHORITY_NAME,
+		FRZ_AUTHORITY_CODE,
+		USER_ID,
+		CERT_NO,
+		CERT_NAME,
+		ACCT_TYPE,
+		REMAIN_FRZ_AMT,
+		ACCT_NO,
+		FRZ_ORDER_NUM,
+		IS_UNFRZ,
+		FRZ_FILE_ADDR,
+		UNFRZ_OPER,
+		REMARK1
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="frzTime != null">
+			FRZ_TIME= #{frzTime}
+	           AND 
+		</if>
+		<if test="frzNo != null">
+			FRZ_NO= #{frzNo}
+	           AND 
+		</if>
+		<if test="frzFileNo != null">
+			FRZ_FILE_NO= #{frzFileNo}
+	           AND 
+		</if>
+		<if test="frzAuthority != null">
+			FRZ_AUTHORITY= #{frzAuthority}
+	           AND 
+		</if>
+		<if test="frzAuthorityName != null">
+			FRZ_AUTHORITY_NAME= #{frzAuthorityName}
+	           AND 
+		</if>
+		<if test="frzAuthorityCode != null">
+			FRZ_AUTHORITY_CODE= #{frzAuthorityCode}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="certName != null">
+			CERT_NAME= #{certName}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="remainFrzAmt != null">
+			REMAIN_FRZ_AMT= #{remainFrzAmt}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="frzOrderNum != null">
+			FRZ_ORDER_NUM= #{frzOrderNum}
+	           AND 
+		</if>
+		<if test="isUnfrz != null">
+			IS_UNFRZ= #{isUnfrz}
+	           AND 
+		</if>
+		<if test="frzFileAddr != null">
+			FRZ_FILE_ADDR= #{frzFileAddr}
+	           AND 
+		</if>
+		<if test="unfrzOper != null">
+			UNFRZ_OPER= #{unfrzOper}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="frzTime != null">
+		FRZ_TIME,
+	</if>
+	<if test="frzNo != null">
+		FRZ_NO,
+	</if>
+	<if test="frzFileNo != null">
+		FRZ_FILE_NO,
+	</if>
+	<if test="frzAuthority != null">
+		FRZ_AUTHORITY,
+	</if>
+	<if test="frzAuthorityName != null">
+		FRZ_AUTHORITY_NAME,
+	</if>
+	<if test="frzAuthorityCode != null">
+		FRZ_AUTHORITY_CODE,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="certName != null">
+		CERT_NAME,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="remainFrzAmt != null">
+		REMAIN_FRZ_AMT,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="frzOrderNum != null">
+		FRZ_ORDER_NUM,
+	</if>
+	<if test="isUnfrz != null">
+		IS_UNFRZ,
+	</if>
+	<if test="frzFileAddr != null">
+		FRZ_FILE_ADDR,
+	</if>
+	<if test="unfrzOper != null">
+		UNFRZ_OPER,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="frzTime != null">
+		#{frzTime},
+	</if>
+	<if test="frzNo != null">
+		#{frzNo},
+	</if>
+	<if test="frzFileNo != null">
+		#{frzFileNo},
+	</if>
+	<if test="frzAuthority != null">
+		#{frzAuthority},
+	</if>
+	<if test="frzAuthorityName != null">
+		#{frzAuthorityName},
+	</if>
+	<if test="frzAuthorityCode != null">
+		#{frzAuthorityCode},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="certName != null">
+		#{certName},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="remainFrzAmt != null">
+		#{remainFrzAmt},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="frzOrderNum != null">
+		#{frzOrderNum},
+	</if>
+	<if test="isUnfrz != null">
+		#{isUnfrz},
+	</if>
+	<if test="frzFileAddr != null">
+		#{frzFileAddr},
+	</if>
+	<if test="unfrzOper != null">
+		#{unfrzOper},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="frzTime != null">
+		FRZ_TIME=#{frzTime},
+	</if>
+	<if test="frzNo != null">
+		FRZ_NO=#{frzNo},
+	</if>
+	<if test="frzFileNo != null">
+		FRZ_FILE_NO=#{frzFileNo},
+	</if>
+	<if test="frzAuthority != null">
+		FRZ_AUTHORITY=#{frzAuthority},
+	</if>
+	<if test="frzAuthorityName != null">
+		FRZ_AUTHORITY_NAME=#{frzAuthorityName},
+	</if>
+	<if test="frzAuthorityCode != null">
+		FRZ_AUTHORITY_CODE=#{frzAuthorityCode},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="certName != null">
+		CERT_NAME=#{certName},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="remainFrzAmt != null">
+		REMAIN_FRZ_AMT=#{remainFrzAmt},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="frzOrderNum != null">
+		FRZ_ORDER_NUM=#{frzOrderNum},
+	</if>
+	<if test="isUnfrz != null">
+		IS_UNFRZ=#{isUnfrz},
+	</if>
+	<if test="frzFileAddr != null">
+		FRZ_FILE_ADDR=#{frzFileAddr},
+	</if>
+	<if test="unfrzOper != null">
+		UNFRZ_OPER=#{unfrzOper},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.frzTime != null">
+                    FRZ_TIME=#{s.frzTime},
+			</if>
+			<if test="s.frzNo != null">
+                    FRZ_NO=#{s.frzNo},
+			</if>
+			<if test="s.frzFileNo != null">
+                    FRZ_FILE_NO=#{s.frzFileNo},
+			</if>
+			<if test="s.frzAuthority != null">
+                    FRZ_AUTHORITY=#{s.frzAuthority},
+			</if>
+			<if test="s.frzAuthorityName != null">
+                    FRZ_AUTHORITY_NAME=#{s.frzAuthorityName},
+			</if>
+			<if test="s.frzAuthorityCode != null">
+                    FRZ_AUTHORITY_CODE=#{s.frzAuthorityCode},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.certName != null">
+                    CERT_NAME=#{s.certName},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.remainFrzAmt != null">
+                    REMAIN_FRZ_AMT=#{s.remainFrzAmt},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.frzOrderNum != null">
+                    FRZ_ORDER_NUM=#{s.frzOrderNum},
+			</if>
+			<if test="s.isUnfrz != null">
+                    IS_UNFRZ=#{s.isUnfrz},
+			</if>
+			<if test="s.frzFileAddr != null">
+                    FRZ_FILE_ADDR=#{s.frzFileAddr},
+			</if>
+			<if test="s.unfrzOper != null">
+                    UNFRZ_OPER=#{s.unfrzOper},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.frzTime != null">
+                    FRZ_TIME=#{w.frzTime}
+                   AND 
+ 			</if>
+			<if test="w.frzNo != null">
+                    FRZ_NO=#{w.frzNo}
+                   AND 
+ 			</if>
+			<if test="w.frzFileNo != null">
+                    FRZ_FILE_NO=#{w.frzFileNo}
+                   AND 
+ 			</if>
+			<if test="w.frzAuthority != null">
+                    FRZ_AUTHORITY=#{w.frzAuthority}
+                   AND 
+ 			</if>
+			<if test="w.frzAuthorityName != null">
+                    FRZ_AUTHORITY_NAME=#{w.frzAuthorityName}
+                   AND 
+ 			</if>
+			<if test="w.frzAuthorityCode != null">
+                    FRZ_AUTHORITY_CODE=#{w.frzAuthorityCode}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.certName != null">
+                    CERT_NAME=#{w.certName}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.remainFrzAmt != null">
+                    REMAIN_FRZ_AMT=#{w.remainFrzAmt}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.frzOrderNum != null">
+                    FRZ_ORDER_NUM=#{w.frzOrderNum}
+                   AND 
+ 			</if>
+			<if test="w.isUnfrz != null">
+                    IS_UNFRZ=#{w.isUnfrz}
+                   AND 
+ 			</if>
+			<if test="w.frzFileAddr != null">
+                    FRZ_FILE_ADDR=#{w.frzFileAddr}
+                   AND 
+ 			</if>
+			<if test="w.unfrzOper != null">
+                    UNFRZ_OPER=#{w.unfrzOper}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

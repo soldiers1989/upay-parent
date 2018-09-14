@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	   <mapping xpath="resp.amount" field="amount" />
+	   <mapping xpath="resp.charge" field="charge" />
+	   <mapping xpath="resp.currency" field="currency" must="not"/>
+	   <mapping xpath="resp.status" field="status" must="not"/>
+	</mappings>
+</config>

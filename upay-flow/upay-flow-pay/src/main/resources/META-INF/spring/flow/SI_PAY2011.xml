@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- SI_PAY2011 发放裂变红包 -->
+	<dipper:flow service-id="SI_PAY2011">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 商户状态检查 -->
+					<dipper:service ref="MerInfoQryAndChkService"/>
+					<!-- 微信下单 金额转换 -->
+					<dipper:service ref="TranAmtChangService" param-ref="initPayParmChangFlag" beforeDictConv-ref="dataPayBeforeRedPacketTranAmtChang"/>
+					<!-- 资金通道状态检查 -->
+					<dipper:service ref="PayRouteStateChkService"
+						param-ref="initPayWebChatInit" />
+					<!-- 资金通道信息查询 -->
+					<dipper:service ref="PayRouteInfoQryService"
+						afterDictConv-ref="dataPayAfterRouteInfoQry" />
+					<!-- 登记红包记录和类型 -->
+					<dipper:service ref="RedpackRegisterService" param-ref="initRedPackGroup"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<!-- 微信裂变红包 -->
+				<dipper:invoke>
+					<dipper:service ref="WebChatChangeInitService"
+						param-ref="WebChatChangeInit" />
+					<dipper:service ref="defaultWeiXinMmpaymktHttpsClientHandler"
+						param-ref="parm_SI_PAY2011" beforeDictConv-ref="dataPayBeforeRedPacket" />
+					<!-- 处理微信返回结果 -->
+					<dipper:service ref="DealWeiXinRespService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<!-- <dipper:catchException>
+			<dipper:route>
+				<dipper:invoke>
+					处理微信返回结果
+					<dipper:service ref="DealWeiXinRespService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException> -->
+		<dipper:catchException/>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>    

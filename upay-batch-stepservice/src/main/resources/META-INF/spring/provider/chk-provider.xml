@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+
+	<!-- 微信获取对账文件 -->
+	<dubbo:service ref="ApplyWeChatChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ApplyWeChatChkFileStep"/>
+	<!-- 读取微信对账文件 -->
+	<dubbo:service ref="GetWeChatChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetWeChatChkFileStep"/>
+	<!-- 微信对账（微信为主） -->
+	<dubbo:service ref="ChkByWeChatStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByWeChatStep"/>
+	<!-- 微信对账（平台为主） -->
+	<dubbo:service ref="ChkWeChatByDetailStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkWeChatByDetailStep"/>
+	
+	<!-- 申请核心接口获取文件 -->
+	<dubbo:service ref="ApplyCoreChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ApplyCoreChkFileStep"/>
+	<!-- 下载核心对账文件 -->
+	<dubbo:service ref="DownloadJzBankCoreChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="DownloadJzBankCoreChkFileStep"/>
+	<!-- 核心对账文件入库 -->
+	<dubbo:service ref="GetJZBankCoreChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetJZBankCoreChkFileStep"/>
+	<!-- 以核心数据为主对账 -->
+	<dubbo:service ref="ChkByHostDetailStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByHostDetailStep"/>
+	<!-- 平台未对账数据对账 -->
+	<dubbo:service ref="ChkByDetailStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByDetailStep"/>
+
+	<!-- 中金对账（生成中金对账信息 不论当日是否为节假日，都生成一条对账信息） -->
+	<dubbo:service ref="GenCPCNChkInfoStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GenCPCNChkInfoStep"/>
+	<!-- 中金对账（获取中金对账明细,并解析入库 调用中金1810接口，查询中金交易明细） -->
+	<dubbo:service ref="GetCPCNChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetCPCNChkFileStep"/>
+	<!-- 中金对账（以平台数据为主对账） -->
+	<dubbo:service ref="ChkByCPCNStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByCPCNStep"/>
+	<!-- 中金对账（平台未对账数据对账） -->
+	<dubbo:service ref="ChkCPCNByHostDetailStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkCPCNByHostDetailStep"/>
+	
+	<!-- 生成商户对账明细 -->
+	<dubbo:service ref="GenMerChkList" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GenMerChkList"/>
+	<!-- 商户清算-->
+	<dubbo:service ref="MerCheckInStlStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="MerCheckInStlStep"/>
+	<!-- 商户结算 -->
+	<dubbo:service ref="MerStlStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="MerStlStep"/>
+	<!-- 结算异常处理 -->
+	<dubbo:service ref="MerStlException" interface="com.pactera.dipper.batch.service.IStepExecutor" group="MerStlException"/>
+	<!-- 商户结算异常  发送短信通知业务 -->
+	<dubbo:service ref="MerStlFailSendMsg" interface="com.pactera.dipper.batch.service.IStepExecutor" group="MerStlFailSendMsg"/>
+	<!-- 隔日退款异常处理 -->
+	<dubbo:service ref="RefundException" interface="com.pactera.dipper.batch.service.IStepExecutor" group="RefundException"/>
+
+
+
+	<!-- 计算资金通道手续费 -->
+	<dubbo:service ref="CalculateRouteFee" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="CalculateRouteFee"/>
+	<!-- 计算二级商户手续费 -->
+	<dubbo:service ref="CalculateSecMerFee" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="CalculateSecMerFee"/>
+	<!-- 二级商户清算 -->
+	<dubbo:service ref="SecMerCheckInStlStep" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="SecMerCheckInStlStep"/>
+	<!-- 二级商户结算 -->
+	<dubbo:service ref="SecMerStlStep" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="SecMerStlStep"/>
+	
+	<!-- 汇总昨日第三方各通道的手续费金额 -->
+	<dubbo:service ref="SumTodayRouteFee" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="SumTodayRouteFee"/>
+	<!-- 汇总昨日第三方各通道的分润金额 -->
+	<dubbo:service ref="SumTodaySubProfit" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="SumTodaySubProfit"/>
+	<!-- 同步分润转账处理中的情况 -->
+	<dubbo:service ref="SyncProcessing" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="SyncProcessing"/>
+	<!-- 资金通道、分润转账-->
+	<dubbo:service ref="TransferRouteFee" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="TransferRouteFee"/>
+
+	<!--下载银联对账文件-->
+	<dubbo:service ref="DownloadUnionPayChkFile" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="DownloadUnionPayChkFile"/>
+	<!-- 解析银联对账文件、入库 -->
+	<dubbo:service ref="GetUnionPaySinglePayChkFileStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetUnionPaySinglePayChkFileStep"/>
+	<!-- 以银联为主对账-->
+	<dubbo:service ref="ChkByUnionPayStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByUnionPayStep" />
+	<!-- 未对账数据处理 -->
+	<dubbo:service ref="ChkByDetailUnionStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByDetailUnionStep" />
+
+	<!-- 下载支付宝对账文件 -->
+	<dubbo:service ref="ApplyAlipayChkFileStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ApplyAlipayChkFileStep" />
+
+	<!-- 对账文件明细入库 -->
+	<dubbo:service ref="GetAlipayChkFileStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetAlipayChkFileStep" />
+
+	<!-- 以支付宝为主对账-->
+	<dubbo:service ref="ChkByAlipayStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByAlipayStep" />
+	<!-- 支付宝未对账数据处理 -->
+	<dubbo:service ref="ChkByAlipayDetailStep"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByAlipayDetailStep" />
+
+
+
+	<!--==============================银联商户对账========================================-->
+	<!--下载银联对账文件-->
+	<dubbo:service ref="DownloadUnionPayChkFileMer" interface="com.pactera.dipper.batch.service.IStepExecutor"  group="DownloadUnionPayChkFileMer"/>
+	<!-- 解析银联对账文件、入库 -->
+	<dubbo:service ref="GetUnionPaySingleChkFileStepMer"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetUnionPaySingleChkFileStepMer"/>
+	<!-- 以银联为主对账-->
+	<dubbo:service ref="ChkByUnionPayStepMer"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByUnionPayStepMer" />
+	<!-- 未对账数据处理 -->
+	<dubbo:service ref="ChkByDetailUnionStepMer"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByDetailUnionStepMer" />
+
+<!--AT微信对账=============================================================================================begin-->
+	<!-- 读取微信对账文件 -->
+	<dubbo:service ref="GetWeChatChkFileStepAT" interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetWeChatChkFileStepAT"/>
+	<!-- 微信对账（微信为主） -->
+	<dubbo:service ref="ChkByWeChatStepAT" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByWeChatStepAT"/>
+	<!-- 微信对账（平台为主） -->
+	<dubbo:service ref="ChkWeChatByDetailStepAT" interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkWeChatByDetailStepAT"/>
+	<!--AT微信对账=============================================================================================end-->
+
+
+
+	<!--AT支付宝对账=============================================================================================end-->
+	<!-- 对账文件明细入库 -->
+	<dubbo:service ref="GetAlipayChkFileStepAT"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="GetAlipayChkFileStepAT" />
+	<!-- 以支付宝为主对账-->
+	<dubbo:service ref="ChkByAlipayStepAT"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByAlipayStepAT" />
+	<!-- 支付宝未对账数据处理 -->
+	<dubbo:service ref="ChkByAlipayDetailStepAT"  interface="com.pactera.dipper.batch.service.IStepExecutor" group="ChkByAlipayDetailStepAT" />
+
+	<!--AT支付宝对账=============================================================================================end-->
+
+<!-- core申请核心接口获取文件 -->
+	<dubbo:service ref="EsbApplyCoreChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="EsbApplyCoreChkFileStep"/>
+	<!-- 下载核心对账文件 -->
+	<dubbo:service ref="EsbGetJZBankCoreChkFileStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="EsbGetJZBankCoreChkFileStep"/>
+	<!-- 核心对账文件入库 -->
+	<dubbo:service ref="EsbChkByHostDetailStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="EsbChkByHostDetailStep"/>
+	<!-- 以核心数据为主对账 -->
+	<dubbo:service ref="EsbChkByDetailStep" interface="com.pactera.dipper.batch.service.IStepExecutor" group="EsbChkByDetailStep"/>
+	<!-- 平台未对账数据对账 -->
+
+
+</beans>

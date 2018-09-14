@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 虚拟账户绑定卡方式检查接口服务 -->
+    <dubbo:reference id="SI_ACC0001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0001" check = "false"/>
+    <!-- 虚拟账户信息查询接口服务-->
+    <dubbo:reference id="SI_ACC0002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0002" check = "false"/>
+   	<!-- 实名认证和绑卡开户 -->
+    <dubbo:reference id="SI_ACC1001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1001" check = "false"/>
+    <!-- 解绑 -->
+    <dubbo:reference id="SI_ACC1003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1003" check = "false"/>
+    <!-- 充值 -->
+    <dubbo:reference id="SI_ACC8001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC8001" check = "false"/>
+    <!-- 转账 -->
+    <dubbo:reference id="SI_ACC8002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC8002" check = "false"/>
+    <!-- 提现 -->
+    <dubbo:reference id="SI_ACC8003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC8003" check = "false"/>
+    <!-- 账户交易明细查询-->
+    <dubbo:reference id="SI_ACC0006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0006" check = "false"/>
+    <!-- 账户交易明细下载-->
+    <dubbo:reference id="SI_ACC0007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0007" check = "false"/>
+	<!-- 账户交易限额-->
+    <dubbo:reference id="SI_ACC0008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0008" check = "false"/>
+    <!-- 网银log查询-->
+    <dubbo:reference id="SI_ACC0009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0009" check = "false"/>
+    <!-- 转账前检查-->
+    <dubbo:reference id="SI_ACC1004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1004" check = "false"/>
+    <!-- 富农汇实名认证-->
+    <dubbo:reference id="SI_ACC1005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1005" check = "false"/>
+</beans>

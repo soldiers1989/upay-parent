@@ -1,0 +1,53 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+    
+    <!--  虚拟账户绑定卡方式检查接口服务 -->
+ 	<dipper:flow service-id="SI_ACC0001">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易前处理 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl"/>
+				</dipper:invoke>
+				<!-- 登录状态校验 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 根据卡BIN查询支持的鉴权渠道 -->
+					<dipper:service ref="PayQueryCardBinOfAAAService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 查询卡BIN对应的行名行号 -->
+					<dipper:service ref="PayQueryCardBinOfBankService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 绑定账户唯一性检查 -->
+					<dipper:service ref="UniqueBindAccCheckService" beforeDictConv-ref="data_acc_bankCode_convert"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException >
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

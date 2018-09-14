@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.menu.MenuInfoBookUnionPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.menu.MenuInfoBookUnionPo">
+		<id column="ID" property="id" />
+		<result column="MENU_ID" property="menuId" />
+		<result column="MENU_NAME" property="menuName" />
+		<result column="MENU_TYPE" property="menuType" />
+		<result column="PARENT_ID" property="parentId" />
+		<result column="ICON_CLS" property="iconCls" />
+		<result column="EXPANDED" property="expanded" />
+		<result column="MENU_ADDR" property="menuAddr" />
+		<result column="LEAF" property="leaf" />
+		<result column="SORT_NO" property="sortNo" />
+		<result column="REMARK" property="remark" />
+		<result column="ICON" property="icon" />
+		<result column="REMOVE_FLAG" property="removeFlag" />
+		<result column="REMOVE_TIME" property="removeTime" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="USER_CERT_LEVEL" property="userCertLevel" />
+		<result column="APPLY_CHNL_ID" property="applyChnlId" />
+		<result column="UPDATE_TIME" property="updateTime" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		(select tm.*,tu.USER_CERT_LEVEL,tu.APPLY_CHNL_ID,tu.UPDATE_TIME from T_MENU_INFO_BOOK tm,T_USER_MENU_BOOK tu where tm.menu_id = tu.menu_id and tm.remove_flag = '0')
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MENU_ID,
+		MENU_NAME,
+		MENU_TYPE,
+		PARENT_ID,
+		ICON_CLS,
+		EXPANDED,
+		MENU_ADDR,
+		LEAF,
+		SORT_NO,
+		REMARK,
+		ICON,
+		REMOVE_FLAG,
+		REMOVE_TIME,
+		CREATE_TIME,
+		CREATE_USER_ID
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		
+		<if test="userCertLevel != null">
+			USER_CERT_LEVEL like '%'||#{userCertLevel}||'%'
+	           AND 
+		</if>
+		<if test="id != null">
+			APPLY_CHNL_ID= #{id}
+	           AND 
+		</if>
+		<if test="applyChnlId != null">
+			APPLY_CHNL_ID= #{applyChnlId}
+	           AND 
+		</if>
+		<if test="updateTime != null">
+			UPDATE_TIME= #{updateTime}
+	           AND 
+		</if>
+		<if test="menuName != null">
+			MENU_NAME= #{menuName}
+	           AND 
+		</if>
+		<if test="menuType != null">
+			MENU_TYPE= #{menuType}
+	           AND 
+		</if>
+		<if test="parentId != null">
+			PARENT_ID= #{parentId}
+	           AND 
+		</if>
+		<if test="parentId == null">
+			PARENT_ID is null 
+	           AND 
+		</if>
+		<if test="iconCls != null">
+			ICON_CLS= #{iconCls}
+	           AND 
+		</if>
+		<if test="expanded != null">
+			EXPANDED= #{expanded}
+	           AND 
+		</if>
+		<if test="menuAddr != null">
+			MENU_ADDR= #{menuAddr}
+	           AND 
+		</if>
+		<if test="leaf != null">
+			LEAF= #{leaf}
+	           AND 
+		</if>
+		<if test="sortNo != null">
+			SORT_NO= #{sortNo}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="icon != null">
+			ICON= #{icon}
+	           AND 
+		</if>
+		<if test="removeFlag != null">
+			REMOVE_FLAG= #{removeFlag}
+	           AND 
+		</if>
+		<if test="removeTime != null">
+			REMOVE_TIME= #{removeTime}
+	           AND 
+		</if>
+		<if test="createTime != null">
+			CREATE_TIME= #{createTime}
+	           AND 
+		</if>
+		<if test="createUserId != null">
+			CREATE_USER_ID= #{createUserId}
+		</if>
+		</trim>
+	</sql>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+
+</mapper>

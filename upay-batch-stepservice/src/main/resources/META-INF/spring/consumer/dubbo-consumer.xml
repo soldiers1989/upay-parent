@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+
+	<!-- 手机银行渠道退货接口 -->
+<!-- 	<dubbo:reference id="SI_ORD0034" -->
+<!-- 		interface="com.pactera.dipper.core.IDipperHandler" group="SI_ORD0034" check="false"/> -->
+
+		<!-- 核心接口 -->
+<!-- 		<dubbo:reference id="coreCliDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="coreCliDipperHandler" /> -->
+
+	<!-- 核心记账接口 -->
+	<dubbo:reference id="coreCliDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="coreCliDipperHandler" check="false"/>
+	<!-- 核心记账接口 -->
+	<dubbo:reference id="esbCliDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="esbCliDipperHandler" check="false"/>	
+	<!-- 中金快捷支付2511 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2511Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2511Handler" check="false"/>
+	<!-- 中金快捷支付查询2512 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2512Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2512Handler" check="false"/>
+	<!-- 中金快捷支付退款查询2521 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2522Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2522Handler" check="false"/>
+	<!-- 中金快捷支付退款查询2522 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2521Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2521Handler" check="false"/>
+	<!-- 中金网银 支付1120 -->
+	<dubbo:reference id="SA_ZJPAY_Pay1120Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1120Handler" check="false"/>
+	<!-- 中金代付4532 -->
+	<dubbo:reference id="SA_ZJPAY_Pay4532Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4532Handler" check="false"/>
+	<!-- 中金账务查询1810 -->
+	<dubbo:reference id="SA_ZJPAY_Pay1810Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1810Handler" check="false"/>
+
+	<!-- weixin -->
+	<dubbo:reference id="defaultWeiXinClientHandler" interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinClientHandler" check="false"/>
+
+     <!-- weixin -->
+	<dubbo:reference id="unionPayOrderQueryClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayOrderQueryClientDipperHandlr" check="false"/>
+
+
+	<dubbo:reference id="defaultWeiXinHttpsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinHttpsClientHandler" check="false"/>
+	<!-- 富农汇支付后台通知客户端 -->
+	<dubbo:reference id="fnhNotifyHandler" interface="com.pactera.dipper.core.IDipperHandler" group="fnhNotifyHandler" check="false"/>
+	<!-- 烟草批量转账 -->
+	<dubbo:reference id="SI_ACC1006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1006" check="false"/>
+	<dubbo:reference id="SI_ACC1007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1007" check="false"/>
+	
+	<!-- 微信账务查询 -->
+	<dubbo:reference id="weChatChkFileHandler" interface="com.pactera.dipper.core.IDipperHandler" group="weChatChkFileHandler" check="false"/>
+	<!-- 查询烟草结算内部户的余额 -->
+	<dubbo:reference id="SI_PAY1007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY1007" check="false"/>
+		
+		
+		
+		
+	<!-- 中金单笔代付 -->
+	<dubbo:reference id="SA_ZJPAY_Pay4530Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4530Handler" check="false"/>
+	<!-- 中金单笔代收-->
+	<dubbo:reference id="SA_ZJPAY_Pay2011Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2011Handler" check="false"/>
+	<!-- 中金单笔代收查询-->
+	<dubbo:reference id="SA_ZJPAY_Pay2020Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2020Handler" check="false"/>
+	<!-- 单笔代扣 -->
+	<dubbo:reference id="SI_PAY0019" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0019" check="false"/>
+	<!-- 单笔代付 -->
+	<dubbo:reference id="SI_PAY0020" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0020" check="false"/>
+	<!-- 分润结算转账 -->
+	<dubbo:reference id="SI_PAY0023" interface="com.pactera.dipper.core.IDipperHandler" group="SI_PAY0023" check="false"/>
+	
+	<!-- 中金网银原路退款-->
+	<dubbo:reference id="SA_ZJPAY_Pay1133Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1133Handler" check="false"/>	
+	<!-- 中金网银退款查询-->
+	<dubbo:reference id="SA_ZJPAY_Pay1132Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1132Handler" check="false"/>
+	<!-- 银联交易状态查询-->
+	<dubbo:reference id="SA_PMT_UnionPayTranStatQuery"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_PMT_UnionPayTranStatQuery" check="false"/>	
+		
+	<!-- 银联商户交易状态查询-->
+	<dubbo:reference id="unionPayTranQueryClientDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayTranQueryClientDipperHandler" check="false"/>       <!-- 银联代收交易状态查询 -->
+	<dubbo:reference id="unionPayReceiveTranQueryClientDipperHandler"
+					 interface="com.pactera.dipper.core.IDipperHandler"
+					 group="unionPayReceiveTranQueryClientDipperHandler" check="false"/>
+		
+			
+	<!-- 银联退款-->
+	<dubbo:reference id="UnionReFoundDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="UnionReFoundDipperHandler" check="false"/>
+
+    <!--银联对账文件下载-->
+	<dubbo:reference id="UnionPayFileTransferDipperHandler"
+					 interface="com.pactera.dipper.core.IDipperHandler" group="UnionPayFileTransferDipperHandler" check="false"/>
+	<dubbo:reference id="unionPayFileTransferDipperHandler"
+					 interface="com.pactera.dipper.core.IDipperHandler" group="unionPayFileTransferDipperHandler" check="false"/>
+	<!-- 支付宝 对账单下载-->
+    <dubbo:reference id="AlipayDownloadHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayDownloadHandler" check="false"/>
+    <!-- 支付宝交易查询-->
+    <dubbo:reference id="AlipayQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayQueryHandler" check="false"/>
+    <!-- 支付宝退款查询-->
+    <dubbo:reference id="AlipayRefundQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayRefundQueryHandler" check="false"/>
+    
+    
+     <!-- 银联支付宝交易查询-->
+    <dubbo:reference id="AT_AlipayQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayQueryHandler" check="false"/>
+    <!-- 银联支付宝交易查询-->
+    <dubbo:reference id="AT_AlipayRefundQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayRefundQueryHandler" check="false"/>
+    
+    
+    
+    <!-- 支付宝退款-->
+    <dubbo:reference id="AlipayRefundHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayRefundHandler" check="false"/>
+    
+    <!-- 发送短信 -->
+	<dubbo:reference id="SA_GNR_smsSendService" interface="com.pactera.dipper.core.IDipperHandler" group="SA_GNR_smsSendService" check="false"/>
+
+   <!-- 微信退款 -->
+	<dubbo:reference id="unionPayOrderRefundQueryClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayOrderRefundQueryClientDipperHandlr" check="false"/>
+
+
+</beans>

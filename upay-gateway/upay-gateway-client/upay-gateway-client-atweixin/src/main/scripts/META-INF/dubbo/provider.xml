@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 统一下单 -->
+ <dubbo:service ref="unionPayOrderPerPayClientDipperHandlr"  group="unionPayOrderPerPayClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+  <!-- 刷卡支付 -->
+ <dubbo:service ref="unionPayMicropayClientDipperHandlr"  group="unionPayMicropayClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+  <!-- 订单查询 -->
+ <dubbo:service ref="unionPayOrderQueryClientDipperHandlr"  group="unionPayOrderQueryClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+ <!-- 申请退款 -->
+ <dubbo:service ref="unionPayOrderRefundClientDipperHandlr"  group="unionPayOrderRefundClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+
+<!-- 申请退款查询 -->
+ <dubbo:service ref="unionPayOrderRefundQueryClientDipperHandlr"  group="unionPayOrderRefundQueryClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+ <!--商户入驻 -->
+ <dubbo:service ref="unionPaySubMerADDClientDipperHandlr"  group="unionPaySubMerADDClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler"  />
+
+
+</beans>

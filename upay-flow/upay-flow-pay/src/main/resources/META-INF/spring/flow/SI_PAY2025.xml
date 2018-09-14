@@ -1,0 +1,107 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- SI_PAY2025 支付宝 线上扫码支付（收银台） -->
+	<dipper:flow service-id="SI_PAY2025">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="GeneralSinglePaymentParamChkService" param-ref="initATAlipayMethod"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.userId != null">
+						<dipper:service ref="CheckLoginStatService" />
+					</dipper:if>
+				</dipper:invoke>
+				<!-- 订单状态校验 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckOrderListStatService"
+						param-ref="initPayUpdateOrdToN" />
+				</dipper:invoke>
+				<!-- 根据流水判断该订单是否已经发过请求，如果发过重复登记流水 根据标识直接去请求二维码 20161110 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckWeiXinSyseqInfoService"
+						param-ref="parm_alipay_2022" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 商户状态检查 -->
+					<dipper:service ref="MerStatChkService" />
+					<!-- 校验商户支付宝支付是否开通 -->
+					<dipper:service ref="CheckAlipayMerService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.userId != null">
+						<!-- 把订单和用户建立绑定关系 -->
+						<dipper:service ref="CheckOrderUserIdService" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 用户交易权限检查 -->
+					<dipper:service ref="CheckUsrOptControlService" />
+					<!-- 支付宝下单 金额转换 -->
+					<dipper:service ref="TranAmtChangService" param-ref="initPayParmChangFlag2005" />
+					<!-- 支付宝单笔限额检查 -->
+					<dipper:service ref="LimitAmtCheckService"
+						param-ref="initPayParm2021" />
+					<!-- 资金通道状态检查 -->
+					<dipper:service ref="PayRouteStateChkService"
+						param-ref="initPayWebChatInit2020" />
+					<!-- 资金通道信息查询 -->
+					<dipper:service ref="PayRouteInfoQryService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 费用计算登记 -->
+					<dipper:service ref="FeeGetBaseService" param-ref="initPayFeeGet2005" />
+				</dipper:invoke>
+				<dipper:invoke><!-- registFlag 流水登记标识 0：已登记 1：未登记 -->
+					<!-- 流水登记 -->
+					<dipper:service ref="RecordPayFlowListService"
+						param-ref="initPayRecordPayFlowListFist2025" beforeDictConv-ref="dataPayBeforeFlowList2005" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!--支付宝参数准备 -->
+					<dipper:service ref="AlipayReqParamInitService"/>
+			   </dipper:invoke>	
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt== 'UNIONPAY'">
+						<!--at通道 -->
+						<dipper:service ref="AT_AlipayPreCreateHandler" beforeDictConv-ref="parm_BeforeReqAlipay2025" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt== 'DIRECT'">
+						<!--非at通道 -->
+						<dipper:service ref="AlipayPreCreateHandler" beforeDictConv-ref="parm_BeforeReqAlipay2025" />
+					</dipper:if>
+				</dipper:invoke>		
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>    

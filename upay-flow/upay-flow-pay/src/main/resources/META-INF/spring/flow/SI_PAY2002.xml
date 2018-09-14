@@ -1,0 +1,182 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- SI_PAY20002 通用通知接口 -->
+	<dipper:flow service-id="SI_PAY2002">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl"
+						param-ref="initPayChnlId" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="GeneralSinglePaymentParamChkService" param-ref="initATWeixinMethod"/>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 是否使用esb连接核心检查-->
+					<dipper:service ref="UseEsbCoreChkService" param-ref="initUseEsbCoreMethod" />
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt == 'UNIONPAY'">
+						<!-- 银联重复通知检查 -->
+						<dipper:service ref="CheckWeixinCodeRepeatNotifyService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt == 'DIRECT'">
+						<dipper:service ref="NotifyStatusCheckService" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt == 'UNIONPAY'">
+						<!-- 金额转换 -->
+						<dipper:service ref="TranAmtChangService"
+							param-ref="initPayParmChangFlagzero" />
+						<dipper:service ref="AtNotifyStatusCheckService" />
+					</dipper:if>
+				</dipper:invoke>
+				<!-- 如果订单为成功则检查是否有其他通道的的成功流水/而且微信支付的流水状态为非成功状态 如果有其他通道成功的流水，则调用微信退款接口【流水】 -->
+				<!-- 登记退款流水 -->
+				<!-- 金额转换 -->
+				<!-- 调用微信退款接口 -->
+				<!-- 保存退款申请订单 -->
+				<!-- <dipper:route transaction="lazy"> <dipper:invoke> <dipper:service 
+					ref="RecordRefundOrderService" /> </dipper:invoke> </dipper:route> -->
+
+
+
+
+				<!-- 结果通知 更新第一笔流水 -->
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt == 'DIRECT'  &amp;&amp; target.bodys.isNotifyCoreSys == 'true'">
+						<dipper:service ref="GeneralNoticeReqServiceImpl"
+							beforeDictConv-ref="dataPayBeforeweixinpayNotice" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt == 'UNIONPAY' &amp;&amp; target.bodys.isNotifyCoreSys == 'true' ">
+						<dipper:service ref="AtGeneralNoticeReqServiceImpl"
+							beforeDictConv-ref="dataPayBeforeUpdateMicWinXin2006" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isNotifyCoreSys == 'true'">
+						<!-- 更新订单状态为成功 -->
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInitRecive" />
+						<!-- 修改订单状态 -->
+						<dipper:service ref="OrderSyncStatusManageService"
+							param-ref="initClearFlag" beforeDictConv-ref="dataPayBeforeUpdateOrdSt2002" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isNotifyCoreSys == 'true'">
+						<!-- 初始化核心登记参数 查微信往來戶 -->
+						<dipper:service ref="PayRouteInfoQryService"
+							param-ref="parm_PAYORDERQRY_weixin" afterDictConv-ref="dataPayAfterRouteInfoQry_weixin" />
+						<!-- 初始化核心登记参数 查核心待清算戶 -->
+						<dipper:service ref="PayRouteInfoQryService"
+							param-ref="parm_PAYORDERQRY_core" afterDictConv-ref="dataPayAfterRouteInfoQry_core" />
+						<!-- 核心登记记账预计流水 -->
+						<dipper:service ref="RecordEsbCorePayFlowListService"
+							param-ref="parm_PAYINIT_ACCTYPE" />
+						<!-- 更新分润明细的交易状态 -->
+						<dipper:service ref="UpdateFeeAssDetailOrderStatService"
+							beforeDictConv-ref="dataPayBeforeUpdateAssFee001" />
+						<!-- 更新手续费明细的交易状态 -->
+						<dipper:service ref="UpdateFeeDetailOrderStatService" />
+						<!-- 修改商户交易日累计 -->
+						<dipper:service ref="DailyCumulativeService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isNotifyCoreSys == 'true' &amp;&amp; target.bodys.isEsbCore=='N' ">
+						<!-- 初始化核心日期参数 -->
+						<dipper:service ref="InitBankParamService" />
+						<!-- 核心登记记账 ：如果微信支付成功则在核心记一笔帐 -->
+						<dipper:service ref="coreCliDipperHandler"
+							param-ref="initCorePayweixin" beforeDictConv-ref="dataPayweixinToCore" />
+					</dipper:if>
+				</dipper:invoke>
+				
+			    <dipper:invoke>
+					<!-- 免密支付成功 第三步 esb核心处理 -->
+					<dipper:if expression="target.bodys.isNotifyCoreSys == 'true' &amp;&amp; target.bodys.isEsbCore=='Y' ">
+						<!-- 初始化核心日期参数 -->
+						<dipper:service ref="InitBankParamService" />
+						<!-- 核心登记记账 ：如果微信支付成功则在核心记一笔帐 -->
+						<dipper:service ref="esbCliDipperHandler"
+							param-ref="initEsbCorePayAlipay" beforeDictConv-ref="dataPayweixinToCore" />
+					</dipper:if>
+				</dipper:invoke>
+				
+				
+			</dipper:route>
+			<!-- 状态设置 成功情况 -->
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="PaySetStateServiceImpl"
+						param-ref="initPayStateInitRecive" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<!-- 状态设置异常情况 -->
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="PaySetStateServiceImpl"
+						param-ref="initPayStateInitFail" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<!-- 更新订单/流水状态 -->
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isNotifyCoreSys == 'true' &amp;&amp; target.bodys.isEsbCore=='N' ">
+						<!-- 修改核心通道流水状态 -->
+						<dipper:service ref="SeqStatusManageService"
+							beforeDictConv-ref="dataPayBeforeCoreResult" />
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isNotifyCoreSys == 'true' &amp;&amp; target.bodys.isEsbCore=='Y' ">
+						<!-- 修改核心通道流水状态 -->
+						<dipper:service ref="SeqStatusManageService"
+							beforeDictConv-ref="dataPayBeforeCoreResult2018" />
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<dipper:service ref="RecordMerPayNotifyService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+
+
+</beans>    

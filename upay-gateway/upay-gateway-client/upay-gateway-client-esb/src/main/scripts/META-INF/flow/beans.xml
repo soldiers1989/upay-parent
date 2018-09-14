@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+	<bean id="abstractDipperHandler"
+		class="com.pactera.dipper.presys.cp.client.AbstractClientDipperHandler"
+		abstract="true" />
+
+
+	<bean id="esbCliDipperHandler" class="com.upay.gateway.client.esb.EsbCliDipperHandler"
+		parent="abstractDipperHandler">
+		<property name="channel" ref="esbcli" />
+		<property name="flow" ref="SI_esbcliFlow" />
+	    <property name="acctNm" value="${acctNm}"/>
+        <property name="pswd" value="${pswd}"/>
+        <property name="sndTp" value="${sndTp}"/>
+        <property name="msgTp" value="${msgTp}"/>
+	</bean>
+	
+	<bean id="httpNewClientCommHandler" class="com.upay.gateway.client.esb.HttpNewClientCommHandler" scope="prototype"/>
+	
+
+	<!-- 打包之前md5摘要处理 key为需要加密的报文(tranCode),value为需要加密的字段与加密后的字段名称,以"-"分割,多个字段以"|"分割 -->
+	<bean id="encryptMd5Handler" class="com.upay.gateway.client.esb.md5.EncryptMd5Handler">
+		<property name="md5Key" value="${dyn.cspMd5Key}" />
+		<property name="packKeyMapping">
+			<map>
+				<entry key="account"
+					value="accountName-accountNameMd5|bankCardNo-bankCardNoMd5|charge-chargeMd5|setAccount-setAccountMd5|setAccountName-setAccountNameMd5" />
+				<entry key="accountReverse"
+					value="bankCardNo-bankCardNoMd5|setAccount-setAccountMd5|account-accountMd5|charge-chargeMd5" />
+				<entry key="custInfoValidate"
+					value="accountName-accountNameMd5|bankCardNo-bankCardNoMd5|cetNo-cetNoMd5|mobilePhone-mobilePhoneMd5" />
+			</map>
+		</property>
+	</bean>
+</beans>

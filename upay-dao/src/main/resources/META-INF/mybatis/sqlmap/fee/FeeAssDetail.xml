@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeAssDetailPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeAssDetailPo">
+		<id column="ID" property="id" />
+		<result column="TXN_DATE" property="txnDate" />
+		<result column="TXN_TIME" property="txnTime" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="ASS_CODE" property="assCode" />
+		<result column="ASS_ID" property="assId" />
+		<result column="ORG_CODE" property="orgCode" />
+		<result column="ASS_RATE" property="assRate" />
+		<result column="ASS_AMT" property="assAmt" />
+		<result column="DC_FLAG" property="dcFlag" />
+		<result column="REMARK_CODE" property="remarkCode" />
+		<result column="TXN_STAT" property="txnStat" />
+		<result column="MEMO" property="memo" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="STL_BATCH_NO" property="stlBatchNo" />
+		<result column="STL_DATE" property="stlDate" />
+		<result column="STL_FLAG" property="stlFlag" />
+		<result column="ROUTE_CODE" property="routeCode" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_ASS_DETAIL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TXN_DATE,
+		TXN_TIME,
+		ACCT_NO,
+		ACCT_TYPE,
+		CHNL_ID,
+		TRANS_CODE,
+		ASS_CODE,
+		ASS_ID,
+		ORG_CODE,
+		ASS_RATE,
+		ASS_AMT,
+		DC_FLAG,
+		REMARK_CODE,
+		TXN_STAT,
+		MEMO,
+		ORDER_NO,
+		STL_BATCH_NO,
+		STL_DATE,
+		STL_FLAG,
+		ROUTE_CODE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="txnDate != null">
+			TXN_DATE= #{txnDate}
+	           AND 
+		</if>
+		<if test="txnTime != null">
+			TXN_TIME= #{txnTime}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="assCode != null">
+			ASS_CODE= #{assCode}
+	           AND 
+		</if>
+		<if test="assId != null">
+			ASS_ID= #{assId}
+	           AND 
+		</if>
+		<if test="orgCode != null">
+			ORG_CODE= #{orgCode}
+	           AND 
+		</if>
+		<if test="assRate != null">
+			ASS_RATE= #{assRate}
+	           AND 
+		</if>
+		<if test="assAmt != null">
+			ASS_AMT= #{assAmt}
+	           AND 
+		</if>
+		<if test="dcFlag != null">
+			DC_FLAG= #{dcFlag}
+	           AND 
+		</if>
+		<if test="remarkCode != null">
+			REMARK_CODE= #{remarkCode}
+	           AND 
+		</if>
+		<if test="txnStat != null">
+			TXN_STAT= #{txnStat}
+	           AND 
+		</if>
+		<if test="memo != null">
+			MEMO= #{memo}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="stlBatchNo != null">
+			STL_BATCH_NO= #{stlBatchNo}
+	           AND 
+		</if>
+		<if test="stlDate != null">
+			STL_DATE= #{stlDate}
+	           AND 
+		</if>
+		<if test="stlFlag != null">
+			STL_FLAG= #{stlFlag}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="txnDate != null">
+		TXN_DATE,
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="assCode != null">
+		ASS_CODE,
+	</if>
+	<if test="assId != null">
+		ASS_ID,
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE,
+	</if>
+	<if test="assRate != null">
+		ASS_RATE,
+	</if>
+	<if test="assAmt != null">
+		ASS_AMT,
+	</if>
+	<if test="dcFlag != null">
+		DC_FLAG,
+	</if>
+	<if test="remarkCode != null">
+		REMARK_CODE,
+	</if>
+	<if test="txnStat != null">
+		TXN_STAT,
+	</if>
+	<if test="memo != null">
+		MEMO,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO,
+	</if>
+	<if test="stlDate != null">
+		STL_DATE,
+	</if>
+	<if test="stlFlag != null">
+		STL_FLAG,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="txnDate != null">
+		#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		#{txnTime},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="assCode != null">
+		#{assCode},
+	</if>
+	<if test="assId != null">
+		#{assId},
+	</if>
+	<if test="orgCode != null">
+		#{orgCode},
+	</if>
+	<if test="assRate != null">
+		#{assRate},
+	</if>
+	<if test="assAmt != null">
+		#{assAmt},
+	</if>
+	<if test="dcFlag != null">
+		#{dcFlag},
+	</if>
+	<if test="remarkCode != null">
+		#{remarkCode},
+	</if>
+	<if test="txnStat != null">
+		#{txnStat},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="stlBatchNo != null">
+		#{stlBatchNo},
+	</if>
+	<if test="stlDate != null">
+		#{stlDate},
+	</if>
+	<if test="stlFlag != null">
+		#{stlFlag},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="txnDate != null">
+		TXN_DATE=#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME=#{txnTime},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="assCode != null">
+		ASS_CODE=#{assCode},
+	</if>
+	<if test="assId != null">
+		ASS_ID=#{assId},
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE=#{orgCode},
+	</if>
+	<if test="assRate != null">
+		ASS_RATE=#{assRate},
+	</if>
+	<if test="assAmt != null">
+		ASS_AMT=#{assAmt},
+	</if>
+	<if test="dcFlag != null">
+		DC_FLAG=#{dcFlag},
+	</if>
+	<if test="remarkCode != null">
+		REMARK_CODE=#{remarkCode},
+	</if>
+	<if test="txnStat != null">
+		TXN_STAT=#{txnStat},
+	</if>
+	<if test="memo != null">
+		MEMO=#{memo},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO=#{stlBatchNo},
+	</if>
+	<if test="stlDate != null">
+		STL_DATE=#{stlDate},
+	</if>
+	<if test="stlFlag != null">
+		STL_FLAG=#{stlFlag},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.txnDate != null">
+                    TXN_DATE=#{s.txnDate},
+			</if>
+			<if test="s.txnTime != null">
+                    TXN_TIME=#{s.txnTime},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.assCode != null">
+                    ASS_CODE=#{s.assCode},
+			</if>
+			<if test="s.assId != null">
+                    ASS_ID=#{s.assId},
+			</if>
+			<if test="s.orgCode != null">
+                    ORG_CODE=#{s.orgCode},
+			</if>
+			<if test="s.assRate != null">
+                    ASS_RATE=#{s.assRate},
+			</if>
+			<if test="s.assAmt != null">
+                    ASS_AMT=#{s.assAmt},
+			</if>
+			<if test="s.dcFlag != null">
+                    DC_FLAG=#{s.dcFlag},
+			</if>
+			<if test="s.remarkCode != null">
+                    REMARK_CODE=#{s.remarkCode},
+			</if>
+			<if test="s.txnStat != null">
+                    TXN_STAT=#{s.txnStat},
+			</if>
+			<if test="s.memo != null">
+                    MEMO=#{s.memo},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.stlBatchNo != null">
+                    STL_BATCH_NO=#{s.stlBatchNo},
+			</if>
+			<if test="s.stlDate != null">
+                    STL_DATE=#{s.stlDate},
+			</if>
+			<if test="s.stlFlag != null">
+                    STL_FLAG=#{s.stlFlag},
+			</if>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.txnDate != null">
+                    TXN_DATE=#{w.txnDate}
+                   AND 
+ 			</if>
+			<if test="w.txnTime != null">
+                    TXN_TIME=#{w.txnTime}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.assCode != null">
+                    ASS_CODE=#{w.assCode}
+                   AND 
+ 			</if>
+			<if test="w.assId != null">
+                    ASS_ID=#{w.assId}
+                   AND 
+ 			</if>
+			<if test="w.orgCode != null">
+                    ORG_CODE=#{w.orgCode}
+                   AND 
+ 			</if>
+			<if test="w.assRate != null">
+                    ASS_RATE=#{w.assRate}
+                   AND 
+ 			</if>
+			<if test="w.assAmt != null">
+                    ASS_AMT=#{w.assAmt}
+                   AND 
+ 			</if>
+			<if test="w.dcFlag != null">
+                    DC_FLAG=#{w.dcFlag}
+                   AND 
+ 			</if>
+			<if test="w.remarkCode != null">
+                    REMARK_CODE=#{w.remarkCode}
+                   AND 
+ 			</if>
+			<if test="w.txnStat != null">
+                    TXN_STAT=#{w.txnStat}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    MEMO=#{w.memo}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.stlBatchNo != null">
+                    STL_BATCH_NO=#{w.stlBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.stlDate != null">
+                    STL_DATE=#{w.stlDate}
+                   AND 
+ 			</if>
+			<if test="w.stlFlag != null">
+                    STL_FLAG=#{w.stlFlag}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

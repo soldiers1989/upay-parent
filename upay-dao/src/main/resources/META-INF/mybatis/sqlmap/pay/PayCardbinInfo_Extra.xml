@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayCardbinInfoPo">
+    <select id="selectCardBinLenList" parameterType="java.util.Map" resultType="int">
+        select
+        distinct length(CARD_BIN) as CARD_BIN_LEN
+        from
+        <include refid="Table_Name" />
+        where CARD_NO_LEN = #{cardNoLen}
+        order by CARD_BIN_LEN desc
+    </select>
+
+</mapper>

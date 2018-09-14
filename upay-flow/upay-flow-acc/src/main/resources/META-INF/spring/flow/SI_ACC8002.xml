@@ -1,0 +1,224 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 电子账户转账 -->
+	<dipper:flow service-id="SI_ACC8002">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易前处理 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+				<!-- 登录状态校验 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 短信验证码 -->
+					<dipper:service ref="SmsVerifyServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 用户密码检查 -->
+					<dipper:service ref="UserTrPwdCheckService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 用户密码错误次数统计 -->
+					<!-- <dipper:service ref="" param-ref="pwdFlag" /> -->
+				</dipper:invoke>
+			</dipper:route>
+
+			<dipper:route>
+				<dipper:invoke>
+					<!--账户交易权限检查 -->
+					<dipper:service ref="PermissionCheckService" param-ref="init_acc_acctType" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 用户注册信息查询 -->
+					<dipper:service ref="UserRegQueryService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--用户基本信息查询 -->
+					<dipper:service ref="UserBaseInfoService" />
+				</dipper:invoke>
+				<!-- 账户状态校验 -->
+				<dipper:invoke>
+<!-- 					<dipper:service ref="CheckUserAccountStatService"/> -->
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 金额转换成分 -->
+					<dipper:service ref="TranAmtChangService" param-ref="init_acc_convertMoney" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--转账 查询资金通道和收款人 和 付款人信息 资金通道状态检查 -->
+					<dipper:service ref="QueryRouteByBindCardNoService" />
+				</dipper:invoke>
+			</dipper:route>
+
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 转账 账户限额检查 -->
+					<dipper:service ref="LimitAmtCheckService" param-ref="init_acc_limitAmt"/>
+					<!-- 订单预生成 -->
+					<dipper:service ref="PayOrderRegisterService" param-ref="init_acc_createOrderParm" />
+					<!-- 计算手续费并记录 -->
+					<dipper:service ref="FeeGetBaseService" param-ref="init_acc_feeget" />
+					<!--付款账户扣减余额 -->
+					<dipper:service ref="SubtractAccountAmtService" param-ref="init_acc_amtUpdateSub" beforeDictConv-ref="data_acc_subtractAcctBal_payertransfer"/>
+				</dipper:invoke>
+			</dipper:route>
+
+			<!-- 转账 开始 -->
+			<dipper:route transaction="lazy">
+				<dipper:invoke><!-- 登记平台付款 方的支付流水 -->
+					<dipper:service ref="RecordPayFlowListService" beforeDictConv-ref="data_acc_transferFistFlow" param-ref="init_acc_srFlag" /> <!-- 登记支付流水 -->
+						<!-- 更新本行核心的支付流水 -->
+					<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="data_acc_coreClrType" param-ref="init_acc_updateSeqStatSucc" />
+			</dipper:invoke>
+			<dipper:invoke>
+						<!-- 登记收款人  订单预生成 -->
+						<dipper:service ref="PayOrderRegisterService" afterDictConv-ref="data_acc_payeeOrerCov" param-ref="init_acc_createOrderParmTransfer" beforeDictConv-ref="data_acc_transfer_payeeOrder"/>
+						<!--收款账户增加余额 -->
+						<dipper:service ref="SubtractAccountAmtService" param-ref="init_acc_amtUpdateAdd_payee" beforeDictConv-ref="data_acc_transfer_upAccBal"/>
+						<!-- 登记平台收款人的支付流水 -->
+						<dipper:service ref="RecordPayFlowListService" beforeDictConv-ref="data_acc_transferFistFlow" param-ref="init_acc_payeeSrFlag" />
+						<!-- 更新联台收款 人的支付流水 -->
+						<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="data_acc_coreClrType" param-ref="init_acc_updateSeqStatSucc" />
+						<!-- 获取订单状态 -->
+						<dipper:service ref="ResetOrderStatService" />
+						<!-- 更新平台收款人订单状态 -->
+						<dipper:service ref="OrderStatusManageService" />
+				</dipper:invoke>
+			</dipper:route>
+			
+			
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 如果本行提现有手续费的情况 -->
+					<dipper:if expression="target.bodys.feeAmtPoints != null &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 登记手续费流水 -->
+						<dipper:service ref="RecordPayFlowListService" beforeDictConv-ref="data_acc_feeTransferFlowlist" param-ref="init_acc_transfer_feeAmt" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route><!-- 核心记账 有手续费的情况 -->
+				<dipper:invoke>
+					<dipper:if
+						expression="target.bodys.feeAmtPoints != null &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<dipper:service ref="coreCliDipperHandler"
+							beforeDictConv-ref="data_acc_coreFeeConvert" param-ref="init_acc_coreWithdraw_corefee" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 如果本行提现 有手续费的情况 -->
+					<dipper:if expression="target.bodys.feeAmtPoints != null &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 获取要修改的流水状态和资金通道返回信息 -->
+						<dipper:service ref="PayErrHandleService" beforeDictConv-ref="data_acc_zj_withdraw_payerr" />
+						<!-- 更新本行核心的支付流水 -->
+						<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="data_acc_coreClrType"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<!-- 转账 结束 -->
+
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 电子账户信息查询 -->
+					<dipper:service ref="AccInfoQueryService" beforeDictConv-ref="data_acc_convAcctNo"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.mobile != null">
+						<!-- 获取发送的短信 -->
+						<dipper:service ref="SmsGetServiceImpl" param-ref="init_acc_sendSms_withdraw" />
+						<!-- 第三方短信接口 -->
+						<dipper:service ref="SA_GNR_smsSendService" param-ref="init_acc_sendMessage"/>
+						<!-- 登记短信信息到数据库 -->
+						<dipper:service ref="SmsListRegServiceImpl" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取要修改的交易流水号和要修改的状态 -->
+					<dipper:service ref="PayErrHandleService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新支付流水状态 -->
+					<dipper:if
+						expression="target.bodys contains 'transSubSeq' &amp;&amp;target.bodys.transSubSeq != null">
+						<dipper:service ref="SeqStatusManageService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if
+						expression="fault.code=='BISUSR0026'||fault.code=='BISUSR0015'||fault.code=='BISUSR0016'||fault.code=='BISUSR0021'">
+						<!-- 密码错误累计 -->
+						<dipper:service ref="UserTrPwdCountService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取订单状态 -->
+					<dipper:service ref="ResetOrderStatService" beforeDictConv-ref="payerUserIdConv"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--检查是否做余额回退处理  -->
+					<dipper:service ref="ReturnAccountAmtService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- 余额修改 -->
+					<dipper:if expression="target.bodys contains 'isAccAmtRefund' &amp;&amp; target.bodys.isAccAmtRefund == 'Y'">
+						<dipper:service ref="SubtractAccountAmtService" beforeDictConv-ref="data_acc_rtnAmtActConv" param-ref="init_acc_amtUpdateAddFee"/>
+						<!-- 更新收款方的余额和修改订单状态 -->
+						<!--平台转账失败时，但付款方余额己回退，需要扣减收款方的账户余额-->
+						<dipper:service ref="UpdatePayeeActBalAndOrderService"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新订单状态 -->
+					<dipper:service ref="OrderStatusManageService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新限额累计 -->
+					<dipper:service ref="UpdateLimitAmtService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新手续费明细中交易状态 -->
+					<dipper:service ref="UpdateFeeDetailOrderStatService" beforeDictConv-ref="init_acc_updateFeeDetail"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新分润明细中交易状态 -->
+					<dipper:service ref="UpdateFeeAssDetailOrderStatService" beforeDictConv-ref="init_acc_updateFeeDetail"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl" beforeDictConv-ref="data_acc_transfer_payertoUserId"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans> 

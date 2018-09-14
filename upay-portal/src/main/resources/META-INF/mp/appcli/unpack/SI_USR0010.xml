@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.TRADE_PWD" field="tradePwd" />
+	<mapping xpath="$.body.SMS_CODE" field="smsCode"/>
+	<mapping xpath="$.body.CERT_TYPE" field="certType" />
+	<mapping xpath="$.body.CERT_NO" field="certNo" />
+	<mapping xpath="$.body.CERT_NAME" field="certName" />
+	<mapping xpath="$.body.CERT_FLAG" field="certFlag" />
+	<mapping xpath="$.body.CERT_FRONT" field="certFront" />
+	<mapping xpath="$.body.CERT_BACK" field="certBack" />
+	<mapping xpath="$.body.CERT_PERSON" field="certPerson" />
+	<mapping xpath="$.body.MOBILE" field="mobile"/>
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

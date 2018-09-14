@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<!-- 银联二维码被扫 -->
+		<mapping xpath="merId" field="merId" />
+		<mapping xpath="merNo" field="merNo" />
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/><!-- 二级商户号 -->
+		<mapping xpath="transAmtStr" field="transAmtStr" />
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp" />
+	    <mapping xpath="qrNo" field="qrNo" />
+		<mapping xpath="outerOrderNo" field="outerOrderNo" />
+		<mapping xpath="paytime" field="paytime" must="not" />
+		<mapping xpath="payServicType" field="payServicType" /> 
+		<mapping xpath="userId" field="userId"  must="not" />
+		<mapping xpath="outerOrderStartDate" field="outerOrderStartDate" must="not"/>
+		<mapping xpath="outerOrderEndDate" field="outerOrderEndDate" must="not"/>
+		<mapping xpath="CURR" field="CURR" must="not"/>
+	</mappings>
+</config>

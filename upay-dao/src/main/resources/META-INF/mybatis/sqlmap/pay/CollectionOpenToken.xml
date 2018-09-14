@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.CollectionOpenTokenPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.CollectionOpenTokenPo">
+		<id column="ID" property="id" />
+		<result column="PHONE" property="phone" />
+		<result column="CARD_BIN_TYPE" property="cardBinType" />
+		<result column="TOKEN" property="token" />
+		<result column="TRID" property="trid" />
+		<result column="TOKENLEVEL" property="tokenlevel" />
+		<result column="TOKENBEGIN" property="tokenbegin" />
+		<result column="TOKENEND" property="tokenend" />
+		<result column="TOKENTYPE" property="tokentype" />
+		<result column="STATUS" property="status" />
+		<result column="BINDACCTNO" property="bindacctno" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="CVN2" property="cvn2" />
+		<result column="EXPIRED" property="expired" />
+		<result column="CERTIF_TP" property="certifTp" />
+		<result column="CERTIF_ID" property="certifId" />
+		<result column="CUSTOMER_NM" property="customerNm" />
+		<result column="PIN" property="pin" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_COLLECTION_OPEN_TOKEN
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		PHONE,
+		CARD_BIN_TYPE,
+		TOKEN,
+		TRID,
+		TOKENLEVEL,
+		TOKENBEGIN,
+		TOKENEND,
+		TOKENTYPE,
+		STATUS,
+		BINDACCTNO,
+		CREATE_DATE,
+		CVN2,
+		EXPIRED,
+		CERTIF_TP,
+		CERTIF_ID,
+		CUSTOMER_NM,
+		PIN,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="phone != null">
+			PHONE= #{phone}
+	           AND 
+		</if>
+		<if test="cardBinType != null">
+			CARD_BIN_TYPE= #{cardBinType}
+	           AND 
+		</if>
+		<if test="token != null">
+			TOKEN= #{token}
+	           AND 
+		</if>
+		<if test="trid != null">
+			TRID= #{trid}
+	           AND 
+		</if>
+		<if test="tokenlevel != null">
+			TOKENLEVEL= #{tokenlevel}
+	           AND 
+		</if>
+		<if test="tokenbegin != null">
+			TOKENBEGIN= #{tokenbegin}
+	           AND 
+		</if>
+		<if test="tokenend != null">
+			TOKENEND= #{tokenend}
+	           AND 
+		</if>
+		<if test="tokentype != null">
+			TOKENTYPE= #{tokentype}
+	           AND 
+		</if>
+		<if test="status != null">
+			STATUS= #{status}
+	           AND 
+		</if>
+		<if test="bindacctno != null">
+			BINDACCTNO= #{bindacctno}
+	           AND 
+		</if>
+		<if test="createDate != null">
+			CREATE_DATE= #{createDate}
+	           AND 
+		</if>
+		<if test="cvn2 != null">
+			CVN2= #{cvn2}
+	           AND 
+		</if>
+		<if test="expired != null">
+			EXPIRED= #{expired}
+	           AND 
+		</if>
+		<if test="certifTp != null">
+			CERTIF_TP= #{certifTp}
+	           AND 
+		</if>
+		<if test="certifId != null">
+			CERTIF_ID= #{certifId}
+	           AND 
+		</if>
+		<if test="customerNm != null">
+			CUSTOMER_NM= #{customerNm}
+	           AND 
+		</if>
+		<if test="pin != null">
+			PIN= #{pin}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="phone != null">
+		PHONE,
+	</if>
+	<if test="cardBinType != null">
+		CARD_BIN_TYPE,
+	</if>
+	<if test="token != null">
+		TOKEN,
+	</if>
+	<if test="trid != null">
+		TRID,
+	</if>
+	<if test="tokenlevel != null">
+		TOKENLEVEL,
+	</if>
+	<if test="tokenbegin != null">
+		TOKENBEGIN,
+	</if>
+	<if test="tokenend != null">
+		TOKENEND,
+	</if>
+	<if test="tokentype != null">
+		TOKENTYPE,
+	</if>
+	<if test="status != null">
+		STATUS,
+	</if>
+	<if test="bindacctno != null">
+		BINDACCTNO,
+	</if>
+	<if test="createDate != null">
+		CREATE_DATE,
+	</if>
+	<if test="cvn2 != null">
+		CVN2,
+	</if>
+	<if test="expired != null">
+		EXPIRED,
+	</if>
+	<if test="certifTp != null">
+		CERTIF_TP,
+	</if>
+	<if test="certifId != null">
+		CERTIF_ID,
+	</if>
+	<if test="customerNm != null">
+		CUSTOMER_NM,
+	</if>
+	<if test="pin != null">
+		PIN,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="phone != null">
+		#{phone},
+	</if>
+	<if test="cardBinType != null">
+		#{cardBinType},
+	</if>
+	<if test="token != null">
+		#{token},
+	</if>
+	<if test="trid != null">
+		#{trid},
+	</if>
+	<if test="tokenlevel != null">
+		#{tokenlevel},
+	</if>
+	<if test="tokenbegin != null">
+		#{tokenbegin},
+	</if>
+	<if test="tokenend != null">
+		#{tokenend},
+	</if>
+	<if test="tokentype != null">
+		#{tokentype},
+	</if>
+	<if test="status != null">
+		#{status},
+	</if>
+	<if test="bindacctno != null">
+		#{bindacctno},
+	</if>
+	<if test="createDate != null">
+		#{createDate},
+	</if>
+	<if test="cvn2 != null">
+		#{cvn2},
+	</if>
+	<if test="expired != null">
+		#{expired},
+	</if>
+	<if test="certifTp != null">
+		#{certifTp},
+	</if>
+	<if test="certifId != null">
+		#{certifId},
+	</if>
+	<if test="customerNm != null">
+		#{customerNm},
+	</if>
+	<if test="pin != null">
+		#{pin},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="phone != null">
+		PHONE=#{phone},
+	</if>
+	<if test="cardBinType != null">
+		CARD_BIN_TYPE=#{cardBinType},
+	</if>
+	<if test="token != null">
+		TOKEN=#{token},
+	</if>
+	<if test="trid != null">
+		TRID=#{trid},
+	</if>
+	<if test="tokenlevel != null">
+		TOKENLEVEL=#{tokenlevel},
+	</if>
+	<if test="tokenbegin != null">
+		TOKENBEGIN=#{tokenbegin},
+	</if>
+	<if test="tokenend != null">
+		TOKENEND=#{tokenend},
+	</if>
+	<if test="tokentype != null">
+		TOKENTYPE=#{tokentype},
+	</if>
+	<if test="status != null">
+		STATUS=#{status},
+	</if>
+	<if test="bindacctno != null">
+		BINDACCTNO=#{bindacctno},
+	</if>
+	<if test="createDate != null">
+		CREATE_DATE=#{createDate},
+	</if>
+	<if test="cvn2 != null">
+		CVN2=#{cvn2},
+	</if>
+	<if test="expired != null">
+		EXPIRED=#{expired},
+	</if>
+	<if test="certifTp != null">
+		CERTIF_TP=#{certifTp},
+	</if>
+	<if test="certifId != null">
+		CERTIF_ID=#{certifId},
+	</if>
+	<if test="customerNm != null">
+		CUSTOMER_NM=#{customerNm},
+	</if>
+	<if test="pin != null">
+		PIN=#{pin},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.phone != null">
+                    PHONE=#{s.phone},
+			</if>
+			<if test="s.cardBinType != null">
+                    CARD_BIN_TYPE=#{s.cardBinType},
+			</if>
+			<if test="s.token != null">
+                    TOKEN=#{s.token},
+			</if>
+			<if test="s.trid != null">
+                    TRID=#{s.trid},
+			</if>
+			<if test="s.tokenlevel != null">
+                    TOKENLEVEL=#{s.tokenlevel},
+			</if>
+			<if test="s.tokenbegin != null">
+                    TOKENBEGIN=#{s.tokenbegin},
+			</if>
+			<if test="s.tokenend != null">
+                    TOKENEND=#{s.tokenend},
+			</if>
+			<if test="s.tokentype != null">
+                    TOKENTYPE=#{s.tokentype},
+			</if>
+			<if test="s.status != null">
+                    STATUS=#{s.status},
+			</if>
+			<if test="s.bindacctno != null">
+                    BINDACCTNO=#{s.bindacctno},
+			</if>
+			<if test="s.createDate != null">
+                    CREATE_DATE=#{s.createDate},
+			</if>
+			<if test="s.cvn2 != null">
+                    CVN2=#{s.cvn2},
+			</if>
+			<if test="s.expired != null">
+                    EXPIRED=#{s.expired},
+			</if>
+			<if test="s.certifTp != null">
+                    CERTIF_TP=#{s.certifTp},
+			</if>
+			<if test="s.certifId != null">
+                    CERTIF_ID=#{s.certifId},
+			</if>
+			<if test="s.customerNm != null">
+                    CUSTOMER_NM=#{s.customerNm},
+			</if>
+			<if test="s.pin != null">
+                    PIN=#{s.pin},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.phone != null">
+                    PHONE=#{w.phone}
+                   AND 
+ 			</if>
+			<if test="w.cardBinType != null">
+                    CARD_BIN_TYPE=#{w.cardBinType}
+                   AND 
+ 			</if>
+			<if test="w.token != null">
+                    TOKEN=#{w.token}
+                   AND 
+ 			</if>
+			<if test="w.trid != null">
+                    TRID=#{w.trid}
+                   AND 
+ 			</if>
+			<if test="w.tokenlevel != null">
+                    TOKENLEVEL=#{w.tokenlevel}
+                   AND 
+ 			</if>
+			<if test="w.tokenbegin != null">
+                    TOKENBEGIN=#{w.tokenbegin}
+                   AND 
+ 			</if>
+			<if test="w.tokenend != null">
+                    TOKENEND=#{w.tokenend}
+                   AND 
+ 			</if>
+			<if test="w.tokentype != null">
+                    TOKENTYPE=#{w.tokentype}
+                   AND 
+ 			</if>
+			<if test="w.status != null">
+                    STATUS=#{w.status}
+                   AND 
+ 			</if>
+			<if test="w.bindacctno != null">
+                    BINDACCTNO=#{w.bindacctno}
+                   AND 
+ 			</if>
+			<if test="w.createDate != null">
+                    CREATE_DATE=#{w.createDate}
+                   AND 
+ 			</if>
+			<if test="w.cvn2 != null">
+                    CVN2=#{w.cvn2}
+                   AND 
+ 			</if>
+			<if test="w.expired != null">
+                    EXPIRED=#{w.expired}
+                   AND 
+ 			</if>
+			<if test="w.certifTp != null">
+                    CERTIF_TP=#{w.certifTp}
+                   AND 
+ 			</if>
+			<if test="w.certifId != null">
+                    CERTIF_ID=#{w.certifId}
+                   AND 
+ 			</if>
+			<if test="w.customerNm != null">
+                    CUSTOMER_NM=#{w.customerNm}
+                   AND 
+ 			</if>
+			<if test="w.pin != null">
+                    PIN=#{w.pin}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

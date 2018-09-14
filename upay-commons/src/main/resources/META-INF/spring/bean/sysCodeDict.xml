@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper/dict"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper/dict
+	http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<dipper:dicts id="sysCodeDict">
+		<dipper:mappings>
+			<dipper:mapping in="0000000000" out="" msg="success" />
+		</dipper:mappings>
+    </dipper:dicts>
+    
+	<dipper:dicts id="appCodeDict">
+		<dipper:mappings>
+			<dipper:mapping in="0000000000" out="" msg="success" />
+		</dipper:mappings>
+	</dipper:dicts>
+</beans>

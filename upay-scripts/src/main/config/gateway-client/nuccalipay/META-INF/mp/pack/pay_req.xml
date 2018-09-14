@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝订单条码支付 -->
+<data templateType="IN" 
+transCode="pay">
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 商户订单号 -->
+	<column oldName="outTradeNo" newName="out_trade_no" must="true"/>
+	<column oldName="scene" newName="scene" must="true"/>
+	<column oldName="authCode" newName="auth_code" must="true"/>
+	<column oldName="productCode" newName="product_code"/>
+    <!-- 订单标题 -->
+	<column oldName="subject" newName="subject"  must="true"/>
+	<column oldName="buyerId" newName="buyer_id"/>
+	<!-- 卖家支付宝用户ID -->
+	<column oldName="sellerId" newName="seller_id"/>
+	<!-- 订单总金额，单位为元 -->
+    <column oldName="totalAmount" newName="total_amount" type="java.math.BigDecimal"/>
+    <!-- 可打折金额. 参与优惠计算的金额，单位为元 -->
+    <column oldName="disAmount" newName="discountable_amount"/>
+    <!-- 对交易或商品的描述 -->
+    <column oldName="bodyDesc" newName="body"/>
+	<!-- 订单包含的商品列表信息. -->
+    <column oldName="goodsDetail" newName="goods_detail" type="List">
+    	<column oldName="goodsId" newName="goods_id" must="true"/><!-- 商品的编号-->
+    	<column oldName="goodsName" newName="goods_name" must="true"/><!-- 商品名称 -->
+    	<column oldName="quantity" newName="quantity" must="true"/><!-- 商品数量 -->
+    	<column oldName="price" newName="price" must="true"/><!-- 商品单价，单位为元-->
+    	<column oldName="goodsCategory" newName="goods_category"/><!-- 商品类目 -->
+    	<column oldName="body" newName="body"/><!-- 商品描述信息 -->
+    	<column oldName="showUrl" newName="show_url"/><!-- 商品的展示地址 -->
+    </column>
+    <!-- 商户操作员编号 -->
+	<column oldName="operatorId" newName="operator_id"/>
+	<!-- 商户门店编号 -->
+    <column oldName="storeId" newName="store_id"/>
+    <!-- 商户机具终端编号 -->
+	<column oldName="terminalId" newName="terminal_id"/>
+	<!-- 业务扩展参数 -->
+    <column oldName="extendParams" newName="extend_params" type="Map">
+    	<column oldName="sysServiceProviderId" newName="sys_service_provider_id"/><!-- 系统商编号 该参数作为系统商返佣数据提取的依据，请填写系统商签约协议的PID -->
+    	<column oldName="hbFqNum" newName="hb_fq_num"    /><!-- 使用花呗分期要进行的分期数 -->
+    	<column oldName="hbFqSellerPercent" newName="hb_fq_seller_percent"/><!-- 使用花呗分期需要卖家承担的手续费比例的百分值，传入100代表100% -->
+    </column>
+    <!-- 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。取值范围：1m～15d。m-分钟，h-小时，d-天，1c-当天 该参数数值不接受小数点， 如 1.5h，可转换为 90m。 -->
+    <column oldName="timeoutExpress" newName="timeout_express"/>
+    <!-- 描述分账信息 -->
+	<column oldName="royaltyInfo" newName="royalty_info" type="Map">
+		<!-- 分账类型 卖家的分账类型，目前只支持传入ROYALTY（普通分账类型） -->
+		<column oldName="royaltyType" newName="royalty_type"     />
+		<!-- 分账明细的信息，可以描述多条分账指令 -->
+		<column oldName="royaltyDetailInfos" newName="royalty_detail_infos"  type="List" must="true">
+			<column oldName="serialNo" newName="serial_no"/>			<!-- 分账序列号，表示分账执行的顺序，必须为正整数 -->
+			<column oldName="transInType" newName="trans_in_type"/>		<!-- 接受分账金额的账户类型： userId：支付宝账号对应的支付宝唯一用户号。 bankIndex：分账到银行账户的银行编号。目前暂时只支持分账到一个银行编号。 storeId：分账到门店对应的银行卡编号。 默认值为userId。 -->
+			<column oldName="batchNo" newName="batch_no" must="true"/>				<!--分账批次号 目前需要和转入账号类型为bankIndex配合使用 -->
+			<column oldName="outRelationId" newName="out_relation_id"/>	<!-- 商户分账的外部关联号，用于关联到每一笔分账信息，商户需保证其唯一性。 如果为空，该值则默认为“商户网站唯一订单号+分账序列号” -->
+			<column oldName="transOutType" newName="trans_out_type" must="true"/>	<!-- 要分账的账户类型。 目前只支持userId：支付宝账号对应的支付宝唯一用户号。 默认值为userId -->
+			<column oldName="transOut" newName="trans_out" must="true"/>			<!-- 如果转出账号类型为userId，本参数为要分账的支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字 -->
+			<column oldName="transIn" newName="trans_in" must="true"/>				<!-- 果转入账号类型为userId，本参数为接受分账金额的支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字。 如果转入账号类型为bankIndex，本参数为28位的银行编号（商户和支付宝签约时确定）。 如果转入账号类型为storeId，本参数为商户的门店ID -->
+			<column oldName="royaltyAmount" newName="amount" must="true"/>			<!-- 分账的金额，单位为元 -->
+			<column oldName="royaltyDesc" newName="desc"/>				<!-- 分账描述信息 -->
+			<column oldName="amountPercentage" newName="amount_percentage"/><!-- 分账的比例，值为20代表按20%的比例分账 -->
+		</column>
+	</column>
+	
+	<!-- 代扣业务需要传入协议相关信息 -->
+    <column oldName="agreementParams" newName="agreement_params" type="Map">
+    	<column oldName="agreementNo" newName="agreement_no"/><!-- 支付宝系统中用以唯一标识用户签约记录的编号（用户签约成功后的协议号 ） -->
+    	<column oldName="authConfirmNo" newName="auth_confirm_no"/><!-- 鉴权确认码，在需要做支付鉴权校验时，该参数不能为空 -->
+    	<column oldName="applyToken" newName="apply_token"/><!-- 鉴权申请token，其格式和内容，由支付宝定义。在需要做支付鉴权校验时，该参数不能为空。 -->
+    </column>
+	
+	<!-- 二级商户信息 -->
+    <column oldName="subMerchant" newName="sub_merchant" type="Map_Not" must="true">
+    	<!-- 间连受理商户的支付宝商户编号，通过间连商户入驻后得到。间连业务下必传 -->
+    	<column oldName="merchantId" newName="merchant_id" must="true"/>
+    </column>
+    
+    <!-- 禁用渠道，用户不可用指定渠道支付 当有多个渠道时用“,”分隔  -->
+    <column oldName="disablePayChannels" newName="disable_pay_channels"/>
+    
+    <!-- 外部指定买家 -->
+    <column oldName="extUserInfo" newName="ext_user_info" type="Map">
+    	<column oldName="extUserName" newName="name"/>		<!-- 姓名 注： need_check_info=T时该参数才有效 -->
+    	<column oldName="extUserMobile" newName="mobile"/>	<!--手机号  注：该参数暂不校验 -->
+    	<column oldName="certType" newName="cert_type"/>	<!-- 身份证：IDENTITY_CARD、护照：PASSPORT、军官证：OFFICER_CARD、士兵证：SOLDIER_CARD、户口本：HOKOU等。如有其它类型需要支持，请与蚂蚁金服工作人员联系。 注： need_check_info=T时该参数才有效 -->
+    	<column oldName="certNo" newName="cert_no"/>		<!-- 证件号 注：need_check_info=T时该参数才有效 -->
+    	<column oldName="minAge" newName="min_age"/>		<!-- 允许的最小买家年龄，买家年龄必须大于等于所传数值 注： 1. need_check_info=T时该参数才有效 2. min_age为整数，必须大于等于0 -->
+    	<column oldName="fixBuyer" newName="fix_buyer"/>	<!-- 是否强制校验付款人身份信息 T:强制校验，F：不强制 -->
+    	<column oldName="needCheckInfo" newName="need_check_info"/><!-- 是否强制校验身份信息 T:强制校验，F：不强制 -->
+    </column>
+	
+</data>

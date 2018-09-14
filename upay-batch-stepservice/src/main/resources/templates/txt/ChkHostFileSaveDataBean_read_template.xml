@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示解析文件还是生成文件 
+split分隔符 "\|" , 读文件时竖线分隔需要带转换符，写文件时不需要
+headLength文件头的长度，带换行符的表示文件头占了多少行，不带换行符的应该是字节长度
+endingLength文件尾
+lineSeparator换行符，若无，则表示不换行，换行一般是\r\n 字节文件一般是固定长度不带分隔符不换行
+-->
+<data templateType="READ"
+	split="\|" 
+	clazz="com.upay.dao.po.chk.ChkHostFilePo"
+	charSet="UTF-8"
+	headLength=""
+	endingLength=""
+	lineSeparator="\r\n"
+	>
+<!-- 
+regex正则表达式 
+dateFormat日期格式
+numMultiple数字类型需要转换到倍数
+tranSrc要转换到源值，逗号分隔
+tranDest要转换到目标值，逗号分隔
+-->	
+
+	<column name="orgCode"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="单位代码" tranSrc=""  tranDest=""/>
+	<column name="transType"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="业务类型" tranSrc=""  tranDest=""/>
+	<column name="transDate"  length=""   regex=""    dateFormat="yyyyMMdd"   numMultiple=""  desc="业务日期:YYYYMMDD" tranSrc=""  tranDest=""/>
+	<column name="transSeq"   length=""   regex=""    dateFormat=""   numMultiple=""  desc="业务流水号" tranSrc=""  tranDest=""/>
+	<column name="hostTransDate"  length=""   regex=""    dateFormat="yyyyMMdd"   numMultiple=""  desc="核心业务日期:YYYYMMDD" tranSrc=""  tranDest=""/>
+	<column name="hostTransSeq"   length=""   regex=""    dateFormat=""   numMultiple=""  desc="核心业务流水号" tranSrc=""  tranDest=""/>
+	<column name="payerAcctNo"   length=""   regex=""    dateFormat=""   numMultiple=""  desc="付款人账号（转出账号）" tranSrc=""  tranDest=""/>
+	<column name="payeeAcctNo"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="收款人账号（转入账号）" tranSrc=""  tranDest=""/>
+	<column name="amount"  length=""   regex=""    dateFormat=""   numMultiple=""  desc="交易金额" tranSrc=""  tranDest=""/>
+	<column name="feeAmt"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="手续费" tranSrc=""  tranDest=""/>
+	<column name="thirdDate" length=""   regex=""    dateFormat="yyyyMMdd"   numMultiple=""  desc="第三方交易日期:YYYYMMDD" tranSrc=""  tranDest=""/>
+	<column name="remark1"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="备注1" tranSrc=""  tranDest=""/>
+	<column name="remark2"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="备注2" tranSrc=""  tranDest=""/>
+	<column name="remark3"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="备注3" tranSrc=""  tranDest=""/>
+	<column name="remark4"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="备注4" tranSrc=""  tranDest=""/>
+	<column name="remark5"    length=""   regex=""    dateFormat=""   numMultiple=""  desc="备注5" tranSrc=""  tranDest=""/>	
+</data>

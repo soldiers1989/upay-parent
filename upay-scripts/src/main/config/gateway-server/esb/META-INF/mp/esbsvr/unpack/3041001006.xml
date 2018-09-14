@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="PyrAcctNo" field="payerAcctNo"/>
+		<mapping xpath="PyrAcctNm" field="payerAcctName"/>
+		<mapping xpath="PyrIdentNo" field="payerCertNo"/>
+		<mapping xpath="PyMblNo" field="payerMobile" must="not"/>
+		<mapping xpath="PyBranchName" field="payerBranchName" must="not"/>
+		<mapping xpath="PyProvince" field="payerProvince" must="not"/>
+		<mapping xpath="PyCity" field="payerCity" must="not"/>
+		<mapping xpath="PyEmail" field="payerEmail" must="not"/>
+		<mapping xpath="PyeAcctNo" field="payeeAcctNo"/>
+		<mapping xpath="PyeAcctNm" field="payeeAcctName"/>
+		<mapping xpath="PyeIdentNo" field="payeeCertNo"/>
+		<mapping xpath="PyeAcctTelNo" field="payeeMobile" must="not"/>
+		<mapping xpath="OrdrNo" field="outerOrderNo"/>
+		<mapping xpath="OrdrDt" field="outerOrderDate"/>
+		<mapping xpath="OrdrTm" field="outerOrderDate"/>
+		<mapping xpath="TxnAmt" field="transAmt" type="java.math.BigDecimal"/>
+		<mapping xpath="Ccy" field="CURR"/>
+		<mapping xpath="Rmk" field="transComments"/>
+		<mapping xpath="IpAddr" field="spbillCreateIp"/>
+		<mapping xpath="SmyInf" field="memoCode" must="not"/>
+	</mappings>
+</config>

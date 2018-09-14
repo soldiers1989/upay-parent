@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+	
+	<bean id="yumHttpClientCommHandler" class="com.cmbchina.cop.gateway.client.yum.YumHttpClientCommHandler">
+<!-- 	        <property name="packKeyMapping"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="generateCode" value="ActivityId|UserCodes|TransTime|TransactionID|ChannelId" /> -->
+<!-- 				<entry key="queryCode" value="CouponCodes|TransTime|TransactionID|ChannelId" /> -->
+<!-- 				<entry key="cancelCode" value="CouponCodes|TransTime|TransactionID|TransType|ChannelId" /> -->
+<!-- 				<entry key="batchCancelCode" value="multiReferenceId|transactionId" /> -->
+<!-- 				<entry key="batchQueryCode" value="FromDate|ToDate|Offset|PageSize|ChannelId" /> -->
+<!-- 				<entry key="reverseCode" value="OriginalTransactionId|TransType|TransTime|TransactionID|ChannelId" /> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+	</bean>
+</beans>

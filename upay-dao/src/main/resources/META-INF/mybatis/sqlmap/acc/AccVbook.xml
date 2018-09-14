@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccVbookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccVbookPo">
+		<id column="ID" property="id" />
+		<result column="USER_ID" property="userId" />
+		<result column="V_ACCT_NO" property="vacctNo" />
+		<result column="V_ACCT_STAT" property="vacctStat" />
+		<result column="STOP_STAT" property="stopStat" />
+		<result column="FRZ_STAT" property="frzStat" />
+		<result column="SET_FLAG" property="setFlag" />
+		<result column="ACCT_NAME" property="acctName" />
+		<result column="ACCT_OTHER_NAME" property="acctOtherName" />
+		<result column="CCY" property="ccy" />
+		<result column="FRZ_BAL" property="frzBal" />
+		<result column="ACCT_BAL" property="acctBal" />
+		<result column="LAST_BAL" property="lastBal" />
+		<result column="CUT_BAL" property="cutBal" />
+		<result column="EXT_TIME" property="extTime" />
+		<result column="LAST_CHG_TIME" property="lastChgTime" />
+		<result column="LAST_TIME" property="lastTime" />
+		<result column="DAC" property="dac" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_V_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		USER_ID,
+		V_ACCT_NO,
+		V_ACCT_STAT,
+		STOP_STAT,
+		FRZ_STAT,
+		SET_FLAG,
+		ACCT_NAME,
+		ACCT_OTHER_NAME,
+		CCY,
+		FRZ_BAL,
+		ACCT_BAL,
+		LAST_BAL,
+		CUT_BAL,
+		EXT_TIME,
+		LAST_CHG_TIME,
+		LAST_TIME,
+		DAC,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="vacctNo != null">
+			V_ACCT_NO= #{vacctNo}
+	           AND 
+		</if>
+		<if test="vacctStat != null">
+			V_ACCT_STAT= #{vacctStat}
+	           AND 
+		</if>
+		<if test="stopStat != null">
+			STOP_STAT= #{stopStat}
+	           AND 
+		</if>
+		<if test="frzStat != null">
+			FRZ_STAT= #{frzStat}
+	           AND 
+		</if>
+		<if test="setFlag != null">
+			SET_FLAG= #{setFlag}
+	           AND 
+		</if>
+		<if test="acctName != null">
+			ACCT_NAME= #{acctName}
+	           AND 
+		</if>
+		<if test="acctOtherName != null">
+			ACCT_OTHER_NAME= #{acctOtherName}
+	           AND 
+		</if>
+		<if test="ccy != null">
+			CCY= #{ccy}
+	           AND 
+		</if>
+		<if test="frzBal != null">
+			FRZ_BAL= #{frzBal}
+	           AND 
+		</if>
+		<if test="acctBal != null">
+			ACCT_BAL= #{acctBal}
+	           AND 
+		</if>
+		<if test="lastBal != null">
+			LAST_BAL= #{lastBal}
+	           AND 
+		</if>
+		<if test="cutBal != null">
+			CUT_BAL= #{cutBal}
+	           AND 
+		</if>
+		<if test="extTime != null">
+			EXT_TIME= #{extTime}
+	           AND 
+		</if>
+		<if test="lastChgTime != null">
+			LAST_CHG_TIME= #{lastChgTime}
+	           AND 
+		</if>
+		<if test="lastTime != null">
+			LAST_TIME= #{lastTime}
+	           AND 
+		</if>
+		<if test="dac != null">
+			DAC= #{dac}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="vacctNo != null">
+		V_ACCT_NO,
+	</if>
+	<if test="vacctStat != null">
+		V_ACCT_STAT,
+	</if>
+	<if test="stopStat != null">
+		STOP_STAT,
+	</if>
+	<if test="frzStat != null">
+		FRZ_STAT,
+	</if>
+	<if test="setFlag != null">
+		SET_FLAG,
+	</if>
+	<if test="acctName != null">
+		ACCT_NAME,
+	</if>
+	<if test="acctOtherName != null">
+		ACCT_OTHER_NAME,
+	</if>
+	<if test="ccy != null">
+		CCY,
+	</if>
+	<if test="frzBal != null">
+		FRZ_BAL,
+	</if>
+	<if test="acctBal != null">
+		ACCT_BAL,
+	</if>
+	<if test="lastBal != null">
+		LAST_BAL,
+	</if>
+	<if test="cutBal != null">
+		CUT_BAL,
+	</if>
+	<if test="extTime != null">
+		EXT_TIME,
+	</if>
+	<if test="lastChgTime != null">
+		LAST_CHG_TIME,
+	</if>
+	<if test="lastTime != null">
+		LAST_TIME,
+	</if>
+	<if test="dac != null">
+		DAC,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="vacctNo != null">
+		#{vacctNo},
+	</if>
+	<if test="vacctStat != null">
+		#{vacctStat},
+	</if>
+	<if test="stopStat != null">
+		#{stopStat},
+	</if>
+	<if test="frzStat != null">
+		#{frzStat},
+	</if>
+	<if test="setFlag != null">
+		#{setFlag},
+	</if>
+	<if test="acctName != null">
+		#{acctName},
+	</if>
+	<if test="acctOtherName != null">
+		#{acctOtherName},
+	</if>
+	<if test="ccy != null">
+		#{ccy},
+	</if>
+	<if test="frzBal != null">
+		#{frzBal},
+	</if>
+	<if test="acctBal != null">
+		#{acctBal},
+	</if>
+	<if test="lastBal != null">
+		#{lastBal},
+	</if>
+	<if test="cutBal != null">
+		#{cutBal},
+	</if>
+	<if test="extTime != null">
+		#{extTime},
+	</if>
+	<if test="lastChgTime != null">
+		#{lastChgTime},
+	</if>
+	<if test="lastTime != null">
+		#{lastTime},
+	</if>
+	<if test="dac != null">
+		#{dac},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="vacctNo != null">
+		V_ACCT_NO=#{vacctNo},
+	</if>
+	<if test="vacctStat != null">
+		V_ACCT_STAT=#{vacctStat},
+	</if>
+	<if test="stopStat != null">
+		STOP_STAT=#{stopStat},
+	</if>
+	<if test="frzStat != null">
+		FRZ_STAT=#{frzStat},
+	</if>
+	<if test="setFlag != null">
+		SET_FLAG=#{setFlag},
+	</if>
+	<if test="acctName != null">
+		ACCT_NAME=#{acctName},
+	</if>
+	<if test="acctOtherName != null">
+		ACCT_OTHER_NAME=#{acctOtherName},
+	</if>
+	<if test="ccy != null">
+		CCY=#{ccy},
+	</if>
+	<if test="frzBal != null">
+		FRZ_BAL=#{frzBal},
+	</if>
+	<if test="acctBal != null">
+		ACCT_BAL=#{acctBal},
+	</if>
+	<if test="lastBal != null">
+		LAST_BAL=#{lastBal},
+	</if>
+	<if test="cutBal != null">
+		CUT_BAL=#{cutBal},
+	</if>
+	<if test="extTime != null">
+		EXT_TIME=#{extTime},
+	</if>
+	<if test="lastChgTime != null">
+		LAST_CHG_TIME=#{lastChgTime},
+	</if>
+	<if test="lastTime != null">
+		LAST_TIME=#{lastTime},
+	</if>
+	<if test="dac != null">
+		DAC=#{dac},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.vacctNo != null">
+                    V_ACCT_NO=#{s.vacctNo},
+			</if>
+			<if test="s.vacctStat != null">
+                    V_ACCT_STAT=#{s.vacctStat},
+			</if>
+			<if test="s.stopStat != null">
+                    STOP_STAT=#{s.stopStat},
+			</if>
+			<if test="s.frzStat != null">
+                    FRZ_STAT=#{s.frzStat},
+			</if>
+			<if test="s.setFlag != null">
+                    SET_FLAG=#{s.setFlag},
+			</if>
+			<if test="s.acctName != null">
+                    ACCT_NAME=#{s.acctName},
+			</if>
+			<if test="s.acctOtherName != null">
+                    ACCT_OTHER_NAME=#{s.acctOtherName},
+			</if>
+			<if test="s.ccy != null">
+                    CCY=#{s.ccy},
+			</if>
+			<if test="s.frzBal != null">
+                    FRZ_BAL=#{s.frzBal},
+			</if>
+			<if test="s.acctBal != null">
+                    ACCT_BAL=#{s.acctBal},
+			</if>
+			<if test="s.lastBal != null">
+                    LAST_BAL=#{s.lastBal},
+			</if>
+			<if test="s.cutBal != null">
+                    CUT_BAL=#{s.cutBal},
+			</if>
+			<if test="s.extTime != null">
+                    EXT_TIME=#{s.extTime},
+			</if>
+			<if test="s.lastChgTime != null">
+                    LAST_CHG_TIME=#{s.lastChgTime},
+			</if>
+			<if test="s.lastTime != null">
+                    LAST_TIME=#{s.lastTime},
+			</if>
+			<if test="s.dac != null">
+                    DAC=#{s.dac},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.vacctNo != null">
+                    V_ACCT_NO=#{w.vacctNo}
+                   AND 
+ 			</if>
+			<if test="w.vacctStat != null">
+                    V_ACCT_STAT=#{w.vacctStat}
+                   AND 
+ 			</if>
+			<if test="w.stopStat != null">
+                    STOP_STAT=#{w.stopStat}
+                   AND 
+ 			</if>
+			<if test="w.frzStat != null">
+                    FRZ_STAT=#{w.frzStat}
+                   AND 
+ 			</if>
+			<if test="w.setFlag != null">
+                    SET_FLAG=#{w.setFlag}
+                   AND 
+ 			</if>
+			<if test="w.acctName != null">
+                    ACCT_NAME=#{w.acctName}
+                   AND 
+ 			</if>
+			<if test="w.acctOtherName != null">
+                    ACCT_OTHER_NAME=#{w.acctOtherName}
+                   AND 
+ 			</if>
+			<if test="w.ccy != null">
+                    CCY=#{w.ccy}
+                   AND 
+ 			</if>
+			<if test="w.frzBal != null">
+                    FRZ_BAL=#{w.frzBal}
+                   AND 
+ 			</if>
+			<if test="w.acctBal != null">
+                    ACCT_BAL=#{w.acctBal}
+                   AND 
+ 			</if>
+			<if test="w.lastBal != null">
+                    LAST_BAL=#{w.lastBal}
+                   AND 
+ 			</if>
+			<if test="w.cutBal != null">
+                    CUT_BAL=#{w.cutBal}
+                   AND 
+ 			</if>
+			<if test="w.extTime != null">
+                    EXT_TIME=#{w.extTime}
+                   AND 
+ 			</if>
+			<if test="w.lastChgTime != null">
+                    LAST_CHG_TIME=#{w.lastChgTime}
+                   AND 
+ 			</if>
+			<if test="w.lastTime != null">
+                    LAST_TIME=#{w.lastTime}
+                   AND 
+ 			</if>
+			<if test="w.dac != null">
+                    DAC=#{w.dac}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

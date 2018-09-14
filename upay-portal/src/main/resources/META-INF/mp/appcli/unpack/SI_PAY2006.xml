@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.MER_NO" field="merNo" />
+		<mapping xpath="$.body.MER_NO" field="subMchId" />
+		<mapping xpath="$.body.SEC_MER_NO" field="secMserNo" />
+		<mapping xpath="$.body.TRANS_AMT" field="transAmtStr" />
+		<mapping xpath="$.body.SPBILL_CREATE_IP" field="spbillCreateIp" />
+		<mapping xpath="$.body.ORDER_NO" field="outerOrderNo" />
+		<mapping xpath="$.body.PAY_SERVIC_TYPE" field="payServicType" />
+		<mapping xpath="$.body.TRANS_COMMENTS" field="transComments" must="not"/>
+		<mapping xpath="$.body.ORDER_START_DATE" field="outerOrderStartDate" must="not"/>
+		<mapping xpath="$.body.ORDER_END_DATE" field="outerOrderEndDate" must="not"/>
+		<mapping xpath="$.body.TRANS_COMMENTS" field="transComments" must="not"/>
+		<mapping xpath="$.body.OTHER_TRAN_AMT" field="otherTranAmt" must="not"/>
+		<mapping xpath="$.body.PRODUCT_AMT" field="productAmt" must="not"/>
+		<mapping xpath="$.body.AUTH_CODE" field="authCode" must="not"/>
+	</mappings>
+</config>

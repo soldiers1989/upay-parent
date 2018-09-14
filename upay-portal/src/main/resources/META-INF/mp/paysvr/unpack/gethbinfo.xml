@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 微信发红包查询接口 -->
+		<mapping xpath="merNo" field="merNo" />
+		<mapping xpath="outerOrderNo" field="outerOrderNo" />
+	</mappings>
+</config>

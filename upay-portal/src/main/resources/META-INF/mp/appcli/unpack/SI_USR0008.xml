@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.HEAD_PIC" field="headPic" must="not"/>
+	<mapping xpath="$.body.EMAIL" field="email" must="not"/>
+	<mapping xpath="$.body.QQ" field="qq" must="not"/>
+	<mapping xpath="$.body.WEIXIN" field="weixin" must="not"/>
+	<mapping xpath="$.body.COUNTRY" field="country" must="not"/>
+	<mapping xpath="$.body.NATION" field="nation" must="not"/>
+	<mapping xpath="$.body.BACKGROUND" field="backGround" must="not"/>
+	<mapping xpath="$.body.RELIGION" field="religion" must="not"/>
+	<mapping xpath="$.body.MARRIAGE" field="marriage" must="not"/>
+	<mapping xpath="$.body.EDU_BG" field="eduBg" must="not"/>
+	<mapping xpath="$.body.JOB" field="job" must="not"/>
+	<mapping xpath="$.body.ADDRESS_CODE" field="addressCode" must="not"/>
+	<mapping xpath="$.body.ADDRESS_REAL" field="addressReal" must="not"/>
+	</mappings>
+</config>

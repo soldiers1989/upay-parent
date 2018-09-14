@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrRegInfoPo">
+
+	<!-- 查询不是注销的用户 -->
+	<select id="getUserNotCancel" parameterType="com.upay.dao.po.usr.UsrRegInfoPo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column"/> 
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="mobile != null">
+				AND MOBILE=#{mobile}
+			</if>
+			<if test="userName != null">
+				AND USER_NAME=#{userName}
+			</if>
+			<if test="userId != null">
+				AND USER_ID=#{userId}
+			</if>
+			<if test="comEmail != null">
+				AND COM_EMAIL=#{comEmail}
+			</if>
+			<if test="userStat != null">
+				AND USER_STAT <![CDATA[<>]]> #{userStat}
+			</if>
+		</where>
+	</select>
+
+	<select id="getMerAngUsr" parameterType="java.util.Map" resultType="map">
+		select
+		u.USER_ID,
+		u.USER_NAME,
+		u.COM_EMAIL,
+		u.MOBILE,
+		u.REG_TYPE,
+		m.MER_NO,
+		m.MER_NAME
+		from  <include refid="Table_Name"/> u
+		LEFT JOIN    T_MER_BASE_INFO  m
+		on  u.USER_ID=m.USER_ID
+		<where>
+			<if test="mobile != null">
+				AND u.MOBILE=#{mobile}
+			</if>
+			<if test="comEmail != null">
+				AND u.COM_EMAIL=#{comEmail}
+			</if>
+		</where>
+	</select>
+</mapper>

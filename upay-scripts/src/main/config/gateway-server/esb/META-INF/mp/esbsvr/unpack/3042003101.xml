@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="MblNo" field="phoneNo"/>
+		<mapping xpath="CardNo" field="accNo"/>
+		<mapping xpath="PymtCardtp" field="cardBinType"/>
+		<mapping xpath="CVN2" field="cvn2" must="not"/>
+		<mapping xpath="VldPrd" field="expired" must="not"/>
+		<mapping xpath="IdentTp" field="certifTp" must="not"/>
+		<mapping xpath="IdentNo" field="certifId" must="not"/>
+		<mapping xpath="CardHldrNm" field="customerNm" must="not"/>
+		<mapping xpath="Pswd" field="pin" must="not"/>
+		<mapping xpath="AplyTp" field="applyFlag"/>
+		<mapping xpath="SignInd" field="applyType"/>
+	</mappings>
+</config>

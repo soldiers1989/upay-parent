@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  为本行网银他行卡充值 添加 -->
+	<bean id="InitCoreThirdInfoService" class="com.upay.busi.pay.service.impl.InitCoreThirdInfoService"/>
+	<!-- ESB公共参数 -->
+	<bean id="EsbPublicParmService" class="com.upay.busi.pay.service.impl.EsbPublicParmService"/>
+	<!-- 流水查询订单状态(单笔) -->
+	<bean id="PayStateQryService" class="com.upay.busi.pay.service.impl.PayStateQryService"/>
+	<!-- 渠道logo查询 -->
+	<bean id="ChannelLogoSearchService" class="com.upay.busi.pay.service.impl.ChannelLogoSearchService"/>
+	<!-- 渠道节点查询 -->
+	<bean id="ChannelLeafSearchService" class="com.upay.busi.pay.service.impl.ChannelLeafSearchService"/>
+	<!-- 订单详情查询 -->
+	<bean id="PayOrderDetailInfoQryService" class="com.upay.busi.pay.service.impl.PayOrderDetailInfoQryService"/>
+  	<!-- 订单详情登记 -->
+	<bean id="PayOrderRegisterService" class="com.upay.busi.pay.service.impl.PayOrderRegisterService"/>
+	<!-- 资金通道状态检查 --> 
+	<bean id="PayRouteStateChkService" class="com.upay.busi.pay.service.impl.PayRouteStateChkService"/>
+	<!-- 资金通道信息查询 --> 
+	<bean id="PayRouteInfoQryService" class="com.upay.busi.pay.service.impl.PayRouteInfoQryService"/>
+	<!-- 订单/流水状态设置 --> 
+	<bean id="PaySetStateServiceImpl" class="com.upay.busi.pay.service.impl.PaySetStateServiceImpl"/>
+	<!-- 订单号管理订单状态 -->
+	<bean id="OrderStatusManageService" class="com.upay.busi.pay.service.impl.OrderStatusManageService"/>
+	<!-- 流水号管理交易状态 -->
+	<bean id="SeqStatusManageService" class="com.upay.busi.pay.service.impl.SeqStatusManageService"/>
+	
+	<!-- 订单预生成前检查 -->
+	<bean id="PayOrderCheckService" class="com.upay.busi.pay.service.impl.PayOrderCheckService" />
+	<!-- 限额检查 -->
+	<bean id="LimitAmtCheckService" class="com.upay.busi.pay.service.impl.LimitAmtCheckService" />
+    <bean id="UnionOrderStateCheckService" class="com.upay.busi.pay.service.impl.UnionOrderStateCheckService" />
+	<!--根据账号查询绑定行号 -->
+	<bean id="PayQueryCardBinOfBankService" class="com.upay.busi.pay.service.impl.PayQueryCardBinOfBankService" />
+	 <!-- 根据卡号查询支持的鉴权通道 -->
+	<bean id="PayQueryCardBinOfAAAService" class="com.upay.busi.pay.service.impl.PayQueryCardBinOfAAAService" />
+	<!-- 记录交易流水 -->
+	<bean id="RecordPayFlowListService" class="com.upay.busi.pay.service.impl.RecordPayFlowListService" />
+     <!-- 参数准备 -->
+	<bean id="QueryQRCodeParmService" class="com.upay.busi.pay.service.impl.QueryQRCodeParmService" />
+
+    <!-- 银联二维码被扫记录交易流水 -->
+	<bean id="RecordCodeSweptFlowListService" class="com.upay.busi.pay.service.impl.RecordCodeSweptFlowListService" />
+	
+	<!-- 核心接口参数初始化 -->
+	<bean id="InitBankParamService" class="com.upay.busi.pay.service.impl.InitBankParamService" />
+	<!-- 检查订单状态是否超时，订单状态是否正确 -->
+	<bean id="CheckOrderListStatService" class="com.upay.busi.pay.service.impl.CheckOrderListStatService" />
+	<!-- 交易金额元分转换服务 -->
+	<bean id="TranAmtChangService" class="com.upay.busi.pay.service.impl.TranAmtChangService" />
+
+	<!-- 支付结果通知前检查开始 -->
+	<bean id="NotifyStatusCheckService" class="com.upay.busi.pay.service.impl.NotifyStatusCheckService" />
+
+	<!-- 银联微信支付结果通知前检查开始 -->
+	<bean id="AtNotifyStatusCheckService" class="com.upay.busi.pay.service.impl.AtNotifyStatusCheckService" />
+
+	<!-- 银联支付结果通知前检查开始 -->
+	<bean id="NotifyAcpStatusCheckService" class="com.upay.busi.pay.service.impl.NotifyAcpStatusCheckService" />
+	
+	<!-- 交易错误时初始化交易流水状态 -->
+	<bean id="PayErrHandleService" class="com.upay.busi.pay.service.impl.PayErrHandleService" />
+	<!-- 重置订单状态 -->
+	<bean id="ResetOrderStatService" class="com.upay.busi.pay.service.impl.ResetOrderStatService" />
+	<!-- 支付参数准备  修改订单支付缺陷而加-->
+	<bean id="QueryOrderByOrderNoService" class="com.upay.busi.pay.service.impl.QueryOrderByOrderNoService" />
+	<!-- 订单查询 -->
+	<bean id="QueryOrderService" class="com.upay.busi.pay.service.impl.QueryOrderService" />
+    <!-- 查询是否含有流水 -->
+	<bean id="CheckFlowListPoService" class="com.upay.busi.pay.service.impl.CheckFlowListPoService" />
+	<!-- 确认收货 -->
+	<bean id="ConfirmReceiptChkService" class="com.upay.busi.pay.service.impl.ConfirmReceiptChkService" />
+	<!-- 对账单下载 -->
+	<bean id="ReconciliationDocDownloadService" class="com.upay.busi.pay.service.impl.ReconciliationDocDownloadService" />
+	<!-- 通知ID查询 -->
+	<bean id="NotifyIdQueryService" class="com.upay.busi.pay.service.impl.NotifyIdQueryService" />
+	<!-- 更新限额 -->
+	<bean id="UpdateLimitAmtService" class="com.upay.busi.pay.service.impl.UpdateLimitAmtService"/>
+	<!-- 微信初始化参数 -->
+	<bean id="WebChatChangeInitService" class="com.upay.busi.pay.service.impl.WebChatChangeInitService"/>
+	<!-- 回滚账户余额 -->
+	<bean id="ReturnAccountAmtService" class="com.upay.busi.pay.service.impl.ReturnAccountAmtService"/>
+	<!-- 状态更新 -->
+	<bean id="WebChatBackFlagChargeService" class="com.upay.busi.pay.service.impl.WebChatBackFlagChargeService"/>
+	<!-- 获取所有的资金通道信息 -->
+	<bean id="PayRouteInfoAllQryService" class="com.upay.busi.pay.service.impl.PayRouteInfoAllQryService"/>
+	<!-- 获取所有的资金通道信息 -->
+	<bean id="CheckOrderUserIdService" class="com.upay.busi.pay.service.impl.CheckOrderUserIdService"/>
+	<!-- 根据流水查询订单信息zgr1029 -->
+	<bean id="PayQryOrderNoFormSeqService" class="com.upay.busi.pay.service.impl.PayQryOrderNoFormSeqService"/>
+	<!-- 根据流水查询订单信息zgr1029 -->
+	<bean id="CheckWiXinOpenIdService" class="com.upay.busi.pay.service.impl.CheckWiXinOpenIdService"/>
+	<!-- 生成退款订单 -->
+	<bean id="RecordRefundOrderService" class="com.upay.busi.pay.service.impl.RecordRefundOrderService" />
+	<!-- 生成退款支付流水 -->
+	<bean id="RecordRefundPayFlowService" class="com.upay.busi.pay.service.impl.RecordRefundPayFlowService" />
+	<!-- 退款异常处理 -->
+	<bean id="RefundExceptionProcService" class="com.upay.busi.pay.service.impl.RefundExceptionProcService" />
+	<!-- 退款手续费处理 -->
+	<bean id="RefundMerFeeService" class="com.upay.busi.pay.service.impl.RefundMerFeeService" />
+	<!-- 退款订单检查 -->
+	<bean id="RefundOrderCheckService" class="com.upay.busi.pay.service.impl.RefundOrderCheckService" />
+	<!-- 退款，各资金通道结果处理 -->
+	<bean id="RouteRefundResultProcess" class="com.upay.busi.pay.service.impl.RouteRefundResultProcess" />
+	<!-- 测试  -->
+	<bean id="TestShangService" class="com.upay.busi.pay.service.impl.TestShangService" />
+	<!-- 根据订单号和资金通道判断微信流水是否已经登记-->
+	<bean id="CheckWeiXinSyseqInfoService" class="com.upay.busi.pay.service.impl.CheckWeiXinSyseqInfoService" />
+	<!-- 检查订单状态做相应处理-->
+	<bean id="ChckPayResultAndHandleService" class="com.upay.busi.pay.service.impl.ChckPayResultAndHandleService" />
+	<!-- 查询订单状态和回调URL-->
+	<bean id="PayOrderStatAndBackUrlQryService" class="com.upay.busi.pay.service.impl.PayOrderStatAndBackUrlQryService" />
+	<!-- 支付回调订单状态和流水状态 获取 -->
+	<bean id="CheckCallBackOrderStatService" class="com.upay.busi.pay.service.impl.CheckCallBackOrderStatService" />
+	<!-- 根据通道代码获取清算方式 -->
+	<bean id="GetClrtypeByRouteCodeService" class="com.upay.busi.pay.service.impl.GetClrtypeByRouteCodeService" />
+	<!-- 根据通道代码获取清算方式 -->
+	<bean id="PayOrderStateCheckOfMicropayService" class="com.upay.busi.pay.service.impl.PayOrderStateCheckOfMicropayService" />
+	<!-- 根据通道代码获取清算方式 -->
+	<bean id="MicropayStateChangeService" class="com.upay.busi.pay.service.impl.MicropayStateChangeService" />
+	<!-- 订单详情登记微信使用 -->
+	<bean id="PayOrderRegisterOfWeiXinService" class="com.upay.busi.pay.service.impl.PayOrderRegisterOfWeiXinService" />
+	<!-- 退款修改原订单订单状态 -->
+	<bean id="UpdateOriginalOrderStatService" class="com.upay.busi.pay.service.impl.UpdateOriginalOrderStatService" />
+	<!-- 确认收货检查 -->
+	<bean id="CheckConfirmDeliveryService" class="com.upay.busi.pay.service.impl.CheckConfirmDeliveryService" />
+	<!-- 平台退款检查 -->
+	<bean id="RefundPlatOrderCheckService" class="com.upay.busi.pay.service.impl.RefundPlatOrderCheckService" />
+	<!-- 支付结果通知 -->
+	<bean id="RecordMerPayNotifyService" class="com.upay.busi.pay.service.impl.RecordMerPayNotifyService" />
+	<!-- 微信公众号订单查询 -->
+	<bean id="PayOrderInfoQryOfWeiXinService" class="com.upay.busi.pay.service.impl.PayOrderInfoQryOfWeiXinService" />
+	
+	<!-- 商户对账单下载，生成对账单文件 -->
+	<bean id="GenMerChkFileService" class="com.upay.busi.pay.service.impl.GenMerChkFileService">
+		<property name="inTranCode2OutTransCodeMap">
+			<map>
+				<entry key="SI_PAY1001" value="pay" />
+				<entry key="SI_PAY0016" value="singleCollection" />
+				<entry key="SI_PAY0017" value="singlePay" />
+				<entry key="SI_PAY0020" value="quickPay" />
+			</map>
+		</property>
+ 	</bean>
+ 	
+ 	<!-- 商户对账单下载，查询对账单文件 -->
+	<bean id="MerChkFileDownService" class="com.upay.busi.pay.service.impl.MerChkFileDownService" />
+	
+	<!-- 校验差错类型是否与处理方式匹配  -->
+	<bean id="CheckErrTypeService" class="com.upay.busi.pay.service.impl.CheckErrTypeService" />
+	<!-- 处理与核心对账产生的差错  -->
+	<bean id="DealChkHostErrService" class="com.upay.busi.pay.service.impl.DealChkHostErrService" />
+ 	<!-- 登记差错处理结果信息 并且更新差错表信息 -->
+ 	<bean id="CheckInChkErrDealResultService" class="com.upay.busi.pay.service.impl.CheckInChkErrDealResultService" />
+	<!-- 登记手续费 -->
+ 	<bean id="CheckInFeeFlowListService" class="com.upay.busi.pay.service.impl.CheckInFeeFlowListService" />
+ 	<!-- 处理微信、中金差错 -->
+ 	<bean id="DealChkWeChatErrService" class="com.upay.busi.pay.service.impl.DealChkWeChatErrService" />
+ 	<!-- 冲微信、中金账 -->
+ 	<bean id="StrikeChkErrService" class="com.upay.busi.pay.service.impl.StrikeChkErrService" />
+	<!-- 处理特殊差错 -->
+ 	<bean id="AdjustFlowListService" class="com.upay.busi.pay.service.impl.AdjustFlowListService" />
+	
+	
+	
+ 	<!-- 商户内部账户余额查询——请求核心接口参数初始化 -->
+	<bean id="InitReqHostService" class="com.upay.busi.pay.service.impl.InitReqHostService" />
+	
+	<!-- 商户内部账户余额查询——核心返回结果处理 -->
+	<bean id="DealReqHostResultService" class="com.upay.busi.pay.service.impl.DealReqHostResultService" />
+	
+	<!-- 单笔代收交易  登记订单 -->
+	<bean id="SingleCollectionOrderChkService" class="com.upay.busi.pay.service.impl.SingleCollectionOrderChkService" />
+	<!-- 单笔代收   结果查询参数初始化 -->
+	<bean id="InitRouteSingleCollectionService" class="com.upay.busi.pay.service.impl.InitRouteSingleCollectionService" />
+	
+	<!--  单笔代收   核心客户信息验证 参数检查 -->
+	<bean id="CheckParamService" class="com.upay.busi.pay.service.impl.CheckParamService" />
+	
+	<!-- 退款请求中金代收代付接口参数准备  -->
+	<bean id="InitParamRefundService" class="com.upay.busi.pay.service.impl.InitParamRefundService" />
+	<!-- 单笔代付   参数初始化 -->
+	<bean id="InitRouteSinglePaymentService" class="com.upay.busi.pay.service.impl.InitRouteSinglePaymentService" />
+	<!-- 单笔代付   参数检查 -->
+	<bean id="SinglePaymentOrderChkService" class="com.upay.busi.pay.service.impl.SinglePaymentOrderChkService" />
+	
+	<!-- 结算转账   参数初始化 -->
+	<bean id="InitStlPaymentService" class="com.upay.busi.pay.service.impl.InitStlPaymentService" />
+	<!-- 结算转账   参数检查 -->
+	<bean id="StlPaymentCheckService" class="com.upay.busi.pay.service.impl.StlPaymentCheckService" />
+	<!-- 修改订单支付方式 -->
+	<bean id="UpdateOrderPayTypeService" class="com.upay.busi.pay.service.impl.UpdateOrderPayTypeService" />
+
+	<!-- 银联退款回调，处理流水、订单状态 -->
+	<bean id="DealAcpCallBackRufundStatusService" class="com.upay.busi.pay.service.impl.DealAcpCallBackRufundStatusService" />
+
+    <!-- 订单详情登记银联使用 -->
+	<bean id="PayOrderRegisterOfAcpService" class="com.upay.busi.pay.service.impl.PayOrderRegisterOfAcpService" />
+
+
+	<!-- 红包记录登记-->
+	<bean id="RedpackRegisterService" class="com.upay.busi.pay.service.impl.RedpackRegisterService" />
+	<!-- 修改银联流水状态为支付中-->
+	<bean id="UpateUnionPayFlowService" class="com.upay.busi.pay.service.impl.UpateUnionPayFlowService" />
+	<!-- 银联重复通知检查-->
+	<bean id="CheckUnionRepeatNotifyService" class="com.upay.busi.pay.service.impl.CheckUnionRepeatNotifyService" />
+	
+  <!-- 银联微信重复通知检查-->
+	<bean id="CheckWeixinCodeRepeatNotifyService" class="com.upay.busi.pay.service.impl.CheckWeixinCodeRepeatNotifyService" />
+
+	<!-- 银联二维码重复通知检查-->
+	<bean id="CheckUnionCodeRepeatNotifyService" class="com.upay.busi.pay.service.impl.CheckUnionCodeRepeatNotifyService" />
+	
+	<!-- 处理红包响应-->
+	<bean id="DealWeiXinRespService" class="com.upay.busi.pay.service.impl.DealWeiXinRespService" />
+	<!-- 红包查询参数初始化-->
+	<bean id="InitDataQueryRedPackService" class="com.upay.busi.pay.service.impl.InitDataQueryRedPackService" />
+	
+	<!-- 网银代收参数初始化-->
+	<bean id="OnlineBankPamReadyService" class="com.upay.busi.pay.service.impl.OnlineBankPamReadyService" />
+	
+	<!-- 查询订单状态和回调URL-->
+	<bean id="RetrnURLSignService" class="com.upay.busi.pay.service.impl.RetrnURLSignService" />
+
+	<!--银联主扫模式下的订单登记-->
+	<bean id="PayOrderRegisterOfUnionPayService" class="com.upay.busi.pay.service.impl.PayOrderRegisterOfUnionPayService" />
+	
+	<!-- 支付宝返回处理-->
+	<bean id="DealAlipayRespService" class="com.upay.busi.pay.service.impl.DealAlipayRespService" />
+	
+	<!-- 支付宝订单状态检查-->
+	<bean id="AlipayOrderStateCheckService" class="com.upay.busi.pay.service.impl.AlipayOrderStateCheckService" />
+	
+	<!--支付宝支付结果通知前检查 -->
+	<bean id="DealAlipayNotifyService" class="com.upay.busi.pay.service.impl.DealAlipayNotifyService" />
+	
+	<!--更新订单状态，防止并发 -->
+	<bean id="OrderSyncStatusManageService" class="com.upay.busi.pay.service.impl.OrderSyncStatusManageService" />
+	
+	<!--处理商户结算差错 -->
+	<bean id="DealStlChkErrService" class="com.upay.busi.pay.service.impl.DealStlChkErrService" />
+	
+	<!-- 校验商户支付宝支付是否开通-->
+	<bean id="CheckAlipayMerService" class="com.upay.busi.pay.service.impl.CheckAlipayMerService" />
+	
+	<!-- 支付宝初始化字段-->
+	<bean id="AlipayReqParamInitService" class="com.upay.busi.pay.service.impl.AlipayReqParamInitService" />
+	<!--查询所有支付渠道-->
+	<bean id="PayRouteInfoAllService" class="com.upay.busi.pay.service.impl.PayRouteInfoAllService" />
+
+    <!--查询资金结算登记薄 -->
+	<bean id="StlBookListQueryService" class="com.upay.busi.pay.service.impl.StlBookListQueryService" />
+	<!--下载资金结算登记薄 -->
+	<bean id="StlBookListQueryDownloadService" class="com.upay.busi.pay.service.impl.StlBookListQueryDownloadService" />
+	<!--修改商户交易日累计-->
+	<bean id="DailyCumulativeService" class="com.upay.busi.pay.service.impl.DailyCumulativeService" />
+	
+    <!--报表交易明细查询-->
+	<bean id="ReportOrderDetailQueryService" class="com.upay.busi.pay.service.impl.ReportOrderDetailQueryService" />
+	 <!--报表交易汇总查询-->
+	<bean id="ReportOrderCountService" class="com.upay.busi.pay.service.impl.ReportOrderCountService" />
+	<!--代收代付  支付方式初始化-->
+	<bean id="SinglePaymentParamChkService" class="com.upay.busi.pay.service.impl.SinglePaymentParamChkService" />
+
+
+	 <!--银联token授权查询-->
+	<bean id="CollectionOpenTokenQueryService" class="com.upay.busi.pay.service.impl.CollectionOpenTokenQueryService" />
+	 <!--银联token授权插入-->
+	<bean id="CollectionOpenTokenInsertService" class="com.upay.busi.pay.service.impl.CollectionOpenTokenInsertService" />
+
+	<!--银联token授权删除-->
+	<bean id="CollectionOpenTokenDeleteService" class="com.upay.busi.pay.service.impl.CollectionOpenTokenDeleteService" />
+ 	<!--登记转账文件-->
+	<bean id="RegTransferFileService" class="com.upay.busi.pay.service.impl.RegTransferFileService" />
+	<!--中金账户类型参数转换-->
+	<bean id="AccountTypeService" class="com.upay.busi.pay.service.impl.AccountTypeService" />
+    	<!--银联（微信）订单号-->
+   <bean id="GenerateATWeiXinOrderNoService" class="com.upay.busi.pay.service.impl.GenerateATWeiXinOrderNoService" />
+
+    	<!--银联（微信）订单号入库-->
+   <bean id="RecordPayFlowListNewService" class="com.upay.busi.pay.service.impl.RecordPayFlowListNewService" />
+       	<!--银联（微信）判断-->
+   <bean id="GeneralSinglePaymentParamChkService" class="com.upay.busi.pay.service.impl.GeneralSinglePaymentParamChkService" />
+
+	<!--代收付 获取cardbin  信息-->
+	<bean id="PayQueryCardBinOfService" class="com.upay.busi.pay.service.impl.PayQueryCardBinOfService" />
+	<!--异常信息捕捉-->
+	<bean id="ExceptionInfoSevice" class="com.upay.busi.pay.service.impl.ExceptionInfoSevice" />
+
+	<!--查询授权-->
+	<bean id="CollectionOpenQueryService" class="com.upay.busi.pay.service.impl.CollectionOpenQueryService" />
+
+	<!--查询授权-->
+	<bean id="CollectionOpenInsertService" class="com.upay.busi.pay.service.impl.CollectionOpenInsertService" />
+
+	<!--删除授权-->
+	<bean id="CollectionOpenDeleteService" class="com.upay.busi.pay.service.impl.CollectionOpenDeleteService" />
+	<!--银联代收 无跳转支付  代付 重复通知检查-->
+	<bean id="CheckRepeatNotifyService" class="com.upay.busi.pay.service.impl.CheckRepeatNotifyService" />
+
+	
+	<!-- 核心记账   配置  走ESB还是CPS-->
+	<bean id="UseEsbCoreChkService" class="com.upay.busi.pay.service.impl.UseEsbCoreChkService" />
+     <!--根据银联状态设置流水状态-->
+	<bean id="UpdateStatusManageService" class="com.upay.busi.pay.service.impl.UpdateStatusManageService" />
+	<!--四要素验证检查-->
+	<bean id="FactorCheckService" class="com.upay.busi.pay.service.impl.FactorCheckService" />
+
+     <!--核心流水更新-->
+	<bean id="RecordEsbCorePayFlowListService" class="com.upay.busi.pay.service.impl.RecordEsbCorePayFlowListService" />
+    <!--流水转换-->
+	<bean id="esbSwitchService" class="com.upay.busi.pay.service.impl.EsbSwitchService" />
+	<bean id="CheckTokenService" class="com.upay.busi.pay.service.impl.CheckTokenService" />
+
+</beans>

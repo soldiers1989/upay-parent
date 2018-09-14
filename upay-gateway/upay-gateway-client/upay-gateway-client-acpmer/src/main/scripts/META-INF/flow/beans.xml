@@ -1,0 +1,80 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+	<!-- 银联交易 -->
+	<bean id="abstractAcpClientDipperHandler"
+		class="com.upay.gateway.client.acpmer.service.AbstractAcpClientDipperHandler"
+		abstract="true">
+		<property name="acpMerId" value="${acpPayMerId}" />
+		<property name="acpConnectionTimeout" value="${acpConnectionTimeout}" />
+		<property name="acpReadTimeout" value="${acpReadTimeout}" />
+		<property name="backUrl" value="${acpsdk.backUrl}" />
+		<property name="acpFileRoot" value="${payAcpFileRoot}" />
+		<property name="acpVersion" value="${acpVersion}" />
+	</bean>
+
+			<!-- 银联交易退货 -->
+	<bean id="unionPayRufundClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayRufundClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+		  <!-- 银联商户对账文件下载 -->
+	<bean id="unionPayFileTransferDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayFileTransferDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+		<!-- 银联交易查询 -->
+	<bean id="unionPayTranQueryClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayTranQueryClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+	
+		<!-- 银联无跳转授权 -->
+	<bean id="unionPayTokenOpenClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayTokenOpenClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+		<property name="trId" value="${acpsdk.trId}"/>
+	</bean>
+	
+			<!-- 银联无跳转授权删除 -->
+	<bean id="unionPayTokenDeleteClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayTokenDeleteClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+		<property name="trId" value="${acpsdk.trId}"/>
+	</bean>
+	
+				<!-- 银联无跳转授权更新 -->
+	<bean id="unionPayTokenUpdateClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayTokenUpdateClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+	
+			<!-- 银联无跳转消费 -->
+	<bean id="unionPayTokenConsumeClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayTokenConsumeClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+			<!-- 银联无跳转授权查询-->
+	<bean id="unionPayTokenQueryClientDipperHandler" 
+		 class="com.upay.gateway.client.acpmer.service.UnionPayTokenQueryClientDipperHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+	
+				<!-- 银联无跳转授权查询-->
+	<bean id="realNameAuthHandler" 
+		 class="com.upay.gateway.client.acpmer.service.RealNameAuthHandler"
+		 parent="abstractAcpClientDipperHandler">
+	</bean>
+	
+	
+</beans>	

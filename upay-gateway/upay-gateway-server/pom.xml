@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.pactera.upay</groupId>
+    <artifactId>upay-gateway</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>upay-gateway-server</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>upay-gateway-server-zjpay</module>
+  	<module>upay-gateway-server-acp</module>
+  	<module>upay-gateway-server-acpmer</module>
+  	<module>upay-gateway-server-acppay</module>
+  	<module>upay-gateway-server-acpreceive</module>
+  	<module>upay-gateway-server-core</module>
+  	<module>upay-gateway-server-weixin</module>
+   	<module>upay-gateway-server-alipay</module>
+   	<module>upay-gateway-server-esb</module>
+   	<module>upay-gateway-server-atweixin</module>
+   	<module>upay-gateway-server-atalipay</module>
+  </modules>
+</project>

@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd">
+
+	<dipper:flow service-id="SI_weixincliFlow">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="weiXinSignHandler" />
+					<dipper:service ref="M_PACK" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service client="true" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.headers._TRAN_CODE == 'DOWNLOADBILL'">
+						<dipper:service ref="processFileStreamHandler" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service ref="M_UNPACK" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.headers._TRAN_CODE != 'DOWNLOADBILL'&amp;&amp;target.headers._TRAN_CODE != 'NEWMERCHANT'&amp;&amp;target.headers._TRAN_CODE != 'QUERYMERCHANT'&amp;&amp;target.headers._TRAN_CODE != 'MODIFYMERCHANT'&amp;&amp;target.headers._TRAN_CODE != 'QUERYMERCHANT'&amp;&amp;target.headers._TRAN_CODE != 'DELETEMERCHANT'&amp;&amp;target.headers._TRAN_CODE != 'SENDREDPACK'&amp;&amp;target.headers._TRAN_CODE != 'SENDGROUPREDPACK'&amp;&amp;target.headers._TRAN_CODE != 'GETHBINFO'">  
+						<dipper:service ref="weiXinVerifySignHandler" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.headers._TRAN_CODE == 'UNIFIEDORDER'"> 
+						<dipper:service ref="paySignHandler" />
+					</dipper:if>
+				</dipper:invoke>				
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally />
+	</dipper:flow>
+	
+</beans>	

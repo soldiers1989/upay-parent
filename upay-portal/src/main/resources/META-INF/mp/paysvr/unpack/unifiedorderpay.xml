@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 微信公众号支付 -->
+		<mapping xpath="merNo" field="merNo"/>
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/>
+		<mapping xpath="outerOrderNo" field="outerOrderNo"/>
+		<mapping xpath="transAmt" field="transAmt" type="java.math.BigDecimal"/>
+		<mapping xpath="CURR" field="curr"/>
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp"/>
+		<mapping xpath="outerOrderStartDate" field="outerOrderStartDate" must="not"/>
+		<mapping xpath="outerOrderEndDate" field="outerOrderEndDate" must="not"/>
+		<mapping xpath="otherTranAmt" field="otherTranAmt" type="java.math.BigDecimal" must="not"/>
+		<mapping xpath="productAmt" field="productAmt" type="java.math.BigDecimal" must="not"/>
+		<mapping xpath="transComments" field="transComments" must="not"/>
+		<mapping xpath="payServicType" field="payServicType" must="not"/>
+		<mapping xpath="subOpenid" field="subOpenid"/>
+		<mapping xpath="detail" field="detail" must="not"/>
+		<mapping xpath="subAppid" field="subAppid"/>
+		<mapping xpath="deviceInfo" field="deviceInfo" must="not"/>
+		<mapping xpath="attach" field="attach" must="not"/>
+		<mapping xpath="notifyUrl" field="returnNotifyUrl" />
+		<mapping xpath="returnUrl" field="returnUrl" must="not"/>
+		<mapping xpath="merFeeAmt" field="merFeeAmt" type="java.math.BigDecimal" must="not"/>
+	</mappings>
+</config>

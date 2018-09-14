@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+	<!-- 日切开始 -->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="CutStart" group="CutStart"/>
+	<!-- 获取核心对账文件-->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="GetCoreFile" group="GetCoreFile"/>
+	<!-- 日切结束-->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="CutEnd" group="CutEnd"/>
+	<!-- 解付-->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="RelieveStpBatch" group="RelieveStpBatch"/>
+	<!-- 解冻-->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="RelieveFrzBatch" group="RelieveFrzBatch"/>
+</beans>

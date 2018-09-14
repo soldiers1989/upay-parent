@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccVbookPo">
+	<update id="updateBalanceByAcctNo" parameterType="java.util.Map">
+        update
+        <include refid="Table_Name" />
+        <set>
+        	<if test="operFlag=='1'.toString()">   <!-- 余额加  -->
+        	ACCT_BAL = ACCT_BAL + #{transAmt},
+        	</if>
+            <if test="operFlag=='2'.toString()">    <!-- 余额减  -->
+            ACCT_BAL = ACCT_BAL - #{transAmt},
+            </if>
+            LAST_CHG_TIME=#{lastChgTime}
+        </set>
+        <where>
+            V_ACCT_NO = #{vAcctNo}
+        </where>
+    </update>
+	<!-- 扣减账户余额 -->
+	<update id="updateAccountAmtSub" parameterType="java.util.HashMap">
+		update 
+		<include refid="Table_Name"/>
+		<set>
+			<if test="updateAmt != null and addOrSub != null and addOrSub == '1'.toString()">
+				ACCT_BAL=ACCT_BAL-#{updateAmt},
+			</if>
+			<if test="updateAmt != null and addOrSub != null and addOrSub == '0'.toString()">
+				ACCT_BAL=ACCT_BAL+#{updateAmt},
+			</if>
+		</set>
+		<where>
+			<if test="accNo != null">
+				AND V_ACCT_NO=#{accNo}
+			</if>
+			<if test="updateAmt != null and addOrSub != null and addOrSub =='1'.toString()">
+				AND ACCT_BAL <![CDATA[>=]]> #{updateAmt}
+			</if>
+		</where>
+	</update>
+</mapper>

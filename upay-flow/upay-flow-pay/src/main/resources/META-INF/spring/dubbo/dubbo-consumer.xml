@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+	<!-- 微信公众号支付接口 -->
+	<dubbo:reference id="defaultWeiXinClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinClientHandler" check="false"/>
+	<!-- 微信刷卡支付 -->
+	<dubbo:reference id="defaultWeiXinMicropayClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinMicropayClientHandler" check="false"/>
+	<!-- 微信获取openId/accToken接口 -->
+	<dubbo:reference id="weiXinGetOpenIdHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="weiXinGetOpenIdHandler" check="false"/>
+	<!--根据支付付款码   微信获取openId接口 -->
+	<dubbo:reference id="defaultWeiXintoolsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXintoolsClientHandler" check="false"/>	
+	<!-- 核心记账接口 -->
+	<dubbo:reference id="coreCliDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="coreCliDipperHandler" check="false"/>
+	<!-- 中金快捷支付2511 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2511Handler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2511Handler" check="false"/>
+	<!-- 中金查询 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2502Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2502Handler" check="false"/>
+	<!-- 中金绑卡 -->
+	<dubbo:reference id="SA_ZJPAY_Pay2501Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2501Handler" check="false"/>
+	<!-- 联网核查 -->
+    <dubbo:reference id="SA_ZJPAY_Pay2320Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2320Handler" check="false"/>
+    <!-- 微信退款 -->
+    <dubbo:reference id="defaultWeiXinHttpsClientHandler" interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinHttpsClientHandler" check="false"/>
+    <!-- 中金退款 -->
+    <dubbo:reference id="SA_ZJPAY_Pay2521Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2521Handler" check="false"/>
+    <!-- 中金贷记卡支付 -->
+    <dubbo:reference id="SA_ZJPAY_Pay2561Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2561Handler" check="false"/>
+    <!-- 中金单笔代收（代收） -->
+    <dubbo:reference id="SA_ZJPAY_Pay2011Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay2011Handler" check="false"/>
+    <!-- 中金单笔代收（代付） -->
+    <dubbo:reference id="SA_ZJPAY_Pay4530Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay4530Handler" check="false"/>
+    <!-- 商户订单原路退款 -->
+    <dubbo:reference id="SA_ZJPAY_Pay1133Handler" interface="com.pactera.dipper.core.IDipperHandler" group="SA_ZJPAY_Pay1133Handler" check="false"/>
+    <!-- 银联网关支付退款 -->
+    <dubbo:reference id="SA_PMT_UnionRufund" interface="com.pactera.dipper.core.IDipperHandler" group="SA_PMT_UnionRufund" check="false"/>
+    
+    <!-- 银联网关支付退款 -->
+    <dubbo:reference id="defaultWeiXinMmpaymktHttpsClientHandler" interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinMmpaymktHttpsClientHandler" check="false"/>
+
+     <!-- 银联二维码支付-被扫 -->
+    <dubbo:reference id="SA_CODE_UnionPayCodeSwept" interface="com.pactera.dipper.core.IDipperHandler" group="SA_CODE_UnionPayCodeSwept" check="false"/>
+   
+    <!-- 银联查询状态 -->
+    <dubbo:reference id="SA_PMT_UnionPayTranStatQuery" interface="com.pactera.dipper.core.IDipperHandler" group="SA_PMT_UnionPayTranStatQuery" check="false"/>
+
+	<!--银联二维码主扫模式-->
+	<dubbo:reference id="UnionPayApplyQrCodeDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="UnionPayApplyQrCodeDipperHandler" check="false"/>
+	<!--银联消费撤销类-->
+	<dubbo:reference id="UnionPayConsumeUndoDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="UnionPayConsumeUndoDipperHandler" check="false"/>
+	<!--银联之冲正-->
+	<dubbo:reference id="UnionPayWashedDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="UnionPayWashedDipperHandler" check="false"/>
+	<!--银联之营销活动余额查询-->
+	<dubbo:reference id="UnionPayMarketingActivityBalanceInquiryDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="UnionPayMarketingActivityBalanceInquiryDipperHandler" check="false"/>
+	<!--银联之退货-->
+	<dubbo:reference id="UnionReFoundDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="UnionReFoundDipperHandler" check="false"/>
+   
+   <!-- 银联 AT 通道 支付宝  开始 -->
+   <!-- 支付宝 条码支付 -->
+   <dubbo:reference id="AT_AlipayPayHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayPayHandler" check="false"/>
+   <!-- 银联 AT 通道 支付宝  结束 -->
+   
+    <!-- 支付宝 条码支付 -->
+    <dubbo:reference id="AlipayPayHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayPayHandler" check="false"/>
+    <!-- 支付宝 交易查询 -->
+    <dubbo:reference id="AlipayQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayQueryHandler" check="false"/>
+    
+      <!-- 银联支付宝 交易查询 -->
+    <dubbo:reference id="AT_AlipayQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayQueryHandler" check="false"/>
+    
+    <!-- 支付宝 扫码支付预创建订单 -->
+    <dubbo:reference id="AlipayPreCreateHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayPreCreateHandler" check="false"/>
+    
+     <!-- 银联支付宝 扫码支付预创建订单 -->
+    <dubbo:reference id="AT_AlipayPreCreateHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayPreCreateHandler" check="false"/>
+    
+    <!-- 支付宝 交易创建接口 -->
+    <dubbo:reference id="AlipayCreateHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayCreateHandler" check="false"/>
+   
+   
+    <!-- 银联支付宝 交易创建接口 -->
+    <dubbo:reference id="AT_AlipayCreateHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayCreateHandler" check="false"/>
+    
+    <!-- 支付宝 退款-->
+    <dubbo:reference id="AlipayRefundHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayRefundHandler" check="false"/>
+    
+     <!--银联支付宝 退款-->
+    <dubbo:reference id="AT_AlipayRefundHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipayRefundHandler" check="false"/>
+    
+    
+    <!-- 支付宝 退款查询 -->
+    <dubbo:reference id="AlipayRefundQueryHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayRefundQueryHandler" check="false"/>
+    
+    <!-- 支付宝 交易撤销 -->
+    <dubbo:reference id="AlipayCancelHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayCancelHandler" check="false"/>
+    
+    <!-- 支付宝 交易关闭 -->
+    <dubbo:reference id="AlipayCloseHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipayCloseHandler" check="false"/>
+    
+     <!-- 支付宝 获取userId/accToken接口 -->
+    <dubbo:reference id="AliPayGetUserIdHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AliPayGetUserIdHandler" check="false"/>
+
+    <dubbo:reference id="AT_AliPayGetUserIdHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AliPayGetUserIdHandler" check="false"/>
+
+	<!--银联代付接口-->
+    <dubbo:reference id="unionPayCollectionClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayCollectionClientDipperHandler" check="false"/>
+
+
+	<!--银联代收授权-->
+    <dubbo:reference id="unionPayReceiveAuthorizeClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayReceiveAuthorizeClientDipperHandler" check="false"/>
+	<!--银联代收消费-->
+    <dubbo:reference id="unionPayReceiveConsumeClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayReceiveConsumeClientDipperHandler" check="false"/>
+
+    <!--一银联无跳转支付-->
+    <dubbo:reference id="unionPayTokenConsumeClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayTokenConsumeClientDipperHandler" check="false"/>
+    <!--银联代无跳转支付授权-->
+    <dubbo:reference id="unionPayTokenOpenClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayTokenOpenClientDipperHandler" check="false"/>
+
+	<!-- 银联退款 -->
+	<dubbo:reference id="unionPayRufundClientDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayRufundClientDipperHandler" check="false"/>
+
+	<!-- 银联代无跳转支付授权查询 -->
+	<dubbo:reference id="unionPayTokenQueryClientDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayTokenQueryClientDipperHandler" check="false"/>
+	<!-- 银联代收交易状态查询 -->
+	<dubbo:reference id="unionPayReceiveTranQueryClientDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayReceiveTranQueryClientDipperHandler" check="false"/>
+	<!-- 银联无跳转支付交易状态查询 -->
+	<dubbo:reference id="unionPayTranQueryClientDipperHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayTranQueryClientDipperHandler" check="false"/>
+
+   <!-- 银联AT 统一下单 -->
+	<dubbo:reference id="unionPayOrderPerPayClientDipperHandlr"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayOrderPerPayClientDipperHandlr" check="false"/>
+   <!-- 银联AT 刷卡支付 -->
+	<dubbo:reference id="unionPayMicropayClientDipperHandlr"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayMicropayClientDipperHandlr" check="false"/>
+   <!-- 银联AT 刷卡支付查询 -->
+	<dubbo:reference id="unionPayOrderQueryClientDipperHandlr"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayOrderQueryClientDipperHandlr" check="false"/>
+  <!-- 银联AT 刷卡退款 -->
+	<dubbo:reference id="unionPayOrderRefundClientDipperHandlr"
+		interface="com.pactera.dipper.core.IDipperHandler" group="unionPayOrderRefundClientDipperHandlr" check="false"/>
+
+
+    <!--贷款冲正  贷款状态更新-->
+	<dubbo:reference id="esbCliDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="esbCliDipperHandler" check="false"/>
+
+	<!--银联代无跳转支付删除授权-->
+	<dubbo:reference id="unionPayTokenDeleteClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayTokenDeleteClientDipperHandler" check="false"/>
+
+	<!--银联代收授权撤销-->
+	<dubbo:reference id="unionPayReceiveAuthorizeUndoClientDipperHandler" interface="com.pactera.dipper.core.IDipperHandler" group="unionPayReceiveAuthorizeUndoClientDipperHandler" check="false"/>
+	
+</beans>

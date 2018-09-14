@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.pactera.upay</groupId>
+		<artifactId>upay-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>upay-batch-stepservice</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-batch-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-batch-step</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>upay-commons</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>upay-dao</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-presys-mp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-presys-mp-agilexml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>clean</id>
+						<phase>clean</phase>
+						<configuration>
+							<target>
+								<echo message="--- clean[${basedir}/${src.main.scripts}] start ---" />
+								<delete>
+									<fileset dir="${basedir}/${src.main.scripts}" />
+								</delete>
+								<echo message="--- clean[${basedir}/${src.main.scripts}] end   ---" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<target>
+								<echo message="--- copy start ---" />
+								<copy todir="${basedir}/${src.main.scripts}">
+									<fileset dir="${global.resources.config.home}/batch/stepservice" />
+								</copy>
+								<echo message="--- copy end   ---" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copyScriptsDubboLog</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<target>
+								<echo message="--- copyScriptsDubboLog start ---" />
+								<copy
+									file="${global.resources.home}/${src.main.other}/assembly/assembly.xml"
+									todir="${basedir}/${src.main.assembly}" />
+								<copy todir="${basedir}/${src.main.scripts}">
+									<fileset dir="${global.resources.home}/${src.main.scripts}" />
+								</copy>
+								<copy todir="${basedir}/${src.main.scripts}">
+									<fileset dir="${global.resources.home}/${src.main.other}/dubbo" />
+								</copy>
+								<copy todir="${basedir}/${src.main.scripts}">
+									<fileset dir="${global.resources.home}/${src.main.other}/db" />
+								</copy>
+								<copy todir="${basedir}/${src.main.scripts}">
+									<fileset dir="${global.resources.home}/${src.main.other}/redis" />
+								</copy>
+								<copy
+									file="${global.resources.home}/${src.main.other}/log/logback.xml"
+									todir="${basedir}/${src.main.scripts}" />
+								<echo message="--- copyScriptsDubboLog end   ---" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+	<mappings>
+		<mapping xpath="RspData.RspCode" field="rspCode" />
+		<mapping xpath="RspData.RspMsg" field="rspMsg" />
+	</mappings>
+</config>

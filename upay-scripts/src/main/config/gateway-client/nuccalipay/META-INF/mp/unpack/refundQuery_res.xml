@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝订单退款查询 -->
+<data templateType="OUT"
+	transCode="refundQuery"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 支付宝交易号 -->
+	<column oldName="trade_no" newName="tradeNo"/>
+	<!--商户订单号  -->
+	<column oldName="out_trade_no" newName="outTradeNo"/>
+	<!--  本笔退款对应的退款请求号-->
+	<column oldName="out_request_no" newName="outRequestNo"/>
+	<!-- 发起退款时，传入的退款原因 -->
+	<column oldName="refund_reason" newName="refundReason"/>
+	<!-- 该笔退款所对应的交易的订单金额-->
+	<column oldName="total_amount" newName="totalAmount"/>
+	<!-- 本次退款请求，对应的退款金额 -->
+	<column oldName="refund_amount" newName="refundAmount"/>
+</data>

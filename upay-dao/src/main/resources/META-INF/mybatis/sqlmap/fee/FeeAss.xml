@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeAssPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeAssPo">
+		<id column="ID" property="id" />
+		<result column="ASS_CODE" property="assCode" />
+		<result column="ASS_NAME" property="assName" />
+		<result column="ASS_ID" property="assId" />
+		<result column="ASS_KIND" property="assKind" />
+		<result column="ASS_TYPE" property="assType" />
+		<result column="ASS_RATE" property="assRate" />
+		<result column="FIX_AMT" property="fixAmt" />
+		<result column="MEMO_AMT" property="memoAmt" />
+		<result column="MEMO_COUNT" property="memoCount" />
+		<result column="LAST_UPD_USER_ID" property="lastUpdUserId" />
+		<result column="LAST_UPD_TXN_ID" property="lastUpdTxnId" />
+		<result column="LAST_UPD_TS" property="lastUpdTs" />
+		<result column="MEMO" property="memo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_ASS
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ASS_CODE,
+		ASS_NAME,
+		ASS_ID,
+		ASS_KIND,
+		ASS_TYPE,
+		ASS_RATE,
+		FIX_AMT,
+		MEMO_AMT,
+		MEMO_COUNT,
+		LAST_UPD_USER_ID,
+		LAST_UPD_TXN_ID,
+		LAST_UPD_TS,
+		MEMO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="assCode != null">
+			ASS_CODE= #{assCode}
+	           AND 
+		</if>
+		<if test="assName != null">
+			ASS_NAME= #{assName}
+	           AND 
+		</if>
+		<if test="assId != null">
+			ASS_ID= #{assId}
+	           AND 
+		</if>
+		<if test="assKind != null">
+			ASS_KIND= #{assKind}
+	           AND 
+		</if>
+		<if test="assType != null">
+			ASS_TYPE= #{assType}
+	           AND 
+		</if>
+		<if test="assRate != null">
+			ASS_RATE= #{assRate}
+	           AND 
+		</if>
+		<if test="fixAmt != null">
+			FIX_AMT= #{fixAmt}
+	           AND 
+		</if>
+		<if test="memoAmt != null">
+			MEMO_AMT= #{memoAmt}
+	           AND 
+		</if>
+		<if test="memoCount != null">
+			MEMO_COUNT= #{memoCount}
+	           AND 
+		</if>
+		<if test="lastUpdUserId != null">
+			LAST_UPD_USER_ID= #{lastUpdUserId}
+	           AND 
+		</if>
+		<if test="lastUpdTxnId != null">
+			LAST_UPD_TXN_ID= #{lastUpdTxnId}
+	           AND 
+		</if>
+		<if test="lastUpdTs != null">
+			LAST_UPD_TS= #{lastUpdTs}
+	           AND 
+		</if>
+		<if test="memo != null">
+			MEMO= #{memo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="assCode != null">
+		ASS_CODE,
+	</if>
+	<if test="assName != null">
+		ASS_NAME,
+	</if>
+	<if test="assId != null">
+		ASS_ID,
+	</if>
+	<if test="assKind != null">
+		ASS_KIND,
+	</if>
+	<if test="assType != null">
+		ASS_TYPE,
+	</if>
+	<if test="assRate != null">
+		ASS_RATE,
+	</if>
+	<if test="fixAmt != null">
+		FIX_AMT,
+	</if>
+	<if test="memoAmt != null">
+		MEMO_AMT,
+	</if>
+	<if test="memoCount != null">
+		MEMO_COUNT,
+	</if>
+	<if test="lastUpdUserId != null">
+		LAST_UPD_USER_ID,
+	</if>
+	<if test="lastUpdTxnId != null">
+		LAST_UPD_TXN_ID,
+	</if>
+	<if test="lastUpdTs != null">
+		LAST_UPD_TS,
+	</if>
+	<if test="memo != null">
+		MEMO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="assCode != null">
+		#{assCode},
+	</if>
+	<if test="assName != null">
+		#{assName},
+	</if>
+	<if test="assId != null">
+		#{assId},
+	</if>
+	<if test="assKind != null">
+		#{assKind},
+	</if>
+	<if test="assType != null">
+		#{assType},
+	</if>
+	<if test="assRate != null">
+		#{assRate},
+	</if>
+	<if test="fixAmt != null">
+		#{fixAmt},
+	</if>
+	<if test="memoAmt != null">
+		#{memoAmt},
+	</if>
+	<if test="memoCount != null">
+		#{memoCount},
+	</if>
+	<if test="lastUpdUserId != null">
+		#{lastUpdUserId},
+	</if>
+	<if test="lastUpdTxnId != null">
+		#{lastUpdTxnId},
+	</if>
+	<if test="lastUpdTs != null">
+		#{lastUpdTs},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="assCode != null">
+		ASS_CODE=#{assCode},
+	</if>
+	<if test="assName != null">
+		ASS_NAME=#{assName},
+	</if>
+	<if test="assId != null">
+		ASS_ID=#{assId},
+	</if>
+	<if test="assKind != null">
+		ASS_KIND=#{assKind},
+	</if>
+	<if test="assType != null">
+		ASS_TYPE=#{assType},
+	</if>
+	<if test="assRate != null">
+		ASS_RATE=#{assRate},
+	</if>
+	<if test="fixAmt != null">
+		FIX_AMT=#{fixAmt},
+	</if>
+	<if test="memoAmt != null">
+		MEMO_AMT=#{memoAmt},
+	</if>
+	<if test="memoCount != null">
+		MEMO_COUNT=#{memoCount},
+	</if>
+	<if test="lastUpdUserId != null">
+		LAST_UPD_USER_ID=#{lastUpdUserId},
+	</if>
+	<if test="lastUpdTxnId != null">
+		LAST_UPD_TXN_ID=#{lastUpdTxnId},
+	</if>
+	<if test="lastUpdTs != null">
+		LAST_UPD_TS=#{lastUpdTs},
+	</if>
+	<if test="memo != null">
+		MEMO=#{memo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.assCode != null">
+                    ASS_CODE=#{s.assCode},
+			</if>
+			<if test="s.assName != null">
+                    ASS_NAME=#{s.assName},
+			</if>
+			<if test="s.assId != null">
+                    ASS_ID=#{s.assId},
+			</if>
+			<if test="s.assKind != null">
+                    ASS_KIND=#{s.assKind},
+			</if>
+			<if test="s.assType != null">
+                    ASS_TYPE=#{s.assType},
+			</if>
+			<if test="s.assRate != null">
+                    ASS_RATE=#{s.assRate},
+			</if>
+			<if test="s.fixAmt != null">
+                    FIX_AMT=#{s.fixAmt},
+			</if>
+			<if test="s.memoAmt != null">
+                    MEMO_AMT=#{s.memoAmt},
+			</if>
+			<if test="s.memoCount != null">
+                    MEMO_COUNT=#{s.memoCount},
+			</if>
+			<if test="s.lastUpdUserId != null">
+                    LAST_UPD_USER_ID=#{s.lastUpdUserId},
+			</if>
+			<if test="s.lastUpdTxnId != null">
+                    LAST_UPD_TXN_ID=#{s.lastUpdTxnId},
+			</if>
+			<if test="s.lastUpdTs != null">
+                    LAST_UPD_TS=#{s.lastUpdTs},
+			</if>
+			<if test="s.memo != null">
+                    MEMO=#{s.memo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.assCode != null">
+                    ASS_CODE=#{w.assCode}
+                   AND 
+ 			</if>
+			<if test="w.assName != null">
+                    ASS_NAME=#{w.assName}
+                   AND 
+ 			</if>
+			<if test="w.assId != null">
+                    ASS_ID=#{w.assId}
+                   AND 
+ 			</if>
+			<if test="w.assKind != null">
+                    ASS_KIND=#{w.assKind}
+                   AND 
+ 			</if>
+			<if test="w.assType != null">
+                    ASS_TYPE=#{w.assType}
+                   AND 
+ 			</if>
+			<if test="w.assRate != null">
+                    ASS_RATE=#{w.assRate}
+                   AND 
+ 			</if>
+			<if test="w.fixAmt != null">
+                    FIX_AMT=#{w.fixAmt}
+                   AND 
+ 			</if>
+			<if test="w.memoAmt != null">
+                    MEMO_AMT=#{w.memoAmt}
+                   AND 
+ 			</if>
+			<if test="w.memoCount != null">
+                    MEMO_COUNT=#{w.memoCount}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdUserId != null">
+                    LAST_UPD_USER_ID=#{w.lastUpdUserId}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdTxnId != null">
+                    LAST_UPD_TXN_ID=#{w.lastUpdTxnId}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdTs != null">
+                    LAST_UPD_TS=#{w.lastUpdTs}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    MEMO=#{w.memo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

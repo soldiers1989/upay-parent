@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrRegInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.usr.UsrRegInfoPo">
+		<id column="ID" property="id" />
+		<result column="USER_ID" property="userId" />
+		<result column="MOBILE" property="mobile" />
+		<result column="USER_NAME" property="userName" />
+		<result column="USER_NICK_NAME" property="userNickName" />
+		<result column="HEAD_PIC" property="headPic" />
+		<result column="LOGIN_PWD" property="loginPwd" />
+		<result column="LAST_LOGPWD_MODIFYTIME" property="lastLogpwdModifytime" />
+		<result column="TRADE_PWD" property="tradePwd" />
+		<result column="LAST_TRADEPWD_MODIFYTIME" property="lastTradepwdModifytime" />
+		<result column="GASTURE_PWD" property="gasturePwd" />
+		<result column="LAST_GASTUREPWD_MODIFYTIME" property="lastGasturepwdModifytime" />
+		<result column="REG_TIME" property="regTime" />
+		<result column="REG_CHNL_ID" property="regChnlId" />
+		<result column="USER_CERT_LEVEL" property="userCertLevel" />
+		<result column="USER_VALUE_LEVEL" property="userValueLevel" />
+		<result column="BRANCH_ID" property="branchId" />
+		<result column="USER_STAT" property="userStat" />
+		<result column="USER_LOCK_FLAG" property="userLockFlag" />
+		<result column="BLACKLIST_FLAG" property="blacklistFlag" />
+		<result column="BLACKLIST_TYPE" property="blacklistType" />
+		<result column="SECURITY_TYPE" property="securityType" />
+		<result column="ACTIVE_TIME" property="activeTime" />
+		<result column="ACTIVE_CHNL_ID" property="activeChnlId" />
+		<result column="CLOSE_TIME" property="closeTime" />
+		<result column="CLOSE_CHNL_ID" property="closeChnlId" />
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+		<result column="REG_TYPE" property="regType" />
+		<result column="COM_EMAIL" property="comEmail" />
+		<result column="MER_LEVEL" property="merLevel" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USR_REG_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		USER_ID,
+		MOBILE,
+		USER_NAME,
+		USER_NICK_NAME,
+		HEAD_PIC,
+		LOGIN_PWD,
+		LAST_LOGPWD_MODIFYTIME,
+		TRADE_PWD,
+		LAST_TRADEPWD_MODIFYTIME,
+		GASTURE_PWD,
+		LAST_GASTUREPWD_MODIFYTIME,
+		REG_TIME,
+		REG_CHNL_ID,
+		USER_CERT_LEVEL,
+		USER_VALUE_LEVEL,
+		BRANCH_ID,
+		USER_STAT,
+		USER_LOCK_FLAG,
+		BLACKLIST_FLAG,
+		BLACKLIST_TYPE,
+		SECURITY_TYPE,
+		ACTIVE_TIME,
+		ACTIVE_CHNL_ID,
+		CLOSE_TIME,
+		CLOSE_CHNL_ID,
+		LAST_LOGIN_TIME,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		REG_TYPE,
+		COM_EMAIL,
+		MER_LEVEL
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="mobile != null">
+			MOBILE= #{mobile}
+	           AND 
+		</if>
+		<if test="userName != null">
+			USER_NAME= #{userName}
+	           AND 
+		</if>
+		<if test="userNickName != null">
+			USER_NICK_NAME= #{userNickName}
+	           AND 
+		</if>
+		<if test="headPic != null">
+			HEAD_PIC= #{headPic}
+	           AND 
+		</if>
+		<if test="loginPwd != null">
+			LOGIN_PWD= #{loginPwd}
+	           AND 
+		</if>
+		<if test="lastLogpwdModifytime != null">
+			LAST_LOGPWD_MODIFYTIME= #{lastLogpwdModifytime}
+	           AND 
+		</if>
+		<if test="tradePwd != null">
+			TRADE_PWD= #{tradePwd}
+	           AND 
+		</if>
+		<if test="lastTradepwdModifytime != null">
+			LAST_TRADEPWD_MODIFYTIME= #{lastTradepwdModifytime}
+	           AND 
+		</if>
+		<if test="gasturePwd != null">
+			GASTURE_PWD= #{gasturePwd}
+	           AND 
+		</if>
+		<if test="lastGasturepwdModifytime != null">
+			LAST_GASTUREPWD_MODIFYTIME= #{lastGasturepwdModifytime}
+	           AND 
+		</if>
+		<if test="regTime != null">
+			REG_TIME= #{regTime}
+	           AND 
+		</if>
+		<if test="regChnlId != null">
+			REG_CHNL_ID= #{regChnlId}
+	           AND 
+		</if>
+		<if test="userCertLevel != null">
+			USER_CERT_LEVEL= #{userCertLevel}
+	           AND 
+		</if>
+		<if test="userValueLevel != null">
+			USER_VALUE_LEVEL= #{userValueLevel}
+	           AND 
+		</if>
+		<if test="branchId != null">
+			BRANCH_ID= #{branchId}
+	           AND 
+		</if>
+		<if test="userStat != null">
+			USER_STAT= #{userStat}
+	           AND 
+		</if>
+		<if test="userLockFlag != null">
+			USER_LOCK_FLAG= #{userLockFlag}
+	           AND 
+		</if>
+		<if test="blacklistFlag != null">
+			BLACKLIST_FLAG= #{blacklistFlag}
+	           AND 
+		</if>
+		<if test="blacklistType != null">
+			BLACKLIST_TYPE= #{blacklistType}
+	           AND 
+		</if>
+		<if test="securityType != null">
+			SECURITY_TYPE= #{securityType}
+	           AND 
+		</if>
+		<if test="activeTime != null">
+			ACTIVE_TIME= #{activeTime}
+	           AND 
+		</if>
+		<if test="activeChnlId != null">
+			ACTIVE_CHNL_ID= #{activeChnlId}
+	           AND 
+		</if>
+		<if test="closeTime != null">
+			CLOSE_TIME= #{closeTime}
+	           AND 
+		</if>
+		<if test="closeChnlId != null">
+			CLOSE_CHNL_ID= #{closeChnlId}
+	           AND 
+		</if>
+		<if test="lastLoginTime != null">
+			LAST_LOGIN_TIME= #{lastLoginTime}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+	           AND 
+		</if>
+		<if test="regType != null">
+			REG_TYPE= #{regType}
+	           AND 
+		</if>
+		<if test="comEmail != null">
+			COM_EMAIL= #{comEmail}
+	           AND 
+		</if>
+		<if test="merLevel != null">
+			MER_LEVEL= #{merLevel}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="mobile != null">
+		MOBILE,
+	</if>
+	<if test="userName != null">
+		USER_NAME,
+	</if>
+	<if test="userNickName != null">
+		USER_NICK_NAME,
+	</if>
+	<if test="headPic != null">
+		HEAD_PIC,
+	</if>
+	<if test="loginPwd != null">
+		LOGIN_PWD,
+	</if>
+	<if test="lastLogpwdModifytime != null">
+		LAST_LOGPWD_MODIFYTIME,
+	</if>
+	<if test="tradePwd != null">
+		TRADE_PWD,
+	</if>
+	<if test="lastTradepwdModifytime != null">
+		LAST_TRADEPWD_MODIFYTIME,
+	</if>
+	<if test="gasturePwd != null">
+		GASTURE_PWD,
+	</if>
+	<if test="lastGasturepwdModifytime != null">
+		LAST_GASTUREPWD_MODIFYTIME,
+	</if>
+	<if test="regTime != null">
+		REG_TIME,
+	</if>
+	<if test="regChnlId != null">
+		REG_CHNL_ID,
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL,
+	</if>
+	<if test="userValueLevel != null">
+		USER_VALUE_LEVEL,
+	</if>
+	<if test="branchId != null">
+		BRANCH_ID,
+	</if>
+	<if test="userStat != null">
+		USER_STAT,
+	</if>
+	<if test="userLockFlag != null">
+		USER_LOCK_FLAG,
+	</if>
+	<if test="blacklistFlag != null">
+		BLACKLIST_FLAG,
+	</if>
+	<if test="blacklistType != null">
+		BLACKLIST_TYPE,
+	</if>
+	<if test="securityType != null">
+		SECURITY_TYPE,
+	</if>
+	<if test="activeTime != null">
+		ACTIVE_TIME,
+	</if>
+	<if test="activeChnlId != null">
+		ACTIVE_CHNL_ID,
+	</if>
+	<if test="closeTime != null">
+		CLOSE_TIME,
+	</if>
+	<if test="closeChnlId != null">
+		CLOSE_CHNL_ID,
+	</if>
+	<if test="lastLoginTime != null">
+		LAST_LOGIN_TIME,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+	<if test="regType != null">
+		REG_TYPE,
+	</if>
+	<if test="comEmail != null">
+		COM_EMAIL,
+	</if>
+	<if test="merLevel != null">
+		MER_LEVEL,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="mobile != null">
+		#{mobile},
+	</if>
+	<if test="userName != null">
+		#{userName},
+	</if>
+	<if test="userNickName != null">
+		#{userNickName},
+	</if>
+	<if test="headPic != null">
+		#{headPic},
+	</if>
+	<if test="loginPwd != null">
+		#{loginPwd},
+	</if>
+	<if test="lastLogpwdModifytime != null">
+		#{lastLogpwdModifytime},
+	</if>
+	<if test="tradePwd != null">
+		#{tradePwd},
+	</if>
+	<if test="lastTradepwdModifytime != null">
+		#{lastTradepwdModifytime},
+	</if>
+	<if test="gasturePwd != null">
+		#{gasturePwd},
+	</if>
+	<if test="lastGasturepwdModifytime != null">
+		#{lastGasturepwdModifytime},
+	</if>
+	<if test="regTime != null">
+		#{regTime},
+	</if>
+	<if test="regChnlId != null">
+		#{regChnlId},
+	</if>
+	<if test="userCertLevel != null">
+		#{userCertLevel},
+	</if>
+	<if test="userValueLevel != null">
+		#{userValueLevel},
+	</if>
+	<if test="branchId != null">
+		#{branchId},
+	</if>
+	<if test="userStat != null">
+		#{userStat},
+	</if>
+	<if test="userLockFlag != null">
+		#{userLockFlag},
+	</if>
+	<if test="blacklistFlag != null">
+		#{blacklistFlag},
+	</if>
+	<if test="blacklistType != null">
+		#{blacklistType},
+	</if>
+	<if test="securityType != null">
+		#{securityType},
+	</if>
+	<if test="activeTime != null">
+		#{activeTime},
+	</if>
+	<if test="activeChnlId != null">
+		#{activeChnlId},
+	</if>
+	<if test="closeTime != null">
+		#{closeTime},
+	</if>
+	<if test="closeChnlId != null">
+		#{closeChnlId},
+	</if>
+	<if test="lastLoginTime != null">
+		#{lastLoginTime},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+	<if test="regType != null">
+		#{regType},
+	</if>
+	<if test="comEmail != null">
+		#{comEmail},
+	</if>
+	<if test="merLevel != null">
+		#{merLevel},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="mobile != null">
+		MOBILE=#{mobile},
+	</if>
+	<if test="userName != null">
+		USER_NAME=#{userName},
+	</if>
+	<if test="userNickName != null">
+		USER_NICK_NAME=#{userNickName},
+	</if>
+	<if test="headPic != null">
+		HEAD_PIC=#{headPic},
+	</if>
+	<if test="loginPwd != null">
+		LOGIN_PWD=#{loginPwd},
+	</if>
+	<if test="lastLogpwdModifytime != null">
+		LAST_LOGPWD_MODIFYTIME=#{lastLogpwdModifytime},
+	</if>
+	<if test="tradePwd != null">
+		TRADE_PWD=#{tradePwd},
+	</if>
+	<if test="lastTradepwdModifytime != null">
+		LAST_TRADEPWD_MODIFYTIME=#{lastTradepwdModifytime},
+	</if>
+	<if test="gasturePwd != null">
+		GASTURE_PWD=#{gasturePwd},
+	</if>
+	<if test="lastGasturepwdModifytime != null">
+		LAST_GASTUREPWD_MODIFYTIME=#{lastGasturepwdModifytime},
+	</if>
+	<if test="regTime != null">
+		REG_TIME=#{regTime},
+	</if>
+	<if test="regChnlId != null">
+		REG_CHNL_ID=#{regChnlId},
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL=#{userCertLevel},
+	</if>
+	<if test="userValueLevel != null">
+		USER_VALUE_LEVEL=#{userValueLevel},
+	</if>
+	<if test="branchId != null">
+		BRANCH_ID=#{branchId},
+	</if>
+	<if test="userStat != null">
+		USER_STAT=#{userStat},
+	</if>
+	<if test="userLockFlag != null">
+		USER_LOCK_FLAG=#{userLockFlag},
+	</if>
+	<if test="blacklistFlag != null">
+		BLACKLIST_FLAG=#{blacklistFlag},
+	</if>
+	<if test="blacklistType != null">
+		BLACKLIST_TYPE=#{blacklistType},
+	</if>
+	<if test="securityType != null">
+		SECURITY_TYPE=#{securityType},
+	</if>
+	<if test="activeTime != null">
+		ACTIVE_TIME=#{activeTime},
+	</if>
+	<if test="activeChnlId != null">
+		ACTIVE_CHNL_ID=#{activeChnlId},
+	</if>
+	<if test="closeTime != null">
+		CLOSE_TIME=#{closeTime},
+	</if>
+	<if test="closeChnlId != null">
+		CLOSE_CHNL_ID=#{closeChnlId},
+	</if>
+	<if test="lastLoginTime != null">
+		LAST_LOGIN_TIME=#{lastLoginTime},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+	<if test="regType != null">
+		REG_TYPE=#{regType},
+	</if>
+	<if test="comEmail != null">
+		COM_EMAIL=#{comEmail},
+	</if>
+	<if test="merLevel != null">
+		MER_LEVEL=#{merLevel},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.mobile != null">
+                    MOBILE=#{s.mobile},
+			</if>
+			<if test="s.userName != null">
+                    USER_NAME=#{s.userName},
+			</if>
+			<if test="s.userNickName != null">
+                    USER_NICK_NAME=#{s.userNickName},
+			</if>
+			<if test="s.headPic != null">
+                    HEAD_PIC=#{s.headPic},
+			</if>
+			<if test="s.loginPwd != null">
+                    LOGIN_PWD=#{s.loginPwd},
+			</if>
+			<if test="s.lastLogpwdModifytime != null">
+                    LAST_LOGPWD_MODIFYTIME=#{s.lastLogpwdModifytime},
+			</if>
+			<if test="s.tradePwd != null">
+                    TRADE_PWD=#{s.tradePwd},
+			</if>
+			<if test="s.lastTradepwdModifytime != null">
+                    LAST_TRADEPWD_MODIFYTIME=#{s.lastTradepwdModifytime},
+			</if>
+			<if test="s.gasturePwd != null">
+                    GASTURE_PWD=#{s.gasturePwd},
+			</if>
+			<if test="s.lastGasturepwdModifytime != null">
+                    LAST_GASTUREPWD_MODIFYTIME=#{s.lastGasturepwdModifytime},
+			</if>
+			<if test="s.regTime != null">
+                    REG_TIME=#{s.regTime},
+			</if>
+			<if test="s.regChnlId != null">
+                    REG_CHNL_ID=#{s.regChnlId},
+			</if>
+			<if test="s.userCertLevel != null">
+                    USER_CERT_LEVEL=#{s.userCertLevel},
+			</if>
+			<if test="s.userValueLevel != null">
+                    USER_VALUE_LEVEL=#{s.userValueLevel},
+			</if>
+			<if test="s.branchId != null">
+                    BRANCH_ID=#{s.branchId},
+			</if>
+			<if test="s.userStat != null">
+                    USER_STAT=#{s.userStat},
+			</if>
+			<if test="s.userLockFlag != null">
+                    USER_LOCK_FLAG=#{s.userLockFlag},
+			</if>
+			<if test="s.blacklistFlag != null">
+                    BLACKLIST_FLAG=#{s.blacklistFlag},
+			</if>
+			<if test="s.blacklistType != null">
+                    BLACKLIST_TYPE=#{s.blacklistType},
+			</if>
+			<if test="s.securityType != null">
+                    SECURITY_TYPE=#{s.securityType},
+			</if>
+			<if test="s.activeTime != null">
+                    ACTIVE_TIME=#{s.activeTime},
+			</if>
+			<if test="s.activeChnlId != null">
+                    ACTIVE_CHNL_ID=#{s.activeChnlId},
+			</if>
+			<if test="s.closeTime != null">
+                    CLOSE_TIME=#{s.closeTime},
+			</if>
+			<if test="s.closeChnlId != null">
+                    CLOSE_CHNL_ID=#{s.closeChnlId},
+			</if>
+			<if test="s.lastLoginTime != null">
+                    LAST_LOGIN_TIME=#{s.lastLoginTime},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3},
+			</if>
+			<if test="s.regType != null">
+                    REG_TYPE=#{s.regType},
+			</if>
+			<if test="s.comEmail != null">
+                    COM_EMAIL=#{s.comEmail},
+			</if>
+			<if test="s.merLevel != null">
+                    MER_LEVEL=#{s.merLevel}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.mobile != null">
+                    MOBILE=#{w.mobile}
+                   AND 
+ 			</if>
+			<if test="w.userName != null">
+                    USER_NAME=#{w.userName}
+                   AND 
+ 			</if>
+			<if test="w.userNickName != null">
+                    USER_NICK_NAME=#{w.userNickName}
+                   AND 
+ 			</if>
+			<if test="w.headPic != null">
+                    HEAD_PIC=#{w.headPic}
+                   AND 
+ 			</if>
+			<if test="w.loginPwd != null">
+                    LOGIN_PWD=#{w.loginPwd}
+                   AND 
+ 			</if>
+			<if test="w.lastLogpwdModifytime != null">
+                    LAST_LOGPWD_MODIFYTIME=#{w.lastLogpwdModifytime}
+                   AND 
+ 			</if>
+			<if test="w.tradePwd != null">
+                    TRADE_PWD=#{w.tradePwd}
+                   AND 
+ 			</if>
+			<if test="w.lastTradepwdModifytime != null">
+                    LAST_TRADEPWD_MODIFYTIME=#{w.lastTradepwdModifytime}
+                   AND 
+ 			</if>
+			<if test="w.gasturePwd != null">
+                    GASTURE_PWD=#{w.gasturePwd}
+                   AND 
+ 			</if>
+			<if test="w.lastGasturepwdModifytime != null">
+                    LAST_GASTUREPWD_MODIFYTIME=#{w.lastGasturepwdModifytime}
+                   AND 
+ 			</if>
+			<if test="w.regTime != null">
+                    REG_TIME=#{w.regTime}
+                   AND 
+ 			</if>
+			<if test="w.regChnlId != null">
+                    REG_CHNL_ID=#{w.regChnlId}
+                   AND 
+ 			</if>
+			<if test="w.userCertLevel != null">
+                    USER_CERT_LEVEL=#{w.userCertLevel}
+                   AND 
+ 			</if>
+			<if test="w.userValueLevel != null">
+                    USER_VALUE_LEVEL=#{w.userValueLevel}
+                   AND 
+ 			</if>
+			<if test="w.branchId != null">
+                    BRANCH_ID=#{w.branchId}
+                   AND 
+ 			</if>
+			<if test="w.userStat != null">
+                    USER_STAT=#{w.userStat}
+                   AND 
+ 			</if>
+			<if test="w.userLockFlag != null">
+                    USER_LOCK_FLAG=#{w.userLockFlag}
+                   AND 
+ 			</if>
+			<if test="w.blacklistFlag != null">
+                    BLACKLIST_FLAG=#{w.blacklistFlag}
+                   AND 
+ 			</if>
+			<if test="w.blacklistType != null">
+                    BLACKLIST_TYPE=#{w.blacklistType}
+                   AND 
+ 			</if>
+			<if test="w.securityType != null">
+                    SECURITY_TYPE=#{w.securityType}
+                   AND 
+ 			</if>
+			<if test="w.activeTime != null">
+                    ACTIVE_TIME=#{w.activeTime}
+                   AND 
+ 			</if>
+			<if test="w.activeChnlId != null">
+                    ACTIVE_CHNL_ID=#{w.activeChnlId}
+                   AND 
+ 			</if>
+			<if test="w.closeTime != null">
+                    CLOSE_TIME=#{w.closeTime}
+                   AND 
+ 			</if>
+			<if test="w.closeChnlId != null">
+                    CLOSE_CHNL_ID=#{w.closeChnlId}
+                   AND 
+ 			</if>
+			<if test="w.lastLoginTime != null">
+                    LAST_LOGIN_TIME=#{w.lastLoginTime}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+                   AND 
+ 			</if>
+			<if test="w.regType != null">
+                    REG_TYPE=#{w.regType}
+                   AND 
+ 			</if>
+			<if test="w.comEmail != null">
+                    COM_EMAIL=#{w.comEmail}
+                   AND 
+ 			</if>
+			<if test="w.merLevel != null">
+                    MER_LEVEL=#{w.merLevel}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

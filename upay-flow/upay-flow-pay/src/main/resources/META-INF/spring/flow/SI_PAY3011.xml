@@ -1,0 +1,184 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+       xmlns:data="http://www.pactera.com/schema/dipper/dict"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 银联无跳转支付授权/银联代收授权-->
+    <dipper:flow service-id="SI_PAY3011">
+        <dipper:try>
+            <dipper:route>
+                <dipper:invoke>
+                    <!--无跳转支付-->
+                    <dipper:if expression="target.bodys.applyType == '1' ">
+                        <!-- 查询是否开通过权限 -->
+                        <dipper:service ref="CollectionOpenTokenQueryService" param-ref="initAcpMerFlay"/>
+                    </dipper:if>
+                </dipper:invoke>
+                <dipper:invoke>
+                    <!--银联代收-->
+                    <dipper:if expression="target.bodys.applyType == '2' ">
+                        <!-- 查询是否开通过权限 -->
+                        <dipper:service ref="CollectionOpenQueryService" param-ref="initAcpMerFlay"/>
+                    </dipper:if>
+                </dipper:invoke>
+                <dipper:invoke>
+                    <!--四要素验证-->
+                    <dipper:if expression="target.bodys.applyType == '3' ">
+                        <!-- 查询是否开通过权限 -->
+                        <dipper:service ref="FactorCheckService"/>
+                    </dipper:if>
+                </dipper:invoke>
+            </dipper:route>
+            <!-- 是否存在开通权限 -->
+            <dipper:route>
+                <!--申请签约（无跳转支付）-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.existRecord == 'false'  &amp;&amp; target.bodys.applyFlag == '1'  &amp;&amp; target.bodys.applyType == '1'  ">
+                        <!-- 通过银联getway授权 -->
+                        <dipper:service ref="unionPayTokenOpenClientDipperHandler"/>
+                        <!-- 通过银联开通查询接口查询token -->
+                        <dipper:service ref="unionPayTokenQueryClientDipperHandler"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+
+                <!--申请授权（银联代收）-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.existRecord == 'false'  &amp;&amp; target.bodys.applyFlag == '1'  &amp;&amp; target.bodys.applyType == '2'  ">
+                        <!-- 通过银联getway授权 -->
+                        <dipper:service ref="unionPayReceiveAuthorizeClientDipperHandler"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+                <!--四要素验证-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.applyFlag == '1'  &amp;&amp; target.bodys.applyType == '3'  ">
+                        <!-- 通过银联getway授权 -->
+                        <dipper:service ref="unionPayTokenOpenClientDipperHandler"/>
+                        <!-- 通过银联开通查询接口查询token -->
+                        <dipper:service ref="unionPayTokenQueryClientDipperHandler"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+                <!--撤销签约 （无跳转支付）-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.existRecord == 'true'  &amp;&amp; target.bodys.applyFlag == '2' &amp;&amp; target.bodys.applyType == '1' ">
+                        <!-- 通过银联getway  删除授权 -->
+                        <dipper:service ref="unionPayTokenDeleteClientDipperHandler"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+
+                <!--撤销授权 （银联代收）-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.existRecord == 'true'  &amp;&amp; target.bodys.applyFlag == '2' &amp;&amp; target.bodys.applyType == '2' ">
+                        <!-- 通过银联getway  删除授权 -->
+                        <dipper:service ref="unionPayReceiveAuthorizeUndoClientDipperHandler"/>
+                    </dipper:if>
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route transaction="lazy">
+                <!--申请签约 （（无跳转支付））-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.existRecord == 'false' &amp;&amp; target.bodys.respCode =='00'  &amp;&amp; target.bodys.applyFlag == '1' &amp;&amp; target.bodys.applyType == '1'  ">
+                        <!-- 根据查出的token插入代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenTokenInsertService"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+                <!--申请授权 （（银联代收））-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.existRecord == 'false' &amp;&amp; target.bodys.respCode =='00'  &amp;&amp; target.bodys.applyFlag == '1' &amp;&amp; target.bodys.applyType == '2'  ">
+                        <!-- 根据查出的token插入代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenInsertService"/>
+                    </dipper:if>
+                </dipper:invoke>
+                <!--四要素验证-->
+                <dipper:invoke>
+                    <dipper:if
+                            expression="target.bodys.respCode =='00'  &amp;&amp; target.bodys.applyFlag == '1' &amp;&amp; target.bodys.applyType == '3'  ">
+                        <!-- 根据查出的token插入代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenTokenInsertService"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+
+
+
+                <!--撤销签约 （无跳转支付）-->
+                <dipper:invoke>
+                    <!--
+                    1.删除token 未失效的情况  银联删除成功   00
+                    2.删除token token失效的情况   银联返回  token不存在 或者token失效   89
+                    -->
+                    <dipper:if
+                            expression=" target.bodys.existRecord == 'true'  &amp;&amp; target.bodys.applyFlag == '2' &amp;&amp; target.bodys.applyType == '1'
+                           &amp;&amp; ( target.bodys.respCode =='00' || target.bodys.respCode =='89'  ) ">
+                        <!-- 根据查出的token  删除 代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenTokenDeleteService"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+
+                <!--撤销签约 （银联代收）-->
+                <dipper:invoke>
+                    <!--
+                    1.删除token 未失效的情况  银联删除成功   00
+                    -->
+                    <dipper:if
+                            expression=" target.bodys.existRecord == 'true'  &amp;&amp; target.bodys.applyFlag == '2' &amp;&amp; target.bodys.applyType == '2'
+                           &amp;&amp; ( target.bodys.respCode =='00' || target.bodys.respCode =='40' )  ">
+                        <!-- 根据查出的token  删除 代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenDeleteService"/>
+                    </dipper:if>
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException>
+            <!-- 状态设置异常情况 -->
+            <dipper:route>
+                <!--申请 删除  token  时    token过期的情况  报异常的情况 （无跳转支付）-->
+                <dipper:invoke>
+                    <dipper:if expression="  target.bodys.?existRecord !=null &amp;&amp; target.bodys.existRecord == 'true'&amp;&amp; target.bodys.applyFlag == '2' &amp;&amp; target.bodys.applyType == '1'  ">
+                        <!-- 根据查出的token  删除 代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenTokenDeleteService"/>
+                    </dipper:if>
+                </dipper:invoke>
+                <!--无跳转支付  绑定关系检查失败的情况  数据库有授权 但是 银联无授权 -->
+                <dipper:invoke>
+                    <dipper:if expression="  target.bodys.?existRecord !=null &amp;&amp; target.bodys.existRecord == 'true'&amp;&amp; target.bodys.applyFlag == '2' &amp;&amp; target.bodys.applyType == '2'  ">
+                        <!-- 根据查出的token  删除 代收权限开通表CollectionOpenToken -->
+                        <dipper:service ref="CollectionOpenDeleteService"/>
+                    </dipper:if>
+                </dipper:invoke>
+
+
+                <dipper:invoke>
+                    <dipper:service ref="PaySetStateServiceImpl" param-ref="initPayStateInitFail"/>
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:catchException>
+        <dipper:finally>
+            <dipper:route>
+                <dipper:invoke><!-- esb参数 -->
+                    <dipper:service ref="EsbPublicParmService"/>
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:finally>
+    </dipper:flow>
+
+
+</beans>    

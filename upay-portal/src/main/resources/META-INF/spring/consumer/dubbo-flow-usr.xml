@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  
+    
+     <!-- 用户注册 -->
+    <dubbo:reference id="SI_USR0001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0001" check = "false"/>
+     <!-- 用户是否设置支付密码查询 -->
+    <dubbo:reference id="SI_USR0002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0002" check = "false"/>
+     <!-- 用户是否设置支付密码查询 -->
+    <dubbo:reference id="SI_USR0003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0003" check = "false"/>
+     <!-- 用户密码修改 -->
+    <dubbo:reference id="SI_USR0004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0004" check = "false"/>
+    <!-- 用户登陆密码重置 -->
+    <dubbo:reference id="SI_USR0005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0005" check = "false"/>
+      <!-- 用户登陆 -->
+    <dubbo:reference id="SI_USR0006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0006" check = "false"/>
+    <!-- 个人信息查询 -->
+    <dubbo:reference id="SI_USR0007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0007" check = "false"/>
+    <!-- 个人信息修改 -->
+    <dubbo:reference id="SI_USR0008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0008" check = "false"/>
+    <!-- 用户支付密码修改 -->
+    <dubbo:reference id="SI_USR0009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0009" check = "false"/>
+	<!-- 用户支付密码重置 -->
+    <dubbo:reference id="SI_USR0010" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0010" check = "false"/>
+   <!-- 用户注册标识检测 -->
+    <dubbo:reference id="SI_USR0012" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0012" check = "false"/>
+    <!--交易密码重置申请结果查询  -->
+    <dubbo:reference id="SI_USR0013" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0013" check = "false"/>
+    <!-- 用户身份信息验证 -->
+    <dubbo:reference id="SI_USR0014" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0014" check = "false"/>
+     <!-- 用户首次设置支付密码 -->
+    <dubbo:reference id="SI_USR0015" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0015" check = "false"/>
+    <!-- 用户支付密码修改校验(知道原支付密码) -->
+    <dubbo:reference id="SI_USR0016" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0016" check = "false"/>
+    <!-- 用户手机号变更(原手机可接收验证码) -->
+    <dubbo:reference id="SI_USR0018" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0018" check = "false"/>
+    <!-- 用户手机号变更(原手机不可接收验证码) -->
+    <dubbo:reference id="SI_USR0017" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0017" check = "false"/>
+    <!-- 绑卡修改支付密码校验 -->
+    <dubbo:reference id="SI_USR0019" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0019" check = "false"/>
+    <!-- 用户支付密码修改(绑卡) -->
+    <dubbo:reference id="SI_USR0020" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0020" check = "false"/>
+    <!-- 手机号重置结果查询 -->
+    <dubbo:reference id="SI_USR0021" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0021" check = "false"/>
+    <!-- 个人信息查询（忘记登录密码） -->
+    <dubbo:reference id="SI_USR0022" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0022" check = "false"/>
+    <!-- 企业注册，发送邮件 -->
+    <dubbo:reference id="SI_USR0023" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0023" check = "false"/>
+    <!-- 验证签名，有效期 -->
+    <dubbo:reference id="SI_USR0024" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0024" check = "false"/>
+    <!-- 企业登录密码重置，发送邮件 -->
+    <dubbo:reference id="SI_USR0025" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0025" check = "false"/>
+    <!-- 验证签名，有效期(重置登录密码) -->
+    <dubbo:reference id="SI_USR0026" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0026" check = "false"/>
+    <!-- 登陆标识检查 -->
+    <dubbo:reference id="SI_USR0027" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0027" check = "false"/>
+    <!--  -->
+    <dubbo:reference id="SI_USR0028" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0028" check = "false"/>
+    <!--根据用户邮箱或者手机号查询 用户信息-->
+    <dubbo:reference id="SI_USR0029" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0029" check = "false"/>
+	
+	<!--  -->
+    <dubbo:reference id="SI_USR0030" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0030" check = "false"/>
+    <!--根据用户邮箱或者手机号查询 用户信息-->
+    <dubbo:reference id="SI_USR0031" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0031" check = "false"/>
+</beans>

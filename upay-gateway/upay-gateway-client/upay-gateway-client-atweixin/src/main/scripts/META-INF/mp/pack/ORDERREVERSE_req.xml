@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+撤销订单
+ -->
+<data templateType="IN"
+    transCode="ORDERREVERSE"
+    >
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<column oldName="transCode" newName="transCode" type="" must="true" dateFormat="" />
+	<column oldName="appid" newName="appid" type="" must="true" dateFormat="" />
+	<column oldName="mch_id" newName="mch_id" type="" must="false" dateFormat="" />
+    <column oldName="sub_appid" newName="sub_appid" type="" must="true" dateFormat="" />
+    <column oldName="sub_mch_id" newName="sub_mch_id" type="" must="true" dateFormat="" />
+    <column oldName="channel_id" newName="channel_id" type="" must="true" dateFormat="" />
+    <column oldName="out_trade_no" newName="out_trade_no" type="" must="true" dateFormat="" />
+    <column oldName="nonce_str" newName="nonce_str" type="" must="true" dateFormat="" />
+    <column oldName="sign" newName="sign" type="" must="true" dateFormat="" />
+</data>

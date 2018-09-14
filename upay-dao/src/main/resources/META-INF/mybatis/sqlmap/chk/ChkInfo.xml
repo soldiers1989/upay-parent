@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.ChkInfoPo">
+		<id column="ID" property="id" />
+		<result column="CHK_DATE" property="chkDate" />
+		<result column="BENCHMARK_FLAG" property="benchmarkFlag" />
+		<result column="ORG_CODE" property="orgCode" />
+		<result column="CHK_TIME" property="chkTime" />
+		<result column="BATCH_NO" property="batchNo" />
+		<result column="CHK_ENTRY_CLS_CD" property="chkEntryClsCd" />
+		<result column="CHK_STAT" property="chkStat" />
+		<result column="FILE_TYPE" property="fileType" />
+		<result column="FILE_DOWN_STAT" property="fileDownStat" />
+		<result column="CHK_FILE" property="chkFile" />
+		<result column="RESERVE1" property="reserve1" />
+		<result column="RESERVE2" property="reserve2" />
+		<result column="ORG_TYPE" property="orgType" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHK_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CHK_DATE,
+		BENCHMARK_FLAG,
+		ORG_CODE,
+		CHK_TIME,
+		BATCH_NO,
+		CHK_ENTRY_CLS_CD,
+		CHK_STAT,
+		FILE_TYPE,
+		FILE_DOWN_STAT,
+		CHK_FILE,
+		RESERVE1,
+		RESERVE2,
+		ORG_TYPE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="chkDate != null">
+			CHK_DATE= #{chkDate}
+	           AND 
+		</if>
+		<if test="benchmarkFlag != null">
+			BENCHMARK_FLAG= #{benchmarkFlag}
+	           AND 
+		</if>
+		<if test="orgCode != null">
+			ORG_CODE= #{orgCode}
+	           AND 
+		</if>
+		<if test="chkTime != null">
+			CHK_TIME= #{chkTime}
+	           AND 
+		</if>
+		<if test="batchNo != null">
+			BATCH_NO= #{batchNo}
+	           AND 
+		</if>
+		<if test="chkEntryClsCd != null">
+			CHK_ENTRY_CLS_CD= #{chkEntryClsCd}
+	           AND 
+		</if>
+		<if test="chkStat != null">
+			CHK_STAT= #{chkStat}
+	           AND 
+		</if>
+		<if test="fileType != null">
+			FILE_TYPE= #{fileType}
+	           AND 
+		</if>
+		<if test="fileDownStat != null">
+			FILE_DOWN_STAT= #{fileDownStat}
+	           AND 
+		</if>
+		<if test="chkFile != null">
+			CHK_FILE= #{chkFile}
+	           AND 
+		</if>
+		<if test="reserve1 != null">
+			RESERVE1= #{reserve1}
+	           AND 
+		</if>
+		<if test="reserve2 != null">
+			RESERVE2= #{reserve2}
+	           AND 
+		</if>
+		<if test="orgType != null">
+			ORG_TYPE= #{orgType}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE,
+	</if>
+	<if test="benchmarkFlag != null">
+		BENCHMARK_FLAG,
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE,
+	</if>
+	<if test="chkTime != null">
+		CHK_TIME,
+	</if>
+	<if test="batchNo != null">
+		BATCH_NO,
+	</if>
+	<if test="chkEntryClsCd != null">
+		CHK_ENTRY_CLS_CD,
+	</if>
+	<if test="chkStat != null">
+		CHK_STAT,
+	</if>
+	<if test="fileType != null">
+		FILE_TYPE,
+	</if>
+	<if test="fileDownStat != null">
+		FILE_DOWN_STAT,
+	</if>
+	<if test="chkFile != null">
+		CHK_FILE,
+	</if>
+	<if test="reserve1 != null">
+		RESERVE1,
+	</if>
+	<if test="reserve2 != null">
+		RESERVE2,
+	</if>
+	<if test="orgType != null">
+		ORG_TYPE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="chkDate != null">
+		#{chkDate},
+	</if>
+	<if test="benchmarkFlag != null">
+		#{benchmarkFlag},
+	</if>
+	<if test="orgCode != null">
+		#{orgCode},
+	</if>
+	<if test="chkTime != null">
+		#{chkTime},
+	</if>
+	<if test="batchNo != null">
+		#{batchNo},
+	</if>
+	<if test="chkEntryClsCd != null">
+		#{chkEntryClsCd},
+	</if>
+	<if test="chkStat != null">
+		#{chkStat},
+	</if>
+	<if test="fileType != null">
+		#{fileType},
+	</if>
+	<if test="fileDownStat != null">
+		#{fileDownStat},
+	</if>
+	<if test="chkFile != null">
+		#{chkFile},
+	</if>
+	<if test="reserve1 != null">
+		#{reserve1},
+	</if>
+	<if test="reserve2 != null">
+		#{reserve2},
+	</if>
+	<if test="orgType != null">
+		#{orgType},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE=#{chkDate},
+	</if>
+	<if test="benchmarkFlag != null">
+		BENCHMARK_FLAG=#{benchmarkFlag},
+	</if>
+	<if test="orgCode != null">
+		ORG_CODE=#{orgCode},
+	</if>
+	<if test="chkTime != null">
+		CHK_TIME=#{chkTime},
+	</if>
+	<if test="batchNo != null">
+		BATCH_NO=#{batchNo},
+	</if>
+	<if test="chkEntryClsCd != null">
+		CHK_ENTRY_CLS_CD=#{chkEntryClsCd},
+	</if>
+	<if test="chkStat != null">
+		CHK_STAT=#{chkStat},
+	</if>
+	<if test="fileType != null">
+		FILE_TYPE=#{fileType},
+	</if>
+	<if test="fileDownStat != null">
+		FILE_DOWN_STAT=#{fileDownStat},
+	</if>
+	<if test="chkFile != null">
+		CHK_FILE=#{chkFile},
+	</if>
+	<if test="reserve1 != null">
+		RESERVE1=#{reserve1},
+	</if>
+	<if test="reserve2 != null">
+		RESERVE2=#{reserve2},
+	</if>
+	<if test="orgType != null">
+		ORG_TYPE=#{orgType},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.chkDate != null">
+                    CHK_DATE=#{s.chkDate},
+			</if>
+			<if test="s.benchmarkFlag != null">
+                    BENCHMARK_FLAG=#{s.benchmarkFlag},
+			</if>
+			<if test="s.orgCode != null">
+                    ORG_CODE=#{s.orgCode},
+			</if>
+			<if test="s.chkTime != null">
+                    CHK_TIME=#{s.chkTime},
+			</if>
+			<if test="s.batchNo != null">
+                    BATCH_NO=#{s.batchNo},
+			</if>
+			<if test="s.chkEntryClsCd != null">
+                    CHK_ENTRY_CLS_CD=#{s.chkEntryClsCd},
+			</if>
+			<if test="s.chkStat != null">
+                    CHK_STAT=#{s.chkStat},
+			</if>
+			<if test="s.fileType != null">
+                    FILE_TYPE=#{s.fileType},
+			</if>
+			<if test="s.fileDownStat != null">
+                    FILE_DOWN_STAT=#{s.fileDownStat},
+			</if>
+			<if test="s.chkFile != null">
+                    CHK_FILE=#{s.chkFile},
+			</if>
+			<if test="s.reserve1 != null">
+                    RESERVE1=#{s.reserve1},
+			</if>
+			<if test="s.reserve2 != null">
+                    RESERVE2=#{s.reserve2},
+			</if>
+			<if test="s.orgType != null">
+                    ORG_TYPE=#{s.orgType}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.chkDate != null">
+                    CHK_DATE=#{w.chkDate}
+                   AND 
+ 			</if>
+			<if test="w.benchmarkFlag != null">
+                    BENCHMARK_FLAG=#{w.benchmarkFlag}
+                   AND 
+ 			</if>
+			<if test="w.orgCode != null">
+                    ORG_CODE=#{w.orgCode}
+                   AND 
+ 			</if>
+			<if test="w.chkTime != null">
+                    CHK_TIME=#{w.chkTime}
+                   AND 
+ 			</if>
+			<if test="w.batchNo != null">
+                    BATCH_NO=#{w.batchNo}
+                   AND 
+ 			</if>
+			<if test="w.chkEntryClsCd != null">
+                    CHK_ENTRY_CLS_CD=#{w.chkEntryClsCd}
+                   AND 
+ 			</if>
+			<if test="w.chkStat != null">
+                    CHK_STAT=#{w.chkStat}
+                   AND 
+ 			</if>
+			<if test="w.fileType != null">
+                    FILE_TYPE=#{w.fileType}
+                   AND 
+ 			</if>
+			<if test="w.fileDownStat != null">
+                    FILE_DOWN_STAT=#{w.fileDownStat}
+                   AND 
+ 			</if>
+			<if test="w.chkFile != null">
+                    CHK_FILE=#{w.chkFile}
+                   AND 
+ 			</if>
+			<if test="w.reserve1 != null">
+                    RESERVE1=#{w.reserve1}
+                   AND 
+ 			</if>
+			<if test="w.reserve2 != null">
+                    RESERVE2=#{w.reserve2}
+                   AND 
+ 			</if>
+			<if test="w.orgType != null">
+                    ORG_TYPE=#{w.orgType}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

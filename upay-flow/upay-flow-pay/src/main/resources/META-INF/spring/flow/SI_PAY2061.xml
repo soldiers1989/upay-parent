@@ -1,0 +1,90 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- SI_PAY2061 银联(微信通道)  公众号支付 -->
+	<dipper:flow service-id="SI_PAY2061">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 校验授权 -->
+					<dipper:service ref="CheckWiXinOpenIdService" />
+					<!-- 商户状态检查 -->
+					<dipper:service ref="MerInfoQryAndChkService"
+						 beforeDictConv-ref="dataPayBeforepay" />
+					<!-- 微信下单 金额转换 -->
+					<dipper:service ref="TranAmtChangService" param-ref="initPayParmChangFlag" />
+					<!-- 微信单笔限额检查 -->
+					<dipper:service ref="LimitAmtCheckService"
+						param-ref="initPayParm2001" />
+					<!-- 资金通道状态检查 -->
+					<dipper:service ref="PayRouteStateChkService"
+						param-ref="initPayWebChatInit" />
+					<!-- 资金通道信息查询 -->
+					<dipper:service ref="PayRouteInfoQryService"
+						afterDictConv-ref="dataPayAfterRouteInfoQry3002" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 订单登记 -->
+					<dipper:service ref="PayOrderRegisterOfWeiXinService"
+						param-ref="initPayParmRegistOrder3002" />
+					<!-- 费用计算登记 -->
+					<dipper:service ref="FeeGetBaseService" param-ref="initPayFeeGet" />
+					<!-- 流水登记 -->
+					<dipper:service ref="RecordPayFlowListService"
+						param-ref="initPayRecordPayFlowListFist" beforeDictConv-ref="dataPayBeforeFlowList3002" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<!-- 微信统一下单 注意金额转换 -->
+				<dipper:invoke>
+					<dipper:service ref="WebChatChangeInitService"
+						param-ref="WebChatChangeInit3002" />
+					<dipper:service ref="unionPayOrderPerPayClientDipperHandlr"
+						param-ref="parm_SI_PAY3062" beforeDictConv-ref="dataPayBeforeweixinpay3002" />
+					<!--微信统一支付请求 -->
+				</dipper:invoke>
+			</dipper:route>
+			<!-- 状态设置 成功情况 -->
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if
+						expression="target.bodys.returnCode == 'SUCCESS'&amp;&amp;target.bodys.resultCode == 'SUCCESS'">
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInit2001" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<!-- 状态设置异常情况 -->
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="PaySetStateServiceImpl"
+						param-ref="initPayStateInitFail" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>    

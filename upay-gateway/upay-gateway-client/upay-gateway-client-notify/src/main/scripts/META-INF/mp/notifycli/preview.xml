@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+<!--     <previews> -->
+<!--         <preview id="notifycli" xpath="soapenv:Header.soaHeader.serviceCode" -->
+<!--                  trancodename="transCode" charset="UTF-8" errCodeName="errCode" errMsgName="errMsg" -->
+<!--                  errCodeSuc="0000000000" sysName="UPAY" concreteSysId="81" svrflag="false"> -->
+<!--                  <urlMappings> -->
+<!--                  	<mapping code="notify" reqUrl="notify" /> -->
+<!--                  </urlMappings> -->
+<!--         </preview> -->
+<!--     </previews> -->
+	<previews>
+		<preview id="notifycli" xpath="" datalength="" trancodename="tranCode"
+			charset="UTF-8" faultCodeName="rspCode" sysName="UPAY"
+			faultStringName="rspMsg" errCodeName="rspCode" errMsgName="rspMsg"
+			errCodeSuc="0000000000" relationSysId="81" concreteSysId="81" requrl="true"
+			dataSign="true" dataSignName="sign"
+			>
+			<!-- 当前测试核心调用挡板requrl 为false 正式上线后值为true -->
+<!-- 			<urlMappings> -->
+<!-- 				<mapping code="notify" reqUrl="" /> -->
+<!-- 			</urlMappings> -->
+		</preview>
+	</previews>
+
+</config>

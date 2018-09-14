@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccVopenBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccVopenBookPo">
+		<id column="ID" property="id" />
+		<result column="V_ACCT_NO" property="vacctNo" />
+		<result column="OPEN_TIME" property="openTime" />
+		<result column="OPEN_CHNL" property="openChnl" />
+		<result column="OPEN_ORG" property="openOrg" />
+		<result column="ACCT_KIND" property="acctKind" />
+		<result column="V_BIND_FLAG" property="vbindFlag" />
+		<result column="THIRD_AUTH_CHNL" property="thirdAuthChnl" />
+		<result column="OTHER_VERIFY_AMT" property="otherVerifyAmt" />
+		<result column="V_BIND_BANK_FLAG" property="vbindBankFlag" />
+		<result column="V_BIND_BANK_CODE" property="vbindBankCode" />
+		<result column="V_BIND_BANK_NAME" property="vbindBankName" />
+		<result column="V_BIND_OPEN_CODE" property="vbindOpenCode" />
+		<result column="V_BIND_ACCT_NO" property="vbindAcctNo" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_V_OPEN_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		V_ACCT_NO,
+		OPEN_TIME,
+		OPEN_CHNL,
+		OPEN_ORG,
+		ACCT_KIND,
+		V_BIND_FLAG,
+		THIRD_AUTH_CHNL,
+		OTHER_VERIFY_AMT,
+		V_BIND_BANK_FLAG,
+		V_BIND_BANK_CODE,
+		V_BIND_BANK_NAME,
+		V_BIND_OPEN_CODE,
+		V_BIND_ACCT_NO,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="vacctNo != null">
+			V_ACCT_NO= #{vacctNo}
+	           AND 
+		</if>
+		<if test="openTime != null">
+			OPEN_TIME= #{openTime}
+	           AND 
+		</if>
+		<if test="openChnl != null">
+			OPEN_CHNL= #{openChnl}
+	           AND 
+		</if>
+		<if test="openOrg != null">
+			OPEN_ORG= #{openOrg}
+	           AND 
+		</if>
+		<if test="acctKind != null">
+			ACCT_KIND= #{acctKind}
+	           AND 
+		</if>
+		<if test="vbindFlag != null">
+			V_BIND_FLAG= #{vbindFlag}
+	           AND 
+		</if>
+		<if test="thirdAuthChnl != null">
+			THIRD_AUTH_CHNL= #{thirdAuthChnl}
+	           AND 
+		</if>
+		<if test="otherVerifyAmt != null">
+			OTHER_VERIFY_AMT= #{otherVerifyAmt}
+	           AND 
+		</if>
+		<if test="vbindBankFlag != null">
+			V_BIND_BANK_FLAG= #{vbindBankFlag}
+	           AND 
+		</if>
+		<if test="vbindBankCode != null">
+			V_BIND_BANK_CODE= #{vbindBankCode}
+	           AND 
+		</if>
+		<if test="vbindBankName != null">
+			V_BIND_BANK_NAME= #{vbindBankName}
+	           AND 
+		</if>
+		<if test="vbindOpenCode != null">
+			V_BIND_OPEN_CODE= #{vbindOpenCode}
+	           AND 
+		</if>
+		<if test="vbindAcctNo != null">
+			V_BIND_ACCT_NO= #{vbindAcctNo}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="vacctNo != null">
+		V_ACCT_NO,
+	</if>
+	<if test="openTime != null">
+		OPEN_TIME,
+	</if>
+	<if test="openChnl != null">
+		OPEN_CHNL,
+	</if>
+	<if test="openOrg != null">
+		OPEN_ORG,
+	</if>
+	<if test="acctKind != null">
+		ACCT_KIND,
+	</if>
+	<if test="vbindFlag != null">
+		V_BIND_FLAG,
+	</if>
+	<if test="thirdAuthChnl != null">
+		THIRD_AUTH_CHNL,
+	</if>
+	<if test="otherVerifyAmt != null">
+		OTHER_VERIFY_AMT,
+	</if>
+	<if test="vbindBankFlag != null">
+		V_BIND_BANK_FLAG,
+	</if>
+	<if test="vbindBankCode != null">
+		V_BIND_BANK_CODE,
+	</if>
+	<if test="vbindBankName != null">
+		V_BIND_BANK_NAME,
+	</if>
+	<if test="vbindOpenCode != null">
+		V_BIND_OPEN_CODE,
+	</if>
+	<if test="vbindAcctNo != null">
+		V_BIND_ACCT_NO,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="vacctNo != null">
+		#{vacctNo},
+	</if>
+	<if test="openTime != null">
+		#{openTime},
+	</if>
+	<if test="openChnl != null">
+		#{openChnl},
+	</if>
+	<if test="openOrg != null">
+		#{openOrg},
+	</if>
+	<if test="acctKind != null">
+		#{acctKind},
+	</if>
+	<if test="vbindFlag != null">
+		#{vbindFlag},
+	</if>
+	<if test="thirdAuthChnl != null">
+		#{thirdAuthChnl},
+	</if>
+	<if test="otherVerifyAmt != null">
+		#{otherVerifyAmt},
+	</if>
+	<if test="vbindBankFlag != null">
+		#{vbindBankFlag},
+	</if>
+	<if test="vbindBankCode != null">
+		#{vbindBankCode},
+	</if>
+	<if test="vbindBankName != null">
+		#{vbindBankName},
+	</if>
+	<if test="vbindOpenCode != null">
+		#{vbindOpenCode},
+	</if>
+	<if test="vbindAcctNo != null">
+		#{vbindAcctNo},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="vacctNo != null">
+		V_ACCT_NO=#{vacctNo},
+	</if>
+	<if test="openTime != null">
+		OPEN_TIME=#{openTime},
+	</if>
+	<if test="openChnl != null">
+		OPEN_CHNL=#{openChnl},
+	</if>
+	<if test="openOrg != null">
+		OPEN_ORG=#{openOrg},
+	</if>
+	<if test="acctKind != null">
+		ACCT_KIND=#{acctKind},
+	</if>
+	<if test="vbindFlag != null">
+		V_BIND_FLAG=#{vbindFlag},
+	</if>
+	<if test="thirdAuthChnl != null">
+		THIRD_AUTH_CHNL=#{thirdAuthChnl},
+	</if>
+	<if test="otherVerifyAmt != null">
+		OTHER_VERIFY_AMT=#{otherVerifyAmt},
+	</if>
+	<if test="vbindBankFlag != null">
+		V_BIND_BANK_FLAG=#{vbindBankFlag},
+	</if>
+	<if test="vbindBankCode != null">
+		V_BIND_BANK_CODE=#{vbindBankCode},
+	</if>
+	<if test="vbindBankName != null">
+		V_BIND_BANK_NAME=#{vbindBankName},
+	</if>
+	<if test="vbindOpenCode != null">
+		V_BIND_OPEN_CODE=#{vbindOpenCode},
+	</if>
+	<if test="vbindAcctNo != null">
+		V_BIND_ACCT_NO=#{vbindAcctNo},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.vacctNo != null">
+                    V_ACCT_NO=#{s.vacctNo},
+			</if>
+			<if test="s.openTime != null">
+                    OPEN_TIME=#{s.openTime},
+			</if>
+			<if test="s.openChnl != null">
+                    OPEN_CHNL=#{s.openChnl},
+			</if>
+			<if test="s.openOrg != null">
+                    OPEN_ORG=#{s.openOrg},
+			</if>
+			<if test="s.acctKind != null">
+                    ACCT_KIND=#{s.acctKind},
+			</if>
+			<if test="s.vbindFlag != null">
+                    V_BIND_FLAG=#{s.vbindFlag},
+			</if>
+			<if test="s.thirdAuthChnl != null">
+                    THIRD_AUTH_CHNL=#{s.thirdAuthChnl},
+			</if>
+			<if test="s.otherVerifyAmt != null">
+                    OTHER_VERIFY_AMT=#{s.otherVerifyAmt},
+			</if>
+			<if test="s.vbindBankFlag != null">
+                    V_BIND_BANK_FLAG=#{s.vbindBankFlag},
+			</if>
+			<if test="s.vbindBankCode != null">
+                    V_BIND_BANK_CODE=#{s.vbindBankCode},
+			</if>
+			<if test="s.vbindBankName != null">
+                    V_BIND_BANK_NAME=#{s.vbindBankName},
+			</if>
+			<if test="s.vbindOpenCode != null">
+                    V_BIND_OPEN_CODE=#{s.vbindOpenCode},
+			</if>
+			<if test="s.vbindAcctNo != null">
+                    V_BIND_ACCT_NO=#{s.vbindAcctNo},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.vacctNo != null">
+                    V_ACCT_NO=#{w.vacctNo}
+                   AND 
+ 			</if>
+			<if test="w.openTime != null">
+                    OPEN_TIME=#{w.openTime}
+                   AND 
+ 			</if>
+			<if test="w.openChnl != null">
+                    OPEN_CHNL=#{w.openChnl}
+                   AND 
+ 			</if>
+			<if test="w.openOrg != null">
+                    OPEN_ORG=#{w.openOrg}
+                   AND 
+ 			</if>
+			<if test="w.acctKind != null">
+                    ACCT_KIND=#{w.acctKind}
+                   AND 
+ 			</if>
+			<if test="w.vbindFlag != null">
+                    V_BIND_FLAG=#{w.vbindFlag}
+                   AND 
+ 			</if>
+			<if test="w.thirdAuthChnl != null">
+                    THIRD_AUTH_CHNL=#{w.thirdAuthChnl}
+                   AND 
+ 			</if>
+			<if test="w.otherVerifyAmt != null">
+                    OTHER_VERIFY_AMT=#{w.otherVerifyAmt}
+                   AND 
+ 			</if>
+			<if test="w.vbindBankFlag != null">
+                    V_BIND_BANK_FLAG=#{w.vbindBankFlag}
+                   AND 
+ 			</if>
+			<if test="w.vbindBankCode != null">
+                    V_BIND_BANK_CODE=#{w.vbindBankCode}
+                   AND 
+ 			</if>
+			<if test="w.vbindBankName != null">
+                    V_BIND_BANK_NAME=#{w.vbindBankName}
+                   AND 
+ 			</if>
+			<if test="w.vbindOpenCode != null">
+                    V_BIND_OPEN_CODE=#{w.vbindOpenCode}
+                   AND 
+ 			</if>
+			<if test="w.vbindAcctNo != null">
+                    V_BIND_ACCT_NO=#{w.vbindAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

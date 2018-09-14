@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联交易状态查询
+ -->
+<data templateType="OUT"
+	transCode="00"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+
+	<column oldName="version" newName="version" type="" must="false" dateFormat="" />
+    <column oldName="signature" newName="signature" type="" must="false" dateFormat="" />
+	<column oldName="certId" newName="certId" type="" must="false" dateFormat="" />
+    <column oldName="reqType" newName="reqType" type="" must="false" dateFormat="" />
+    <column oldName="acqCode" newName="acqCode" type="" must="false" dateFormat="" />
+    <column oldName="voucherNum" newName="voucherNum" type="" must="false" dateFormat="" />
+    <column oldName="orderNo" newName="unoinOrderNo" type="" must="false" dateFormat="" />
+    <column oldName="orderTime" newName="orderTime" type="" must="false" dateFormat="" />
+    <column oldName="txnAmt" newName="txnAmt" type="" must="false" dateFormat="" />
+    <column oldName="currencyCode" newName="currencyCode" type="" must="false" dateFormat="" />
+    <column oldName="payerInfo" newName="payerInfo" type="" must="false" dateFormat="" />
+    <column oldName="settleKey" newName="settleKey" type="" must="false" dateFormat="" /> 
+    <column oldName="settleDate" newName="settleDate" type="" must="false" dateFormat="" /> 
+    <column oldName="comInfo" newName="comInfo" type="" must="false" dateFormat="" /> 
+    <column oldName="invoiceInfo" newName="invoiceInfo" type="" must="false" dateFormat="" />   
+    <column oldName="payerComments" newName="payerComments" type="" must="false" dateFormat="" /> 
+    <column oldName="respCode" newName="respCode" type="" must="false" dateFormat="" />   
+    <column oldName="respMsg" newName="respMsg" type="" must="false" dateFormat="" />  
+    <column oldName="origRespCode" newName="origRespCode" type="" must="false" dateFormat="" />  
+    <column oldName="origRespMsg" newName="origRespMsg" type="" must="false" dateFormat="" />  
+    <column oldName="couponInfo" newName="couponInfo" type="" must="false" dateFormat="" />   
+    <column oldName="origTxnAmt" newName="origTxnAmt" type="" must="false" dateFormat="" />   
+    <column oldName="resvData" newName="resvData" type="" must="false" dateFormat="" />   
+    
+</data>

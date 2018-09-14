@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.StlBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.StlBookPo">
+		<id column="ID" property="id" />
+		<result column="STL_DATE" property="stlDate" />
+		<result column="STL_BATCH_NO" property="stlBatchNo" />
+		<result column="CARDMER_TYPE" property="cardmerType" />
+		<result column="STL_MER_FLAG" property="stlMerFlag" />
+		<result column="MER_FLAG" property="merFlag" />
+		<result column="MER_NO" property="merNo" />
+		<result column="SEC_MER_NO" property="secMerNo" />
+		<result column="TXN_TOT_AMT" property="txnTotAmt" />
+		<result column="PAY_AMT" property="payAmt" />
+		<result column="PAY_FEE" property="payFee" />
+		<result column="REV_AMT" property="revAmt" />
+		<result column="REV_FEE" property="revFee" />
+		<result column="BAR_AMT" property="barAmt" />
+		<result column="CARD_REV_FEE" property="cardRevFee" />
+		<result column="CARD_PAY_FEE" property="cardPayFee" />
+		<result column="PLATE_REV_FEE" property="plateRevFee" />
+		<result column="PLATE_PAY_FEE" property="platePayFee" />
+		<result column="STAT" property="stat" />
+		<result column="STL_FILE" property="stlFile" />
+		<result column="REMARK" property="remark" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_STL_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		STL_DATE,
+		STL_BATCH_NO,
+		CARDMER_TYPE,
+		STL_MER_FLAG,
+		MER_FLAG,
+		MER_NO,
+		SEC_MER_NO,
+		TXN_TOT_AMT,
+		PAY_AMT,
+		PAY_FEE,
+		REV_AMT,
+		REV_FEE,
+		BAR_AMT,
+		CARD_REV_FEE,
+		CARD_PAY_FEE,
+		PLATE_REV_FEE,
+		PLATE_PAY_FEE,
+		STAT,
+		STL_FILE,
+		REMARK,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="stlDate != null">
+			STL_DATE= #{stlDate}
+	           AND 
+		</if>
+		<if test="stlBatchNo != null">
+			STL_BATCH_NO= #{stlBatchNo}
+	           AND 
+		</if>
+		<if test="cardmerType != null">
+			CARDMER_TYPE= #{cardmerType}
+	           AND 
+		</if>
+		<if test="stlMerFlag != null">
+			STL_MER_FLAG= #{stlMerFlag}
+	           AND 
+		</if>
+		<if test="merFlag != null">
+			MER_FLAG= #{merFlag}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="secMerNo != null">
+			SEC_MER_NO= #{secMerNo}
+	           AND 
+		</if>
+		<if test="txnTotAmt != null">
+			TXN_TOT_AMT= #{txnTotAmt}
+	           AND 
+		</if>
+		<if test="payAmt != null">
+			PAY_AMT= #{payAmt}
+	           AND 
+		</if>
+		<if test="payFee != null">
+			PAY_FEE= #{payFee}
+	           AND 
+		</if>
+		<if test="revAmt != null">
+			REV_AMT= #{revAmt}
+	           AND 
+		</if>
+		<if test="revFee != null">
+			REV_FEE= #{revFee}
+	           AND 
+		</if>
+		<if test="barAmt != null">
+			BAR_AMT= #{barAmt}
+	           AND 
+		</if>
+		<if test="cardRevFee != null">
+			CARD_REV_FEE= #{cardRevFee}
+	           AND 
+		</if>
+		<if test="cardPayFee != null">
+			CARD_PAY_FEE= #{cardPayFee}
+	           AND 
+		</if>
+		<if test="plateRevFee != null">
+			PLATE_REV_FEE= #{plateRevFee}
+	           AND 
+		</if>
+		<if test="platePayFee != null">
+			PLATE_PAY_FEE= #{platePayFee}
+	           AND 
+		</if>
+		<if test="stat != null">
+			STAT= #{stat}
+	           AND 
+		</if>
+		<if test="stlFile != null">
+			STL_FILE= #{stlFile}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="stlDate != null">
+		STL_DATE,
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO,
+	</if>
+	<if test="cardmerType != null">
+		CARDMER_TYPE,
+	</if>
+	<if test="stlMerFlag != null">
+		STL_MER_FLAG,
+	</if>
+	<if test="merFlag != null">
+		MER_FLAG,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO,
+	</if>
+	<if test="txnTotAmt != null">
+		TXN_TOT_AMT,
+	</if>
+	<if test="payAmt != null">
+		PAY_AMT,
+	</if>
+	<if test="payFee != null">
+		PAY_FEE,
+	</if>
+	<if test="revAmt != null">
+		REV_AMT,
+	</if>
+	<if test="revFee != null">
+		REV_FEE,
+	</if>
+	<if test="barAmt != null">
+		BAR_AMT,
+	</if>
+	<if test="cardRevFee != null">
+		CARD_REV_FEE,
+	</if>
+	<if test="cardPayFee != null">
+		CARD_PAY_FEE,
+	</if>
+	<if test="plateRevFee != null">
+		PLATE_REV_FEE,
+	</if>
+	<if test="platePayFee != null">
+		PLATE_PAY_FEE,
+	</if>
+	<if test="stat != null">
+		STAT,
+	</if>
+	<if test="stlFile != null">
+		STL_FILE,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="stlDate != null">
+		#{stlDate},
+	</if>
+	<if test="stlBatchNo != null">
+		#{stlBatchNo},
+	</if>
+	<if test="cardmerType != null">
+		#{cardmerType},
+	</if>
+	<if test="stlMerFlag != null">
+		#{stlMerFlag},
+	</if>
+	<if test="merFlag != null">
+		#{merFlag},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		#{secMerNo},
+	</if>
+	<if test="txnTotAmt != null">
+		#{txnTotAmt},
+	</if>
+	<if test="payAmt != null">
+		#{payAmt},
+	</if>
+	<if test="payFee != null">
+		#{payFee},
+	</if>
+	<if test="revAmt != null">
+		#{revAmt},
+	</if>
+	<if test="revFee != null">
+		#{revFee},
+	</if>
+	<if test="barAmt != null">
+		#{barAmt},
+	</if>
+	<if test="cardRevFee != null">
+		#{cardRevFee},
+	</if>
+	<if test="cardPayFee != null">
+		#{cardPayFee},
+	</if>
+	<if test="plateRevFee != null">
+		#{plateRevFee},
+	</if>
+	<if test="platePayFee != null">
+		#{platePayFee},
+	</if>
+	<if test="stat != null">
+		#{stat},
+	</if>
+	<if test="stlFile != null">
+		#{stlFile},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="stlDate != null">
+		STL_DATE=#{stlDate},
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO=#{stlBatchNo},
+	</if>
+	<if test="cardmerType != null">
+		CARDMER_TYPE=#{cardmerType},
+	</if>
+	<if test="stlMerFlag != null">
+		STL_MER_FLAG=#{stlMerFlag},
+	</if>
+	<if test="merFlag != null">
+		MER_FLAG=#{merFlag},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO=#{secMerNo},
+	</if>
+	<if test="txnTotAmt != null">
+		TXN_TOT_AMT=#{txnTotAmt},
+	</if>
+	<if test="payAmt != null">
+		PAY_AMT=#{payAmt},
+	</if>
+	<if test="payFee != null">
+		PAY_FEE=#{payFee},
+	</if>
+	<if test="revAmt != null">
+		REV_AMT=#{revAmt},
+	</if>
+	<if test="revFee != null">
+		REV_FEE=#{revFee},
+	</if>
+	<if test="barAmt != null">
+		BAR_AMT=#{barAmt},
+	</if>
+	<if test="cardRevFee != null">
+		CARD_REV_FEE=#{cardRevFee},
+	</if>
+	<if test="cardPayFee != null">
+		CARD_PAY_FEE=#{cardPayFee},
+	</if>
+	<if test="plateRevFee != null">
+		PLATE_REV_FEE=#{plateRevFee},
+	</if>
+	<if test="platePayFee != null">
+		PLATE_PAY_FEE=#{platePayFee},
+	</if>
+	<if test="stat != null">
+		STAT=#{stat},
+	</if>
+	<if test="stlFile != null">
+		STL_FILE=#{stlFile},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.stlDate != null">
+                    STL_DATE=#{s.stlDate},
+			</if>
+			<if test="s.stlBatchNo != null">
+                    STL_BATCH_NO=#{s.stlBatchNo},
+			</if>
+			<if test="s.cardmerType != null">
+                    CARDMER_TYPE=#{s.cardmerType},
+			</if>
+			<if test="s.stlMerFlag != null">
+                    STL_MER_FLAG=#{s.stlMerFlag},
+			</if>
+			<if test="s.merFlag != null">
+                    MER_FLAG=#{s.merFlag},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.secMerNo != null">
+                    SEC_MER_NO=#{s.secMerNo},
+			</if>
+			<if test="s.txnTotAmt != null">
+                    TXN_TOT_AMT=#{s.txnTotAmt},
+			</if>
+			<if test="s.payAmt != null">
+                    PAY_AMT=#{s.payAmt},
+			</if>
+			<if test="s.payFee != null">
+                    PAY_FEE=#{s.payFee},
+			</if>
+			<if test="s.revAmt != null">
+                    REV_AMT=#{s.revAmt},
+			</if>
+			<if test="s.revFee != null">
+                    REV_FEE=#{s.revFee},
+			</if>
+			<if test="s.barAmt != null">
+                    BAR_AMT=#{s.barAmt},
+			</if>
+			<if test="s.cardRevFee != null">
+                    CARD_REV_FEE=#{s.cardRevFee},
+			</if>
+			<if test="s.cardPayFee != null">
+                    CARD_PAY_FEE=#{s.cardPayFee},
+			</if>
+			<if test="s.plateRevFee != null">
+                    PLATE_REV_FEE=#{s.plateRevFee},
+			</if>
+			<if test="s.platePayFee != null">
+                    PLATE_PAY_FEE=#{s.platePayFee},
+			</if>
+			<if test="s.stat != null">
+                    STAT=#{s.stat},
+			</if>
+			<if test="s.stlFile != null">
+                    STL_FILE=#{s.stlFile},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.stlDate != null">
+                    STL_DATE=#{w.stlDate}
+                   AND 
+ 			</if>
+			<if test="w.stlBatchNo != null">
+                    STL_BATCH_NO=#{w.stlBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.cardmerType != null">
+                    CARDMER_TYPE=#{w.cardmerType}
+                   AND 
+ 			</if>
+			<if test="w.stlMerFlag != null">
+                    STL_MER_FLAG=#{w.stlMerFlag}
+                   AND 
+ 			</if>
+			<if test="w.merFlag != null">
+                    MER_FLAG=#{w.merFlag}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.secMerNo != null">
+                    SEC_MER_NO=#{w.secMerNo}
+                   AND 
+ 			</if>
+			<if test="w.txnTotAmt != null">
+                    TXN_TOT_AMT=#{w.txnTotAmt}
+                   AND 
+ 			</if>
+			<if test="w.payAmt != null">
+                    PAY_AMT=#{w.payAmt}
+                   AND 
+ 			</if>
+			<if test="w.payFee != null">
+                    PAY_FEE=#{w.payFee}
+                   AND 
+ 			</if>
+			<if test="w.revAmt != null">
+                    REV_AMT=#{w.revAmt}
+                   AND 
+ 			</if>
+			<if test="w.revFee != null">
+                    REV_FEE=#{w.revFee}
+                   AND 
+ 			</if>
+			<if test="w.barAmt != null">
+                    BAR_AMT=#{w.barAmt}
+                   AND 
+ 			</if>
+			<if test="w.cardRevFee != null">
+                    CARD_REV_FEE=#{w.cardRevFee}
+                   AND 
+ 			</if>
+			<if test="w.cardPayFee != null">
+                    CARD_PAY_FEE=#{w.cardPayFee}
+                   AND 
+ 			</if>
+			<if test="w.plateRevFee != null">
+                    PLATE_REV_FEE=#{w.plateRevFee}
+                   AND 
+ 			</if>
+			<if test="w.platePayFee != null">
+                    PLATE_PAY_FEE=#{w.platePayFee}
+                   AND 
+ 			</if>
+			<if test="w.stat != null">
+                    STAT=#{w.stat}
+                   AND 
+ 			</if>
+			<if test="w.stlFile != null">
+                    STL_FILE=#{w.stlFile}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

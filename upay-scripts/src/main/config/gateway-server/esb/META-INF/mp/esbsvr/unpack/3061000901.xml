@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="CnlNo" field="chnlId"/>
+		<mapping xpath="MrchCd" field="merNo" must="not"/>
+		<mapping xpath="OrdrNo" field="outerOrderNo"/>
+		<mapping xpath="SbstPymtDt" field="merDate"/>
+		<mapping xpath="SndSbstPymtFlg" field="singlePayType"/>
+		<mapping xpath="SendSbstPymtFlg" field="singlePaymentFlag"/>
+		<mapping xpath="PyeAcctNo" field="acctName"/>
+		<mapping xpath="PyeCardNo" field="acctNo"/>
+		<mapping xpath="PyeBnkNo" field="bankId" must="not"/>
+		<mapping xpath="PyeCdTp" field="accountType"/>
+		<mapping xpath="PyeAcctTelNo" field="payeeMobile" must="not"/>
+		<mapping xpath="RcvIdentTp" field="payeeCertType"/>
+		<mapping xpath="PyeIdentNo" field="payeeCertNo"/>
+		<mapping xpath="PyrCardEmail" field="payeeEmail" must="not"/>
+		<mapping xpath="PyeBnkNm" field="payeeBranchName" must="not"/>
+		<mapping xpath="RcvBrBnkPrvcNm" field="payeeProvince" must="not"/>
+		<mapping xpath="RcvBrBnkCtNm" field="payeeCity" must="not"/>
+		<mapping xpath="PyrAcctNo" field="payerAccountNo"/>
+		<mapping xpath="PymtMd" field="payerAccountType" must="not"/>
+		<mapping xpath="PyrAcctNm" field="payerAccountName"/>
+		<mapping xpath="PyMblNo" field="payerMobile" must="not"/>
+		<mapping xpath="PryIdentTp" field="payerCertType" must="not"/>
+		<mapping xpath="PyrIdentNo" field="payerCertNo" must="not"/>
+		<mapping xpath="SndSbstIpAddr" field="spbillCreateIp"/>
+		<mapping xpath="PstlAdr" field="notifyUrl" must="not"/>
+		<mapping xpath="Rmk" field="transComments" must="not"/>
+		<mapping xpath="ChnlTp" field="route" must="not"/>
+		<mapping xpath="TxnAmt" field="transAmt" type="java.math.BigDecimal"/>
+	</mappings>
+</config>

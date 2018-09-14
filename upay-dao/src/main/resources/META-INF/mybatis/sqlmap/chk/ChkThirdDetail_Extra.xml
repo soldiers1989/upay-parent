@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.ChkThirdDetailPo">
+
+    <select id="sumFeeAmtByOrgCode" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select
+        ORG_CODE,
+        COALESCE(SUM(FEE_AMT),0) AS ROUTE_FEE_AMT
+        from
+        <include refid="Table_Name"/>
+        <where>
+            THIRD_STAT='1' AND
+            <if test="startDate != null">
+                <![CDATA[CHK_DATE >= TO_DATE(#{startDate}, 'yyyy-MM-dd') AND]]>
+            </if>
+            <if test="endDate != null">
+                <![CDATA[CHK_DATE <  TO_DATE(#{endDate}, 'yyyy-MM-dd')]]>
+            </if>
+        </where>
+        GROUP BY ORG_CODE
+    </select>
+
+    <select id="selectByThirdDate" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column"/>
+        from
+        <include refid="Table_Name"/>
+        <where>
+            mer_id is not null and
+            <trim suffixOverrides="AND">
+                <if test="orgCode != null">
+                    ORG_CODE= #{orgCode}
+                    AND
+                </if>
+                <if test="thirdDate != null">
+                    <![CDATA[to_char(third_date,'yyyymmdd')=to_char(#{thirdDate},'yyyymmdd')]]>
+                    AND
+                </if>
+                <if test="isRegisterFeeamt != null">
+                    IS_REGISTER_FEEAMT=#{isRegisterFeeamt} OR  IS_REGISTER_FEEAMT IS NULL
+                </if>
+            </trim>
+        </where>
+        order by third_date
+    </select>
+
+
+    <select id="sumByOrgCode" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select
+        ORG_CODE,
+        MER_ID,
+        COALESCE(SUM(FEE_AMT),0) AS FEE_AMT
+        from
+        <include refid="Table_Name"/>
+        <where>
+            mer_id is not null and
+            <trim suffixOverrides="AND">
+                <if test="thirdDate != null">
+                    <![CDATA[to_char(third_date,'yyyymmdd')=to_char(#{thirdDate},'yyyymmdd')]]>
+                    AND
+                </if>
+                <if test="isRegisterFeeamt != null">
+                    IS_REGISTER_FEEAMT=#{isRegisterFeeamt} OR  IS_REGISTER_FEEAMT IS NULL
+                </if>
+            </trim>
+        </where>
+           group by org_code,mer_id
+    </select>
+</mapper>

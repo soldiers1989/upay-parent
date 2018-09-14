@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.ChannelMenuBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.ChannelMenuBookPo">
+		<id column="ID" property="id" />
+		<result column="CHANNEL_ID" property="channelId" />
+		<result column="CHANNEL_NAME" property="channelName" />
+		<result column="CHANNEL_LEAF" property="channelLeaf" />
+		<result column="CHANNEL_CHILDLEAF" property="channelChildleaf" />
+		<result column="CHANNEL_URL" property="channelUrl" />
+		<result column="CHANNEL_FLAG" property="channelFlag" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="LAST_OPER" property="lastOper" />
+		<result column="CHANNEL_TOPLEAF" property="channelTopleaf" />
+		<result column="PAY_TYPE" property="payType" />
+		<result column="APP_CHANNEL_URL" property="appChannelUrl" />
+		<result column="CHANNEL_LOGO" property="channelLogo" />
+		<result column="PRIORITY" property="priority" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHANNEL_MENU_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CHANNEL_ID,
+		CHANNEL_NAME,
+		CHANNEL_LEAF,
+		CHANNEL_CHILDLEAF,
+		CHANNEL_URL,
+		CHANNEL_FLAG,
+		LAST_UPDATE_TIME,
+		LAST_OPER,
+		CHANNEL_TOPLEAF,
+		PAY_TYPE,
+		APP_CHANNEL_URL,
+		CHANNEL_LOGO,
+		PRIORITY
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="channelId != null">
+			CHANNEL_ID= #{channelId}
+	           AND 
+		</if>
+		<if test="channelName != null">
+			CHANNEL_NAME= #{channelName}
+	           AND 
+		</if>
+		<if test="channelLeaf != null">
+			CHANNEL_LEAF= #{channelLeaf}
+	           AND 
+		</if>
+		<if test="channelChildleaf != null">
+			CHANNEL_CHILDLEAF= #{channelChildleaf}
+	           AND 
+		</if>
+		<if test="channelUrl != null">
+			CHANNEL_URL= #{channelUrl}
+	           AND 
+		</if>
+		<if test="channelFlag != null">
+			CHANNEL_FLAG= #{channelFlag}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="lastOper != null">
+			LAST_OPER= #{lastOper}
+	           AND 
+		</if>
+		<if test="channelTopleaf != null">
+			CHANNEL_TOPLEAF= #{channelTopleaf}
+	           AND 
+		</if>
+		<if test="payType != null">
+			PAY_TYPE= #{payType}
+	           AND 
+		</if>
+		<if test="appChannelUrl != null">
+			APP_CHANNEL_URL= #{appChannelUrl}
+	           AND 
+		</if>
+		<if test="channelLogo != null">
+			CHANNEL_LOGO= #{channelLogo}
+	           AND 
+		</if>
+		<if test="priority != null">
+			PRIORITY= #{priority}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="channelId != null">
+		CHANNEL_ID,
+	</if>
+	<if test="channelName != null">
+		CHANNEL_NAME,
+	</if>
+	<if test="channelLeaf != null">
+		CHANNEL_LEAF,
+	</if>
+	<if test="channelChildleaf != null">
+		CHANNEL_CHILDLEAF,
+	</if>
+	<if test="channelUrl != null">
+		CHANNEL_URL,
+	</if>
+	<if test="channelFlag != null">
+		CHANNEL_FLAG,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER,
+	</if>
+	<if test="channelTopleaf != null">
+		CHANNEL_TOPLEAF,
+	</if>
+	<if test="payType != null">
+		PAY_TYPE,
+	</if>
+	<if test="appChannelUrl != null">
+		APP_CHANNEL_URL,
+	</if>
+	<if test="channelLogo != null">
+		CHANNEL_LOGO,
+	</if>
+	<if test="priority != null">
+		PRIORITY,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="channelId != null">
+		#{channelId},
+	</if>
+	<if test="channelName != null">
+		#{channelName},
+	</if>
+	<if test="channelLeaf != null">
+		#{channelLeaf},
+	</if>
+	<if test="channelChildleaf != null">
+		#{channelChildleaf},
+	</if>
+	<if test="channelUrl != null">
+		#{channelUrl},
+	</if>
+	<if test="channelFlag != null">
+		#{channelFlag},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		#{lastOper},
+	</if>
+	<if test="channelTopleaf != null">
+		#{channelTopleaf},
+	</if>
+	<if test="payType != null">
+		#{payType},
+	</if>
+	<if test="appChannelUrl != null">
+		#{appChannelUrl},
+	</if>
+	<if test="channelLogo != null">
+		#{channelLogo},
+	</if>
+	<if test="priority != null">
+		#{priority},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="channelId != null">
+		CHANNEL_ID=#{channelId},
+	</if>
+	<if test="channelName != null">
+		CHANNEL_NAME=#{channelName},
+	</if>
+	<if test="channelLeaf != null">
+		CHANNEL_LEAF=#{channelLeaf},
+	</if>
+	<if test="channelChildleaf != null">
+		CHANNEL_CHILDLEAF=#{channelChildleaf},
+	</if>
+	<if test="channelUrl != null">
+		CHANNEL_URL=#{channelUrl},
+	</if>
+	<if test="channelFlag != null">
+		CHANNEL_FLAG=#{channelFlag},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER=#{lastOper},
+	</if>
+	<if test="channelTopleaf != null">
+		CHANNEL_TOPLEAF=#{channelTopleaf},
+	</if>
+	<if test="payType != null">
+		PAY_TYPE=#{payType},
+	</if>
+	<if test="appChannelUrl != null">
+		APP_CHANNEL_URL=#{appChannelUrl},
+	</if>
+	<if test="channelLogo != null">
+		CHANNEL_LOGO=#{channelLogo},
+	</if>
+	<if test="priority != null">
+		PRIORITY=#{priority},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.channelId != null">
+                    CHANNEL_ID=#{s.channelId},
+			</if>
+			<if test="s.channelName != null">
+                    CHANNEL_NAME=#{s.channelName},
+			</if>
+			<if test="s.channelLeaf != null">
+                    CHANNEL_LEAF=#{s.channelLeaf},
+			</if>
+			<if test="s.channelChildleaf != null">
+                    CHANNEL_CHILDLEAF=#{s.channelChildleaf},
+			</if>
+			<if test="s.channelUrl != null">
+                    CHANNEL_URL=#{s.channelUrl},
+			</if>
+			<if test="s.channelFlag != null">
+                    CHANNEL_FLAG=#{s.channelFlag},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.lastOper != null">
+                    LAST_OPER=#{s.lastOper},
+			</if>
+			<if test="s.channelTopleaf != null">
+                    CHANNEL_TOPLEAF=#{s.channelTopleaf},
+			</if>
+			<if test="s.payType != null">
+                    PAY_TYPE=#{s.payType},
+			</if>
+			<if test="s.appChannelUrl != null">
+                    APP_CHANNEL_URL=#{s.appChannelUrl},
+			</if>
+			<if test="s.channelLogo != null">
+                    CHANNEL_LOGO=#{s.channelLogo},
+			</if>
+			<if test="s.priority != null">
+                    PRIORITY=#{s.priority}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.channelId != null">
+                    CHANNEL_ID=#{w.channelId}
+                   AND 
+ 			</if>
+			<if test="w.channelName != null">
+                    CHANNEL_NAME=#{w.channelName}
+                   AND 
+ 			</if>
+			<if test="w.channelLeaf != null">
+                    CHANNEL_LEAF=#{w.channelLeaf}
+                   AND 
+ 			</if>
+			<if test="w.channelChildleaf != null">
+                    CHANNEL_CHILDLEAF=#{w.channelChildleaf}
+                   AND 
+ 			</if>
+			<if test="w.channelUrl != null">
+                    CHANNEL_URL=#{w.channelUrl}
+                   AND 
+ 			</if>
+			<if test="w.channelFlag != null">
+                    CHANNEL_FLAG=#{w.channelFlag}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.lastOper != null">
+                    LAST_OPER=#{w.lastOper}
+                   AND 
+ 			</if>
+			<if test="w.channelTopleaf != null">
+                    CHANNEL_TOPLEAF=#{w.channelTopleaf}
+                   AND 
+ 			</if>
+			<if test="w.payType != null">
+                    PAY_TYPE=#{w.payType}
+                   AND 
+ 			</if>
+			<if test="w.appChannelUrl != null">
+                    APP_CHANNEL_URL=#{w.appChannelUrl}
+                   AND 
+ 			</if>
+			<if test="w.channelLogo != null">
+                    CHANNEL_LOGO=#{w.channelLogo}
+                   AND 
+ 			</if>
+			<if test="w.priority != null">
+                    PRIORITY=#{w.priority}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

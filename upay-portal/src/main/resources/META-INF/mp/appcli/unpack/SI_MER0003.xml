@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.SEC_MER_NO" field="secMerNo" must="not"/>
+		<mapping xpath="$.body.SEC_MER_NAME" field="secMerName" must="not"/>
+		<mapping xpath="$.body.MER_NO" field="merNo" must="not"/>
+	</mappings>
+</config>

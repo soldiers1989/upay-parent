@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+ 		<!-- 绑卡新开虚拟账户 -->
+       <dubbo:service ref="SI_ACC1001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1001"/>
+	<!-- H5抢购下单 -->
+	<!-- 	<dubbo:service ref="SI_ORD0045" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ORD0045" /> -->
+	<!-- 虚拟账户绑定卡方式检查接口服务 -->
+	<dubbo:service ref="SI_ACC0001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0001" />
+	<!-- 虚拟账户信息查询接口服务 -->
+	<dubbo:service ref="SI_ACC0002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0002" />
+	<!-- 用户信息查询-->
+	<dubbo:service ref="SI_ACC0003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0003" />
+	<!-- 账户限额查询接口-->
+	<dubbo:service ref="SI_ACC0004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0004" />
+	<!-- 账户交易权限检查 -->
+	<dubbo:service ref="SI_ACC0005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0005" />
+	<!-- jie bang-->
+	<dubbo:service ref="SI_ACC1003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1003" />
+
+	<!-- 充值 -->
+	<dubbo:service ref="SI_ACC8001" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC8001" />
+	<!-- 转账-->
+	<dubbo:service ref="SI_ACC8002" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC8002" />
+	<!-- 提现-->
+	<dubbo:service ref="SI_ACC8003" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC8003" />
+	<!-- 账户交易记录查询-->
+	<dubbo:service ref="SI_ACC0006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0006" />
+	<!-- 账户交易记录下载-->
+	<dubbo:service ref="SI_ACC0007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0007" />
+	<!-- 账户交易限额-->
+	<dubbo:service ref="SI_ACC0008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0008" />
+	<!-- 查询网银logo-->
+	<dubbo:service ref="SI_ACC0009" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC0009" />
+	<!-- 转账前检查-->
+	<dubbo:service ref="SI_ACC1004" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1004" />
+	<!--实名认证-->
+	<dubbo:service ref="SI_ACC1005" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1005" />
+	<!--一级商户提现到待清算账户-->
+	<dubbo:service ref="SI_ACC1006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1006" />
+	<!--待清算账户转账到银行卡号-->
+	<dubbo:service ref="SI_ACC1007" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1007" />
+	<!--中金四要素验证-->
+	<dubbo:service ref="SI_ACC1008" interface="com.pactera.dipper.core.IDipperHandler" group="SI_ACC1008" />
+</beans>

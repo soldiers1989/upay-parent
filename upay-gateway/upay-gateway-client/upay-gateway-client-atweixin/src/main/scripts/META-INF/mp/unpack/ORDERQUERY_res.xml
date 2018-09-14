@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+订单查询
+ -->
+<data templateType="OUT"
+	transCode="ORDERQUERY"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+
+    <column oldName="return_code"	must="true" newName="returnCode" type="" dateFormat="" />
+	<column oldName="return_msg" newName="return_msg" type="" must="true" dateFormat="" />
+    <column oldName="appid" newName="repAppid" type="" must="false" dateFormat="" />
+	<column oldName="mch_id" newName="mchId" type="" must="false" dateFormat="" />
+    <column oldName="sub_appid" newName="subAppid" type="" must="false" dateFormat="" />
+	<column oldName="sub_mch_id" newName="subMchId" type="" must="false" dateFormat="" />
+    <column oldName="result_code" newName="resultCode" type="" must="false" dateFormat="" />
+    <column oldName="trade_state" newName="tradeState" type="" must="false" dateFormat="" />
+	<column oldName="trade_state_desc" newName="tradeStateDesc" type="" must="false" dateFormat="" />
+	<column oldName="out_trade_no" newName="outTradeNo" type="" must="false" dateFormat="" />
+    <column oldName="attach" newName="attach" type="" must="false" dateFormat="" />
+	<column oldName="err_code"	must="false" newName="errCode" type="" dateFormat="" />
+	<column oldName="err_code_des" newName="errCodeDes" type="" must="false" dateFormat="" />
+	
+	<column oldName="openid" newName="openid" type="" must="false" dateFormat="" />	
+    <column oldName="trade_type" newName="tradeType" type="" must="false" dateFormat="" />	
+    <column oldName="bank_type" newName="bankType" type="" must="false" dateFormat="" />	
+    <column oldName="fee_type" newName="feeType" type="" must="false" dateFormat="" />
+    <column oldName="total_fee" newName="totalFee" type="" must="false" dateFormat="" />
+    <column oldName="cash_fee_type" newName="cashFeeType" type="" must="false" dateFormat="" />
+    <column oldName="transaction_id" newName="transactionId" type="" must="false" dateFormat="" />	
+    <column oldName="time_end" newName="timeEnd" type="" must="false" dateFormat="" />	
+    	
+</data>

@@ -1,0 +1,233 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 第三方鉴权结果通知开户 -->
+	<dipper:flow service-id="SI_ACC1001">
+		<dipper:try>
+			<dipper:route>
+				
+				<dipper:invoke>
+					<!-- 交易前处理 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+				<!-- 登录状态校验 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<!-- 验证手机验证码 -->
+				<dipper:invoke>
+					<dipper:service ref="SmsVerifyServiceImpl" beforeDictConv-ref="data_acc_convertMobile"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--用户注册信息查询 -->
+					<dipper:service ref="UserRegQueryService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 信用卡需要检查有效期和安全码 -->
+					<dipper:service ref="CheckBindCardService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 根据卡BIN查询支持的鉴权渠道 -->
+					<dipper:service ref="PayQueryCardBinOfAAAService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 查询卡BIN对应的行名行号 -->
+					<dipper:service ref="PayQueryCardBinOfBankService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 绑定账户唯一性检查 -->
+					<dipper:service ref="UniqueBindAccCheckService"
+						beforeDictConv-ref="data_acc_accCheck" />
+				</dipper:invoke>
+			</dipper:route>
+
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 如果是第一次绑卡需要做实名认证 -->
+					<dipper:if expression="target.bodys.isFirst == '1' ">
+						<!-- 身份信息唯一性检查 -->
+						<dipper:service ref="CertUniqueCheckService" />
+
+						<!-- 中金联网核查 -->
+						<dipper:service ref="SA_ZJPAY_Pay2320Handler" beforeDictConv-ref="data_acc_checkUserConvert"/>
+						<!-- 用户身份信息验证 -->
+						<dipper:service ref="CertCheckService" param-ref="init_acc_certFlagOnlineParam" />
+						<!-- 实名认证 -->
+						<dipper:service ref="WeakAuthService" param-ref="init_acc_certWeakWayParam" />
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!--个人信息查询 -->
+					<dipper:service ref="UserBaseInfoService" />
+				</dipper:invoke>
+				
+<!-- 				<dipper:invoke> -->
+<!-- 					第一次新开户需要对虚拟账户的账号生成 -->
+<!-- 					<dipper:if expression="target.bodys.isFirst == '1' "> -->
+<!-- 						<dipper:service ref="CardNoCreateService" /> -->
+<!-- 					</dipper:if> -->
+<!-- 				</dipper:invoke> -->
+				
+				<dipper:invoke>
+					<!-- 鉴权    本行借记卡-->
+					<dipper:if expression="target.bodys.thirdAuthChnl == '0001' &amp;&amp; target.bodys.bindAcctType=='11'">
+						<!-- 调用核心参数转换 -->
+						<dipper:service ref="InitBankParamService"/>
+						<!-- 本行卡账户验证调用核心接口 -->
+						<dipper:service ref="coreCliDipperHandler" param-ref="init_acc_coreToCert" beforeDictConv-ref="data_acc_coreToCert" />
+						<!-- 本行卡借记卡状态验证 -->
+						<dipper:service ref="BindCoreCardStatChkService"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 鉴权    本行信用卡-->
+					<dipper:if expression="target.bodys.thirdAuthChnl == '0001' &amp;&amp; target.bodys.bindAcctType=='12'">
+						<!-- 调用核心参数转换 -->
+						<dipper:service ref="InitBankParamService"/>
+						<!-- 本行卡账户验证调用核心接口 -->
+						<dipper:service ref="coreCliDipperHandler" param-ref="init_acc_coreBindCredit" beforeDictConv-ref="data_acc_coreBindCredit" />
+						<!-- 本行卡借记卡状态验证 -->
+						<dipper:service ref="BindCoreCardStatChkService"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<!-- 中金鉴权 是否需要建立绑定关系 -->
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.thirdAuthChnl == '0004' &amp;&amp; target.bodys.bindAcctType=='11'">
+						<!-- 查询 -->
+<!-- 						<dipper:service ref="SA_ZJPAY_Pay2502Handler" /> -->
+						<!-- 生成流水号 -->
+						<dipper:service ref="ZjpaySysSeqService" />
+						<!-- 绑定 -->
+						<dipper:service ref="SA_ZJPAY_Pay2501Handler"  beforeDictConv-ref="data_acc_bindZJCardCovert"/>
+						<!-- 中金绑卡状态判断 -->
+						<dipper:service ref="AccZJBindCardService" />
+						
+					</dipper:if>
+				</dipper:invoke>
+				
+				<!-- 中金鉴权贷记卡 -->
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.thirdAuthChnl == '0004' &amp;&amp; target.bodys.bindAcctType=='12'">
+						<!-- 生成流水号 -->
+						<dipper:service ref="ZjpaySysSeqService" />
+						<!-- 绑定 -->
+						<dipper:service ref="SA_ZJPAY_Pay2340Handler"  beforeDictConv-ref="data_acc_bindZJcreditCardCovert"/>
+						<!-- 中金绑卡状态判断 -->
+<!-- 						<dipper:service ref="AccZJBindCardService" /> -->
+					</dipper:if>
+				</dipper:invoke>
+
+				<dipper:invoke>
+					<!-- 虚拟账户开户 -->
+					<dipper:service ref="AccVBookOpenService"
+						beforeDictConv-ref="data_acc_bindParmSwitch" param-ref="init_acc_eOpenFlag" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 虚拟账户绑卡 -->
+					<dipper:service ref="BindBookService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--电子账户和绑定卡状态激活，开通电子账户 -->
+					<dipper:service ref="TransferActiveService" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 如果是第一次绑卡需要做实名认证登记 -->
+					<dipper:if expression="target.bodys.isFirst == '1' &amp;&amp; fault.code=='0000000000'">
+						<dipper:service ref="UserCertListRegService"
+							param-ref="init_acc_userCertRegChnl" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+
+	<data:dicts id="eAcctNoParmSwitch">
+		<data:mappings>
+			<data:mapping in="acctNo" out="eAcctNo" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="certNameParmSwitch">
+		<data:mappings>
+			<data:mapping in="eBindAcctName" out="certName" />
+			<data:mapping in="eCardName" out="certName" />
+			<data:mapping in="effectDate" out="sysDate" />
+			<data:mapping in="mobile" out="mobile" />
+		</data:mappings>
+	</data:dicts>
+
+
+
+	<data:dicts id="unitPaySwitch">
+		<data:mappings>
+			<data:mapping in="orderId" out="sysSeq" /> <!-- 流水号 -->
+			<!-- <data:mapping in="customerName" out="certName" /> 客户姓名 -->
+			<data:mapping in="customerNm" out="certName" /> <!-- 客户姓名 -->
+			<data:mapping in="certifTp" out="certType" /> <!-- 证件类型 -->
+			<data:mapping in="certifId" out="certNo" /> <!-- 证件号 -->
+			<data:mapping in="phoneNo" out="mobile" /> <!-- 电话 -->
+			<data:mapping in="accNo" out="eBindAcctNo" /> <!-- 绑定卡卡号 -->
+		</data:mappings>
+	</data:dicts>
+
+
+
+
+	<!-- 调用核心鉴权接口时需要对参数进行转换，转换成符合行方的数据参数名 -->
+	<data:dicts id="invokeCodeInterface">
+		<data:mappings>
+			<!-- data:mapping in="BizFctnCd" out="bizFctnCd" 需要绑定的银行卡号 -->
+			<data:mapping in="Acct" out="eBindAcctNo" /> <!-- 需要绑定的银行卡号 -->
+			<data:mapping in="Pwd" out="cardPwd" /> <!-- 需要绑定的银行卡密码 -->
+		</data:mappings>
+	</data:dicts>
+
+	<!-- 本行卡账户验证调用核心接口，初始参数设置 -->
+	<bean id="initInvokeCoreCliParams" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<!-- 核心接口 08009身份验证请求 -->
+				<entry key="transCode" value="08009" />
+				<entry key="isCheckmobilePhone" value="Y" />
+				<entry key="isCheckAccountName" value="Y" />
+				<entry key="isCheckCertificateNo" value="Y" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!-- 本行卡账户验证调用核心接口，交易前外部字典转内部字典 -->
+	<data:dicts id="invokeCoreCliBefDictConv" desc="本行卡账户验证调用核心接口，交易前外部字典转内部字典">
+		<data:mappings>
+			<data:mapping in="accountName" out="certName" />
+			<data:mapping in="bankCardNo" out="eBindAcctNo" />
+			<data:mapping in="mobilePhone" out="eBindMobile" />
+			<data:mapping in="certNo" out="certId" />
+			<data:mapping in="certType" out="coreCertType" />
+		</data:mappings>
+	</data:dicts>
+</beans>    

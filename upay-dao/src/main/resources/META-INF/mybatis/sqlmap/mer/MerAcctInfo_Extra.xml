@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerAcctInfoPo">
+	<select id="getSecondMer" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column"/>
+		FROM 
+		<include refid="Table_Name"/>
+		<where>
+			PARENT_MER_NO IS NOT NULL
+			AND IS_ENTRUST='Y'
+			ORDER BY PARENT_MER_NO
+		</where>
+	</select>
+</mapper>

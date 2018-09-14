@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.StlBookPo">
+
+	<sql id="Base_Where_Extra">
+		<trim suffixOverrides="AND">
+			<if test="id != null">
+				ID= #{id}
+				AND
+			</if>
+			<if test="stlDate != null">
+				STL_DATE= #{stlDate}
+				AND
+			</if>
+			<if test="stlBatchNo != null">
+				trim(STL_BATCH_NO)= trim(#{stlBatchNo})
+				AND
+			</if>
+			<if test="cardmerType != null">
+				CARDMER_TYPE= #{cardmerType}
+				AND
+			</if>
+			<if test="stlMerFlag != null">
+				STL_MER_FLAG= #{stlMerFlag}
+				AND
+			</if>
+			<if test="merFlag != null">
+				MER_FLAG= #{merFlag}
+				AND
+			</if>
+			<if test="merNo != null">
+				MER_NO= #{merNo}
+				AND
+			</if>
+			<if test="secMerNo != null">
+				SEC_MER_NO= #{secMerNo}
+				AND
+			</if>
+			<if test="txnTotAmt != null">
+				TXN_TOT_AMT= #{txnTotAmt}
+				AND
+			</if>
+			<if test="payAmt != null">
+				PAY_AMT= #{payAmt}
+				AND
+			</if>
+			<if test="payFee != null">
+				PAY_FEE= #{payFee}
+				AND
+			</if>
+			<if test="revAmt != null">
+				REV_AMT= #{revAmt}
+				AND
+			</if>
+			<if test="revFee != null">
+				REV_FEE= #{revFee}
+				AND
+			</if>
+			<if test="barAmt != null">
+				BAR_AMT= #{barAmt}
+				AND
+			</if>
+			<if test="cardRevFee != null">
+				CARD_REV_FEE= #{cardRevFee}
+				AND
+			</if>
+			<if test="cardPayFee != null">
+				CARD_PAY_FEE= #{cardPayFee}
+				AND
+			</if>
+			<if test="plateRevFee != null">
+				PLATE_REV_FEE= #{plateRevFee}
+				AND
+			</if>
+			<if test="platePayFee != null">
+				PLATE_PAY_FEE= #{platePayFee}
+				AND
+			</if>
+			<if test="stat != null">
+				STAT= #{stat}
+				AND
+			</if>
+			<if test="statIdx != null &amp;&amp; statIdxValue != null">
+				substr(STAT, #{statIdx}, 1)= #{statIdxValue}
+				AND
+			</if>
+			<if test="stlFile != null">
+				STL_FILE= #{stlFile}
+				AND
+			</if>
+			<if test="remark != null">
+				REMARK= #{remark}
+			</if>
+			<if test="orderStartDate != null">
+				STL_DATE &gt;= #{orderStartDate}
+				AND
+			</if>
+			<if test="orderEndDate != null">
+				STL_DATE &lt;= #{orderEndDate}
+				AND
+			</if>
+		</trim>
+	</sql>
+
+	<select id="selectList_Extra"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where_Extra" />
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+	<!-- 一级商户结算查询 -->
+	<select id="firstMerStlQuery"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			MER_NO IS NOT NULL AND SEC_MER_NO IS NULL
+			<if test="stat != null">
+				AND STAT= #{stat}
+			</if>
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+	
+	<!-- 二级商户结算查询 -->
+	<select id="secMerStlQuery"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			SEC_MER_NO IS NOT NULL
+			<if test="stat != null">
+				AND STAT <![CDATA[<>]]> #{stat}
+			</if>
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+	<!-- 查询当日是否一级商户结算,并且转账己成功的商户-->
+	<select id="checkFirstMerStlToday"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			SEC_MER_NO IS NULL
+			AND MER_NO=#{merNo}
+			<if test="stlStartDate != null">  
+				 <![CDATA[AND STL_DATE >= TO_DATE(#{stlStartDate}, 'yyyy-MM-dd')]]>
+			</if>
+			<if test="stlEndDate != null">
+				 <![CDATA[AND STL_DATE <  TO_DATE(#{stlEndDate}, 'yyyy-MM-dd')]]>
+			</if>
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+	
+	<!-- 查询未结算的商户   扎差金额大于0 -->
+	<select id="queryNoStlMer"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			BAR_AMT <![CDATA[<>]]> 0 and STAT=#{stat}
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+</mapper>

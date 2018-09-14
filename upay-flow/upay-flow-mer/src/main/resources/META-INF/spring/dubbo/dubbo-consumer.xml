@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+    <!--手机银行退券查询-->
+<!-- 	<dubbo:reference id="mobileQueryRefund" interface="com.pactera.dipper.core.IDipperHandler" group="mobileQueryRefund"/> -->
+
+	<!-- 微信商户信息维护 -->
+	<dubbo:reference id="defaultWeiXinMerchHttpsClientHandler" interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinMerchHttpsClientHandler" check="false"/>
+    <!-- 微信商户配置接口 -->
+	<dubbo:reference id="defaultWeiXinMchconfHttpsClientHandler" interface="com.pactera.dipper.core.IDipperHandler" group="defaultWeiXinMchconfHttpsClientHandler" check="false"/>
+    <!--用户登录-->
+ 	<dubbo:reference id="SI_USR0006" interface="com.pactera.dipper.core.IDipperHandler" group="SI_USR0006" check="false"/> 
+ 	<!--支付宝新增商户-->
+ 	<dubbo:reference id="AlipaySubMchAddMerHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipaySubMchAddMerHandler" check="false"/> 
+ 	<!--银联支付宝新增商户-->
+ 	<dubbo:reference id="AT_AlipaySubMchAddMerHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipaySubMchAddMerHandler" check="false"/> 
+ 	
+ 	<!--商户信息查询-->
+ 	<dubbo:reference id="AlipaySubMchQueryMerHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipaySubMchQueryMerHandler" check="false"/> 
+ 	<!--银联商户信息查询-->
+ 	<dubbo:reference id="AT_AlipaySubMchQueryMerHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipaySubMchQueryMerHandler" check="false"/> 
+ 	
+ 	
+ 	<!--商户信息修改-->
+ 	<dubbo:reference id="AlipaySubMchUpdateMerHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AlipaySubMchUpdateMerHandler" check="false"/> 
+ 	<!--银联商户信息修改-->
+ 	<dubbo:reference id="AT_AlipaySubMchUpdateMerHandler" interface="com.pactera.dipper.core.IDipperHandler" group="AT_AlipaySubMchUpdateMerHandler" check="false"/> 
+ 	
+ 	
+ 	<!-- 银联-商户信息维护 -->
+	<dubbo:reference id="unionPaySubMerADDClientDipperHandlr" interface="com.pactera.dipper.core.IDipperHandler" group="unionPaySubMerADDClientDipperHandlr" check="false"/>
+
+
+ 	
+ 	
+</beans>

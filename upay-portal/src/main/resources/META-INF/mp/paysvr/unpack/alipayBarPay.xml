@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+		<!-- 支付宝刷卡支付 -->
+		<mapping xpath="merNo" field="merNo"/><!-- 商户号 -->
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/><!-- 二级商户号 -->
+		<mapping xpath="outerOrderNo" field="outerOrderNo"/><!-- 商户订单号 -->
+		<mapping xpath="transAmt" field="transAmt" type="java.math.BigDecimal"/><!-- 交易金额 -->
+		<mapping xpath="authCode" field="authCode"/><!-- 授权码 -->
+		<mapping xpath="CURR" field="curr"/><!-- 货币类型 CNY -->
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp"/><!-- ip -->
+		<mapping xpath="outerOrderStartDate" field="outerOrderStartDate" must="not"/><!-- 商户订单开始时间 -->
+		<mapping xpath="outerOrderEndDate" field="outerOrderEndDate" must="not"/><!-- 商户订单失效时间 -->
+		<mapping xpath="disAmount" field="disAmount" must="not"/><!-- 参与优惠计算的金额，单位为元 -->
+		<mapping xpath="body" field="body" must="not"/><!-- 订单描述 -->
+		<mapping xpath="timeoutExpress" field="timeoutExpress" must="not"/><!--该笔订单允许的最晚付款时间，逾期将关闭交易 1m～15d。m-分钟，h-小时，d-天，1c-当天 -->
+		<mapping xpath="merFeeAmt" field="merFeeAmt" type="java.math.BigDecimal" must="not"/>
+	</mappings>
+</config>

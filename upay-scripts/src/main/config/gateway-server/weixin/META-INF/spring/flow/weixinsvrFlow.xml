@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+    
+    <dipper:flow service-id="SI_httpsvrFlow">
+        <dipper:try>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="M_UNPACK" />
+<!--                     <dipper:service ref="routeTranQryHandler" /> -->
+                    <dipper:service ref="weiXinVerifySignHandler" />
+                </dipper:invoke>
+                <dipper:invoke>
+                    <dipper:service ref="defaultServerDipperHandler" />
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException />
+        <dipper:finally >
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="M_PACK" />
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:finally>
+    </dipper:flow>
+
+</beans>    

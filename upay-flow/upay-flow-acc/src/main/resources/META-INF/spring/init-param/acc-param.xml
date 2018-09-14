@@ -1,0 +1,852 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+
+	<!-- *************************** 初始化参数 ****************************** -->
+	
+	<bean id="init_zjTransCode" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="zjTransCode" value="4530" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 余额修改初始化参数，减去 -->
+	<bean id="init_acc_amtUpdateSub" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="addOrSub" value="1" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 余额修改初始化参数，加钱 -->
+	<bean id="init_acc_amtUpdateAdd" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="addOrSub" value="0" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 平台转账失败时需要余额回退时，付款方需要加上手续费 -->
+	<bean id="init_acc_amtUpdateAddFee" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="addOrSub" value="0" />
+				<entry key="isAddFeeAmt" value="Y" /><!--1 退手续费  -->
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 转账收款人    余额修改初始化参数，加钱 -->
+	<bean id="init_acc_amtUpdateAdd_payee" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="addOrSub" value="0" />
+				<entry key="isPayeeAcct" value="Y" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<data:dicts id="data_acc_addAmtConvert">
+		<data:mappings><!-- 充值时的金额转换 -->
+			<data:mapping in="updateAmt" out="transAmt" />
+			<data:mapping in="accNo" out="vAcctNo" />
+		</data:mappings>
+	</data:dicts>
+	<bean id="init_acc_convertMoney" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!--金额转换 元到分 -->
+				<entry key="changFlag" value="1" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_sendMessage" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="tranCode" value="610006"></entry>
+				<entry key="branchNo" value="1010"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_sendSms_withdraw" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!--发送短信 -->
+				<entry key="smsEventParams" value="vAcctNo|transDate|transAmtStr|feeAmt|useBal" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_sendSms_recharge" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!--发送短信 -->
+				<entry key="smsEventParams" value="vAcctNo|transDate|transAmtStr|useBal" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<data:dicts id="init_acc_updateFeeDetail">
+		<data:mappings>
+			<data:mapping in="txnStat" out="orderStat" notNull="true"/>
+		</data:mappings>
+	</data:dicts>
+
+	<bean id="init_acc_updateOrderStat" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!--调用核心接口成功 更新订单状态为成功 -->
+				<entry key="orderStat" value="0" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_updateSeqStatSucc" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!--调用核心接口成功 更新订单状态为成功 -->
+				<entry key="transStat" value="N" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_limitAmt" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map><!-- 初始化参数 -->
+				<entry key="dcFlag" value="D" />
+				<entry key="sysLmtType" value="01" />
+				<entry key="lmtAccountFlag" value="1"></entry>
+				<entry key="checkUserLmt" value="Y" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_srFlag" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="srFlag" value="1" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="init_acc_payeeSrFlag" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="srFlag" value="1" />
+				<entry key="isRegPayerOrderNo" value="1" />
+				<entry key="isPayee" value="Y" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="init_acc_srFlag_feeAmt" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="srFlag" value="1" />
+				<entry key="orderDes" value="提现手续费" />
+				<entry key="isFeeAmt" value="Y" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_transfer_feeAmt" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="srFlag" value="1" />
+				<entry key="orderDes" value="转账手续费" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_createOrderParm" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="payerAccType" value="0002"></entry><!-- 0001担保支付 0002即时到账 -->
+				<entry key="orderType" value="01"></entry><!-- 00：非订单管理 01：平台订单 02：外部预先生成订单  03：外部联机生成订单 -->
+				<entry key="spbillCreateIp" value="127.0.0.1" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_createOrderParmTransfer" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="payerAccType" value="0002"></entry><!-- 0001担保支付 0002即时到账 -->
+				<entry key="orderType" value="01"></entry><!-- 00：非订单管理 01：平台订单 02：外部预先生成订单  03：外部联机生成订单 -->
+				<entry key="spbillCreateIp" value="127.0.0.1" />
+				<entry key="transComments" value="转入" />
+				<entry key="orderName" value="转入" />
+				<entry key="orderDes" value="转入" />
+				<entry key="isRegPayerOrderNo" value="1" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_acctType" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="acctType" value="01" />
+				<entry key="spbillCreateIp" value="127.0.0.1" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+	<!-- 联网核查身份信息 -->
+	<bean id="init_acc_userCertRegChnl" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="certCheckChnl" value="01" /><!-- 核查渠道 01:帮付宝 -->
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!-- 弱实名认证方式 -->
+	<bean id="init_acc_certWeakWayParam" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="certWeakWay" value="02" /><!-- 弱实名认证方式：02：核查身份证信息 -->
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_certFlagOnlineParam" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="certFlag" value="3" /><!-- 身份认证方式：3 联机认证 -->
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_eOpenFlag" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="eOpenFlag" value="1" />
+				<entry key="eAcctCertLevel" value="0" />
+				<entry key="eBindFlag" value="1" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_coreBankToPay" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="156"></entry><!-- 币种 -->
+				<entry key="tranCode" value="08001"></entry><!-- 核心记账交易码 -->
+				<entry key="charge" value=""></entry><!-- 手续费 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+				<entry key="trantype" value="1"></entry><!-- 交易类型为支付 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_coreBankToPay_other" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="156"></entry><!-- 币种 -->
+				<entry key="tranCode" value="08001"></entry><!-- 核心记账交易码 -->
+				<entry key="charge" value=""></entry><!-- 手续费 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+				<entry key="trantype" value="4"></entry><!-- 交易类型为内转内 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_coreToCert" class="java.util.HashMap">
+		<constructor-arg>
+			<map><!-- 核心客户信息认证接口 -->
+				<entry key="tranCode" value="08009"></entry><!-- 核心客户信息认证交易码 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+				<entry key="certType" value="01"></entry><!-- 渠道 -->
+				<entry key="isCheckmobilePhone" value="Y"></entry>
+				<entry key="isCheckAccountName" value="Y"></entry>
+				<entry key="isCheckCertificateNo" value="Y"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_coreBindCredit" class="java.util.HashMap">
+		<constructor-arg>
+			<map><!-- 核心信用卡客户信息认证接口 -->
+				<entry key="tranCode" value="08014"></entry><!-- 核心客户信息认证交易码 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+				<entry key="certType" value="01"></entry><!-- 渠道 -->
+				<entry key="isCheckmobilePhone" value="Y"></entry>
+				<entry key="isCheckAccountName" value="Y"></entry>
+				<entry key="isCheckCertificateNo" value="Y"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_feeget" class="java.util.HashMap">
+		<constructor-arg><!-- 手续费初始化 -->
+			<map>
+				<entry key="feeResource" value="2"></entry>
+				<entry key="isMer" value="N"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_smoke_core" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="156"></entry><!-- 币种 -->
+				<entry key="tranCode" value="08001"></entry><!-- 核心记账交易码 -->
+				<entry key="charge" value=""></entry><!-- 手续费 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_coreWithdraw_core" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="156"></entry><!-- 币种 -->
+				<entry key="tranCode" value="08001"></entry><!-- 核心记账交易码 -->
+				<entry key="charge" value=""></entry><!-- 手续费 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+				<entry key="trantype" value="3"></entry><!-- 交易类型为提现 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_coreWithdraw_corefee" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="156"></entry><!-- 币种 -->
+				<entry key="tranCode" value="08001"></entry><!-- 核心记账交易码 -->
+				<entry key="charge" value=""></entry><!-- 手续费 -->
+				<entry key="channelId" value="74"></entry><!-- 渠道 -->
+				<entry key="trantype" value="4"></entry><!-- 交易类型为内转内-->
+			</map>
+		</constructor-arg>
+	</bean>
+	
+
+	<bean id="init_acc_aaa" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="currency" value="vaa|aa|aa|aa"></entry><!-- 币种 -->
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="init_acc_zj_recharge" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="settlementFlag" value="0001" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="init_acc_zj_withdraw" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+<!-- 				<entry key="paymentAccountName" value="云南红塔银行股份有限公司" /> -->
+<!-- 				<entry key="paymentAccountNumber" value="600023660001" /> -->
+				<entry key="accountType" value="11" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="init_acc_zj_convInitCodeParm" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<entry key="accType" value="11" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+
+	<!-- *************************** 参数转换 ****************************** -->
+	<data:dicts id="data_acc_payeeOrerCov">
+		<data:mappings><!-- 平台转账收款方 订单转换   参数转换 -->
+			<data:mapping in="orderNo" out="payeeOrderNo" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_convUsrInfo">
+		<data:mappings><!-- 富农汇实名认证用户信息转换 -->
+			<data:mapping in="userName" out="certName" />
+			<data:mapping in="identificationNumber" out="certNo" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_convAcctNo">
+		<data:mappings><!-- 转账时查询付款方电子账户信息 -->
+			<data:mapping in="vAcctNo" out="transferPayerAcctNo" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_rtnAmtActConv">
+		<data:mappings><!-- 转账失败时，付款方余额回退虚拟账号转换 -->
+			<data:mapping in="accNo" out="transferPayerAcctNo" />
+		</data:mappings>
+	</data:dicts>
+	
+	
+	<data:dicts id="data_acc_convertBindAcctNo">
+		<data:mappings><!-- 解绑时的绑定账号转换 -->
+			<data:mapping in="eBindAcctNo" out="vBindAcctNo" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="data_acc_subtractAcctBal_payertransfer">
+		<data:mappings><!-- 虚拟账户扣款   转账 -->
+			<data:mapping in="updateAmt" out="transAmt" />
+			<data:mapping in="accNo" out="vAcctNo" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="data_acc_subtractAcctBal">
+		<data:mappings><!-- 调用账户余额扣减参数转换 -->
+			<data:mapping in="accNo" out="vAcctNo" />
+			<data:mapping in="updateAmt" out="transAmt" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_convertMobile">
+		<data:mappings><!-- 转换mobile -->
+			<data:mapping in="mobile" out="reserveMobile" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_checkUserConvert">
+		<data:mappings><!-- 调用中金实名认证转换 -->
+			<data:mapping in="userName" out="certName" />
+			<data:mapping in="identificationNumber" out="certNo" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_coreToCert">
+		<data:mappings><!-- 调用核心实名认证接口时参数转换 -->
+			<data:mapping in="bankCardNo" out="eBindAcctNo" />
+			<data:mapping in="accountName" out="certName" />
+			<data:mapping in="mobilePhone" out="reserveMobile" />
+			<data:mapping in="bizSerialNo" out="sysSeq"></data:mapping>
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_coreBindCredit">
+		<data:mappings><!-- 调用核心信用卡客户信息接口时参数转换 -->
+			<data:mapping in="bankCardNo" out="eBindAcctNo" />
+			<data:mapping in="accountName" out="certName" />
+			<data:mapping in="mobilePhone" out="reserveMobile" />
+			<data:mapping in="bizSerialNo" out="sysSeq" />
+			<data:mapping in="EXPIREDATE" out="validDate" />
+			<data:mapping in="CVV2" out="cvn2" />
+		</data:mappings>
+	</data:dicts>
+
+	<!-- 充值 三方接口参数转换 开始 -->
+	<data:dicts id="data_acc_recharge_localBank">
+		<data:mappings><!-- 本行充值第一笔流水参数转换 -->
+			<data:mapping in="payerAccNo" out="vbindAcctNo" />
+			<data:mapping in="payerAccType" out="bindAcctType" />
+			<data:mapping in="payerName" out="bindName" />
+			<data:mapping in="payerOrgName" out="bindOrgName" />
+			<data:mapping in="payerBankNo" out="bindAcctBankNo" />
+			<data:mapping in="payerBankName" out="bindAcctBankName" />
+			<data:mapping in="payerUserId" out="userId" />
+			
+			<data:mapping in="payeeAccNo" out="coreTransAcctNo" />
+			<data:mapping in="payeeName" out="coreName" />
+			<data:mapping in="payeeOrgName" out="coreBankName" />
+			<data:mapping in="payeeBankName" out="coreBankName" />
+			<data:mapping in="payeeAccType" out="coreAcctType" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="data_acc_recharge_otherBank_1">
+		<data:mappings><!-- 他行充值第一笔流水参数转换 -->
+			<data:mapping in="payerAccNo" out="vbindAcctNo" />
+			<data:mapping in="payerName" out="bindName" />
+			<data:mapping in="payerOrgName" out="bindOrgName" />
+			<data:mapping in="payerBankNo" out="bindAcctBankNo"></data:mapping>
+			<data:mapping in="payerBankName" out="bindAcctBankName" />
+			<data:mapping in="payerUserId" out="userId" />
+			<data:mapping in="payerAccType" out="bindAcctType" />
+			
+			<!-- 他行卡充值，用的是快捷支付，没办记收款方 -->
+			<data:mapping in="payeeAccNo" out="paymentAccountNumber" />
+			<data:mapping in="payeeAccType" out="paymentAccountType" />
+			<data:mapping in="payeeName" out="paymentAccountName" />
+<!-- 			<data:mapping in="payeeOrgName" out="bindOrgName" /> -->
+<!-- 			<data:mapping in="payeeBankNo" out="" /> -->
+			<data:mapping in="payeeBankName" out="bindAcctBankName" />
+		</data:mappings>
+	</data:dicts>
+		<data:dicts id="data_acc_recharge_otherBank_2">
+		<data:mappings><!-- 他行充值第二笔流水参数转换 -->
+			<data:mapping in="payerAccNo" out="thirdTransAcctNo" />
+			<data:mapping in="payerAccType" out="thirdAcctType" />
+			<data:mapping in="payerName" out="thirdName" />
+			<data:mapping in="payerOrgName" out="thirdBankName" />
+			<data:mapping in="payerBankNo" out="thirdBankNo" />
+			<data:mapping in="payerBankName" out="thirdBankName" />
+			<data:mapping in="payUserId" out="thirdUserId" />
+			
+			<data:mapping in="payeeAccNo" out="coreTransAcctNo" />
+			<data:mapping in="payeeName" out="coreName" />
+			<data:mapping in="payeeOrgName" out="coreBankName" />
+			<data:mapping in="payeeBankName" out="coreBankName" />
+			<data:mapping in="payeeAccType" out="coreAcctType" />
+			
+			<data:mapping in="routeCode" out="coreRouteCode" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_coreConvert_localBank">
+		<data:mappings><!-- 本行充值 调用核心记账接口时参数转换 -->
+			<data:mapping in="bankCardNo" out="vbindAcctNo" /><!-- 付款方 -->
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="setAccount" out="coreTransAcctNo" /><!-- 收款方 -->
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+			<data:mapping in="bizDate" out="machineDate" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_coreConvert_otherBank">
+		<data:mappings><!-- 他行充值 调用核心记账接口时参数转换 -->
+			<data:mapping in="bankCardNo" out="thirdTransAcctNo" /> <!-- 付款方 第三方往来户-->
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="setAccount" out="coreTransAcctNo" /><!-- 收款方 核心资金平台账户-->
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+			<data:mapping in="bizDate" out="machineDate" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_zj_recharge">
+		<data:mappings><!-- 他行充值 调用中金快捷支付 接口时参数转换 -->
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="paymentNo" out="routeSeq" />
+			<!-- <data:mapping in="remark" out="transComments" /> -->
+			<data:mapping in="remark" out="comment" />
+		</data:mappings>
+	</data:dicts>
+	<!-- 充值 三方接口参数转换 结束 -->
+
+	<!-- 转账  参数转换  开始 -->
+	<data:dicts id="data_acc_transfer_upAccBal">
+		<data:mappings><!-- 更新余额的 账户为收款方  参数转换 -->
+			<data:mapping in="accNo" out="payeeVacctNo" />
+			<data:mapping in="updateAmt" out="payAmount" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_transferFistFlow">
+		<data:mappings><!-- 虚拟账户转虚拟账户登记流水参数转换 -->
+
+			<data:mapping in="payerAccNo" out="vAcctNo" />
+			<data:mapping in="payerName" out="certName" />
+			<data:mapping in="payerOrgName" out="thisBankName" />
+			<data:mapping in="payerBankName" out="thisBankName" />
+			<data:mapping in="payerUserId" out="userId" />
+			<data:mapping in="payerAccType" out="thisAcctType" />
+
+			<data:mapping in="payeeAccNo" out="payeeVacctNo" />
+			<data:mapping in="payeeAccType" out="thisAcctType" />
+<!-- 			<data:mapping in="payeeName" out="payeeName" /> -->
+			<data:mapping in="payeeOrgName" out="thisBankName" />
+<!-- 			<data:mapping in="payeeBankNo" out="" /> -->
+			<data:mapping in="payeeBankName" out="thisBankName" />
+		</data:mappings>
+	</data:dicts>
+	
+		<data:dicts id="data_acc_feeTransferFlowlist">
+		<data:mappings><!-- 转账手续费流水登记 -->
+			<data:mapping in="payerAccNo" out="coreTransAcctNo" />
+			<data:mapping in="payerName" out="coreName" />
+			<data:mapping in="payerOrgName" out="coreBankName" />
+			<data:mapping in="payerBankName" out="coreBankName" />
+			<data:mapping in="payerUserId" out="coreUserId" />
+			<data:mapping in="payerAccType" out="coreAcctType" />
+
+			<data:mapping in="payeeAccNo" out="coreClrAcctNo" />
+			<data:mapping in="payeeAccType" out="coreAcctType" />
+			<data:mapping in="payeeName" out="coreName" />
+			<data:mapping in="payeeOrgName" out="coreBankName" />
+			<data:mapping in="payeeBankNo" out="coreBankNo" />
+			<data:mapping in="payeeBankName" out="coreBankName" />
+			
+			
+			<data:mapping in="routeCode" out="coreRouteCode" />
+			<data:mapping in="transAmt" out="feeAmt" />
+			
+			<data:mapping in="orderNo" out="transferPayerOrderNo" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_feeFlowlist">
+		<data:mappings><!-- 提现手续费流水登记 -->
+			<data:mapping in="payerAccNo" out="coreTransAcctNo" />
+			<data:mapping in="payerName" out="coreName" />
+			<data:mapping in="payerOrgName" out="coreBankName" />
+			<data:mapping in="payerBankName" out="coreBankName" />
+			<data:mapping in="payerUserId" out="coreUserId" />
+			<data:mapping in="payerAccType" out="coreAcctType" />
+
+			<data:mapping in="payeeAccNo" out="coreClrAcctNo" />
+			<data:mapping in="payeeAccType" out="coreAcctType" />
+			<data:mapping in="payeeName" out="coreName" />
+			<data:mapping in="payeeOrgName" out="coreBankName" />
+			<data:mapping in="payeeBankNo" out="coreBankNo" />
+			<data:mapping in="payeeBankName" out="coreBankName" />
+			
+			
+			<data:mapping in="routeCode" out="coreRouteCode" />
+			<data:mapping in="transAmt" out="feeAmt" />
+		</data:mappings>
+	</data:dicts>
+	
+	
+	<data:dicts id="data_acc_transfer_invCoreConv">
+		<data:mappings><!-- 调用核心记账接口  参数转换 -->
+			<data:mapping in="bankCardNo" out="payerAccNo2" />
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="setAccount" out="payeeAccNo2" />
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_transfer_payeeOrder">
+		<data:mappings><!-- 转账时，登记收款人的订单信息 -->
+			<data:mapping in="userId" out="payeeUserId" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="payerUserIdConv">
+		<data:mappings><!-- 转账时，更新付款人订单的userID -->
+			<data:mapping in="userId" out="payerTransferUserId" />
+		</data:mappings>
+	</data:dicts>
+	
+	
+	<!-- 转账  参数转换 结束 -->
+
+	<!-- 提现 三方接口参数转换 开始 -->
+	
+	<data:dicts id="data_acc_withdraw_localBank">
+		<data:mappings><!-- 本行提现第一笔流水参数转换 -->
+			<data:mapping in="payerAccNo" out="coreTransAcctNo" />
+			<data:mapping in="payerName" out="coreName" />
+			<data:mapping in="payerOrgName" out="coreBankName" />
+			<data:mapping in="payerBankName" out="coreBankName" />
+			<data:mapping in="payerUserId" out="coreUserId" />
+			<data:mapping in="payerAccType" out="coreAcctType" />
+
+			<data:mapping in="payeeAccNo" out="vbindAcctNo" />
+			<data:mapping in="payeeAccType" out="bindAcctType" />
+			<data:mapping in="payeeName" out="bindName" />
+			<data:mapping in="payeeOrgName" out="bindOrgName" />
+			<data:mapping in="payeeBankNo" out="bindAcctBankNo" />
+			<data:mapping in="payeeBankName" out="bindAcctBankName" />
+		</data:mappings>
+	</data:dicts>
+	
+	<!-- 本行 -->
+	<data:dicts id="data_acc_withdraw_invCoreLocal">
+		<data:mappings><!-- 调用核心记账接口 参数转换 -->
+			<data:mapping in="bankCardNo" out="vbindAcctNo" /> <!-- 提现付款方为   核心资金池账户 -->
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="setAccount" out="coreTransAcctNo" /><!-- 提现收款方为   用户绑定的卡号 -->
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+	
+	<!-- 商户扣款  本行 -->
+	<data:dicts id="data_acc_smoke_invCoreLocal">
+		<data:mappings><!-- 调用核心记账接口 参数转换 -->
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+
+	<!-- 他行 -->
+	<data:dicts id="data_acc_withdraw_otherBank_1">
+		<data:mappings><!-- 他行提现第一笔流水参数转换 -->
+			<data:mapping in="payerAccNo" out="paymentAccountNumber" />
+			<data:mapping in="payerName" out="paymentAccountName" />
+<!-- 			<data:mapping in="payerOrgName" out="coreBankName" /> -->
+<!-- 			<data:mapping in="payerBankName" out="coreBankName" /> -->
+<!-- 			<data:mapping in="payerUserId" out="coreUserId" /> -->
+			<data:mapping in="payerAccType" out="paymentAccountType" />
+
+			<data:mapping in="payeeAccNo" out="vbindAcctNo" />
+			<data:mapping in="payeeAccType" out="bindAcctType" />
+			<data:mapping in="payeeName" out="bindName" />
+			<data:mapping in="payeeOrgName" out="bindOrgName" />
+			<data:mapping in="payeeBankNo" out="bindAcctBankNo" />
+			<data:mapping in="payeeBankName" out="bindAcctBankName" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_withdraw_otherBank_2">
+		<data:mappings><!-- 他行提现第二笔流水参数转换 -->
+			<data:mapping in="payerAccNo" out="coreTransAcctNo" />
+			<data:mapping in="payerName" out="coreName" />
+			<data:mapping in="payerOrgName" out="coreBankName" />
+			<data:mapping in="payerBankName" out="coreBankName" />
+			<data:mapping in="payerUserId" out="coreUserId" />
+			<data:mapping in="payerAccType" out="coreAcctType" />
+
+			<data:mapping in="payeeAccNo" out="thirdTransAcctNo" />
+			<data:mapping in="payeeAccType" out="thirdAcctType" />
+			<data:mapping in="payeeName" out="thirdName" />
+			<data:mapping in="payeeOrgName" out="thirdBankName" />
+			<data:mapping in="payeeBankNo" out="thirdBankNo" />
+			<data:mapping in="payeeBankName" out="thirdBankName" />
+			
+			<data:mapping in="routeCode" out="coreRouteCode" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_withdraw_invCoreLocal_other">
+		<data:mappings><!-- 调用核心记账接口 参数转换 -->
+			<data:mapping in="bankCardNo" out="coreTransAcctNo" />
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="setAccount" out="vbindAcctNo" />
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+	
+	
+	<data:dicts id="data_acc_zj_withdraw_sysSeq">
+		<data:mappings><!-- 调用4530提现 需要保存流水号 -->
+			<data:mapping in="routeSeq" out="txSN" />
+			<data:mapping in="clrType" out="thirdClrType" /> 
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_withdraw_invCoreConv">
+		<data:mappings><!-- 调用核心记账接口 参数转换 -->
+			<data:mapping in="bankCardNo" out="coreTransAcctNo" /> <!-- 付方为 核心资金池账户 -->
+			<data:mapping in="amount" out="totalFee" />
+			<data:mapping in="setAccount" out="thirdTransAcctNo" /><!-- 付方为 第三方往来户 -->
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_zj_withdraw_convert">
+		<data:mappings><!-- 调用中金的单笔代收接口 参数转换 -->
+<!-- 			<data:mapping in="txSN" out="routeSeq" /> -->
+			<data:mapping in="phoneNumber" out="reserveMobile" />
+			<!-- <data:mapping in="remark" out="transComments" /> -->
+			<data:mapping in="remark" out="comment" />
+<!-- 			<data:mapping in="amount" out="totalFee" /> -->
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="data_acc_zj_withdraw_payerr">
+		<data:mappings><!-- 调用中金的单笔代收接口 参数转换 -->
+			<data:mapping in="paymentNo" out="transSubSeq" />
+			<!-- <data:mapping in="status" out="Status" /> -->
+			<!-- <data:mapping in="bankTxTime" out="bankTxTime" /> -->
+		</data:mappings>
+	</data:dicts>
+	<!-- 他行 手续费-->
+	<data:dicts id="data_acc_coreFeeConvert">
+		<data:mappings><!-- 调用核心记账接口 参数转换   手续费 -->
+			<data:mapping in="bankCardNo" out="coreTransAcctNo" /> <!--付款方为  核心资金平台账户 -->
+			<data:mapping in="amount" out="feeAmtPoints" />
+			<data:mapping in="setAccount" out="coreClrAcctNo" /><!--付款方为  核心资金平台账户 -->
+			<data:mapping in="bizSerialNo" out="transSubSeq" />
+		</data:mappings>
+	</data:dicts>
+
+	<!-- 提现 三方接口参数转换 结束 -->
+
+
+
+	<data:dicts id="data_acc_regPayFlowListConvert">
+		<data:mappings><!-- 调用登录流水前的参数转换 -->
+			<data:mapping in="flowRouteCode" out="routeCode" />
+			<data:mapping in="payAmount" out="transAmt" />
+			<data:mapping in="payerName" out="payerAcctName" />
+			<data:mapping in="payerAccNo" out="payerAcctNo" />
+
+			<data:mapping in="payeeAccNo" out="payeeAcctNo" />
+			<data:mapping in="payeeName" out="payeeAcctName" />
+			<data:mapping in="orderDes" out="transComments" />
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_bankCode_convert">
+		<data:mappings>
+			<data:mapping in="eBindBankCode" out="cupBankNo" /> <!-- 绑定卡行号 -->
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_accCheck">
+		<data:mappings>
+			<data:mapping in="eBindBankCode" out="cupBankNo" /> <!-- 绑定卡行号 -->
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_bindParmSwitch">
+		<data:mappings>
+			<data:mapping in="eBindBankCode" out="cupBankNo" /> <!-- 绑定卡行号 -->
+			<data:mapping in="eBindBankName" out="cupBankName" /> <!-- 绑定卡行号 -->
+			<data:mapping in="eBindBankFlag" out="bankBinFlag" /> <!-- 银行标识01 直销银行 02他行 03本行核心系统 -->
+			<data:mapping in="eBindBankCode" out="cupBankNo" /> <!-- 绑定卡行号 -->
+		</data:mappings>
+	</data:dicts>
+
+	<data:dicts id="data_acc_bindZJCardCovert">
+		<data:mappings>
+			<data:mapping in="bankID" out="logoId" /> <!-- 银行ID号 -->
+			<data:mapping in="mobile" out="reserveMobile" /><!-- 预留手机号 -->
+		</data:mappings>
+	</data:dicts>
+	<!-- 贷记卡绑定转换 -->
+	<data:dicts id="data_acc_bindZJcreditCardCovert">
+		<data:mappings>
+			<data:mapping in="accountName" out="certName" /> <!-- 身份证姓名 -->
+			<data:mapping in="accountNumber" out="eBindAcctNo" /><!-- 绑定卡号  -->
+			<data:mapping in="identificationNumber" out="certNo" /><!-- 身份证号码 -->
+			<data:mapping in="phoneNumber" out="reserveMobile" /><!-- 银行绑定手机号 -->
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="data_acc_transfer_payertoUserId">
+		<data:mappings>
+			<data:mapping in="userId" out="payerUser" /> <!--  -->
+		</data:mappings>
+	</data:dicts>
+	
+	<!-- 中金清算类型转换 -->
+	<data:dicts id="data_acc_thirdClrType">
+		<data:mappings>
+			<data:mapping in="clrType" out="thirdClrType" /> <!--  -->
+		</data:mappings>
+	</data:dicts>
+	<!-- 核心清算类型转换 -->
+	<data:dicts id="data_acc_coreClrType">
+		<data:mappings>
+			<data:mapping in="clrType" out="coreClrType" /> <!--  -->
+		</data:mappings>
+	</data:dicts>
+	<!-- 中金流水登记参数转换 -->
+	<data:dicts id="data_acc_zjFlow">
+		<data:mappings>
+			<data:mapping in="payerAccNo" out="paymentAccountNumber" /> <!-- 付款方账户 -->
+			<data:mapping in="payerName" out="paymentAccountName" /> <!--  付款方姓名-->
+			<data:mapping in="payerAccType" out="zjAccType" /> <!-- 付款方账户类型 -->
+			<data:mapping in="payeeAccNo" out="vbindAcctNo" /> <!--收款方账户  -->
+			<data:mapping in="payeeName" out="certName" /> <!-- 收款方姓名 -->
+			<data:mapping in="payeeAccType" out="payeeCardType" /> <!-- 收款方账户类型 -->
+			<data:mapping in="routeCode" out="zjRouteCode" /> <!-- 收款方账户类型 -->
+		</data:mappings>
+	</data:dicts>
+	
+		<!-- 核心流水登记参数转换 -->
+	<data:dicts id="data_acc_zj_second_core_flow">
+		<data:mappings>
+			<data:mapping in="payerAccNo" out="bankCardNo" /> <!-- 付款方账户 -->
+			<data:mapping in="payerAccType" out="stlAcctType" /> <!-- 付款方账户类型 -->
+			<data:mapping in="payeeAccNo" out="setAccount" /> <!--收款方账户  -->
+			<data:mapping in="payeeName" out="secondCoreAccName" /> <!-- 收款方姓名 -->
+			<data:mapping in="payeeAccType" out="secondCoreAccType" /> <!-- 收款方账户类型 -->
+			<data:mapping in="routeCode" out="coreRouteCode" />
+		</data:mappings>
+	</data:dicts>
+	
+	<data:dicts id="data_acc_zj_withdraw_sysSeq_pay1006">
+		<data:mappings>
+			<data:mapping in="routeSeq" out="txSN" />
+			<data:mapping in="clrType" out="thirdClrType" /> 
+			<data:mapping in="routeCode" out="zjRouteCode" /> 
+		</data:mappings>
+	</data:dicts>
+	
+</beans>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerNotifiyPo">
+	<!-- 分页查询商户支付结果通知 -->
+	<select id="getMerNotifyPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/> 
+		from (		
+			select 
+			rownum r,
+			<include refid="Base_Column"/> 
+			from (		
+				select 
+				<include refid="Base_Column"/>
+				from 
+				<include refid="Table_Name"/>
+				<where>
+					<if test="status != null">
+						AND NOTIFY_STATUS=#{status}
+					</if>
+					<if test="sendTimes != null">
+						AND SEND_TIMES <![CDATA[<]]> #{sendTimes}
+					</if>
+				</where>
+				ORDER BY TRANS_DATE ASC,TRANS_SEQ ASC
+			)
+		)
+		<!-- <where>
+			<if test="pageIndex != null and pageSize != null">
+				AND r <![CDATA[>]]> (#{pageIndex}-1)*#{pageSize} 
+				AND r <![CDATA[<=]]> #{pageIndex}*#{pageSize}
+			</if>
+		</where> -->
+	</select>
+	
+	<select id="getMerNotifyNum" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select 
+		count(id) count
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="status != null">
+				AND NOTIFY_STATUS=#{status}
+			</if>
+			<if test="sendTimes != null">
+				AND SEND_TIMES <![CDATA[<]]> #{sendTimes}
+			</if>
+		</where>
+		ORDER BY TRANS_DATE ASC,TRANS_SEQ ASC
+	</select>
+	
+
+</mapper>

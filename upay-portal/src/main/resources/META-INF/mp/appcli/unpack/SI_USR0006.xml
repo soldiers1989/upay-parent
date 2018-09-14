@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.LOGIN_MODE" field="loginMode" />
+	<mapping xpath="$.body.CERT_NO" field="certNo" must="not"/>
+	<mapping xpath="$.body.EMAIL" field="email" must="not"/>
+	<mapping xpath="$.body.MOBILE" field="mobile" must="not"/>
+	<mapping xpath="$.body.USER_NAME" field="userName" must="not"/>
+	<mapping xpath="$.body.LOGIN_PWD" field="loginPwd" />
+
+	<mapping xpath="$.body.VERIFY_KEY" field="verifyKey" must="not"/>
+	<mapping xpath="$.body.VERIFY_CODE" field="verifyCode" must="not"/>
+	<mapping xpath="$.body.MI_TYPE" field="miType" must="not"/>	
+	</mappings>
+</config>

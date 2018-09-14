@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerChannelMenuPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerChannelMenuPo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="CHANNEL_MENU_BOOK_ID" property="channelMenuBookId" />
+		<result column="CHANNEL_ID" property="channelId" />
+		<result column="MER_NAME" property="merName" />
+		<result column="CHANNEL_NAME" property="channelName" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_CHANNEL_MENU
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		CHANNEL_MENU_BOOK_ID,
+		CHANNEL_ID,
+		MER_NAME,
+		CHANNEL_NAME,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="channelMenuBookId != null">
+			CHANNEL_MENU_BOOK_ID= #{channelMenuBookId}
+	           AND 
+		</if>
+		<if test="channelId != null">
+			CHANNEL_ID= #{channelId}
+	           AND 
+		</if>
+		<if test="merName != null">
+			MER_NAME= #{merName}
+	           AND 
+		</if>
+		<if test="channelName != null">
+			CHANNEL_NAME= #{channelName}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="channelMenuBookId != null">
+		CHANNEL_MENU_BOOK_ID,
+	</if>
+	<if test="channelId != null">
+		CHANNEL_ID,
+	</if>
+	<if test="merName != null">
+		MER_NAME,
+	</if>
+	<if test="channelName != null">
+		CHANNEL_NAME,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="channelMenuBookId != null">
+		#{channelMenuBookId},
+	</if>
+	<if test="channelId != null">
+		#{channelId},
+	</if>
+	<if test="merName != null">
+		#{merName},
+	</if>
+	<if test="channelName != null">
+		#{channelName},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="channelMenuBookId != null">
+		CHANNEL_MENU_BOOK_ID=#{channelMenuBookId},
+	</if>
+	<if test="channelId != null">
+		CHANNEL_ID=#{channelId},
+	</if>
+	<if test="merName != null">
+		MER_NAME=#{merName},
+	</if>
+	<if test="channelName != null">
+		CHANNEL_NAME=#{channelName},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.channelMenuBookId != null">
+                    CHANNEL_MENU_BOOK_ID=#{s.channelMenuBookId},
+			</if>
+			<if test="s.channelId != null">
+                    CHANNEL_ID=#{s.channelId},
+			</if>
+			<if test="s.merName != null">
+                    MER_NAME=#{s.merName},
+			</if>
+			<if test="s.channelName != null">
+                    CHANNEL_NAME=#{s.channelName},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.channelMenuBookId != null">
+                    CHANNEL_MENU_BOOK_ID=#{w.channelMenuBookId}
+                   AND 
+ 			</if>
+			<if test="w.channelId != null">
+                    CHANNEL_ID=#{w.channelId}
+                   AND 
+ 			</if>
+			<if test="w.merName != null">
+                    MER_NAME=#{w.merName}
+                   AND 
+ 			</if>
+			<if test="w.channelName != null">
+                    CHANNEL_NAME=#{w.channelName}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

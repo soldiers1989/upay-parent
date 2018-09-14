@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+       xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+    <!-- SI_PAY3008 银联二维码 线下主扫 生成商户二维码 -->
+    <dipper:flow service-id="SI_PAY3008">
+        <dipper:try>
+           <dipper:route>
+                <!-- 商户状态检查 -->
+                <dipper:invoke>
+                    <dipper:service ref="MerStatChkService"/>
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route>
+                 <!-- 申请二维码 -->
+                <dipper:invoke>
+                    <dipper:service ref="UnionPayApplyQrCodeDipperHandler"/>
+                </dipper:invoke>
+            </dipper:route>
+			<dipper:route transaction="lazy">
+                 <!-- 商户记录二维码 -->
+                <dipper:invoke>
+                    <dipper:service ref="UpdateUnionQRCodeToMerInfoService"/>
+                </dipper:invoke>
+                <dipper:invoke>
+               		 <dipper:service ref="UpdateMerOpenPayService" param-ref="initParmMer3008"/>
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException/>
+    </dipper:flow>
+</beans>    

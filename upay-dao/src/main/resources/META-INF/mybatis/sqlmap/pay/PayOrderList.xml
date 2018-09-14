@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayOrderListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.PayOrderListPo">
+		<id column="ID" property="id" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="PAY_SERVIC_TYPE" property="payServicType" />
+		<result column="MER_DATE" property="merDate" />
+		<result column="MER_SEQ" property="merSeq" />
+		<result column="MER_NO" property="merNo" />
+		<result column="SEC_MER_NO" property="secMerNo" />
+		<result column="OUTER_ORDER_NO" property="outerOrderNo" />
+		<result column="OUTER_ORDER_START_DATE" property="outerOrderStartDate" />
+		<result column="OUTER_ORDER_END_DATE" property="outerOrderEndDate" />
+		<result column="ORDER_TYPE" property="orderType" />
+		<result column="PAY_TYPE" property="payType" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="ORDER_NAME" property="orderName" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="USER_ID" property="userId" />
+		<result column="ORDER_DATE" property="orderDate" />
+		<result column="ORDER_TIME" property="orderTime" />
+		<result column="ORDER_LMT_TIME" property="orderLmtTime" />
+		<result column="CURR" property="curr" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="OTHER_TRAN_AMT" property="otherTranAmt" />
+		<result column="PRODUCT_AMT" property="productAmt" />
+		<result column="MER_FEE_AMT" property="merFeeAmt" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="ORI_DATE" property="oriDate" />
+		<result column="ORI_ORDER_NO" property="oriOrderNo" />
+		<result column="EJECT_AMT" property="ejectAmt" />
+		<result column="ORDER_STAT" property="orderStat" />
+		<result column="SPBILL_CREATE_IP" property="spbillCreateIp" />
+		<result column="NOTIFY_URL" property="notifyUrl" />
+		<result column="RETURN_URL" property="returnUrl" />
+		<result column="TRANS_COMMENTS" property="transComments" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+		<result column="CHK_FLAG" property="chkFlag" />
+		<result column="CHK_BATCH_NO" property="chkBatchNo" />
+		<result column="STL_FLAG" property="stlFlag" />
+		<result column="CHK_DATE" property="chkDate" />
+		<result column="STL_BATCH_NO" property="stlBatchNo" />
+		<result column="STL_DATE" property="stlDate" />
+		<result column="ORDER_DES" property="orderDes" />
+		<result column="OPEN_ID" property="openId" />
+		<result column="PAY_TIME" property="payTime" />
+		<result column="PAY_ACCT_NO" property="payAcctNo" />
+		<result column="TRANS_TYPE" property="transType" />
+		<result column="CLEAR_FLAG" property="clearFlag" />
+		<result column="CLEAR_BATCH_NO" property="clearBatchNo" />
+		<result column="CLEAR_DATE" property="clearDate" />
+		<result column="SEC_MER_FEE_AMT" property="secMerFeeAmt" />
+		<result column="EXTENSION_PARTY" property="extensionParty" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="PAYER_ACCT_TYPE" property="payerAcctType" />
+		<result column="PAYER_ACCT_NO" property="payerAcctNo" />
+		<result column="PAYEE_ACCT_TYPE" property="payeeAcctType" />
+		<result column="PAYEE_ACCT_NO" property="payeeAcctNo" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_PAY_ORDER_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CHNL_ID,
+		PAY_SERVIC_TYPE,
+		MER_DATE,
+		MER_SEQ,
+		MER_NO,
+		SEC_MER_NO,
+		OUTER_ORDER_NO,
+		OUTER_ORDER_START_DATE,
+		OUTER_ORDER_END_DATE,
+		ORDER_TYPE,
+		PAY_TYPE,
+		ORDER_NO,
+		ORDER_NAME,
+		TRANS_CODE,
+		USER_ID,
+		ORDER_DATE,
+		ORDER_TIME,
+		ORDER_LMT_TIME,
+		CURR,
+		TRANS_AMT,
+		OTHER_TRAN_AMT,
+		PRODUCT_AMT,
+		MER_FEE_AMT,
+		FEE_AMT,
+		ORI_DATE,
+		ORI_ORDER_NO,
+		EJECT_AMT,
+		ORDER_STAT,
+		SPBILL_CREATE_IP,
+		NOTIFY_URL,
+		RETURN_URL,
+		TRANS_COMMENTS,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		CHK_FLAG,
+		CHK_BATCH_NO,
+		STL_FLAG,
+		CHK_DATE,
+		STL_BATCH_NO,
+		STL_DATE,
+		ORDER_DES,
+		OPEN_ID,
+		PAY_TIME,
+		PAY_ACCT_NO,
+		TRANS_TYPE,
+		CLEAR_FLAG,
+		CLEAR_BATCH_NO,
+		CLEAR_DATE,
+		SEC_MER_FEE_AMT,
+		EXTENSION_PARTY,
+		ROUTE_CODE,
+		PAYER_ACCT_TYPE,
+		PAYER_ACCT_NO,
+		PAYEE_ACCT_TYPE,
+		PAYEE_ACCT_NO,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="payServicType != null">
+			PAY_SERVIC_TYPE= #{payServicType}
+	           AND 
+		</if>
+		<if test="merDate != null">
+			MER_DATE= #{merDate}
+	           AND 
+		</if>
+		<if test="merSeq != null">
+			MER_SEQ= #{merSeq}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="secMerNo != null">
+			SEC_MER_NO= #{secMerNo}
+	           AND 
+		</if>
+		<if test="outerOrderNo != null">
+			OUTER_ORDER_NO= #{outerOrderNo}
+	           AND 
+		</if>
+		<if test="outerOrderStartDate != null">
+			OUTER_ORDER_START_DATE= #{outerOrderStartDate}
+	           AND 
+		</if>
+		<if test="outerOrderEndDate != null">
+			OUTER_ORDER_END_DATE= #{outerOrderEndDate}
+	           AND 
+		</if>
+		<if test="orderType != null">
+			ORDER_TYPE= #{orderType}
+	           AND 
+		</if>
+		<if test="payType != null">
+			PAY_TYPE= #{payType}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="orderName != null">
+			ORDER_NAME= #{orderName}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="orderDate != null">
+			ORDER_DATE= #{orderDate}
+	           AND 
+		</if>
+		<if test="orderTime != null">
+			ORDER_TIME= #{orderTime}
+	           AND 
+		</if>
+		<if test="orderLmtTime != null">
+			ORDER_LMT_TIME= #{orderLmtTime}
+	           AND 
+		</if>
+		<if test="curr != null">
+			CURR= #{curr}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="otherTranAmt != null">
+			OTHER_TRAN_AMT= #{otherTranAmt}
+	           AND 
+		</if>
+		<if test="productAmt != null">
+			PRODUCT_AMT= #{productAmt}
+	           AND 
+		</if>
+		<if test="merFeeAmt != null">
+			MER_FEE_AMT= #{merFeeAmt}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="oriDate != null">
+			ORI_DATE= #{oriDate}
+	           AND 
+		</if>
+		<if test="oriOrderNo != null">
+			ORI_ORDER_NO= #{oriOrderNo}
+	           AND 
+		</if>
+		<if test="ejectAmt != null">
+			EJECT_AMT= #{ejectAmt}
+	           AND 
+		</if>
+		<if test="orderStat != null">
+			ORDER_STAT= #{orderStat}
+	           AND 
+		</if>
+		<if test="spbillCreateIp != null">
+			SPBILL_CREATE_IP= #{spbillCreateIp}
+	           AND 
+		</if>
+		<if test="notifyUrl != null">
+			NOTIFY_URL= #{notifyUrl}
+	           AND 
+		</if>
+		<if test="returnUrl != null">
+			RETURN_URL= #{returnUrl}
+	           AND 
+		</if>
+		<if test="transComments != null">
+			TRANS_COMMENTS= #{transComments}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+	           AND 
+		</if>
+		<if test="chkFlag != null">
+			CHK_FLAG= #{chkFlag}
+	           AND 
+		</if>
+		<if test="chkBatchNo != null">
+			CHK_BATCH_NO= #{chkBatchNo}
+	           AND 
+		</if>
+		<if test="stlFlag != null">
+			STL_FLAG= #{stlFlag}
+	           AND 
+		</if>
+		<if test="chkDate != null">
+			CHK_DATE= #{chkDate}
+	           AND 
+		</if>
+		<if test="stlBatchNo != null">
+			STL_BATCH_NO= #{stlBatchNo}
+	           AND 
+		</if>
+		<if test="stlDate != null">
+			STL_DATE= #{stlDate}
+	           AND 
+		</if>
+		<if test="orderDes != null">
+			ORDER_DES= #{orderDes}
+	           AND 
+		</if>
+		<if test="openId != null">
+			OPEN_ID= #{openId}
+	           AND 
+		</if>
+		<if test="payTime != null">
+			PAY_TIME= #{payTime}
+	           AND 
+		</if>
+		<if test="payAcctNo != null">
+			PAY_ACCT_NO= #{payAcctNo}
+	           AND 
+		</if>
+		<if test="transType != null">
+			TRANS_TYPE= #{transType}
+	           AND 
+		</if>
+		<if test="clearFlag != null">
+			CLEAR_FLAG= #{clearFlag}
+	           AND 
+		</if>
+		<if test="clearBatchNo != null">
+			CLEAR_BATCH_NO= #{clearBatchNo}
+	           AND 
+		</if>
+		<if test="clearDate != null">
+			CLEAR_DATE= #{clearDate}
+	           AND 
+		</if>
+		<if test="secMerFeeAmt != null">
+			SEC_MER_FEE_AMT= #{secMerFeeAmt}
+	           AND 
+		</if>
+		<if test="extensionParty != null">
+			EXTENSION_PARTY= #{extensionParty}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+	           AND 
+		</if>
+		<if test="payerAcctType != null">
+			PAYER_ACCT_TYPE= #{payerAcctType}
+	           AND 
+		</if>
+		<if test="payerAcctNo != null">
+			PAYER_ACCT_NO= #{payerAcctNo}
+	           AND 
+		</if>
+		<if test="payeeAcctType != null">
+			PAYEE_ACCT_TYPE= #{payeeAcctType}
+	           AND 
+		</if>
+		<if test="payeeAcctNo != null">
+			PAYEE_ACCT_NO= #{payeeAcctNo}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="payServicType != null">
+		PAY_SERVIC_TYPE,
+	</if>
+	<if test="merDate != null">
+		MER_DATE,
+	</if>
+	<if test="merSeq != null">
+		MER_SEQ,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO,
+	</if>
+	<if test="outerOrderNo != null">
+		OUTER_ORDER_NO,
+	</if>
+	<if test="outerOrderStartDate != null">
+		OUTER_ORDER_START_DATE,
+	</if>
+	<if test="outerOrderEndDate != null">
+		OUTER_ORDER_END_DATE,
+	</if>
+	<if test="orderType != null">
+		ORDER_TYPE,
+	</if>
+	<if test="payType != null">
+		PAY_TYPE,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="orderName != null">
+		ORDER_NAME,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="orderDate != null">
+		ORDER_DATE,
+	</if>
+	<if test="orderTime != null">
+		ORDER_TIME,
+	</if>
+	<if test="orderLmtTime != null">
+		ORDER_LMT_TIME,
+	</if>
+	<if test="curr != null">
+		CURR,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="otherTranAmt != null">
+		OTHER_TRAN_AMT,
+	</if>
+	<if test="productAmt != null">
+		PRODUCT_AMT,
+	</if>
+	<if test="merFeeAmt != null">
+		MER_FEE_AMT,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="oriDate != null">
+		ORI_DATE,
+	</if>
+	<if test="oriOrderNo != null">
+		ORI_ORDER_NO,
+	</if>
+	<if test="ejectAmt != null">
+		EJECT_AMT,
+	</if>
+	<if test="orderStat != null">
+		ORDER_STAT,
+	</if>
+	<if test="spbillCreateIp != null">
+		SPBILL_CREATE_IP,
+	</if>
+	<if test="notifyUrl != null">
+		NOTIFY_URL,
+	</if>
+	<if test="returnUrl != null">
+		RETURN_URL,
+	</if>
+	<if test="transComments != null">
+		TRANS_COMMENTS,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG,
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO,
+	</if>
+	<if test="stlFlag != null">
+		STL_FLAG,
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE,
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO,
+	</if>
+	<if test="stlDate != null">
+		STL_DATE,
+	</if>
+	<if test="orderDes != null">
+		ORDER_DES,
+	</if>
+	<if test="openId != null">
+		OPEN_ID,
+	</if>
+	<if test="payTime != null">
+		PAY_TIME,
+	</if>
+	<if test="payAcctNo != null">
+		PAY_ACCT_NO,
+	</if>
+	<if test="transType != null">
+		TRANS_TYPE,
+	</if>
+	<if test="clearFlag != null">
+		CLEAR_FLAG,
+	</if>
+	<if test="clearBatchNo != null">
+		CLEAR_BATCH_NO,
+	</if>
+	<if test="clearDate != null">
+		CLEAR_DATE,
+	</if>
+	<if test="secMerFeeAmt != null">
+		SEC_MER_FEE_AMT,
+	</if>
+	<if test="extensionParty != null">
+		EXTENSION_PARTY,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+	<if test="payerAcctType != null">
+		PAYER_ACCT_TYPE,
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO,
+	</if>
+	<if test="payeeAcctType != null">
+		PAYEE_ACCT_TYPE,
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="payServicType != null">
+		#{payServicType},
+	</if>
+	<if test="merDate != null">
+		#{merDate},
+	</if>
+	<if test="merSeq != null">
+		#{merSeq},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		#{secMerNo},
+	</if>
+	<if test="outerOrderNo != null">
+		#{outerOrderNo},
+	</if>
+	<if test="outerOrderStartDate != null">
+		#{outerOrderStartDate},
+	</if>
+	<if test="outerOrderEndDate != null">
+		#{outerOrderEndDate},
+	</if>
+	<if test="orderType != null">
+		#{orderType},
+	</if>
+	<if test="payType != null">
+		#{payType},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="orderName != null">
+		#{orderName},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="orderDate != null">
+		#{orderDate},
+	</if>
+	<if test="orderTime != null">
+		#{orderTime},
+	</if>
+	<if test="orderLmtTime != null">
+		#{orderLmtTime},
+	</if>
+	<if test="curr != null">
+		#{curr},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="otherTranAmt != null">
+		#{otherTranAmt},
+	</if>
+	<if test="productAmt != null">
+		#{productAmt},
+	</if>
+	<if test="merFeeAmt != null">
+		#{merFeeAmt},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="oriDate != null">
+		#{oriDate},
+	</if>
+	<if test="oriOrderNo != null">
+		#{oriOrderNo},
+	</if>
+	<if test="ejectAmt != null">
+		#{ejectAmt},
+	</if>
+	<if test="orderStat != null">
+		#{orderStat},
+	</if>
+	<if test="spbillCreateIp != null">
+		#{spbillCreateIp},
+	</if>
+	<if test="notifyUrl != null">
+		#{notifyUrl},
+	</if>
+	<if test="returnUrl != null">
+		#{returnUrl},
+	</if>
+	<if test="transComments != null">
+		#{transComments},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+	<if test="chkFlag != null">
+		#{chkFlag},
+	</if>
+	<if test="chkBatchNo != null">
+		#{chkBatchNo},
+	</if>
+	<if test="stlFlag != null">
+		#{stlFlag},
+	</if>
+	<if test="chkDate != null">
+		#{chkDate},
+	</if>
+	<if test="stlBatchNo != null">
+		#{stlBatchNo},
+	</if>
+	<if test="stlDate != null">
+		#{stlDate},
+	</if>
+	<if test="orderDes != null">
+		#{orderDes},
+	</if>
+	<if test="openId != null">
+		#{openId},
+	</if>
+	<if test="payTime != null">
+		#{payTime},
+	</if>
+	<if test="payAcctNo != null">
+		#{payAcctNo},
+	</if>
+	<if test="transType != null">
+		#{transType},
+	</if>
+	<if test="clearFlag != null">
+		#{clearFlag},
+	</if>
+	<if test="clearBatchNo != null">
+		#{clearBatchNo},
+	</if>
+	<if test="clearDate != null">
+		#{clearDate},
+	</if>
+	<if test="secMerFeeAmt != null">
+		#{secMerFeeAmt},
+	</if>
+	<if test="extensionParty != null">
+		#{extensionParty},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+	<if test="payerAcctType != null">
+		#{payerAcctType},
+	</if>
+	<if test="payerAcctNo != null">
+		#{payerAcctNo},
+	</if>
+	<if test="payeeAcctType != null">
+		#{payeeAcctType},
+	</if>
+	<if test="payeeAcctNo != null">
+		#{payeeAcctNo},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="payServicType != null">
+		PAY_SERVIC_TYPE=#{payServicType},
+	</if>
+	<if test="merDate != null">
+		MER_DATE=#{merDate},
+	</if>
+	<if test="merSeq != null">
+		MER_SEQ=#{merSeq},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO=#{secMerNo},
+	</if>
+	<if test="outerOrderNo != null">
+		OUTER_ORDER_NO=#{outerOrderNo},
+	</if>
+	<if test="outerOrderStartDate != null">
+		OUTER_ORDER_START_DATE=#{outerOrderStartDate},
+	</if>
+	<if test="outerOrderEndDate != null">
+		OUTER_ORDER_END_DATE=#{outerOrderEndDate},
+	</if>
+	<if test="orderType != null">
+		ORDER_TYPE=#{orderType},
+	</if>
+	<if test="payType != null">
+		PAY_TYPE=#{payType},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="orderName != null">
+		ORDER_NAME=#{orderName},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="orderDate != null">
+		ORDER_DATE=#{orderDate},
+	</if>
+	<if test="orderTime != null">
+		ORDER_TIME=#{orderTime},
+	</if>
+	<if test="orderLmtTime != null">
+		ORDER_LMT_TIME=#{orderLmtTime},
+	</if>
+	<if test="curr != null">
+		CURR=#{curr},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="otherTranAmt != null">
+		OTHER_TRAN_AMT=#{otherTranAmt},
+	</if>
+	<if test="productAmt != null">
+		PRODUCT_AMT=#{productAmt},
+	</if>
+	<if test="merFeeAmt != null">
+		MER_FEE_AMT=#{merFeeAmt},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="oriDate != null">
+		ORI_DATE=#{oriDate},
+	</if>
+	<if test="oriOrderNo != null">
+		ORI_ORDER_NO=#{oriOrderNo},
+	</if>
+	<if test="ejectAmt != null">
+		EJECT_AMT=#{ejectAmt},
+	</if>
+	<if test="orderStat != null">
+		ORDER_STAT=#{orderStat},
+	</if>
+	<if test="spbillCreateIp != null">
+		SPBILL_CREATE_IP=#{spbillCreateIp},
+	</if>
+	<if test="notifyUrl != null">
+		NOTIFY_URL=#{notifyUrl},
+	</if>
+	<if test="returnUrl != null">
+		RETURN_URL=#{returnUrl},
+	</if>
+	<if test="transComments != null">
+		TRANS_COMMENTS=#{transComments},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+	<if test="chkFlag != null">
+		CHK_FLAG=#{chkFlag},
+	</if>
+	<if test="chkBatchNo != null">
+		CHK_BATCH_NO=#{chkBatchNo},
+	</if>
+	<if test="stlFlag != null">
+		STL_FLAG=#{stlFlag},
+	</if>
+	<if test="chkDate != null">
+		CHK_DATE=#{chkDate},
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO=#{stlBatchNo},
+	</if>
+	<if test="stlDate != null">
+		STL_DATE=#{stlDate},
+	</if>
+	<if test="orderDes != null">
+		ORDER_DES=#{orderDes},
+	</if>
+	<if test="openId != null">
+		OPEN_ID=#{openId},
+	</if>
+	<if test="payTime != null">
+		PAY_TIME=#{payTime},
+	</if>
+	<if test="payAcctNo != null">
+		PAY_ACCT_NO=#{payAcctNo},
+	</if>
+	<if test="transType != null">
+		TRANS_TYPE=#{transType},
+	</if>
+	<if test="clearFlag != null">
+		CLEAR_FLAG=#{clearFlag},
+	</if>
+	<if test="clearBatchNo != null">
+		CLEAR_BATCH_NO=#{clearBatchNo},
+	</if>
+	<if test="clearDate != null">
+		CLEAR_DATE=#{clearDate},
+	</if>
+	<if test="secMerFeeAmt != null">
+		SEC_MER_FEE_AMT=#{secMerFeeAmt},
+	</if>
+	<if test="extensionParty != null">
+		EXTENSION_PARTY=#{extensionParty},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+	<if test="payerAcctType != null">
+		PAYER_ACCT_TYPE=#{payerAcctType},
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO=#{payerAcctNo},
+	</if>
+	<if test="payeeAcctType != null">
+		PAYEE_ACCT_TYPE=#{payeeAcctType},
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO=#{payeeAcctNo},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.payServicType != null">
+                    PAY_SERVIC_TYPE=#{s.payServicType},
+			</if>
+			<if test="s.merDate != null">
+                    MER_DATE=#{s.merDate},
+			</if>
+			<if test="s.merSeq != null">
+                    MER_SEQ=#{s.merSeq},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.secMerNo != null">
+                    SEC_MER_NO=#{s.secMerNo},
+			</if>
+			<if test="s.outerOrderNo != null">
+                    OUTER_ORDER_NO=#{s.outerOrderNo},
+			</if>
+			<if test="s.outerOrderStartDate != null">
+                    OUTER_ORDER_START_DATE=#{s.outerOrderStartDate},
+			</if>
+			<if test="s.outerOrderEndDate != null">
+                    OUTER_ORDER_END_DATE=#{s.outerOrderEndDate},
+			</if>
+			<if test="s.orderType != null">
+                    ORDER_TYPE=#{s.orderType},
+			</if>
+			<if test="s.payType != null">
+                    PAY_TYPE=#{s.payType},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.orderName != null">
+                    ORDER_NAME=#{s.orderName},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.orderDate != null">
+                    ORDER_DATE=#{s.orderDate},
+			</if>
+			<if test="s.orderTime != null">
+                    ORDER_TIME=#{s.orderTime},
+			</if>
+			<if test="s.orderLmtTime != null">
+                    ORDER_LMT_TIME=#{s.orderLmtTime},
+			</if>
+			<if test="s.curr != null">
+                    CURR=#{s.curr},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.otherTranAmt != null">
+                    OTHER_TRAN_AMT=#{s.otherTranAmt},
+			</if>
+			<if test="s.productAmt != null">
+                    PRODUCT_AMT=#{s.productAmt},
+			</if>
+			<if test="s.merFeeAmt != null">
+                    MER_FEE_AMT=#{s.merFeeAmt},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.oriDate != null">
+                    ORI_DATE=#{s.oriDate},
+			</if>
+			<if test="s.oriOrderNo != null">
+                    ORI_ORDER_NO=#{s.oriOrderNo},
+			</if>
+			<if test="s.ejectAmt != null">
+                    EJECT_AMT=#{s.ejectAmt},
+			</if>
+			<if test="s.orderStat != null">
+                    ORDER_STAT=#{s.orderStat},
+			</if>
+			<if test="s.spbillCreateIp != null">
+                    SPBILL_CREATE_IP=#{s.spbillCreateIp},
+			</if>
+			<if test="s.notifyUrl != null">
+                    NOTIFY_URL=#{s.notifyUrl},
+			</if>
+			<if test="s.returnUrl != null">
+                    RETURN_URL=#{s.returnUrl},
+			</if>
+			<if test="s.transComments != null">
+                    TRANS_COMMENTS=#{s.transComments},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3},
+			</if>
+			<if test="s.chkFlag != null">
+                    CHK_FLAG=#{s.chkFlag},
+			</if>
+			<if test="s.chkBatchNo != null">
+                    CHK_BATCH_NO=#{s.chkBatchNo},
+			</if>
+			<if test="s.stlFlag != null">
+                    STL_FLAG=#{s.stlFlag},
+			</if>
+			<if test="s.chkDate != null">
+                    CHK_DATE=#{s.chkDate},
+			</if>
+			<if test="s.stlBatchNo != null">
+                    STL_BATCH_NO=#{s.stlBatchNo},
+			</if>
+			<if test="s.stlDate != null">
+                    STL_DATE=#{s.stlDate},
+			</if>
+			<if test="s.orderDes != null">
+                    ORDER_DES=#{s.orderDes},
+			</if>
+			<if test="s.openId != null">
+                    OPEN_ID=#{s.openId},
+			</if>
+			<if test="s.payTime != null">
+                    PAY_TIME=#{s.payTime},
+			</if>
+			<if test="s.payAcctNo != null">
+                    PAY_ACCT_NO=#{s.payAcctNo},
+			</if>
+			<if test="s.transType != null">
+                    TRANS_TYPE=#{s.transType},
+			</if>
+			<if test="s.clearFlag != null">
+                    CLEAR_FLAG=#{s.clearFlag},
+			</if>
+			<if test="s.clearBatchNo != null">
+                    CLEAR_BATCH_NO=#{s.clearBatchNo},
+			</if>
+			<if test="s.clearDate != null">
+                    CLEAR_DATE=#{s.clearDate},
+			</if>
+			<if test="s.secMerFeeAmt != null">
+                    SEC_MER_FEE_AMT=#{s.secMerFeeAmt},
+			</if>
+			<if test="s.extensionParty != null">
+                    EXTENSION_PARTY=#{s.extensionParty},
+			</if>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode},
+			</if>
+			<if test="s.payerAcctType != null">
+                    PAYER_ACCT_TYPE=#{s.payerAcctType},
+			</if>
+			<if test="s.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{s.payerAcctNo},
+			</if>
+			<if test="s.payeeAcctType != null">
+                    PAYEE_ACCT_TYPE=#{s.payeeAcctType},
+			</if>
+			<if test="s.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{s.payeeAcctNo},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.payServicType != null">
+                    PAY_SERVIC_TYPE=#{w.payServicType}
+                   AND 
+ 			</if>
+			<if test="w.merDate != null">
+                    MER_DATE=#{w.merDate}
+                   AND 
+ 			</if>
+			<if test="w.merSeq != null">
+                    MER_SEQ=#{w.merSeq}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.secMerNo != null">
+                    SEC_MER_NO=#{w.secMerNo}
+                   AND 
+ 			</if>
+			<if test="w.outerOrderNo != null">
+                    OUTER_ORDER_NO=#{w.outerOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.outerOrderStartDate != null">
+                    OUTER_ORDER_START_DATE=#{w.outerOrderStartDate}
+                   AND 
+ 			</if>
+			<if test="w.outerOrderEndDate != null">
+                    OUTER_ORDER_END_DATE=#{w.outerOrderEndDate}
+                   AND 
+ 			</if>
+			<if test="w.orderType != null">
+                    ORDER_TYPE=#{w.orderType}
+                   AND 
+ 			</if>
+			<if test="w.payType != null">
+                    PAY_TYPE=#{w.payType}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.orderName != null">
+                    ORDER_NAME=#{w.orderName}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.orderDate != null">
+                    ORDER_DATE=#{w.orderDate}
+                   AND 
+ 			</if>
+			<if test="w.orderTime != null">
+                    ORDER_TIME=#{w.orderTime}
+                   AND 
+ 			</if>
+			<if test="w.orderLmtTime != null">
+                    ORDER_LMT_TIME=#{w.orderLmtTime}
+                   AND 
+ 			</if>
+			<if test="w.curr != null">
+                    CURR=#{w.curr}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.otherTranAmt != null">
+                    OTHER_TRAN_AMT=#{w.otherTranAmt}
+                   AND 
+ 			</if>
+			<if test="w.productAmt != null">
+                    PRODUCT_AMT=#{w.productAmt}
+                   AND 
+ 			</if>
+			<if test="w.merFeeAmt != null">
+                    MER_FEE_AMT=#{w.merFeeAmt}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.oriDate != null">
+                    ORI_DATE=#{w.oriDate}
+                   AND 
+ 			</if>
+			<if test="w.oriOrderNo != null">
+                    ORI_ORDER_NO=#{w.oriOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.ejectAmt != null">
+                    EJECT_AMT=#{w.ejectAmt}
+                   AND 
+ 			</if>
+			<if test="w.orderStat != null">
+                    ORDER_STAT=#{w.orderStat}
+                   AND 
+ 			</if>
+			<if test="w.spbillCreateIp != null">
+                    SPBILL_CREATE_IP=#{w.spbillCreateIp}
+                   AND 
+ 			</if>
+			<if test="w.notifyUrl != null">
+                    NOTIFY_URL=#{w.notifyUrl}
+                   AND 
+ 			</if>
+			<if test="w.returnUrl != null">
+                    RETURN_URL=#{w.returnUrl}
+                   AND 
+ 			</if>
+			<if test="w.transComments != null">
+                    TRANS_COMMENTS=#{w.transComments}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+                   AND 
+ 			</if>
+			<if test="w.chkFlag != null">
+                    CHK_FLAG=#{w.chkFlag}
+                   AND 
+ 			</if>
+			<if test="w.chkBatchNo != null">
+                    CHK_BATCH_NO=#{w.chkBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.stlFlag != null">
+                    STL_FLAG=#{w.stlFlag}
+                   AND 
+ 			</if>
+			<if test="w.chkDate != null">
+                    CHK_DATE=#{w.chkDate}
+                   AND 
+ 			</if>
+			<if test="w.stlBatchNo != null">
+                    STL_BATCH_NO=#{w.stlBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.stlDate != null">
+                    STL_DATE=#{w.stlDate}
+                   AND 
+ 			</if>
+			<if test="w.orderDes != null">
+                    ORDER_DES=#{w.orderDes}
+                   AND 
+ 			</if>
+			<if test="w.openId != null">
+                    OPEN_ID=#{w.openId}
+                   AND 
+ 			</if>
+			<if test="w.payTime != null">
+                    PAY_TIME=#{w.payTime}
+                   AND 
+ 			</if>
+			<if test="w.payAcctNo != null">
+                    PAY_ACCT_NO=#{w.payAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.transType != null">
+                    TRANS_TYPE=#{w.transType}
+                   AND 
+ 			</if>
+			<if test="w.clearFlag != null">
+                    CLEAR_FLAG=#{w.clearFlag}
+                   AND 
+ 			</if>
+			<if test="w.clearBatchNo != null">
+                    CLEAR_BATCH_NO=#{w.clearBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.clearDate != null">
+                    CLEAR_DATE=#{w.clearDate}
+                   AND 
+ 			</if>
+			<if test="w.secMerFeeAmt != null">
+                    SEC_MER_FEE_AMT=#{w.secMerFeeAmt}
+                   AND 
+ 			</if>
+			<if test="w.extensionParty != null">
+                    EXTENSION_PARTY=#{w.extensionParty}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctType != null">
+                    PAYER_ACCT_TYPE=#{w.payerAcctType}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{w.payerAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctType != null">
+                    PAYEE_ACCT_TYPE=#{w.payeeAcctType}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{w.payeeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

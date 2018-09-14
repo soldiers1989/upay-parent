@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 重置手机号申请结果查询-->
+	<dipper:flow service-id="SI_USR0021">
+		<dipper:try>
+			<dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" /><!-- 交易前处理 -->
+                </dipper:invoke>
+ 			</dipper:route>
+            <dipper:route>
+            	<!-- 检查登录状态 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>     	
+                <dipper:invoke>            		
+						<dipper:service ref="ResetMobileQueryService" /><!-- 重置手机号申请结果查询 -->
+             	</dipper:invoke>
+			</dipper:route>		
+		</dipper:try>
+		<dipper:catchException/>
+		 <dipper:finally>
+        	 <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" /><!-- 交易后处理 -->
+                </dipper:invoke>				
+            </dipper:route>
+        </dipper:finally>
+	</dipper:flow>   
+</beans>	

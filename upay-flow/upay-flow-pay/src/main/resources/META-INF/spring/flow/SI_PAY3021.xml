@@ -1,0 +1,167 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- 银联 查询刷卡支付订单状态 -->
+	<dipper:flow service-id="SI_PAY3021">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl"/>
+				</dipper:invoke>
+			</dipper:route>
+			
+			<dipper:route>
+			    <dipper:invoke>
+					<!-- 是否使用esb连接核心检查-->
+					<dipper:service ref="UseEsbCoreChkService" param-ref="initUseEsbCoreMethod" />
+			   </dipper:invoke>
+		   </dipper:route>
+			
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 检查订单状态 如果成功则直接返回、如果支付中则调用支付宝查询接口 orderStateFlag：是否成功标识 是否成功标识 true:成功 
+						false:失败 -->
+					<dipper:service ref="UnionOrderStateCheckService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.orderStateFlag == 'false'">
+						<!-- 商户状态检查/一级商户和二级商户 -->
+						<dipper:service ref="MerStatChkService" />
+						<!-- 资金通道状态检查 -->
+						<dipper:service ref="PayRouteStateChkService"
+							param-ref="initPayWebChatInit3012" />
+						<!-- 资金通道信息查询 -->
+						<dipper:service ref="PayRouteInfoQryService" />
+					</dipper:if>
+				</dipper:invoke>
+				 <dipper:invoke>
+					<dipper:if expression="target.bodys.orderStateFlag == 'false'">
+						<dipper:service ref="SA_PMT_UnionPayTranStatQuery" />
+					</dipper:if>
+				</dipper:invoke>
+			
+				<!-- 如果结果为支付中，不做处理。如果结果为已支付则更改订单状态、第一笔流水状态、记核心流水、调核心记账、更新核心流水 -->
+				<!-- trade_status 判断是否支付成功 TRADE_SUCCESS—支付成功 WAIT_BUYER_PAY—交易创建，等待买家付款 
+				TRADE_CLOSED—未付款交易超时关闭，或支付完成后全额退款 TRADE_FINISHED—交易结束，不可退款 -->
+
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 成功 -->
+					<dipper:if expression="target.bodys.respCode == '00' || target.bodys.respCode == 'A6'">
+						<!-- 处理后续流程（返回成功） -->
+						<!-- 更新流水状态 -->
+						<dipper:service ref="UnionReqServiceImpl"
+							beforeDictConv-ref="dataPayBeforeUpdateMicWinXin2006" />
+						<!-- 初始化核心登记参数 查微信往來戶 -->
+						<dipper:service ref="PayRouteInfoQryService"
+							param-ref="parm_PAYORDERQRY_union" afterDictConv-ref="dataPayAfterRouteInfoQry_weixin2008" />
+						<!-- 初始化核心登记参数 查核心待清算戶 -->
+						<dipper:service ref="PayRouteInfoQryService"
+							param-ref="parm_PAYORDERQRY_core" afterDictConv-ref="dataPayAfterRouteInfoQry_core2008" />
+						<!-- 核心登记记账预计流水 -->
+						<dipper:service ref="RecordEsbCorePayFlowListService"
+							param-ref="initPayUnionRecordPayFlowList2006" />
+						<!-- 更新订单状态为成功 -->
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInitRecive" />
+						<!-- 修改订单状态 -->
+						<dipper:service ref="OrderStatusManageService"
+							param-ref="initClearFlag" />
+						<!-- 更新分润明细的交易状态 -->
+						<dipper:service ref="UpdateFeeAssDetailOrderStatService"
+							beforeDictConv-ref="dataPayBeforeUpdateAssFee001" />
+						<!-- 更新手续费明细的交易状态 -->
+						<dipper:service ref="UpdateFeeDetailOrderStatService" />
+						<!-- 修改商户交易日累计 -->
+						<dipper:service ref="DailyCumulativeService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 成功 -->
+					<dipper:if expression="target.bodys.returnCode == '00' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<!-- 初始化核心日期参数 -->
+						<dipper:service ref="InitBankParamService" />
+						<!-- 核心登记记账 ：如果微信支付成功则在核心记一笔帐 -->
+						<dipper:service ref="coreCliDipperHandler"
+							param-ref="initCorePayAlipay" beforeDictConv-ref="dataPayweixinToCore" />
+						<!-- 状态设置 成功情况 -->
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInitRecive" />
+						<!-- 修改流水状态 -->
+						<dipper:service ref="SeqStatusManageService"
+							beforeDictConv-ref="dataPayBeforeCoreResult2008" />
+					</dipper:if>
+				</dipper:invoke>
+				
+			    <dipper:invoke>
+					<!-- 成功 -->
+					<dipper:if expression="target.bodys.returnCode == '00' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<!-- 初始化核心日期参数 -->
+						<dipper:service ref="InitBankParamService" />
+						<!-- 核心登记记账 ：如果微信支付成功则在核心记一笔帐 -->
+	                    <dipper:service ref="esbCliDipperHandler"
+							param-ref="initEsbCorePayAlipay" beforeDictConv-ref="esbDataPayweixinToCore" />
+						<!-- 状态设置 成功情况 -->
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInitRecive" />
+						<!-- 修改流水状态 -->
+						<dipper:service ref="SeqStatusManageService"
+							beforeDictConv-ref="dataPayBeforeCoreResult2018" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 失败 更新订单状态和第一笔流水状态为失败 -->
+					<dipper:if expression="target.bodys.returnCode != '00' &amp;&amp; target.bodys.isEsbCore=='N'">
+						<!-- 检查订单状态是否失败 如果为失败则不做处理，如果为处理中 更新订单和第一笔流水状态为失败 -->
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInitFail" />
+						<!-- 修改流水状态 -->
+						<dipper:service ref="SeqStatusManageService"
+							beforeDictConv-ref="dataPayBeforeCoreResult2008" />
+						<!-- 修改订单状态 -->
+						<dipper:service ref="OrderStatusManageService" />
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 失败 更新订单状态和第一笔流水状态为失败 -->
+					<dipper:if expression="target.bodys.returnCode != '00' &amp;&amp; target.bodys.isEsbCore=='Y'">
+						<!-- 检查订单状态是否失败 如果为失败则不做处理，如果为处理中 更新订单和第一笔流水状态为失败 -->
+						<dipper:service ref="PaySetStateServiceImpl"
+							param-ref="initPayStateInitFail" />
+						<!-- 修改流水状态 -->
+						<dipper:service ref="SeqStatusManageService"
+							beforeDictConv-ref="dataPayBeforeCoreResult2018" />
+						<!-- 修改订单状态 -->
+						<dipper:service ref="OrderStatusManageService" />
+					</dipper:if>
+				</dipper:invoke>
+				
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>    

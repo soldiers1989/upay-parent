@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerWhiteListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerWhiteListPo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="BANK_NO" property="bankNo" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="ACCT_NAME" property="acctName" />
+		<result column="CERT_TYPE" property="certType" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="ACCT_TYPE" property="acctType" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_WHITE_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		ACCT_NO,
+		BANK_NO,
+		REMARK1,
+		REMARK2,
+		ACCT_NAME,
+		CERT_TYPE,
+		CERT_NO,
+		ACCT_TYPE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="bankNo != null">
+			BANK_NO= #{bankNo}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="acctName != null">
+			ACCT_NAME= #{acctName}
+	           AND 
+		</if>
+		<if test="certType != null">
+			CERT_TYPE= #{certType}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="bankNo != null">
+		BANK_NO,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="acctName != null">
+		ACCT_NAME,
+	</if>
+	<if test="certType != null">
+		CERT_TYPE,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="bankNo != null">
+		#{bankNo},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="acctName != null">
+		#{acctName},
+	</if>
+	<if test="certType != null">
+		#{certType},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="bankNo != null">
+		BANK_NO=#{bankNo},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="acctName != null">
+		ACCT_NAME=#{acctName},
+	</if>
+	<if test="certType != null">
+		CERT_TYPE=#{certType},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.bankNo != null">
+                    BANK_NO=#{s.bankNo},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.acctName != null">
+                    ACCT_NAME=#{s.acctName},
+			</if>
+			<if test="s.certType != null">
+                    CERT_TYPE=#{s.certType},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.bankNo != null">
+                    BANK_NO=#{w.bankNo}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.acctName != null">
+                    ACCT_NAME=#{w.acctName}
+                   AND 
+ 			</if>
+			<if test="w.certType != null">
+                    CERT_TYPE=#{w.certType}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

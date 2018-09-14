@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- 积分账户信息查询-->
+	<dipper:flow service-id="SI_DEMO">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="demoAtomHandler" param-ref="demoParam" />
+					<dipper:service ref="demoAtomHandler2" param-ref="demoParam" saf-ref="222222"/>
+				</dipper:invoke>
+			</dipper:route>		
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:service ref="demoAtomHandler" param-ref="demoParam" />
+					<dipper:service ref="demoAtomHandler2" param-ref="demoParam" saf-ref="1111111111" lazy="false" />
+				</dipper:invoke>
+			</dipper:route>			 
+		</dipper:try>
+		<dipper:catchException/>
+		<dipper:finally> 
+		</dipper:finally>
+	</dipper:flow>   
+</beans>	

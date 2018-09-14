@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+    
+    <mappings>
+        <mapping xpath="return_code" field="returnCode" must="not"/>
+        <mapping xpath="return_msg" field="returnMsg" must="not"/>
+        <mapping xpath="tran_code" field="transCode"/>
+    </mappings>
+</config>

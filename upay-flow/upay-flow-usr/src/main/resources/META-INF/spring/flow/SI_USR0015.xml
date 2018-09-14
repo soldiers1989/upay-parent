@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 用户首次设置支付密码-->
+	<dipper:flow service-id="SI_USR0015">
+		<dipper:try>
+			<dipper:route>
+				<!-- 交易前处理 -->
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>
+			<dipper:route>
+				<!-- 校验登陆状态 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+				<!-- 用户是否设置支付密码查询 -->
+				<dipper:invoke>
+					<dipper:service ref="UserPayPwdFlagSearchService" />
+				</dipper:invoke>
+				<dipper:invoke>
+	                <!-- 设置支付密码 -->
+             		<dipper:if expression="target.bodys.payPwdFlag == '01' || target.bodys.payPwdFlag == '02'">
+	                    <dipper:service ref="PwdChgService"/>
+             		</dipper:if>
+                </dipper:invoke>
+			</dipper:route>		
+		</dipper:try>
+		<dipper:catchException/>
+		<dipper:finally>
+        	 <dipper:route>
+        	 	<!-- 交易后处理 -->
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>				
+            </dipper:route>
+        </dipper:finally>
+	</dipper:flow>   
+</beans>	

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayCardbinInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.PayCardbinInfoPo">
+		<id column="ID" property="id" />
+		<result column="CARD_BIN" property="cardBin" />
+		<result column="CARD_BIN_NAME" property="cardBinName" />
+		<result column="CARD_BIN_TYPE" property="cardBinType" />
+		<result column="BANK_BIN_FLAG" property="bankBinFlag" />
+		<result column="CUP_BANK_NO" property="cupBankNo" />
+		<result column="CUP_BANK_NAME" property="cupBankName" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="LOGO_ID" property="logoId" />
+		<result column="CARD_NO_LEN" property="cardNoLen" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_PAY_CARDBIN_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CARD_BIN,
+		CARD_BIN_NAME,
+		CARD_BIN_TYPE,
+		BANK_BIN_FLAG,
+		CUP_BANK_NO,
+		CUP_BANK_NAME,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		LOGO_ID,
+		CARD_NO_LEN
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="cardBin != null">
+			CARD_BIN= #{cardBin}
+	           AND 
+		</if>
+		<if test="cardBinName != null">
+			CARD_BIN_NAME= #{cardBinName}
+	           AND 
+		</if>
+		<if test="cardBinType != null">
+			CARD_BIN_TYPE= #{cardBinType}
+	           AND 
+		</if>
+		<if test="bankBinFlag != null">
+			BANK_BIN_FLAG= #{bankBinFlag}
+	           AND 
+		</if>
+		<if test="cupBankNo != null">
+			CUP_BANK_NO= #{cupBankNo}
+	           AND 
+		</if>
+		<if test="cupBankName != null">
+			CUP_BANK_NAME= #{cupBankName}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="logoId != null">
+			LOGO_ID= #{logoId}
+	           AND 
+		</if>
+		<if test="cardNoLen != null">
+			CARD_NO_LEN= #{cardNoLen}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="cardBin != null">
+		CARD_BIN,
+	</if>
+	<if test="cardBinName != null">
+		CARD_BIN_NAME,
+	</if>
+	<if test="cardBinType != null">
+		CARD_BIN_TYPE,
+	</if>
+	<if test="bankBinFlag != null">
+		BANK_BIN_FLAG,
+	</if>
+	<if test="cupBankNo != null">
+		CUP_BANK_NO,
+	</if>
+	<if test="cupBankName != null">
+		CUP_BANK_NAME,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="logoId != null">
+		LOGO_ID,
+	</if>
+	<if test="cardNoLen != null">
+		CARD_NO_LEN,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="cardBin != null">
+		#{cardBin},
+	</if>
+	<if test="cardBinName != null">
+		#{cardBinName},
+	</if>
+	<if test="cardBinType != null">
+		#{cardBinType},
+	</if>
+	<if test="bankBinFlag != null">
+		#{bankBinFlag},
+	</if>
+	<if test="cupBankNo != null">
+		#{cupBankNo},
+	</if>
+	<if test="cupBankName != null">
+		#{cupBankName},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="logoId != null">
+		#{logoId},
+	</if>
+	<if test="cardNoLen != null">
+		#{cardNoLen},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="cardBin != null">
+		CARD_BIN=#{cardBin},
+	</if>
+	<if test="cardBinName != null">
+		CARD_BIN_NAME=#{cardBinName},
+	</if>
+	<if test="cardBinType != null">
+		CARD_BIN_TYPE=#{cardBinType},
+	</if>
+	<if test="bankBinFlag != null">
+		BANK_BIN_FLAG=#{bankBinFlag},
+	</if>
+	<if test="cupBankNo != null">
+		CUP_BANK_NO=#{cupBankNo},
+	</if>
+	<if test="cupBankName != null">
+		CUP_BANK_NAME=#{cupBankName},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="logoId != null">
+		LOGO_ID=#{logoId},
+	</if>
+	<if test="cardNoLen != null">
+		CARD_NO_LEN=#{cardNoLen},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.cardBin != null">
+                    CARD_BIN=#{s.cardBin},
+			</if>
+			<if test="s.cardBinName != null">
+                    CARD_BIN_NAME=#{s.cardBinName},
+			</if>
+			<if test="s.cardBinType != null">
+                    CARD_BIN_TYPE=#{s.cardBinType},
+			</if>
+			<if test="s.bankBinFlag != null">
+                    BANK_BIN_FLAG=#{s.bankBinFlag},
+			</if>
+			<if test="s.cupBankNo != null">
+                    CUP_BANK_NO=#{s.cupBankNo},
+			</if>
+			<if test="s.cupBankName != null">
+                    CUP_BANK_NAME=#{s.cupBankName},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.logoId != null">
+                    LOGO_ID=#{s.logoId},
+			</if>
+			<if test="s.cardNoLen != null">
+                    CARD_NO_LEN=#{s.cardNoLen}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.cardBin != null">
+                    CARD_BIN=#{w.cardBin}
+                   AND 
+ 			</if>
+			<if test="w.cardBinName != null">
+                    CARD_BIN_NAME=#{w.cardBinName}
+                   AND 
+ 			</if>
+			<if test="w.cardBinType != null">
+                    CARD_BIN_TYPE=#{w.cardBinType}
+                   AND 
+ 			</if>
+			<if test="w.bankBinFlag != null">
+                    BANK_BIN_FLAG=#{w.bankBinFlag}
+                   AND 
+ 			</if>
+			<if test="w.cupBankNo != null">
+                    CUP_BANK_NO=#{w.cupBankNo}
+                   AND 
+ 			</if>
+			<if test="w.cupBankName != null">
+                    CUP_BANK_NAME=#{w.cupBankName}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.logoId != null">
+                    LOGO_ID=#{w.logoId}
+                   AND 
+ 			</if>
+			<if test="w.cardNoLen != null">
+                    CARD_NO_LEN=#{w.cardNoLen}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

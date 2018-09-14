@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+	<mappings>
+		<mapping xpath="appid" field="appId" must="not" />
+		<mapping xpath="mch_id" field="mchId" must="not" />
+		<mapping xpath="sub_appid" field="subAppid" must="not" />
+		<mapping xpath="sub_mch_id" field="subMchId" must="not" />
+		<mapping xpath="nonce_str" field="nonceStr" must="not" />
+		<mapping xpath="sign" field="sign" must="not" />
+		<mapping xpath="openid" field="openid" must="not" />
+		<mapping xpath="sub_openid" field="subOpenid" must="not" />
+	</mappings>
+</config>

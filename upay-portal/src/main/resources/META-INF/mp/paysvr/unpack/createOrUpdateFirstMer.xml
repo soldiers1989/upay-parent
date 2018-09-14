@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="operateFlag" field="operateFlag"/>
+		<mapping xpath="merNo" field="merNo" must="not"/> 
+		<mapping xpath="merName" field="merName"/>  
+		<mapping xpath="aliasName" field="aliasName"/> 
+		<mapping xpath="userNickName" field="userNickName" must="not"/>              
+		<mapping xpath="stlAcctNo" field="stlAcctNo"/>                    
+		<mapping xpath="stlAcctType" field="stlAcctType"/>                
+		<mapping xpath="stlAcctName" field="stlAcctName"/>                
+		<mapping xpath="bankId" field="bankId"/>                          
+		<mapping xpath="bankName" field="bankName"/>                       
+		<mapping xpath="merWithoutPwdSign" field="merWithoutPwdSign"/>    
+		<mapping xpath="payopenflag" field="payopenflag"/>                
+		<mapping xpath="merBusiType" field="merBusiType"/>                
+		<mapping xpath="contact" field="contact"/>
+		<mapping xpath="sex" field="sex" must="not"/>                        
+		<mapping xpath="contactTel" field="contactTel"/>                  
+		<mapping xpath="contactMobile" field="contactMobile"/>            
+		<mapping xpath="contactEmail" field="contactEmail"/>              
+		<mapping xpath="merTel" field="merTel"/>                          
+		<mapping xpath="merFax" field="merFax" must="not"/>                          
+		<mapping xpath="merAddr" field="merAddr"/>                        
+		<mapping xpath="merPostalCode" field="merPostalCode" must="not"/>            
+		<mapping xpath="websiteCode" field="websiteCode" must="not"/>                
+		<mapping xpath="websiteName" field="websiteName" must="not"/>                
+		<mapping xpath="websiteDomain" field="websiteDomain" must="not"/>            
+		<mapping xpath="websiteScop" field="websiteScop"/>                
+		<mapping xpath="companyName" field="companyName"/>                
+		<mapping xpath="egalPersonName" field="egalPersonName"/>          
+		<mapping xpath="egalPersonIdType" field="egalPersonIdType"/>        
+		<mapping xpath="egalPersonIdNo" field="egalPersonIdNo"/>          
+		<mapping xpath="companyIdType" field="companyIdType"/>            
+		<mapping xpath="companyIdNo" field="companyIdNo"/>                
+		<mapping xpath="orgDeptNo" field="orgDeptNo"/>                  
+		<mapping xpath="busiLicenseId" field="busiLicenseId" must="not"/>
+		<mapping xpath="extensionParty" field="extensionParty" must="not"/>
+		<mapping xpath="promoterName" field="promoterName" must="not"/>
+		<mapping xpath="promoterIphone" field="promoterIphone" must="not"/>
+		<mapping xpath="promoterDeptNo" field="promoterDeptNo" must="not"/>
+	</mappings>
+</config>

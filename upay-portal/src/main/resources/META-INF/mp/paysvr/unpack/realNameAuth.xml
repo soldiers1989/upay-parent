@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 富农汇实名认证 -->
+		<mapping xpath="merNo" field="merNo"/><!-- 商户号 -->
+		<mapping xpath="eBindAcctNo" field="eBindAcctNo" must="not"/><!-- 银行卡号 -->
+		<mapping xpath="certName" field="certName"/><!-- 认证姓名 -->
+		<mapping xpath="certNo" field="certNo"/><!-- 证件号码 -->
+		<mapping xpath="reserveMobile" field="reserveMobile" must="not"/><!-- 预留手机号 -->
+	</mappings>
+</config>

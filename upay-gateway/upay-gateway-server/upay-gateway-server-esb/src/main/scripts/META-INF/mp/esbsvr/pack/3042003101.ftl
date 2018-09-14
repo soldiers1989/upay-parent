@@ -1,0 +1,9 @@
+<BODY>
+	<OpnSt>${activateStatus}</OpnSt>
+	<AcctNo>${bindacctno}</AcctNo>
+	<PymtCardtp>${payCardType}</PymtCardtp>
+	<TgPymtInfFd>${tokenPayDataQuery}</TgPymtInfFd>
+    <IssnCardInstNo>${issInsNo}</IssnCardInstNo>
+    <SndTm>${txnTime}</SndTm>
+    <MrchOrderID>${orderId}</MrchOrderID>                    
+</BODY>

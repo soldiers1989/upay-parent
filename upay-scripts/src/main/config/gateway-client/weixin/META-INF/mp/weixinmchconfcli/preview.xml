@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+    <previews>
+        <preview id="weixinmchconfcli" xpath="" datalength="" trancodename="tranCode"
+            charset="UTF-8" faultCodeName="faultCode" sysName="UPAY" 
+            faultStringName="faultString" errCodeName="returnCode" errMsgName="returnMsg"
+            errCodeSuc="SUCCESS" relationSysId="60" concreteSysId="63" requrl="true">
+        </preview>
+    </previews>
+
+</config>

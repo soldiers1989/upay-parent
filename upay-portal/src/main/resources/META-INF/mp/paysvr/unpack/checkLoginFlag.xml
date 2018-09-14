@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 校验是否登录 -->
+		<mapping xpath="merNo" field="merNo"/>
+		<mapping xpath="loginFlag" field="loginFlag"/>
+	</mappings>
+</config>

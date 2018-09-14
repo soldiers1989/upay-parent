@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.menu.UserMenuBookPo">
+	<select id="userCertLevel" resultMap="BaseResultMap">
+		 select
+		 <include refid="Base_Column"></include>
+		 from
+		 <include refid="Table_Name"></include>
+		 <where>	 
+		 USER_CERT_LEVEL like CONCAT('%',CONCAT(#{userCertLevel},'%'))
+		 AND REG_TYPE=#{regType} 
+		 order by MENU_ID		  
+		 </where>		
+	</select>
+	
+	<select id="merLevel" resultMap="BaseResultMap">
+		 select
+		 <include refid="Base_Column"></include>
+		 from
+		 <include refid="Table_Name"></include>
+		 <where>	 
+		 MER_LEVEL like CONCAT('%',CONCAT(#{merLevel},'%'))
+		 AND REG_TYPE=#{regType} 
+		 order by MENU_ID		  
+		 </where>		
+	</select>
+</mapper>

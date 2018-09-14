@@ -1,0 +1,9 @@
+<codeUrl>${codeUrl!""}</codeUrl>
+<prepayId>${prepayId!""}</prepayId>
+<paySign>${paySign!""}</paySign>
+<nonceStr>${nonceStr!""}</nonceStr>
+<mchId>${mchId!""}</mchId>
+<timeStamp>${timeStamp!""}</timeStamp>
+<outTradeNo>${outTradeNo!""}</outTradeNo>
+<appId>${appId!""}</appId>
+<orderNo>${orderNo!""}</orderNo>

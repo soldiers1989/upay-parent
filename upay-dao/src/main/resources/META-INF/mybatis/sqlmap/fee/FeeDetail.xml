@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeDetailPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeDetailPo">
+		<id column="ID" property="id" />
+		<result column="TXN_DATE" property="txnDate" />
+		<result column="TXN_TIME" property="txnTime" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="FEE_CODE" property="feeCode" />
+		<result column="ASS_CODE" property="assCode" />
+		<result column="TXN_AMT" property="txnAmt" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="REMARK_CODE" property="remarkCode" />
+		<result column="TXN_STAT" property="txnStat" />
+		<result column="FREE_FLAG" property="freeFlag" />
+		<result column="GET_TYPE" property="getType" />
+		<result column="MEMO" property="memo" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="USER_ID" property="userId" />
+		<result column="FEE_ID" property="feeId" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_DETAIL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TXN_DATE,
+		TXN_TIME,
+		ACCT_NO,
+		CHNL_ID,
+		TRANS_CODE,
+		FEE_CODE,
+		ASS_CODE,
+		TXN_AMT,
+		FEE_AMT,
+		REMARK_CODE,
+		TXN_STAT,
+		FREE_FLAG,
+		GET_TYPE,
+		MEMO,
+		ORDER_NO,
+		ACCT_TYPE,
+		USER_ID,
+		FEE_ID
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="txnDate != null">
+			TXN_DATE= #{txnDate}
+	           AND 
+		</if>
+		<if test="txnTime != null">
+			TXN_TIME= #{txnTime}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="feeCode != null">
+			FEE_CODE= #{feeCode}
+	           AND 
+		</if>
+		<if test="assCode != null">
+			ASS_CODE= #{assCode}
+	           AND 
+		</if>
+		<if test="txnAmt != null">
+			TXN_AMT= #{txnAmt}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="remarkCode != null">
+			REMARK_CODE= #{remarkCode}
+	           AND 
+		</if>
+		<if test="txnStat != null">
+			TXN_STAT= #{txnStat}
+	           AND 
+		</if>
+		<if test="freeFlag != null">
+			FREE_FLAG= #{freeFlag}
+	           AND 
+		</if>
+		<if test="getType != null">
+			GET_TYPE= #{getType}
+	           AND 
+		</if>
+		<if test="memo != null">
+			MEMO= #{memo}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="feeId != null">
+			FEE_ID= #{feeId}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="txnDate != null">
+		TXN_DATE,
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="feeCode != null">
+		FEE_CODE,
+	</if>
+	<if test="assCode != null">
+		ASS_CODE,
+	</if>
+	<if test="txnAmt != null">
+		TXN_AMT,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="remarkCode != null">
+		REMARK_CODE,
+	</if>
+	<if test="txnStat != null">
+		TXN_STAT,
+	</if>
+	<if test="freeFlag != null">
+		FREE_FLAG,
+	</if>
+	<if test="getType != null">
+		GET_TYPE,
+	</if>
+	<if test="memo != null">
+		MEMO,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="feeId != null">
+		FEE_ID,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="txnDate != null">
+		#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		#{txnTime},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="feeCode != null">
+		#{feeCode},
+	</if>
+	<if test="assCode != null">
+		#{assCode},
+	</if>
+	<if test="txnAmt != null">
+		#{txnAmt},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="remarkCode != null">
+		#{remarkCode},
+	</if>
+	<if test="txnStat != null">
+		#{txnStat},
+	</if>
+	<if test="freeFlag != null">
+		#{freeFlag},
+	</if>
+	<if test="getType != null">
+		#{getType},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="feeId != null">
+		#{feeId},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="txnDate != null">
+		TXN_DATE=#{txnDate},
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME=#{txnTime},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="feeCode != null">
+		FEE_CODE=#{feeCode},
+	</if>
+	<if test="assCode != null">
+		ASS_CODE=#{assCode},
+	</if>
+	<if test="txnAmt != null">
+		TXN_AMT=#{txnAmt},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="remarkCode != null">
+		REMARK_CODE=#{remarkCode},
+	</if>
+	<if test="txnStat != null">
+		TXN_STAT=#{txnStat},
+	</if>
+	<if test="freeFlag != null">
+		FREE_FLAG=#{freeFlag},
+	</if>
+	<if test="getType != null">
+		GET_TYPE=#{getType},
+	</if>
+	<if test="memo != null">
+		MEMO=#{memo},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="feeId != null">
+		FEE_ID=#{feeId},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.txnDate != null">
+                    TXN_DATE=#{s.txnDate},
+			</if>
+			<if test="s.txnTime != null">
+                    TXN_TIME=#{s.txnTime},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.feeCode != null">
+                    FEE_CODE=#{s.feeCode},
+			</if>
+			<if test="s.assCode != null">
+                    ASS_CODE=#{s.assCode},
+			</if>
+			<if test="s.txnAmt != null">
+                    TXN_AMT=#{s.txnAmt},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.remarkCode != null">
+                    REMARK_CODE=#{s.remarkCode},
+			</if>
+			<if test="s.txnStat != null">
+                    TXN_STAT=#{s.txnStat},
+			</if>
+			<if test="s.freeFlag != null">
+                    FREE_FLAG=#{s.freeFlag},
+			</if>
+			<if test="s.getType != null">
+                    GET_TYPE=#{s.getType},
+			</if>
+			<if test="s.memo != null">
+                    MEMO=#{s.memo},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.feeId != null">
+                    FEE_ID=#{s.feeId}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.txnDate != null">
+                    TXN_DATE=#{w.txnDate}
+                   AND 
+ 			</if>
+			<if test="w.txnTime != null">
+                    TXN_TIME=#{w.txnTime}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.feeCode != null">
+                    FEE_CODE=#{w.feeCode}
+                   AND 
+ 			</if>
+			<if test="w.assCode != null">
+                    ASS_CODE=#{w.assCode}
+                   AND 
+ 			</if>
+			<if test="w.txnAmt != null">
+                    TXN_AMT=#{w.txnAmt}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.remarkCode != null">
+                    REMARK_CODE=#{w.remarkCode}
+                   AND 
+ 			</if>
+			<if test="w.txnStat != null">
+                    TXN_STAT=#{w.txnStat}
+                   AND 
+ 			</if>
+			<if test="w.freeFlag != null">
+                    FREE_FLAG=#{w.freeFlag}
+                   AND 
+ 			</if>
+			<if test="w.getType != null">
+                    GET_TYPE=#{w.getType}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    MEMO=#{w.memo}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.feeId != null">
+                    FEE_ID=#{w.feeId}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

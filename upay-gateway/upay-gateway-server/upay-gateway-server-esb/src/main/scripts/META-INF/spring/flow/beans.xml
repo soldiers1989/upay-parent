@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+    <bean id="abstractServerDipperHandler"
+        class="com.pactera.dipper.presys.cp.server.AbstractServerDipperHandler"
+        abstract="true">
+        <property name="errorCodeName" value="errCode" />
+        <property name="errorMsgName" value="errMsg" />
+        <property name="errorCodeMapping">
+            <map>
+                <entry key="0000000000" value="0000000000" />
+                <entry key="*" value="9999" />
+            </map>
+        </property>
+    </bean>
+    
+    
+
+    <bean id="defaultServerDipperHandler"
+        class="com.upay.gateway.server.esb.DefaultHttpServerDipperHandler"
+        parent="abstractServerDipperHandler">
+        <property name="serviceMapping">
+            <map>
+                <entry key="2013000307" value="FLOW_SI_ACC1008" /><!-- 中金验证 -->
+                <entry key="3041001006" value="FLOW_SI_PAY0024" /><!-- 代收 -->
+                <entry key="3063001801" value="FLOW_SI_PAY1010" /><!-- 订单明细查询 -->
+                <entry key="3063001802" value="FLOW_SI_PAY1011" /><!-- 订单按天汇总查询 -->
+                <entry key="3063001805" value="FLOW_SI_PAY0013" /><!-- 订单查询 -->
+                <entry key="3061000504" value="FLOW_SI_PAY0019" /><!-- 单笔代扣 -->
+                <entry key="3061000901" value="FLOW_SI_PAY0020" /><!-- 单笔代付 -->
+                <entry key="3042003101" value="FLOW_SI_PAY3011" /><!-- 银联代付授权 -->
+                <entry key="3015000308" value="FLOW_SI_PAY7001" /><!-- 批量转账文件通知 -->
+            </map>
+        </property>
+    </bean>
+</beans>

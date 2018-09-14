@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- H5抢购下单 -->
+	<!-- <dubbo:service ref="SI_ORD0045" interface="com.pactera.dipper.core.IDipperHandler" 
+		group="SI_ORD0045" /> -->
+
+	<!-- 特约商户申请 -->
+	<dubbo:service ref="SI_MER0001"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0001" />
+
+	<!-- 二级商户维护 -->
+	<dubbo:service ref="SI_MER0002"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0002" />
+
+	<!-- 一级商户查询二级商户基本信息 -->
+	<dubbo:service ref="SI_MER0003"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0003" />
+
+	<!-- 一级商户维护二级商户申请信息 -->
+	<dubbo:service ref="SI_MER0004"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0004" />
+
+	<!-- 商户类别查询 -->
+	<dubbo:service ref="SI_MER0005"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0005" />
+
+	<!-- 一级商户维护二级商户手续费计算方法 -->
+	<dubbo:service ref="SI_MER0006"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0006" />
+
+	<!-- 手续费分润方法查询 -->
+	<dubbo:service ref="SI_MER0007"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0007" />
+
+	<!-- 二级商户手续费收取方法查询 -->
+	<dubbo:service ref="SI_MER0008"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0008" />
+
+	<!-- 二级商户手续费收取方法维护 -->
+	<dubbo:service ref="SI_MER0009"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0009" />
+
+	<!-- 商户费率规则信息查询 -->
+	<dubbo:service ref="SI_MER0010"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0010" />
+
+	<!-- 商户资金变动查询 -->
+	<dubbo:service ref="SI_MER0011"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0011" />
+
+	<!-- 商户申请检查 -->
+	<dubbo:service ref="SI_MER0012"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0012" />
+
+	<!-- 微信特约商户新增{开通微信支付} -->
+	<dubbo:service ref="SI_MER0013"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0013" />
+
+	<!-- 微信特约商户删除{关闭微信支付} -->
+	<dubbo:service ref="SI_MER0014"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0014" />
+
+	<!-- 商户基本信息查询 -->
+	<dubbo:service ref="SI_MER0017"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0017" />
+	<!-- 操作商户参数配置 -->
+	<dubbo:service ref="SI_MER0018"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0018" />
+
+	<!-- 商户名称重复校验 -->
+	<dubbo:service ref="SI_MER0019"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0019" />
+
+	<!-- 操作商户参数配置内管使用 -->
+	<dubbo:service ref="SI_MER0020"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0020" />
+		
+	<!-- 特约商户申请 后台交易对外提供 -->
+	<dubbo:service ref="SI_MER0021"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0021" />
+		
+	<!-- 一级商户注销  对外提供 -->
+	<dubbo:service ref="SI_MER0022"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0022" />
+	
+	<!-- 调用微信商户信息维护-配置支付目录，关注ID  对外提供 -->
+	<dubbo:service ref="SI_MER0023"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0023" />
+		
+	<!-- 微信特约商户新增{开通微信支付} 对外接口 -->
+	<dubbo:service ref="SI_MER0024"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0024" />
+		
+	<!-- 获取默认的加密串 -->
+	<dubbo:service ref="SI_MER0025"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0025" />
+		
+	<!-- 支付宝新增商户 -->
+	<dubbo:service ref="SI_MER0026"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0026" />
+	<!-- 支付宝商户信息查询 -->
+	<dubbo:service ref="SI_MER0027"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0027" />
+	<!-- 支付宝商户信息修改 -->
+	<dubbo:service ref="SI_MER0028"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0028" />
+	<!-- 根据qrCode获取商户信息- -->
+	<dubbo:service ref="SI_MER0029"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0029" />
+	<!-- 生成聚合码链接- -->
+	<dubbo:service ref="SI_MER0030"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0030" />
+	<!-- 商户信息查询- -->
+	<dubbo:service ref="SI_MER0031"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0031" />
+	<!-- 商户交易权限模板批量配置- -->
+	<dubbo:service ref="SI_MER0033"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0033" />
+	<!--根据手机号或者邮箱查询查询名下的多个商户-->
+	<dubbo:service ref="SI_MER0032"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0032" />
+		
+	<!-- 银联-微信特约商户新增{开通微信支付} 对外接口 -->
+	<dubbo:service ref="SI_MER0064"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0064" />	
+		
+	
+     <!-- 银联支付宝新增商户 -->
+	<dubbo:service ref="SI_MER0126"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0126" />
+	<!-- 银联支付宝商户信息查询 -->
+	<dubbo:service ref="SI_MER0127"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0127" />
+	<!-- 银联支付宝商户信息修改 -->
+	<dubbo:service ref="SI_MER0128"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0128" />
+	
+		
+		
+</beans>

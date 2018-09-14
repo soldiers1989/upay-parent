@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		   <mapping xpath="SYS_HEAD.PrvdSysSeqNo" field="bkSerialNo" must="not"/>
+		   <mapping xpath="SYS_HEAD.RetMsgArryList.RetMsgArry.RetCd" field="respCode" />
+	</mappings>
+</config>

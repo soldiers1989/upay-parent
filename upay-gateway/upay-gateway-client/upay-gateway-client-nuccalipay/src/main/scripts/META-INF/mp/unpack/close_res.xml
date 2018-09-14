@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝订单关闭 -->
+<data templateType="OUT"
+	transCode="close"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 商户的订单号 -->
+	<column oldName="out_trade_no" newName="outTradeNo"/>
+	<!-- 支付宝交易号 -->
+	<column oldName="trade_no" newName="tradeNo"/>
+</data>

@@ -1,0 +1,10 @@
+    <BnkAcctNm>${accountName}</BnkAcctNm>
+    <CVV2>${CVV2}</CVV2>
+    <CrCardVldDt>${EXPIREDATE}</CrCardVldDt>
+    <BnkAcctNo>${bankCardNo}</BnkAcctNo>
+    <IdentTp>${certType}</IdentTp>
+    <IdentNo>${certNo}</IdentNo>
+    <MblNo>${mobilePhone}</MblNo>
+    <VrfyMblNoFlg>${isCheckmobilePhone}</VrfyMblNoFlg>   
+    <VrfyUsrNmFlg>${isCheckAccountName}</VrfyUsrNmFlg>
+    <VrfyIdntfctnFlg>${isCheckCertificateNo}</VrfyIdntfctnFlg>

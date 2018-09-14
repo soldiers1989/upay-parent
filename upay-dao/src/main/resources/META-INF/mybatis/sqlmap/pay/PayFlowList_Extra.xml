@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayFlowListPo">
+	<!-- 重置流水 -->
+	<update id="resetPayFlow" parameterType="java.util.HashMap"> 
+		update 
+		<include refid="Table_Name"/>
+		<set>
+			<if test="transStat != null">
+				TRANS_STAT=#{transStat},
+			</if>
+			ROUTE_DATE = null,
+			ROUTE_SEQ = null,
+			ROUTE_TRANS_STAT = null,
+			LAST_UPDATE_TIME = SYSDATE,
+		</set>
+		<where>
+			TRANS_SUB_SEQ=#{transSeq}
+		</where>
+	</update>
+	<!-- 获取最后一条流水 -->
+	<select id="getPayFlowLastOne" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		r,
+		<include refid="Base_Column"/>
+		from (
+			select 
+			ROWNUM r,
+			<include refid="Base_Column"/>
+			from (
+				select 
+				<include refid="Base_Column"/>
+				from 
+				<include refid="Table_Name"/>
+				<where>
+					<if test="orderNo != null">
+						AND ORDER_NO=#{orderNo}
+					</if>
+					<if test="routeCode != null">
+						AND ROUTE_CODE=#{routeCode}
+					</if>
+					<if test="merNo != null">
+						AND MER_NO=#{merNo}
+					</if>
+				</where>
+				order by TRANS_TIME DESC
+				)
+			)
+			<where>
+				r=1
+			</where>
+	</select>
+	<select id="selectListByDate" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		 from 
+		 <include refid="Table_Name"/>
+		 <where>
+		 	<trim suffixOverrides="AND">
+		 	<if test="merNo != null">
+				MER_NO= #{merNo}
+	           		AND 
+			</if>
+			<if test="secMerNo != null">
+				SEC_MER_NO= #{secMerNo}
+		           AND 
+			</if>
+			<if test="startDate != null">
+				SYS_DATE &gt;= #{startDate}
+		           AND 
+			</if>
+			<if test="endDate != null">
+				SYS_DATE &lt;= #{endDate}
+			</if>
+			</trim>
+		 </where>
+	</select>
+	<!-- 查询所有未知状态的流水条数 -->
+	<select id="getAllUnknowStatNum" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select 
+		count(1) 
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test='statusA != null and statusA != "" and statusB != null and statusB != ""'>
+				AND (TRANS_STAT=#{statusA} OR TRANS_STAT=#{statusB})
+			</if>
+			and floor(to_number(sysdate-to_date(to_char(TRANS_TIME,'yyyymmddhh24miss'),'yyyymmddhh24miss'))*24*60) > 5 and nvl(ORDER_DES,0) !='商户结算流水'
+		</where>
+	</select>
+	<!-- 查询所有未知状态的流水 -->
+	<select id="getAllUnknowStat" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/> 
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test='statusA != null and statusA != "" and statusB != null and statusB != ""'>
+				AND (TRANS_STAT=#{statusA} OR TRANS_STAT=#{statusB})
+			</if>
+			and floor(to_number(sysdate-to_date(to_char(TRANS_TIME,'yyyymmddhh24miss'),'yyyymmddhh24miss'))*24*60) > 5 and nvl(ORDER_DES,0) !='商户结算流水'
+		</where>
+		ORDER BY TRANS_TIME 
+	</select>
+	<select id="getListByWhere" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/> 
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="routeDate != null">
+				and to_date(to_char(ROUTE_DATE,'yyyymmdd'),'yyyymmdd')=to_date(to_char(#{routeDate},'yyyymmdd'),'yyyymmdd')
+			</if>
+			<if test="routeCode != null">
+				and ROUTE_CODE=#{routeCode}
+			</if>
+			<if test="transStat != null">
+				and TRANS_STAT =#{transStat}
+			</if>
+			<if test="chkFlag != null">
+				and CHK_FLAG=#{chkFlag}
+			</if>
+		</where>
+	</select>
+	<select id="getOneByWhere" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/> 
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="routeDate != null">
+				and to_date(to_char(ROUTE_DATE,'yyyymmdd'),'yyyymmdd')=to_date(to_char(#{routeDate},'yyyymmdd'),'yyyymmdd')
+			</if>
+			<if test="transSubSeq != null">
+				and TRANS_SUB_SEQ=#{transSubSeq}
+			</if>
+			<if test="routeCode != null">
+				and ROUTE_CODE=#{routeCode}
+			</if>
+		</where>
+	</select>
+	<select id="getOrderNoMend" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT x.ORDER_NO FROM T_PAY_FLOW_LIST x where x.order_no in (
+			select a.order_no from (
+				select count(1) count,p.ORDER_NO from T_PAY_FLOW_LIST p
+        		WHERE  p.TRANS_STAT=#{transStat} 
+        		and floor(to_number(sysdate-to_date(to_char(p.TRANS_TIME,'yyyymmddhh24miss'),'yyyymmddhh24miss'))*24*60) > 5
+				group by p.ORDER_NO
+			) a WHERE  a.count=1
+		) and x.ROUTE_CODE <![CDATA[<>]]>#{routeCode}
+		and x.TRANS_STAT=#{transStat}
+		and x.CHK_FLAG=#{chkFlag}
+	</select>
+	<update id="updateRouteInfoToPayFlow" parameterType="java.util.HashMap">
+		update 
+		<include refid="Table_Name"/>
+		<set>
+		LAST_UPDATE_TIME=sysdate,
+			<if test="updateStat != null">
+				TRANS_STAT=#{updateStat},
+			</if>
+			<if test="routeSeq != null">
+				ROUTE_SEQ=#{routeSeq},
+			</if>
+			<if test="routeTransStat != null">
+				ROUTE_TRANS_STAT=#{routeTransStat},
+			</if>
+			<if test="routeDate != null">
+				ROUTE_DATE=#{routeDate},
+			</if>
+			<if test="clearFlag != null">
+				CLEAR_FLAG=#{clearFlag}
+			</if>
+		</set>
+		<where>
+			<if test="transSubSeq != null">
+				AND TRANS_SUB_SEQ=#{transSubSeq}
+			</if>
+			<if test="beforeStat != null">
+				AND TRANS_STAT=#{beforeStat}
+			</if>
+		</where>
+	</update>
+	
+	<select id="getaaa" parameterType="java.util.HashMap" resultType="java.lang.String">
+		select TRANS_SUB_SEQ from (
+		select TRANS_SUB_SEQ,rownum r from (		
+		select TRANS_SUB_SEQ from T_PAY_FLOW_LIST where order_no in (
+			select order_no from T_PAY_ORDER_LIST where TRANS_AMT=#{transAmt} and order_stat=#{orderStat} 
+			and to_date(to_char(order_time,'yyyymmdd'),'yyyymmdd')=to_date(to_char(sysdate,'yyyymmdd'),'yyyymmdd')
+		) and ROUTE_CODE='0003' 
+		)
+		)b where b.r <![CDATA[<=]]>100000
+	</select>
+	<select id="getbbb" parameterType="java.util.HashMap" resultType="java.lang.String">
+			select order_no from T_PAY_ORDER_LIST where TRANS_AMT=#{transAmt} and order_stat=#{orderStat} 
+			and to_date(to_char(order_time,'yyyymmdd'),'yyyymmdd')=to_date(to_char(sysdate,'yyyymmdd'),'yyyymmdd')
+	</select>
+	
+	<select id="selectSuccFlowList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT a.TRANS_SUB_SEQ,a.ID,a.ROUTE_CODE,a.TRANS_AMT,a.ORDER_NO,b.TRANS_CODE as REMARK3 FROM T_PAY_FLOW_LIST a LEFT JOIN T_PAY_ORDER_LIST b ON a.ORDER_NO=b.ORDER_NO 
+							WHERE a.TRANS_STAT='N' AND a.ROUTE_TRANS_STAT ='0' AND b.TRANS_CODE IS NOT NULL
+							AND <![CDATA[TRANS_TIME >= TO_DATE(#{startDate}, 'yyyy-MM-dd') ]]>
+							AND <![CDATA[TRANS_TIME <  TO_DATE(#{endDate}, 'yyyy-MM-dd')]]>
+	</select>
+	
+	<select id="findMaxSeqNo" parameterType="java.util.HashMap" resultType="int">
+		SELECT NVL(MAX(SEQ_NO),0) AS SEQ_NO FROM T_PAY_FLOW_LIST WHERE ORDER_NO=#{orderNo}
+	</select>
+	
+	<delete id="deleteDataByDate" >
+		delete from
+		<include refid="Table_Name" />
+		where
+<!-- 		<if test="startDate != null">   -->
+<!-- 				 <![CDATA[ORDER_DATE >= TO_DATE(#{startDate}, 'yyyy-MM-dd') AND ]]> -->
+<!-- 			</if> -->
+			<if test="endDate != null">
+				 <![CDATA[SYS_DATE <  TO_DATE(#{endDate}, 'yyyy-MM-dd')]]>
+			</if>
+	</delete>
+	
+	<select id="findFlowBySeqNoDesc" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column" />
+		FROM T_PAY_FLOW_LIST WHERE ORDER_NO= #{orderNo} AND ROUTE_CODE = #{routeCode}  ORDER BY SEQ_NO DESC
+	</select>
+	
+	<select id="findByOrderNoAndRouteCode" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column" />
+		 FROM T_PAY_FLOW_LIST WHERE ORDER_NO= #{orderNo} AND ROUTE_CODE <![CDATA[<>]]> #{routeCode}  ORDER BY SEQ_NO DESC
+	</select>
+</mapper>

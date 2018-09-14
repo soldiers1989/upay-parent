@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.pactera.upay</groupId>
+		<artifactId>upay-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>upay-commons</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.pactera</groupId>
+			<artifactId>dipper-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-presys-cp-ftp-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!-- 3rd party -->
+		<dependency>
+			<groupId>essc</groupId>
+			<artifactId>essc</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>union_lsccb</groupId>
+			<artifactId>union_lsccb</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>AESWithJCE</groupId>
+			<artifactId>AESWithJCE</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>MicrodoneSMF</groupId>
+			<artifactId>MicrodoneSMF</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>KeyBoardJCE</groupId>
+			<artifactId>KeyBoardJCE</artifactId>
+			<version>1.0</version>
+		</dependency>
+		 <!-- ESB -->
+		<dependency>
+  				<groupId>com.esb</groupId>
+  				<artifactId>ESBFileAPI</artifactId>
+ 				<version>1.0</version>
+	    </dependency>
+			<dependency>
+		  	<groupId>zhongjin</groupId>
+		  	<artifactId>zhongjin</artifactId>
+		  	<classifier>cpcn-payment-api</classifier>
+		</dependency>
+		<dependency>
+		  	<groupId>zhongjin</groupId>
+		  	<artifactId>zhongjin</artifactId>
+		  	<classifier>tools</classifier>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copyScriptsDubboLog</id>
+							<phase>generate-resources</phase>
+							<configuration>
+								<target>
+									<echo
+										message="---from scripts copy remote-db.properties,remote-jedis.properties start ---" />
+									<echo
+										message="---from ${basedir}/src/test/resources scripts copy remote-db.properties,remote-jedis.properties start ---" />
+									<copy todir="${basedir}/src/test/resources">
+										<fileset dir="${global.resources.home}/${src.main.other}/db" />
+									</copy>
+									<copy todir="${basedir}/src/test/resources">
+										<fileset dir="${global.resources.home}/${src.main.other}/redis" />
+									</copy>
+									<echo
+										message="---from scripts copy remote-db.properties,remote-jedis.properties end ---" />
+								</target>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

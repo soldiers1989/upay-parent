@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+刷卡支付
+ -->
+<data templateType="IN"
+    transCode="MICROPAY"
+    >
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+
+	<column oldName="transCode" newName="transCode" type="" must="true" dateFormat="" />
+	<column oldName="appid" newName="appid" type="" must="true" dateFormat="" />
+    <column oldName="sub_appid" newName="sub_appid" type="" must="false" dateFormat="" />
+	<column oldName="mch_id" newName="mch_id" type="" must="true" dateFormat="" />
+    <column oldName="sub_mch_id" newName="sub_mch_id" type="" must="true" dateFormat="" />
+    <column oldName="channel_id" newName="channel_id" type="" must="true" dateFormat="" />
+    <column oldName="notify_url" newName="notify_url" type="" must="false" dateFormat="" />
+    <column oldName="sub_openid" newName="sub_openid" type="" must="false" dateFormat="" />
+    <column oldName="trade_type" newName="trade_type" type="" must="false" dateFormat="" />
+    <column oldName="openid" newName="openid" type="" must="false" dateFormat="" />
+    <column oldName="device_info" newName="device_info" type="" must="false" dateFormat="" />
+    <column oldName="nonce_str" newName="nonce_str" type="" must="false" dateFormat="" />
+    <column oldName="sign" newName="sign" type="" must="true" dateFormat="" />
+    <column oldName="body" newName="body" type="" must="true" dateFormat="" />
+    <column oldName="detail" newName="detail" must="false" type="List">
+    	<column oldName="cost_price" newName="cost_price"/>
+    	<column oldName="receipt_id" newName="receipt_id"/>
+		<column oldName="goods_detail" newName="goods_detail" type="List">
+		    <column oldName="goods_id" newName="goods_id"/>
+    	    <column oldName="wxpay_goods_id" newName="wxpay_goods_id"/>
+    	    <column oldName="goods_name" newName="goods_name"/>
+    	    <column oldName="quantity" newName="quantity"/>
+    	    <column oldName="price" newName="price"/>
+		</column>
+    </column>
+    <column oldName="attach" newName="attach" type="" must="false" dateFormat="" />
+    <column oldName="out_trade_no" newName="out_trade_no" type="" must="true" dateFormat="" /> 
+    <column oldName="total_fee" newName="total_fee" type="" must="true" dateFormat="" /> 
+    <column oldName="fee_type" newName="fee_type" type="" must="false" dateFormat="" /> 
+    <column oldName="spbill_create_ip" newName="spbill_create_ip" type="" must="true" dateFormat="" />   
+    <column oldName="goods_tag" newName="goods_tag" type="" must="false" dateFormat="" /> 
+    <column oldName="limit_pay" newName="limit_pay" type="" must="false" dateFormat="" />   
+    <column oldName="auth_code" newName="auth_code" type="" must="true" dateFormat="" />  
+    <column oldName="identity" newName="identity" type="List" must="false" dateFormat=""> 
+            <column oldName="type" newName="type"/>
+    	    <column oldName="number" newName="number"/>
+    	    <column oldName="name" newName="name"/>
+    </column> 
+    <column oldName="scene_info" newName="scene_info" type="List" must="false" dateFormat=""> 
+           <column oldName="id" newName="id"/>
+    	    <column oldName="name" newName="name"/>
+    	    <column oldName="area_code" newName="area_code"/>
+    	    <column oldName="address" newName="address"/>
+    </column>
+</data>

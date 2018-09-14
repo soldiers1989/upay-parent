@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝商户入驻（新增商户） -->
+<data templateType="IN" 
+transCode="subMchUpdate">
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	  
+	<!-- 支付宝商户上次修改信息-->
+	<column oldName="alipayUpdateParam" newName="alipayUpdateParam" type="byte"/>
+	
+	<!-- 支付宝商户编号-->
+	<column oldName="subMerchantId" newName="sub_merchant_id"/>
+	<!-- 商户编号，由机构定义 -->
+	<column oldName="externalId" newName="external_id"/>
+	<!-- 商户名称 -->
+	<column oldName="merName" newName="name"/>
+	<!-- 商户简称 -->
+	<column oldName="aliasName" newName="alias_name"/>
+	<!-- 商户客服电话 -->
+	<column oldName="servicePhone" newName="service_phone"/>
+	<!-- 商户经营类目 -->
+	<column oldName="categoryId" newName="category_id"/>
+	<!--  商户来源机构标识，填写机构在支付宝的pid-->
+	<column oldName="alipaySource" newName="source"/>
+	
+	<!-- 商户证件编号 -->
+	<column oldName="businessLicense" newName="business_license"/>
+	<!-- 商户证件类型NATIONAL_LEGAL:营业执照；NATIONAL_LEGAL_MERGE:营业执照;INST_RGST_CTF:事业单位法人证书 -->
+	<column oldName="businessLicenseType" newName="business_license_type"/>
+	<!--商户联系人信息  -->
+	<column oldName="cantactInfo" newName="cantact_info" type="List">
+		<column oldName="userName" newName="name"/>
+		<column oldName="phone" newName="phone"/>
+		<column oldName="mobile" newName="mobile"/>
+		<column oldName="email" newName="email"/>
+		<column oldName="contactType" newName="type"/>
+		<column oldName="idCardNo" newName="id_card_no"/>
+	</column>
+	<!-- 商户地址信息 -->
+	<column oldName="addressInfo" newName="address_info" type="List">
+		<column oldName="provinceCode" newName="province_code"/>
+		<column oldName="cityCode" newName="city_code"/>
+		<column oldName="districtCode" newName="district_code"/>
+		<column oldName="address" newName="address"/>
+		<column oldName="longitude" newName="longitude"/>
+		<column oldName="latitude" newName="latitude"/>
+		<column oldName="addressType" newName="type"/>
+	</column>
+	<!-- 商户对应银行所开立的结算卡信息 -->
+	<column oldName="bankcardInfo" newName="bankcard_info" type="List">
+		<column oldName="cardNo" newName="card_no"/>
+		<column oldName="cardName" newName="card_name"/>
+	</column>
+	<!-- 商户支付二维码中信息，用于营销活动 -->
+	<column oldName="payCodeInfo" newName="pay_code_info" type="List">
+		<column oldName="payCodeInfoUrl" newName="pay_code_info"/>
+	</column>
+	<!-- 商户支付宝账号 -->
+	<column oldName="logonId" newName="logon_id" type="List">
+		<column oldName="alipayLogonId" newName="logon_id"/>
+	</column>
+	<!-- 商户备注信息 -->
+	<column oldName="memo" newName="memo"/>
+</data>

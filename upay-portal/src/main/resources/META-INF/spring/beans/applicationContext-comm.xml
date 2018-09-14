@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd" default-autowire="byName" default-lazy-init="false">
+	<context:property-placeholder location="classpath:remote-zookeeper.properties,classpath:remote-dubbo.properties,classpath:remote-jedis.properties" />
+	
+	<!-- 通过session进行国际化 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<!-- 国际化配置结束 -->
+	
+	  <!-- xxx.do?method=xxx.do对应类的方法 -->
+    <bean id="parameterMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName" value="method" />
+    </bean>
+    
+    <!-- /xxxx/aaaa.do 其中aaaa对应aaaa.do相应类中的方法 -->
+    <bean id="internalPathMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.InternalPathMethodNameResolver" />
+
+
+	<bean id="ForWardController" class="com.dubhe.common.controller.ForWardController">
+		<property name="methodNameResolver" ref="parameterMethodNameResolver" />
+	</bean>
+
+</beans>

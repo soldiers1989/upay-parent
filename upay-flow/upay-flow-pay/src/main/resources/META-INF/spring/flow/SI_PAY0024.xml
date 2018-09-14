@@ -1,0 +1,173 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.pactera.com/schema/dipper http://www.pactera.com/schema/dipper.xsd
+            http://www.pactera.com/schema/dipper/dict http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 单笔代收  免收手续费  本行网银他行充值-->
+	<dipper:flow service-id="SI_PAY0024">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl"/> <!-- 交易前处理 -->
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 卡BIN信息获取；-->
+					<dipper:service ref="PayQueryCardBinOfBankService" beforeDictConv-ref="onlineBankDSConvert"/> <!-- 卡BIN信息获取 -->
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 根据卡号查询卡BIN -->
+					<dipper:service ref="PayQueryCardBinOfAAAService" beforeDictConv-ref="onlineBankDSConvert"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+				<!-- 金通道状态检查 -->
+				<dipper:service ref="PayRouteStateChkService" param-ref="singleCollectionRouteChkParam" />
+				<!-- 金额转换成分 -->
+				<dipper:service ref="TranAmtChangService" param-ref="initPayTranAmt" />
+				<!-- 网银 他行代收参数准备 -->
+				<dipper:service ref="OnlineBankPamReadyService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 由商户后台发起的单笔代收交易，订单未预生成；由收银台发起的单笔代收订单已生成，订单已预生成； -->
+					<dipper:service ref="PayOrderRegisterService" param-ref="initPayOrderStatToPaying" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+				<!-- 计算商户手续费并记录 -->
+<!-- 					<dipper:service ref="CalculateFeeService"/> -->
+				</dipper:invoke>
+			</dipper:route>
+			
+			<!-- 本行卡代扣 -->
+			<dipper:route transaction="lazy">
+				<dipper:invoke><!-- 登记本行核心的支付流水 -->
+					<dipper:if expression="target.bodys.routeType == '0001' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 获取资金通道手续费 -->
+						<dipper:service ref="GetFeeByRouteCodeService" />
+						<dipper:service ref="RecordPayFlowListService" beforeDictConv-ref="data_singleCollection_coreFlowConvert" param-ref="initPaySrFlag" /> <!-- 登记支付流水 -->
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 本行单笔代收交易，调用核心08001单笔划款接口 -->
+					<dipper:if expression="target.bodys.routeType == '0001'">
+						<dipper:service ref="coreCliDipperHandler" beforeDictConv-ref="data_singleCollection_seqConvert" param-ref="pay0019CoreConvert"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.routeType == '0001' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 获取要修改的流水状态和资金通道返回信息 -->
+						<dipper:service ref="PayErrHandleService"/>
+						<!-- 更新本行核心的支付流水 -->
+						<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="data_pay_coreClrType" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			
+			
+			<!-- 中金代扣 开始 -->
+			<dipper:route transaction="lazy">
+				<dipper:invoke><!-- 登记中金的支付流水 -->
+					<dipper:if expression="target.bodys.routeType == '0004'">
+						<!-- 获取资金通道手续费 -->
+<!-- 						<dipper:service ref="GetFeeByRouteCodeService" /> -->
+						<dipper:service ref="RecordPayFlowListService"  beforeDictConv-ref="data_SIPAY0024_otherBankFist" param-ref="initPaySrFlag" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke><!-- 他行卡单笔代收交易，调用中金2011接口 -->
+					<dipper:if expression="target.bodys.routeType == '0004'">
+						<dipper:service ref="SA_ZJPAY_Pay2011Handler" beforeDictConv-ref="data_singleCollection_convertSeq"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.routeType == '0004'">
+						<!-- 获取要修改的流水状态和资金通道返回信息 -->
+						<dipper:service ref="PayErrHandleService" beforeDictConv-ref="data_singleCollection_flowPaymentNo" param-ref="init_zjTrans2011" />
+						<!-- 更新中金支付流水状态 -->
+						<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="data_ajSingle_sysSeq"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.routeType == '0004' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 获取资金通道手续费 -->
+<!-- 						<dipper:service ref="GetFeeByRouteCodeService" beforeDictConv-ref="data_singlePayment_routeFeeCovert"/> -->
+						<!-- 登记本行核心支付流水 -->
+						<dipper:service ref="RecordPayFlowListService" beforeDictConv-ref="data_SIPAY0024_otherBankSecond" param-ref="initPaySrFlag" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.routeType == '0004' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!--  为本行网银他行卡充值 添加 -->
+						<dipper:service ref="InitCoreThirdInfoService"/>
+						<dipper:service ref="coreCliDipperHandler" beforeDictConv-ref="data_singleCollection_seqConvert" param-ref="pay0019CoreConvert" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.routeType == '0004' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 获取要修改的流水状态和资金通道返回信息 -->
+						<dipper:service ref="PayErrHandleService" />
+						<!-- 更新交易状态 -->
+						<dipper:service ref="SeqStatusManageService" beforeDictConv-ref="data_pay_coreClrType"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取要修改的交易流水号和要修改的状态 -->
+					<dipper:service ref="PayErrHandleService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新支付流水状态 -->
+					<dipper:if
+						expression="target.bodys contains 'transSubSeq' &amp;&amp;target.bodys.transSubSeq != null">
+						<dipper:service ref="SeqStatusManageService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取订单状态 -->
+					<dipper:service ref="ResetOrderStatService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新订单状态 -->
+					<dipper:service ref="OrderStatusManageService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route >
+				<dipper:invoke>
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+				<dipper:invoke><!-- esb参数 -->
+					<dipper:service ref="EsbPublicParmService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

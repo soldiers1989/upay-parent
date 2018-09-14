@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<!-- 开通支付宝支付 -->
+	<mappings>
+		<mapping xpath="merNo" field="merNo"/><!-- 商户号 -->
+		<mapping xpath="categoryId" field="categoryId" must="not"/><!-- 经营类目 -->
+		<mapping xpath="merName" field="merName" must="not"/><!-- 商户名称 -->
+		<mapping xpath="aliasName" field="aliasName" must="not"/><!-- 商户简称  -->
+		<mapping xpath="servicePhone" field="servicePhone" must="not"/><!--商户客服电话 -->
+		<mapping xpath="alipaySource" field="alipaySource" must="not"/><!--  商户来源机构标识，填写机构在支付宝的pid-->
+		<mapping xpath="businessLicense" field="businessLicense" must="not"/><!-- 商户证件编号 -->
+		<mapping xpath="businessLicenseType" field="businessLicenseType" must="not"/><!-- 商户证件类型NATIONAL_LEGAL:营业执照；NATIONAL_LEGAL_MERGE:营业执照;INST_RGST_CTF:事业单位法人证书 -->
+		<mapping xpath="cantactInfoList.cantactInfo" field="cantactInfo"  must="not"><!--商户联系人信息  -->
+			<element name="userName" field="userName" type="list" must="not"/>
+			<element name="phone" field="phone" must="not"/>
+			<element name="mobile" field="mobile" must="not"/>
+			<element name="email" field="email" must="not"/>
+			<element name="contactType" field="contactType" must="not"/>
+			<element name="idCardNo" field="idCardNo" must="not"/>
+		</mapping>
+		
+		<mapping xpath="addressInfoList.addressInfo" field="addressInfo" type="list" must="not"><!-- 商户地址信息 -->
+			<element name="provinceCode" field="provinceCode" must="not"/>
+			<element name="cityCode" field="cityCode" must="not"/>
+			<element name="districtCode" field="districtCode" must="not"/>
+			<element name="address" field="address" must="not"/>
+			<element name="longitude" field="longitude" must="not"/>
+			<element name="latitude" field="latitude" must="not"/>
+			<element name="addressType" field="addressType" must="not"/>
+		</mapping>
+		
+		<mapping xpath="bankcardInfoList.bankcardInfo" field="bankcardInfo" type="list" must="not"><!-- 商户对应银行所开立的结算卡信息 -->
+			<element name="cardNo" field="cardNo" must="not"/>
+			<element name="cardName" field="cardName" must="not"/>
+		</mapping>
+		
+		<mapping xpath="payCodeInfoList.payCodeInfo" field="payCodeInfo" type="list" must="not"><!-- 商户支付二维码中信息，用于营销活动 -->
+			<element name="payCodeInfoUrl" field="payCodeInfoUrl" must="not"/>
+		</mapping>
+		<mapping xpath="logonIdList.logonId" field="logonId" type="list" must="not"><!-- 商户支付宝账号 -->
+			<element name="alipayLogonId" field="alipayLogonId" must="not"/>
+		</mapping>
+		<mapping xpath="memo" field="memo" must="not"/><!-- 商户备注信息 -->
+		
+	</mappings>
+</config>

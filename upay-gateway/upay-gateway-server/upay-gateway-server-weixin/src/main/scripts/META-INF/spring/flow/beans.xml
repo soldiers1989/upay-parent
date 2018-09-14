@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+    <bean id="abstractServerDipperHandler"
+        class="com.pactera.dipper.presys.cp.server.AbstractServerDipperHandler"
+        abstract="true">
+        <property name="errorCodeName" value="errCode" />
+        <property name="errorMsgName" value="errMsg" />
+        <property name="errorCodeMapping">
+            <map>
+                <entry key="0000000000" value="0000000000" />
+                <entry key="*" value="9999" />
+            </map>
+        </property>
+    </bean>
+    
+    
+
+    <bean id="defaultServerDipperHandler"
+        class="com.upay.gateway.server.weixin.DefaultHttpServerDipperHandler"
+        parent="abstractServerDipperHandler">
+        <property name="serviceMapping">
+            <map>
+                <entry key="WEIXIN0001" value="FLOW_SI_PAY2002" />
+              <!--   <entry key="W001" value="testHandler" /> -->
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="weiXinVerifySignHandler" class="com.upay.gateway.server.weixin.WeiXinVerifySignHandler">
+    	<property name="keyName" value="sign"/>
+        <property name="md5Key" value="${wechat.md5.key}"/>
+        <property name="columnsMap">
+        	<map>
+        		<entry key="WEIXIN0001" >
+        			<map>
+	        			<entry key="return_code" value="returnCode"/>
+	        			<entry key="return_msg" value="returnMsg"/>
+	        			<entry key="appid" value="appid" />
+	        			<entry key="mch_id" value="mchId"/>
+	        			<entry key="sub_appid" value="subAppid"/>
+	        			<entry key="sub_mch_id" value="subMchId"/>
+	        			<entry key="device_info" value="deviceInfo"/>
+	        			<entry key="nonce_str" value="nonceStr"/>
+	        			<entry key="result_code" value="resultCode"/>
+	        			<entry key="err_code" value="errCode"/>
+	        			<entry key="err_code_des" value="errCodeDes"/>
+	        			<entry key="openid" value="openid"/>
+	        			<entry key="is_subscribe" value="isSubscribe"/>
+	        			<entry key="sub_openid" value="subOpenid"/>
+	        			<entry key="sub_is_subscribe" value="subIsSubscribe"/>
+	        			<entry key="trade_type" value="tradeType"/>
+	        			<entry key="bank_type" value="bankType"/>
+	        			<entry key="total_fee" value="totalFee"/>
+	        			<entry key="fee_type" value="feeType"/>
+	        			<entry key="cash_fee" value="cashFee"/>
+	        			<entry key="cash_fee_type" value="cashFeeType"/>
+	        			<entry key="coupon_fee" value="couponFee"/>
+	        			<entry key="coupon_count" value="couponCount"/>
+	        			<entry key="transaction_id" value="transactionId"/>
+	        			<entry key="out_trade_no" value="transSubSeq"/>
+	        			<entry key="attach" value="attach"/>
+	        			<entry key="time_end" value="timeEnd"/>
+        			</map>
+        		</entry>
+        	</map>
+        </property>
+    </bean>
+</beans>

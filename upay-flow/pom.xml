@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.pactera.upay</groupId>
+		<artifactId>upay-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>upay-flow</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>upay-flow-usr</module>
+		<module>upay-flow-mer</module>
+		<module>upay-flow-acc</module>
+		<module>upay-flow-pay</module>
+		<module>upay-flow-gnr</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-flow</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${dipper.groupId}</groupId>
+			<artifactId>dipper-tx</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>clean</id>
+							<phase>clean</phase>
+							<configuration>
+								<target>
+									<echo message="--- clean[${basedir}/${src.main.scripts}] start ---" />
+									<delete>
+										<fileset dir="${basedir}/${src.main.scripts}" />
+									</delete>
+									<echo message="--- clean[${basedir}/${src.main.scripts}] end   ---" />
+								</target>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>copyScriptsDubboLog</id>
+							<phase>generate-resources</phase>
+							<configuration>
+								<target>
+									<echo message="--- copyScriptsDubboLog start ---" />
+									<copy
+										file="${global.resources.home}/${src.main.other}/assembly/assembly.xml"
+										todir="${basedir}/${src.main.assembly}" />
+									<copy todir="${basedir}/${src.main.scripts}">
+										<fileset dir="${global.resources.home}/${src.main.scripts}" />
+									</copy>
+									<copy todir="${basedir}/${src.main.scripts}">
+										<fileset dir="${global.resources.home}/${src.main.other}/dubbo" />
+									</copy>
+									<copy todir="${basedir}/${src.main.scripts}">
+										<fileset dir="${global.resources.home}/${src.main.other}/db" />
+									</copy>
+									<copy todir="${basedir}/${src.main.scripts}">
+										<fileset dir="${global.resources.home}/${src.main.other}/redis" />
+									</copy>
+									<copy
+										file="${global.resources.home}/${src.main.other}/log/logback.xml"
+										todir="${basedir}/${src.main.scripts}" />
+									<echo message="--- copyScriptsDubboLog end   ---" />
+								</target>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

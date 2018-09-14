@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeStandAreaPo">
+	<select id="getFeeStandList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="feeCode != null">
+				AND FEE_CODE=#{feeCode}
+			</if>
+			<if test="status != null">
+				AND STATUS=#{status}
+			</if>
+			<if test="now != null">
+				AND to_date(to_char(BEG_DATE,'yyyymmdd'),'yyyymmdd')<![CDATA[<=]]>to_date(to_char(#{now},'yyyymmdd'),'yyyymmdd') 
+				AND to_date(to_char(END_DATE,'yyyymmdd'),'yyyymmdd')<![CDATA[>=]]>to_date(to_char(#{now},'yyyymmdd'),'yyyymmdd') 
+			</if>
+		</where>
+		ORDER BY AREA_COUNT ASC  
+	</select>
+	
+
+</mapper>

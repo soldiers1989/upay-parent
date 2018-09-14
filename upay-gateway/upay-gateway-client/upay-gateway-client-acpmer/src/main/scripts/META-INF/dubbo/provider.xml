@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	
+	<!-- 银联交易查询-->
+    <dubbo:service ref="unionPayTranQueryClientDipperHandler"    group="unionPayTranQueryClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+<!--
+    &lt;!&ndash; 银联代收交易撤销&ndash;&gt;
+    <dubbo:service ref="unionPayConsumeUndoClientDipperHandler"    group="unionPayConsumeUndoClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+   -->
+   <!-- 银联代收交易退货-->
+    <dubbo:service ref="unionPayRufundClientDipperHandler"    group="unionPayRufundClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+   
+    <!-- 银联对账文件下载-->
+    <dubbo:service ref="unionPayFileTransferDipperHandler"    group="unionPayFileTransferDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+   
+  
+     <!-- 银联无跳转支付授权-->
+    <dubbo:service ref="unionPayTokenOpenClientDipperHandler"    group="unionPayTokenOpenClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+    
+     <!-- 银联无跳转消费-->
+    <dubbo:service ref="unionPayTokenConsumeClientDipperHandler"    group="unionPayTokenConsumeClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+    
+     <!-- 银联无跳转支付授权查询-->
+    <dubbo:service ref="unionPayTokenQueryClientDipperHandler"    group="unionPayTokenQueryClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+    
+      <!-- 银联无跳转支付授权删除-->
+    <dubbo:service ref="unionPayTokenDeleteClientDipperHandler"    group="unionPayTokenDeleteClientDipperHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+   
+     <!-- 银联实名认证-->
+    <dubbo:service ref="realNameAuthHandler"    group="realNameAuthHandler"   interface="com.pactera.dipper.core.IDipperHandler" />
+   
+    
+    
+</beans>

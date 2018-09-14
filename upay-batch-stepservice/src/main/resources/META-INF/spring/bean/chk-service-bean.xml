@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- H5对账统计 -->
+    <!-- 	<bean id="H5SStatisticsData" class="com.cmbchina.batch.stepservice.chk.H5SStatisticsData"  -->
+    <!-- 	parent="abstractStepExecutor"> -->
+    <!-- 	</bean> -->
+
+    <!-- 核心对账==================start -->
+    <!-- 申请核心对账文件下载 -->
+    <bean id="ApplyCoreChkFileStep" class="com.upay.batch.stepservice.chk.core.ApplyCoreChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="coreCliDipperHandler" ref="coreCliDipperHandler"/>
+    </bean>
+
+    <!-- FTP下载核心对账文件 -->
+    <bean id="DownloadJzBankCoreChkFileStep" class="com.upay.batch.stepservice.chk.core.DownloadJzBankCoreChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="url" value="${core.ftp.url}"/>
+        <property name="port" value="${core.ftp.port}"/>
+        <property name="username" value="${core.ftp.username}"/>
+        <property name="password" value="${core.ftp.password}"/>
+        <property name="coreLocalPath" value="${core.ftp.coreLocalPath}"/>
+        <property name="coreRemotePath" value="${core.ftp.coreRemotePath}"/>
+    </bean>
+    <!-- 解析核心对账文件下载 -->
+    <bean id="GetJZBankCoreChkFileStep" class="com.upay.batch.stepservice.chk.core.GetJZBankCoreChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="cnapsChkPath" value="${core.ftp.coreLocalPath}"/>
+    </bean>
+    <!-- 核心对账-以核心数据为准对平台 -->
+    <bean id="ChkByHostDetailStep" class="com.upay.batch.stepservice.chk.core.ChkByHostDetailStep"
+          parent="abstractStepExecutor"/>
+    <!-- 核心对账-以平台数据为准对核心 -->
+    <bean id="ChkByDetailStep" class="com.upay.batch.stepservice.chk.core.ChkByDetailStep"
+          parent="abstractStepExecutor"/>
+    <!-- 核心对账==================end -->
+
+    <!-- 中金对账==================start -->
+    <!-- 申请中金支付(CPCN)对账文件 -->
+    <bean id="GetCPCNChkFileStep" class="com.upay.batch.stepservice.chk.cpcn.GetCPCNChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="cpcnChkFileHandler" ref="SA_ZJPAY_Pay1810Handler"/>
+    </bean>
+    <!-- 中金支付对账-以中金数据为准对平台 -->
+    <bean id="ChkByCPCNStep" class="com.upay.batch.stepservice.chk.cpcn.ChkByCPCNStep" parent="abstractStepExecutor"/>
+    <!-- 中金支付对账-以平台数据为准对中金 -->
+    <bean id="ChkCPCNByHostDetailStep" class="com.upay.batch.stepservice.chk.cpcn.ChkByDetailStep"
+          parent="abstractStepExecutor"/>
+    <!-- 生成中金对账信息 -->
+    <bean id="GenCPCNChkInfoStep" class="com.upay.batch.stepservice.chk.cpcn.GenCPCNChkInfoStep"
+          parent="abstractStepExecutor"/>
+    <!-- 中金对账==================end -->
+
+    <!-- 微信对账==================start -->
+    <!-- 申请微信对账文件下载 -->
+    <bean id="ApplyWeChatChkFileStep" class="com.upay.batch.stepservice.chk.wechat.ApplyWeChatChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="weChatChkFileHandler" ref="defaultWeiXinClientHandler"/>
+        <property name="weChatAppId" value="${wechat.appid}"/>
+        <property name="weChatMckId" value="${wechat.merid}"/>
+    </bean>
+    <!-- 解析微信对账文件下载 -->
+    <bean id="GetWeChatChkFileStep" class="com.upay.batch.stepservice.chk.wechat.GetWeChatChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="weChatChkFilePath" value="${wechat.process.filepath}"/>
+    </bean>
+    <!-- 微信对账-以微信数据为准对平台 -->
+    <bean id="ChkByWeChatStep" class="com.upay.batch.stepservice.chk.wechat.ChkByWeChatStep"
+          parent="abstractStepExecutor"/>
+    <!-- 微信对账-以平台数据为准对微信 -->
+    <bean id="ChkWeChatByDetailStep" class="com.upay.batch.stepservice.chk.wechat.ChkByDetailStep"
+          parent="abstractStepExecutor"/>
+    <!-- 微信对账==================end -->
+
+    <!-- 生成商户对账明细 -->
+    <bean id="GenMerChkList" class="com.upay.batch.stepservice.chk.mer.GenMerChkList" parent="abstractStepExecutor"/>
+
+    <!-- 商户清算 -->
+    <bean id="MerCheckInStlStep" class="com.upay.batch.stepservice.clearing.mer.MerCheckInStlStep"
+          parent="abstractStepExecutor"/>
+
+    <!-- 商户结算 -->
+    <bean id="MerStlStep" class="com.upay.batch.stepservice.stl.mer.MerStlStep" parent="abstractStepExecutor"/>
+
+    <!-- 商户结算异常处理 -->
+    <bean id="MerStlException" class="com.upay.batch.stepservice.schedule.MerStlException"
+          parent="abstractStepExecutor"/>
+
+    <!-- 商户结算异常  发送短信通知业务 -->
+    <bean id="MerStlFailSendMsg" class="com.upay.batch.stepservice.schedule.MerStlFailSendMsg"
+          parent="abstractStepExecutor"/>
+
+    <!--  隔日退款异常处理 -->
+    <bean id="RefundException" class="com.upay.batch.stepservice.schedule.RefundException"
+          parent="abstractStepExecutor"/>
+
+
+    <!-- 计算资金通道手续费 -->
+    <bean id="CalculateRouteFee" class="com.upay.batch.stepservice.clearing.calculateRouteFee.CalculateRouteFee"
+          parent="abstractStepExecutor"/>
+    <!-- 计算二级商户手续费 -->
+    <bean id="CalculateSecMerFee" class="com.upay.batch.stepservice.clearing.calculateSecMerFee.CalculateSecMerFee"
+          parent="abstractStepExecutor"/>
+    <!-- 二级商户清算 -->
+    <bean id="SecMerCheckInStlStep" class="com.upay.batch.stepservice.stl.secMer.SecMerCheckInStlStep"
+          parent="abstractStepExecutor"/>
+    <!-- 二级商户结算 -->
+    <bean id="SecMerStlStep" class="com.upay.batch.stepservice.stl.secMer.SecMerStlStep" parent="abstractStepExecutor">
+        <property name="batchCommon" ref="batchCommon"/>
+    </bean>
+
+    <!-- 汇总昨日第三方各通道的手续费金额 -->
+    <bean id="SumTodayRouteFee" class="com.upay.batch.stepservice.stl.transferRouteFee.SumTodayRouteFee"
+          parent="abstractStepExecutor"/>
+    <!-- 汇总昨日第三方各通道的分润金额 -->
+    <bean id="SumTodaySubProfit" class="com.upay.batch.stepservice.stl.transferRouteFee.SumTodaySubProfit"
+          parent="abstractStepExecutor"/>
+    <!-- 同步分润转账处理中的情况 -->
+    <bean id="SyncProcessing" class="com.upay.batch.stepservice.stl.transferRouteFee.SyncProcessing"
+          parent="abstractStepExecutor"/>
+    <!-- 资金通道、分润转账-->
+    <bean id="TransferRouteFee" class="com.upay.batch.stepservice.stl.transferRouteFee.TransferRouteFee"
+          parent="abstractStepExecutor">
+        <property name="batchCommon" ref="batchCommon"/>
+    </bean>
+
+
+    <!-- 下载银联对账文件-->
+    <bean id="DownloadUnionPayChkFileStep" class="com.upay.batch.stepservice.chk.union.DownloadUnionPayChkFileStep"
+          parent="abstractStepExecutor">
+    </bean>
+
+    <!--下载银联对账文件-->
+    <bean id="DownloadUnionPayChkFile" class="com.upay.batch.stepservice.chk.union.DownloadUnionPayChkFile"
+          parent="abstractStepExecutor">
+        <!--银联对账文件根目录-->
+        <property name="outPutDirectory" value="${payAcpFileRoot}"/>
+    </bean>
+
+    <!-- 解析银联对账文件、入库 -->
+    <bean id="GetUnionPaySinglePayChkFileStep"
+          class="com.upay.batch.stepservice.chk.union.GetUnionPaySinglePayChkFileStep" parent="abstractStepExecutor">
+        <property name="unionpayChkPath" value="${union.chk.path}"/>
+        <property name="pattern" value="${union.chk.path.pattern}"/>
+        <property name="acpReceiveMerId" value="${acpReceiveMerId}"/>
+        <property name="acpPayMerId" value="${acpReceiveMerId}"/>
+    </bean>
+    <!-- 以银联为主对账-->
+    <bean id="ChkByUnionPayStep" class="com.upay.batch.stepservice.chk.union.ChkByUnionPayStep"
+          parent="abstractStepExecutor"/>
+
+    <!-- 未对账数据处理 -->
+    <bean id="ChkByDetailUnionStep" class="com.upay.batch.stepservice.chk.union.ChkByDetailUnionStep"
+          parent="abstractStepExecutor"/>
+
+    <!-- 下载支付宝对账单 -->
+    <bean id="ApplyAlipayChkFileStep" class="com.upay.batch.stepservice.chk.alipay.ApplyAlipayChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="alipayDownloadHandler" ref="AlipayDownloadHandler"/>
+        <property name="chkFilePath" value="${alipay.chk.path}"/>
+        <property name="appId" value="${alipay.appId}"/>
+    </bean>
+    <!-- 支付宝对账文件明细入库-->
+    <bean id="GetAlipayChkFileStep" class="com.upay.batch.stepservice.chk.alipay.GetAlipayChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="chkFilePath" value="${alipay.chk.path}"/>
+        <property name="appId" value="${alipay.appId}"/>
+    </bean>
+
+    <!-- 以支付宝为主对账-->
+    <bean id="ChkByAlipayStep" class="com.upay.batch.stepservice.chk.alipay.ChkByAlipayStep"
+          parent="abstractStepExecutor"/>
+
+    <!-- 支付宝未对账数据处理 -->
+    <bean id="ChkByAlipayDetailStep" class="com.upay.batch.stepservice.chk.alipay.ChkByAlipayDetailStep"
+          parent="abstractStepExecutor"/>
+
+
+    <!--===================================================================银联商户对账========================================-->
+
+
+    <!-- 下载银联对账文件-->
+    <bean id="DownloadUnionPayChkFileMer" class="com.upay.batch.stepservice.chk.unionmer.DownloadUnionPayChkFileToMer"
+          parent="abstractStepExecutor">
+        <!--银联对账文件根目录-->
+        <property name="outPutDirectory" value="${payAcpFileRoot}"/>
+    </bean>
+    <!-- 解析银联对账文件、入库 -->
+    <bean id="GetUnionPaySingleChkFileStepMer"
+          class="com.upay.batch.stepservice.chk.unionmer.GetUnionPaySinglePayChkFileStepToMer"
+          parent="abstractStepExecutor">
+        <!--	<property name="unionpayChkPath"  value="${union.chk.path}"/>
+            <property name="pattern"  value="${union.chk.path.pattern}"/>-->
+    </bean>
+    <!-- 以银联为主对账-->
+    <bean id="ChkByUnionPayStepMer" class="com.upay.batch.stepservice.chk.unionmer.ChkByUnionPayStepToMer"
+          parent="abstractStepExecutor"/>
+    <!-- 未对账数据处理 -->
+    <bean id="ChkByDetailUnionStepMer" class="com.upay.batch.stepservice.chk.unionmer.ChkByDetailUnionStepToMer"
+          parent="abstractStepExecutor"/>
+
+
+
+
+    <!-- AT微信对账==================start -->
+    <!-- 解析AT微信对账文件 -->
+    <bean id="GetWeChatChkFileStepAT" class="com.upay.batch.stepservice.chk.atwechat.GetWeChatChkFileStepAT"
+          parent="abstractStepExecutor">
+        <property name="weChatChkFilePath" value="${wechat.process.filepath}"/>
+        <property name="mchId" value="${wechat.merid}"/>
+    </bean>
+    <!--AT 微信对账-以微信数据为准对平台 -->
+    <bean id="ChkByWeChatStepAT" class="com.upay.batch.stepservice.chk.atwechat.ChkByWeChatStepAT"
+          parent="abstractStepExecutor"/>
+    <!-- AT微信对账-以平台数据为准对微信 -->
+    <bean id="ChkWeChatByDetailStepAT" class="com.upay.batch.stepservice.chk.atwechat.ChkByDetailStepAT"
+          parent="abstractStepExecutor"/>
+    <!-- AT微信对账==================end -->
+
+
+    <!-- AT 支付宝对账==================start -->
+
+    <!-- AT支付宝对账文件明细入库-->
+    <bean id="GetAlipayChkFileStepAT" class="com.upay.batch.stepservice.chk.atalipay.GetAlipayChkFileStepAT"
+          parent="abstractStepExecutor">
+        <property name="chkFilePath" value="${alipay.chk.path}"/>
+        <property name="appId" value="${alipay.appId}"/>
+    </bean>
+
+    <!-- AT以支付宝为主对账-->
+    <bean id="ChkByAlipayStepAT" class="com.upay.batch.stepservice.chk.atalipay.ChkByAlipayStepAT"
+          parent="abstractStepExecutor"/>
+
+    <!-- AT支付宝未对账数据处理 -->
+    <bean id="ChkByAlipayDetailStepAT" class="com.upay.batch.stepservice.chk.atalipay.ChkByAlipayDetailStepAT"
+          parent="abstractStepExecutor"/>
+
+    <!-- AT 支付宝对账==================end -->
+
+
+
+
+    <!-- Esb核心对账==================start -->
+    <!-- 申请Esb核心对账文件下载 -->
+    <bean id="EsbApplyCoreChkFileStep" class="com.upay.batch.stepservice.chk.esbcore.EsbApplyCoreChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="esbCliDipperHandler" ref="esbCliDipperHandler"/>
+        <property name="coreLocalPath" value="${core.ftp.coreLocalPath}"/>
+    </bean>
+
+    <!-- 解析核心对账文件下载 -->
+    <bean id="EsbGetJZBankCoreChkFileStep" class="com.upay.batch.stepservice.chk.esbcore.EsbGetJZBankCoreChkFileStep"
+          parent="abstractStepExecutor">
+        <property name="cnapsChkPath" value="${core.ftp.coreLocalPath}"/>
+    </bean>
+    <!-- 核心对账-以核心数据为准对平台 -->
+    <bean id="EsbChkByHostDetailStep" class="com.upay.batch.stepservice.chk.esbcore.EsbChkByHostDetailStep"
+          parent="abstractStepExecutor"/>
+    <!-- 核心对账-以平台数据为准对核心 -->
+    <bean id="EsbChkByDetailStep" class="com.upay.batch.stepservice.chk.esbcore.EsbChkByDetailStep"
+          parent="abstractStepExecutor"/>
+    <!-- 核心对账==================end -->
+
+
+
+
+</beans>

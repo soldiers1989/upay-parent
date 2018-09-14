@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrAreaCodePo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrAreaCodePo">
+		<id column="ID" property="id" />
+		<result column="AREA_CODE" property="areaCode" />
+		<result column="AREA_NAME" property="areaName" />
+		<result column="UP_AREA_CODE" property="upAreaCode" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="LAST_OPER" property="lastOper" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_AREA_CODE
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		AREA_CODE,
+		AREA_NAME,
+		UP_AREA_CODE,
+		LAST_UPDATE_TIME,
+		LAST_OPER,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="areaCode != null">
+			AREA_CODE= #{areaCode}
+	           AND 
+		</if>
+		<if test="areaName != null">
+			AREA_NAME= #{areaName}
+	           AND 
+		</if>
+		<if test="upAreaCode != null">
+			UP_AREA_CODE= #{upAreaCode}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="lastOper != null">
+			LAST_OPER= #{lastOper}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="areaCode != null">
+		AREA_CODE,
+	</if>
+	<if test="areaName != null">
+		AREA_NAME,
+	</if>
+	<if test="upAreaCode != null">
+		UP_AREA_CODE,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="areaCode != null">
+		#{areaCode},
+	</if>
+	<if test="areaName != null">
+		#{areaName},
+	</if>
+	<if test="upAreaCode != null">
+		#{upAreaCode},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		#{lastOper},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="areaCode != null">
+		AREA_CODE=#{areaCode},
+	</if>
+	<if test="areaName != null">
+		AREA_NAME=#{areaName},
+	</if>
+	<if test="upAreaCode != null">
+		UP_AREA_CODE=#{upAreaCode},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER=#{lastOper},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.areaCode != null">
+                    AREA_CODE=#{s.areaCode},
+			</if>
+			<if test="s.areaName != null">
+                    AREA_NAME=#{s.areaName},
+			</if>
+			<if test="s.upAreaCode != null">
+                    UP_AREA_CODE=#{s.upAreaCode},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.lastOper != null">
+                    LAST_OPER=#{s.lastOper},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.areaCode != null">
+                    AREA_CODE=#{w.areaCode}
+                   AND 
+ 			</if>
+			<if test="w.areaName != null">
+                    AREA_NAME=#{w.areaName}
+                   AND 
+ 			</if>
+			<if test="w.upAreaCode != null">
+                    UP_AREA_CODE=#{w.upAreaCode}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.lastOper != null">
+                    LAST_OPER=#{w.lastOper}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

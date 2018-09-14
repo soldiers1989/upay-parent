@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 退货 -->
+		<mapping xpath="merNo" field="merNo"/>
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/>
+		<mapping xpath="outerOrderNo" field="outerOrderNo"  must="not"/>
+		<mapping xpath="subAppId" field="subAppId"  must="not"/>
+		<mapping xpath="orderNo" field="platOrderNo"  must="not"/>
+		<mapping xpath="outerRefundNo" field="outerRefundNo"/>
+		<mapping xpath="refundAmt" field="refundAmt"/>
+	</mappings>
+</config>

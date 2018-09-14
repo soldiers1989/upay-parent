@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.ORDER_NO" field="orderNo" must="not" />
+		<mapping xpath="$.body.OUTER_ORDER_NO" field="outerOrderNo" must="not"/>
+		<mapping xpath="$.body.SUB_APPID" field="subAppid" must="not"/>
+	</mappings>
+</config>

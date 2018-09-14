@@ -1,0 +1,100 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 烟草转账   待清算账户到二级商户的卡 -->
+	<dipper:flow service-id="SI_ACC1007">
+		<dipper:try>
+		<dipper:route>
+				<dipper:invoke>
+					<!-- 交易前处理 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 金额转换成分 -->
+					<dipper:service ref="TranAmtChangService" param-ref="init_acc_convertMoney" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--查询收款方付款信息 -->
+					<dipper:service ref="SmokeTransferAccountDataService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 订单预生成 -->
+					<dipper:service ref="PayOrderRegisterService" param-ref="init_acc_createOrderParm" />
+				</dipper:invoke>
+				
+				<dipper:invoke><!-- 登记本行核心的转账流水 -->
+					<dipper:if expression="target.bodys.routeCode == '0001' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<dipper:service ref="RecordPayFlowListService" param-ref="init_acc_srFlag" /> <!-- 登记支付流水 -->
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			
+			<!-- 调用核心记账接口 开始 -->
+			<dipper:route><!-- 核心记账 -->
+				<dipper:invoke>
+					<!-- 从资金池账户到待清算账户 -->
+					<dipper:if expression="target.bodys.routeCode == '0001' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<dipper:service ref="InitBankParamService" />
+						<dipper:service ref="coreCliDipperHandler" beforeDictConv-ref="data_acc_smoke_invCoreLocal" param-ref="init_acc_coreWithdraw_core" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			
+			<!-- 实时更新流水信息 -->
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.routeCode == '0001' &amp;&amp; (target.bodys.coreClrType == '1' || target.bodys.coreClrType == '2')">
+						<!-- 获取要修改的流水状态和资金通道返回信息 -->
+						<dipper:service ref="PayErrHandleService" beforeDictConv-ref="data_acc_zj_withdraw_payerr" />
+						<!-- 更新本行核心的支付流水 -->
+						<dipper:service ref="SeqStatusManageService" param-ref="init_acc_updateSeqStatSucc" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取要修改的交易流水号和要修改的状态 -->
+					<dipper:service ref="PayErrHandleService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新支付流水状态 -->
+					<dipper:if
+						expression="target.bodys contains 'transSubSeq' &amp;&amp;target.bodys.transSubSeq != null">
+						<dipper:service ref="SeqStatusManageService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取订单状态 -->
+					<dipper:service ref="ResetOrderStatService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新订单状态 -->
+					<dipper:service ref="OrderStatusManageService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>    

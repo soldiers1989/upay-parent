@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeKindPo">
+	<select id="selectByFuzzy" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		 from 
+		 <include refid="Table_Name"/>
+		 <where>
+		 	<trim suffixOverrides="AND">
+		 	<if test="feeCode != null">
+				FEE_CODE = #{feeCode}
+		           AND 
+			</if>
+		 	<if test="feeName != null">
+				INSTR(FEE_NAME,#{feeName})>0
+				   AND
+			</if>
+			<if test="merNo != null">
+				MEMO = #{merNo}
+			</if>
+			</trim>
+		 </where>
+	</select>
+	
+	<update id="updateFee" parameterType="java.util.HashMap">
+        update
+        <include refid="Table_Name" />
+        <set>
+        	<if test="feeName != null">
+        	FEE_NAME= #{feeName},
+        	</if>
+            FEE_MODE= #{feeMode},
+            <if test="fixFee != null">
+            FIX_FEE= #{fixFee},
+            </if>
+            <if test="rationFee != null">
+            RATION_FEE= #{rationFee},
+            </if>
+            <if test="highFee != null">
+            HIGH_FEE= #{highFee},
+            </if>
+            <if test="highFee == null">
+            HIGH_FEE= null,
+            </if>
+            <if test="lowFee != null">
+            LOW_FEE= #{lowFee}
+            </if>
+            <if test="lowFee == null">
+            LOW_FEE= null
+            </if>
+        </set>
+        <where>
+            FEE_CODE = #{feeCode}
+        </where>
+    </update>
+    <select id="getOneByFeeCode" parameterType="com.upay.dao.po.fee.FeeKindPo" resultMap="BaseResultMap">
+    	select 
+    	<include refid="Base_Column"/>
+    	from 
+    	<include refid="Table_Name"/>
+    	<where>
+    		<if test="feeCode != null">
+    			AND FEE_CODE = #{feeCode}
+    		</if>
+    		<if test="memo != null">
+    			AND MEMO = #{memo}
+    		</if>
+    		<if test="memo == null">
+    			AND MEMO IS NULL
+    		</if>
+    		
+    	</where>
+    </select>
+</mapper>

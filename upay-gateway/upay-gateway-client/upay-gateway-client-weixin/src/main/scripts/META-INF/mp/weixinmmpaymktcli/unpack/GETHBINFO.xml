@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+        <mapping xpath="sign" field="sign" must="not"/>    
+        <mapping xpath="mch_billno" field="mchBillno" must="not"/>   
+        <mapping xpath="mch_id" field="mchId" must="not"/>    
+        <mapping xpath="detail_id" field="detailId" must="not"/>    
+        <mapping xpath="status" field="status" must="not"/>    
+        <mapping xpath="send_type" field="sendType" must="not"/>
+        <mapping xpath="hb_type" field="hbType" must="not"/>    
+        <mapping xpath="total_num" field="totalNo" must="not"/>    
+        <mapping xpath="total_amount" field="totalAmount" must="not"/>    
+        <mapping xpath="reason" field="reason" must="not"/>
+        <mapping xpath="send_time" field="sendTime" must="not"/>
+        <mapping xpath="refund_time" field="refundTime" must="not"/>
+        <mapping xpath="refund_amount" field="refundAmount" must="not"/>
+        <mapping xpath="wishing" field="wishing" must="not"/>
+        <mapping xpath="remark" field="remark" must="not"/>
+        <mapping xpath="act_name" field="actName" must="not"/>
+        <mapping xpath="hblist.hbinfo" field="hblist" type="list" must="not">
+        	<element name="openid" field="openid" must="not"/>
+			<element name="amount" field="amount" must="not"/>
+			<element name="rcv_time" field="rcvTime" must="not"/>
+        </mapping>
+	</mappings>
+</config>

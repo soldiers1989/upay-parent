@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerApplyBookPo">
+	<select id="selectByFuzzy" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		 from 
+		 <include refid="Table_Name"/>
+		 <where>
+		 	<trim suffixOverrides="AND">
+		 	<if test="parentMerNo != null">
+				PARENT_MER_NO= #{parentMerNo}
+		           AND 
+			</if>
+			<if test="merApplyNo != null">
+				MER_APPLY_NO= #{merApplyNo}
+		           AND 
+			</if>
+		 	<if test="secMerName != null">
+				INSTR(MER_NAME,#{secMerName})>0
+			</if>
+			</trim>
+		 </where>
+	</select>
+	
+	<select id="selectOneMer" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		 from 
+		 <include refid="Table_Name"/>
+		 <where>
+		 	<trim suffixOverrides="AND">
+		 	<if test="parentMerNo != null">
+				PARENT_MER_NO= #{parentMerNo}
+				AND
+			</if>
+			<if test="parentMerNo == null">
+				PARENT_MER_NO is null
+		           AND
+			</if> 
+			<if test="userId != null">
+				USER_ID= #{userId}
+			</if>
+			</trim>
+		 </where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	   <mapping xpath="resp.acc_name" field="accName" />
+	   <mapping xpath="resp.certType" field="certType" />
+	   <mapping xpath="resp.certNo" field="certNo" />
+	   <mapping xpath="resp.mobilePhone" field="mobilePhone" />
+	   <mapping xpath="resp.CardStat" field="CardStat" />
+	   <mapping xpath="resp.bal" field="bal" />
+	</mappings>
+</config>

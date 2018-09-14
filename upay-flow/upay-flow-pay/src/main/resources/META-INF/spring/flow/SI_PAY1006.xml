@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dipper="http://www.pactera.com/schema/dipper"
+       xmlns:data="http://www.pactera.com/schema/dipper/dict"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.pactera.com/schema/dipper http://www.pactera.com/schema/dipper.xsd
+            http://www.pactera.com/schema/dipper/dict http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <!-- 商户对账单下载 -->
+    <dipper:flow service-id="SI_PAY1006">
+        <dipper:try>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPreProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route>
+                <dipper:invoke>
+                    <!-- 商户状态检查 -->
+                    <dipper:service ref="MerStatChkService"/>
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route>
+                <dipper:invoke>
+                    <!-- 对账单数据查询 -->
+                    <dipper:service ref="MerChkFileDownService" />
+                </dipper:invoke>
+            </dipper:route>
+            <dipper:route>
+                <dipper:invoke>
+                    <!-- 异步生成对账单文件并上传到服务器 -->
+                    <dipper:service ref="GenMerChkFileService" asyn="true" param-ref="genMerChkFileParam" />
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:try>
+        <dipper:catchException />
+        <dipper:finally>
+            <dipper:route>
+                <dipper:invoke>
+                    <dipper:service ref="SrvPostProcessingServiceImpl" />
+                </dipper:invoke>
+            </dipper:route>
+        </dipper:finally>
+    </dipper:flow>
+
+
+</beans>

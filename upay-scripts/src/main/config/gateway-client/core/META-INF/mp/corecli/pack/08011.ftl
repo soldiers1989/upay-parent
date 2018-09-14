@@ -1,0 +1,10 @@
+    <bankCardNo>${bankCardNo}</bankCardNo>
+    <currency>${currency}</currency>
+    <trantype>${trantype}</trantype>
+    <amount>${amount}</amount>
+    <charge>${charge!""}</charge>
+    <set_account>${setAccount!""}</set_account>
+    <cvv2>${cvv2!""}</cvv2>
+    <validdate>${validdate!""}</validdate>
+    <org_biz_serialno>${orgBizSerialNo!""}</org_biz_serialno>
+    <org_biz_date>${orgBizDate!""}</org_biz_date>

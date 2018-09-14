@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+    <mappings>
+      <!--  <mapping xpath="$.body.TRANS_CODE" field="transCode" />-->
+        <mapping xpath="$.body.MER_NO" field="merNo"/>
+        <mapping xpath="$.body.ORDER_NO" field="orderNo"/>
+      <!--  <mapping xpath="$.body.USER_ID" field="userId" />-->
+        <!--<mapping xpath="$.body.SESSION_ID" field="sessionId" must="not"/>-->
+       <!-- <mapping xpath="$.body.CHNL_ID" field="chnlId"/>-->
+        <mapping xpath="$.body.SPBILL_CREATE_IP" field="spbillCreateIp" must="not"/>
+    </mappings>
+</config>

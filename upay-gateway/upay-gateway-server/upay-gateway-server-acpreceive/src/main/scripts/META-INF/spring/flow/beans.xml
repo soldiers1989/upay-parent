@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+    <bean id="abstractServerDipperHandler"
+        class="com.pactera.dipper.presys.cp.server.AbstractServerDipperHandler"
+        abstract="true">
+        <property name="errorCodeName" value="errCode" />
+        <property name="errorMsgName" value="errMsg" />
+        <property name="errorCodeMapping">
+            <map>
+                <entry key="0000000000" value="0000000000" />
+                <entry key="*" value="9999" />
+            </map>
+        </property>
+    </bean>
+</beans>

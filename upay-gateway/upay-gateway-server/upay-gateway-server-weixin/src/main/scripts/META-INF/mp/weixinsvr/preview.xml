@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+    <previews>
+        <preview id="weixinsvr"  xpath="tran_code" datalength="" trancodename="transCode"
+            charset="UTF-8"  faultCodeName="faultCode"
+            faultStringName="faultString" errCodeName="errCode" errMsgName="errMsg"
+            errCodeSuc="SUCCESS" requrl="true" svrflag="true">
+            <!-- 当前测试核心调用挡板requrl 为false 正式上线后值为true   -->
+<!--             <urlMappings> -->
+<!--                    <mapping code="W001" reqUrl="xml/post/" /> -->
+<!--             </urlMappings> -->
+        </preview>
+    </previews>
+
+</config>

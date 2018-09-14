@@ -1,0 +1,2 @@
+<#include "commons.ftl"/>
+<@xmlRoot />

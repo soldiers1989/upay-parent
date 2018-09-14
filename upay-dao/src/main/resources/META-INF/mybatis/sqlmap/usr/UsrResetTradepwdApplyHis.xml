@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrResetTradepwdApplyHisPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.usr.UsrResetTradepwdApplyHisPo">
+		<id column="ID" property="id" />
+		<result column="USER_ID" property="userId" />
+		<result column="CERT_TYPE" property="certType" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="CERT_NAME" property="certName" />
+		<result column="CERT_FRONT" property="certFront" />
+		<result column="CERT_BACK" property="certBack" />
+		<result column="CERT_PERSON" property="certPerson" />
+		<result column="NEW_TRADE_PWD" property="newTradePwd" />
+		<result column="APPLY_TIME" property="applyTime" />
+		<result column="APPLY_CHNL_ID" property="applyChnlId" />
+		<result column="APPROVE_STAT" property="approveStat" />
+		<result column="APPROVE_OPER" property="approveOper" />
+		<result column="APPROVE_TIME" property="approveTime" />
+		<result column="REJECT_REASON" property="rejectReason" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+		<result column="WF_ID" property="wfId" />
+		<result column="WF_STATUS" property="wfStatus" />
+		<result column="SUBMITTER" property="submitter" />
+		<result column="SUBMITTER_NAME" property="submitterName" />
+		<result column="SUBMIT_DATE" property="submitDate" />
+		<result column="REVIEWER" property="reviewer" />
+		<result column="REVIEWER_NAME" property="reviewerName" />
+		<result column="REVIEW_DATE" property="reviewDate" />
+		<result column="APPROVER" property="approver" />
+		<result column="APPROVER_NAME" property="approverName" />
+		<result column="APPROVE_DATE" property="approveDate" />
+		<result column="AUDITOR" property="auditor" />
+		<result column="AUDITOR_NAME" property="auditorName" />
+		<result column="AUDIT_DATE" property="auditDate" />
+		<result column="HEAD_AUDITOR" property="headAuditor" />
+		<result column="HEAD_AUDITOR_NAME" property="headAuditorName" />
+		<result column="HEAD_AUDIT_DATE" property="headAuditDate" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USR_RESET_TRADEPWD_APPLY_HIS
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		USER_ID,
+		CERT_TYPE,
+		CERT_NO,
+		CERT_NAME,
+		CERT_FRONT,
+		CERT_BACK,
+		CERT_PERSON,
+		NEW_TRADE_PWD,
+		APPLY_TIME,
+		APPLY_CHNL_ID,
+		APPROVE_STAT,
+		APPROVE_OPER,
+		APPROVE_TIME,
+		REJECT_REASON,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		WF_ID,
+		WF_STATUS,
+		SUBMITTER,
+		SUBMITTER_NAME,
+		SUBMIT_DATE,
+		REVIEWER,
+		REVIEWER_NAME,
+		REVIEW_DATE,
+		APPROVER,
+		APPROVER_NAME,
+		APPROVE_DATE,
+		AUDITOR,
+		AUDITOR_NAME,
+		AUDIT_DATE,
+		HEAD_AUDITOR,
+		HEAD_AUDITOR_NAME,
+		HEAD_AUDIT_DATE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="certType != null">
+			CERT_TYPE= #{certType}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="certName != null">
+			CERT_NAME= #{certName}
+	           AND 
+		</if>
+		<if test="certFront != null">
+			CERT_FRONT= #{certFront}
+	           AND 
+		</if>
+		<if test="certBack != null">
+			CERT_BACK= #{certBack}
+	           AND 
+		</if>
+		<if test="certPerson != null">
+			CERT_PERSON= #{certPerson}
+	           AND 
+		</if>
+		<if test="newTradePwd != null">
+			NEW_TRADE_PWD= #{newTradePwd}
+	           AND 
+		</if>
+		<if test="applyTime != null">
+			APPLY_TIME= #{applyTime}
+	           AND 
+		</if>
+		<if test="applyChnlId != null">
+			APPLY_CHNL_ID= #{applyChnlId}
+	           AND 
+		</if>
+		<if test="approveStat != null">
+			APPROVE_STAT= #{approveStat}
+	           AND 
+		</if>
+		<if test="approveOper != null">
+			APPROVE_OPER= #{approveOper}
+	           AND 
+		</if>
+		<if test="approveTime != null">
+			APPROVE_TIME= #{approveTime}
+	           AND 
+		</if>
+		<if test="rejectReason != null">
+			REJECT_REASON= #{rejectReason}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+	           AND 
+		</if>
+		<if test="wfId != null">
+			WF_ID= #{wfId}
+	           AND 
+		</if>
+		<if test="wfStatus != null">
+			WF_STATUS= #{wfStatus}
+	           AND 
+		</if>
+		<if test="submitter != null">
+			SUBMITTER= #{submitter}
+	           AND 
+		</if>
+		<if test="submitterName != null">
+			SUBMITTER_NAME= #{submitterName}
+	           AND 
+		</if>
+		<if test="submitDate != null">
+			SUBMIT_DATE= #{submitDate}
+	           AND 
+		</if>
+		<if test="reviewer != null">
+			REVIEWER= #{reviewer}
+	           AND 
+		</if>
+		<if test="reviewerName != null">
+			REVIEWER_NAME= #{reviewerName}
+	           AND 
+		</if>
+		<if test="reviewDate != null">
+			REVIEW_DATE= #{reviewDate}
+	           AND 
+		</if>
+		<if test="approver != null">
+			APPROVER= #{approver}
+	           AND 
+		</if>
+		<if test="approverName != null">
+			APPROVER_NAME= #{approverName}
+	           AND 
+		</if>
+		<if test="approveDate != null">
+			APPROVE_DATE= #{approveDate}
+	           AND 
+		</if>
+		<if test="auditor != null">
+			AUDITOR= #{auditor}
+	           AND 
+		</if>
+		<if test="auditorName != null">
+			AUDITOR_NAME= #{auditorName}
+	           AND 
+		</if>
+		<if test="auditDate != null">
+			AUDIT_DATE= #{auditDate}
+	           AND 
+		</if>
+		<if test="headAuditor != null">
+			HEAD_AUDITOR= #{headAuditor}
+	           AND 
+		</if>
+		<if test="headAuditorName != null">
+			HEAD_AUDITOR_NAME= #{headAuditorName}
+	           AND 
+		</if>
+		<if test="headAuditDate != null">
+			HEAD_AUDIT_DATE= #{headAuditDate}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="certType != null">
+		CERT_TYPE,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="certName != null">
+		CERT_NAME,
+	</if>
+	<if test="certFront != null">
+		CERT_FRONT,
+	</if>
+	<if test="certBack != null">
+		CERT_BACK,
+	</if>
+	<if test="certPerson != null">
+		CERT_PERSON,
+	</if>
+	<if test="newTradePwd != null">
+		NEW_TRADE_PWD,
+	</if>
+	<if test="applyTime != null">
+		APPLY_TIME,
+	</if>
+	<if test="applyChnlId != null">
+		APPLY_CHNL_ID,
+	</if>
+	<if test="approveStat != null">
+		APPROVE_STAT,
+	</if>
+	<if test="approveOper != null">
+		APPROVE_OPER,
+	</if>
+	<if test="approveTime != null">
+		APPROVE_TIME,
+	</if>
+	<if test="rejectReason != null">
+		REJECT_REASON,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+	<if test="wfId != null">
+		WF_ID,
+	</if>
+	<if test="wfStatus != null">
+		WF_STATUS,
+	</if>
+	<if test="submitter != null">
+		SUBMITTER,
+	</if>
+	<if test="submitterName != null">
+		SUBMITTER_NAME,
+	</if>
+	<if test="submitDate != null">
+		SUBMIT_DATE,
+	</if>
+	<if test="reviewer != null">
+		REVIEWER,
+	</if>
+	<if test="reviewerName != null">
+		REVIEWER_NAME,
+	</if>
+	<if test="reviewDate != null">
+		REVIEW_DATE,
+	</if>
+	<if test="approver != null">
+		APPROVER,
+	</if>
+	<if test="approverName != null">
+		APPROVER_NAME,
+	</if>
+	<if test="approveDate != null">
+		APPROVE_DATE,
+	</if>
+	<if test="auditor != null">
+		AUDITOR,
+	</if>
+	<if test="auditorName != null">
+		AUDITOR_NAME,
+	</if>
+	<if test="auditDate != null">
+		AUDIT_DATE,
+	</if>
+	<if test="headAuditor != null">
+		HEAD_AUDITOR,
+	</if>
+	<if test="headAuditorName != null">
+		HEAD_AUDITOR_NAME,
+	</if>
+	<if test="headAuditDate != null">
+		HEAD_AUDIT_DATE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="certType != null">
+		#{certType},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="certName != null">
+		#{certName},
+	</if>
+	<if test="certFront != null">
+		#{certFront},
+	</if>
+	<if test="certBack != null">
+		#{certBack},
+	</if>
+	<if test="certPerson != null">
+		#{certPerson},
+	</if>
+	<if test="newTradePwd != null">
+		#{newTradePwd},
+	</if>
+	<if test="applyTime != null">
+		#{applyTime},
+	</if>
+	<if test="applyChnlId != null">
+		#{applyChnlId},
+	</if>
+	<if test="approveStat != null">
+		#{approveStat},
+	</if>
+	<if test="approveOper != null">
+		#{approveOper},
+	</if>
+	<if test="approveTime != null">
+		#{approveTime},
+	</if>
+	<if test="rejectReason != null">
+		#{rejectReason},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+	<if test="wfId != null">
+		#{wfId},
+	</if>
+	<if test="wfStatus != null">
+		#{wfStatus},
+	</if>
+	<if test="submitter != null">
+		#{submitter},
+	</if>
+	<if test="submitterName != null">
+		#{submitterName},
+	</if>
+	<if test="submitDate != null">
+		#{submitDate},
+	</if>
+	<if test="reviewer != null">
+		#{reviewer},
+	</if>
+	<if test="reviewerName != null">
+		#{reviewerName},
+	</if>
+	<if test="reviewDate != null">
+		#{reviewDate},
+	</if>
+	<if test="approver != null">
+		#{approver},
+	</if>
+	<if test="approverName != null">
+		#{approverName},
+	</if>
+	<if test="approveDate != null">
+		#{approveDate},
+	</if>
+	<if test="auditor != null">
+		#{auditor},
+	</if>
+	<if test="auditorName != null">
+		#{auditorName},
+	</if>
+	<if test="auditDate != null">
+		#{auditDate},
+	</if>
+	<if test="headAuditor != null">
+		#{headAuditor},
+	</if>
+	<if test="headAuditorName != null">
+		#{headAuditorName},
+	</if>
+	<if test="headAuditDate != null">
+		#{headAuditDate},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="certType != null">
+		CERT_TYPE=#{certType},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="certName != null">
+		CERT_NAME=#{certName},
+	</if>
+	<if test="certFront != null">
+		CERT_FRONT=#{certFront},
+	</if>
+	<if test="certBack != null">
+		CERT_BACK=#{certBack},
+	</if>
+	<if test="certPerson != null">
+		CERT_PERSON=#{certPerson},
+	</if>
+	<if test="newTradePwd != null">
+		NEW_TRADE_PWD=#{newTradePwd},
+	</if>
+	<if test="applyTime != null">
+		APPLY_TIME=#{applyTime},
+	</if>
+	<if test="applyChnlId != null">
+		APPLY_CHNL_ID=#{applyChnlId},
+	</if>
+	<if test="approveStat != null">
+		APPROVE_STAT=#{approveStat},
+	</if>
+	<if test="approveOper != null">
+		APPROVE_OPER=#{approveOper},
+	</if>
+	<if test="approveTime != null">
+		APPROVE_TIME=#{approveTime},
+	</if>
+	<if test="rejectReason != null">
+		REJECT_REASON=#{rejectReason},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+	<if test="wfId != null">
+		WF_ID=#{wfId},
+	</if>
+	<if test="wfStatus != null">
+		WF_STATUS=#{wfStatus},
+	</if>
+	<if test="submitter != null">
+		SUBMITTER=#{submitter},
+	</if>
+	<if test="submitterName != null">
+		SUBMITTER_NAME=#{submitterName},
+	</if>
+	<if test="submitDate != null">
+		SUBMIT_DATE=#{submitDate},
+	</if>
+	<if test="reviewer != null">
+		REVIEWER=#{reviewer},
+	</if>
+	<if test="reviewerName != null">
+		REVIEWER_NAME=#{reviewerName},
+	</if>
+	<if test="reviewDate != null">
+		REVIEW_DATE=#{reviewDate},
+	</if>
+	<if test="approver != null">
+		APPROVER=#{approver},
+	</if>
+	<if test="approverName != null">
+		APPROVER_NAME=#{approverName},
+	</if>
+	<if test="approveDate != null">
+		APPROVE_DATE=#{approveDate},
+	</if>
+	<if test="auditor != null">
+		AUDITOR=#{auditor},
+	</if>
+	<if test="auditorName != null">
+		AUDITOR_NAME=#{auditorName},
+	</if>
+	<if test="auditDate != null">
+		AUDIT_DATE=#{auditDate},
+	</if>
+	<if test="headAuditor != null">
+		HEAD_AUDITOR=#{headAuditor},
+	</if>
+	<if test="headAuditorName != null">
+		HEAD_AUDITOR_NAME=#{headAuditorName},
+	</if>
+	<if test="headAuditDate != null">
+		HEAD_AUDIT_DATE=#{headAuditDate},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.certType != null">
+                    CERT_TYPE=#{s.certType},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.certName != null">
+                    CERT_NAME=#{s.certName},
+			</if>
+			<if test="s.certFront != null">
+                    CERT_FRONT=#{s.certFront},
+			</if>
+			<if test="s.certBack != null">
+                    CERT_BACK=#{s.certBack},
+			</if>
+			<if test="s.certPerson != null">
+                    CERT_PERSON=#{s.certPerson},
+			</if>
+			<if test="s.newTradePwd != null">
+                    NEW_TRADE_PWD=#{s.newTradePwd},
+			</if>
+			<if test="s.applyTime != null">
+                    APPLY_TIME=#{s.applyTime},
+			</if>
+			<if test="s.applyChnlId != null">
+                    APPLY_CHNL_ID=#{s.applyChnlId},
+			</if>
+			<if test="s.approveStat != null">
+                    APPROVE_STAT=#{s.approveStat},
+			</if>
+			<if test="s.approveOper != null">
+                    APPROVE_OPER=#{s.approveOper},
+			</if>
+			<if test="s.approveTime != null">
+                    APPROVE_TIME=#{s.approveTime},
+			</if>
+			<if test="s.rejectReason != null">
+                    REJECT_REASON=#{s.rejectReason},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3},
+			</if>
+			<if test="s.wfId != null">
+                    WF_ID=#{s.wfId},
+			</if>
+			<if test="s.wfStatus != null">
+                    WF_STATUS=#{s.wfStatus},
+			</if>
+			<if test="s.submitter != null">
+                    SUBMITTER=#{s.submitter},
+			</if>
+			<if test="s.submitterName != null">
+                    SUBMITTER_NAME=#{s.submitterName},
+			</if>
+			<if test="s.submitDate != null">
+                    SUBMIT_DATE=#{s.submitDate},
+			</if>
+			<if test="s.reviewer != null">
+                    REVIEWER=#{s.reviewer},
+			</if>
+			<if test="s.reviewerName != null">
+                    REVIEWER_NAME=#{s.reviewerName},
+			</if>
+			<if test="s.reviewDate != null">
+                    REVIEW_DATE=#{s.reviewDate},
+			</if>
+			<if test="s.approver != null">
+                    APPROVER=#{s.approver},
+			</if>
+			<if test="s.approverName != null">
+                    APPROVER_NAME=#{s.approverName},
+			</if>
+			<if test="s.approveDate != null">
+                    APPROVE_DATE=#{s.approveDate},
+			</if>
+			<if test="s.auditor != null">
+                    AUDITOR=#{s.auditor},
+			</if>
+			<if test="s.auditorName != null">
+                    AUDITOR_NAME=#{s.auditorName},
+			</if>
+			<if test="s.auditDate != null">
+                    AUDIT_DATE=#{s.auditDate},
+			</if>
+			<if test="s.headAuditor != null">
+                    HEAD_AUDITOR=#{s.headAuditor},
+			</if>
+			<if test="s.headAuditorName != null">
+                    HEAD_AUDITOR_NAME=#{s.headAuditorName},
+			</if>
+			<if test="s.headAuditDate != null">
+                    HEAD_AUDIT_DATE=#{s.headAuditDate}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.certType != null">
+                    CERT_TYPE=#{w.certType}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.certName != null">
+                    CERT_NAME=#{w.certName}
+                   AND 
+ 			</if>
+			<if test="w.certFront != null">
+                    CERT_FRONT=#{w.certFront}
+                   AND 
+ 			</if>
+			<if test="w.certBack != null">
+                    CERT_BACK=#{w.certBack}
+                   AND 
+ 			</if>
+			<if test="w.certPerson != null">
+                    CERT_PERSON=#{w.certPerson}
+                   AND 
+ 			</if>
+			<if test="w.newTradePwd != null">
+                    NEW_TRADE_PWD=#{w.newTradePwd}
+                   AND 
+ 			</if>
+			<if test="w.applyTime != null">
+                    APPLY_TIME=#{w.applyTime}
+                   AND 
+ 			</if>
+			<if test="w.applyChnlId != null">
+                    APPLY_CHNL_ID=#{w.applyChnlId}
+                   AND 
+ 			</if>
+			<if test="w.approveStat != null">
+                    APPROVE_STAT=#{w.approveStat}
+                   AND 
+ 			</if>
+			<if test="w.approveOper != null">
+                    APPROVE_OPER=#{w.approveOper}
+                   AND 
+ 			</if>
+			<if test="w.approveTime != null">
+                    APPROVE_TIME=#{w.approveTime}
+                   AND 
+ 			</if>
+			<if test="w.rejectReason != null">
+                    REJECT_REASON=#{w.rejectReason}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+                   AND 
+ 			</if>
+			<if test="w.wfId != null">
+                    WF_ID=#{w.wfId}
+                   AND 
+ 			</if>
+			<if test="w.wfStatus != null">
+                    WF_STATUS=#{w.wfStatus}
+                   AND 
+ 			</if>
+			<if test="w.submitter != null">
+                    SUBMITTER=#{w.submitter}
+                   AND 
+ 			</if>
+			<if test="w.submitterName != null">
+                    SUBMITTER_NAME=#{w.submitterName}
+                   AND 
+ 			</if>
+			<if test="w.submitDate != null">
+                    SUBMIT_DATE=#{w.submitDate}
+                   AND 
+ 			</if>
+			<if test="w.reviewer != null">
+                    REVIEWER=#{w.reviewer}
+                   AND 
+ 			</if>
+			<if test="w.reviewerName != null">
+                    REVIEWER_NAME=#{w.reviewerName}
+                   AND 
+ 			</if>
+			<if test="w.reviewDate != null">
+                    REVIEW_DATE=#{w.reviewDate}
+                   AND 
+ 			</if>
+			<if test="w.approver != null">
+                    APPROVER=#{w.approver}
+                   AND 
+ 			</if>
+			<if test="w.approverName != null">
+                    APPROVER_NAME=#{w.approverName}
+                   AND 
+ 			</if>
+			<if test="w.approveDate != null">
+                    APPROVE_DATE=#{w.approveDate}
+                   AND 
+ 			</if>
+			<if test="w.auditor != null">
+                    AUDITOR=#{w.auditor}
+                   AND 
+ 			</if>
+			<if test="w.auditorName != null">
+                    AUDITOR_NAME=#{w.auditorName}
+                   AND 
+ 			</if>
+			<if test="w.auditDate != null">
+                    AUDIT_DATE=#{w.auditDate}
+                   AND 
+ 			</if>
+			<if test="w.headAuditor != null">
+                    HEAD_AUDITOR=#{w.headAuditor}
+                   AND 
+ 			</if>
+			<if test="w.headAuditorName != null">
+                    HEAD_AUDITOR_NAME=#{w.headAuditorName}
+                   AND 
+ 			</if>
+			<if test="w.headAuditDate != null">
+                    HEAD_AUDIT_DATE=#{w.headAuditDate}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

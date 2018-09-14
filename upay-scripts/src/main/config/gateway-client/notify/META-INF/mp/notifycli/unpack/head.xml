@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+        <mapping xpath="transCode" field="transCode" must="not" />
+        <mapping xpath="serviceVersion" field="serviceVersion" must="not" />
+        <mapping xpath="charset" field="charset" must="not" />
+        <mapping xpath="signType" field="signType" must="not" />
+        <mapping xpath="sign" field="sign" must="not" />
+        <mapping xpath="rspCode" field="rspCode" must="not" />
+        <mapping xpath="rspMsg" field="rspMsg" must="not" />
+	</mappings>
+</config>

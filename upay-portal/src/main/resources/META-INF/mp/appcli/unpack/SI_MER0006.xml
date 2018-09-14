@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.OPERATION" field="operation" />
+	<mapping xpath="$.body.FEE_CODE" field="feeCode" must="not"/>
+	<mapping xpath="$.body.FEE_NAME" field="feeName" must="not"/>
+	<mapping xpath="$.body.FEE_MODE" field="feeMode" must="not"/>
+	<mapping xpath="$.body.FIX_FEE" field="fixFee" must="not"/>
+	<mapping xpath="$.body.RATION_FEE" field="rationFee" must="not"/>
+	<mapping xpath="$.body.HIGH_FEE" field="highFee" must="not"/>
+	<mapping xpath="$.body.LOW_FEE" field="lowFee" must="not"/>
+	</mappings>
+</config>

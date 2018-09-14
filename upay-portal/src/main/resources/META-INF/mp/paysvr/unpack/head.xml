@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+        <mapping xpath="transCode" field="_TRAN_CODE"/>
+        <mapping xpath="serviceVersion" field="serviceVersion" must="not"/>
+        <mapping xpath="charset" field="charset" must="not"/>
+        <mapping xpath="signType" field="signType" must="not"/>
+        <mapping xpath="chnlId" field="chnlId"/>
+        <mapping xpath="sign" field="sign"/>
+	</mappings>
+</config>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+templateType=READ|WRITE 表示转换类型：交易前转换;交易后转换 
+transCode需要转换参数的交易，此值同种转换类型不可重复
+-->
+<!-- 
+银联二维码主扫
+ -->
+<data templateType="IN"
+    transCode="01"
+    >
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<column oldName="areaInfo"	must="true" newName="areaInfo" type="" dateFormat="" />
+    <column oldName="backUrl" newName="backUrl" type="" must="true" dateFormat="" />
+    <column oldName="txnAmt" newName="txnAmt" type="" must="false" dateFormat="" />
+    <column oldName="qrValidTime" newName="qrValidTime" type="" must="false" dateFormat="" />
+    <column oldName="limitCount" newName="limitCount" type="" must="false" dateFormat="" />
+    <column oldName="orderNo" newName="orderNo" type="" must="true" dateFormat="" />
+    <column oldName="orderType" newName="orderType" type="" must="true" dateFormat="" /> 
+    <column oldName="orderTime" newName="orderTime" type="" must="true" dateFormat="" />
+	<column oldName="payeeInfo" newName="payeeInfo" type="" must="true" dateFormat="" />
+    <column oldName="reqReserved" newName="reqReserved" type="" must="true" dateFormat="" />
+    <column oldName="reqType" newName="reqType" type="" must="true" dateFormat="" />
+</data>

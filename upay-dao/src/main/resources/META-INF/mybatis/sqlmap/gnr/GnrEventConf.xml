@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrEventConfPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrEventConfPo">
+		<id column="ID" property="id" />
+		<result column="EVENT_NO" property="eventNo" />
+		<result column="EVENT_NAME" property="eventName" />
+		<result column="EVENT_DESC" property="eventDesc" />
+		<result column="EVENT_TYPE" property="eventType" />
+		<result column="USER_CERT_LEVEL" property="userCertLevel" />
+		<result column="USER_VALUE_LEVEL" property="userValueLevel" />
+		<result column="CHNI_ID" property="chniId" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="LAST_OPER" property="lastOper" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_EVENT_CONF
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		EVENT_NO,
+		EVENT_NAME,
+		EVENT_DESC,
+		EVENT_TYPE,
+		USER_CERT_LEVEL,
+		USER_VALUE_LEVEL,
+		CHNI_ID,
+		LAST_UPDATE_TIME,
+		LAST_OPER,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="eventNo != null">
+			EVENT_NO= #{eventNo}
+	           AND 
+		</if>
+		<if test="eventName != null">
+			EVENT_NAME= #{eventName}
+	           AND 
+		</if>
+		<if test="eventDesc != null">
+			EVENT_DESC= #{eventDesc}
+	           AND 
+		</if>
+		<if test="eventType != null">
+			EVENT_TYPE= #{eventType}
+	           AND 
+		</if>
+		<if test="userCertLevel != null">
+			USER_CERT_LEVEL= #{userCertLevel}
+	           AND 
+		</if>
+		<if test="userValueLevel != null">
+			USER_VALUE_LEVEL= #{userValueLevel}
+	           AND 
+		</if>
+		<if test="chniId != null">
+			CHNI_ID= #{chniId}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="lastOper != null">
+			LAST_OPER= #{lastOper}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="eventNo != null">
+		EVENT_NO,
+	</if>
+	<if test="eventName != null">
+		EVENT_NAME,
+	</if>
+	<if test="eventDesc != null">
+		EVENT_DESC,
+	</if>
+	<if test="eventType != null">
+		EVENT_TYPE,
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL,
+	</if>
+	<if test="userValueLevel != null">
+		USER_VALUE_LEVEL,
+	</if>
+	<if test="chniId != null">
+		CHNI_ID,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="eventNo != null">
+		#{eventNo},
+	</if>
+	<if test="eventName != null">
+		#{eventName},
+	</if>
+	<if test="eventDesc != null">
+		#{eventDesc},
+	</if>
+	<if test="eventType != null">
+		#{eventType},
+	</if>
+	<if test="userCertLevel != null">
+		#{userCertLevel},
+	</if>
+	<if test="userValueLevel != null">
+		#{userValueLevel},
+	</if>
+	<if test="chniId != null">
+		#{chniId},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		#{lastOper},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="eventNo != null">
+		EVENT_NO=#{eventNo},
+	</if>
+	<if test="eventName != null">
+		EVENT_NAME=#{eventName},
+	</if>
+	<if test="eventDesc != null">
+		EVENT_DESC=#{eventDesc},
+	</if>
+	<if test="eventType != null">
+		EVENT_TYPE=#{eventType},
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL=#{userCertLevel},
+	</if>
+	<if test="userValueLevel != null">
+		USER_VALUE_LEVEL=#{userValueLevel},
+	</if>
+	<if test="chniId != null">
+		CHNI_ID=#{chniId},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="lastOper != null">
+		LAST_OPER=#{lastOper},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.eventNo != null">
+                    EVENT_NO=#{s.eventNo},
+			</if>
+			<if test="s.eventName != null">
+                    EVENT_NAME=#{s.eventName},
+			</if>
+			<if test="s.eventDesc != null">
+                    EVENT_DESC=#{s.eventDesc},
+			</if>
+			<if test="s.eventType != null">
+                    EVENT_TYPE=#{s.eventType},
+			</if>
+			<if test="s.userCertLevel != null">
+                    USER_CERT_LEVEL=#{s.userCertLevel},
+			</if>
+			<if test="s.userValueLevel != null">
+                    USER_VALUE_LEVEL=#{s.userValueLevel},
+			</if>
+			<if test="s.chniId != null">
+                    CHNI_ID=#{s.chniId},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.lastOper != null">
+                    LAST_OPER=#{s.lastOper},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.eventNo != null">
+                    EVENT_NO=#{w.eventNo}
+                   AND 
+ 			</if>
+			<if test="w.eventName != null">
+                    EVENT_NAME=#{w.eventName}
+                   AND 
+ 			</if>
+			<if test="w.eventDesc != null">
+                    EVENT_DESC=#{w.eventDesc}
+                   AND 
+ 			</if>
+			<if test="w.eventType != null">
+                    EVENT_TYPE=#{w.eventType}
+                   AND 
+ 			</if>
+			<if test="w.userCertLevel != null">
+                    USER_CERT_LEVEL=#{w.userCertLevel}
+                   AND 
+ 			</if>
+			<if test="w.userValueLevel != null">
+                    USER_VALUE_LEVEL=#{w.userValueLevel}
+                   AND 
+ 			</if>
+			<if test="w.chniId != null">
+                    CHNI_ID=#{w.chniId}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.lastOper != null">
+                    LAST_OPER=#{w.lastOper}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

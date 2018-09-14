@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrHolidayPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrHolidayPo">
+		<id column="ID" property="id" />
+		<result column="HOLIDAY_TYPE" property="holidayType" />
+		<result column="PROD_CODE" property="prodCode" />
+		<result column="YEAR" property="year" />
+		<result column="HOLIDAY_DATE" property="holidayDate" />
+		<result column="REMARK" property="remark" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_HOLIDAY
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		HOLIDAY_TYPE,
+		PROD_CODE,
+		YEAR,
+		HOLIDAY_DATE,
+		REMARK
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="holidayType != null">
+			HOLIDAY_TYPE= #{holidayType}
+	           AND 
+		</if>
+		<if test="prodCode != null">
+			PROD_CODE= #{prodCode}
+	           AND 
+		</if>
+		<if test="year != null">
+			YEAR= #{year}
+	           AND 
+		</if>
+		<if test="holidayDate != null">
+			HOLIDAY_DATE= #{holidayDate}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="holidayType != null">
+		HOLIDAY_TYPE,
+	</if>
+	<if test="prodCode != null">
+		PROD_CODE,
+	</if>
+	<if test="year != null">
+		YEAR,
+	</if>
+	<if test="holidayDate != null">
+		HOLIDAY_DATE,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="holidayType != null">
+		#{holidayType},
+	</if>
+	<if test="prodCode != null">
+		#{prodCode},
+	</if>
+	<if test="year != null">
+		#{year},
+	</if>
+	<if test="holidayDate != null">
+		#{holidayDate},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="holidayType != null">
+		HOLIDAY_TYPE=#{holidayType},
+	</if>
+	<if test="prodCode != null">
+		PROD_CODE=#{prodCode},
+	</if>
+	<if test="year != null">
+		YEAR=#{year},
+	</if>
+	<if test="holidayDate != null">
+		HOLIDAY_DATE=#{holidayDate},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.holidayType != null">
+                    HOLIDAY_TYPE=#{s.holidayType},
+			</if>
+			<if test="s.prodCode != null">
+                    PROD_CODE=#{s.prodCode},
+			</if>
+			<if test="s.year != null">
+                    YEAR=#{s.year},
+			</if>
+			<if test="s.holidayDate != null">
+                    HOLIDAY_DATE=#{s.holidayDate},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.holidayType != null">
+                    HOLIDAY_TYPE=#{w.holidayType}
+                   AND 
+ 			</if>
+			<if test="w.prodCode != null">
+                    PROD_CODE=#{w.prodCode}
+                   AND 
+ 			</if>
+			<if test="w.year != null">
+                    YEAR=#{w.year}
+                   AND 
+ 			</if>
+			<if test="w.holidayDate != null">
+                    HOLIDAY_DATE=#{w.holidayDate}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

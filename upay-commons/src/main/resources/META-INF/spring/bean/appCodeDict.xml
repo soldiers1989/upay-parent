@@ -1,0 +1,578 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper/dict"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.pactera.com/schema/dipper/dict
+	http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <bean class="com.pactera.dipper.dict.utils.CodeDictCache"
+          init-method="init">
+        <property name="dictsBeanDefinitionMap">
+            <bean class="java.util.HashMap">
+                <constructor-arg type="java.util.Map">
+                    <map>
+                        <entry key="APP_CODE_DICT_FACTORY" value-ref="APP_CODE_DICT" />
+                    </map>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+    
+	<dipper:dicts id="APP_CODE_DICT">
+		<dipper:mappings>
+		<!-- 核心 -->
+		<dipper:mapping in="BISCOR0001" out="" msg="银行卡卡号不存在" />
+		<dipper:mapping in="BISCOR0002" out="" msg="银行账户中的余额不足以完成支付" />
+		<dipper:mapping in="BISCOR0003" out="" msg="账户已冻结" />
+		<dipper:mapping in="BISCOR0004" out="" msg="账户挂失" />
+		<dipper:mapping in="BISCOR0005" out="" msg="账户已销户" />
+		<dipper:mapping in="BISCOR0006" out="" msg="银行卡状态不正确(止付，其他异常状态)" />
+		<dipper:mapping in="BISCOR0007" out="" msg="超过单笔支付限额" />
+		<dipper:mapping in="BISCOR0008" out="" msg="超过累计支付限额" />
+	
+	
+			<!-- 公共 -->
+			<dipper:mapping in="BISGNR9999" out="" msg="系统繁忙，请稍后再试" />
+			<dipper:mapping in="BISGNR0001" out="" msg="接口服务[{}]未定义" />
+			<dipper:mapping in="BISGNR0002" out="" msg="接口服务[{}]已关闭" />
+			<dipper:mapping in="BISGNR0003" out="" msg=" 操作流水[{}]不存在" />
+			<dipper:mapping in="BISGNR0004" out="" msg="参数[{}]不能为空" />
+			<dipper:mapping in="BISGNR0005" out="" msg="接口服务[{}]未定义" />
+			<dipper:mapping in="BISGNR0006" out="" msg="系统日期不存在" />
+			<dipper:mapping in="BISGNR0007" out="" msg="版本管理异常" />
+			<dipper:mapping in="BISGNR0008" out="" msg="手机号[{}]验证码已失效" />
+			<dipper:mapping in="BISGNR0009" out="" msg="验证码输入错误" />
+			<dipper:mapping in="BISGNR0010" out="" msg="抛出银联应答信息,[{}],[{}]" />
+			<dipper:mapping in="BISGNR0011" out="" msg="短信验证码发送事件未定义" />
+			<dipper:mapping in="BISGNR0012" out="" msg="地区代码[{}]不存在" />
+			<dipper:mapping in="BISGNR0013" out="" msg="请一分钟后再试 " />
+			<dipper:mapping in="BISGNR0014" out="" msg="PIN加密异常" />
+			<dipper:mapping in="BISGNR0015" out="" msg="加密机心跳检测异常" />
+			<dipper:mapping in="BISGNR0016" out="" msg="对不起,商户[{}]未开通短信服务 " />
+			<dipper:mapping in="BISGNR0017" out="" msg="对不起,商户[{}]短信服务已关闭" />
+			<dipper:mapping in="BISGNR0018" out="" msg="日期转换错误" />
+			<dipper:mapping in="BISGNR0019" out="" msg="[{}]序列未定义" />
+			<dipper:mapping in="BISGNR0020" out="" msg="[{}]不存在" />
+			<dipper:mapping in="BISGNR0021" out="" msg="[{}]不正确" />
+			<dipper:mapping in="BISGNR0022" out="" msg="[{}]大于[{}] " />
+			<dipper:mapping in="BISGNR0023" out="" msg="系统参数[{}]没有配置  " />
+			<dipper:mapping in="BISGNR0024" out="" msg="短信模板[{}]没有配置  " />
+			<dipper:mapping in="BISGNR0025" out="" msg="短信模板[{}]使用错误  " />
+			<dipper:mapping in="BISGNR0026" out="" msg="支付金额大于单笔限额:[{}]" />
+			<dipper:mapping in="BISGNR0027" out="" msg="请输入正确的日期格式" />
+			<dipper:mapping in="BISGNR0028" out="" msg="通道[{}]交易未成功" />
+			<dipper:mapping in="BISGNR0029" out="" msg="暂时只支持[{}]交易" />
+			<dipper:mapping in="BISGNR0030" out="" msg="请输入正确的时间段" />
+			<dipper:mapping in="BISGNR0031" out="" msg="资金通道[{}]账户不能为空" />
+			
+			<!-- 用户模块 -->
+			<dipper:mapping in="BISUSR0001" out="" msg="商户[{}]还未开通授权免密" />
+			<dipper:mapping in="BISUSR0002" out="" msg="用户[{}]已注册" />
+			<dipper:mapping in="BISUSR0003" out="" msg="用户注册信息查询:查询参数不能为空" />
+			<dipper:mapping in="BISUSR0004" out="" msg="用户个人信息查询:查询参数不能为空" />
+			<dipper:mapping in="BISUSR0005" out="" msg="该用户[{}]不存在" />
+			<dipper:mapping in="BISUSR0006" out="" msg="[{}]不能为空" />
+			<dipper:mapping in="BISUSR0007" out="" msg="用户登录密码错误" />
+			<dipper:mapping in="BISUSR0008" out="" msg="用户注册失败,原因是[{}]" />
+			<dipper:mapping in="BISUSR0009" out="" msg="手机号[{}]格式错误 ，请填写正确的手机号号" />
+			<dipper:mapping in="BISUSR0010" out="" msg="您还没有登录" />
+			<dipper:mapping in="BISUSR0011" out="" msg="您已注册过，请登录" />
+			<dipper:mapping in="BISUSR0012" out="" msg="商户号不正确" />
+			<dipper:mapping in="BISUSR0013" out="" msg="用户长时间未操作，请重新登陆" />
+			<dipper:mapping in="BISUSR0014" out="" msg="该用户已被拉入黑名单" />
+			<dipper:mapping in="BISUSR0015" out="" msg="密码已被锁定" />
+			<dipper:mapping in="BISUSR0016" out="" msg="用户{}密码错误,您还有[{}]次机会" />
+			<dipper:mapping in="BISUSR0017" out="" msg="该用户已经注销" />
+			<dipper:mapping in="BISUSR0018" out="" msg="该用户待激活" />
+			<dipper:mapping in="BISUSR0019" out="" msg="新密码和确认密码必须相同" />
+			<dipper:mapping in="BISUSR0020" out="" msg="原密码和新密码不能一样" />
+			<dipper:mapping in="BISUSR0021" out="" msg=" {}密码已被锁定，[{}]后再试 " />
+			<dipper:mapping in="BISUSR0022" out="" msg=" {}密码已被锁定，请稍后再试 " />
+			<dipper:mapping in="BISUSR0023" out="" msg=" 登录密码已被锁定，[{}]后再试 " />
+			<dipper:mapping in="BISUSR0024" out="" msg=" 您已经被系统锁定， 请联系客服 " />
+			<dipper:mapping in="BISUSR0025" out="" msg=" 登录密码已被锁定，请重置登录密码 " />
+			<dipper:mapping in="BISUSR0026" out="" msg=" 交易密码已被锁定，[{}]后再试 " />
+			<dipper:mapping in="BISUSR0027" out="" msg=" 您提交的身份信息与实名认证身份信息不匹配 " />
+			<dipper:mapping in="BISUSR0028" out="" msg=" 您已有待审批的申请，请等待审核，不要重复提交" />
+			<dipper:mapping in="BISUSR0029" out="" msg="{}不存在" />
+			<dipper:mapping in="BISUSR0030" out="" msg="证件类型[{}]不支持" />
+			<dipper:mapping in="BISUSR0031" out="" msg="用户支付密码错误" />
+			<dipper:mapping in="BISUSR0032" out="" msg="[{}]没有配置" />
+			<dipper:mapping in="BISUSR0033" out="" msg="该用户没有该交易权限" />
+      		<dipper:mapping in="BISUSR0034" out="" msg="用户已通过实名认证 " />
+			<dipper:mapping in="BISUSR0035" out="" msg="您已有待审批的申请，请等待审核，不要重复提交 " />
+			<dipper:mapping in="BISUSR0036" out="" msg="证件号码[{}]已实名认证通过，不能再次认证 " />
+			<dipper:mapping in="BISUSR0037" out="" msg="该用户未登录 " />
+			<dipper:mapping in="BISUSR0038" out="" msg="手机号已被申请，请等待审核，不要重复提交" />
+			<dipper:mapping in="BISUSR0039" out="" msg="手机号[{}]已被注册 " />
+			<dipper:mapping in="BISUSR0040" out="" msg="用户[{}]不存在  " />
+			<dipper:mapping in="BISUSR0041" out="" msg="[{}]邮箱格式不正确  " />
+			<dipper:mapping in="BISUSR0042" out="" msg="用户认证等级为手机认证，不能进行审核认证" />
+			<dipper:mapping in="BISUSR0043" out="" msg="用户未提交过[{}]变更申请，请确认" />
+			<dipper:mapping in="BISUSR0044" out="" msg="验证时间已失效" />
+			<dipper:mapping in="BISUSR0045" out="" msg="链接已失效" />
+			<dipper:mapping in="BISUSR0046" out="" msg="登录密码和交易密码不能相同" />
+			<dipper:mapping in="BISUSR0047" out="" msg="用户信息不存在" />
+			<dipper:mapping in="BISUSR0048" out="" msg="调用加密机异常:[{}]" />
+			<dipper:mapping in="BISUSR0049" out="" msg="该链接有误，请确认" />
+			<dipper:mapping in="BISUSR0050" out="" msg="您操作太频繁，请稍后再试" />
+			<dipper:mapping in="BISUSR0051" out="" msg="用户身份信息己列入黑名单" />
+			<dipper:mapping in="BISUSR0052" out="" msg="该用户已在其他地方登陆" />
+			<dipper:mapping in="BISUSR0053" out="" msg="邮箱号与手机号不匹配" />
+			<dipper:mapping in="BISUSR0054" out="" msg="请用对应的免密用户登录" />
+			
+			<!-- 支付模块 -->
+			<dipper:mapping in="BISPAY0001" out="" msg="[{}]不能为空" />
+			<dipper:mapping in="BISPAY0002" out="" msg="金额不为负数" />
+			<dipper:mapping in="BISPAY0003" out="" msg="[{}]不存在" />
+			<dipper:mapping in="BISPAY0004" out="" msg="通道系统级错误" />
+			<dipper:mapping in="BISPAY0005" out="" msg="通道无此交易" />
+			<dipper:mapping in="BISPAY0006" out="" msg="无此商户交易权限" />
+			<dipper:mapping in="BISPAY0007" out="" msg="该通道已经停用" />
+			<dipper:mapping in="BISPAY0008" out="" msg="当前时段不支持该业务" />
+			<dipper:mapping in="BISPAY0009" out="" msg="商户 [{}] 金额超限" />
+			<dipper:mapping in="BISPAY0010" out="" msg="商户 [{}] 未设置交易金额" />
+			<dipper:mapping in="BISPAY0011" out="" msg="用户 [{}] 金额超限" />
+			<dipper:mapping in="BISPAY0012" out="" msg="用户 [{}] 未设置交易金额" />
+			<dipper:mapping in="BISPAY0013" out="" msg="普通限额，[{}] 超限" />
+			<dipper:mapping in="BISPAY0014" out="" msg="支付超时" />
+			<dipper:mapping in="BISPAY0015" out="" msg="密码错误" />
+			<dipper:mapping in="BISPAY0016" out="" msg="没有配置手续费计算规则" />
+			<dipper:mapping in="BISPAY0017" out="" msg="没有配置分润计算规则" />
+			<dipper:mapping in="BISPAY0018" out="" msg="卡号输入错误" />
+			<dipper:mapping in="BISPAY0019" out="" msg="通道代码错误" />
+			<dipper:mapping in="BISPAY0020" out="" msg="订单[{}]不存在" />
+			<dipper:mapping in="BISPAY0021" out="" msg="订单[{}]没有记录交易流水" />
+			<dipper:mapping in="BISPAY0022" out="" msg="订单状态不是[{}]状态" />
+			<dipper:mapping in="BISPAY0023" out="" msg="订单[{}]错误，不能继续支付" />
+			<dipper:mapping in="BISPAY0024" out="" msg="订单超时" />
+			<dipper:mapping in="BISPAY0025" out="" msg="退款累计金额[{}]超过原订单总金额[{}]" />
+			<dipper:mapping in="BISPAY0026" out="" msg="退款订单号必须唯一" />
+			<dipper:mapping in="BISPAY0027" out="" msg="订单[{}]{}通道支付流水不存在" />
+			<dipper:mapping in="BISPAY0028" out="" msg="该资金通道不存在" />
+			<dipper:mapping in="BISPAY0029" out="" msg="余额不足" />
+			<dipper:mapping in="BISPAY0030" out="" msg="此订单[{}],不能继续支付" />
+			<dipper:mapping in="BISPAY0031" out="" msg="订单[{}]状态错误" />
+			<dipper:mapping in="BISPAY0032" out="" msg="待支付订单[{}]条" />
+			<dipper:mapping in="BISPAY0033" out="" msg="支付方式错误" />
+			<dipper:mapping in="BISPAY0034" out="" msg="该订单[{}]的流水错误，请检查流水" />
+			<dipper:mapping in="BISPAY0035" out="" msg="状态同步：订单号[{}]的订单状态和流水状态更新错误，订单更新[{}]条，流水更新[{}]条" />
+			<dipper:mapping in="BISPAY0036" out="" msg="流水[{}]的[{}]信息不能为空" />
+			<dipper:mapping in="BISPAY0037" out="" msg="回退虚拟账户余额发生错误，流水号：[{}]" />
+			<dipper:mapping in="BISPAY0038" out="" msg="手机支付免密限额，[{}] 超限" />
+			<dipper:mapping in="BISPAY0039" out="" msg="金额过大" />
+			<dipper:mapping in="BISPAY0040" out="" msg="订单[{}]的原订单不存在，当前订单为退款订单" />
+			<dipper:mapping in="BISPAY0041" out="" msg="金额格式错误" />
+			<dipper:mapping in="BISPAY0042" out="" msg="该订单不存在" />
+			<dipper:mapping in="BISPAY0043" out="" msg="[{}]重复" />
+			<dipper:mapping in="BISPAY0044" out="" msg="该订单异常" />
+			<dipper:mapping in="BISPAY0045" out="" msg="该订单已支付" />
+			<dipper:mapping in="BISPAY0046" out="" msg="退款金额无效 " />
+			<dipper:mapping in="BISPAY0047" out="" msg="交易金额必须大于0" />
+			<dipper:mapping in="BISPAY0048" out="" msg="订单的[{}]不匹配" />
+			<dipper:mapping in="BISPAY0049" out="" msg="订单{}" />
+			<dipper:mapping in="BISPAY0046" out="" msg="退款金额无效" />
+			<dipper:mapping in="BISPAY0050" out="" msg="只允许[{}]天内退货" />
+			<dipper:mapping in="BISPAY0051" out="" msg="订单不存在或商户订单号与支付平台订单号不匹配" />
+			<dipper:mapping in="BISPAY0052" out="" msg="商户订单号与支付平台订单号不能同时有空" />
+			<dipper:mapping in="BISPAY0053" out="" msg="当前流水已成功处理" />
+			<dipper:mapping in="BISPAY0054" out="" msg="订单已退款成功" />
+			<dipper:mapping in="BISPAY0055" out="" msg="订单退款处理中" />
+			<dipper:mapping in="BISPAY0056" out="" msg="请用支付用户登陆" />
+			<dipper:mapping in="BISPAY0057" out="" msg="订单无法退款，请检查订单" />
+			<dipper:mapping in="BISPAY0058" out="" msg="支付失败" />
+			<dipper:mapping in="BISPAY0059" out="" msg="商品金额+其他金额和交易金额不相等" />
+			<dipper:mapping in="BISPAY0100" out="" msg="[{}]有误" />
+			<dipper:mapping in="BISPAY0101" out="" msg="该卡不支持当前业务" />
+			<dipper:mapping in="BISPAY0102" out="" msg="资金通道[{}]权限参数未配置" />
+			<dipper:mapping in="BISPAY0103" out="" msg="商户[{}]微信支付功能未开通" />
+			<dipper:mapping in="BISPAY0104" out="" msg="未获取授权,请重新扫码" />
+			<dipper:mapping in="BISPAY0105" out="" msg="商户[{}]微信支付功能已开通" />
+			<dipper:mapping in="BISPAY0106" out="" msg="同一笔订单号不允许重复提交" />
+			<dipper:mapping in="BISPAY0107" out="" msg="该差错流水不是与[{}]通道对账产生,请选择[{}]通道相关的差错处理方式" />
+			<dipper:mapping in="BISPAY0108" out="" msg="该交易异常，请人工处理" />
+			<dipper:mapping in="BISPAY0109" out="" msg="[{}],该流水对账状态不是[{}],不能做[{}]处理" />
+			<dipper:mapping in="BISPAY0110" out="" msg="订单[{}]所涉及的中金或者微信流水为非成功状态，请检查后做处理" />
+			<dipper:mapping in="BISPAY0111" out="" msg="暂不支持该商户的结算账户查询" />
+			<dipper:mapping in="BISPAY0112" out="" msg="[{}]失败" />
+			<dipper:mapping in="BISPAY0113" out="" msg="流水[{}]在流水表中存在，并且状态为成功，更正差错为成功，对账状态为成功" />
+			<dipper:mapping in="BISPAY0114" out="" msg="订单状态为[{}]时，不允许[{}]" />
+			<dipper:mapping in="BISPAY0115" out="" msg="不支持冲退款流水" />
+			<dipper:mapping in="BISPAY0116" out="" msg="[{}]通道对应的平台流水不存在" />
+			<dipper:mapping in="BISPAY0117" out="" msg="贷记卡[{}]绑定信息不存在" />
+			<dipper:mapping in="BISPAY0118" out="" msg="不支持隔日退款差错处理，请手工处理" />
+			<dipper:mapping in="BISPAY0119" out="" msg="该通知存在异常，与原订单金额不符" />
+			<dipper:mapping in="BISPAY0120" out="" msg="商户[{}]支付宝支付功能已开通" />
+			<dipper:mapping in="BISPAY0121" out="" msg="商户[{}]支付宝支付功能未开通" />
+			<dipper:mapping in="BISPAY0122" out="" msg="流水号：[{}] 支付中" />
+			<dipper:mapping in="BISPAY0123" out="" msg="商户日累计限额超限，交易前日累计金额为[{}],商户日累计限额为[{}]" />
+			<!-- 积分 -->
+			<dipper:mapping in="EBBC130039" out="" msg="[{}]不能为空" />
+			
+			<!-- 渠道交互 --> 
+			<dipper:mapping in="CIPSYS0000" out="" msg="非法的请求报文" />
+			<dipper:mapping in="CIPSYS0001" out="" msg="[{}]不能为空" />
+			<dipper:mapping in="CIPSYS0002" out="" msg="用户session已失效 " />
+			<dipper:mapping in="CIPSYS0003" out="" msg="用户已在其他地方登录，请重新登录" />
+			<dipper:mapping in="CIPSYS0005" out="" msg="验证码已失效" />
+			<dipper:mapping in="CIPSYS0006" out="" msg="验证码未上送" />
+			<dipper:mapping in="CIPSYS0007" out="" msg="验证码错误" />
+			<dipper:mapping in="CIPSYS0008" out="" msg="未上送验证码KEY" />
+			<dipper:mapping in="CIPSYS0009" out="" msg="明细查询条件不能同时为空" />
+			<dipper:mapping in="CIPSYS0010" out="" msg="token已生效" />
+			
+			<!-- 账户模块 -->
+			<dipper:mapping in="BISACC0000" out="" msg="[{}]" />
+			<dipper:mapping in="BISACC0001" out="" msg="[{}] 不能为空" />
+			<dipper:mapping in="BISACC0002" out="" msg="未开通账户" />
+			<dipper:mapping in="BISACC0003" out="" msg="该账户没有激活" />
+			<dipper:mapping in="BISACC0004" out="" msg="该账户为睡眠状态" />
+			<dipper:mapping in="BISACC0005" out="" msg="该账户已注销" />
+			<dipper:mapping in="BISACC0006" out="" msg="该账户没有绑定[{}]" />
+			<dipper:mapping in="BISACC0007" out="" msg="账户[{}]余额不足" />
+			<dipper:mapping in="BISACC0008" out="" msg="该账户已被冻结" />
+			<dipper:mapping in="BISACC0009" out="" msg="该绑定卡[{}]待激活" />
+			<dipper:mapping in="BISACC0010" out="" msg="该绑定卡[{}]过期失效" />
+			<dipper:mapping in="BISACC0011" out="" msg="该绑定卡[{}]已解除绑定" />
+			<dipper:mapping in="BISACC0012" out="" msg="账户[{}]不存在" />
+			<dipper:mapping in="BISACC0013" out="" msg="账户状态为[{}]，与待激活绑定卡状态不一致" />
+			<dipper:mapping in="BISACC0014" out="" msg="此卡已被绑定" />
+			<dipper:mapping in="BISACC0015" out="" msg="该绑定卡处于待激活状态，请重新激活或进行变更绑定卡" />
+			<dipper:mapping in="BISACC0016" out="" msg="无可用电子账户卡号" />
+			<dipper:mapping in="BISACC0017" out="" msg="[{}]不存在" />
+			<dipper:mapping in="BISACC0018" out="" msg="电子账户已经开户成功 [{}]" />
+			<dipper:mapping in="BISACC0019" out="" msg="非强实名用户账户余额不为0时，不能变更绑定账户" />
+			<dipper:mapping in="BISACC0020" out="" msg="[{}]不为金融交易，没有账户系统限额 " />
+			<dipper:mapping in="BISACC0021" out="" msg="该交易的系统限额配置信息未配置" />
+			<dipper:mapping in="BISACC0022" out="" msg="[{}]限额累计时间异常" />
+			<dipper:mapping in="BISACC0023" out="" msg="此卡[{}]不能支付" />
+			<dipper:mapping in="BISACC0024" out="" msg="电子账户状态为[{}]不能进行提现交易" />
+			<dipper:mapping in="BISACC0025"  msg="[{}]不为金融交易，没有账户系统限额 " />
+			<dipper:mapping in="BISACC0026"  msg="[{}]不能进行交易 " />
+			<dipper:mapping in="BISACC0027"  msg="[{}]不一致 ，验证失败 " />
+			<dipper:mapping in="BISACC0028"  msg="交易无[{}]权限" />
+			<dipper:mapping in="BISACC0029"  msg="未检索到账户 " />
+			<dipper:mapping in="BISACC0030"  msg="该卡当前不支持[{}]业务 " />
+			<dipper:mapping in="BISACC0031"  msg="充值、提现不能用信用卡 " />
+			<dipper:mapping in="BISACC0032"  msg="该账户[{}]已经被止付 " />
+			<dipper:mapping in="BISACC0033"  msg="开始时间和结束时间跨度超过[{}]！ " />
+		    <dipper:mapping in="BISACC0034"  msg="该账号未在本平台进行银联授权[{}]！ " />
+		    <dipper:mapping in="BISACC0035"  msg="该账号已在本平台进行银联授权[{}]！ " />
+		    <dipper:mapping in="BISACC0036"  msg="该账号token已经失效,请重新申请[{}]！ " />
+			
+			<!-- 支付网关 -->
+			<dipper:mapping in="GWSPAY9999" out="9999" msg="系统繁忙，请稍后再试" />
+			<dipper:mapping in="GWSPAY4000" out="4000" msg="验证交易信息未通过" />
+			<dipper:mapping in="GWSPAY4001" out="4001" msg="参数不完整" />
+			<dipper:mapping in="GWSPAY4002" out="4002" msg="非法的参数" />
+			<dipper:mapping in="GWSPAY4003" out="4003" msg="对不起，您要支付的订单存在钓鱼风险，无法完成后续支付操作。请重新发起支付操作！出现该问题，可能是由于用户一笔交易更新了浏览器，或者更换了机器，再进行后续交易产生" />
+			<dipper:mapping in="GWSPAY2001" out="2001" msg="请选择支付方式" />
+			<dipper:mapping in="GWSPAY2002" out="2002" msg="齐商银行快捷支付还没开通" />
+			<dipper:mapping in="GWSPAY2003" out="2003" msg="非法的支付方式" />
+			<dipper:mapping in="GWSPAY2004" out="2004" msg="检查支付网关数据信息失败" />
+			<dipper:mapping in="GWSPAY2101" out="2101" msg="未查询到订单信息" />
+			<dipper:mapping in="GWSPAY2102" out="2102" msg="订单状态不是【待支付】状态" />
+			<dipper:mapping in="GWSPAY2103" out="2103" msg="未查询到【待处理】状态的订单信息" />
+			<dipper:mapping in="GWSPAY2104" out="2104" msg="系统繁忙,订单交易失败！" />
+			<dipper:mapping in="GWSPAY2105" out="2105" msg="订单已过期！" />
+			<dipper:mapping in="GWSPAY2201" out="2201" msg="原交易不存在" />
+			<dipper:mapping in="GWSPAY2301" out="2301" msg="商户信息不存在" />
+			<dipper:mapping in="GWSPAY2302" out="2302" msg="商户状态不是【可支付】状态" />
+			<dipper:mapping in="GWSPAY2303" out="2303" msg="商户支付服务设置不正确" />
+			<dipper:mapping in="GWSPAY2304" out="2304" msg="商户没有开通支付服务" />
+			<dipper:mapping in="GWSPAY2305" out="2305" msg="一二级商户委托清算关系状态不是启用状态！" />
+			<dipper:mapping in="GWSPAY2401" out="2401" msg="服务接口名称不存在" />
+			<dipper:mapping in="GWSPAY2402" out="2402" msg="商户号不存在" />
+			<dipper:mapping in="GWSPAY2403" out="2403" msg="签名错误" />
+			<dipper:mapping in="GWSPAY2404" out="2404" msg="{}参数为空错误" />
+			<dipper:mapping in="GWSPAY2405" out="2405" msg="参数长度大于规定长度错误" />
+			<dipper:mapping in="GWSPAY2406" out="2406" msg="错误的金额格式" />
+			<dipper:mapping in="GWSPAY2407" out="2407" msg="无效的数字格式" />
+			<dipper:mapping in="GWSPAY2408" out="2408" msg="无效的参数" />
+			<dipper:mapping in="GWSPAY2409" out="2409" msg="价格计算错误(一般出现此错误是因为【物流价格，商品价格】不为空时，相加不等于订单价格)" />
+			<dipper:mapping in="GWSPAY2410" out="2410" msg="一级商户不可用" />
+			<dipper:mapping in="GWSPAY2411" out="2411" msg="二级商户不可用" />
+			<dipper:mapping in="GWSPAY2412" out="2412" msg="支付渠道错误（出现此错误的原因是商户接口传输的值不在接口内）" />
+			<dipper:mapping in="GWSPAY2413" out="2413" msg="商户设置支付服务类型错误（出现此错误一般是因为商户传递的支付类型是没有签约的。比如商户签约的是【担保支付】却传递【即时到帐】支付类型，或者填写的服务类型错误）" />
+			<dipper:mapping in="GWSPAY2414" out="2414" msg="日期格式错误" />
+			<dipper:mapping in="GWSPAY2415" out="2415" msg="日期超过当前日期" />
+			<dipper:mapping in="GWSPAY2416" out="2416" msg="指定日期的对账单还没有生成" />
+			<dipper:mapping in="GWSPAY2417" out="2417" msg="指定对账单下载的类型错误" />
+			<dipper:mapping in="GWSPAY2434" out="2434" msg="对账单下载没有记录" />
+			<dipper:mapping in="GWSPAY2418" out="2418" msg="订单重复错误" />
+			<dipper:mapping in="GWSPAY2419" out="2419" msg="确认收货手机号为空" />
+			<dipper:mapping in="GWSPAY2420" out="2420" msg="订单不为确认收货状态" />
+			<dipper:mapping in="GWSPAY2421" out="2421" msg="key密钥为空错误" />
+			<dipper:mapping in="GWSPAY2432" out="2432" msg="系统繁忙,订单交易失败！" />
+			<dipper:mapping in="GWSPAY2051" out="2051" msg="数据库连接出现了异常（错误原因可能为超时连接，或者数据库服务未启动）" />
+			<dipper:mapping in="GWSPAY2422" out="2422" msg="商户没有委托清算关系（出现此错误原因是特约商户和二级商户没有签约委托清算关系）" />
+			<dipper:mapping in="GWSPAY2423" out="2423" msg="没有开通即时到账支付服务" />
+			<dipper:mapping in="GWSPAY2424" out="2424" msg="商户没有开通担保支付服务" />
+			<dipper:mapping in="GWSPAY2425" out="2425" msg="支付网关必须以post方式提交！" />
+			<dipper:mapping in="GWSPAY2426" out="2426" msg="订单交易起始时间大于订单交易失效时间！" />
+			<dipper:mapping in="GWSPAY2427" out="2427" msg="商户订单号必须为限定长度的数字或字母组成" />
+			<dipper:mapping in="GWSPAY2428" out="2428" msg="退款单号必须为限定长度的数字或字母组成" />
+			<dipper:mapping in="GWSPAY2501" out="2501" msg="登录超时,验证会员状态失败,请重新登录" />
+			<dipper:mapping in="GWSPAY2502" out="2502" msg="抱歉，您本次支付交易使用的账户与原先的不一致，请使用原来的账户重新发起交易" />
+			<dipper:mapping in="GWSPAY2503" out="2503" msg="开通店家服务或商户服务的会员无法登录支付" />
+			<dipper:mapping in="GWSPAY2601" out="2601" msg="本次支付金额大于本行借记卡快捷支付上限金额" />
+			<dipper:mapping in="GWSPAY2602" out="2602" msg="日累计消费交易金额大于本行借记卡快捷支付上限金额" />
+			<dipper:mapping in="GWSPAY2603" out="2603" msg="通讯异常，请查询该笔流水交易状态，或重复发起交易" />
+			<dipper:mapping in="GWSPAY2604" out="2604" msg="支付卡信息与发送校验码的卡信息不一致！" />
+			<dipper:mapping in="GWSPAY1001" out="1001" msg="商户不存在，或者商户状态不可用" />
+			<dipper:mapping in="GWSPAY1002" out="1002" msg="无【0-成功】状态的原订单，或者存在多笔【0-成功】状态的原订单" />
+			<dipper:mapping in="GWSPAY1003" out="1003" msg="订单已经全额退款" />
+			<dipper:mapping in="GWSPAY1004" out="1004" msg="退款单号重复错误" />
+			<dipper:mapping in="GWSPAY1005" out="1005" msg="该笔退款已经超过退款时间" />
+			<dipper:mapping in="GWSPAY1006" out="1006" msg="退款金额超过原订单总金额[注意多次部分退款的金额相加不能大于订单总金额]" />
+			<dipper:mapping in="GWSPAY1007" out="1007" msg="商户的平台账户余额加未清算余额不足，不支持本笔退款申请" />
+			<dipper:mapping in="GWSPAY1008" out="1008" msg="退款交易，验证退款信息，系统繁忙导致的异常" />
+			<dipper:mapping in="GWSPAY1009" out="1009" msg="退款交易，验证退款信息，系统繁忙导致的异常" />
+			<dipper:mapping in="GWSPAY1010" out="1010" msg="退款交易，验证退款信息，系统繁忙导致的异常" />
+			<dipper:mapping in="GWSPAY1011" out="1011" msg="该笔订单是二级商户订单，特约商户不允许退款" />
+			<dipper:mapping in="GWSPAY1012" out="1012" msg="该笔订单有退款进行中的交易未处理，暂不允许退款，请等待退款明确状态，再发起退款申请" />
+			<dipper:mapping in="GWSPAY1013" out="1013" msg="签名错误[{}]" />
+			
+			<!-- 支付网关 外部 -->
+			<dipper:mapping in="9999" out="" msg="系统繁忙，请稍后再试" />
+			<dipper:mapping in="4000" out="" msg="验证交易信息未通过" />
+			<dipper:mapping in="4001" out="" msg="参数不完整" />
+			<dipper:mapping in="4002" out="" msg="非法的参数" />
+			<dipper:mapping in="4003" out="" msg="对不起，您要支付的订单存在钓鱼风险，无法完成后续支付操作。请重新发起支付操作！出现该问题，可能是由于用户一笔交易更新了浏览器，或者更换了机器，再进行后续交易产生" />
+			<dipper:mapping in="2001" out="" msg="请选择支付方式" />
+			<dipper:mapping in="2002" out="" msg="齐商银行快捷支付还没开通" />
+			<dipper:mapping in="2003" out="" msg="非法的支付方式" />
+			<dipper:mapping in="2004" out="" msg="检查支付网关数据信息失败" />
+			<dipper:mapping in="2101" out="" msg="未查询到订单信息" />
+			<dipper:mapping in="2102" out="" msg="订单状态不是【待支付】状态" />
+			<dipper:mapping in="2103" out="" msg="未查询到【待处理】状态的订单信息" />
+			<dipper:mapping in="2104" out="" msg="系统繁忙,订单交易失败！" />
+			<dipper:mapping in="2105" out="" msg="订单已过期！" />
+			<dipper:mapping in="2201" out="" msg="原交易不存在" />
+			<dipper:mapping in="2301" out="" msg="商户信息不存在" />
+			<dipper:mapping in="2302" out="" msg="商户状态不是【可支付】状态" />
+			<dipper:mapping in="2303" out="" msg="商户支付服务设置不正确" />
+			<dipper:mapping in="2304" out="" msg="商户没有开通支付服务" />
+			<dipper:mapping in="2305" out="" msg="一二级商户委托清算关系状态不是启用状态！" />
+			<dipper:mapping in="2401" out="" msg="服务接口名称不存在" />
+			<dipper:mapping in="2402" out="" msg="商户号不存在" />
+			<dipper:mapping in="2403" out="" msg="签名错误" />
+			<dipper:mapping in="2404" out="" msg="参数为空错误" />
+			<dipper:mapping in="2405" out="" msg="参数长度大于规定长度错误" />
+			<dipper:mapping in="2406" out="" msg="错误的金额格式" />
+			<dipper:mapping in="2407" out="" msg="无效的数字格式" />
+			<dipper:mapping in="2408" out="" msg="无效的参数" />
+			<dipper:mapping in="2409" out="" msg="价格计算错误(一般出现此错误是因为【物流价格，商品价格】不为空时，相加不等于订单价格)" />
+			<dipper:mapping in="2410" out="" msg="一级商户不可用" />
+			<dipper:mapping in="2411" out="" msg="二级商户不可用" />
+			<dipper:mapping in="2412" out="" msg="支付渠道错误（出现此错误的原因是商户接口传输的值不在接口内）" />
+			<dipper:mapping in="2413" out="" msg="商户设置支付服务类型错误（出现此错误一般是因为商户传递的支付类型是没有签约的。比如商户签约的是【担保支付】却传递【即时到帐】支付类型，或者填写的服务类型错误）" />
+			<dipper:mapping in="2414" out="" msg="日期格式错误" />
+			<dipper:mapping in="2415" out="" msg="日期超过当前日期" />
+			<dipper:mapping in="2416" out="" msg="指定日期的对账单还没有生成" />
+			<dipper:mapping in="2417" out="" msg="指定对账单下载的类型错误" />
+			<dipper:mapping in="2434" out="" msg="对账单下载没有记录" />
+			<dipper:mapping in="2418" out="" msg="订单重复错误" />
+			<dipper:mapping in="2419" out="" msg="确认收货手机号为空" />
+			<dipper:mapping in="2420" out="" msg="订单不为确认收货状态" />
+			<dipper:mapping in="2421" out="" msg="key密钥为空错误" />
+			<dipper:mapping in="2432" out="" msg="系统繁忙,订单交易失败！" />
+			<dipper:mapping in="2051" out="" msg="数据库连接出现了异常（错误原因可能为超时连接，或者数据库服务未启动）" />
+			<dipper:mapping in="2422" out="" msg="商户没有委托清算关系（出现此错误原因是特约商户和二级商户没有签约委托清算关系）" />
+			<dipper:mapping in="2423" out="" msg="没有开通即时到账支付服务" />
+			<dipper:mapping in="2424" out="" msg="商户没有开通担保支付服务" />
+			<dipper:mapping in="2425" out="" msg="支付网关必须以post方式提交！" />
+			<dipper:mapping in="2426" out="" msg="订单交易起始时间大于订单交易失效时间！" />
+			<dipper:mapping in="2427" out="" msg="商户订单号必须为限定长度的数字或字母组成" />
+			<dipper:mapping in="2428" out="" msg="退款单号必须为限定长度的数字或字母组成" />
+			<dipper:mapping in="2501" out="" msg="登录超时,验证会员状态失败,请重新登录" />
+			<dipper:mapping in="2502" out="" msg="抱歉，您本次支付交易使用的账户与原先的不一致，请使用原来的账户重新发起交易" />
+			<dipper:mapping in="2503" out="" msg="开通店家服务或商户服务的会员无法登录支付" />
+			<dipper:mapping in="2601" out="" msg="本次支付金额大于本行借记卡快捷支付上限金额" />
+			<dipper:mapping in="2602" out="" msg="日累计消费交易金额大于本行借记卡快捷支付上限金额" />
+			<dipper:mapping in="2603" out="" msg="通讯异常，请查询该笔流水交易状态，或重复发起交易" />
+			<dipper:mapping in="2604" out="" msg="支付卡信息与发送校验码的卡信息不一致！" />
+			<dipper:mapping in="1001" out="" msg="商户不存在，或者商户状态不可用" />
+			<dipper:mapping in="1002" out="" msg="无【0-成功】状态的原订单，或者存在多笔【0-成功】状态的原订单" />
+			<dipper:mapping in="1003" out="" msg="订单已经全额退款" />
+			<dipper:mapping in="1004" out="" msg="退款单号重复错误" />
+			<dipper:mapping in="1005" out="" msg="该笔退款已经超过退款时间" />
+			<dipper:mapping in="1006" out="" msg="退款金额超过原订单总金额[注意多次部分退款的金额相加不能大于订单总金额]" />
+			<dipper:mapping in="1007" out="" msg="商户的平台账户余额加未清算余额不足，不支持本笔退款申请" />
+			<dipper:mapping in="1008" out="" msg="退款交易，验证退款信息，系统繁忙导致的异常" />
+			<dipper:mapping in="1009" out="" msg="退款交易，验证退款信息，系统繁忙导致的异常" />
+			<dipper:mapping in="1010" out="" msg="退款交易，验证退款信息，系统繁忙导致的异常" />
+			<dipper:mapping in="1011" out="" msg="该笔订单是二级商户订单，特约商户不允许退款" />
+			<dipper:mapping in="1012" out="" msg="该笔订单有退款进行中的交易未处理，暂不允许退款，请等待退款明确状态，再发起退款申请" />
+			<dipper:mapping in="1013" out="" msg="签名错误[{}]" />
+			
+			<!-- 费用模块 -->
+			<dipper:mapping in="BISFEE0001" out="" msg="费用明细[{}]不能为空" />
+			<dipper:mapping in="BISFEE0002" out="" msg="没有配置手续费" />
+			<dipper:mapping in="BISFEE0003" out="" msg="限额[{}]错误" />
+			<dipper:mapping in="BISFEE0004" out="" msg="分润[{}]错误" />
+			<dipper:mapping in="BISFEE0005" out="" msg="收费代码[{}]对应的标准费率分段未配置" />
+			<dipper:mapping in="BISFEE0006" out="" msg="交易金额[{}]不能为负数" />
+			
+			<!-- 商户模块 -->
+			<dipper:mapping in="BISMER0001" out="" msg="特约商户重复申请" />
+			<dipper:mapping in="BISMER0002" out="" msg="二级商户重复申请" />
+			<dipper:mapping in="BISMER0003" out="" msg="该商户不是一级商户" />
+			<dipper:mapping in="BISMER0004" out="" msg="该商户不是二级商户" />
+			<dipper:mapping in="BISMER0005" out="" msg="该二级商户不属于此一级商户" />
+			<dipper:mapping in="BISMER0006" out="" msg="错误![{}]大于[{}]" />
+			<dipper:mapping in="BISMER0007" out="" msg="费用日期与已有费用日期冲突" />
+			<dipper:mapping in="BISMER0008" out="" msg="用户未开通支付平台虚拟账户" />
+			<dipper:mapping in="BISMER0009" out="" msg="商户[{}]没有交易权限" />
+			<dipper:mapping in="BISMER0010" out="" msg="商户[{}]状态为停用 " />
+			<dipper:mapping in="BISMER0011" out="" msg="商户[{}]支付功能未开通" />
+			<dipper:mapping in="BISMER0012" out="" msg="收费方法名称[{}]已存在,请重新输入" />
+			<dipper:mapping in="BISMER0013" out="" msg="商户号不能为空,请确认是否输入商户号" />
+			<dipper:mapping in="BISMER0014" out="" msg="商户订单号[{}]不能为空" />
+			<dipper:mapping in="BISMER0015" out="" msg="通知Id不能为空,请确认是否输入通知ID" />
+			<dipper:mapping in="BISMER0016" out="" msg="输入信息有误，请确认信息是否正确" />
+			<dipper:mapping in="BISMER0017" out="" msg="商户[{}]配置不能为空" />
+			<dipper:mapping in="BISMER0018" out="" msg="商户[{}]不存在" />
+			<dipper:mapping in="BISMER0019" out="" msg="用户未提交商户申请" />
+			<dipper:mapping in="BISMER0020" out="" msg="该商户无法重新提交申请" />
+			<dipper:mapping in="BISMER0021" out="" msg="[{}]不能为空" />
+			<dipper:mapping in="BISMER0022" out="" msg="该商户申请信息无法删除" />
+			<dipper:mapping in="BISMER0023" out="" msg="该收费方法已生效，无法[{}]" />
+			<dipper:mapping in="BISMER0024" out="" msg="商户[{}]的[{}]信息不存在" />
+			<dipper:mapping in="BISMER0025" out="" msg="一级商户[{}]和二级商户[{}]不匹配" />
+			<dipper:mapping in="BISMER0026" out="" msg="无法修改[{}]" />
+			<dipper:mapping in="BISMER0027" out="" msg="该商户无法成为自己的二级商户" />
+			<dipper:mapping in="BISMER0028" out="" msg="无法增加[{}]" />
+			<dipper:mapping in="BISMER0029" out="" msg="该计算方法正在使用，无法[{}]" />
+			<dipper:mapping in="BISMER0030" out="" msg="错误![{}]不能小于[{}]" />
+			<dipper:mapping in="BISMER0031" out="" msg="计算方法名称[{}]已存在,请重新输入" />
+			<dipper:mapping in="BISMER0032" out="" msg="商户未开通虚拟账户" />
+			<dipper:mapping in="BISMER0033" out="" msg="该商户[{}]配置信息不存在!" />
+			<dipper:mapping in="BISMER0034" out="" msg="签名异常：[{}]" />
+			<dipper:mapping in="BISMER0035" out="" msg="商户名称[{}]重复！" />
+			<dipper:mapping in="BISMER0036" out="" msg="商户配置操作标识参数有误！" />
+			<dipper:mapping in="BISMER0037" out="" msg="商户[{}]交易权限、限额、累计模板尚未配置" />
+
+
+			<!--银联-->
+			<dipper:mapping in="UNIONPAY0000" out="" msg="成功" />
+			<dipper:mapping in="UNIONPAY00A6" out="" msg="有缺陷的成功" />
+			<dipper:mapping in="UNIONPAY0001" out="" msg="交易失败。详情请咨询95516" />
+			<dipper:mapping in="UNIONPAY0002" out="" msg="系统未开放或暂时关闭，请稍后再试" />
+			<dipper:mapping in="UNIONPAY0003" out="" msg="交易通讯超时，请发起查询交易" />
+			<dipper:mapping in="UNIONPAY0004" out="" msg="交易状态未明，请查询对账结果" />
+			<dipper:mapping in="UNIONPAY0005" out="" msg="交易已受理，请稍后查询交易结果" />
+			<dipper:mapping in="UNIONPAY0006" out="" msg="系统繁忙，请稍后再试" />
+			<dipper:mapping in="UNIONPAY0007" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0008" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0009" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0010" out="" msg="报文格式错误" />
+			<dipper:mapping in="UNIONPAY0011" out="" msg="验证签名失败" />
+			<dipper:mapping in="UNIONPAY0012" out="" msg="重复交易" />
+			<dipper:mapping in="UNIONPAY0013" out="" msg="报文交易要素缺失" />
+			<dipper:mapping in="UNIONPAY0014" out="" msg="批量文件格式错误" />
+			<dipper:mapping in="UNIONPAY0015" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0016" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0017" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0018" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0019" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0020" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0021" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0022" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0023" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0024" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0025" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0026" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0027" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0028" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0029" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0030" out="" msg="交易未通过，请尝试使用其他银联卡支付或联系95516" />
+			<dipper:mapping in="UNIONPAY0031" out="" msg="商户状态不正确" />
+			<dipper:mapping in="UNIONPAY0032" out="" msg="无此交易权限" />
+			<dipper:mapping in="UNIONPAY0033" out="" msg="/*交易金额超限*/" />
+			<dipper:mapping in="UNIONPAY0034" out="" msg="查无此交易" />
+			<dipper:mapping in="UNIONPAY0035" out="" msg="原交易不存在或状态不正确" />
+			<dipper:mapping in="UNIONPAY0036" out="" msg="与原交易信息不符" />
+			<dipper:mapping in="UNIONPAY0037" out="" msg="已超过最大查询次数或操作过于频繁" />
+			<dipper:mapping in="UNIONPAY0038" out="" msg="银联风险受限" />
+			<dipper:mapping in="UNIONPAY0039" out="" msg="交易不在受理时间范围内" />
+			<dipper:mapping in="UNIONPAY0040" out="" msg="绑定关系检查失败" />
+			<dipper:mapping in="UNIONPAY0041" out="" msg="批量状态不正确，无法下载" />
+			<dipper:mapping in="UNIONPAY0042" out="" msg="扣款成功但交易超过规定支付时间" />
+			<dipper:mapping in="UNIONPAY0043" out="" msg="无此业务权限，详情请咨询95516" />
+			<dipper:mapping in="UNIONPAY0044" out="" msg="输入号码错误或暂未开通此项业务，详情请咨询95516" />
+			<dipper:mapping in="UNIONPAY0045" out="" msg="原交易已被成功退货或已被成功撤销" />
+			<dipper:mapping in="UNIONPAY0046" out="" msg="交易已被成功冲正" />
+			<dipper:mapping in="UNIONPAY0047" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0048" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0049" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0050" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0051" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0052" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0053" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0054" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0055" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0056" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0057" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0058" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0059" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0060" out="" msg="交易失败，详情请咨询您的发卡行" />
+			<dipper:mapping in="UNIONPAY0061" out="" msg="输入的卡号无效，请确认后输入" />
+			<dipper:mapping in="UNIONPAY0062" out="" msg="交易失败，发卡银行不支持该商户，请更换其他银行卡" />
+			<dipper:mapping in="UNIONPAY0063" out="" msg="卡状态不正确" />
+			<dipper:mapping in="UNIONPAY0064" out="" msg="卡上的余额不足" />
+			<dipper:mapping in="UNIONPAY0065" out="" msg="输入的密码、有效期或CVN2有误，交易失败" />
+			<dipper:mapping in="UNIONPAY0066" out="" msg="持卡人身份信息或手机号输入不正确，验证失败" />
+			<dipper:mapping in="UNIONPAY0067" out="" msg="密码输入次数超限" />
+			<dipper:mapping in="UNIONPAY0068" out="" msg="您的银行卡暂不支持该业务，请向您的银行或95516咨询" />
+			<dipper:mapping in="UNIONPAY0069" out="" msg="您的输入超时，交易失败" />
+			<dipper:mapping in="UNIONPAY0070" out="" msg="交易已跳转，等待持卡人输入" />
+			<dipper:mapping in="UNIONPAY0071" out="" msg="动态口令或短信验证码校验失败" />
+			<dipper:mapping in="UNIONPAY0072" out="" msg="您尚未在{}银行网点柜面或个人网银签约加办银联无卡支付业务，请去柜面或网银开通或拨打{}" />
+			<dipper:mapping in="UNIONPAY0073" out="" msg="支付卡已超过有效期" />
+			<dipper:mapping in="UNIONPAY0074" out="" msg="扣款成功，销账未知" />
+			<dipper:mapping in="UNIONPAY0075" out="" msg="扣款成功，销账失败" />
+			<dipper:mapping in="UNIONPAY0076" out="" msg="需要验密开通" />
+			<dipper:mapping in="UNIONPAY0077" out="" msg="银行卡未开通认证支付" />
+			<dipper:mapping in="UNIONPAY0078" out="" msg="发卡行交易权限受限，详情请咨询您的发卡行" />
+			<dipper:mapping in="UNIONPAY0079" out="" msg="此卡可用，但发卡行暂不支持短信验证" />
+			<dipper:mapping in="UNIONPAY0080" out="" msg="交易失败，Token 已过期" />
+			<dipper:mapping in="UNIONPAY0081" out="" msg="月累计交易笔数(金额)超限" />
+			<dipper:mapping in="UNIONPAY0082" out="" msg="需要校验密码" />
+			<dipper:mapping in="UNIONPAY0083" out="" msg="发卡行（渠道）处理中" />
+			<dipper:mapping in="UNIONPAY0084" out="" msg="需要密码但未上送" />
+			<dipper:mapping in="UNIONPAY0085" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0086" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0087" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0088" out="" msg="" />
+			<dipper:mapping in="UNIONPAY0089" out="" msg="无此Token、TR状态无效或者Token状态无效" />
+			<dipper:mapping in="UNIONPAY0090" out="" msg="账户余额不足" />
+			<dipper:mapping in="UNIONPAY0091" out="" msg="认证失败" />
+			<dipper:mapping in="UNIONPAY0092" out="" msg="营业执照过期" />
+			<dipper:mapping in="UNIONPAY0093" out="" msg="营业执照吊销" />
+			<dipper:mapping in="UNIONPAY0094" out="" msg="营业执照注销" />
+			<dipper:mapping in="UNIONPAY0095" out="" msg="营业执照迁出" />
+			<dipper:mapping in="UNIONPAY0096" out="" msg="营业执照撤销" />
+			<dipper:mapping in="UNIONPAY0097" out="" msg="文件不存在" />
+			<dipper:mapping in="UNIONPAY0098" out="" msg="通用错误" />
+			<dipper:mapping in="UNIONPAY0099" out="" msg="卡号:[{}],手机号:[{}],证件号:[{}],姓名:[{}],证件类型:[{}] 未经过无跳转支付签约，不能撤销签约" />
+			<dipper:mapping in="UNIONPAY0100" out="" msg="卡号:[{}],手机号:[{}],证件号:[{}],姓名:[{}],证件类型:[{}] 未经过无跳转支付签约，不能消费" />
+			<dipper:mapping in="UNIONPAY0101" out="" msg="卡号:[{}],手机号:[{}],证件号:[{}],姓名:[{}],证件类型:[{}] 未经过代收授权，不能撤销授权" />
+			<dipper:mapping in="UNIONPAY0102" out="" msg="卡号:[{}],手机号:[{}],证件号:[{}],姓名:[{}],证件类型:[{}] 未经过代收授权，不能消费" />
+
+
+			<dipper:mapping in="UNIONPAY0103" out="" msg="代收消费证件号:[{}]与授权证件号:[{}]不一致" />
+			<dipper:mapping in="UNIONPAY0104" out="" msg="代收消费证件类型:[{}]与授权证件类型:[{}]不一致"/>
+			<dipper:mapping in="UNIONPAY0105" out="" msg="代收消费姓名与授权姓名不一致" />
+
+			<dipper:mapping in="UNIONPAY0106" out="" msg="无跳转消费证件号:[{}]与签约证件号:[{}]不一致" />
+			<dipper:mapping in="UNIONPAY0107" out="" msg="无跳转消费证件类型:[{}]与签约证件类型:[{}]不一致"/>
+			<dipper:mapping in="UNIONPAY0108" out="" msg="无跳转消费姓名:[{}]与签约姓名:[{}]不一致" />
+			<dipper:mapping in="UNIONPAY0109" out="" msg="未通过代收授权 请检查[{}]" />
+			<dipper:mapping in="UNIONPAY0110" out="" msg="未通过无跳转签约 请检查[{}]" />
+		</dipper:mappings>
+	</dipper:dicts>
+
+
+    
+</beans>	

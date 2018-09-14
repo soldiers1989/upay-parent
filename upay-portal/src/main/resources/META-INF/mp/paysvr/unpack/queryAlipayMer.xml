@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 查询支付宝商户信息 -->
+		<mapping xpath="merNo" field="merNo"/><!-- 商户号 -->
+	</mappings>
+</config>

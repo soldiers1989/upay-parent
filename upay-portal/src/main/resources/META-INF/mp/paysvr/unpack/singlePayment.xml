@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<!-- 单笔代付-->
+		<mapping xpath="chnlId" field="chnlId"/>
+		<mapping xpath="merNo" field="merNo"/>
+<!-- 		<mapping xpath="userId" field="userId"/> -->
+		<mapping xpath="merDate" field="merDate" must="not"/>
+		<mapping xpath="orderNo" field="orderNo" must="not"/>
+		<mapping xpath="outerOrderNo" field="outerOrderNo" must="not"/>
+		<mapping xpath="transAmt" field="transAmt" type="java.math.BigDecimal"/>
+		<mapping xpath="acctNo" field="acctNo"/>
+		<mapping xpath="bankId" field="bankId" must="not"/>
+		<mapping xpath="acctName" field="acctName"/>
+		<mapping xpath="singlePaymentFlag" field="singlePaymentFlag" must="not"/>
+		<mapping xpath="singlePayType" field="singlePayType" must="not"/>
+		<mapping xpath="accountType" field="accountType"/>
+		<mapping xpath="mobile" field="mobile"/>
+		<mapping xpath="transComments" field="transComments" must="not"/>
+		<mapping xpath="notifyUrl" field="notifyUrl" must="not"/>
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp" must="not"/>
+		
+<!-- 		<mapping xpath="payerAccountNo" field="payerAccountNo" must="not"/> -->
+<!-- 		<mapping xpath="payerAccountType" field="payerAccountType" must="not"/> -->
+<!-- 		<mapping xpath="payerAccountName" field="payerAccountName" must="not"/> -->
+<!-- 		<mapping xpath="payerMobile" field="payerMobile" must="not"/> -->
+<!-- 		<mapping xpath="payerCertNo" field="payerCertNo" must="not"/> -->
+	</mappings>
+</config>

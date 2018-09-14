@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<!-- 银联二维码 线上二维码申请 -->
+		<mapping xpath="merNo" field="merNo" />
+		<mapping xpath="primaryMerName" field="primaryMerName" />
+	    <mapping xpath="transAmtStr" field="transAmtStr" />
+	    <mapping xpath="orderNo" field="orderNo" />
+	</mappings>
+</config>

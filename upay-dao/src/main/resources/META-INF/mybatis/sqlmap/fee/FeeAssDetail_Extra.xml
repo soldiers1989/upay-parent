@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeAssDetailPo">
+	<!-- 统计分润  按资金通道 -->
+	<select id="sumAssAmtByOrgCode" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT ROUTE_CODE,ASS_ID,COALESCE(SUM(ASS_AMT),0) AS ASS_AMT FROM T_FEE_ASS_DETAIL 
+		WHERE TXN_STAT='0' AND ROUTE_CODE IS NOT NULL
+					AND STL_FLAG='0' AND ASS_ID ='002'
+					AND <![CDATA[TXN_DATE < TO_DATE(#{txnDate}, 'yyyy-MM-dd')]]>
+		GROUP BY ROUTE_CODE,ASS_ID
+		UNION ALL
+		SELECT '',ASS_ID,COALESCE(SUM(ASS_AMT),0) AS ASS_AMT FROM T_FEE_ASS_DETAIL 
+		WHERE TXN_STAT='0' AND STL_FLAG='0' AND <![CDATA[ASS_ID <>'002' ]]>
+					AND ROUTE_CODE IS NOT NULL 
+					AND <![CDATA[TXN_DATE < TO_DATE(#{txnDate}, 'yyyy-MM-dd') ]]>
+		GROUP BY ASS_ID
+	</select>
+	<update id="updateStlFlagByAssID">
+		UPDATE T_FEE_ASS_DETAIL SET STL_FLAG=#{stlFlag}, STL_DATE=TO_DATE(#{stlDate}, 'yyyy-MM-dd'),STL_BATCH_NO=#{stlBatchNo}
+		WHERE TXN_STAT='0' 
+					AND ROUTE_CODE IS NOT NULL 
+					AND STL_FLAG='0' 
+					AND ASS_ID =#{assId} 
+					AND  <![CDATA[TXN_DATE < TO_DATE(#{txnDate}, 'yyyy-MM-dd')]]>
+	</update>
+	<update id="updateStlFlagByAssID1">
+		UPDATE T_FEE_ASS_DETAIL SET STL_FLAG=#{stlFlag}, STL_DATE=TO_DATE(#{stlDate}, 'yyyy-MM-dd'),STL_BATCH_NO=#{stlBatchNo}
+	    WHERE TXN_STAT='0' 
+					AND STL_FLAG='0' 
+					AND <![CDATA[ASS_ID <>#{assId} ]]>
+					AND ROUTE_CODE IS NOT NULL 
+					AND <![CDATA[TXN_DATE < TO_DATE(#{txnDate}, 'yyyy-MM-dd') ]]>
+	</update>
+</mapper>

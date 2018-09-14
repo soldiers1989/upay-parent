@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.usr.UsrCertBlackListPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.usr.UsrCertBlackListPo">
+		<id column="ID" property="id" />
+		<result column="BLACKLIST_INPUT_DATE" property="blacklistInputDate" />
+		<result column="BLACKLIST_INPUT_TYPE" property="blacklistInputType" />
+		<result column="BLACKLIST_FLAG" property="blacklistFlag" />
+		<result column="CERT_TYPE" property="certType" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="BLACK_OPER" property="blackOper" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="BLACK_INPUT_REASON" property="blackInputReason" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+		<result column="APPROVE_TYPE" property="approveType" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USR_CERT_BLACK_LIST
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		BLACKLIST_INPUT_DATE,
+		BLACKLIST_INPUT_TYPE,
+		BLACKLIST_FLAG,
+		CERT_TYPE,
+		CERT_NO,
+		BLACK_OPER,
+		LAST_UPDATE_TIME,
+		BLACK_INPUT_REASON,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		APPROVE_TYPE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="blacklistInputDate != null">
+			BLACKLIST_INPUT_DATE= #{blacklistInputDate}
+	           AND 
+		</if>
+		<if test="blacklistInputType != null">
+			BLACKLIST_INPUT_TYPE= #{blacklistInputType}
+	           AND 
+		</if>
+		<if test="blacklistFlag != null">
+			BLACKLIST_FLAG= #{blacklistFlag}
+	           AND 
+		</if>
+		<if test="certType != null">
+			CERT_TYPE= #{certType}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="blackOper != null">
+			BLACK_OPER= #{blackOper}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="blackInputReason != null">
+			BLACK_INPUT_REASON= #{blackInputReason}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+	           AND 
+		</if>
+		<if test="approveType != null">
+			APPROVE_TYPE= #{approveType}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="blacklistInputDate != null">
+		BLACKLIST_INPUT_DATE,
+	</if>
+	<if test="blacklistInputType != null">
+		BLACKLIST_INPUT_TYPE,
+	</if>
+	<if test="blacklistFlag != null">
+		BLACKLIST_FLAG,
+	</if>
+	<if test="certType != null">
+		CERT_TYPE,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="blackOper != null">
+		BLACK_OPER,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="blackInputReason != null">
+		BLACK_INPUT_REASON,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+	<if test="approveType != null">
+		APPROVE_TYPE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="blacklistInputDate != null">
+		#{blacklistInputDate},
+	</if>
+	<if test="blacklistInputType != null">
+		#{blacklistInputType},
+	</if>
+	<if test="blacklistFlag != null">
+		#{blacklistFlag},
+	</if>
+	<if test="certType != null">
+		#{certType},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="blackOper != null">
+		#{blackOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="blackInputReason != null">
+		#{blackInputReason},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+	<if test="approveType != null">
+		#{approveType},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="blacklistInputDate != null">
+		BLACKLIST_INPUT_DATE=#{blacklistInputDate},
+	</if>
+	<if test="blacklistInputType != null">
+		BLACKLIST_INPUT_TYPE=#{blacklistInputType},
+	</if>
+	<if test="blacklistFlag != null">
+		BLACKLIST_FLAG=#{blacklistFlag},
+	</if>
+	<if test="certType != null">
+		CERT_TYPE=#{certType},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="blackOper != null">
+		BLACK_OPER=#{blackOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="blackInputReason != null">
+		BLACK_INPUT_REASON=#{blackInputReason},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+	<if test="approveType != null">
+		APPROVE_TYPE=#{approveType},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.blacklistInputDate != null">
+                    BLACKLIST_INPUT_DATE=#{s.blacklistInputDate},
+			</if>
+			<if test="s.blacklistInputType != null">
+                    BLACKLIST_INPUT_TYPE=#{s.blacklistInputType},
+			</if>
+			<if test="s.blacklistFlag != null">
+                    BLACKLIST_FLAG=#{s.blacklistFlag},
+			</if>
+			<if test="s.certType != null">
+                    CERT_TYPE=#{s.certType},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.blackOper != null">
+                    BLACK_OPER=#{s.blackOper},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.blackInputReason != null">
+                    BLACK_INPUT_REASON=#{s.blackInputReason},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3},
+			</if>
+			<if test="s.approveType != null">
+                    APPROVE_TYPE=#{s.approveType}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.blacklistInputDate != null">
+                    BLACKLIST_INPUT_DATE=#{w.blacklistInputDate}
+                   AND 
+ 			</if>
+			<if test="w.blacklistInputType != null">
+                    BLACKLIST_INPUT_TYPE=#{w.blacklistInputType}
+                   AND 
+ 			</if>
+			<if test="w.blacklistFlag != null">
+                    BLACKLIST_FLAG=#{w.blacklistFlag}
+                   AND 
+ 			</if>
+			<if test="w.certType != null">
+                    CERT_TYPE=#{w.certType}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.blackOper != null">
+                    BLACK_OPER=#{w.blackOper}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.blackInputReason != null">
+                    BLACK_INPUT_REASON=#{w.blackInputReason}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+                   AND 
+ 			</if>
+			<if test="w.approveType != null">
+                    APPROVE_TYPE=#{w.approveType}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

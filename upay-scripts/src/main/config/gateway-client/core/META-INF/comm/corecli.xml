@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper/channel"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper/channel
+	http://www.pactera.com/schema/dipper/channel.xsd">
+
+	<dipper:channel id="corecli" type="client" async="false"
+		charset="UTF-8" desc="TCP客户端,核心">
+		<dipper:params>
+			<dipper:param name="connecttimeout" value="10000" />
+			<dipper:param name="sotimeout" value="30000" />
+		</dipper:params>
+		<dipper:urls balance="none">
+			<!-- 挡板 UAT:tcp://197.3.11.67:50051  开发：tcp://197.3.11.67:50050-->
+			<dipper:url value="${dyn.gateway.client.core.url}" />
+		</dipper:urls>
+		<dipper:codec maxLength="8388608" lengthOffset="0"
+			lengthDigit="8" radix="10" />
+		<dipper:message format="XML" />
+		<dipper:handler commServiceRef="tcpClientCommHandler" />
+	</dipper:channel>
+
+</beans>	

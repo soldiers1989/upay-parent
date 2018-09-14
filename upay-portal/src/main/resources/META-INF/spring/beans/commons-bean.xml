@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	<bean class="com.dubhe.common.util.ParmsContext" init-method="init"> -->
+ <!--         <property name="daoService" ref="daoService" /> --> 
+<!--     </bean> -->
+    
+	<bean id="mastersList" class="java.util.ArrayList"/>
+	
+	<bean id="sentinelsSet" class="java.util.HashSet"/>
+	
+	<bean id="exceptionFlowHandler" class="com.dubhe.common.handler.ExceptionFlowHandler"/>
+	
+	<bean id="abstractServerDipperHandler"
+		class="com.pactera.dipper.presys.cp.server.AbstractServerDipperHandler"
+		abstract="true">
+		<property name="errorCodeName" value="outCode" />
+		<property name="errorMsgName" value="outMsg" />
+		<property name="defaultErrorCode" value="NEPSYS9999"/>
+		<property name="errorCodeMapping">
+			<map>
+				<entry key="0000000000" value="000000" />
+				<entry key="*" value="9999" />
+			</map>
+		</property>
+        <!--<property name="serviceMapping">-->
+            <!--<map>-->
+                <!--<entry key="SI_GNR00001" value="D_SI_DEMO" />-->
+            <!--</map>-->
+        <!--</property>-->
+	</bean>
+
+    <!-- 图形验证码校验 -->
+    <bean id="checkVerifyCodeExecutor" class="com.dubhe.common.executor.impl.CheckVerifyCodeExecutor">
+        <!-- 需要验证图形验证码的交易集合 -->
+        <property name="excludeTransCode">
+            <set value-type="java.lang.String">
+                <!--<value>SI_DEMO001</value>-->
+            </set>
+        </property>
+        <property name="cacheClient" ref="DIPPER_REDIS_CLIENT" />
+    </bean>
+    <!-- TOKEN校验 -->
+    <bean id="validateTokenExecutor" class="com.dubhe.common.executor.impl.ValidateTokenExecutor">
+        <!-- 需要TOKEN校验的交易集合 -->
+        <property name="excludeTransCode">
+            <set value-type="java.lang.String">
+            </set>
+        </property>
+		<property name="cacheClient" ref="DIPPER_REDIS_CLIENT" />
+    </bean>
+
+
+    <!-- 交易前统一处理 -->
+    <bean id="preTrasationExecutors" class="com.dubhe.common.executor.ExecutorContext">
+        <property name="executorContext">
+            <list value-type="com.dubhe.common.executor.IExecutor">
+                <ref bean="validateTokenExecutor" />
+                <ref bean="checkVerifyCodeExecutor" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="preExecutorDipperHandler" class="com.dubhe.common.handler.ExecutorDipperHandler"
+          parent="abstractServerDipperHandler">
+        <property name="preTrasationExecutors" ref="preTrasationExecutors"/>
+    </bean>
+
+</beans>

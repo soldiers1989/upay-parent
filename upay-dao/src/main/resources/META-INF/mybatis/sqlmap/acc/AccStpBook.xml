@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccStpBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccStpBookPo">
+		<id column="ID" property="id" />
+		<result column="STP_TIME" property="stpTime" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="STP_NO" property="stpNo" />
+		<result column="OPER_TYPE" property="operType" />
+		<result column="USER_ID" property="userId" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="STP_STAT" property="stpStat" />
+		<result column="STP_MODE" property="stpMode" />
+		<result column="PART_STP_TIME" property="partStpTime" />
+		<result column="STP_AMT" property="stpAmt" />
+		<result column="PAY_AMT" property="payAmt" />
+		<result column="FRZ_REASON" property="frzReason" />
+		<result column="UNSTP_TIME" property="unstpTime" />
+		<result column="UNSTP_REASON" property="unstpReason" />
+		<result column="STP_OPER" property="stpOper" />
+		<result column="UNSTP_OPER" property="unstpOper" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_STP_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		STP_TIME,
+		CHNL_ID,
+		STP_NO,
+		OPER_TYPE,
+		USER_ID,
+		ACCT_TYPE,
+		ACCT_NO,
+		STP_STAT,
+		STP_MODE,
+		PART_STP_TIME,
+		STP_AMT,
+		PAY_AMT,
+		FRZ_REASON,
+		UNSTP_TIME,
+		UNSTP_REASON,
+		STP_OPER,
+		UNSTP_OPER,
+		REMARK1
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="stpTime != null">
+			STP_TIME= #{stpTime}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="stpNo != null">
+			STP_NO= #{stpNo}
+	           AND 
+		</if>
+		<if test="operType != null">
+			OPER_TYPE= #{operType}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="acctNo != null">
+			ACCT_NO= #{acctNo}
+	           AND 
+		</if>
+		<if test="stpStat != null">
+			STP_STAT= #{stpStat}
+	           AND 
+		</if>
+		<if test="stpMode != null">
+			STP_MODE= #{stpMode}
+	           AND 
+		</if>
+		<if test="partStpTime != null">
+			PART_STP_TIME= #{partStpTime}
+	           AND 
+		</if>
+		<if test="stpAmt != null">
+			STP_AMT= #{stpAmt}
+	           AND 
+		</if>
+		<if test="payAmt != null">
+			PAY_AMT= #{payAmt}
+	           AND 
+		</if>
+		<if test="frzReason != null">
+			FRZ_REASON= #{frzReason}
+	           AND 
+		</if>
+		<if test="unstpTime != null">
+			UNSTP_TIME= #{unstpTime}
+	           AND 
+		</if>
+		<if test="unstpReason != null">
+			UNSTP_REASON= #{unstpReason}
+	           AND 
+		</if>
+		<if test="stpOper != null">
+			STP_OPER= #{stpOper}
+	           AND 
+		</if>
+		<if test="unstpOper != null">
+			UNSTP_OPER= #{unstpOper}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="stpTime != null">
+		STP_TIME,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="stpNo != null">
+		STP_NO,
+	</if>
+	<if test="operType != null">
+		OPER_TYPE,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO,
+	</if>
+	<if test="stpStat != null">
+		STP_STAT,
+	</if>
+	<if test="stpMode != null">
+		STP_MODE,
+	</if>
+	<if test="partStpTime != null">
+		PART_STP_TIME,
+	</if>
+	<if test="stpAmt != null">
+		STP_AMT,
+	</if>
+	<if test="payAmt != null">
+		PAY_AMT,
+	</if>
+	<if test="frzReason != null">
+		FRZ_REASON,
+	</if>
+	<if test="unstpTime != null">
+		UNSTP_TIME,
+	</if>
+	<if test="unstpReason != null">
+		UNSTP_REASON,
+	</if>
+	<if test="stpOper != null">
+		STP_OPER,
+	</if>
+	<if test="unstpOper != null">
+		UNSTP_OPER,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="stpTime != null">
+		#{stpTime},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="stpNo != null">
+		#{stpNo},
+	</if>
+	<if test="operType != null">
+		#{operType},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="acctNo != null">
+		#{acctNo},
+	</if>
+	<if test="stpStat != null">
+		#{stpStat},
+	</if>
+	<if test="stpMode != null">
+		#{stpMode},
+	</if>
+	<if test="partStpTime != null">
+		#{partStpTime},
+	</if>
+	<if test="stpAmt != null">
+		#{stpAmt},
+	</if>
+	<if test="payAmt != null">
+		#{payAmt},
+	</if>
+	<if test="frzReason != null">
+		#{frzReason},
+	</if>
+	<if test="unstpTime != null">
+		#{unstpTime},
+	</if>
+	<if test="unstpReason != null">
+		#{unstpReason},
+	</if>
+	<if test="stpOper != null">
+		#{stpOper},
+	</if>
+	<if test="unstpOper != null">
+		#{unstpOper},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="stpTime != null">
+		STP_TIME=#{stpTime},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="stpNo != null">
+		STP_NO=#{stpNo},
+	</if>
+	<if test="operType != null">
+		OPER_TYPE=#{operType},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="acctNo != null">
+		ACCT_NO=#{acctNo},
+	</if>
+	<if test="stpStat != null">
+		STP_STAT=#{stpStat},
+	</if>
+	<if test="stpMode != null">
+		STP_MODE=#{stpMode},
+	</if>
+	<if test="partStpTime != null">
+		PART_STP_TIME=#{partStpTime},
+	</if>
+	<if test="stpAmt != null">
+		STP_AMT=#{stpAmt},
+	</if>
+	<if test="payAmt != null">
+		PAY_AMT=#{payAmt},
+	</if>
+	<if test="frzReason != null">
+		FRZ_REASON=#{frzReason},
+	</if>
+	<if test="unstpTime != null">
+		UNSTP_TIME=#{unstpTime},
+	</if>
+	<if test="unstpReason != null">
+		UNSTP_REASON=#{unstpReason},
+	</if>
+	<if test="stpOper != null">
+		STP_OPER=#{stpOper},
+	</if>
+	<if test="unstpOper != null">
+		UNSTP_OPER=#{unstpOper},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.stpTime != null">
+                    STP_TIME=#{s.stpTime},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.stpNo != null">
+                    STP_NO=#{s.stpNo},
+			</if>
+			<if test="s.operType != null">
+                    OPER_TYPE=#{s.operType},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.acctNo != null">
+                    ACCT_NO=#{s.acctNo},
+			</if>
+			<if test="s.stpStat != null">
+                    STP_STAT=#{s.stpStat},
+			</if>
+			<if test="s.stpMode != null">
+                    STP_MODE=#{s.stpMode},
+			</if>
+			<if test="s.partStpTime != null">
+                    PART_STP_TIME=#{s.partStpTime},
+			</if>
+			<if test="s.stpAmt != null">
+                    STP_AMT=#{s.stpAmt},
+			</if>
+			<if test="s.payAmt != null">
+                    PAY_AMT=#{s.payAmt},
+			</if>
+			<if test="s.frzReason != null">
+                    FRZ_REASON=#{s.frzReason},
+			</if>
+			<if test="s.unstpTime != null">
+                    UNSTP_TIME=#{s.unstpTime},
+			</if>
+			<if test="s.unstpReason != null">
+                    UNSTP_REASON=#{s.unstpReason},
+			</if>
+			<if test="s.stpOper != null">
+                    STP_OPER=#{s.stpOper},
+			</if>
+			<if test="s.unstpOper != null">
+                    UNSTP_OPER=#{s.unstpOper},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.stpTime != null">
+                    STP_TIME=#{w.stpTime}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.stpNo != null">
+                    STP_NO=#{w.stpNo}
+                   AND 
+ 			</if>
+			<if test="w.operType != null">
+                    OPER_TYPE=#{w.operType}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.acctNo != null">
+                    ACCT_NO=#{w.acctNo}
+                   AND 
+ 			</if>
+			<if test="w.stpStat != null">
+                    STP_STAT=#{w.stpStat}
+                   AND 
+ 			</if>
+			<if test="w.stpMode != null">
+                    STP_MODE=#{w.stpMode}
+                   AND 
+ 			</if>
+			<if test="w.partStpTime != null">
+                    PART_STP_TIME=#{w.partStpTime}
+                   AND 
+ 			</if>
+			<if test="w.stpAmt != null">
+                    STP_AMT=#{w.stpAmt}
+                   AND 
+ 			</if>
+			<if test="w.payAmt != null">
+                    PAY_AMT=#{w.payAmt}
+                   AND 
+ 			</if>
+			<if test="w.frzReason != null">
+                    FRZ_REASON=#{w.frzReason}
+                   AND 
+ 			</if>
+			<if test="w.unstpTime != null">
+                    UNSTP_TIME=#{w.unstpTime}
+                   AND 
+ 			</if>
+			<if test="w.unstpReason != null">
+                    UNSTP_REASON=#{w.unstpReason}
+                   AND 
+ 			</if>
+			<if test="w.stpOper != null">
+                    STP_OPER=#{w.stpOper}
+                   AND 
+ 			</if>
+			<if test="w.unstpOper != null">
+                    UNSTP_OPER=#{w.unstpOper}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings head="head">
+		<mapping xpath="$.syshead.trans_code" field="transCode" />
+        <mapping xpath="$.syshead.chnl_id" field="chnlId" />
+        <mapping xpath="$.syshead.session_id" field="sessionId" must="not"/>
+        <mapping xpath="$.syshead.token_id" field="tokenId" must="not"/>
+        <mapping xpath="$.syshead.aes_key" field="aesKey" must="not"/>
+        <mapping xpath="$.syshead.platform" field="platform" />
+        <mapping xpath="$.syshead.user_id" field="userId" must="not"/>
+        <mapping xpath="$.apphead.CURRENT_NUM" field="currentNum" must="not"/>
+        <mapping xpath="$.apphead.PAGE_INDEX" field="pageIndex" must="not"/>
+	</mappings>
+</config>

@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerPlatSettingPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerPlatSettingPo">
+		<id column="ID" property="id" />
+		<result column="MER_PLAT_NO" property="merPlatNo" />
+		<result column="FILE_URL" property="fileUrl" />
+		<result column="REFER_URL" property="referUrl" />
+		<result column="SIGN_TYPE" property="signType" />
+		<result column="FILE_ENCRY_TYPE" property="fileEncryType" />
+		<result column="KEY_3DES" property="key3des" />
+		<result column="CHECK_FILE_FORM_TYPE" property="checkFileFormType" />
+		<result column="SIGN_CHECK_FLAG" property="signCheckFlag" />
+		<result column="CLEAR_CHECK_FLAG" property="clearCheckFlag" />
+		<result column="FILE_TRANSFER_MODE" property="fileTransferMode" />
+		<result column="FTP_IP" property="ftpIp" />
+		<result column="FTP_PORT" property="ftpPort" />
+		<result column="FTP_USER_NAME" property="ftpUserName" />
+		<result column="FTP_PWD" property="ftpPwd" />
+		<result column="FILE_UPLOAD_PATH" property="fileUploadPath" />
+		<result column="MODIFY_USER" property="modifyUser" />
+		<result column="DATE_LAST_MAINT" property="dateLastMaint" />
+		<result column="MER_REP_URL_B" property="merRepUrlB" />
+		<result column="MER_REP_URL_F" property="merRepUrlF" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_PLAT_SETTING
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_PLAT_NO,
+		FILE_URL,
+		REFER_URL,
+		SIGN_TYPE,
+		FILE_ENCRY_TYPE,
+		KEY_3DES,
+		CHECK_FILE_FORM_TYPE,
+		SIGN_CHECK_FLAG,
+		CLEAR_CHECK_FLAG,
+		FILE_TRANSFER_MODE,
+		FTP_IP,
+		FTP_PORT,
+		FTP_USER_NAME,
+		FTP_PWD,
+		FILE_UPLOAD_PATH,
+		MODIFY_USER,
+		DATE_LAST_MAINT,
+		MER_REP_URL_B,
+		MER_REP_URL_F,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merPlatNo != null">
+			MER_PLAT_NO= #{merPlatNo}
+	           AND 
+		</if>
+		<if test="fileUrl != null">
+			FILE_URL= #{fileUrl}
+	           AND 
+		</if>
+		<if test="referUrl != null">
+			REFER_URL= #{referUrl}
+	           AND 
+		</if>
+		<if test="signType != null">
+			SIGN_TYPE= #{signType}
+	           AND 
+		</if>
+		<if test="fileEncryType != null">
+			FILE_ENCRY_TYPE= #{fileEncryType}
+	           AND 
+		</if>
+		<if test="key3des != null">
+			KEY_3DES= #{key3des}
+	           AND 
+		</if>
+		<if test="checkFileFormType != null">
+			CHECK_FILE_FORM_TYPE= #{checkFileFormType}
+	           AND 
+		</if>
+		<if test="signCheckFlag != null">
+			SIGN_CHECK_FLAG= #{signCheckFlag}
+	           AND 
+		</if>
+		<if test="clearCheckFlag != null">
+			CLEAR_CHECK_FLAG= #{clearCheckFlag}
+	           AND 
+		</if>
+		<if test="fileTransferMode != null">
+			FILE_TRANSFER_MODE= #{fileTransferMode}
+	           AND 
+		</if>
+		<if test="ftpIp != null">
+			FTP_IP= #{ftpIp}
+	           AND 
+		</if>
+		<if test="ftpPort != null">
+			FTP_PORT= #{ftpPort}
+	           AND 
+		</if>
+		<if test="ftpUserName != null">
+			FTP_USER_NAME= #{ftpUserName}
+	           AND 
+		</if>
+		<if test="ftpPwd != null">
+			FTP_PWD= #{ftpPwd}
+	           AND 
+		</if>
+		<if test="fileUploadPath != null">
+			FILE_UPLOAD_PATH= #{fileUploadPath}
+	           AND 
+		</if>
+		<if test="modifyUser != null">
+			MODIFY_USER= #{modifyUser}
+	           AND 
+		</if>
+		<if test="dateLastMaint != null">
+			DATE_LAST_MAINT= #{dateLastMaint}
+	           AND 
+		</if>
+		<if test="merRepUrlB != null">
+			MER_REP_URL_B= #{merRepUrlB}
+	           AND 
+		</if>
+		<if test="merRepUrlF != null">
+			MER_REP_URL_F= #{merRepUrlF}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merPlatNo != null">
+		MER_PLAT_NO,
+	</if>
+	<if test="fileUrl != null">
+		FILE_URL,
+	</if>
+	<if test="referUrl != null">
+		REFER_URL,
+	</if>
+	<if test="signType != null">
+		SIGN_TYPE,
+	</if>
+	<if test="fileEncryType != null">
+		FILE_ENCRY_TYPE,
+	</if>
+	<if test="key3des != null">
+		KEY_3DES,
+	</if>
+	<if test="checkFileFormType != null">
+		CHECK_FILE_FORM_TYPE,
+	</if>
+	<if test="signCheckFlag != null">
+		SIGN_CHECK_FLAG,
+	</if>
+	<if test="clearCheckFlag != null">
+		CLEAR_CHECK_FLAG,
+	</if>
+	<if test="fileTransferMode != null">
+		FILE_TRANSFER_MODE,
+	</if>
+	<if test="ftpIp != null">
+		FTP_IP,
+	</if>
+	<if test="ftpPort != null">
+		FTP_PORT,
+	</if>
+	<if test="ftpUserName != null">
+		FTP_USER_NAME,
+	</if>
+	<if test="ftpPwd != null">
+		FTP_PWD,
+	</if>
+	<if test="fileUploadPath != null">
+		FILE_UPLOAD_PATH,
+	</if>
+	<if test="modifyUser != null">
+		MODIFY_USER,
+	</if>
+	<if test="dateLastMaint != null">
+		DATE_LAST_MAINT,
+	</if>
+	<if test="merRepUrlB != null">
+		MER_REP_URL_B,
+	</if>
+	<if test="merRepUrlF != null">
+		MER_REP_URL_F,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merPlatNo != null">
+		#{merPlatNo},
+	</if>
+	<if test="fileUrl != null">
+		#{fileUrl},
+	</if>
+	<if test="referUrl != null">
+		#{referUrl},
+	</if>
+	<if test="signType != null">
+		#{signType},
+	</if>
+	<if test="fileEncryType != null">
+		#{fileEncryType},
+	</if>
+	<if test="key3des != null">
+		#{key3des},
+	</if>
+	<if test="checkFileFormType != null">
+		#{checkFileFormType},
+	</if>
+	<if test="signCheckFlag != null">
+		#{signCheckFlag},
+	</if>
+	<if test="clearCheckFlag != null">
+		#{clearCheckFlag},
+	</if>
+	<if test="fileTransferMode != null">
+		#{fileTransferMode},
+	</if>
+	<if test="ftpIp != null">
+		#{ftpIp},
+	</if>
+	<if test="ftpPort != null">
+		#{ftpPort},
+	</if>
+	<if test="ftpUserName != null">
+		#{ftpUserName},
+	</if>
+	<if test="ftpPwd != null">
+		#{ftpPwd},
+	</if>
+	<if test="fileUploadPath != null">
+		#{fileUploadPath},
+	</if>
+	<if test="modifyUser != null">
+		#{modifyUser},
+	</if>
+	<if test="dateLastMaint != null">
+		#{dateLastMaint},
+	</if>
+	<if test="merRepUrlB != null">
+		#{merRepUrlB},
+	</if>
+	<if test="merRepUrlF != null">
+		#{merRepUrlF},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merPlatNo != null">
+		MER_PLAT_NO=#{merPlatNo},
+	</if>
+	<if test="fileUrl != null">
+		FILE_URL=#{fileUrl},
+	</if>
+	<if test="referUrl != null">
+		REFER_URL=#{referUrl},
+	</if>
+	<if test="signType != null">
+		SIGN_TYPE=#{signType},
+	</if>
+	<if test="fileEncryType != null">
+		FILE_ENCRY_TYPE=#{fileEncryType},
+	</if>
+	<if test="key3des != null">
+		KEY_3DES=#{key3des},
+	</if>
+	<if test="checkFileFormType != null">
+		CHECK_FILE_FORM_TYPE=#{checkFileFormType},
+	</if>
+	<if test="signCheckFlag != null">
+		SIGN_CHECK_FLAG=#{signCheckFlag},
+	</if>
+	<if test="clearCheckFlag != null">
+		CLEAR_CHECK_FLAG=#{clearCheckFlag},
+	</if>
+	<if test="fileTransferMode != null">
+		FILE_TRANSFER_MODE=#{fileTransferMode},
+	</if>
+	<if test="ftpIp != null">
+		FTP_IP=#{ftpIp},
+	</if>
+	<if test="ftpPort != null">
+		FTP_PORT=#{ftpPort},
+	</if>
+	<if test="ftpUserName != null">
+		FTP_USER_NAME=#{ftpUserName},
+	</if>
+	<if test="ftpPwd != null">
+		FTP_PWD=#{ftpPwd},
+	</if>
+	<if test="fileUploadPath != null">
+		FILE_UPLOAD_PATH=#{fileUploadPath},
+	</if>
+	<if test="modifyUser != null">
+		MODIFY_USER=#{modifyUser},
+	</if>
+	<if test="dateLastMaint != null">
+		DATE_LAST_MAINT=#{dateLastMaint},
+	</if>
+	<if test="merRepUrlB != null">
+		MER_REP_URL_B=#{merRepUrlB},
+	</if>
+	<if test="merRepUrlF != null">
+		MER_REP_URL_F=#{merRepUrlF},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merPlatNo != null">
+                    MER_PLAT_NO=#{s.merPlatNo},
+			</if>
+			<if test="s.fileUrl != null">
+                    FILE_URL=#{s.fileUrl},
+			</if>
+			<if test="s.referUrl != null">
+                    REFER_URL=#{s.referUrl},
+			</if>
+			<if test="s.signType != null">
+                    SIGN_TYPE=#{s.signType},
+			</if>
+			<if test="s.fileEncryType != null">
+                    FILE_ENCRY_TYPE=#{s.fileEncryType},
+			</if>
+			<if test="s.key3des != null">
+                    KEY_3DES=#{s.key3des},
+			</if>
+			<if test="s.checkFileFormType != null">
+                    CHECK_FILE_FORM_TYPE=#{s.checkFileFormType},
+			</if>
+			<if test="s.signCheckFlag != null">
+                    SIGN_CHECK_FLAG=#{s.signCheckFlag},
+			</if>
+			<if test="s.clearCheckFlag != null">
+                    CLEAR_CHECK_FLAG=#{s.clearCheckFlag},
+			</if>
+			<if test="s.fileTransferMode != null">
+                    FILE_TRANSFER_MODE=#{s.fileTransferMode},
+			</if>
+			<if test="s.ftpIp != null">
+                    FTP_IP=#{s.ftpIp},
+			</if>
+			<if test="s.ftpPort != null">
+                    FTP_PORT=#{s.ftpPort},
+			</if>
+			<if test="s.ftpUserName != null">
+                    FTP_USER_NAME=#{s.ftpUserName},
+			</if>
+			<if test="s.ftpPwd != null">
+                    FTP_PWD=#{s.ftpPwd},
+			</if>
+			<if test="s.fileUploadPath != null">
+                    FILE_UPLOAD_PATH=#{s.fileUploadPath},
+			</if>
+			<if test="s.modifyUser != null">
+                    MODIFY_USER=#{s.modifyUser},
+			</if>
+			<if test="s.dateLastMaint != null">
+                    DATE_LAST_MAINT=#{s.dateLastMaint},
+			</if>
+			<if test="s.merRepUrlB != null">
+                    MER_REP_URL_B=#{s.merRepUrlB},
+			</if>
+			<if test="s.merRepUrlF != null">
+                    MER_REP_URL_F=#{s.merRepUrlF},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merPlatNo != null">
+                    MER_PLAT_NO=#{w.merPlatNo}
+                   AND 
+ 			</if>
+			<if test="w.fileUrl != null">
+                    FILE_URL=#{w.fileUrl}
+                   AND 
+ 			</if>
+			<if test="w.referUrl != null">
+                    REFER_URL=#{w.referUrl}
+                   AND 
+ 			</if>
+			<if test="w.signType != null">
+                    SIGN_TYPE=#{w.signType}
+                   AND 
+ 			</if>
+			<if test="w.fileEncryType != null">
+                    FILE_ENCRY_TYPE=#{w.fileEncryType}
+                   AND 
+ 			</if>
+			<if test="w.key3des != null">
+                    KEY_3DES=#{w.key3des}
+                   AND 
+ 			</if>
+			<if test="w.checkFileFormType != null">
+                    CHECK_FILE_FORM_TYPE=#{w.checkFileFormType}
+                   AND 
+ 			</if>
+			<if test="w.signCheckFlag != null">
+                    SIGN_CHECK_FLAG=#{w.signCheckFlag}
+                   AND 
+ 			</if>
+			<if test="w.clearCheckFlag != null">
+                    CLEAR_CHECK_FLAG=#{w.clearCheckFlag}
+                   AND 
+ 			</if>
+			<if test="w.fileTransferMode != null">
+                    FILE_TRANSFER_MODE=#{w.fileTransferMode}
+                   AND 
+ 			</if>
+			<if test="w.ftpIp != null">
+                    FTP_IP=#{w.ftpIp}
+                   AND 
+ 			</if>
+			<if test="w.ftpPort != null">
+                    FTP_PORT=#{w.ftpPort}
+                   AND 
+ 			</if>
+			<if test="w.ftpUserName != null">
+                    FTP_USER_NAME=#{w.ftpUserName}
+                   AND 
+ 			</if>
+			<if test="w.ftpPwd != null">
+                    FTP_PWD=#{w.ftpPwd}
+                   AND 
+ 			</if>
+			<if test="w.fileUploadPath != null">
+                    FILE_UPLOAD_PATH=#{w.fileUploadPath}
+                   AND 
+ 			</if>
+			<if test="w.modifyUser != null">
+                    MODIFY_USER=#{w.modifyUser}
+                   AND 
+ 			</if>
+			<if test="w.dateLastMaint != null">
+                    DATE_LAST_MAINT=#{w.dateLastMaint}
+                   AND 
+ 			</if>
+			<if test="w.merRepUrlB != null">
+                    MER_REP_URL_B=#{w.merRepUrlB}
+                   AND 
+ 			</if>
+			<if test="w.merRepUrlF != null">
+                    MER_REP_URL_F=#{w.merRepUrlF}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

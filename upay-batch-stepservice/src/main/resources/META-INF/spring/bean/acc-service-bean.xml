@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 获取核心对账文件 -->
+	<bean id="GetCoreFile" class="com.upay.batch.stepservice.schedule.GetCoreFile" parent="abstractStepExecutor" />
+	<!-- 解付 -->
+	<bean id="RelieveStpBatch" class="com.upay.batch.stepservice.schedule.RelieveStpBatch" parent="abstractStepExecutor" />
+	<!-- 解冻 -->
+	<bean id="RelieveFrzBatch" class="com.upay.batch.stepservice.schedule.RelieveFrzBatch" parent="abstractStepExecutor" />
+</beans>

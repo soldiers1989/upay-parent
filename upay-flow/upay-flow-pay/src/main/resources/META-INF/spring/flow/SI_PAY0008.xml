@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	<!-- 刷新accessToken -->
+	<dipper:flow service-id="SI_PAY0008">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 资金通道信息查询 -->
+					<dipper:service ref="PayRouteInfoQryService" param-ref="initPayWebChatInitOfOpenId"/>
+					<dipper:service ref="weiXinGetOpenIdHandler"
+						param-ref="initPayAccessTokenRefresh" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+	</dipper:flow>
+	
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝交易撤销 -->
+<data templateType="IN" 
+transCode="cancel">
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 支付宝交易号 -->
+	<column oldName="tradeNo" newName="trade_no"/>
+	<!-- 订单支付时传入的商户订单号,和支付宝交易号不能同时为空。 trade_no,out_trade_no如果同时存在优先取trade_no -->
+	<column oldName="outTradeNo" newName="out_trade_no"/>
+</data>

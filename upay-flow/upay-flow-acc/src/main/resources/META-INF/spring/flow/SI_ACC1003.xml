@@ -1,0 +1,94 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 绑定卡解绑 -->
+	<dipper:flow service-id="SI_ACC1003">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易前处理 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+				<!-- 登录状态校验 -->
+				<dipper:invoke>
+					<dipper:service ref="CheckLoginStatService"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+	                <!-- 用户密码检查 -->
+					<dipper:service ref="UserTrPwdCheckService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 用户密码错误次数统计 -->
+<!-- 					<dipper:service ref="SA_USR_pwdCountDealService" param-ref="pwdFlag" /> -->
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!--账户交易权限检查 -->
+					<dipper:service ref="PermissionCheckService"
+						param-ref="init_acc_acctType" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 电子账户信息查询原子服务 -->
+					<dipper:service ref="AccInfoQueryService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--个人信息查询 -->
+					<dipper:service ref="UserBaseInfoService" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<!--根据传入的绑定卡号查询卡信息 -->
+					<dipper:service ref="AccUnbindQueryService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 他行借记卡解绑卡 -->
+					<dipper:if expression="target.bodys.vbindBankFlag == '2' &amp;&amp; target.bodys.bindAcctType=='11'">
+						<!--中金绑定账户解绑 是否需要解除绑定关系 -->
+						<!-- 查询 -->
+						<!-- <dipper:service ref="SA_ZJPAY_Pay2502Handler" /> -->
+						<!-- 生成流水号 -->
+							<dipper:service ref="ZjpaySysSeqService" />
+						<!-- 解绑 -->
+						<dipper:service ref="SA_ZJPAY_Pay2503Handler"/>
+						<!-- 中金解卡状态判断 -->
+						<dipper:service ref="AccZJUnbindCardService" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 电子账户绑定卡解绑 -->
+					<dipper:service ref="AccUnbindService" />
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="fault.code=='BISUSR0026'||fault.code=='BISUSR0015'||fault.code=='BISUSR0016'||fault.code=='BISUSR0021'">
+						<!-- 密码错误累计 -->
+						<dipper:service ref="UserTrPwdCountService"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>    

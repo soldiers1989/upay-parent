@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccBindBookPo">
+	<select id="queryByVacctNo" resultType="java.util.Map" parameterType="java.util.Map">
+	    SELECT  
+	    a.*,
+	    b.ROUTE_CODE 
+	    FROM  T_ACC_BIND_BOOK a,T_PAY_ROUTE_CTL_INFO b
+	    <where>
+	       a.CARD_BIN = b.CARD_BIN
+	       <if test="vacctNo != null">
+			 AND a.V_ACCT_NO= #{vacctNo}
+		   </if>
+		</where>
+	</select>
+	<!-- 获取当前账户的某张卡的最新绑定信息 -->
+	<select id="getLastOneByTime" parameterType="com.upay.dao.po.acc.AccBindBookPo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column"/>  
+		from (
+			select 
+			rownum r,
+			<include refid="Base_Column"/>
+			from (
+				select 
+				<include refid="Base_Column"/>
+				from 
+				<include refid="Table_Name"/>
+				<where>
+					<if test="vacctNo != null">
+					AND V_ACCT_NO=#{vacctNo}
+					</if>
+					<if test="vbindAcctNo != null">
+					AND V_BIND_ACCT_NO=#{vbindAcctNo}
+					</if>
+				</where>
+				ORDER BY BIND_TIME DESC
+				)
+			) 
+			<where>
+				r<![CDATA[<]]>2
+			</where>
+	</select>
+</mapper>

@@ -1,0 +1,130 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+  <!-- 银联退款回调   -->
+  <dipper:flow service-id="SI_PAY3005">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 银联重复通知检查 -->
+					<dipper:service ref="CheckUnionRepeatNotifyService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.repeatFlag == 'true' ">
+						<dipper:stop/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 获取通道清算方式 -->
+					<dipper:service ref="GetClrtypeByRouteCodeService"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 获取订单状态和流水状态 -->
+					<dipper:service ref="DealAcpCallBackRufundStatusService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更改订单状态 -->
+					<dipper:if expression="target.bodys.ifOrderSuccess != 'true' ">					
+						<dipper:service ref="OrderStatusManageService" beforeDictConv-ref="dataPayBeforeReturnClearFlag"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更改流水状态 -->
+					<dipper:if expression="target.bodys.ifFlowSuccess != 'true' ">					
+						<dipper:service ref="SeqStatusManageService"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 所有通道账号获取 -->
+					<dipper:service ref="PayRouteInfoAllQryService"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 获取通道清算方式 -->
+					<dipper:service ref="GetClrtypeByRouteCodeService" param-ref="updateRouteCodeTo0001"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 登记核心流水 -->
+					<dipper:if expression="target.bodys.clrType == '1' || target.bodys.clrType == '2' ">
+						<dipper:service ref="RecordEsbCorePayFlowListService" param-ref="initPaySrFlag" beforeDictConv-ref="dataPayBeforeUnionRufundFLow"/>
+					</dipper:if>
+				</dipper:invoke>
+				
+				<dipper:invoke>
+					<!-- 初始化核心接口数据 -->
+					<dipper:if expression="target.bodys.clrType == '1' || target.bodys.clrType == '2' ">
+						<dipper:service ref="InitBankParamService"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 访问核心接口记账 -->
+					<dipper:if expression="target.bodys.clrType == '1' || target.bodys.clrType == '2'">
+						<dipper:service ref="coreCliDipperHandler" param-ref="initPayCoreBankToPay2" beforeDictConv-ref="dataPayBeforeUnionRufundForHost"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.clrType == '1' || target.bodys.clrType == '2' ">
+						<!-- 获取流水状态 -->
+						<dipper:service ref="PayErrHandleService" />
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.clrType == '1' || target.bodys.clrType == '2' ">
+						<!-- 更新 核心流水 -->
+						<dipper:service ref="SeqStatusManageService"/>
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 获取流水状态 -->
+					<dipper:service ref="PayErrHandleService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新 核心流水 -->
+					<dipper:service ref="SeqStatusManageService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.repeatFlag == 'true' ">
+						<dipper:stop/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 获取订单和清算状态 -->
+					<dipper:service ref="ResetOrderStatService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<!-- 更新订单和清算状态 -->
+					<dipper:service ref="OrderStatusManageService"/>
+				</dipper:invoke>
+			</dipper:route>
+			
+		</dipper:finally>
+	</dipper:flow>
+</beans>

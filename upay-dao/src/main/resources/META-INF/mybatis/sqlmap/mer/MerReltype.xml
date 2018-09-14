@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerReltypePo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerReltypePo">
+		<id column="ID" property="id" />
+		<result column="RELTYPE_NAME" property="reltypeName" />
+		<result column="RELTYPE_ID" property="reltypeId" />
+		<result column="ORI_RELTYPE_TYPE" property="oriReltypeType" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_RELTYPE
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		RELTYPE_NAME,
+		RELTYPE_ID,
+		ORI_RELTYPE_TYPE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="reltypeName != null">
+			RELTYPE_NAME= #{reltypeName}
+	           AND 
+		</if>
+		<if test="reltypeId != null">
+			RELTYPE_ID= #{reltypeId}
+	           AND 
+		</if>
+		<if test="oriReltypeType != null">
+			ORI_RELTYPE_TYPE= #{oriReltypeType}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="reltypeName != null">
+		RELTYPE_NAME,
+	</if>
+	<if test="reltypeId != null">
+		RELTYPE_ID,
+	</if>
+	<if test="oriReltypeType != null">
+		ORI_RELTYPE_TYPE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="reltypeName != null">
+		#{reltypeName},
+	</if>
+	<if test="reltypeId != null">
+		#{reltypeId},
+	</if>
+	<if test="oriReltypeType != null">
+		#{oriReltypeType},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="reltypeName != null">
+		RELTYPE_NAME=#{reltypeName},
+	</if>
+	<if test="reltypeId != null">
+		RELTYPE_ID=#{reltypeId},
+	</if>
+	<if test="oriReltypeType != null">
+		ORI_RELTYPE_TYPE=#{oriReltypeType},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.reltypeName != null">
+                    RELTYPE_NAME=#{s.reltypeName},
+			</if>
+			<if test="s.reltypeId != null">
+                    RELTYPE_ID=#{s.reltypeId},
+			</if>
+			<if test="s.oriReltypeType != null">
+                    ORI_RELTYPE_TYPE=#{s.oriReltypeType}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.reltypeName != null">
+                    RELTYPE_NAME=#{w.reltypeName}
+                   AND 
+ 			</if>
+			<if test="w.reltypeId != null">
+                    RELTYPE_ID=#{w.reltypeId}
+                   AND 
+ 			</if>
+			<if test="w.oriReltypeType != null">
+                    ORI_RELTYPE_TYPE=#{w.oriReltypeType}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

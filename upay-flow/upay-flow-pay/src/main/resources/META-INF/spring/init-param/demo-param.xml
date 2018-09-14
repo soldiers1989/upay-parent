@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+	<bean id="demoParam" class="java.util.HashMap">
+		<constructor-arg type="java.util.Map">
+			<map>
+				<!-- 交易额为钱 -->
+				<entry key="transCode" value="Demo_Flow_Svr" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+</beans>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.menu.UserMenuBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.menu.UserMenuBookPo">
+		<id column="ID" property="id" />
+		<result column="MENU_ID" property="menuId" />
+		<result column="USER_CERT_LEVEL" property="userCertLevel" />
+		<result column="APPLY_CHNL_ID" property="applyChnlId" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="REG_TYPE" property="regType" />
+		<result column="MER_LEVEL" property="merLevel" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_USER_MENU_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MENU_ID,
+		USER_CERT_LEVEL,
+		APPLY_CHNL_ID,
+		UPDATE_TIME,
+		UPDATE_USER_ID,
+		REG_TYPE,
+		MER_LEVEL
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="menuId != null">
+			MENU_ID= #{menuId}
+	           AND 
+		</if>
+		<if test="userCertLevel != null">
+			USER_CERT_LEVEL= #{userCertLevel}
+	           AND 
+		</if>
+		<if test="applyChnlId != null">
+			APPLY_CHNL_ID= #{applyChnlId}
+	           AND 
+		</if>
+		<if test="updateTime != null">
+			UPDATE_TIME= #{updateTime}
+	           AND 
+		</if>
+		<if test="updateUserId != null">
+			UPDATE_USER_ID= #{updateUserId}
+	           AND 
+		</if>
+		<if test="regType != null">
+			REG_TYPE= #{regType}
+	           AND 
+		</if>
+		<if test="merLevel != null">
+			MER_LEVEL= #{merLevel}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="menuId != null">
+		MENU_ID,
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL,
+	</if>
+	<if test="applyChnlId != null">
+		APPLY_CHNL_ID,
+	</if>
+	<if test="updateTime != null">
+		UPDATE_TIME,
+	</if>
+	<if test="updateUserId != null">
+		UPDATE_USER_ID,
+	</if>
+	<if test="regType != null">
+		REG_TYPE,
+	</if>
+	<if test="merLevel != null">
+		MER_LEVEL,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="menuId != null">
+		#{menuId},
+	</if>
+	<if test="userCertLevel != null">
+		#{userCertLevel},
+	</if>
+	<if test="applyChnlId != null">
+		#{applyChnlId},
+	</if>
+	<if test="updateTime != null">
+		#{updateTime},
+	</if>
+	<if test="updateUserId != null">
+		#{updateUserId},
+	</if>
+	<if test="regType != null">
+		#{regType},
+	</if>
+	<if test="merLevel != null">
+		#{merLevel},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="menuId != null">
+		MENU_ID=#{menuId},
+	</if>
+	<if test="userCertLevel != null">
+		USER_CERT_LEVEL=#{userCertLevel},
+	</if>
+	<if test="applyChnlId != null">
+		APPLY_CHNL_ID=#{applyChnlId},
+	</if>
+	<if test="updateTime != null">
+		UPDATE_TIME=#{updateTime},
+	</if>
+	<if test="updateUserId != null">
+		UPDATE_USER_ID=#{updateUserId},
+	</if>
+	<if test="regType != null">
+		REG_TYPE=#{regType},
+	</if>
+	<if test="merLevel != null">
+		MER_LEVEL=#{merLevel},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.menuId != null">
+                    MENU_ID=#{s.menuId},
+			</if>
+			<if test="s.userCertLevel != null">
+                    USER_CERT_LEVEL=#{s.userCertLevel},
+			</if>
+			<if test="s.applyChnlId != null">
+                    APPLY_CHNL_ID=#{s.applyChnlId},
+			</if>
+			<if test="s.updateTime != null">
+                    UPDATE_TIME=#{s.updateTime},
+			</if>
+			<if test="s.updateUserId != null">
+                    UPDATE_USER_ID=#{s.updateUserId},
+			</if>
+			<if test="s.regType != null">
+                    REG_TYPE=#{s.regType},
+			</if>
+			<if test="s.merLevel != null">
+                    MER_LEVEL=#{s.merLevel}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.menuId != null">
+                    MENU_ID=#{w.menuId}
+                   AND 
+ 			</if>
+			<if test="w.userCertLevel != null">
+                    USER_CERT_LEVEL=#{w.userCertLevel}
+                   AND 
+ 			</if>
+			<if test="w.applyChnlId != null">
+                    APPLY_CHNL_ID=#{w.applyChnlId}
+                   AND 
+ 			</if>
+			<if test="w.updateTime != null">
+                    UPDATE_TIME=#{w.updateTime}
+                   AND 
+ 			</if>
+			<if test="w.updateUserId != null">
+                    UPDATE_USER_ID=#{w.updateUserId}
+                   AND 
+ 			</if>
+			<if test="w.regType != null">
+                    REG_TYPE=#{w.regType}
+                   AND 
+ 			</if>
+			<if test="w.merLevel != null">
+                    MER_LEVEL=#{w.merLevel}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

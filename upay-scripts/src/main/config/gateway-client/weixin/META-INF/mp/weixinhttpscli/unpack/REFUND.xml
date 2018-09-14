@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+		<mapping xpath="appid" field="appId" must="not"/>
+        <mapping xpath="mch_id" field="mchId" must="not"/>
+        <mapping xpath="device_info" field="deviceInfo" must="not"/>
+        <mapping xpath="nonce_str" field="nonceStr" must="not"/>
+        <mapping xpath="sign" field="sign" must="not"/>        
+        <mapping xpath="transaction_id" field="transactionId" must="not"/>
+        <mapping xpath="out_trade_no" field="outTradeNo" must="not"/>
+        <mapping xpath="out_refund_no" field="outRefundNo" must="not"/>
+        <mapping xpath="refund_id" field="refundId" must="not"/>
+        <mapping xpath="refund_channel" field="refundChannel" must="not"/>
+        <mapping xpath="refund_fee" field="refundFee" must="not"/>
+        <mapping xpath="settlement_total_fee" field="settlementTotalFee" must="not"/>
+        <mapping xpath="total_fee" field="totalFee" must="not"/>
+        <mapping xpath="settlement_total_fee" field="settlementTotalFee" must="not"/>
+        <mapping xpath="fee_type" field="feeType" must="not"/>
+        <mapping xpath="cash_fee" field="cashFee" must="not"/>
+        <mapping xpath="cash_refund_fee" field="cashRefundFee" must="not"/> 
+        <mapping field="refundInfoList" type="index" must="not">
+			 <element name="coupon_type" field="couponType" />
+			 <element name="coupon_refund_fee" field="couponRefundFee" />
+			 <element name="coupon_refund_count" field="couponRefundCount" />
+			 <element field="couponRefundInfoList" type="index" must="not">
+			 	<element name="coupon_refund_batch_id" field="couponRefundBatchId" />
+			 	<element name="coupon_refund_id" field="couponRefundId" />
+			 	<element name="coupon_refund_fee" field="couponRefundFee" />
+			 </element>
+		</mapping>  
+	</mappings>
+</config>

@@ -1,0 +1,858 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+	<bean id="abstractDipperHandler"
+		  class="com.pactera.dipper.presys.cp.client.AbstractClientDipperHandler"
+		  abstract="true">
+		<property name="flow" ref="SI_weixincliFlow" />
+	</bean>
+
+	<!-- <bean id="weiXinGetOpenIdHandler" class="com.upay.gateway.client.weixin.WeiXinGetOpenIdHandler" /> -->
+	<bean id="defaultWeiXinMicropayClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinMicropayClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixincli" />
+	</bean>
+
+	<bean id="defaultWeiXinClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixincli" />
+	</bean>
+	
+	<!-- 双向验证 -->
+	<bean id="defaultWeiXinHttpsClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixinhttpscli" />
+	</bean>
+	
+	<!-- 双向验证商户维护 -->
+	<bean id="defaultWeiXinMerchHttpsClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixinmerchcli" />
+	</bean>
+	
+	<!--微信支付撤销订单API-->
+	<bean id="defaultWeiXinSecapiClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixinsecapili" />
+	</bean>
+
+
+	<!-- 刷卡支付交易保障API -->
+	<bean id="defaultWeiXinpayitilClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixinpayitilli" />
+	</bean>
+	
+
+	<!-- 刷卡支付转换短链接API与授权码查询OPENID接口 -->
+	<bean id="defaultWeiXintoolsClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixintoolsli" />
+	</bean>
+
+	<!-- 双向验证商户维护 -->
+	<bean id="defaultWeiXinMmpaymktHttpsClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixinmmpaymktcli" />
+	</bean>
+	
+	<!-- 特约商户配置 -->
+	<bean id="defaultWeiXinMchconfHttpsClientHandler"
+		  class="com.upay.gateway.client.weixin.DefaultWeiXinClientHandler"
+		  parent="abstractDipperHandler">
+		<property name="channel" ref="weixinmchconfcli" />
+	</bean>
+
+	<!-- pack验签 -->
+	<bean id="weiXinSignHandler" class="com.upay.gateway.client.weixin.WeiXinSignHandler">
+		<property name="keyName" value="sign" />
+		<property name="md5Key" value="${wechat.md5.key}" />
+		<property name="columnsMap">
+			<map>
+			<!-- 公众号订单订单关闭  -->
+				<entry key="CLOSEORDER">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="out_trade_no" value="outTradeNo" />
+					</map>
+				</entry>
+			
+			<!-- 公众号订单查询  -->
+				<entry key="ORDERQUERY">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="out_trade_no" value="outTradeNo" />
+					</map>
+				</entry>
+				<!--公众号统一下单  -->
+				<entry key="UNIFIEDORDER">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="sub_appid" value="subAppid" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />						
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="body" value="body" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="total_fee" value="totalFee" />
+						<entry key="spbill_create_ip" value="spbillCreateIp" />
+						<entry key="notify_url" value="notifyUrl" />
+						<entry key="trade_type" value="tradeType" />
+						<entry key="openid" value="openId" />
+						<entry key="product_id" value="productId" />
+						<entry key="attach" value="attach" />
+						<entry key="fee_type" value="feeType" />
+						<entry key="time_start" value="timeStart" />
+						<entry key="time_expire" value="timeExpire" />
+						<entry key="goods_tag" value="goodsTag" />
+						<entry key="sub_openid" value="subOpenid" />
+						<entry key="limit_pay" value="limitPay" />
+					</map>
+				</entry>
+				
+				<!-- 公众号下载对账单  -->
+				<entry key="DOWNLOADBILL">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="bill_date" value="billDate" />
+						<entry key="bill_type" value="billType" />
+					</map>
+				</entry>
+				
+				<!-- 公众号申请退款  -->
+				<entry key="REFUND">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="out_refund_no" value="outRefundNo" />						
+						<entry key="total_fee" value="totalFee" />
+						<entry key="refund_fee" value="refundFee" />
+						<entry key="op_user_id" value="opUserId" />					
+					</map>
+				</entry>
+				
+				<!-- 公众号查询退款  -->
+				<entry key="REFUNDQUERY">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_refund_no" value="outRefundNo" />
+						<entry key="refund_id" value="refundId" />
+					</map>
+				</entry>
+				
+				<!-- 新加刷卡支付 -->
+				<entry key="MICROPAY">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_appid" value="subAppid" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="device_info" value="deviceInfo" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="body" value="body" />
+						<entry key="detail" value="detail" />
+						<entry key="attach" value="attach" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="total_fee" value="totalFee" />
+						<entry key="fee_type" value="feeType" />
+						<entry key="spbill_create_ip" value="spbillCreateIp" />
+						<entry key="goods_tag" value="goodsTag" />
+						<entry key="limit_pay" value="limitPay" />
+						<entry key="auth_code" value="authCode" />			
+					</map>
+				</entry>
+				
+				<!-- 新加（微信支付刷卡查询）订单 -->
+				<entry key="ORDERQUERYPAY">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="out_trade_no" value="outTradeNo" />
+					</map>
+				</entry>
+				<!-- 新加（微信支付申请退款）-->
+				<entry key="REFUNDPAY">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="out_refund_no" value="outRefundNo" />		
+						<entry key="total_fee" value="totalFee" />
+						<entry key="refund_fee" value="refundFee" />
+						<entry key="op_user_id" value="opUserId" />					
+					</map>
+				</entry>
+
+				<!-- 新加（微信支付撤销订单API）-->
+				<entry key="BACKORDER">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="out_trade_no" value="outTradeNo" />				
+					</map>
+				</entry>
+
+
+	
+			<!-- 新加（微信刷卡支付交易保障API ）-->
+				<entry key="REPORT">
+						<map>
+							<entry key="appid" value="appId" />
+							<entry key="mch_id" value="mchId" />
+							<entry key="sub_mch_id" value="subMchId" />
+							<entry key="nonce_str" value="nonceStr" />
+							<entry key="interface_url" value="interfaceUrl" />	
+							<entry key="user_ip" value="userIp" />
+							<entry key="trades" value="trades" />
+						</map>
+					</entry>
+					
+					
+					
+						
+			<!-- 新加微信刷卡支付转换短链接API-->
+				<entry key="SHORTURL">
+						<map>
+							<entry key="appid" value="appId" />
+							<entry key="mch_id" value="mchId" />
+							<entry key="sub_mch_id" value="subMchId" />
+							<entry key="nonce_str" value="nonceStr" />
+							<entry key="long_url" value="longUrl" />
+						</map>
+					</entry>
+					
+					
+					<!-- 新加微信刷卡支付授权码查询OPENID接口 -->
+					<entry key="AUTHCODETOOPENID">
+						<map>
+							<entry key="appid" value="appId" />
+							<entry key="mch_id" value="mchId" />
+							<entry key="sub_mch_id" value="subMchId" />
+							<entry key="nonce_str" value="nonceStr" />
+							<entry key="auth_code" value="authCode" />
+						</map>
+					</entry>	
+					
+
+
+			<!-- 二类商户  -->
+			<!-- 新增商户（二类商户） -->
+				<entry key="NEWMERCHANT">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="merchant_name" value="merchantName" />
+						<entry key="merchant_shortname" value="merchantShortname" />
+						<entry key="service_phone" value="servicePhone" />
+						<entry key="contact" value="contact" />
+						<entry key="contact_phone" value="contactPhone" />
+						<entry key="contact_email" value="contactEmail" />
+						<entry key="business" value="business" />
+						<entry key="merchant_remark" value="merchantRemark" />
+						<entry key="channel_id" value="channelId" />
+						<entry key="contact_wechatid_type" value="contactWechatidType" />
+						<entry key="contact_wechatid" value="contactWechatid" />
+					</map>
+				</entry>
+				
+				<!-- 二类商户查询 -->
+				<entry key="QUERYMERCHANT">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="merchant_name" value="merchantName" />						
+						<entry key="page_index" value="pageIndex" />
+						<entry key="page_size" value="pageSize" />
+					</map>
+				</entry>
+				<!-- 二类商户修改 -->
+				<entry key="MODIFYMERCHANT">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="merchant_shortname" value="merchantShortname" />						
+						<entry key="service_phone" value="servicePhone" />
+						<entry key="contact" value="contact" />
+					</map>
+				</entry>
+				<!-- 二类商户删除-->
+				<entry key="DELETEMERCHANT">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+					</map>
+				</entry>
+				
+				<!-- 发放普通红包 -->
+				<entry key="SENDREDPACK">
+					<map>
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="mch_billno" value="mchBillno" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="wxappid" value="appid" />
+						<entry key="msgappid" value="msgappid" />
+						<entry key="send_name" value="sendName" />
+						<entry key="re_openid" value="reOpenid" />
+						<entry key="total_amount" value="totalAmount" />
+						<entry key="total_num" value="totalNo" />
+						<entry key="wishing" value="wishing" />
+						<entry key="client_ip" value="clientIp" />
+						<entry key="act_name" value="actName" />
+						<entry key="remark" value="remark" />
+						<entry key="scene_id" value="sceneId" />
+						<entry key="risk_info" value="riskInfo" />
+						<entry key="consume_mch_id" value="consumeMchId" />
+					</map>
+				</entry>
+				<!-- 发放裂变红包 -->
+				<entry key="SENDGROUPREDPACK">
+					<map>
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="mch_billno" value="mchBillno" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="wxappid" value="appid" />
+						<entry key="msgappid" value="msgappid" />
+						<entry key="send_name" value="sendName" />
+						<entry key="re_openid" value="reOpenid" />
+						<entry key="total_amount" value="totalAmount" />
+						<entry key="total_num" value="totalNo" />
+						<entry key="amt_type" value="amtType" />
+						<entry key="wishing" value="wishing" />
+						<entry key="act_name" value="actName" />
+						<entry key="remark" value="remark" />
+						<entry key="scene_id" value="sceneId" />
+						<entry key="risk_info" value="riskInfo" />
+						<entry key="consume_mch_id" value="consumeMchId" />
+					</map>
+				</entry>
+				
+				<!-- 查询红包记录 -->
+				<entry key="GETHBINFO">
+					<map>
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="mch_billno" value="mchBillno" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="appid" value="appid" />
+						<entry key="bill_type" value="billType" />
+					</map>
+				</entry>
+				
+				<!-- 关注配置 -->
+				<entry key="ATTENTIONCONF">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="sub_appid" value="subAppid" />
+						<entry key="subscribe_appid" value="subscribeAppid" />
+					</map>
+				</entry>
+				
+				<!-- 支付目录配置 -->
+				<entry key="PAYCATALOGCONF">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="jsapi_path" value="jsapiPath" />
+					</map>
+				</entry>
+				
+				<!-- 绑定APPID配置 -->
+				<entry key="BINDAPPIDCONF">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="sub_appid" value="subAppid" />
+					</map>
+				</entry>
+
+
+			</map>
+		</property>
+	</bean>
+	
+		<!-- 支付控件加签 -->
+	<bean id="paySignHandler" class="com.upay.gateway.client.weixin.WeiXinSignHandler">
+		<property name="keyName" value="paySign" />
+		<property name="md5Key" value="${wechat.md5.key}" />
+		<property name="columnsMap">
+			<map>
+				<entry key="UNIFIEDORDER">
+					<map>
+						<entry key="appId" value="appId" />
+						<entry key="timeStamp" value="timeStamp" />
+						<entry key="package=prepay_id" value="prepayId" />
+						<entry key="nonceStr" value="nonceStr" />
+						<entry key="signType" value="signType" />
+					</map>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<!-- unpack验签 -->
+	<bean id="weiXinVerifySignHandler" class="com.upay.gateway.client.weixin.WeiXinVerifySignHandler">
+		<property name="keyName" value="sign" />
+		<property name="md5Key" value="${wechat.md5.key}" />
+		<property name="columnsMap">
+			<map>
+			    <!-- 公众号關閉訂單  -->
+				<entry key="CLOSEORDER">
+					<map>
+						<entry key="return_code" value="returnCode"/>
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="result_code" value="resultCode"/>
+	        			<entry key="appid" value="appId" />
+	        			<entry key="mch_id" value="mchId"/>
+	        			<entry key="nonce_str" value="nonceStr"/>
+	        			<entry key="sub_mch_id" value="subMchId"/>
+	        			
+					</map>
+				</entry>
+			
+			
+				<!-- 公众号订单查询  -->
+				<entry key="ORDERQUERY">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_appid" value="subAppid" /> 
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="device_info" value="deviceInfo" />
+						<entry key="openid" value="openId" />
+						<entry key="is_subscribe" value="isSubscribe" />
+						<entry key="sub_openid" value="subOpenid" />
+						<entry key="sub_is_subscribe" value="subIsSubscribe" />
+						<entry key="trade_type" value="tradeType" />
+						<entry key="trade_state" value="tradeState" />
+						<entry key="bank_type" value="bankType" />
+						<entry key="detail" value="detail" />
+						<entry key="total_fee" value="totalFee" />
+						<entry key="fee_type" value="feeType" />
+						<entry key="coupon_fee" value="couponFee" />
+						<entry key="coupon_count" value="couponCount" />
+						<entry key="cash_fee" value="cashFee" />
+						<entry key="cash_fee_type" value="cashFeeType" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="attach" value="attach" />
+						<entry key="time_end" value="timeEnd" />
+						<entry key="trade_state_desc" value="tradeStateDesc" />
+					</map>
+				</entry>
+				
+				<!-- 公众号统一下单  -->
+				<entry key="UNIFIEDORDER">
+					<map>
+						<entry key="return_code" value="returnCode"/>
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="result_code" value="resultCode"/>
+	        			<entry key="appid" value="appId" />
+	        			<entry key="mch_id" value="mchId"/>
+	        			<entry key="nonce_str" value="nonceStr"/>
+	        			<entry key="prepay_id" value="prepayId"/>     			
+	        			<entry key="trade_type" value="tradeType"/> 
+	        			<entry key="sub_appid" value="subAppid" />       			
+	        			<entry key="sub_mch_id" value="subMchId"/>
+	        			<entry key="code_url" value="codeUrl"/>
+					</map>
+				</entry>
+				
+				<!-- 公众号下载对账单  -->
+				<entry key="DOWNLOADBILL">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg"/>
+					</map>
+				</entry>
+				
+				<!-- 公众号申请退款  -->
+				<entry key="REFUND">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="out_refund_no" value="outRefundNo" />
+						<entry key="refund_id" value="refundId" />
+						<entry key="refund_channel" value="refundChannel" />
+						<entry key="refund_fee" value="refundFee" />	
+						<entry key="total_fee" value="totalFee" />
+						<entry key="cash_fee" value="cashFee" />	
+					</map>
+				</entry>
+				
+				<!-- 公众号查询退款  -->
+				<entry key="REFUNDQUERY">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="total_fee" value="totalFee" />
+						<entry key="cash_fee" value="cashFee" />
+						<entry key="refund_count" value="refundCount" />			
+						<entry key="out_refund_no_$n" value="outRefundNo" />
+						<entry key="refund_id_$n" value="refundId" />
+						<entry key="refund_fee_$n" value="refundFee" />
+						<entry key="refund_status_$n" value="refundStatus" />
+						<entry key="refund_recv_accout_$n" value="refundRecvAccout" />					
+					</map>
+				</entry>
+				
+				<!-- 新加微信刷卡支付 -->
+				<entry key="MICROPAY">
+					<map>
+					    <entry key="return_code" value="returnCode" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />					
+						<entry key="openid" value="openid" />
+						<entry key="is_subscribe" value="isSubscribe" />
+						<entry key="sub_openid" value="subOpenid" />
+						<entry key="sub_is_subscribe" value="subIsSubscribe" />
+						<entry key="sub_appid" value="subAppid" /> 
+						<entry key="trade_type" value="tradeType" />
+						<entry key="bank_type" value="bankType" />						
+						<entry key="total_fee" value="totalFee" />
+						<entry key="cash_fee" value="cashFee" />					
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />						
+						<entry key="time_end" value="timeEnd" />						
+						<entry key="attach" value="attach" />	
+						<entry key="fee_type" value="feeType" />
+						<entry key="cash_fee_type" value="cashFeeType" />					
+					</map>
+				</entry>
+
+				<!-- 新加（微信支付刷卡查询）订单 -->
+				<entry key="ORDERQUERYPAY">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_appid" value="subAppid" /> 
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="device_info" value="deviceInfo" />
+						<entry key="openid" value="openId" />
+						<entry key="is_subscribe" value="isSubscribe" />
+						<entry key="sub_openid" value="subOpenid" />
+						<entry key="sub_is_subscribe" value="subIsSubscribe" />
+						<entry key="trade_type" value="tradeType" />
+						<entry key="trade_state" value="tradeState" />
+						<entry key="bank_type" value="bankType" />
+						<entry key="detail" value="detail" />
+						<entry key="total_fee" value="totalFee" />
+						<entry key="fee_type" value="feeType" />
+						<entry key="coupon_fee" value="couponFee" />
+						<entry key="coupon_count" value="couponCount" />
+						<entry key="cash_fee" value="cashFee" />
+						<entry key="cash_fee_type" value="cashFeeType" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="attach" value="attach" />
+						<entry key="time_end" value="timeEnd" />
+						<entry key="trade_state_desc" value="tradeStateDesc" />
+					</map>
+				</entry>
+				
+				<!-- 新加（微信支付申请退款） -->
+				<entry key="REFUNDPAY">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />
+						<entry key="transaction_id" value="transactionId" />
+						<entry key="out_trade_no" value="outTradeNo" />
+						<entry key="out_refund_no" value="outRefundNo" />
+						<entry key="refund_id" value="refundId" />
+						<entry key="refund_channel" value="refundChannel" />
+						<entry key="refund_fee" value="refundFee" />					
+						<entry key="totalFee" value="total_fee" />
+						<entry key="cashFee" value="cash_fee" />	
+					</map>
+				</entry>
+
+
+				<!-- 新加微信刷卡撤销订单API -->
+				<entry key="BACKORDER">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="return_msg" value="returnMsg"/>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="nonce_str" value="nonceStr" />					
+						<entry key="recall" value="recall" />				
+					</map>
+				</entry>
+
+
+				<!-- 新加（微信刷卡支付交易保障API ）-->
+				<entry key="REPORT">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="return_msg" value="returnMsg"/>
+					</map>
+				</entry>
+
+			<!-- 新加微信刷卡支付转换短链接API-->
+				<entry key="SHORTURL">
+						<map>
+						<entry key="return_code" value="returnCode" />
+							<entry key="result_code" value="resultCode" />
+							<entry key="return_msg" value="returnMsg"/>
+							<entry key="appid" value="appId" />
+							<entry key="mch_id" value="mchId" />
+							<entry key="sub_mch_id" value="subMchId" />
+							<entry key="nonce_str" value="nonceStr" />
+							<entry key="short_url" value="shortUrl" />
+						</map>
+					</entry>
+					
+					
+					<!-- 新加微信刷卡支付授权码查询OPENID接口 -->
+					<entry key="AUTHCODETOOPENID">
+						<map>
+							<entry key="return_code" value="returnCode" />
+							<entry key="result_code" value="resultCode" />
+							<entry key="return_msg" value="returnMsg"/>
+							<entry key="appid" value="appId" />
+							<entry key="mch_id" value="mchId" />
+							<entry key="sub_mch_id" value="subMchId" />
+							<entry key="nonce_str" value="nonceStr" />
+							<entry key="openid" value="openid" />
+							<entry key="sub_openid" value="subOpenid" />
+						</map>
+					</entry>	
+
+
+
+
+				<!-- 二类商户  -->
+				<!-- 新增商户（二类商户） -->
+				<entry key="NEWMERCHANT">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="merchant_name" value="merchantName" />
+						<entry key="merchant_shortname" value="merchantShortname" />
+						<entry key="service_phone" value="servicePhone" />
+						<entry key="contact" value="contact" />
+						<entry key="contact_phone" value="contactPhone" />
+						<entry key="contact_email" value="contactEmail" />
+						<entry key="business" value="business" />
+						<entry key="merchant_remark" value="merchantRemark" />
+					</map>
+				</entry>
+								
+				<!-- 二类商户查询 -->
+				<entry key="QUERYMERCHANT">
+					<map>
+						<entry key="appid" value="appId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="merchant_name" value="merchantName" />						
+						<entry key="page_index" value="pageIndex" />
+						<entry key="page_size" value="pageSize" />
+					</map>
+				</entry>
+				
+					<!-- 发放普通红包 -->
+				<entry key="SENDREDPACK">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="err_code" value="errCode" />
+						<entry key="err_code_des" value="errCodeDes" />
+						<entry key="mch_billno" value="mchBillno" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="wxappid" value="appid" />
+						<entry key="re_openid" value="reOpenid" />
+						<entry key="total_amount" value="totalAmount" />
+						<entry key="send_listid" value="sendListid" />
+					</map>
+				</entry>
+				<!-- 发放裂变红包 -->
+				<entry key="SENDGROUPREDPACK">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="sub_mch_id" value="subMchId" />
+						<entry key="wxappid" value="appid" />
+						<entry key="msgappid" value="msgappid" />
+						<entry key="send_name" value="sendName" />
+						<entry key="re_openid" value="reOpenid" />
+						<entry key="total_amount" value="totalAmount" />
+						<entry key="total_num" value="totalNo" />
+						<entry key="amt_type" value="amtType" />
+						<entry key="wishing" value="wishing" />
+						<entry key="act_name" value="actName" />
+						<entry key="remark" value="remark" />
+						<entry key="scene_id" value="sceneId" />
+						<entry key="risk_info" value="riskInfo" />
+						<entry key="consume_mch_id" value="consumeMchId" />
+					</map>
+				</entry>
+				
+				<!-- 查询红包记录 -->
+				<entry key="GETHBINFO">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="err_code" value="errCode" />
+						<entry key="err_code_des" value="errCodeDes" />
+						<entry key="mch_billno" value="mchBillno" />
+						<entry key="mch_id" value="mchId" />
+						<entry key="detail_id" value="detailId" />
+						<entry key="status" value="status" />
+						<entry key="send_type" value="sendType" />
+						<entry key="hb_type" value="hbType" />
+						<entry key="hb_type" value="hbType" />
+						<entry key="total_num" value="totalNo" />
+						<entry key="total_amount" value="totalAmount" />
+						<entry key="reason" value="reason" />
+						<entry key="send_time" value="sendTime" />
+						<entry key="refund_time" value="refundTime" />
+						<entry key="refund_amount" value="refundAmount" />
+						<entry key="wishing" value="wishing" />
+						<entry key="remark" value="remark" />
+						<entry key="act_name" value="actName" />
+						<entry key="hblist" value="hblist" />
+						<entry key="openid" value="openid" />
+						<entry key="amount" value="amount" />
+						<entry key="rcv_time" value="rcvTime" />
+					</map>
+				</entry>
+				
+				<!-- 关注配置 -->
+				<entry key="ATTENTIONCONF">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="err_code" value="errCode" />
+						<entry key="err_code_des" value="errCodeDes" />
+					</map>
+				</entry>
+				
+				<!-- 支付目录配置 -->
+				<entry key="PAYCATALOGCONF">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="err_code" value="errCode" />
+						<entry key="err_code_des" value="errCodeDes" />
+					</map>
+				</entry>
+				
+				<!-- 绑定APPID配置 -->
+				<entry key="BINDAPPIDCONF">
+					<map>
+						<entry key="return_code" value="returnCode" />
+						<entry key="return_msg" value="returnMsg" />
+						<entry key="result_code" value="resultCode" />
+						<entry key="err_code" value="errCode" />
+						<entry key="err_code_des" value="errCodeDes" />
+					</map>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- 双向认证https init-method="loadCert" -->
+	<bean id="httpsClientHandler"
+		  class="com.upay.gateway.client.weixin.WeixinHttpsClientCommHandler" init-method="loadCert">
+		<property name="mchId" value="${wechat.merid}" />
+		<!-- 玉溪银行本地证书 -->
+		<property name="certPath" value="${wechat.cert.path}" />
+		<!-- <property name="certPath" value="E:/DEV_ENV/config-file/apiclient_cert.p12" /> -->
+	</bean>
+
+	<!-- 处理对账文件流 -->
+	<bean id="processFileStreamHandler" class="com.upay.gateway.client.weixin.ProcessFileStreamHandler" >
+		<property name="filePath" value="${wechat.process.filepath}" />
+		<property name="fileName" value="acctbill" />
+	</bean>
+</beans>

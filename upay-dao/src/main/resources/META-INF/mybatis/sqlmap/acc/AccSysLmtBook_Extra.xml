@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccSysLmtBookPo">
+	
+	<select id="getAccSysLmt" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column"/>
+		FROM 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="accType != null">
+				AND ACCT_TYPE=#{accType}
+			</if>
+			<if test="userLevel != null">
+				AND USER_LEVEL=#{userLevel}
+			</if>
+			<if test="dcFlag != null">
+				AND DC_FLAG=#{dcFlag}
+			</if>
+			<if test="transCode != null">
+				AND TRANS_CODE=#{transCode}
+			</if>
+			<if test="chnlId != null">
+				AND CHNL_ID=#{chnlId}
+			</if>
+			<if test="lmtType != null">
+				AND LMT_TYPE=#{lmtType}
+			</if>
+			<if test="lmtStat != null">
+				AND LMT_STAT=#{lmtStat}
+			</if>
+			<if test="userType != null and userTypeAll != null">
+		 		AND (USER_TYPE=#{userType} OR USER_TYPE=#{userTypeAll}) 
+		 	</if>
+		 	<if test="userType == null">
+		 		AND USER_TYPE IS NULL
+		 	</if>
+			<if test="now != null">
+				AND to_date(to_char(BEG_DATE,'yyyymmdd'),'yyyymmdd') <![CDATA[<=]]> to_date(to_char(#{now},'yyyymmdd'),'yyyymmdd')
+				AND to_date(to_char(END_DATE,'yyyymmdd'),'yyyymmdd') <![CDATA[>=]]> to_date(to_char(#{now},'yyyymmdd'),'yyyymmdd')
+			</if>
+		</where>
+	</select>
+
+</mapper>

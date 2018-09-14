@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝订单退款 -->
+<data templateType="IN" 
+transCode="refund">
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 商户订单号 -->
+	<column oldName="outTradeNo" newName="out_trade_no"/>
+	<!--支付宝交易号，和商户订单号不能同时为空 -->
+	<column oldName="tradeNo" newName="trade_no"/>
+	<!-- 需要退款的金额，该金额不能大于订单金额,单位为元，支持两位小数 -->
+	<column oldName="refundAmount" newName="refund_amount" must="true" type="java.math.BigDecimal"/>
+	<!--  退款的原因说明-->
+	<column oldName="refundReason" newName="refund_reason"/>
+	<!-- 标识一次退款请求，同一笔交易多次退款需要保证唯一，如需部分退款，则此参数必传。 -->
+	<column oldName="outRequestNo" newName="out_request_no" must="true"/>
+	<!-- 商户的操作员编号 -->
+	<column oldName="operatorId" newName="operator_id"/>
+	<!-- 商户的门店编号 -->
+	<column oldName="storeId" newName="store_id"/>
+	<!-- 商户的终端编号 -->
+	<column oldName="terminalId" newName="terminal_id"/>
+	<!-- 退款包含的商品列表信息 -->
+    <column oldName="goodsDetail" newName="goods_detail" type="List">
+    	<column oldName="goodsId" newName="goods_id" must="true"/><!-- 商品的编号-->
+    	<column oldName="goodsName" newName="goods_name" must="true"/><!-- 商品名称 -->
+    	<column oldName="quantity" newName="quantity" must="true"/><!-- 商品数量 -->
+    	<column oldName="price" newName="price" must="true"/><!-- 商品单价，单位为元-->
+    	<column oldName="goodsCategory" newName="goods_category"/><!-- 商品类目 -->
+    	<column oldName="body" newName="body"/><!-- 商品描述信息 -->
+    	<column oldName="showUrl" newName="show_url"/><!-- 商品的展示地址 -->
+    </column>
+</data>

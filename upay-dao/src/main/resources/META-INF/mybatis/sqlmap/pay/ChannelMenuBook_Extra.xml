@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.ChannelMenuBookPo">
+     <select id="topflag1" resultMap="BaseResultMap">
+		 select
+		 <include refid="Base_Column"></include>
+		 from
+		 <include refid="Table_Name"></include>
+		 <where>
+		 <if test="channelId!=null">
+		 AND CHANNEL_ID=#{channelId}
+		 </if>
+		 AND CHANNEL_TOPLEAF is null
+		 </where>
+		 ORDER BY ID		
+	</select>
+	
+	<select id="topflag" resultMap="BaseResultMap">
+		 select
+		 <include refid="Base_Column"></include>
+		 from
+		 <include refid="Table_Name"></include>
+		 <where>
+		 <if test="channelChildleaf!=null">
+		 AND CHANNEL_CHILDLEAF=#{channelChildleaf}
+		 </if>
+		 <if test="channelTopleaf">
+		 AND CHANNEL_TOPLEAF=#{channelTopleaf}
+		 </if>
+		 <if test="channelId!=null">
+		 AND CHANNEL_ID=#{channelId}
+		 </if>
+		 </where>
+		 ORDER BY ID		
+	</select>
+	
+	<select id="getMerChannelMenu" resultMap="BaseResultMap">
+		 select
+		 <include refid="Base_Column"></include>
+		 from
+		 <include refid="Table_Name"></include>
+		 <where>
+		 ID in (SELECT CHANNEL_MENU_BOOK_ID  FROM T_MER_CHANNEL_MENU WHERE MER_NO=#{merNo} AND CHANNEL_ID=#{channelId})
+		 </where>
+		 ORDER BY PRIORITY
+	</select>
+</mapper>

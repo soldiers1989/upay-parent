@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.DsConfPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.DsConfPo">
+		<result column="ID" property="id" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="CALLER_CHNL_ID" property="callerChnlId" />
+		<result column="PAY_ROUTE" property="payRoute" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_DS_CONF
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TRANS_CODE,
+		CALLER_CHNL_ID,
+		PAY_ROUTE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="callerChnlId != null">
+			CALLER_CHNL_ID= #{callerChnlId}
+	           AND 
+		</if>
+		<if test="payRoute != null">
+			PAY_ROUTE= #{payRoute}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="callerChnlId != null">
+		CALLER_CHNL_ID,
+	</if>
+	<if test="payRoute != null">
+		PAY_ROUTE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="callerChnlId != null">
+		#{callerChnlId},
+	</if>
+	<if test="payRoute != null">
+		#{payRoute},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="callerChnlId != null">
+		CALLER_CHNL_ID=#{callerChnlId},
+	</if>
+	<if test="payRoute != null">
+		PAY_ROUTE=#{payRoute},
+	</if>
+		</set>
+		where 
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.id != null">
+                    ID=#{s.id},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.callerChnlId != null">
+                    CALLER_CHNL_ID=#{s.callerChnlId},
+			</if>
+			<if test="s.payRoute != null">
+                    PAY_ROUTE=#{s.payRoute}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.callerChnlId != null">
+                    CALLER_CHNL_ID=#{w.callerChnlId}
+                   AND 
+ 			</if>
+			<if test="w.payRoute != null">
+                    PAY_ROUTE=#{w.payRoute}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

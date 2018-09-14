@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.StlRouteFeeBookPo">
+	<select id="queryRepeatRecord"  parameterType="java.util.HashMap" resultMap="BaseResultMap">
+	  	select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where> 
+				STL_DATE= #{stlDate} 
+				<if test="assId != null">
+				AND ASS_ID= #{assId} 
+				</if>
+				<if test="assId == null">
+				AND ASS_ID IS NULL
+				</if>
+				AND FLAG= #{flag}
+				<if test="routeCode != null">
+				AND ROUTE_CODE= #{routeCode}
+				</if>
+				<if test="routeCode == null">
+				AND ROUTE_CODE IS NULL
+				</if>
+		</where>
+	</select>
+	<select id="syncProcessing"  parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where> 
+			RESULT='3'
+			AND  <![CDATA[STL_DATE < TO_DATE(#{transDate}, 'yyyy-MM-dd')]]>
+		</where>
+	</select>
+	<select id="queryTransferList"  parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where> 
+			RESULT IN ('0','2')
+		</where>
+	</select>
+</mapper>

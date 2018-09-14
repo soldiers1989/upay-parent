@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.CONTRAL_FLAG" field="contralFlag"/>
+		<mapping xpath="$.body.MER_PLAT_NO" field="merPlatNo"/>
+		<mapping xpath="$.body.FILE_URL" field="fileUrl" must="not"/>
+		<mapping xpath="$.body.REFER_URL" field="referUrl" must="not"/>
+		<mapping xpath="$.body.SIGN_TYPE" field="signType" must="not"/>
+		<mapping xpath="$.body.FILE_ENCRY_TYPE" field="fileEncryType" must="not"/>
+		<mapping xpath="$.body.KEY_3DES" field="key3des" must="not"/>
+		<mapping xpath="$.body.CHECK_FILE_FORM_TYPE" field="checkFileFormType" must="not"/>
+		<mapping xpath="$.body.SIGN_CHECK_FLAG" field="signCheckFlag" must="not"/>
+		<mapping xpath="$.body.FILE_TRANSFER_MODE" field="fileTransferMode" must="not"/>
+		<mapping xpath="$.body.FTP_IP" field="ftpIp" must="not"/>
+		<mapping xpath="$.body.FTP_PORT" field="ftpPort" must="not"/>
+		<mapping xpath="$.body.FTP_USER_NAME" field="ftpUserName" must="not"/>
+		<mapping xpath="$.body.FTP_PWD" field="ftpPwd" must="not"/>
+		<mapping xpath="$.body.FILE_UPLOAD_PATH" field="fileUploadPath" must="not"/>
+		<mapping xpath="$.body.MODIFY_USER" field="modifyUser" must="not"/>
+		<mapping xpath="$.body.DATE_LAST_MAINT" field="dateLastMaint" must="not"/>
+		<mapping xpath="$.body.MER_REP_URL_B" field="merRepUrlB" must="not"/>
+		<mapping xpath="$.body.MER_REP_URL_F" field="merRepUrlF" must="not"/>
+		<mapping xpath="$.body.MER_KEY" field="merKey" must="not"/>
+		<mapping xpath="$.body.CLEAR_CHECK_FLAG" field="clearCheckFlag" must="not"/>
+		<mapping xpath="$.body.CONTROL_CHNL_ID" field="controlChnlId" must="not"/>
+	</mappings>
+</config>

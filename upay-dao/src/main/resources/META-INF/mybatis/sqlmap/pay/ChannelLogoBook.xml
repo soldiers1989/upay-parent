@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.ChannelLogoBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.ChannelLogoBookPo">
+		<id column="ID" property="id" />
+		<result column="LOGO_ID" property="logoId" />
+		<result column="LOGO_NAME" property="logoName" />
+		<result column="LOGO_CLASS" property="logoClass" />
+		<result column="REMARK" property="remark" />
+		<result column="CHANNEL_ID" property="channelId" />
+		<result column="CHANNEL_TRANSLMT" property="channelTranslmt" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_CHANNEL_LOGO_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		LOGO_ID,
+		LOGO_NAME,
+		LOGO_CLASS,
+		REMARK,
+		CHANNEL_ID,
+		CHANNEL_TRANSLMT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="logoId != null">
+			LOGO_ID= #{logoId}
+	           AND 
+		</if>
+		<if test="logoName != null">
+			LOGO_NAME= #{logoName}
+	           AND 
+		</if>
+		<if test="logoClass != null">
+			LOGO_CLASS= #{logoClass}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="channelId != null">
+			CHANNEL_ID= #{channelId}
+	           AND 
+		</if>
+		<if test="channelTranslmt != null">
+			CHANNEL_TRANSLMT= #{channelTranslmt}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="logoId != null">
+		LOGO_ID,
+	</if>
+	<if test="logoName != null">
+		LOGO_NAME,
+	</if>
+	<if test="logoClass != null">
+		LOGO_CLASS,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="channelId != null">
+		CHANNEL_ID,
+	</if>
+	<if test="channelTranslmt != null">
+		CHANNEL_TRANSLMT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="logoId != null">
+		#{logoId},
+	</if>
+	<if test="logoName != null">
+		#{logoName},
+	</if>
+	<if test="logoClass != null">
+		#{logoClass},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="channelId != null">
+		#{channelId},
+	</if>
+	<if test="channelTranslmt != null">
+		#{channelTranslmt},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="logoId != null">
+		LOGO_ID=#{logoId},
+	</if>
+	<if test="logoName != null">
+		LOGO_NAME=#{logoName},
+	</if>
+	<if test="logoClass != null">
+		LOGO_CLASS=#{logoClass},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="channelId != null">
+		CHANNEL_ID=#{channelId},
+	</if>
+	<if test="channelTranslmt != null">
+		CHANNEL_TRANSLMT=#{channelTranslmt},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.logoId != null">
+                    LOGO_ID=#{s.logoId},
+			</if>
+			<if test="s.logoName != null">
+                    LOGO_NAME=#{s.logoName},
+			</if>
+			<if test="s.logoClass != null">
+                    LOGO_CLASS=#{s.logoClass},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.channelId != null">
+                    CHANNEL_ID=#{s.channelId},
+			</if>
+			<if test="s.channelTranslmt != null">
+                    CHANNEL_TRANSLMT=#{s.channelTranslmt}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.logoId != null">
+                    LOGO_ID=#{w.logoId}
+                   AND 
+ 			</if>
+			<if test="w.logoName != null">
+                    LOGO_NAME=#{w.logoName}
+                   AND 
+ 			</if>
+			<if test="w.logoClass != null">
+                    LOGO_CLASS=#{w.logoClass}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.channelId != null">
+                    CHANNEL_ID=#{w.channelId}
+                   AND 
+ 			</if>
+			<if test="w.channelTranslmt != null">
+                    CHANNEL_TRANSLMT=#{w.channelTranslmt}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

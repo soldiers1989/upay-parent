@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.trans.TransTemplatePo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.trans.TransTemplatePo">
+		<id column="ID" property="id" />
+		<result column="TEMPLATE_NAME" property="templateName" />
+		<result column="TEMPLATE_DESC" property="templateDesc" />
+		<result column="TEMPLATE_ID" property="templateId" />
+		<result column="IS_DEFAULT" property="isDefault" />
+		<result column="REMARK" property="remark" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_TRANS_TEMPLATE
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TEMPLATE_NAME,
+		TEMPLATE_DESC,
+		TEMPLATE_ID,
+		IS_DEFAULT,
+		REMARK,
+		REMARK1
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="templateName != null">
+			TEMPLATE_NAME= #{templateName}
+	           AND 
+		</if>
+		<if test="templateDesc != null">
+			TEMPLATE_DESC= #{templateDesc}
+	           AND 
+		</if>
+		<if test="templateId != null">
+			TEMPLATE_ID= #{templateId}
+	           AND 
+		</if>
+		<if test="isDefault != null">
+			IS_DEFAULT= #{isDefault}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="templateName != null">
+		TEMPLATE_NAME,
+	</if>
+	<if test="templateDesc != null">
+		TEMPLATE_DESC,
+	</if>
+	<if test="templateId != null">
+		TEMPLATE_ID,
+	</if>
+	<if test="isDefault != null">
+		IS_DEFAULT,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="templateName != null">
+		#{templateName},
+	</if>
+	<if test="templateDesc != null">
+		#{templateDesc},
+	</if>
+	<if test="templateId != null">
+		#{templateId},
+	</if>
+	<if test="isDefault != null">
+		#{isDefault},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="templateName != null">
+		TEMPLATE_NAME=#{templateName},
+	</if>
+	<if test="templateDesc != null">
+		TEMPLATE_DESC=#{templateDesc},
+	</if>
+	<if test="templateId != null">
+		TEMPLATE_ID=#{templateId},
+	</if>
+	<if test="isDefault != null">
+		IS_DEFAULT=#{isDefault},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.templateName != null">
+                    TEMPLATE_NAME=#{s.templateName},
+			</if>
+			<if test="s.templateDesc != null">
+                    TEMPLATE_DESC=#{s.templateDesc},
+			</if>
+			<if test="s.templateId != null">
+                    TEMPLATE_ID=#{s.templateId},
+			</if>
+			<if test="s.isDefault != null">
+                    IS_DEFAULT=#{s.isDefault},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.templateName != null">
+                    TEMPLATE_NAME=#{w.templateName}
+                   AND 
+ 			</if>
+			<if test="w.templateDesc != null">
+                    TEMPLATE_DESC=#{w.templateDesc}
+                   AND 
+ 			</if>
+			<if test="w.templateId != null">
+                    TEMPLATE_ID=#{w.templateId}
+                   AND 
+ 			</if>
+			<if test="w.isDefault != null">
+                    IS_DEFAULT=#{w.isDefault}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

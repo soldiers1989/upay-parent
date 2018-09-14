@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeGetPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeGetPo">
+		<id column="ID" property="id" />
+		<result column="FEE_NAME" property="feeName" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="CHNL_ID" property="chnlId" />
+		<result column="MER_NO" property="merNo" />
+		<result column="SEC_MER_NO" property="secMerNo" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="FEE_CODE" property="feeCode" />
+		<result column="ASS_CODE" property="assCode" />
+		<result column="START_DATE" property="startDate" />
+		<result column="END_DATE" property="endDate" />
+		<result column="FREE_CYCLE" property="freeCycle" />
+		<result column="FREE_COUNT" property="freeCount" />
+		<result column="PER_FEE" property="perFee" />
+		<result column="GET_TYPE" property="getType" />
+		<result column="LAST_UPD_USER_ID" property="lastUpdUserId" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="MEMO" property="memo" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="FEE_ID" property="feeId" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="ROUTE_FEE_FLAG" property="routeFeeFlag" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_GET
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		FEE_NAME,
+		ACCT_TYPE,
+		CHNL_ID,
+		MER_NO,
+		SEC_MER_NO,
+		TRANS_CODE,
+		FEE_CODE,
+		ASS_CODE,
+		START_DATE,
+		END_DATE,
+		FREE_CYCLE,
+		FREE_COUNT,
+		PER_FEE,
+		GET_TYPE,
+		LAST_UPD_USER_ID,
+		LAST_UPDATE_TIME,
+		MEMO,
+		ROUTE_CODE,
+		FEE_ID,
+		USER_TYPE,
+		ROUTE_FEE_FLAG
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="feeName != null">
+			FEE_NAME= #{feeName}
+	           AND 
+		</if>
+		<if test="acctType != null">
+			ACCT_TYPE= #{acctType}
+	           AND 
+		</if>
+		<if test="chnlId != null">
+			CHNL_ID= #{chnlId}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="secMerNo != null">
+			SEC_MER_NO= #{secMerNo}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="feeCode != null">
+			FEE_CODE= #{feeCode}
+	           AND 
+		</if>
+		<if test="assCode != null">
+			ASS_CODE= #{assCode}
+	           AND 
+		</if>
+		<if test="startDate != null">
+			START_DATE= #{startDate}
+	           AND 
+		</if>
+		<if test="endDate != null">
+			END_DATE= #{endDate}
+	           AND 
+		</if>
+		<if test="freeCycle != null">
+			FREE_CYCLE= #{freeCycle}
+	           AND 
+		</if>
+		<if test="freeCount != null">
+			FREE_COUNT= #{freeCount}
+	           AND 
+		</if>
+		<if test="perFee != null">
+			PER_FEE= #{perFee}
+	           AND 
+		</if>
+		<if test="getType != null">
+			GET_TYPE= #{getType}
+	           AND 
+		</if>
+		<if test="lastUpdUserId != null">
+			LAST_UPD_USER_ID= #{lastUpdUserId}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="memo != null">
+			MEMO= #{memo}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+	           AND 
+		</if>
+		<if test="feeId != null">
+			FEE_ID= #{feeId}
+	           AND 
+		</if>
+		<if test="userType != null">
+			USER_TYPE= #{userType}
+				AND
+		</if>
+		<if test="routeFeeFlag != null">
+			ROUTE_FEE_FLAG= #{routeFeeFlag}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="feeName != null">
+		FEE_NAME,
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE,
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="feeCode != null">
+		FEE_CODE,
+	</if>
+	<if test="assCode != null">
+		ASS_CODE,
+	</if>
+	<if test="startDate != null">
+		START_DATE,
+	</if>
+	<if test="endDate != null">
+		END_DATE,
+	</if>
+	<if test="freeCycle != null">
+		FREE_CYCLE,
+	</if>
+	<if test="freeCount != null">
+		FREE_COUNT,
+	</if>
+	<if test="perFee != null">
+		PER_FEE,
+	</if>
+	<if test="getType != null">
+		GET_TYPE,
+	</if>
+	<if test="lastUpdUserId != null">
+		LAST_UPD_USER_ID,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="memo != null">
+		MEMO,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+	<if test="feeId != null">
+		FEE_ID,
+	</if>
+	<if test="userType != null">
+		USER_TYPE,
+	</if>
+	<if test="routeFeeFlag != null">
+		ROUTE_FEE_FLAG,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="feeName != null">
+		#{feeName},
+	</if>
+	<if test="acctType != null">
+		#{acctType},
+	</if>
+	<if test="chnlId != null">
+		#{chnlId},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		#{secMerNo},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="feeCode != null">
+		#{feeCode},
+	</if>
+	<if test="assCode != null">
+		#{assCode},
+	</if>
+	<if test="startDate != null">
+		#{startDate},
+	</if>
+	<if test="endDate != null">
+		#{endDate},
+	</if>
+	<if test="freeCycle != null">
+		#{freeCycle},
+	</if>
+	<if test="freeCount != null">
+		#{freeCount},
+	</if>
+	<if test="perFee != null">
+		#{perFee},
+	</if>
+	<if test="getType != null">
+		#{getType},
+	</if>
+	<if test="lastUpdUserId != null">
+		#{lastUpdUserId},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="memo != null">
+		#{memo},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+	<if test="feeId != null">
+		#{feeId},
+	</if>
+	<if test="userType != null">
+		#{userType},
+	</if>
+	<if test="routeFeeFlag != null">
+		#{routeFeeFlag},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="feeName != null">
+		FEE_NAME=#{feeName},
+	</if>
+	<if test="acctType != null">
+		ACCT_TYPE=#{acctType},
+	</if>
+	<if test="chnlId != null">
+		CHNL_ID=#{chnlId},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO=#{secMerNo},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="feeCode != null">
+		FEE_CODE=#{feeCode},
+	</if>
+	<if test="assCode != null">
+		ASS_CODE=#{assCode},
+	</if>
+	<if test="startDate != null">
+		START_DATE=#{startDate},
+	</if>
+	<if test="endDate != null">
+		END_DATE=#{endDate},
+	</if>
+	<if test="freeCycle != null">
+		FREE_CYCLE=#{freeCycle},
+	</if>
+	<if test="freeCount != null">
+		FREE_COUNT=#{freeCount},
+	</if>
+	<if test="perFee != null">
+		PER_FEE=#{perFee},
+	</if>
+	<if test="getType != null">
+		GET_TYPE=#{getType},
+	</if>
+	<if test="lastUpdUserId != null">
+		LAST_UPD_USER_ID=#{lastUpdUserId},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="memo != null">
+		MEMO=#{memo},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+	<if test="feeId != null">
+		FEE_ID=#{feeId},
+	</if>
+	<if test="userType != null">
+		USER_TYPE=#{userType},
+	</if>
+	<if test="routeFeeFlag != null">
+		ROUTE_FEE_FLAG= #{routeFeeFlag},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.feeName != null">
+                    FEE_NAME=#{s.feeName},
+			</if>
+			<if test="s.acctType != null">
+                    ACCT_TYPE=#{s.acctType},
+			</if>
+			<if test="s.chnlId != null">
+                    CHNL_ID=#{s.chnlId},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.secMerNo != null">
+                    SEC_MER_NO=#{s.secMerNo},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.feeCode != null">
+                    FEE_CODE=#{s.feeCode},
+			</if>
+			<if test="s.assCode != null">
+                    ASS_CODE=#{s.assCode},
+			</if>
+			<if test="s.startDate != null">
+                    START_DATE=#{s.startDate},
+			</if>
+			<if test="s.endDate != null">
+                    END_DATE=#{s.endDate},
+			</if>
+			<if test="s.freeCycle != null">
+                    FREE_CYCLE=#{s.freeCycle},
+			</if>
+			<if test="s.freeCount != null">
+                    FREE_COUNT=#{s.freeCount},
+			</if>
+			<if test="s.perFee != null">
+                    PER_FEE=#{s.perFee},
+			</if>
+			<if test="s.getType != null">
+                    GET_TYPE=#{s.getType},
+			</if>
+			<if test="s.lastUpdUserId != null">
+                    LAST_UPD_USER_ID=#{s.lastUpdUserId},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.memo != null">
+                    MEMO=#{s.memo},
+			</if>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode},
+			</if>
+			<if test="s.feeId != null">
+                    FEE_ID=#{s.feeId},
+			</if>
+			<if test="s.userType != null">
+                    USER_TYPE=#{s.userType},
+			</if>
+			<if test="s.routeFeeFlag != null">
+					ROUTE_FEE_FLAG= #{s.routeFeeFlag}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.feeName != null">
+                    FEE_NAME=#{w.feeName}
+                   AND 
+ 			</if>
+			<if test="w.acctType != null">
+                    ACCT_TYPE=#{w.acctType}
+                   AND 
+ 			</if>
+			<if test="w.chnlId != null">
+                    CHNL_ID=#{w.chnlId}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.secMerNo != null">
+                    SEC_MER_NO=#{w.secMerNo}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.feeCode != null">
+                    FEE_CODE=#{w.feeCode}
+                   AND 
+ 			</if>
+			<if test="w.assCode != null">
+                    ASS_CODE=#{w.assCode}
+                   AND 
+ 			</if>
+			<if test="w.startDate != null">
+                    START_DATE=#{w.startDate}
+                   AND 
+ 			</if>
+			<if test="w.endDate != null">
+                    END_DATE=#{w.endDate}
+                   AND 
+ 			</if>
+			<if test="w.freeCycle != null">
+                    FREE_CYCLE=#{w.freeCycle}
+                   AND 
+ 			</if>
+			<if test="w.freeCount != null">
+                    FREE_COUNT=#{w.freeCount}
+                   AND 
+ 			</if>
+			<if test="w.perFee != null">
+                    PER_FEE=#{w.perFee}
+                   AND 
+ 			</if>
+			<if test="w.getType != null">
+                    GET_TYPE=#{w.getType}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdUserId != null">
+                    LAST_UPD_USER_ID=#{w.lastUpdUserId}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.memo != null">
+                    MEMO=#{w.memo}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+                   AND 
+ 			</if>
+			<if test="w.feeId != null">
+                    FEE_ID=#{w.feeId}
+                   AND 
+ 			</if>
+			<if test="w.userType != null">
+                    USER_TYPE=#{w.userType}
+                   AND
+ 			</if>
+ 			<if test="w.routeFeeFlag != null">
+					ROUTE_FEE_FLAG= #{w.routeFeeFlag}
+		</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<previews>
+		<preview id="appcli" xpath="$.syshead.trans_code" datalength=""
+			trancodename="transCode" charset="UTF-8">
+		</preview>
+		<!-- <preview id="appcli" xpath="$.SYSHEAD.TRANS_CODE" datalength=""
+			trancodename="transCode" charset="UTF-8">
+		</preview> -->
+	</previews>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+	<mappings>
+		<!-- 支付宝订单查询 -->
+		<mapping xpath="merNo" field="merNo" />
+		<mapping xpath="secMerNo" field="secMerNo" must="not" />
+		<mapping xpath="outerOrderNo" field="outerOrderNo" must="not" />
+		<mapping xpath="orderNo" field="orderNo" must="not" />
+		<mapping xpath="routeCode" field="routeCode"/>
+	</mappings>
+</config>

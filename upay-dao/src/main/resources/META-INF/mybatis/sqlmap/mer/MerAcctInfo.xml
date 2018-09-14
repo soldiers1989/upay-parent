@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.mer.MerAcctInfoPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.mer.MerAcctInfoPo">
+		<id column="ID" property="id" />
+		<result column="MER_NO" property="merNo" />
+		<result column="CARD_TYPE" property="cardType" />
+		<result column="PARENT_MER_NO" property="parentMerNo" />
+		<result column="IS_PARENT_MER" property="isParentMer" />
+		<result column="MER_PLAT_NO" property="merPlatNo" />
+		<result column="OPEN_USER_ID" property="openUserId" />
+		<result column="MER_MODIFY_DATE" property="merModifyDate" />
+		<result column="MODIFY_USER_NO" property="modifyUserNo" />
+		<result column="MER_CLOSE_DATE" property="merCloseDate" />
+		<result column="PAY_OPEN_FLAG" property="payOpenFlag" />
+		<result column="CLOSE_USER_NO" property="closeUserNo" />
+		<result column="MER_NAME" property="merName" />
+		<result column="MER_PEND_STL_AMT" property="merPendStlAmt" />
+		<result column="STL_ACCT_NO" property="stlAcctNo" />
+		<result column="STL_ACCT_TYPE" property="stlAcctType" />
+		<result column="STL_ACCT_KIND" property="stlAcctKind" />
+		<result column="STL_ACCT_NAME" property="stlAcctName" />
+		<result column="FEE_STL_PERIOD" property="feeStlPeriod" />
+		<result column="FEE_MODE" property="feeMode" />
+		<result column="FEE_ACCT_NO" property="feeAcctNo" />
+		<result column="FEE_ACCT_NAME" property="feeAcctName" />
+		<result column="FEE_ACCT_KIND" property="feeAcctKind" />
+		<result column="FEE_ACCT_TYPE" property="feeAcctType" />
+		<result column="BAIL_ACCT_NO" property="bailAcctNo" />
+		<result column="BAIL_ACCT_NAME" property="bailAcctName" />
+		<result column="BAIL_ACCT_KIND" property="bailAcctKind" />
+		<result column="BAIL_AMT" property="bailAmt" />
+		<result column="BAIL_ACCT_TYPE" property="bailAcctType" />
+		<result column="CLEAR_MODE" property="clearMode" />
+		<result column="STL_MODE" property="stlMode" />
+		<result column="STL_PERIOD" property="stlPeriod" />
+		<result column="AUTH_CHECK_FLAG" property="authCheckFlag" />
+		<result column="FEE_RETURN_FLAG" property="feeReturnFlag" />
+		<result column="STL_CYCLE" property="stlCycle" />
+		<result column="STL_DATE" property="stlDate" />
+		<result column="STL_ACCT_DATE" property="stlAcctDate" />
+		<result column="STL_CYCLE_DAY" property="stlCycleDay" />
+		<result column="BANK_ID" property="bankId" />
+		<result column="BANK_NAME" property="bankName" />
+		<result column="IS_ENTRUST" property="isEntrust" />
+		<result column="IS_ENTRUST_DATE" property="isEntrustDate" />
+		<result column="PROMOTER_DEPT_NO" property="promoterDeptNo" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MER_ACCT_INFO
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MER_NO,
+		CARD_TYPE,
+		PARENT_MER_NO,
+		IS_PARENT_MER,
+		MER_PLAT_NO,
+		OPEN_USER_ID,
+		MER_MODIFY_DATE,
+		MODIFY_USER_NO,
+		MER_CLOSE_DATE,
+		PAY_OPEN_FLAG,
+		CLOSE_USER_NO,
+		MER_NAME,
+		MER_PEND_STL_AMT,
+		STL_ACCT_NO,
+		STL_ACCT_TYPE,
+		STL_ACCT_KIND,
+		STL_ACCT_NAME,
+		FEE_STL_PERIOD,
+		FEE_MODE,
+		FEE_ACCT_NO,
+		FEE_ACCT_NAME,
+		FEE_ACCT_KIND,
+		FEE_ACCT_TYPE,
+		BAIL_ACCT_NO,
+		BAIL_ACCT_NAME,
+		BAIL_ACCT_KIND,
+		BAIL_AMT,
+		BAIL_ACCT_TYPE,
+		CLEAR_MODE,
+		STL_MODE,
+		STL_PERIOD,
+		AUTH_CHECK_FLAG,
+		FEE_RETURN_FLAG,
+		STL_CYCLE,
+		STL_DATE,
+		STL_ACCT_DATE,
+		STL_CYCLE_DAY,
+		BANK_ID,
+		BANK_NAME,
+		IS_ENTRUST,
+		IS_ENTRUST_DATE,
+		PROMOTER_DEPT_NO
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="cardType != null">
+			CARD_TYPE= #{cardType}
+	           AND 
+		</if>
+		<if test="parentMerNo != null">
+			PARENT_MER_NO= #{parentMerNo}
+	           AND 
+		</if>
+		<if test="isParentMer != null">
+			IS_PARENT_MER= #{isParentMer}
+	           AND 
+		</if>
+		<if test="merPlatNo != null">
+			MER_PLAT_NO= #{merPlatNo}
+	           AND 
+		</if>
+		<if test="openUserId != null">
+			OPEN_USER_ID= #{openUserId}
+	           AND 
+		</if>
+		<if test="merModifyDate != null">
+			MER_MODIFY_DATE= #{merModifyDate}
+	           AND 
+		</if>
+		<if test="modifyUserNo != null">
+			MODIFY_USER_NO= #{modifyUserNo}
+	           AND 
+		</if>
+		<if test="merCloseDate != null">
+			MER_CLOSE_DATE= #{merCloseDate}
+	           AND 
+		</if>
+		<if test="payOpenFlag != null">
+			PAY_OPEN_FLAG= #{payOpenFlag}
+	           AND 
+		</if>
+		<if test="closeUserNo != null">
+			CLOSE_USER_NO= #{closeUserNo}
+	           AND 
+		</if>
+		<if test="merName != null">
+			MER_NAME= #{merName}
+	           AND 
+		</if>
+		<if test="merPendStlAmt != null">
+			MER_PEND_STL_AMT= #{merPendStlAmt}
+	           AND 
+		</if>
+		<if test="stlAcctNo != null">
+			STL_ACCT_NO= #{stlAcctNo}
+	           AND 
+		</if>
+		<if test="stlAcctType != null">
+			STL_ACCT_TYPE= #{stlAcctType}
+	           AND 
+		</if>
+		<if test="stlAcctKind != null">
+			STL_ACCT_KIND= #{stlAcctKind}
+	           AND 
+		</if>
+		<if test="stlAcctName != null">
+			STL_ACCT_NAME= #{stlAcctName}
+	           AND 
+		</if>
+		<if test="feeStlPeriod != null">
+			FEE_STL_PERIOD= #{feeStlPeriod}
+	           AND 
+		</if>
+		<if test="feeMode != null">
+			FEE_MODE= #{feeMode}
+	           AND 
+		</if>
+		<if test="feeAcctNo != null">
+			FEE_ACCT_NO= #{feeAcctNo}
+	           AND 
+		</if>
+		<if test="feeAcctName != null">
+			FEE_ACCT_NAME= #{feeAcctName}
+	           AND 
+		</if>
+		<if test="feeAcctKind != null">
+			FEE_ACCT_KIND= #{feeAcctKind}
+	           AND 
+		</if>
+		<if test="feeAcctType != null">
+			FEE_ACCT_TYPE= #{feeAcctType}
+	           AND 
+		</if>
+		<if test="bailAcctNo != null">
+			BAIL_ACCT_NO= #{bailAcctNo}
+	           AND 
+		</if>
+		<if test="bailAcctName != null">
+			BAIL_ACCT_NAME= #{bailAcctName}
+	           AND 
+		</if>
+		<if test="bailAcctKind != null">
+			BAIL_ACCT_KIND= #{bailAcctKind}
+	           AND 
+		</if>
+		<if test="bailAmt != null">
+			BAIL_AMT= #{bailAmt}
+	           AND 
+		</if>
+		<if test="bailAcctType != null">
+			BAIL_ACCT_TYPE= #{bailAcctType}
+	           AND 
+		</if>
+		<if test="clearMode != null">
+			CLEAR_MODE= #{clearMode}
+	           AND 
+		</if>
+		<if test="stlMode != null">
+			STL_MODE= #{stlMode}
+	           AND 
+		</if>
+		<if test="stlPeriod != null">
+			STL_PERIOD= #{stlPeriod}
+	           AND 
+		</if>
+		<if test="authCheckFlag != null">
+			AUTH_CHECK_FLAG= #{authCheckFlag}
+	           AND 
+		</if>
+		<if test="feeReturnFlag != null">
+			FEE_RETURN_FLAG= #{feeReturnFlag}
+	           AND 
+		</if>
+		<if test="stlCycle != null">
+			STL_CYCLE= #{stlCycle}
+	           AND 
+		</if>
+		<if test="stlDate != null">
+			STL_DATE= #{stlDate}
+	           AND 
+		</if>
+		<if test="stlAcctDate != null">
+			STL_ACCT_DATE= #{stlAcctDate}
+	           AND 
+		</if>
+		<if test="stlCycleDay != null">
+			STL_CYCLE_DAY= #{stlCycleDay}
+	           AND 
+		</if>
+		<if test="bankId != null">
+			BANK_ID= #{bankId}
+	           AND 
+		</if>
+		<if test="bankName != null">
+			BANK_NAME= #{bankName}
+	           AND 
+		</if>
+		<if test="isEntrust != null">
+			IS_ENTRUST= #{isEntrust}
+	           AND 
+		</if>
+		<if test="isEntrustDate != null">
+			IS_ENTRUST_DATE= #{isEntrustDate}
+	           AND 
+		</if>
+		<if test="promoterDeptNo != null">
+			PROMOTER_DEPT_NO= #{promoterDeptNo}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="cardType != null">
+		CARD_TYPE,
+	</if>
+	<if test="parentMerNo != null">
+		PARENT_MER_NO,
+	</if>
+	<if test="isParentMer != null">
+		IS_PARENT_MER,
+	</if>
+	<if test="merPlatNo != null">
+		MER_PLAT_NO,
+	</if>
+	<if test="openUserId != null">
+		OPEN_USER_ID,
+	</if>
+	<if test="merModifyDate != null">
+		MER_MODIFY_DATE,
+	</if>
+	<if test="modifyUserNo != null">
+		MODIFY_USER_NO,
+	</if>
+	<if test="merCloseDate != null">
+		MER_CLOSE_DATE,
+	</if>
+	<if test="payOpenFlag != null">
+		PAY_OPEN_FLAG,
+	</if>
+	<if test="closeUserNo != null">
+		CLOSE_USER_NO,
+	</if>
+	<if test="merName != null">
+		MER_NAME,
+	</if>
+	<if test="merPendStlAmt != null">
+		MER_PEND_STL_AMT,
+	</if>
+	<if test="stlAcctNo != null">
+		STL_ACCT_NO,
+	</if>
+	<if test="stlAcctType != null">
+		STL_ACCT_TYPE,
+	</if>
+	<if test="stlAcctKind != null">
+		STL_ACCT_KIND,
+	</if>
+	<if test="stlAcctName != null">
+		STL_ACCT_NAME,
+	</if>
+	<if test="feeStlPeriod != null">
+		FEE_STL_PERIOD,
+	</if>
+	<if test="feeMode != null">
+		FEE_MODE,
+	</if>
+	<if test="feeAcctNo != null">
+		FEE_ACCT_NO,
+	</if>
+	<if test="feeAcctName != null">
+		FEE_ACCT_NAME,
+	</if>
+	<if test="feeAcctKind != null">
+		FEE_ACCT_KIND,
+	</if>
+	<if test="feeAcctType != null">
+		FEE_ACCT_TYPE,
+	</if>
+	<if test="bailAcctNo != null">
+		BAIL_ACCT_NO,
+	</if>
+	<if test="bailAcctName != null">
+		BAIL_ACCT_NAME,
+	</if>
+	<if test="bailAcctKind != null">
+		BAIL_ACCT_KIND,
+	</if>
+	<if test="bailAmt != null">
+		BAIL_AMT,
+	</if>
+	<if test="bailAcctType != null">
+		BAIL_ACCT_TYPE,
+	</if>
+	<if test="clearMode != null">
+		CLEAR_MODE,
+	</if>
+	<if test="stlMode != null">
+		STL_MODE,
+	</if>
+	<if test="stlPeriod != null">
+		STL_PERIOD,
+	</if>
+	<if test="authCheckFlag != null">
+		AUTH_CHECK_FLAG,
+	</if>
+	<if test="feeReturnFlag != null">
+		FEE_RETURN_FLAG,
+	</if>
+	<if test="stlCycle != null">
+		STL_CYCLE,
+	</if>
+	<if test="stlDate != null">
+		STL_DATE,
+	</if>
+	<if test="stlAcctDate != null">
+		STL_ACCT_DATE,
+	</if>
+	<if test="stlCycleDay != null">
+		STL_CYCLE_DAY,
+	</if>
+	<if test="bankId != null">
+		BANK_ID,
+	</if>
+	<if test="bankName != null">
+		BANK_NAME,
+	</if>
+	<if test="isEntrust != null">
+		IS_ENTRUST,
+	</if>
+	<if test="isEntrustDate != null">
+		IS_ENTRUST_DATE,
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="cardType != null">
+		#{cardType},
+	</if>
+	<if test="parentMerNo != null">
+		#{parentMerNo},
+	</if>
+	<if test="isParentMer != null">
+		#{isParentMer},
+	</if>
+	<if test="merPlatNo != null">
+		#{merPlatNo},
+	</if>
+	<if test="openUserId != null">
+		#{openUserId},
+	</if>
+	<if test="merModifyDate != null">
+		#{merModifyDate},
+	</if>
+	<if test="modifyUserNo != null">
+		#{modifyUserNo},
+	</if>
+	<if test="merCloseDate != null">
+		#{merCloseDate},
+	</if>
+	<if test="payOpenFlag != null">
+		#{payOpenFlag},
+	</if>
+	<if test="closeUserNo != null">
+		#{closeUserNo},
+	</if>
+	<if test="merName != null">
+		#{merName},
+	</if>
+	<if test="merPendStlAmt != null">
+		#{merPendStlAmt},
+	</if>
+	<if test="stlAcctNo != null">
+		#{stlAcctNo},
+	</if>
+	<if test="stlAcctType != null">
+		#{stlAcctType},
+	</if>
+	<if test="stlAcctKind != null">
+		#{stlAcctKind},
+	</if>
+	<if test="stlAcctName != null">
+		#{stlAcctName},
+	</if>
+	<if test="feeStlPeriod != null">
+		#{feeStlPeriod},
+	</if>
+	<if test="feeMode != null">
+		#{feeMode},
+	</if>
+	<if test="feeAcctNo != null">
+		#{feeAcctNo},
+	</if>
+	<if test="feeAcctName != null">
+		#{feeAcctName},
+	</if>
+	<if test="feeAcctKind != null">
+		#{feeAcctKind},
+	</if>
+	<if test="feeAcctType != null">
+		#{feeAcctType},
+	</if>
+	<if test="bailAcctNo != null">
+		#{bailAcctNo},
+	</if>
+	<if test="bailAcctName != null">
+		#{bailAcctName},
+	</if>
+	<if test="bailAcctKind != null">
+		#{bailAcctKind},
+	</if>
+	<if test="bailAmt != null">
+		#{bailAmt},
+	</if>
+	<if test="bailAcctType != null">
+		#{bailAcctType},
+	</if>
+	<if test="clearMode != null">
+		#{clearMode},
+	</if>
+	<if test="stlMode != null">
+		#{stlMode},
+	</if>
+	<if test="stlPeriod != null">
+		#{stlPeriod},
+	</if>
+	<if test="authCheckFlag != null">
+		#{authCheckFlag},
+	</if>
+	<if test="feeReturnFlag != null">
+		#{feeReturnFlag},
+	</if>
+	<if test="stlCycle != null">
+		#{stlCycle},
+	</if>
+	<if test="stlDate != null">
+		#{stlDate},
+	</if>
+	<if test="stlAcctDate != null">
+		#{stlAcctDate},
+	</if>
+	<if test="stlCycleDay != null">
+		#{stlCycleDay},
+	</if>
+	<if test="bankId != null">
+		#{bankId},
+	</if>
+	<if test="bankName != null">
+		#{bankName},
+	</if>
+	<if test="isEntrust != null">
+		#{isEntrust},
+	</if>
+	<if test="isEntrustDate != null">
+		#{isEntrustDate},
+	</if>
+	<if test="promoterDeptNo != null">
+		#{promoterDeptNo},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="cardType != null">
+		CARD_TYPE=#{cardType},
+	</if>
+	<if test="parentMerNo != null">
+		PARENT_MER_NO=#{parentMerNo},
+	</if>
+	<if test="isParentMer != null">
+		IS_PARENT_MER=#{isParentMer},
+	</if>
+	<if test="merPlatNo != null">
+		MER_PLAT_NO=#{merPlatNo},
+	</if>
+	<if test="openUserId != null">
+		OPEN_USER_ID=#{openUserId},
+	</if>
+	<if test="merModifyDate != null">
+		MER_MODIFY_DATE=#{merModifyDate},
+	</if>
+	<if test="modifyUserNo != null">
+		MODIFY_USER_NO=#{modifyUserNo},
+	</if>
+	<if test="merCloseDate != null">
+		MER_CLOSE_DATE=#{merCloseDate},
+	</if>
+	<if test="payOpenFlag != null">
+		PAY_OPEN_FLAG=#{payOpenFlag},
+	</if>
+	<if test="closeUserNo != null">
+		CLOSE_USER_NO=#{closeUserNo},
+	</if>
+	<if test="merName != null">
+		MER_NAME=#{merName},
+	</if>
+	<if test="merPendStlAmt != null">
+		MER_PEND_STL_AMT=#{merPendStlAmt},
+	</if>
+	<if test="stlAcctNo != null">
+		STL_ACCT_NO=#{stlAcctNo},
+	</if>
+	<if test="stlAcctType != null">
+		STL_ACCT_TYPE=#{stlAcctType},
+	</if>
+	<if test="stlAcctKind != null">
+		STL_ACCT_KIND=#{stlAcctKind},
+	</if>
+	<if test="stlAcctName != null">
+		STL_ACCT_NAME=#{stlAcctName},
+	</if>
+	<if test="feeStlPeriod != null">
+		FEE_STL_PERIOD=#{feeStlPeriod},
+	</if>
+	<if test="feeMode != null">
+		FEE_MODE=#{feeMode},
+	</if>
+	<if test="feeAcctNo != null">
+		FEE_ACCT_NO=#{feeAcctNo},
+	</if>
+	<if test="feeAcctName != null">
+		FEE_ACCT_NAME=#{feeAcctName},
+	</if>
+	<if test="feeAcctKind != null">
+		FEE_ACCT_KIND=#{feeAcctKind},
+	</if>
+	<if test="feeAcctType != null">
+		FEE_ACCT_TYPE=#{feeAcctType},
+	</if>
+	<if test="bailAcctNo != null">
+		BAIL_ACCT_NO=#{bailAcctNo},
+	</if>
+	<if test="bailAcctName != null">
+		BAIL_ACCT_NAME=#{bailAcctName},
+	</if>
+	<if test="bailAcctKind != null">
+		BAIL_ACCT_KIND=#{bailAcctKind},
+	</if>
+	<if test="bailAmt != null">
+		BAIL_AMT=#{bailAmt},
+	</if>
+	<if test="bailAcctType != null">
+		BAIL_ACCT_TYPE=#{bailAcctType},
+	</if>
+	<if test="clearMode != null">
+		CLEAR_MODE=#{clearMode},
+	</if>
+	<if test="stlMode != null">
+		STL_MODE=#{stlMode},
+	</if>
+	<if test="stlPeriod != null">
+		STL_PERIOD=#{stlPeriod},
+	</if>
+	<if test="authCheckFlag != null">
+		AUTH_CHECK_FLAG=#{authCheckFlag},
+	</if>
+	<if test="feeReturnFlag != null">
+		FEE_RETURN_FLAG=#{feeReturnFlag},
+	</if>
+	<if test="stlCycle != null">
+		STL_CYCLE=#{stlCycle},
+	</if>
+	<if test="stlDate != null">
+		STL_DATE=#{stlDate},
+	</if>
+	<if test="stlAcctDate != null">
+		STL_ACCT_DATE=#{stlAcctDate},
+	</if>
+	<if test="stlCycleDay != null">
+		STL_CYCLE_DAY=#{stlCycleDay},
+	</if>
+	<if test="bankId != null">
+		BANK_ID=#{bankId},
+	</if>
+	<if test="bankName != null">
+		BANK_NAME=#{bankName},
+	</if>
+	<if test="isEntrust != null">
+		IS_ENTRUST=#{isEntrust},
+	</if>
+	<if test="isEntrustDate != null">
+		IS_ENTRUST_DATE=#{isEntrustDate},
+	</if>
+	<if test="promoterDeptNo != null">
+		PROMOTER_DEPT_NO=#{promoterDeptNo},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.cardType != null">
+                    CARD_TYPE=#{s.cardType},
+			</if>
+			<if test="s.parentMerNo != null">
+                    PARENT_MER_NO=#{s.parentMerNo},
+			</if>
+			<if test="s.isParentMer != null">
+                    IS_PARENT_MER=#{s.isParentMer},
+			</if>
+			<if test="s.merPlatNo != null">
+                    MER_PLAT_NO=#{s.merPlatNo},
+			</if>
+			<if test="s.openUserId != null">
+                    OPEN_USER_ID=#{s.openUserId},
+			</if>
+			<if test="s.merModifyDate != null">
+                    MER_MODIFY_DATE=#{s.merModifyDate},
+			</if>
+			<if test="s.modifyUserNo != null">
+                    MODIFY_USER_NO=#{s.modifyUserNo},
+			</if>
+			<if test="s.merCloseDate != null">
+                    MER_CLOSE_DATE=#{s.merCloseDate},
+			</if>
+			<if test="s.payOpenFlag != null">
+                    PAY_OPEN_FLAG=#{s.payOpenFlag},
+			</if>
+			<if test="s.closeUserNo != null">
+                    CLOSE_USER_NO=#{s.closeUserNo},
+			</if>
+			<if test="s.merName != null">
+                    MER_NAME=#{s.merName},
+			</if>
+			<if test="s.merPendStlAmt != null">
+                    MER_PEND_STL_AMT=#{s.merPendStlAmt},
+			</if>
+			<if test="s.stlAcctNo != null">
+                    STL_ACCT_NO=#{s.stlAcctNo},
+			</if>
+			<if test="s.stlAcctType != null">
+                    STL_ACCT_TYPE=#{s.stlAcctType},
+			</if>
+			<if test="s.stlAcctKind != null">
+                    STL_ACCT_KIND=#{s.stlAcctKind},
+			</if>
+			<if test="s.stlAcctName != null">
+                    STL_ACCT_NAME=#{s.stlAcctName},
+			</if>
+			<if test="s.feeStlPeriod != null">
+                    FEE_STL_PERIOD=#{s.feeStlPeriod},
+			</if>
+			<if test="s.feeMode != null">
+                    FEE_MODE=#{s.feeMode},
+			</if>
+			<if test="s.feeAcctNo != null">
+                    FEE_ACCT_NO=#{s.feeAcctNo},
+			</if>
+			<if test="s.feeAcctName != null">
+                    FEE_ACCT_NAME=#{s.feeAcctName},
+			</if>
+			<if test="s.feeAcctKind != null">
+                    FEE_ACCT_KIND=#{s.feeAcctKind},
+			</if>
+			<if test="s.feeAcctType != null">
+                    FEE_ACCT_TYPE=#{s.feeAcctType},
+			</if>
+			<if test="s.bailAcctNo != null">
+                    BAIL_ACCT_NO=#{s.bailAcctNo},
+			</if>
+			<if test="s.bailAcctName != null">
+                    BAIL_ACCT_NAME=#{s.bailAcctName},
+			</if>
+			<if test="s.bailAcctKind != null">
+                    BAIL_ACCT_KIND=#{s.bailAcctKind},
+			</if>
+			<if test="s.bailAmt != null">
+                    BAIL_AMT=#{s.bailAmt},
+			</if>
+			<if test="s.bailAcctType != null">
+                    BAIL_ACCT_TYPE=#{s.bailAcctType},
+			</if>
+			<if test="s.clearMode != null">
+                    CLEAR_MODE=#{s.clearMode},
+			</if>
+			<if test="s.stlMode != null">
+                    STL_MODE=#{s.stlMode},
+			</if>
+			<if test="s.stlPeriod != null">
+                    STL_PERIOD=#{s.stlPeriod},
+			</if>
+			<if test="s.authCheckFlag != null">
+                    AUTH_CHECK_FLAG=#{s.authCheckFlag},
+			</if>
+			<if test="s.feeReturnFlag != null">
+                    FEE_RETURN_FLAG=#{s.feeReturnFlag},
+			</if>
+			<if test="s.stlCycle != null">
+                    STL_CYCLE=#{s.stlCycle},
+			</if>
+			<if test="s.stlDate != null">
+                    STL_DATE=#{s.stlDate},
+			</if>
+			<if test="s.stlAcctDate != null">
+                    STL_ACCT_DATE=#{s.stlAcctDate},
+			</if>
+			<if test="s.stlCycleDay != null">
+                    STL_CYCLE_DAY=#{s.stlCycleDay},
+			</if>
+			<if test="s.bankId != null">
+                    BANK_ID=#{s.bankId},
+			</if>
+			<if test="s.bankName != null">
+                    BANK_NAME=#{s.bankName},
+			</if>
+			<if test="s.isEntrust != null">
+                    IS_ENTRUST=#{s.isEntrust},
+			</if>
+			<if test="s.isEntrustDate != null">
+                    IS_ENTRUST_DATE=#{s.isEntrustDate},
+			</if>
+			<if test="s.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{s.promoterDeptNo}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.cardType != null">
+                    CARD_TYPE=#{w.cardType}
+                   AND 
+ 			</if>
+			<if test="w.parentMerNo != null">
+                    PARENT_MER_NO=#{w.parentMerNo}
+                   AND 
+ 			</if>
+			<if test="w.isParentMer != null">
+                    IS_PARENT_MER=#{w.isParentMer}
+                   AND 
+ 			</if>
+			<if test="w.merPlatNo != null">
+                    MER_PLAT_NO=#{w.merPlatNo}
+                   AND 
+ 			</if>
+			<if test="w.openUserId != null">
+                    OPEN_USER_ID=#{w.openUserId}
+                   AND 
+ 			</if>
+			<if test="w.merModifyDate != null">
+                    MER_MODIFY_DATE=#{w.merModifyDate}
+                   AND 
+ 			</if>
+			<if test="w.modifyUserNo != null">
+                    MODIFY_USER_NO=#{w.modifyUserNo}
+                   AND 
+ 			</if>
+			<if test="w.merCloseDate != null">
+                    MER_CLOSE_DATE=#{w.merCloseDate}
+                   AND 
+ 			</if>
+			<if test="w.payOpenFlag != null">
+                    PAY_OPEN_FLAG=#{w.payOpenFlag}
+                   AND 
+ 			</if>
+			<if test="w.closeUserNo != null">
+                    CLOSE_USER_NO=#{w.closeUserNo}
+                   AND 
+ 			</if>
+			<if test="w.merName != null">
+                    MER_NAME=#{w.merName}
+                   AND 
+ 			</if>
+			<if test="w.merPendStlAmt != null">
+                    MER_PEND_STL_AMT=#{w.merPendStlAmt}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctNo != null">
+                    STL_ACCT_NO=#{w.stlAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctType != null">
+                    STL_ACCT_TYPE=#{w.stlAcctType}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctKind != null">
+                    STL_ACCT_KIND=#{w.stlAcctKind}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctName != null">
+                    STL_ACCT_NAME=#{w.stlAcctName}
+                   AND 
+ 			</if>
+			<if test="w.feeStlPeriod != null">
+                    FEE_STL_PERIOD=#{w.feeStlPeriod}
+                   AND 
+ 			</if>
+			<if test="w.feeMode != null">
+                    FEE_MODE=#{w.feeMode}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctNo != null">
+                    FEE_ACCT_NO=#{w.feeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctName != null">
+                    FEE_ACCT_NAME=#{w.feeAcctName}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctKind != null">
+                    FEE_ACCT_KIND=#{w.feeAcctKind}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctType != null">
+                    FEE_ACCT_TYPE=#{w.feeAcctType}
+                   AND 
+ 			</if>
+			<if test="w.bailAcctNo != null">
+                    BAIL_ACCT_NO=#{w.bailAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.bailAcctName != null">
+                    BAIL_ACCT_NAME=#{w.bailAcctName}
+                   AND 
+ 			</if>
+			<if test="w.bailAcctKind != null">
+                    BAIL_ACCT_KIND=#{w.bailAcctKind}
+                   AND 
+ 			</if>
+			<if test="w.bailAmt != null">
+                    BAIL_AMT=#{w.bailAmt}
+                   AND 
+ 			</if>
+			<if test="w.bailAcctType != null">
+                    BAIL_ACCT_TYPE=#{w.bailAcctType}
+                   AND 
+ 			</if>
+			<if test="w.clearMode != null">
+                    CLEAR_MODE=#{w.clearMode}
+                   AND 
+ 			</if>
+			<if test="w.stlMode != null">
+                    STL_MODE=#{w.stlMode}
+                   AND 
+ 			</if>
+			<if test="w.stlPeriod != null">
+                    STL_PERIOD=#{w.stlPeriod}
+                   AND 
+ 			</if>
+			<if test="w.authCheckFlag != null">
+                    AUTH_CHECK_FLAG=#{w.authCheckFlag}
+                   AND 
+ 			</if>
+			<if test="w.feeReturnFlag != null">
+                    FEE_RETURN_FLAG=#{w.feeReturnFlag}
+                   AND 
+ 			</if>
+			<if test="w.stlCycle != null">
+                    STL_CYCLE=#{w.stlCycle}
+                   AND 
+ 			</if>
+			<if test="w.stlDate != null">
+                    STL_DATE=#{w.stlDate}
+                   AND 
+ 			</if>
+			<if test="w.stlAcctDate != null">
+                    STL_ACCT_DATE=#{w.stlAcctDate}
+                   AND 
+ 			</if>
+			<if test="w.stlCycleDay != null">
+                    STL_CYCLE_DAY=#{w.stlCycleDay}
+                   AND 
+ 			</if>
+			<if test="w.bankId != null">
+                    BANK_ID=#{w.bankId}
+                   AND 
+ 			</if>
+			<if test="w.bankName != null">
+                    BANK_NAME=#{w.bankName}
+                   AND 
+ 			</if>
+			<if test="w.isEntrust != null">
+                    IS_ENTRUST=#{w.isEntrust}
+                   AND 
+ 			</if>
+			<if test="w.isEntrustDate != null">
+                    IS_ENTRUST_DATE=#{w.isEntrustDate}
+                   AND 
+ 			</if>
+			<if test="w.promoterDeptNo != null">
+                    PROMOTER_DEPT_NO=#{w.promoterDeptNo}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

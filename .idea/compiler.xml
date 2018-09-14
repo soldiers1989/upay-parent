@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="upay-batch-dispatch" />
+        <module name="upay-batch-stepservice" />
+        <module name="upay-busi-acc" />
+        <module name="upay-busi-fee" />
+        <module name="upay-busi-gnr" />
+        <module name="upay-busi-mer" />
+        <module name="upay-busi-pay" />
+        <module name="upay-busi-usr" />
+        <module name="upay-commons" />
+        <module name="upay-dao" />
+        <module name="upay-dao-api" />
+        <module name="upay-flow-acc" />
+        <module name="upay-flow-gnr" />
+        <module name="upay-flow-mer" />
+        <module name="upay-flow-pay" />
+        <module name="upay-flow-usr" />
+        <module name="upay-gateway-client-acp" />
+        <module name="upay-gateway-client-acpmer" />
+        <module name="upay-gateway-client-acppay" />
+        <module name="upay-gateway-client-acpreceive" />
+        <module name="upay-gateway-client-alipay" />
+        <module name="upay-gateway-client-atalipay" />
+        <module name="upay-gateway-client-atweixn" />
+        <module name="upay-gateway-client-core" />
+        <module name="upay-gateway-client-esb" />
+        <module name="upay-gateway-client-mail" />
+        <module name="upay-gateway-client-notify" />
+        <module name="upay-gateway-client-nuccalipay" />
+        <module name="upay-gateway-client-sms" />
+        <module name="upay-gateway-client-weixin" />
+        <module name="upay-gateway-client-weixinopenid" />
+        <module name="upay-gateway-client-zjpay" />
+        <module name="upay-gateway-server-acp" />
+        <module name="upay-gateway-server-acpmer" />
+        <module name="upay-gateway-server-acppay" />
+        <module name="upay-gateway-server-acpreceive" />
+        <module name="upay-gateway-server-acpreceive (1)" />
+        <module name="upay-gateway-server-alipay" />
+        <module name="upay-gateway-server-atalipay" />
+        <module name="upay-gateway-server-atweixin" />
+        <module name="upay-gateway-server-core" />
+        <module name="upay-gateway-server-esb" />
+        <module name="upay-gateway-server-weixin" />
+        <module name="upay-gateway-server-zjpay" />
+        <module name="upay-portal" />
+        <module name="upay-scripts" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="upay-batch-dispatch" target="1.7" />
+      <module name="upay-batch-stepservice" target="1.7" />
+      <module name="upay-busi" target="1.5" />
+      <module name="upay-busi-acc" target="1.7" />
+      <module name="upay-busi-fee" target="1.7" />
+      <module name="upay-busi-gnr" target="1.7" />
+      <module name="upay-busi-mer" target="1.7" />
+      <module name="upay-busi-pay" target="1.7" />
+      <module name="upay-busi-usr" target="1.7" />
+      <module name="upay-commons" target="1.7" />
+      <module name="upay-dao" target="1.7" />
+      <module name="upay-dao-api" target="1.7" />
+      <module name="upay-flow" target="1.5" />
+      <module name="upay-flow-acc" target="1.7" />
+      <module name="upay-flow-gnr" target="1.7" />
+      <module name="upay-flow-mer" target="1.7" />
+      <module name="upay-flow-pay" target="1.7" />
+      <module name="upay-flow-usr" target="1.7" />
+      <module name="upay-gateway" target="1.5" />
+      <module name="upay-gateway-client" target="1.5" />
+      <module name="upay-gateway-client-acp" target="1.7" />
+      <module name="upay-gateway-client-acp-receive" target="1.7" />
+      <module name="upay-gateway-client-acpmer" target="1.7" />
+      <module name="upay-gateway-client-acpmer (1)" target="1.7" />
+      <module name="upay-gateway-client-acppay" target="1.7" />
+      <module name="upay-gateway-client-acpreceive" target="1.7" />
+      <module name="upay-gateway-client-alipay" target="1.7" />
+      <module name="upay-gateway-client-atalipay" target="1.7" />
+      <module name="upay-gateway-client-atweixn" target="1.7" />
+      <module name="upay-gateway-client-core" target="1.7" />
+      <module name="upay-gateway-client-esb" target="1.7" />
+      <module name="upay-gateway-client-mail" target="1.7" />
+      <module name="upay-gateway-client-notify" target="1.7" />
+      <module name="upay-gateway-client-nuccalipay" target="1.7" />
+      <module name="upay-gateway-client-sms" target="1.7" />
+      <module name="upay-gateway-client-weixin" target="1.7" />
+      <module name="upay-gateway-client-weixinopenid" target="1.7" />
+      <module name="upay-gateway-client-zjpay" target="1.7" />
+      <module name="upay-gateway-server" target="1.5" />
+      <module name="upay-gateway-server-acp" target="1.7" />
+      <module name="upay-gateway-server-acpmer" target="1.7" />
+      <module name="upay-gateway-server-acppay" target="1.7" />
+      <module name="upay-gateway-server-acpreceive" target="1.7" />
+      <module name="upay-gateway-server-acpreceive (1)" target="1.7" />
+      <module name="upay-gateway-server-alipay" target="1.7" />
+      <module name="upay-gateway-server-atalipay" target="1.7" />
+      <module name="upay-gateway-server-atweixin" target="1.7" />
+      <module name="upay-gateway-server-core" target="1.7" />
+      <module name="upay-gateway-server-esb" target="1.7" />
+      <module name="upay-gateway-server-weixin" target="1.7" />
+      <module name="upay-gateway-server-zjpay" target="1.7" />
+      <module name="upay-parent" target="1.5" />
+      <module name="upay-portal" target="1.7" />
+      <module name="upay-scripts" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<mapping xpath="$.body.EMAIL" field="email" must="not"/>
+	<mapping xpath="$.body.MOBILE" field="mobile" must="not"/>
+	<mapping xpath="$.body.USER_NAME" field="userName" must="not"/>
+	</mappings>
+</config>

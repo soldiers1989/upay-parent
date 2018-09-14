@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+	<!-- 支付 -->
+		<mapping xpath="merNo" field="merNo"/>
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/>
+		<mapping xpath="outerOrderNo" field="outerOrderNo"/>
+		<mapping xpath="userId" field="platformUserNo" must="not"/>
+		<mapping xpath="vAcctNo" field="vAcctNo" must="not"/>
+		<mapping xpath="transAmt" field="transAmt" type="java.math.BigDecimal"/>
+		<mapping xpath="CURR" field="curr"/>
+		<mapping xpath="spbillCreateIp" field="spbillCreateIp"/>
+		<mapping xpath="outerOrderStartDate" field="outerOrderStartDate"  must="not"/>
+		<mapping xpath="outerOrderEndDate" field="outerOrderEndDate"  must="not"/>
+		<mapping xpath="otherTranAmt" field="otherTranAmt" type="java.math.BigDecimal" must="not"/>
+		<mapping xpath="productAmt" field="productAmt" type="java.math.BigDecimal" must="not"/>
+		<mapping xpath="transComments" field="transComments" must="not"/>
+		<mapping xpath="notifyUrl" field="notifyUrl" must="not"/>
+		<mapping xpath="returnUrl" field="returnUrl" must="not"/>
+		<mapping xpath="payServicType" field="payServicType" must="not"/>
+		<mapping xpath="chnlId" field="chnlId"/>
+		<mapping xpath="tokenId" field="tokenId" must="not"/>
+		
+	<!-- 注册 -->
+		<mapping xpath="userName" field="userName" must="not"/>
+		<mapping xpath="certName" field="name" must="not"/>
+		<mapping xpath="certType" field="certType" must="not"/>
+		<mapping xpath="certNo" field="certNo" must="not"/>
+		<mapping xpath="sex" field="sex" must="not"/>
+		<mapping xpath="mobile" field="mobile" must="not"/>
+		<mapping xpath="email" field="email" must="not"/>
+		<mapping xpath="address" field="address" must="not"/>
+	</mappings>
+</config>

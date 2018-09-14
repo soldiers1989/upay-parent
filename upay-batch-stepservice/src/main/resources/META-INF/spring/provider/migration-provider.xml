@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+	<!--  备份订单表到订单历史表 -->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="BackupPayOrderList" group="BackupPayOrderList"/>
+	<!--  备份流水表到流水历史表 -->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="BackupPayFlowList" group="BackupPayFlowList"/>
+	<!--  删除日志操作表和批量日志表 -->
+	<dubbo:service interface="com.pactera.dipper.batch.service.IStepExecutor" ref="RemoveBatchAndGnrOperateLog" group="RemoveBatchAndGnrOperateLog"/>
+</beans>

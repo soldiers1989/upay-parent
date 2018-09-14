@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝订单退款 -->
+<data templateType="OUT"
+	transCode="refund"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 商户的订单号 -->
+	<column oldName="out_trade_no" newName="outTradeNo"/>
+	<!-- 支付宝交易号 -->
+	<column oldName="trade_no" newName="tradeNo"/>
+	<!-- 用户的登录id -->
+	<column oldName="buyer_logon_id" newName="buyerLogonId"/>
+	<!--本次退款是否发生了资金变化	-->
+	<column oldName="fund_change" newName="fundChange"/>
+	<!-- 退款总金额 -->
+	<column oldName="refund_fee" newName="refundFee"/>
+	<!-- 退款支付时间 -->
+	<column oldName="gmt_refund_pay" newName="gmtRefundPay"/>
+	<!-- 退款使用的资金渠道 -->
+	<column oldName="refund_detail_item_list" newName="refundDetailItemList" type="List">
+		<column oldName="fund_channel" newName="fundChannel"/><!--交易使用的资金渠道 -->
+		<column oldName="bank_code" newName="bankCode"/><!--银行卡支付时的银行代码 -->
+		<column oldName="amount" newName="amount"/><!-- 该支付工具类型所使用的金额 -->
+		<column oldName="real_amount" newName="realAmount"/><!-- 渠道实际付款金额 -->
+		<column oldName="fund_type" newName="fundType"/><!--渠道所使用的资金类型,目前只在资金渠道(fund_channel)是银行卡渠道(BANKCARD)的情况下才返回该信息(DEBIT_CARD:借记卡,CREDIT_CARD:信用卡,MIXED_CARD:借贷合一卡) -->
+	</column>
+	<!-- 交易在支付时候的门店名称 -->
+	<column oldName="store_name" newName="storeName"/>
+	<!-- 买家在支付宝的用户id -->
+	<column oldName="buyer_user_id" newName="buyerUserId"/>
+	<!-- 本次商户实际退回金额  注：在签约收单产品时需勾选“返回资金明细”才会返回 -->
+	<column oldName="send_back_fee" newName="sendBackFee"/>
+	<!-- 本次退款金额中买家退款金额 -->
+	<column oldName="present_refund_buyer_amount" newName="presentRefundBuyerAmount"/>
+	<!-- 本次退款金额中平台优惠退款金额 -->
+	<column oldName="present_refund_discount_amount" newName="presentRefundDiscountAmount"/>
+	<!-- 本次退款金额中商家优惠退款金额 -->
+	<column oldName="present_refund_mdiscount_amount" newName="presentRefundMdiscountAmount"/>
+	
+</data>

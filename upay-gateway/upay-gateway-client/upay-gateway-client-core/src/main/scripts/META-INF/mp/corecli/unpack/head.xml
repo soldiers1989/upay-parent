@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	
+	<mappings>
+       <mapping xpath="resp.transcode" field="tranCode" />
+	   <mapping xpath="resp.machine_date" field="machineDate" />
+	   <mapping xpath="resp.machine_time" field="machineTime" />
+	   <mapping xpath="resp.biz_date" field="bizDate" />
+	   <mapping xpath="resp.biz_serialno" field="bizSerialNo" />
+	   <mapping xpath="resp.respcode" field="respCode" />
+	   <mapping xpath="resp.respmsg" field="respMsg" />
+	</mappings>
+</config>

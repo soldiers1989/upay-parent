@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.menu.MenuInfoBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.menu.MenuInfoBookPo">
+		<id column="ID" property="id" />
+		<result column="MENU_ID" property="menuId" />
+		<result column="MENU_NAME" property="menuName" />
+		<result column="MENU_TYPE" property="menuType" />
+		<result column="PARENT_ID" property="parentId" />
+		<result column="ICON_CLS" property="iconCls" />
+		<result column="EXPANDED" property="expanded" />
+		<result column="MENU_ADDR" property="menuAddr" />
+		<result column="LEAF" property="leaf" />
+		<result column="SORT_NO" property="sortNo" />
+		<result column="REMARK" property="remark" />
+		<result column="ICON" property="icon" />
+		<result column="REMOVE_FLAG" property="removeFlag" />
+		<result column="REMOVE_TIME" property="removeTime" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_MENU_INFO_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		MENU_ID,
+		MENU_NAME,
+		MENU_TYPE,
+		PARENT_ID,
+		ICON_CLS,
+		EXPANDED,
+		MENU_ADDR,
+		LEAF,
+		SORT_NO,
+		REMARK,
+		ICON,
+		REMOVE_FLAG,
+		REMOVE_TIME,
+		CREATE_TIME,
+		CREATE_USER_ID
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="menuId != null">
+			MENU_ID= #{menuId}
+	           AND 
+		</if>
+		<if test="menuName != null">
+			MENU_NAME= #{menuName}
+	           AND 
+		</if>
+		<if test="menuType != null">
+			MENU_TYPE= #{menuType}
+	           AND 
+		</if>
+		<if test="parentId != null">
+			PARENT_ID= #{parentId}
+	           AND 
+		</if>
+		<if test="iconCls != null">
+			ICON_CLS= #{iconCls}
+	           AND 
+		</if>
+		<if test="expanded != null">
+			EXPANDED= #{expanded}
+	           AND 
+		</if>
+		<if test="menuAddr != null">
+			MENU_ADDR= #{menuAddr}
+	           AND 
+		</if>
+		<if test="leaf != null">
+			LEAF= #{leaf}
+	           AND 
+		</if>
+		<if test="sortNo != null">
+			SORT_NO= #{sortNo}
+	           AND 
+		</if>
+		<if test="remark != null">
+			REMARK= #{remark}
+	           AND 
+		</if>
+		<if test="icon != null">
+			ICON= #{icon}
+	           AND 
+		</if>
+		<if test="removeFlag != null">
+			REMOVE_FLAG= #{removeFlag}
+	           AND 
+		</if>
+		<if test="removeTime != null">
+			REMOVE_TIME= #{removeTime}
+	           AND 
+		</if>
+		<if test="createTime != null">
+			CREATE_TIME= #{createTime}
+	           AND 
+		</if>
+		<if test="createUserId != null">
+			CREATE_USER_ID= #{createUserId}
+		</if>
+		</trim>
+	</sql>
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="menuId != null">
+		MENU_ID,
+	</if>
+	<if test="menuName != null">
+		MENU_NAME,
+	</if>
+	<if test="menuType != null">
+		MENU_TYPE,
+	</if>
+	<if test="parentId != null">
+		PARENT_ID,
+	</if>
+	<if test="iconCls != null">
+		ICON_CLS,
+	</if>
+	<if test="expanded != null">
+		EXPANDED,
+	</if>
+	<if test="menuAddr != null">
+		MENU_ADDR,
+	</if>
+	<if test="leaf != null">
+		LEAF,
+	</if>
+	<if test="sortNo != null">
+		SORT_NO,
+	</if>
+	<if test="remark != null">
+		REMARK,
+	</if>
+	<if test="icon != null">
+		ICON,
+	</if>
+	<if test="removeFlag != null">
+		REMOVE_FLAG,
+	</if>
+	<if test="removeTime != null">
+		REMOVE_TIME,
+	</if>
+	<if test="createTime != null">
+		CREATE_TIME,
+	</if>
+	<if test="createUserId != null">
+		CREATE_USER_ID,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="menuId != null">
+		#{menuId},
+	</if>
+	<if test="menuName != null">
+		#{menuName},
+	</if>
+	<if test="menuType != null">
+		#{menuType},
+	</if>
+	<if test="parentId != null">
+		#{parentId},
+	</if>
+	<if test="iconCls != null">
+		#{iconCls},
+	</if>
+	<if test="expanded != null">
+		#{expanded},
+	</if>
+	<if test="menuAddr != null">
+		#{menuAddr},
+	</if>
+	<if test="leaf != null">
+		#{leaf},
+	</if>
+	<if test="sortNo != null">
+		#{sortNo},
+	</if>
+	<if test="remark != null">
+		#{remark},
+	</if>
+	<if test="icon != null">
+		#{icon},
+	</if>
+	<if test="removeFlag != null">
+		#{removeFlag},
+	</if>
+	<if test="removeTime != null">
+		#{removeTime},
+	</if>
+	<if test="createTime != null">
+		#{createTime},
+	</if>
+	<if test="createUserId != null">
+		#{createUserId},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="menuId != null">
+		MENU_ID=#{menuId},
+	</if>
+	<if test="menuName != null">
+		MENU_NAME=#{menuName},
+	</if>
+	<if test="menuType != null">
+		MENU_TYPE=#{menuType},
+	</if>
+	<if test="parentId != null">
+		PARENT_ID=#{parentId},
+	</if>
+	<if test="iconCls != null">
+		ICON_CLS=#{iconCls},
+	</if>
+	<if test="expanded != null">
+		EXPANDED=#{expanded},
+	</if>
+	<if test="menuAddr != null">
+		MENU_ADDR=#{menuAddr},
+	</if>
+	<if test="leaf != null">
+		LEAF=#{leaf},
+	</if>
+	<if test="sortNo != null">
+		SORT_NO=#{sortNo},
+	</if>
+	<if test="remark != null">
+		REMARK=#{remark},
+	</if>
+	<if test="icon != null">
+		ICON=#{icon},
+	</if>
+	<if test="removeFlag != null">
+		REMOVE_FLAG=#{removeFlag},
+	</if>
+	<if test="removeTime != null">
+		REMOVE_TIME=#{removeTime},
+	</if>
+	<if test="createTime != null">
+		CREATE_TIME=#{createTime},
+	</if>
+	<if test="createUserId != null">
+		CREATE_USER_ID=#{createUserId},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.menuId != null">
+                    MENU_ID=#{s.menuId},
+			</if>
+			<if test="s.menuName != null">
+                    MENU_NAME=#{s.menuName},
+			</if>
+			<if test="s.menuType != null">
+                    MENU_TYPE=#{s.menuType},
+			</if>
+			<if test="s.parentId != null">
+                    PARENT_ID=#{s.parentId},
+			</if>
+			<if test="s.iconCls != null">
+                    ICON_CLS=#{s.iconCls},
+			</if>
+			<if test="s.expanded != null">
+                    EXPANDED=#{s.expanded},
+			</if>
+			<if test="s.menuAddr != null">
+                    MENU_ADDR=#{s.menuAddr},
+			</if>
+			<if test="s.leaf != null">
+                    LEAF=#{s.leaf},
+			</if>
+			<if test="s.sortNo != null">
+                    SORT_NO=#{s.sortNo},
+			</if>
+			<if test="s.remark != null">
+                    REMARK=#{s.remark},
+			</if>
+			<if test="s.icon != null">
+                    ICON=#{s.icon},
+			</if>
+			<if test="s.removeFlag != null">
+                    REMOVE_FLAG=#{s.removeFlag},
+			</if>
+			<if test="s.removeTime != null">
+                    REMOVE_TIME=#{s.removeTime},
+			</if>
+			<if test="s.createTime != null">
+                    CREATE_TIME=#{s.createTime},
+			</if>
+			<if test="s.createUserId != null">
+                    CREATE_USER_ID=#{s.createUserId}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.menuId != null">
+                    MENU_ID=#{w.menuId}
+                   AND 
+ 			</if>
+			<if test="w.menuName != null">
+                    MENU_NAME=#{w.menuName}
+                   AND 
+ 			</if>
+			<if test="w.menuType != null">
+                    MENU_TYPE=#{w.menuType}
+                   AND 
+ 			</if>
+			<if test="w.parentId != null">
+                    PARENT_ID=#{w.parentId}
+                   AND 
+ 			</if>
+			<if test="w.iconCls != null">
+                    ICON_CLS=#{w.iconCls}
+                   AND 
+ 			</if>
+			<if test="w.expanded != null">
+                    EXPANDED=#{w.expanded}
+                   AND 
+ 			</if>
+			<if test="w.menuAddr != null">
+                    MENU_ADDR=#{w.menuAddr}
+                   AND 
+ 			</if>
+			<if test="w.leaf != null">
+                    LEAF=#{w.leaf}
+                   AND 
+ 			</if>
+			<if test="w.sortNo != null">
+                    SORT_NO=#{w.sortNo}
+                   AND 
+ 			</if>
+			<if test="w.remark != null">
+                    REMARK=#{w.remark}
+                   AND 
+ 			</if>
+			<if test="w.icon != null">
+                    ICON=#{w.icon}
+                   AND 
+ 			</if>
+			<if test="w.removeFlag != null">
+                    REMOVE_FLAG=#{w.removeFlag}
+                   AND 
+ 			</if>
+			<if test="w.removeTime != null">
+                    REMOVE_TIME=#{w.removeTime}
+                   AND 
+ 			</if>
+			<if test="w.createTime != null">
+                    CREATE_TIME=#{w.createTime}
+                   AND 
+ 			</if>
+			<if test="w.createUserId != null">
+                    CREATE_USER_ID=#{w.createUserId}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+
+</mapper>

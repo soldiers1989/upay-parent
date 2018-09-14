@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- SI_PAY10001 支付网关订单预生成 -->
+	<dipper:flow service-id="SI_PAY1001">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<dipper:service ref="MerStatChkService"/>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.?platformUserNo!=null &amp;&amp; target.bodys.platformUserNo != null">
+						<dipper:service ref="FreePwdAuthorizeCheckService" /> <!-- 授权免密检查 -->
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service ref="PayOrderCheckService" /> <!-- 生成订单前检查 -->
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isCreateOrder == 'true'">
+						<dipper:service ref="PayOrderRegisterService" param-ref="initPayOrderPayType01"/> <!-- 订单预生成 -->
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally>
+ 			<dipper:route>
+ 				<dipper:invoke>
+ 					<dipper:service ref="SrvPostProcessingServiceImpl" />
+ 				</dipper:invoke>
+ 			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+
+</beans>    

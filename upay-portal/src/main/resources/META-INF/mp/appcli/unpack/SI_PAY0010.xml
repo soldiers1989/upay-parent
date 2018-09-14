@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.IS_FIRST" field="isFirst" />  <!--是否第一次绑卡-->
+ 		<mapping xpath="$.body.CERT_WEAK_WAY" field="certWeakWay" />  <!--认证方式 -->
+		<!--<mapping xpath="$.body.USER_CERT_LEVEL" field="userCertLevel" />  用户当前认证级别 -->
+		<mapping xpath="$.body.RESERVE_MOBILE" field="reserveMobile" /><!-- 预留手机号码 -->
+		<mapping xpath="$.body.USER_CERT_LEVEL" field="userCertLevel" /><!--  用户认证等级-->
+		<mapping xpath="$.body.CERT_NO" field="certNo" /><!--  证件号-->
+		<mapping xpath="$.body.CERT_NAME" field="certName" /><!--  证件姓名 -->
+		<mapping xpath="$.body.CERT_TYPE" field="certType" /><!-- 证件类型 -->
+		<mapping xpath="$.body.BIND_ACCT_TYPE" field="bindAcctType" /><!--  绑定卡类型：11 借记卡 -->
+		<mapping xpath="$.body.E_BIND_ACCT_NO" field="eBindAcctNo" /><!--  绑定银行账号-->
+		<mapping xpath="$.body.SMS_CODE" field="smsCode" /><!--  短信验证码-->
+		<mapping xpath="$.body.THIRD_AUTH_CHNL" field="thirdAuthChnl" /><!--  第三方鉴权渠道 -->
+		<mapping xpath="$.body.VALID_DATE" field="validDate" must="not"/><!--  短信验证码-->
+		<mapping xpath="$.body.CVN2" field="cvn2" must="not"/><!--  第三方鉴权渠道 -->
+		<mapping xpath="$.body.ORDER_NO" field="orderNo" />
+	</mappings>
+</config>

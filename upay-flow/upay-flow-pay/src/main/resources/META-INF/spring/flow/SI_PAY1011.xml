@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+    <!-- 报表交易按天查询-->
+   <dipper:flow service-id="SI_PAY1011">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.?merNo != null">
+						<dipper:service ref="MerStatChkService"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:service ref="ReportOrderCountService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- esb参数 -->
+					<dipper:service ref="EsbPublicParmService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+			<dipper:route>
+			<dipper:invoke><!-- esb参数 -->
+					<dipper:service ref="EsbPublicParmService"/>
+			</dipper:invoke>
+			</dipper:route>
+		</dipper:catchException>
+		<dipper:finally>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

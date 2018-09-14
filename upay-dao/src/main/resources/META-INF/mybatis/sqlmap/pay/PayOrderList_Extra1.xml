@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayOrderListPo">
+	<select id="selectQueryResult" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+			<trim suffixOverrides="AND">
+				<if test="orderStartDate != null">
+					AND ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+			</trim>
+		</where>
+		ORDER BY ORDER_TIME DESC
+	</select>
+
+	<select id="selectQueryResultByTs" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<if test="userId != null">
+				USER_ID=#{userId}
+			</if>
+			<if test="transType != null">
+				and
+				TRANS_TYPE=#{transType}
+			</if>
+
+			<if test="orderStat != null">
+				and
+				ORDER_STAT IN
+				<foreach item="item" index="index" collection="orderStat"
+					open="(" separator="," close=")">
+					#{item}
+				</foreach>
+
+			</if>
+			<trim suffixOverrides="AND">
+				<if test="orderStartDate != null">
+					AND ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+			</trim>
+		</where>
+		ORDER BY ORDER_TIME DESC
+	</select>
+
+
+	<select id="selectQueryResultByTs2" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="merNo != null">
+					MER_NO=#{merNo}
+				</if>
+				<if test="transType != null">
+					and
+					TRANS_TYPE=#{transType}
+				</if>
+
+				<if test="orderStat != null">
+					and
+					ORDER_STAT IN
+					<foreach item="item" index="index" collection="orderStat"
+						open="(" separator="," close=")">
+						#{item}
+					</foreach>
+
+				</if>
+				<if test="merNos != null">
+					and MER_NO IN
+					<foreach item="merNo" index="index" collection="merNos"
+						open="(" separator="," close=")">
+						#{merNo}
+					</foreach>
+				</if>
+				<if test="secMerNos != null">
+					and SEC_MER_NO IN
+					<foreach item="secMerNo" index="index" collection="secMerNos"
+						open="(" separator="," close=")">
+						#{secMerNo}
+					</foreach>
+				</if>
+				<if test="orderStartDate != null">
+					AND ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+			</trim>
+		</where>
+		ORDER BY ORDER_TIME DESC
+	</select>
+
+	<select id="selectQueryResultByTs4" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+	select <include refid="Base_Column" /> from T_PAY_ORDER_LIST 
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="userId != null">
+					USER_ID=#{userId}
+					AND
+				</if>
+				<if test="merNo != null">
+					MER_NO=#{merNo} AND
+				</if>
+				<if test="secMerNo != null">
+					SEC_MER_NO=#{secMerNo} AND
+				</if>
+				<if test="transType != null">
+					TRANS_TYPE=#{transType} AND
+				</if>
+				<if test="routeCode != null">
+					ROUTE_CODE=#{routeCode} AND
+				</if>
+				<if test="orderNo != null">
+					ORDER_NO=#{orderNo} AND
+				</if>
+				<if test="outerOrderNo != null">
+					OUTER_ORDER_NO=#{outerOrderNo} AND
+				</if>
+
+				<if test="stlFlag != null"> 
+					STL_FLAG=#{stlFlag} AND
+				</if>
+				
+				<if test="orderStat != null">
+					ORDER_STAT IN
+					<foreach item="item" index="index" collection="orderStat"
+						open="(" separator="," close=")">
+						#{item}
+					</foreach>
+					AND
+				</if>
+				<if test="orderStartDate != null">
+					ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+			</trim>
+		</where>
+		ORDER BY ORDER_TIME DESC
+	</select>
+
+	<select id="selectQueryResultByTs3" parameterType="java.util.HashMap" resultMap="BaseResultMap">	
+	select <include refid="Base_Column" />　from　(
+	select <include refid="Base_Column" /> from T_PAY_ORDER_LIST 
+	<where>
+			<trim suffixOverrides="AND">
+				<if test="transType != null">
+					TRANS_TYPE=#{transType} AND
+				</if>
+
+				<if test="secMerNo != null">
+					SEC_MER_NO=#{secMerNo} AND
+				</if>
+				<if test="routeCode != null">
+					ROUTE_CODE=#{routeCode} AND
+				</if>
+
+				<if test="orderNo != null">
+					ORDER_NO=#{orderNo} AND
+				</if>
+				<if test="outerOrderNo != null">
+					OUTER_ORDER_NO=#{outerOrderNo} AND
+				</if>
+
+				<if test="stlFlag != null">
+					STL_FLAG=#{stlFlag} AND
+				</if>
+				
+				<if test="orderStat != null">
+					ORDER_STAT IN
+					<foreach item="item" index="index" collection="orderStat"
+						open="(" separator="," close=")">
+						#{item}
+					</foreach>
+					AND
+				</if>
+				
+				<if test="orderStartDate != null">
+					ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+				
+				<if test="userId != null">
+					USER_ID=#{userId}
+					AND
+				</if>
+
+				<if test="merNo != null">
+					MER_NO=#{merNo}
+				</if>
+			</trim>
+
+		</where>
+		<if test="merNos != null">
+	UNION
+	select <include refid="Base_Column" /> from T_PAY_ORDER_LIST 
+	<where>
+			<trim suffixOverrides="AND">
+				<if test="transType != null">
+					TRANS_TYPE=#{transType} AND
+				</if>
+				<if test="secMerNo != null">
+					SEC_MER_NO=#{secMerNo} AND
+				</if>
+				<if test="routeCode != null">
+					ROUTE_CODE=#{routeCode} AND
+				</if>
+
+				<if test="orderNo != null">
+					ORDER_NO=#{orderNo} AND
+				</if>
+				<if test="outerOrderNo != null">
+					OUTER_ORDER_NO=#{outerOrderNo} AND
+				</if>
+
+				<if test="stlFlag != null">
+					STL_FLAG=#{stlFlag} AND
+				</if>
+
+				<if test="orderStat != null">
+					ORDER_STAT IN
+					<foreach item="item" index="index" collection="orderStat"
+						open="(" separator="," close=")">
+						#{item}
+					</foreach>
+					AND
+				</if>
+				
+				<if test="orderStartDate != null">
+					ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+				
+				<if test="merNos != null">
+					MER_NO IN
+					<foreach item="merNo" index="index" collection="merNos"
+						open="(" separator="," close=")">
+						#{merNo}
+					</foreach>
+				</if>
+			</trim>
+
+		</where>
+	</if>
+	
+	<if test="secMerNos != null">
+	UNION 
+	select <include refid="Base_Column" /> from T_PAY_ORDER_LIST 
+	<where>
+			<trim suffixOverrides="AND">
+				<if test="transType != null">
+					TRANS_TYPE=#{transType} AND
+				</if>
+				<if test="secMerNo != null">
+					SEC_MER_NO=#{secMerNo} AND
+				</if>
+				<if test="routeCode != null">
+					ROUTE_CODE=#{routeCode} AND
+				</if>
+
+				<if test="orderNo != null">
+					ORDER_NO=#{orderNo} AND
+				</if>
+				<if test="outerOrderNo != null">
+					OUTER_ORDER_NO=#{outerOrderNo} AND
+				</if>
+
+				<if test="stlFlag != null">
+					STL_FLAG=#{stlFlag} AND
+				</if>
+
+				<if test="orderStat != null">
+					ORDER_STAT IN
+					<foreach item="item" index="index" collection="orderStat"
+						open="(" separator="," close=")">
+						#{item}
+					</foreach>
+					AND
+				</if>
+				
+				<if test="orderStartDate != null">
+					ORDER_DATE &gt;= #{orderStartDate}
+					AND
+				</if>
+				<if test="orderEndDate != null">
+					ORDER_DATE &lt;= #{orderEndDate}
+					AND
+				</if>
+				<if test="secMerNos != null">
+					SEC_MER_NO IN
+					<foreach item="secMerNo" index="index" collection="secMerNos"
+						open="(" separator="," close=")">
+						#{secMerNo}
+					</foreach>
+				</if>
+			</trim>
+
+		</where>
+	</if>
+	) test
+	ORDER BY ORDER_TIME DESC
+	</select>
+
+	<select id="SelectListByConditions" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="userId != null">
+					USER_ID=#{userId}
+				</if>
+				<if test="transType != null">
+					AND
+					TRANS_TYPE=#{transType}
+				</if>
+				<if test="merNo != null">
+					AND
+					MER_NO = #{merNo}
+				</if>
+				<if test="orderStats != null">
+					AND
+					ORDER_STAT IN
+					<foreach item="item" index="index" collection="orderStats"
+						open="(" separator="," close=")">
+						#{item}
+					</foreach>
+
+				</if>
+				<if test="merNos != null">
+					and MER_NO IN
+					<foreach item="merNo" index="index" collection="merNos"
+						open="(" separator="," close=")">
+						#{merNo}
+					</foreach>
+				</if>
+				<if test="secMerNos != null">
+					and SEC_MER_NO IN
+					<foreach item="secMerNo" index="index" collection="secMerNos"
+						open="(" separator="," close=")">
+						#{secMerNo}
+					</foreach>
+				</if>
+
+				<if test="queryBeginDate != null">
+					AND
+					ORDER_DATE &gt;= #{queryBeginDate}
+				</if>
+				<if test="queryEndDate != null">
+					AND
+					ORDER_DATE &lt;= #{queryEndDate}
+
+				</if>
+			</trim>
+		</where>
+
+		ORDER BY ORDER_TIME DESC
+	</select>
+	<select id="getFailOrderBy04" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		
+		SELECT
+		<include refid="Base_Column"/>
+		FROM T_PAY_ORDER_LIST WHERE ORDER_NO IN (
+					SELECT ORDER_NO FROM (SELECT COUNT(1) AS TOTAL,ORDER_NO FROM T_PAY_FLOW_LIST 
+								WHERE ORDER_NO IN (
+												SELECT ORDER_NO FROM T_PAY_ORDER_LIST A WHERE 
+																															A.TRANS_TYPE=#{transType}
+																															AND A.REMARK1 IS NULL 
+																															AND A.ORDER_STAT=#{orderStat}
+																AND FLOOR(to_number(sysdate-to_date(to_char(A.PAY_TIME,'yyyymmddhh24miss'),'yyyymmddhh24miss'))*24*60) > 5  )
+								AND TRANS_STAT=#{transStat}
+								GROUP BY ORDER_NO) B  WHERE B.TOTAL=1)
+	</select>
+	<select id="getRechargeTrans" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column"/>
+		FROM T_PAY_ORDER_LIST 
+		<where>
+			<if test="transType != null">
+				and TRANS_TYPE=#{transType}
+			</if>
+			<if test="orderStatA != null and orderStatB != null and orderStatC != null and orderStatRef != null">
+				and (ORDER_STAT=#{orderStatA} or ORDER_STAT=#{orderStatB} or ORDER_STAT=#{orderStatC} or ORDER_STAT=#{orderStatRef})
+			</if>
+			<if test="compareFlag != null">
+				and nvl(FEE_AMT,0) <![CDATA[${compareFlag}]]> 0
+			</if>
+			and ORDER_NO in (
+				SELECT pp.ORDER_NO FROM T_PAY_FLOW_LIST pp 
+				<where>
+					pp.order_no in(
+						SELECT a.order_no FROM (
+							SELECT count(1) count,p.ORDER_NO FROM T_PAY_FLOW_LIST p 
+							<where>
+								<if test="transStatA != null and transStatB != null and transStatC != null">
+									and (p.TRANS_STAT=#{transStatA} or p.TRANS_STAT=#{transStatB} or p.TRANS_STAT=#{transStatC})
+								</if>
+							</where>
+							 group by p.ORDER_NO
+						) a 
+						<where>
+							<if test="countStart != null and countEnd != null">								
+								and a.count <![CDATA[>]]> #{countStart} and a.count <![CDATA[<]]> #{countEnd}
+							</if>						
+						</where>
+					) 
+					<if test="transStatA != null">
+						and pp.TRANS_STAT=#{transStatA}
+					</if>
+					<if test="chkFlag != null">
+						and pp.CHK_FLAG=#{chkFlag}
+					</if>
+					<if test="routeCode != null">
+						and pp.ROUTE_CODE=#{routeCode}
+					</if> 
+					and floor(to_number(sysdate-to_date(to_char(pp.TRANS_TIME,'yyyymmddhh24miss'),'yyyymmddhh24miss'))*24*60) > 5
+					GROUP BY PP.ORDER_NO
+				</where>
+			)
+		</where>
+	</select>
+	
+	<!-- 查询二级商户不为空的交易成功的订单-->
+	<select id="getPaySuccOrderList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select  
+      	<include refid="Base_Column" />
+  		from t_pay_order_list t
+  		<where>  		
+ 			<if test="orderStat1 != null and orderStat2 != null and orderStat3 != null and orderStat4 != nul"> 			
+ 			and t.order_stat in ( #{orderStat1} ,#{orderStat2},#{orderStat3},#{orderStat4})
+ 			</if>
+   			<if test="chkFlag != null"> 			
+   			and t.chk_flag = #{chkFlag}
+ 			</if>
+ 			<if test="oriClearFlag != null"> 			
+   			and t.CLEAR_FLAG = #{oriClearFlag}
+ 			</if>
+ 			<if test="transType != null"> 			
+   			and t.TRANS_TYPE =#{transType}
+ 			</if>
+<!--    			<if test="sysDate != null">                          -->
+<!-- 			 	and t.order_date &lt; #{sysDate}  -->
+<!-- 			 </if> -->
+			<if test="merNo != null">
+				AND t.mer_no=#{merNo}
+			</if>
+				AND t.sec_mer_no is not null
+				AND <![CDATA[ORDER_TIME >= TO_DATE(#{startDate}, 'yyyy-MM-dd') ]]>
+				AND <![CDATA[ORDER_TIME <  TO_DATE(#{endDate}, 'yyyy-MM-dd')]]>
+  		</where>
+	</select>
+	
+
+	<!-- 给一级商户划账代收金额和应付手续费统计 -->
+	<select id="stlMerRevOrder" parameterType="java.util.HashMap" resultType="com.upay.dao.po.chk.StlCountPo">
+		select  
+      		COALESCE(sum(t.TRANS_AMT),0) as revAmt,
+      		COALESCE(sum(t.MER_FEE_AMT),0) as payFee
+  		from t_pay_order_list t
+  		<where>  		
+ 			<if test="orderStat1 != null and orderStat2 != null and orderStat3 != null and orderStat4 != nul"> 			
+ 			and t.order_stat in (#{orderStat1},#{orderStat2},#{orderStat3},#{orderStat4})
+ 			</if>
+   			<if test="chkFlag != null"> 			
+   			and t.chk_flag = #{chkFlag}
+ 			</if>
+ 			<if test="oriClearFlag != null"> 			
+   			and t.CLEAR_FLAG = #{oriClearFlag}
+ 			</if>
+ 			<if test="transType != null"> 			
+   			and t.TRANS_TYPE =#{transType}
+ 			</if>
+   			<if test="sysDate != null">                         
+			 	and t.order_date &lt; #{sysDate} 
+			 </if>
+			<if test="merNo != null">
+				AND t.mer_no=#{merNo}
+			</if>
+  		</where>
+	</select>
+	<!-- 一级商户退款金额 -->
+	<select id="stlMerPayOrder" parameterType="java.util.HashMap" resultType="com.upay.dao.po.chk.StlCountPo">
+		SELECT 
+		COALESCE(sum(b.TRANS_AMT),0) as payAmt 
+		FROM T_PAY_ORDER_LIST a inner join T_PAY_ORDER_LIST b on a.ORDER_NO=b.ORI_ORDER_NO
+		<where>
+			<if test="payOrderStat1 != null and payOrderStat2 != null">
+			(a.ORDER_STAT=#{payOrderStat1} or a.ORDER_STAT=#{payOrderStat2}) 
+			</if>
+			<if test="refOrderStat != null">
+			and b.ORDER_STAT=#{refOrderStat} 
+			</if>
+			<if test="refClearFlag != null">
+			and b.CLEAR_FLAG=#{refClearFlag} 
+			</if>
+			<if test="payTransType != null">
+			and a.TRANS_TYPE=#{payTransType} 
+			</if>
+			<if test="refTransType != null">
+			and b.TRANS_TYPE=#{refTransType}
+			</if>
+			<if test="sysDate != null">                         
+			 	and a.order_date &lt; #{sysDate} 
+			</if>
+			<if test="merNo != null">
+				AND a.mer_no=#{merNo}
+			</if>
+		</where> 
+	</select>
+	
+		<!-- 给二级商户划账代收金额和应付手续费统计 -->
+	<select id="stlSecMerRevOrder" parameterType="java.util.HashMap" resultType="com.upay.dao.po.chk.StlCountPo">
+		select  
+      		COALESCE(sum(NVL(t.TRANS_AMT,0)-NVL(t.MER_FEE_AMT,0)),0) as revAmt,
+      		COALESCE(sum(t.SEC_MER_FEE_AMT),0) as payFee
+  		FROM T_PAY_ORDER_LIST t
+  		<where>  		
+ 			<if test="orderStat1 != null and orderStat2 != null and orderStat3 != null and orderStat4 != nul"> 			
+ 				and t.order_stat in (#{orderStat1},#{orderStat2},#{orderStat3},#{orderStat4})
+ 			</if>
+   			<if test="chkFlag != null"> 			
+   				and t.chk_flag = #{chkFlag}
+ 			</if>
+ 			<if test="oriClearFlag != null"> 			
+   				and t.CLEAR_FLAG = #{oriClearFlag}
+ 			</if>
+ 			<if test="transType != null"> 			
+   				and t.TRANS_TYPE =#{transType}
+ 			</if>
+ 			<if test="isEntrustDate != null">   
+ 				<![CDATA[AND t.order_date >= TO_DATE(#{isEntrustDate}, 'yyyy-MM-dd')]]>    
+			 </if>
+   			<if test="sysDate != null">                         
+			 	and t.order_date &lt; #{sysDate} 
+			 </if>
+			<if test="merNo != null">
+				AND t.mer_no=#{merNo}
+			</if>
+			<if test="secMerNo != null">
+				AND t.SEC_MER_NO=#{secMerNo}
+			</if>
+  		</where>
+	</select>
+	<!-- 二级商户退款金额 -->
+	<select id="stlSecMerPayOrder" parameterType="java.util.HashMap" resultType="com.upay.dao.po.chk.StlCountPo">
+		SELECT 
+		COALESCE(sum(NVL(b.TRANS_AMT, 0)-NVL(b.MER_FEE_AMT,0)-NVL(b.SEC_MER_FEE_AMT,0)),0) as payAmt
+		FROM T_PAY_ORDER_LIST a inner join T_PAY_ORDER_LIST b on a.ORDER_NO=b.ORI_ORDER_NO
+		<where>
+			<if test="payOrderStat1 != null and payOrderStat2 != null">
+				a.ORDER_STAT in (#{payOrderStat1},#{payOrderStat2}) 
+			</if>
+			<if test="refOrderStat != null">
+				and b.ORDER_STAT=#{refOrderStat} 
+			</if>
+			<if test="refClearFlag != null">
+				and b.CLEAR_FLAG=#{refClearFlag} 
+			</if>
+			<if test="payTransType != null">
+				and a.TRANS_TYPE=#{payTransType} 
+			</if>
+			<if test="refTransType != null">
+				and b.TRANS_TYPE=#{refTransType}
+			</if>
+			<if test="isEntrustDate != null">   
+ 				<![CDATA[AND a.order_date >= TO_DATE(#{isEntrustDate}, 'yyyy-MM-dd')]]>    
+			 </if>
+			<if test="sysDate != null">                         
+			 	and a.order_date &lt; #{sysDate} 
+			</if>
+			<if test="merNo != null">
+				AND a.mer_no=#{merNo}
+			</if>
+			<if test="secMerNo != null">
+				AND a.SEC_MER_NO=#{secMerNo}
+			</if>
+		</where> 
+	</select>
+	
+	<!-- 给商户划账代付金额和应收手续费统计 -->
+	<!-- <select id="stlMerPayOrder" parameterType="java.util.HashMap" resultType="com.upay.dao.po.chk.StlCountPo">
+		select  
+      		COALESCE(sum(t.TRANS_AMT),0) as revAmt,
+      		COALESCE(sum(t.FEE_AMT),0) as payFee
+  		from t_pay_order_list t
+ 		where t.order_stat in ('0', '6')
+   			and t.chk_flag = '1'
+   			and t.CLEAR_FLAG = '8'
+   			and t.TRANS_TYPE in ('03')
+   			<if test="sysDate != null">                         
+			 	and t.ORDER_DATE &lt; #{sysDate} 
+			 </if>
+			<if test="merNo != null">
+				AND t.mer_no=#{merNo}
+			</if>
+	</select> -->
+	
+	<!-- 更新一级商户清算记录的清算状态     退款订单-->
+	<update id="updateStlMerRefOrder" parameterType="java.util.HashMap">
+		update  t_pay_order_list b
+			<set>
+					b.LAST_UPDATE_TIME=sysdate,
+				<if test="clearFlag != null">
+					b.CLEAR_FLAG=#{clearFlag},
+				</if>
+				
+			</set>
+ 		<where>
+			<if test="refOrderStat != null">
+			and b.ORDER_STAT=#{refOrderStat} 
+			</if>
+			<if test="refClearFlag != null">
+			and b.CLEAR_FLAG=#{refClearFlag} 
+			</if>
+			<if test="sysDate != null">                         
+			 	and b.order_date &lt; #{sysDate}
+			</if>
+			<if test="refTransType != null">
+			and b.TRANS_TYPE=#{refTransType}
+			</if>
+			and ori_order_no in (
+				select order_no from t_pay_order_list a 
+				<where>
+					<if test="payTransType != null">
+					and a.TRANS_TYPE=#{payTransType} 
+					</if>
+		 			<if test="payOrderStat1 != null and payOrderStat2 != null">
+					and a.ORDER_STAT in (#{payOrderStat1},#{payOrderStat2})
+					</if>
+					<if test="merNo != null">
+						AND a.mer_no=#{merNo} 
+					</if>
+				</where>
+			)
+		</where>
+	</update>
+	
+	<!-- 更新一级商户清算记录的清算状态     支付订单-->
+	<update id="updateStlMerPayOrder" parameterType="java.util.HashMap">
+		update  t_pay_order_list t
+			<set>
+				LAST_UPDATE_TIME=sysdate,
+				<if test="clearFlag != null">
+					t.CLEAR_FLAG=#{clearFlag},
+				</if>
+			</set>
+ 		<where>
+ 			<if test="orderStat1 != null and orderStat2 != null and orderStat3 != null and orderStat4 != nul"> 			
+ 			and t.order_stat in (#{orderStat1},#{orderStat2},#{orderStat3},#{orderStat4})
+ 			</if>
+   			<if test="chkFlag != null"> 			
+   			and t.chk_flag = #{chkFlag}
+ 			</if>
+ 			<if test="oriClearFlag != null"> 			
+   			and t.CLEAR_FLAG = #{oriClearFlag}
+ 			</if>
+ 			<if test="sysDate != null">                         
+			 	and t.order_date &lt; #{sysDate} 
+			</if>
+ 			<if test="transType != null"> 			
+   			and t.TRANS_TYPE =#{transType}
+ 			</if>
+   			<if test="sysDate != null">                         
+			 	and t.order_date &lt; #{sysDate} 
+			 </if>
+			<if test="merNo != null">
+				AND t.mer_no=#{merNo}
+			</if>
+		</where>
+	</update>
+	<!-- 更新二级商户清算记录的清算状态     退款订单     清算状态为二级清算完成-->
+	<update id="updateStlSecMerRefOrder" parameterType="java.util.HashMap">
+		update  t_pay_order_list b
+			<set>
+				LAST_UPDATE_TIME=sysdate,
+				<if test="clearFlag != null">
+					b.CLEAR_FLAG=#{clearFlag},
+				</if>
+			</set>
+ 		<where>
+			<if test="refOrderStat != null">
+			and b.ORDER_STAT=#{refOrderStat} 
+			</if>
+			<if test="refClearFlag != null">
+			and b.CLEAR_FLAG=#{refClearFlag} 
+			</if>
+			<if test="isEntrustDate != null">   
+ 				<![CDATA[AND b.order_date >= TO_DATE(#{isEntrustDate}, 'yyyy-MM-dd')]]>    
+			</if>
+			<if test="sysDate != null">                         
+			 	and b.order_date &lt; #{sysDate} 
+			</if>
+			<if test="refTransType != null">
+			and b.TRANS_TYPE=#{refTransType}
+			</if>
+			and ori_order_no in (
+				select order_no from t_pay_order_list a 
+				<where>
+					<if test="payTransType != null">
+					and a.TRANS_TYPE=#{payTransType} 
+					</if>
+		 			<if test="payOrderStat1 != null and payOrderStat2 != null">
+					and a.ORDER_STAT in (#{payOrderStat1} ,#{payOrderStat2})
+					</if>
+					<if test="merNo != null">
+						AND a.mer_no=#{merNo}
+					</if>
+					<if test="secMerNo != null">
+						AND a.SEC_MER_NO=#{secMerNo}
+					</if>
+				</where>
+			)
+		</where>
+	</update>
+	
+	<!-- 更新二级级商户清算记录的清算状态     支付订单  清算状态为二级清算完成-->
+	<update id="updateStlSecMerPayOrder" parameterType="java.util.HashMap">
+		update  t_pay_order_list t
+			<set>
+			LAST_UPDATE_TIME=sysdate,
+				<if test="clearFlag != null">
+					t.CLEAR_FLAG=#{clearFlag},
+				</if>
+			</set>
+ 		<where>
+ 			<if test="orderStat1 != null and orderStat2 != null and orderStat3 != null and orderStat4 != nul"> 			
+<!--  			and (t.order_stat =#{orderStat1} or order_stat =#{orderStat2} or order_stat =#{orderStat3} or order_stat =#{orderStat4}) -->
+			and t.order_stat in (#{orderStat1} ,#{orderStat2} ,#{orderStat3},#{orderStat4})
+ 			</if>
+   			<if test="chkFlag != null"> 			
+   			and t.chk_flag = #{chkFlag}
+ 			</if>
+ 			<if test="oriClearFlag != null"> 			
+   			and t.CLEAR_FLAG = #{oriClearFlag}
+ 			</if>
+ 			<if test="transType != null"> 			
+   			and t.TRANS_TYPE =#{transType}
+ 			</if>
+ 			<if test="isEntrustDate != null">   
+ 				<![CDATA[AND t.order_date >= TO_DATE(#{isEntrustDate}, 'yyyy-MM-dd')]]>    
+			 </if>
+   			<if test="sysDate != null">                         
+			 	and t.order_date &lt; #{sysDate} 
+			 </if>
+			<if test="merNo != null">
+				AND t.mer_no=#{merNo}
+			</if>
+			<if test="secMerNo != null">
+				AND t.SEC_MER_NO=#{secMerNo}
+			</if>
+		</where>
+	</update>
+	
+	<select id="countOne" parameterType="java.util.Map" resultType="int">
+		select count(1) from t_pay_order_list t where t.order_stat in (#{orderStat},#{orderStatTwo},#{orderStatThree},#{orderStatThour},#{orderStatFive}) and t.chk_flag = #{chkFlag}  and t.CLEAR_FLAG = #{clearFlag} and TRANS_TYPE in (#{transType},#{transTypeTwo}) and ORDER_DATE <![CDATA[<]]>  #{orderDate}
+	</select>
+	
+	<select id="selectListOne" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column" />
+		 from t_pay_order_list t where t.order_stat in (#{orderStat},#{orderStatTwo},#{orderStatThree},#{orderStatThour},#{orderStatFive}) and t.chk_flag = #{chkFlag} and  t.CLEAR_FLAG = #{clearFlag} and TRANS_TYPE in (#{transType},#{transTypeTwo}) and ORDER_DATE <![CDATA[<]]>  #{orderDate}
+		 <include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+	
+	<update id="updatePayOrderForChk" parameterType="java.util.HashMap">
+		update  t_pay_order_list t set chk_date = #{chkDate},CHK_BATCH_NO = #{chkBatchNo},CHK_FLAG=#{chkFlag},LAST_UPDATE_TIME=sysdate where  CHK_FLAG = #{chkFlagForFind} and ORDER_STAT in (#{orderStat},#{orderStatTwo},#{orderStatThree},#{orderStatThour},#{orderStatFive}) and t.CLEAR_FLAG = #{clearFlag} and TRANS_TYPE in (#{transType},#{transTypeTwo}) and ORDER_DATE <![CDATA[<]]>  #{orderDate}
+	</update>
+	
+	<select id="selectListOneForPayType" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column" />
+		 from t_pay_order_list t where t.order_stat in (#{orderStat},#{orderStatTwo},#{orderStatThree},#{orderStatThour},#{orderStatFive}) and  t.CLEAR_FLAG = #{clearFlag} and TRANS_TYPE = #{transType}  and t.order_no = #{oriOrderNo}
+	</select>
+	
+	<select id="selectRefundExce" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select  b.* from t_pay_order_list a,t_pay_order_list b where a.order_no = b.ori_order_no and b.order_stat = #{orderStat} and b.trans_type = #{transType} and b.order_no in
+		(select c.order_no from (
+			select NVL( aa.count,0) count1 ,d.order_no from t_pay_flow_list d  left join 
+				( select count(1) count,f.order_no from t_pay_flow_list f 
+					where f.route_code = #{routeCode} and f.trans_stat = #{transStat}  group by f.order_no) aa on d.order_no = aa.order_no
+		) c where  c.count1 <![CDATA[<=]]> 1 ) and b.order_date <![CDATA[>]]> a.order_date and floor(to_number(sysdate-to_date(to_char(b.order_time,'yyyymmddhh24miss'),'yyyymmddhh24miss'))*24*60) > 5
+	</select>
+	
+	<select id="selectOrderDetail" parameterType="java.util.Map" resultType="java.util.Map">
+	select to_char(t.order_date, 'yyyy-MM-dd') as transDate,t.order_no as orderNo,tu.cert_name as customerName,tf.payer_acct_no as acctNO,t.trans_amt as transAmt,
+	  case when t.route_code='0001' then '核心'
+	     when t.route_code='0002' then '银联'
+	     when t.route_code='0003' then '微信'
+	     when t.route_code='0004' then '中金支付'
+	     when t.route_code='0005' then '支付宝'
+	   ELSE t.route_code
+	   END AS routeCode,
+	  case when t.order_stat='0' then '支付成功'
+	     when t.order_stat='1' then '待支付'
+	     when t.order_stat='2' then '支付中'
+	     when t.order_stat='3' then '支付失败'
+	     when t.order_stat='4' then '超时关闭'       
+	     when t.order_stat='5' then '手工关闭'
+	     when t.order_stat='6' then '确认收货'     
+	     when t.order_stat='7' then '预约支付'
+	     when t.order_stat='8' then '待确认收货'
+	     when t.order_stat='9' then '退款中'
+	     when t.order_stat='10' then '退款失败' 
+	     when t.order_stat='11' then '退款成功'
+	     when t.order_stat='12' then '部分退款'
+	     when t.order_stat='13' then '全额退款'
+	   ELSE t.order_stat
+	   END AS orderStat                         
+	  from T_PAY_ORDER_LIST t,T_PAY_FLOW_LIST tf,T_USR_BASE_INFO tu
+	  where t.mer_no = #{merNo}
+	   and t.order_no=tf.order_no
+	   and t.user_id=tu.user_id
+       and tf.seq_no=1
+	   and t.order_stat = '0'
+	   and t.order_date between to_date(#{beginTime},'yyyy-MM-dd') and to_date(#{endTime},'yyyy-MM-dd') 
+	   order by t.order_time 
+	  </select>
+	  
+	  <select id="countSelectOrderDetail" parameterType="java.util.Map" resultType="java.util.Map">
+	   select count(x.order_no) as sumTrade,sum(x.trans_amt) as sumAmount
+			from(
+			select to_char(t.order_date, 'yyyy-MM-dd'),t.order_no,tu.cert_name,tf.payer_acct_no,t.trans_amt              
+			  from T_PAY_ORDER_LIST t,T_PAY_FLOW_LIST tf,T_USR_BASE_INFO tu
+			 where t.mer_no = #{merNo}
+			   and t.user_id=tu.user_id
+			   and t.order_no=tf.order_no
+               and tf.seq_no=1
+			   and t.order_stat = '0'
+			   and t.order_date between to_date(#{beginTime},'yyyy-MM-dd') and to_date(#{endTime},'yyyy-MM-dd') 
+			   order by t.order_time ) x
+	  </select>
+	  
+	  <select id="selectOrderCount" parameterType="java.util.Map" resultType="java.util.Map">
+	      select to_char(t.order_date, 'yyyy-MM-dd') as transDate, count(t.id) as trades, sum(t.trans_amt) as amount
+		   from T_PAY_ORDER_LIST t
+		  where t.mer_no = #{merNo}
+		    and t.order_date between to_date(#{beginTime},'yyyy-MM-dd') and to_date(#{endTime},'yyyy-MM-dd') 
+		    and t.order_stat = '0'
+		  group by t.order_date
+		  order by t.order_date
+	  </select>
+	  
+	  <select id="countSelectOrderCount" parameterType="java.util.Map" resultType="java.util.Map">  
+		select sum(x.tid) as sumTrade, sum(x.transAmt) as sumAmount
+		  from (select t.order_date,
+		               count(t.id) as tid,
+		               sum(t.trans_amt) as transAmt
+		          from T_PAY_ORDER_LIST t
+		         where t.mer_no = #{merNo}
+		           and t.order_date between to_date(#{beginTime},'yyyy-MM-dd') and to_date(#{endTime},'yyyy-MM-dd') 
+		           and t.order_stat = '0'
+		         group by t.order_date
+		         order by t.order_date) x
+	  </select>
+	  
+</mapper>

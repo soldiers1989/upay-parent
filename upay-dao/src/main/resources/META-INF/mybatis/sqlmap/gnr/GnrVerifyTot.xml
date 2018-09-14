@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrVerifyTotPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.gnr.GnrVerifyTotPo">
+		<id column="ID" property="id" />
+		<result column="TRANS_DATE" property="transDate" />
+		<result column="TRANS_CODE" property="transCode" />
+		<result column="USER_ID" property="userId" />
+		<result column="VERIFY_LOCK_FLAG" property="verifyLockFlag" />
+		<result column="SMS_RESEND_NUM" property="smsResendNum" />
+		<result column="SMS_RESEND_TIME" property="smsResendTime" />
+		<result column="SMS_VERTIFY_ERR_NUM" property="smsVertifyErrNum" />
+		<result column="EMAIL_RESEND_NUM" property="emailResendNum" />
+		<result column="EMAIL_RESEND_TIME" property="emailResendTime" />
+		<result column="EMAIL_VERTIFY_ERR_NUM" property="emailVertifyErrNum" />
+		<result column="GRAP_RESEND_NUM" property="grapResendNum" />
+		<result column="GRAP_RESEND_TIME" property="grapResendTime" />
+		<result column="GRAP_VERTIFY_ERR_NUM" property="grapVertifyErrNum" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_GNR_VERIFY_TOT
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TRANS_DATE,
+		TRANS_CODE,
+		USER_ID,
+		VERIFY_LOCK_FLAG,
+		SMS_RESEND_NUM,
+		SMS_RESEND_TIME,
+		SMS_VERTIFY_ERR_NUM,
+		EMAIL_RESEND_NUM,
+		EMAIL_RESEND_TIME,
+		EMAIL_VERTIFY_ERR_NUM,
+		GRAP_RESEND_NUM,
+		GRAP_RESEND_TIME,
+		GRAP_VERTIFY_ERR_NUM
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="transDate != null">
+			TRANS_DATE= #{transDate}
+	           AND 
+		</if>
+		<if test="transCode != null">
+			TRANS_CODE= #{transCode}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="verifyLockFlag != null">
+			VERIFY_LOCK_FLAG= #{verifyLockFlag}
+	           AND 
+		</if>
+		<if test="smsResendNum != null">
+			SMS_RESEND_NUM= #{smsResendNum}
+	           AND 
+		</if>
+		<if test="smsResendTime != null">
+			SMS_RESEND_TIME= #{smsResendTime}
+	           AND 
+		</if>
+		<if test="smsVertifyErrNum != null">
+			SMS_VERTIFY_ERR_NUM= #{smsVertifyErrNum}
+	           AND 
+		</if>
+		<if test="emailResendNum != null">
+			EMAIL_RESEND_NUM= #{emailResendNum}
+	           AND 
+		</if>
+		<if test="emailResendTime != null">
+			EMAIL_RESEND_TIME= #{emailResendTime}
+	           AND 
+		</if>
+		<if test="emailVertifyErrNum != null">
+			EMAIL_VERTIFY_ERR_NUM= #{emailVertifyErrNum}
+	           AND 
+		</if>
+		<if test="grapResendNum != null">
+			GRAP_RESEND_NUM= #{grapResendNum}
+	           AND 
+		</if>
+		<if test="grapResendTime != null">
+			GRAP_RESEND_TIME= #{grapResendTime}
+	           AND 
+		</if>
+		<if test="grapVertifyErrNum != null">
+			GRAP_VERTIFY_ERR_NUM= #{grapVertifyErrNum}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE,
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="verifyLockFlag != null">
+		VERIFY_LOCK_FLAG,
+	</if>
+	<if test="smsResendNum != null">
+		SMS_RESEND_NUM,
+	</if>
+	<if test="smsResendTime != null">
+		SMS_RESEND_TIME,
+	</if>
+	<if test="smsVertifyErrNum != null">
+		SMS_VERTIFY_ERR_NUM,
+	</if>
+	<if test="emailResendNum != null">
+		EMAIL_RESEND_NUM,
+	</if>
+	<if test="emailResendTime != null">
+		EMAIL_RESEND_TIME,
+	</if>
+	<if test="emailVertifyErrNum != null">
+		EMAIL_VERTIFY_ERR_NUM,
+	</if>
+	<if test="grapResendNum != null">
+		GRAP_RESEND_NUM,
+	</if>
+	<if test="grapResendTime != null">
+		GRAP_RESEND_TIME,
+	</if>
+	<if test="grapVertifyErrNum != null">
+		GRAP_VERTIFY_ERR_NUM,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="transDate != null">
+		#{transDate},
+	</if>
+	<if test="transCode != null">
+		#{transCode},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="verifyLockFlag != null">
+		#{verifyLockFlag},
+	</if>
+	<if test="smsResendNum != null">
+		#{smsResendNum},
+	</if>
+	<if test="smsResendTime != null">
+		#{smsResendTime},
+	</if>
+	<if test="smsVertifyErrNum != null">
+		#{smsVertifyErrNum},
+	</if>
+	<if test="emailResendNum != null">
+		#{emailResendNum},
+	</if>
+	<if test="emailResendTime != null">
+		#{emailResendTime},
+	</if>
+	<if test="emailVertifyErrNum != null">
+		#{emailVertifyErrNum},
+	</if>
+	<if test="grapResendNum != null">
+		#{grapResendNum},
+	</if>
+	<if test="grapResendTime != null">
+		#{grapResendTime},
+	</if>
+	<if test="grapVertifyErrNum != null">
+		#{grapVertifyErrNum},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE=#{transDate},
+	</if>
+	<if test="transCode != null">
+		TRANS_CODE=#{transCode},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="verifyLockFlag != null">
+		VERIFY_LOCK_FLAG=#{verifyLockFlag},
+	</if>
+	<if test="smsResendNum != null">
+		SMS_RESEND_NUM=#{smsResendNum},
+	</if>
+	<if test="smsResendTime != null">
+		SMS_RESEND_TIME=#{smsResendTime},
+	</if>
+	<if test="smsVertifyErrNum != null">
+		SMS_VERTIFY_ERR_NUM=#{smsVertifyErrNum},
+	</if>
+	<if test="emailResendNum != null">
+		EMAIL_RESEND_NUM=#{emailResendNum},
+	</if>
+	<if test="emailResendTime != null">
+		EMAIL_RESEND_TIME=#{emailResendTime},
+	</if>
+	<if test="emailVertifyErrNum != null">
+		EMAIL_VERTIFY_ERR_NUM=#{emailVertifyErrNum},
+	</if>
+	<if test="grapResendNum != null">
+		GRAP_RESEND_NUM=#{grapResendNum},
+	</if>
+	<if test="grapResendTime != null">
+		GRAP_RESEND_TIME=#{grapResendTime},
+	</if>
+	<if test="grapVertifyErrNum != null">
+		GRAP_VERTIFY_ERR_NUM=#{grapVertifyErrNum},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.transDate != null">
+                    TRANS_DATE=#{s.transDate},
+			</if>
+			<if test="s.transCode != null">
+                    TRANS_CODE=#{s.transCode},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.verifyLockFlag != null">
+                    VERIFY_LOCK_FLAG=#{s.verifyLockFlag},
+			</if>
+			<if test="s.smsResendNum != null">
+                    SMS_RESEND_NUM=#{s.smsResendNum},
+			</if>
+			<if test="s.smsResendTime != null">
+                    SMS_RESEND_TIME=#{s.smsResendTime},
+			</if>
+			<if test="s.smsVertifyErrNum != null">
+                    SMS_VERTIFY_ERR_NUM=#{s.smsVertifyErrNum},
+			</if>
+			<if test="s.emailResendNum != null">
+                    EMAIL_RESEND_NUM=#{s.emailResendNum},
+			</if>
+			<if test="s.emailResendTime != null">
+                    EMAIL_RESEND_TIME=#{s.emailResendTime},
+			</if>
+			<if test="s.emailVertifyErrNum != null">
+                    EMAIL_VERTIFY_ERR_NUM=#{s.emailVertifyErrNum},
+			</if>
+			<if test="s.grapResendNum != null">
+                    GRAP_RESEND_NUM=#{s.grapResendNum},
+			</if>
+			<if test="s.grapResendTime != null">
+                    GRAP_RESEND_TIME=#{s.grapResendTime},
+			</if>
+			<if test="s.grapVertifyErrNum != null">
+                    GRAP_VERTIFY_ERR_NUM=#{s.grapVertifyErrNum}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.transDate != null">
+                    TRANS_DATE=#{w.transDate}
+                   AND 
+ 			</if>
+			<if test="w.transCode != null">
+                    TRANS_CODE=#{w.transCode}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.verifyLockFlag != null">
+                    VERIFY_LOCK_FLAG=#{w.verifyLockFlag}
+                   AND 
+ 			</if>
+			<if test="w.smsResendNum != null">
+                    SMS_RESEND_NUM=#{w.smsResendNum}
+                   AND 
+ 			</if>
+			<if test="w.smsResendTime != null">
+                    SMS_RESEND_TIME=#{w.smsResendTime}
+                   AND 
+ 			</if>
+			<if test="w.smsVertifyErrNum != null">
+                    SMS_VERTIFY_ERR_NUM=#{w.smsVertifyErrNum}
+                   AND 
+ 			</if>
+			<if test="w.emailResendNum != null">
+                    EMAIL_RESEND_NUM=#{w.emailResendNum}
+                   AND 
+ 			</if>
+			<if test="w.emailResendTime != null">
+                    EMAIL_RESEND_TIME=#{w.emailResendTime}
+                   AND 
+ 			</if>
+			<if test="w.emailVertifyErrNum != null">
+                    EMAIL_VERTIFY_ERR_NUM=#{w.emailVertifyErrNum}
+                   AND 
+ 			</if>
+			<if test="w.grapResendNum != null">
+                    GRAP_RESEND_NUM=#{w.grapResendNum}
+                   AND 
+ 			</if>
+			<if test="w.grapResendTime != null">
+                    GRAP_RESEND_TIME=#{w.grapResendTime}
+                   AND 
+ 			</if>
+			<if test="w.grapVertifyErrNum != null">
+                    GRAP_VERTIFY_ERR_NUM=#{w.grapVertifyErrNum}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

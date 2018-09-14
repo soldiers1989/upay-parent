@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	<!-- 对账单下载 -->
+		<mapping xpath="merNo" field="merNo"/>
+		<mapping xpath="secMerNo" field="secMerNo" must="not"/>
+		<mapping xpath="orderDate" field="orderDate" />
+		<mapping xpath="orderType" field="orderType" />
+		<mapping xpath="extensionParty" field="extensionParty" must="not"/>
+	</mappings>
+</config>

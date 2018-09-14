@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.chk.StlRouteFeeBookPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.chk.StlRouteFeeBookPo">
+		<id column="ID" property="id" />
+		<result column="STL_DATE" property="stlDate" />
+		<result column="STL_BATCH_NO" property="stlBatchNo" />
+		<result column="ASS_ID" property="assId" />
+		<result column="FLAG" property="flag" />
+		<result column="PAYER_CARD_TYPE" property="payerCardType" />
+		<result column="PAYER_ACCT_NO" property="payerAcctNo" />
+		<result column="PAYER_NAME" property="payerName" />
+		<result column="PAYEE_CARD_TYPE" property="payeeCardType" />
+		<result column="PAYEE_ACCT_NO" property="payeeAcctNo" />
+		<result column="PAYEE_NAME" property="payeeName" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="UPAY_DATE" property="upayDate" />
+		<result column="UPAY_ORDER_NO" property="upayOrderNo" />
+		<result column="RESULT" property="result" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="ROUTE_CODE" property="routeCode" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_STL_ROUTE_FEE_BOOK
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		STL_DATE,
+		STL_BATCH_NO,
+		ASS_ID,
+		FLAG,
+		PAYER_CARD_TYPE,
+		PAYER_ACCT_NO,
+		PAYER_NAME,
+		PAYEE_CARD_TYPE,
+		PAYEE_ACCT_NO,
+		PAYEE_NAME,
+		TRANS_AMT,
+		FEE_AMT,
+		UPAY_DATE,
+		UPAY_ORDER_NO,
+		RESULT,
+		REMARK1,
+		REMARK2,
+		ROUTE_CODE
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="stlDate != null">
+			STL_DATE= #{stlDate}
+	           AND 
+		</if>
+		<if test="stlBatchNo != null">
+			STL_BATCH_NO= #{stlBatchNo}
+	           AND 
+		</if>
+		<if test="assId != null">
+			ASS_ID= #{assId}
+	           AND 
+		</if>
+		<if test="flag != null">
+			FLAG= #{flag}
+	           AND 
+		</if>
+		<if test="payerCardType != null">
+			PAYER_CARD_TYPE= #{payerCardType}
+	           AND 
+		</if>
+		<if test="payerAcctNo != null">
+			PAYER_ACCT_NO= #{payerAcctNo}
+	           AND 
+		</if>
+		<if test="payerName != null">
+			PAYER_NAME= #{payerName}
+	           AND 
+		</if>
+		<if test="payeeCardType != null">
+			PAYEE_CARD_TYPE= #{payeeCardType}
+	           AND 
+		</if>
+		<if test="payeeAcctNo != null">
+			PAYEE_ACCT_NO= #{payeeAcctNo}
+	           AND 
+		</if>
+		<if test="payeeName != null">
+			PAYEE_NAME= #{payeeName}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="upayDate != null">
+			UPAY_DATE= #{upayDate}
+	           AND 
+		</if>
+		<if test="upayOrderNo != null">
+			UPAY_ORDER_NO= #{upayOrderNo}
+	           AND 
+		</if>
+		<if test="result != null">
+			RESULT= #{result}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="stlDate != null">
+		STL_DATE,
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO,
+	</if>
+	<if test="assId != null">
+		ASS_ID,
+	</if>
+	<if test="flag != null">
+		FLAG,
+	</if>
+	<if test="payerCardType != null">
+		PAYER_CARD_TYPE,
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO,
+	</if>
+	<if test="payerName != null">
+		PAYER_NAME,
+	</if>
+	<if test="payeeCardType != null">
+		PAYEE_CARD_TYPE,
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO,
+	</if>
+	<if test="payeeName != null">
+		PAYEE_NAME,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="upayDate != null">
+		UPAY_DATE,
+	</if>
+	<if test="upayOrderNo != null">
+		UPAY_ORDER_NO,
+	</if>
+	<if test="result != null">
+		RESULT,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="stlDate != null">
+		#{stlDate},
+	</if>
+	<if test="stlBatchNo != null">
+		#{stlBatchNo},
+	</if>
+	<if test="assId != null">
+		#{assId},
+	</if>
+	<if test="flag != null">
+		#{flag},
+	</if>
+	<if test="payerCardType != null">
+		#{payerCardType},
+	</if>
+	<if test="payerAcctNo != null">
+		#{payerAcctNo},
+	</if>
+	<if test="payerName != null">
+		#{payerName},
+	</if>
+	<if test="payeeCardType != null">
+		#{payeeCardType},
+	</if>
+	<if test="payeeAcctNo != null">
+		#{payeeAcctNo},
+	</if>
+	<if test="payeeName != null">
+		#{payeeName},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="upayDate != null">
+		#{upayDate},
+	</if>
+	<if test="upayOrderNo != null">
+		#{upayOrderNo},
+	</if>
+	<if test="result != null">
+		#{result},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="stlDate != null">
+		STL_DATE=#{stlDate},
+	</if>
+	<if test="stlBatchNo != null">
+		STL_BATCH_NO=#{stlBatchNo},
+	</if>
+	<if test="assId != null">
+		ASS_ID=#{assId},
+	</if>
+	<if test="flag != null">
+		FLAG=#{flag},
+	</if>
+	<if test="payerCardType != null">
+		PAYER_CARD_TYPE=#{payerCardType},
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO=#{payerAcctNo},
+	</if>
+	<if test="payerName != null">
+		PAYER_NAME=#{payerName},
+	</if>
+	<if test="payeeCardType != null">
+		PAYEE_CARD_TYPE=#{payeeCardType},
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO=#{payeeAcctNo},
+	</if>
+	<if test="payeeName != null">
+		PAYEE_NAME=#{payeeName},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="upayDate != null">
+		UPAY_DATE=#{upayDate},
+	</if>
+	<if test="upayOrderNo != null">
+		UPAY_ORDER_NO=#{upayOrderNo},
+	</if>
+	<if test="result != null">
+		RESULT=#{result},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.stlDate != null">
+                    STL_DATE=#{s.stlDate},
+			</if>
+			<if test="s.stlBatchNo != null">
+                    STL_BATCH_NO=#{s.stlBatchNo},
+			</if>
+			<if test="s.assId != null">
+                    ASS_ID=#{s.assId},
+			</if>
+			<if test="s.flag != null">
+                    FLAG=#{s.flag},
+			</if>
+			<if test="s.payerCardType != null">
+                    PAYER_CARD_TYPE=#{s.payerCardType},
+			</if>
+			<if test="s.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{s.payerAcctNo},
+			</if>
+			<if test="s.payerName != null">
+                    PAYER_NAME=#{s.payerName},
+			</if>
+			<if test="s.payeeCardType != null">
+                    PAYEE_CARD_TYPE=#{s.payeeCardType},
+			</if>
+			<if test="s.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{s.payeeAcctNo},
+			</if>
+			<if test="s.payeeName != null">
+                    PAYEE_NAME=#{s.payeeName},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.upayDate != null">
+                    UPAY_DATE=#{s.upayDate},
+			</if>
+			<if test="s.upayOrderNo != null">
+                    UPAY_ORDER_NO=#{s.upayOrderNo},
+			</if>
+			<if test="s.result != null">
+                    RESULT=#{s.result},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.stlDate != null">
+                    STL_DATE=#{w.stlDate}
+                   AND 
+ 			</if>
+			<if test="w.stlBatchNo != null">
+                    STL_BATCH_NO=#{w.stlBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.assId != null">
+                    ASS_ID=#{w.assId}
+                   AND 
+ 			</if>
+			<if test="w.flag != null">
+                    FLAG=#{w.flag}
+                   AND 
+ 			</if>
+			<if test="w.payerCardType != null">
+                    PAYER_CARD_TYPE=#{w.payerCardType}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{w.payerAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payerName != null">
+                    PAYER_NAME=#{w.payerName}
+                   AND 
+ 			</if>
+			<if test="w.payeeCardType != null">
+                    PAYEE_CARD_TYPE=#{w.payeeCardType}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{w.payeeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeName != null">
+                    PAYEE_NAME=#{w.payeeName}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.upayDate != null">
+                    UPAY_DATE=#{w.upayDate}
+                   AND 
+ 			</if>
+			<if test="w.upayOrderNo != null">
+                    UPAY_ORDER_NO=#{w.upayOrderNo}
+                   AND 
+ 			</if>
+			<if test="w.result != null">
+                    RESULT=#{w.result}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,132 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+
+	<!-- *************************** 初始化参数 ****************************** -->
+
+	<bean id="initParmMer0013" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="tranCode" value="NEWMERCHANT" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="initParmMer0064" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="tranCode" value="SUBMCHMANAGEADD" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="initPayStateInitMer1008" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="contralFlag" value="3" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="initParmMer0014" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="tranCode" value="DELETEMERCHANT" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="initPayWebChatInitMer0013" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="routeCode" value="0003"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="initAlipayMerRouteCode" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="routeCode" value="0005"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="initPayWebChatInitMer0014" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="routeCode" value="0003"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!-- 更新微信支付的内管平台标识 -->
+	<bean id="initParmMer0024" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="updateFlag" value="1"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 更新支付宝支付的内管平台标识 -->
+	<bean id="initParmMer0026" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="updateFlag" value="5"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- *************************** 参数转换 ****************************** -->
+
+	<data:dicts id="dataMerAddManage0013">
+		<data:mappings>
+			<data:mapping in="routeSeq" out="transactionId" />
+			<data:mapping in="payerBankName" out="bankType" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="dataPayAfterRouteInfoQryMer0013">
+		<data:mappings>
+			<data:mapping in="orgNo" out="mchId" />
+		</data:mappings>
+	</data:dicts>
+	<data:dicts id="dataPayAfterRouteInfoQryMer0014">
+		<data:mappings>
+			<data:mapping in="orgNo" out="mchId" />
+		</data:mappings>
+	</data:dicts>
+
+	<!--初始化AT微信参数 -->
+	<bean id="initATWeixinMethod" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="payRouteMethod" value="WECHAT_USE_AT_ROUTE"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+	<!--初始化AT支付宝参数 -->
+	<bean id="initATAlipayMethod" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="payRouteMethod" value="ALIPAY_USE_AT_ROUTE"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+
+
+
+</beans>
+	
+

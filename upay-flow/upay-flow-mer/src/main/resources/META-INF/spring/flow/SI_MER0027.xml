@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+
+	<!-- 支付宝商户信息查询 -->
+	<dipper:flow service-id="SI_MER0027">
+		<dipper:try>
+			<dipper:route>
+				<!-- 校验商户信息 -->
+				<dipper:invoke>
+					<dipper:service ref="AlipayMerInfoChkService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:service ref="GeneralSinglePaymentParamChkService" param-ref="initATAlipayMethod"/>
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt== 'UNIONPAY'">
+						<!--at通道 -->
+						<dipper:service ref="AT_AlipaySubMchQueryMerHandler"/>
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="target.bodys.isAt== 'DIRECT'">
+						<!--非at通道 -->
+							<dipper:service ref="AlipaySubMchQueryMerHandler" />
+					</dipper:if>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException />
+		<dipper:finally />
+	</dipper:flow>
+</beans>	

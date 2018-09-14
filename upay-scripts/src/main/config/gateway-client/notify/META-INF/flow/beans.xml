@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.pactera.com/schema/dipper
+    http://www.pactera.com/schema/dipper.xsd">
+
+	<bean id="abstractDipperHandler"
+		class="com.pactera.dipper.presys.cp.client.AbstractClientDipperHandler"
+		abstract="true">
+		<property name="flow" ref="SI_notifycliFlow" />
+	</bean>
+	
+	<bean id="notifySignHandler" class="com.upay.gateway.client.notify.NotifySignHandler">
+		<!-- <property name="cacheClient" ref="DIPPER_REDIS_CLIENT" /> -->
+		<!-- <property name="key" value="${merchant.key}"/>
+		<property name="merNoName" value="${merchant.no.field.name}"/> -->
+		<!-- <property name="key" value="abcde12345678900987654321edcba01"/>
+		<property name="merNoName" value="shanghu"/> -->
+        <property name="columnsMap">
+        	<map>
+				<entry key="UNIFIEDORDER">
+					<map>
+						<entry key="transCode" value="transCode" />
+						<entry key="serviceVersion" value="serviceVersion" />
+						<entry key="charset" value="charset" />
+						<entry key="signType" value="signType" />
+						<entry key="sign" value="sign" />
+						<entry key="payServicType" value="payServicType" />
+						<entry key="transStat" value="transStat" />
+						<entry key="chnlId" value="chnlId" />
+						<entry key="merNo" value="merNo" />
+						<entry key="secMerNo" value="secMerNo" />
+						<entry key="outerOrderNo" value="outerOrderNo" />
+						<entry key="orderNo" value="orderNo" />
+						<entry key="transAmt" value="transAmt" />
+						<entry key="CURR" value="CURR" />
+						<entry key="notifyId" value="notifyId" />
+						<entry key="timeEnd" value="timeEnd" />
+						<entry key="otherTranAmt" value="otherTranAmt" />
+						<entry key="productAmt" value="productAmt" />
+						<entry key="transComments" value="transComments" />
+					</map>
+				</entry>
+			</map>
+        </property>
+	</bean>
+	
+	<!-- 富农汇支付后台通知客户端 -->
+	<!-- <bean id="fnhNotifyHandler" class="com.ups.gateway.client.notify.FnhNotifyHandler"/> -->
+	<bean id="fnhNotifyHandler" class="com.upay.gateway.client.notify.FnhNotifyHandler" parent="abstractDipperHandler">
+        <property name="channel" ref="notifycli" />
+        <!-- <property name="cacheClient" ref="DIPPER_REDIS_CLIENT" /> -->
+        <!-- <property name="key" value="${merchant.key}"/> -->
+        <!-- <property name="key" value="abcde12345678900987654321edcba01"/> -->
+        <!-- <property name="merNoName" value="${merchant.no.field.name}"/> -->
+        <!-- <property name="merNoName" value="shanghu"/> -->
+	</bean>
+
+
+</beans>

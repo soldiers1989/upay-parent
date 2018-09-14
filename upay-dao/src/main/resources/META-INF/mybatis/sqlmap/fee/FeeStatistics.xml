@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeStatisticsPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.fee.FeeStatisticsPo">
+		<id column="ID" property="id" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="FEE_TYPE" property="feeType" />
+		<result column="STATISTICS_TIME" property="statisticsTime" />
+		<result column="TXN_TIME" property="txnTime" />
+		<result column="MER_ID" property="merId" />
+		<result column="ISS_CODE" property="issCode" />
+		<result column="PAYER_ACCT_TYPE" property="payerAcctType" />
+		<result column="PAYER_ACCT_NO" property="payerAcctNo" />
+		<result column="PAYER_ACCT_NAME" property="payerAcctName" />
+		<result column="PAYEE_ACCT_NO" property="payeeAcctNo" />
+		<result column="PAYEE_ACCT_TYPE" property="payeeAcctType" />
+		<result column="PAYEE_ACCT_NAME" property="payeeAcctName" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="TRANS_STAT" property="transStat" />
+		<result column="BIZ_TYPE" property="bizType" />
+		<result column="CHNL_SEQ" property="chnlSeq" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_FEE_STATISTICS
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ROUTE_CODE,
+		FEE_TYPE,
+		STATISTICS_TIME,
+		TXN_TIME,
+		MER_ID,
+		ISS_CODE,
+		PAYER_ACCT_TYPE,
+		PAYER_ACCT_NO,
+		PAYER_ACCT_NAME,
+		PAYEE_ACCT_NO,
+		PAYEE_ACCT_TYPE,
+		PAYEE_ACCT_NAME,
+		FEE_AMT,
+		ORDER_NO,
+		TRANS_STAT,
+		BIZ_TYPE,
+		CHNL_SEQ,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+	           AND 
+		</if>
+		<if test="feeType != null">
+			FEE_TYPE= #{feeType}
+	           AND 
+		</if>
+		<if test="statisticsTime != null">
+			STATISTICS_TIME= #{statisticsTime}
+	           AND 
+		</if>
+		<if test="txnTime != null">
+			TXN_TIME= #{txnTime}
+	           AND 
+		</if>
+		<if test="merId != null">
+			MER_ID= #{merId}
+	           AND 
+		</if>
+		<if test="issCode != null">
+			ISS_CODE= #{issCode}
+	           AND 
+		</if>
+		<if test="payerAcctType != null">
+			PAYER_ACCT_TYPE= #{payerAcctType}
+	           AND 
+		</if>
+		<if test="payerAcctNo != null">
+			PAYER_ACCT_NO= #{payerAcctNo}
+	           AND 
+		</if>
+		<if test="payerAcctName != null">
+			PAYER_ACCT_NAME= #{payerAcctName}
+	           AND 
+		</if>
+		<if test="payeeAcctNo != null">
+			PAYEE_ACCT_NO= #{payeeAcctNo}
+	           AND 
+		</if>
+		<if test="payeeAcctType != null">
+			PAYEE_ACCT_TYPE= #{payeeAcctType}
+	           AND 
+		</if>
+		<if test="payeeAcctName != null">
+			PAYEE_ACCT_NAME= #{payeeAcctName}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="transStat != null">
+			TRANS_STAT= #{transStat}
+	           AND 
+		</if>
+		<if test="bizType != null">
+			BIZ_TYPE= #{bizType}
+	           AND 
+		</if>
+		<if test="chnlSeq != null">
+			CHNL_SEQ= #{chnlSeq}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+	<if test="feeType != null">
+		FEE_TYPE,
+	</if>
+	<if test="statisticsTime != null">
+		STATISTICS_TIME,
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME,
+	</if>
+	<if test="merId != null">
+		MER_ID,
+	</if>
+	<if test="issCode != null">
+		ISS_CODE,
+	</if>
+	<if test="payerAcctType != null">
+		PAYER_ACCT_TYPE,
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO,
+	</if>
+	<if test="payerAcctName != null">
+		PAYER_ACCT_NAME,
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO,
+	</if>
+	<if test="payeeAcctType != null">
+		PAYEE_ACCT_TYPE,
+	</if>
+	<if test="payeeAcctName != null">
+		PAYEE_ACCT_NAME,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="transStat != null">
+		TRANS_STAT,
+	</if>
+	<if test="bizType != null">
+		BIZ_TYPE,
+	</if>
+	<if test="chnlSeq != null">
+		CHNL_SEQ,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+	<if test="feeType != null">
+		#{feeType},
+	</if>
+	<if test="statisticsTime != null">
+		#{statisticsTime},
+	</if>
+	<if test="txnTime != null">
+		#{txnTime},
+	</if>
+	<if test="merId != null">
+		#{merId},
+	</if>
+	<if test="issCode != null">
+		#{issCode},
+	</if>
+	<if test="payerAcctType != null">
+		#{payerAcctType},
+	</if>
+	<if test="payerAcctNo != null">
+		#{payerAcctNo},
+	</if>
+	<if test="payerAcctName != null">
+		#{payerAcctName},
+	</if>
+	<if test="payeeAcctNo != null">
+		#{payeeAcctNo},
+	</if>
+	<if test="payeeAcctType != null">
+		#{payeeAcctType},
+	</if>
+	<if test="payeeAcctName != null">
+		#{payeeAcctName},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="transStat != null">
+		#{transStat},
+	</if>
+	<if test="bizType != null">
+		#{bizType},
+	</if>
+	<if test="chnlSeq != null">
+		#{chnlSeq},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+	<if test="feeType != null">
+		FEE_TYPE=#{feeType},
+	</if>
+	<if test="statisticsTime != null">
+		STATISTICS_TIME=#{statisticsTime},
+	</if>
+	<if test="txnTime != null">
+		TXN_TIME=#{txnTime},
+	</if>
+	<if test="merId != null">
+		MER_ID=#{merId},
+	</if>
+	<if test="issCode != null">
+		ISS_CODE=#{issCode},
+	</if>
+	<if test="payerAcctType != null">
+		PAYER_ACCT_TYPE=#{payerAcctType},
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO=#{payerAcctNo},
+	</if>
+	<if test="payerAcctName != null">
+		PAYER_ACCT_NAME=#{payerAcctName},
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO=#{payeeAcctNo},
+	</if>
+	<if test="payeeAcctType != null">
+		PAYEE_ACCT_TYPE=#{payeeAcctType},
+	</if>
+	<if test="payeeAcctName != null">
+		PAYEE_ACCT_NAME=#{payeeAcctName},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="transStat != null">
+		TRANS_STAT=#{transStat},
+	</if>
+	<if test="bizType != null">
+		BIZ_TYPE=#{bizType},
+	</if>
+	<if test="chnlSeq != null">
+		CHNL_SEQ=#{chnlSeq},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode},
+			</if>
+			<if test="s.feeType != null">
+                    FEE_TYPE=#{s.feeType},
+			</if>
+			<if test="s.statisticsTime != null">
+                    STATISTICS_TIME=#{s.statisticsTime},
+			</if>
+			<if test="s.txnTime != null">
+                    TXN_TIME=#{s.txnTime},
+			</if>
+			<if test="s.merId != null">
+                    MER_ID=#{s.merId},
+			</if>
+			<if test="s.issCode != null">
+                    ISS_CODE=#{s.issCode},
+			</if>
+			<if test="s.payerAcctType != null">
+                    PAYER_ACCT_TYPE=#{s.payerAcctType},
+			</if>
+			<if test="s.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{s.payerAcctNo},
+			</if>
+			<if test="s.payerAcctName != null">
+                    PAYER_ACCT_NAME=#{s.payerAcctName},
+			</if>
+			<if test="s.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{s.payeeAcctNo},
+			</if>
+			<if test="s.payeeAcctType != null">
+                    PAYEE_ACCT_TYPE=#{s.payeeAcctType},
+			</if>
+			<if test="s.payeeAcctName != null">
+                    PAYEE_ACCT_NAME=#{s.payeeAcctName},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.transStat != null">
+                    TRANS_STAT=#{s.transStat},
+			</if>
+			<if test="s.bizType != null">
+                    BIZ_TYPE=#{s.bizType},
+			</if>
+			<if test="s.chnlSeq != null">
+                    CHNL_SEQ=#{s.chnlSeq},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+                   AND 
+ 			</if>
+			<if test="w.feeType != null">
+                    FEE_TYPE=#{w.feeType}
+                   AND 
+ 			</if>
+			<if test="w.statisticsTime != null">
+                    STATISTICS_TIME=#{w.statisticsTime}
+                   AND 
+ 			</if>
+			<if test="w.txnTime != null">
+                    TXN_TIME=#{w.txnTime}
+                   AND 
+ 			</if>
+			<if test="w.merId != null">
+                    MER_ID=#{w.merId}
+                   AND 
+ 			</if>
+			<if test="w.issCode != null">
+                    ISS_CODE=#{w.issCode}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctType != null">
+                    PAYER_ACCT_TYPE=#{w.payerAcctType}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{w.payerAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctName != null">
+                    PAYER_ACCT_NAME=#{w.payerAcctName}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{w.payeeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctType != null">
+                    PAYEE_ACCT_TYPE=#{w.payeeAcctType}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctName != null">
+                    PAYEE_ACCT_NAME=#{w.payeeAcctName}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.transStat != null">
+                    TRANS_STAT=#{w.transStat}
+                   AND 
+ 			</if>
+			<if test="w.bizType != null">
+                    BIZ_TYPE=#{w.bizType}
+                   AND 
+ 			</if>
+			<if test="w.chnlSeq != null">
+                    CHNL_SEQ=#{w.chnlSeq}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

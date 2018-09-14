@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccLmtCountPo">
+	<select id="getLastOne" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		from 
+		<include refid="Table_Name"/>
+		<where>
+			<if test="userId != null">
+				AND USER_ID=#{userId} 
+			</if>
+			<if test="lmtAccountFlag != null">
+				AND LMT_ACCOUNT_FLAG=#{lmtAccountFlag} 
+			</if>
+			<if test="sysLmtId != null">
+				AND SYS_LMT_ID=#{sysLmtId}
+			</if>
+			AND ROWNUM<![CDATA[<=]]>1
+		</where>
+		ORDER BY TRANS_DATE DESC
+	</select>
+	
+
+	<sql id="Base_Where_Recent">
+		<trim suffixOverrides="AND">
+		<if test="transStartDate != null">
+			TRANS_DATE &gt;= #{transStartDate}
+	           AND 
+		</if>
+		<if test="transEndDate != null">
+			TRANS_DATE &lt;= #{transEndDate}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="lmtAccountFlag != null">
+			LMT_ACCOUNT_FLAG= #{lmtAccountFlag}
+	           AND 
+		</if>
+		<if test="sysLmtId != null">
+			SYS_LMT_ID= #{sysLmtId}
+	           AND 
+		</if>
+		<if test="sysTranslmtId != null">
+			SYS_TRANSLMT_ID= #{sysTranslmtId}
+	           AND 
+		</if>
+		</trim>
+	</sql>
+
+	<sql id="Base_OrderBy">
+		<trim suffixOverrides=",">
+			<if test="orderby_transDate != null">
+				TRANS_DATE
+			</if>
+		</trim>
+	</sql>
+	
+	<select id="selectRecentList"  resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where_Recent" />
+		</where>
+		order by
+		<include refid="Base_OrderBy" />
+		desc
+	</select>
+	
+
+</mapper>

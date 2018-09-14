@@ -1,0 +1,20 @@
+	<transCode>${transCode}</transCode>
+    <serviceVersion>${serviceVersion}</serviceVersion>
+    <charset>${charset}</charset>
+    <signType>${signType}</signType>
+    <sign>${sign}</sign>
+    <payServicType>${payServicType}</payServicType>
+    <transStat>${transStat}</transStat>
+    <chnlId>${chnlId}</chnlId>
+    <merNo>${merNo}</merNo>
+    <secMerNo>${secMerNo}</secMerNo>
+    <outerOrderNo>${outerOrderNo}</outerOrderNo>
+    <orderNo>${orderNo}</orderNo>
+    <transAmt>${transAmt}</transAmt>
+    <CURR>${CURR}</CURR>
+    <notifyId>${notifyId}</notifyId>
+    <timeEnd>${timeEnd}</timeEnd>
+    <otherTranAmt>${otherTranAmt}</otherTranAmt>
+    <productAmt>${productAmt}</productAmt>
+    <transComments>${transComments}</transComments>
+

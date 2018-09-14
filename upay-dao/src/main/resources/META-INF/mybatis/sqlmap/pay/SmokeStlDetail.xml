@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.SmokeStlDetailPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.SmokeStlDetailPo">
+		<id column="ID" property="id" />
+		<result column="SEQ_NO" property="seqNo" />
+		<result column="TRANS_TYPE" property="transType" />
+		<result column="BANK_FLAG" property="bankFlag" />
+		<result column="PAYER_MER_NO" property="payerMerNo" />
+		<result column="MER_DATE" property="merDate" />
+		<result column="MER_SEQ" property="merSeq" />
+		<result column="PAYER_CARD_TYPE" property="payerCardType" />
+		<result column="PAYER_ACCT_NO" property="payerAcctNo" />
+		<result column="PAYER_NAME" property="payerName" />
+		<result column="PAYEE_MER_NO" property="payeeMerNo" />
+		<result column="PAYEE_CARD_TYPE" property="payeeCardType" />
+		<result column="PAYEE_ACCT_NO" property="payeeAcctNo" />
+		<result column="PAYEE_NAME" property="payeeName" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="UPAY_DATE" property="upayDate" />
+		<result column="UPAY_SEQ" property="upaySeq" />
+		<result column="RESULT" property="result" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_SMOKE_STL_DETAIL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		SEQ_NO,
+		TRANS_TYPE,
+		BANK_FLAG,
+		PAYER_MER_NO,
+		MER_DATE,
+		MER_SEQ,
+		PAYER_CARD_TYPE,
+		PAYER_ACCT_NO,
+		PAYER_NAME,
+		PAYEE_MER_NO,
+		PAYEE_CARD_TYPE,
+		PAYEE_ACCT_NO,
+		PAYEE_NAME,
+		TRANS_AMT,
+		FEE_AMT,
+		UPAY_DATE,
+		UPAY_SEQ,
+		RESULT,
+		REMARK1,
+		REMARK2
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="seqNo != null">
+			SEQ_NO= #{seqNo}
+	           AND 
+		</if>
+		<if test="transType != null">
+			TRANS_TYPE= #{transType}
+	           AND 
+		</if>
+		<if test="bankFlag != null">
+			BANK_FLAG= #{bankFlag}
+	           AND 
+		</if>
+		<if test="payerMerNo != null">
+			PAYER_MER_NO= #{payerMerNo}
+	           AND 
+		</if>
+		<if test="merDate != null">
+			MER_DATE= #{merDate}
+	           AND 
+		</if>
+		<if test="merSeq != null">
+			MER_SEQ= #{merSeq}
+	           AND 
+		</if>
+		<if test="payerCardType != null">
+			PAYER_CARD_TYPE= #{payerCardType}
+	           AND 
+		</if>
+		<if test="payerAcctNo != null">
+			PAYER_ACCT_NO= #{payerAcctNo}
+	           AND 
+		</if>
+		<if test="payerName != null">
+			PAYER_NAME= #{payerName}
+	           AND 
+		</if>
+		<if test="payeeMerNo != null">
+			PAYEE_MER_NO= #{payeeMerNo}
+	           AND 
+		</if>
+		<if test="payeeCardType != null">
+			PAYEE_CARD_TYPE= #{payeeCardType}
+	           AND 
+		</if>
+		<if test="payeeAcctNo != null">
+			PAYEE_ACCT_NO= #{payeeAcctNo}
+	           AND 
+		</if>
+		<if test="payeeName != null">
+			PAYEE_NAME= #{payeeName}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="upayDate != null">
+			UPAY_DATE= #{upayDate}
+	           AND 
+		</if>
+		<if test="upaySeq != null">
+			UPAY_SEQ= #{upaySeq}
+	           AND 
+		</if>
+		<if test="result != null">
+			RESULT= #{result}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="seqNo != null">
+		SEQ_NO,
+	</if>
+	<if test="transType != null">
+		TRANS_TYPE,
+	</if>
+	<if test="bankFlag != null">
+		BANK_FLAG,
+	</if>
+	<if test="payerMerNo != null">
+		PAYER_MER_NO,
+	</if>
+	<if test="merDate != null">
+		MER_DATE,
+	</if>
+	<if test="merSeq != null">
+		MER_SEQ,
+	</if>
+	<if test="payerCardType != null">
+		PAYER_CARD_TYPE,
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO,
+	</if>
+	<if test="payerName != null">
+		PAYER_NAME,
+	</if>
+	<if test="payeeMerNo != null">
+		PAYEE_MER_NO,
+	</if>
+	<if test="payeeCardType != null">
+		PAYEE_CARD_TYPE,
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO,
+	</if>
+	<if test="payeeName != null">
+		PAYEE_NAME,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="upayDate != null">
+		UPAY_DATE,
+	</if>
+	<if test="upaySeq != null">
+		UPAY_SEQ,
+	</if>
+	<if test="result != null">
+		RESULT,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="seqNo != null">
+		#{seqNo},
+	</if>
+	<if test="transType != null">
+		#{transType},
+	</if>
+	<if test="bankFlag != null">
+		#{bankFlag},
+	</if>
+	<if test="payerMerNo != null">
+		#{payerMerNo},
+	</if>
+	<if test="merDate != null">
+		#{merDate},
+	</if>
+	<if test="merSeq != null">
+		#{merSeq},
+	</if>
+	<if test="payerCardType != null">
+		#{payerCardType},
+	</if>
+	<if test="payerAcctNo != null">
+		#{payerAcctNo},
+	</if>
+	<if test="payerName != null">
+		#{payerName},
+	</if>
+	<if test="payeeMerNo != null">
+		#{payeeMerNo},
+	</if>
+	<if test="payeeCardType != null">
+		#{payeeCardType},
+	</if>
+	<if test="payeeAcctNo != null">
+		#{payeeAcctNo},
+	</if>
+	<if test="payeeName != null">
+		#{payeeName},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="upayDate != null">
+		#{upayDate},
+	</if>
+	<if test="upaySeq != null">
+		#{upaySeq},
+	</if>
+	<if test="result != null">
+		#{result},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="seqNo != null">
+		SEQ_NO=#{seqNo},
+	</if>
+	<if test="transType != null">
+		TRANS_TYPE=#{transType},
+	</if>
+	<if test="bankFlag != null">
+		BANK_FLAG=#{bankFlag},
+	</if>
+	<if test="payerMerNo != null">
+		PAYER_MER_NO=#{payerMerNo},
+	</if>
+	<if test="merDate != null">
+		MER_DATE=#{merDate},
+	</if>
+	<if test="merSeq != null">
+		MER_SEQ=#{merSeq},
+	</if>
+	<if test="payerCardType != null">
+		PAYER_CARD_TYPE=#{payerCardType},
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO=#{payerAcctNo},
+	</if>
+	<if test="payerName != null">
+		PAYER_NAME=#{payerName},
+	</if>
+	<if test="payeeMerNo != null">
+		PAYEE_MER_NO=#{payeeMerNo},
+	</if>
+	<if test="payeeCardType != null">
+		PAYEE_CARD_TYPE=#{payeeCardType},
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO=#{payeeAcctNo},
+	</if>
+	<if test="payeeName != null">
+		PAYEE_NAME=#{payeeName},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="upayDate != null">
+		UPAY_DATE=#{upayDate},
+	</if>
+	<if test="upaySeq != null">
+		UPAY_SEQ=#{upaySeq},
+	</if>
+	<if test="result != null">
+		RESULT=#{result},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.seqNo != null">
+                    SEQ_NO=#{s.seqNo},
+			</if>
+			<if test="s.transType != null">
+                    TRANS_TYPE=#{s.transType},
+			</if>
+			<if test="s.bankFlag != null">
+                    BANK_FLAG=#{s.bankFlag},
+			</if>
+			<if test="s.payerMerNo != null">
+                    PAYER_MER_NO=#{s.payerMerNo},
+			</if>
+			<if test="s.merDate != null">
+                    MER_DATE=#{s.merDate},
+			</if>
+			<if test="s.merSeq != null">
+                    MER_SEQ=#{s.merSeq},
+			</if>
+			<if test="s.payerCardType != null">
+                    PAYER_CARD_TYPE=#{s.payerCardType},
+			</if>
+			<if test="s.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{s.payerAcctNo},
+			</if>
+			<if test="s.payerName != null">
+                    PAYER_NAME=#{s.payerName},
+			</if>
+			<if test="s.payeeMerNo != null">
+                    PAYEE_MER_NO=#{s.payeeMerNo},
+			</if>
+			<if test="s.payeeCardType != null">
+                    PAYEE_CARD_TYPE=#{s.payeeCardType},
+			</if>
+			<if test="s.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{s.payeeAcctNo},
+			</if>
+			<if test="s.payeeName != null">
+                    PAYEE_NAME=#{s.payeeName},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.upayDate != null">
+                    UPAY_DATE=#{s.upayDate},
+			</if>
+			<if test="s.upaySeq != null">
+                    UPAY_SEQ=#{s.upaySeq},
+			</if>
+			<if test="s.result != null">
+                    RESULT=#{s.result},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.seqNo != null">
+                    SEQ_NO=#{w.seqNo}
+                   AND 
+ 			</if>
+			<if test="w.transType != null">
+                    TRANS_TYPE=#{w.transType}
+                   AND 
+ 			</if>
+			<if test="w.bankFlag != null">
+                    BANK_FLAG=#{w.bankFlag}
+                   AND 
+ 			</if>
+			<if test="w.payerMerNo != null">
+                    PAYER_MER_NO=#{w.payerMerNo}
+                   AND 
+ 			</if>
+			<if test="w.merDate != null">
+                    MER_DATE=#{w.merDate}
+                   AND 
+ 			</if>
+			<if test="w.merSeq != null">
+                    MER_SEQ=#{w.merSeq}
+                   AND 
+ 			</if>
+			<if test="w.payerCardType != null">
+                    PAYER_CARD_TYPE=#{w.payerCardType}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{w.payerAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payerName != null">
+                    PAYER_NAME=#{w.payerName}
+                   AND 
+ 			</if>
+			<if test="w.payeeMerNo != null">
+                    PAYEE_MER_NO=#{w.payeeMerNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeCardType != null">
+                    PAYEE_CARD_TYPE=#{w.payeeCardType}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{w.payeeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeName != null">
+                    PAYEE_NAME=#{w.payeeName}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.upayDate != null">
+                    UPAY_DATE=#{w.upayDate}
+                   AND 
+ 			</if>
+			<if test="w.upaySeq != null">
+                    UPAY_SEQ=#{w.upaySeq}
+                   AND 
+ 			</if>
+			<if test="w.result != null">
+                    RESULT=#{w.result}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

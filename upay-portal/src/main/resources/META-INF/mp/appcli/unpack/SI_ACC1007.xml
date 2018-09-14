@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+<!-- 	<mappings>vbindBankCode -->
+	<mappings>
+ 		<!--<mapping xpath="$.body.CERT_WEAK_WAY" field="certWeakWay" />  认证方式 -->
+	</mappings>
+</config>

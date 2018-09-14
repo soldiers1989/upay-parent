@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 特约商户申请 -->
+	<bean id="MerApplyService" class="com.upay.busi.mer.service.impl.MerApplyService" />
+	<!-- 商户信息查询 -->
+	<bean id="MerQueryService" class="com.upay.busi.mer.service.impl.MerQueryService" />
+	<!-- 二级商户维护 -->
+	<bean id="SecondMerApplyService" class="com.upay.busi.mer.service.impl.SecondMerApplyService" />
+	<!-- 一级商户查询二级商户基本信息 -->
+	<bean id="MerQuerySecondService" class="com.upay.busi.mer.service.impl.MerQuerySecondService" />
+	<!-- 一级商户维护二级商户申请信息 -->
+	<bean id="MerQueryApplyService" class="com.upay.busi.mer.service.impl.MerQueryApplyService" />
+	<!-- 商户状态检查 -->
+	<bean id="MerStatChkService" class="com.upay.busi.mer.service.impl.MerStatChkService" />
+	<!-- 查询一级商户维护的二级商户的手续费收取方法 -->
+	<bean id="SecondQueryFeeService" class="com.upay.busi.mer.service.impl.SecondQueryFeeService" />
+	<!-- 检查二级商户是否所属一级商户 -->
+	<bean id="ChkSecondIsMerService" class="com.upay.busi.mer.service.impl.ChkSecondIsMerService" />
+	<!-- 修改或者新增费率信息 -->
+	<bean id="SecondMerSetFeeService" class="com.upay.busi.mer.service.impl.SecondMerSetFeeService" />
+	<!-- 查询二级商户支付流水表里所有的支付交易信息 -->
+	<bean id="QueryMerPayService" class="com.upay.busi.mer.service.impl.QueryMerPayService" />
+	<!-- 微信公众号商户状态检查 -->
+	<bean id="MerInfoQryAndChkService" class="com.upay.busi.mer.service.impl.MerInfoQryAndChkService" />
+	<!-- 查询一级商户维护的费率规则信息 -->
+	<bean id="QueryFeeKindService" class="com.upay.busi.mer.service.impl.QueryFeeKindService" />
+	<!-- 商户申请检查 -->
+	<bean id="MerApplyChkService" class="com.upay.busi.mer.service.impl.MerApplyChkService" />
+	<!-- 新增微信特约商户，校验商户信息 -->
+	<bean id="ChkWeiXinMerAddInfoService" class="com.upay.busi.mer.service.impl.ChkWeiXinMerAddInfoService" />
+	<!-- 删除微信特约商户，校验商户信息 -->
+	<bean id="ChkWeiXinMerDelInfoService" class="com.upay.busi.mer.service.impl.ChkWeiXinMerDelInfoService" />
+	<!-- 微信特约商户更新商户识别码到商户表 -->
+	<bean id="UpdateWeiXinMerNoToMerInfoService" class="com.upay.busi.mer.service.impl.UpdateWeiXinMerNoToMerInfoService" />
+	
+	<!--  商户申请线下主扫银联标码，更新商户线下二维码-->
+	<bean id="UpdateUnionQRCodeToMerInfoService" class="com.upay.busi.mer.service.impl.UpdateUnionQRCodeToMerInfoService" />
+	
+	<!-- 生成商户二维码 -->
+	<bean id="CreateMerQrCodeService" class="com.upay.busi.mer.service.impl.CreateMerQrCodeService" />
+	<!-- 商户类别查询 -->
+	<bean id="MerQueryReltypeService" class="com.upay.busi.mer.service.impl.MerQueryReltypeService" />
+	<!-- 查询手续费分润方法 -->
+	<bean id="QueryFeeAssService" class="com.upay.busi.mer.service.impl.QueryFeeAssService" />
+	<!-- 一级商户维护二级商户手续费计算方法 -->
+	<bean id="MerSetFeeKindService" class="com.upay.busi.mer.service.impl.MerSetFeeKindService" />
+	<!-- 商户基本信息查询 -->
+	<bean id="QueryMerBaseService" class="com.upay.busi.mer.service.impl.QueryMerBaseService" />
+	<!-- 商户结果信息校验-->
+	<bean id="WeiXinMerNoToMerInfoResultService" class="com.upay.busi.mer.service.impl.WeiXinMerNoToMerInfoResultService" />
+	<!-- 操作商户参数配置-->
+	<bean id="ControlMerPlatSettingService" class="com.upay.busi.mer.service.impl.ControlMerPlatSettingService" />
+	<!-- 商户名称重复校验-->
+	<bean id="ChkMerNameService" class="com.upay.busi.mer.service.impl.ChkMerNameService" />
+	
+	
+	<!-- 专为代收代付设计  商户交易权限  商户限额检查-->
+	<bean id="MerTransLimitCheckService" class="com.upay.busi.mer.service.impl.MerTransLimitCheckService" />
+	
+	
+	<!-- 获取默认的加密key -->
+	<bean id="GetDefaultPrivateKeyService" class="com.upay.busi.mer.service.impl.GetDefaultPrivateKeyService" />
+	<!-- 登记一级商户信息和注册信息-->
+	<bean id="CreateOrUpdateFirstMerService" class="com.upay.busi.mer.service.impl.CreateOrUpdateFirstMerService" />	
+	<!-- 一级商户注销-->
+	<bean id="FirstMerCancelService" class="com.upay.busi.mer.service.impl.FirstMerCancelService" />
+	<!-- 一级商户 开通微信支付检查-->
+	<bean id="MerOpenWechatPayChkService" class="com.upay.busi.mer.service.impl.MerOpenWechatPayChkService" />
+	<!-- 一级商户 设置微信配置-->
+	<bean id="MerWecahtConfigService" class="com.upay.busi.mer.service.impl.MerWecahtConfigService" />
+	<!-- 检查一级商户信息-->
+	<bean id="ChkMerInfoService" class="com.upay.busi.mer.service.impl.ChkMerInfoService" />
+	
+	<!--新增支付宝商户，校验商户信息-->
+	<bean id="MerOpenAlipayPayChkService" class="com.upay.busi.mer.service.impl.MerOpenAlipayPayChkService" />
+	
+	<!-- 更新支付宝返回的商户编号到商户表-->
+	<bean id="UpdateAlipayMerchantIdService" class="com.upay.busi.mer.service.impl.UpdateAlipayMerchantIdService" />
+	
+	<!--商户基本信息查询和状态检查-->
+	<bean id="AlipayMerInfoChkService" class="com.upay.busi.mer.service.impl.AlipayMerInfoChkService" />
+	<!--根据qrCode查询商户信息-->
+	<bean id="QueryMerInfoByQrCodeService" class="com.upay.busi.mer.service.impl.QueryMerInfoByQrCodeService" />
+	<!--生成聚合码链接-->
+	<bean id="GenerateQrCodeUrlService" class="com.upay.busi.mer.service.impl.GenerateQrCodeUrlService" />
+	<!--更新开通支付的配置信息-->
+	<bean id="UpdateMerOpenPayService" class="com.upay.busi.mer.service.impl.UpdateMerOpenPayService" />
+	<!--商户交易权限模板批量配置-->
+	<bean id="MerTransTemplateConfService" class="com.upay.busi.mer.service.impl.MerTransTemplateConfService" />
+	<!--根据手机号或者邮箱查询查询名下的多个商户-->
+	<bean id="MerQueryListService" class="com.upay.busi.mer.service.impl.MerQueryListService" />
+</beans>

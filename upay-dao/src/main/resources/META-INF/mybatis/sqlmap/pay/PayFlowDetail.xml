@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.pay.PayFlowDetailPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.pay.PayFlowDetailPo">
+		<result column="ID" property="id" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="ORDER_DES" property="orderDes" />
+		<result column="MER_NO" property="merNo" />
+		<result column="SEC_MER_NO" property="secMerNo" />
+		<result column="SYS_DATE" property="sysDate" />
+		<result column="ROUTE_CODE" property="routeCode" />
+		<result column="PAY_USER_ID" property="payUserId" />
+		<result column="PAYER_ACCT_TYPE" property="payerAcctType" />
+		<result column="PAYER_ACCT_NO" property="payerAcctNo" />
+		<result column="PAYER_NAME" property="payerName" />
+		<result column="PAYER_ORG_NAME" property="payerOrgName" />
+		<result column="PAYER_BANK_NO" property="payerBankNo" />
+		<result column="PAYER_BANK_NAME" property="payerBankName" />
+		<result column="PAYEE_ACCT_TYPE" property="payeeAcctType" />
+		<result column="PAYEE_ACCT_NO" property="payeeAcctNo" />
+		<result column="PAYEE_NAME" property="payeeName" />
+		<result column="PAYEE_ORG_NAME" property="payeeOrgName" />
+		<result column="PAYEE_BANK_NO" property="payeeBankNo" />
+		<result column="PAYEE_BANK_NAME" property="payeeBankName" />
+		<result column="CCY" property="ccy" />
+		<result column="TRANS_AMT" property="transAmt" />
+		<result column="TRANS_STAT" property="transStat" />
+		<result column="TRANS_TIME" property="transTime" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+		<result column="FEE_AMT" property="feeAmt" />
+		<result column="TRANS_SUB_SEQ" property="transSubSeq" />
+		<result column="MER_TRANS_DATE" property="merTransDate" />
+		<result column="MER_TRANS_SEQ" property="merTransSeq" />
+		<result column="BRCH_NO" property="brchNo" />
+		<result column="TELLER_NO" property="tellerNo" />
+		<result column="TRANSFER_TYPE" property="transferType" />
+		<result column="FEE_ACCT_TYPE" property="feeAcctType" />
+		<result column="FEE_ACCT_NAME" property="feeAcctName" />
+		<result column="FEE_ACCT_NO" property="feeAcctNo" />
+		<result column="TRF_BATCH_NO" property="trfBatchNo" />
+		<result column="TRF_SEQ" property="trfSeq" />
+		<result column="DIS_BATCH_NO" property="disBatchNo" />
+		<result column="TRANS_FLAG" property="transFlag" />
+		<result column="BANK_ID" property="bankId" />
+		<result column="CERT_TYPE" property="certType" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="CERT_MOBILE" property="certMobile" />
+		<result column="CERT_NAME" property="certName" />
+		<result column="CHNLID" property="chnlid" />
+		<result column="PROCESS" property="process" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_PAY_FLOW_DETAIL
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		ORDER_NO,
+		ORDER_DES,
+		MER_NO,
+		SEC_MER_NO,
+		SYS_DATE,
+		ROUTE_CODE,
+		PAY_USER_ID,
+		PAYER_ACCT_TYPE,
+		PAYER_ACCT_NO,
+		PAYER_NAME,
+		PAYER_ORG_NAME,
+		PAYER_BANK_NO,
+		PAYER_BANK_NAME,
+		PAYEE_ACCT_TYPE,
+		PAYEE_ACCT_NO,
+		PAYEE_NAME,
+		PAYEE_ORG_NAME,
+		PAYEE_BANK_NO,
+		PAYEE_BANK_NAME,
+		CCY,
+		TRANS_AMT,
+		TRANS_STAT,
+		TRANS_TIME,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3,
+		FEE_AMT,
+		TRANS_SUB_SEQ,
+		MER_TRANS_DATE,
+		MER_TRANS_SEQ,
+		BRCH_NO,
+		TELLER_NO,
+		TRANSFER_TYPE,
+		FEE_ACCT_TYPE,
+		FEE_ACCT_NAME,
+		FEE_ACCT_NO,
+		TRF_BATCH_NO,
+		TRF_SEQ,
+		DIS_BATCH_NO,
+		TRANS_FLAG,
+		BANK_ID,
+		CERT_TYPE,
+		CERT_NO,
+		CERT_MOBILE,
+		CERT_NAME,
+		CHNLID,
+		PROCESS
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="orderNo != null">
+			ORDER_NO= #{orderNo}
+	           AND 
+		</if>
+		<if test="orderDes != null">
+			ORDER_DES= #{orderDes}
+	           AND 
+		</if>
+		<if test="merNo != null">
+			MER_NO= #{merNo}
+	           AND 
+		</if>
+		<if test="secMerNo != null">
+			SEC_MER_NO= #{secMerNo}
+	           AND 
+		</if>
+		<if test="sysDate != null">
+			SYS_DATE= #{sysDate}
+	           AND 
+		</if>
+		<if test="routeCode != null">
+			ROUTE_CODE= #{routeCode}
+	           AND 
+		</if>
+		<if test="payUserId != null">
+			PAY_USER_ID= #{payUserId}
+	           AND 
+		</if>
+		<if test="payerAcctType != null">
+			PAYER_ACCT_TYPE= #{payerAcctType}
+	           AND 
+		</if>
+		<if test="payerAcctNo != null">
+			PAYER_ACCT_NO= #{payerAcctNo}
+	           AND 
+		</if>
+		<if test="payerName != null">
+			PAYER_NAME= #{payerName}
+	           AND 
+		</if>
+		<if test="payerOrgName != null">
+			PAYER_ORG_NAME= #{payerOrgName}
+	           AND 
+		</if>
+		<if test="payerBankNo != null">
+			PAYER_BANK_NO= #{payerBankNo}
+	           AND 
+		</if>
+		<if test="payerBankName != null">
+			PAYER_BANK_NAME= #{payerBankName}
+	           AND 
+		</if>
+		<if test="payeeAcctType != null">
+			PAYEE_ACCT_TYPE= #{payeeAcctType}
+	           AND 
+		</if>
+		<if test="payeeAcctNo != null">
+			PAYEE_ACCT_NO= #{payeeAcctNo}
+	           AND 
+		</if>
+		<if test="payeeName != null">
+			PAYEE_NAME= #{payeeName}
+	           AND 
+		</if>
+		<if test="payeeOrgName != null">
+			PAYEE_ORG_NAME= #{payeeOrgName}
+	           AND 
+		</if>
+		<if test="payeeBankNo != null">
+			PAYEE_BANK_NO= #{payeeBankNo}
+	           AND 
+		</if>
+		<if test="payeeBankName != null">
+			PAYEE_BANK_NAME= #{payeeBankName}
+	           AND 
+		</if>
+		<if test="ccy != null">
+			CCY= #{ccy}
+	           AND 
+		</if>
+		<if test="transAmt != null">
+			TRANS_AMT= #{transAmt}
+	           AND 
+		</if>
+		<if test="transStat != null">
+			TRANS_STAT= #{transStat}
+	           AND 
+		</if>
+		<if test="transTime != null">
+			TRANS_TIME= #{transTime}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+	           AND 
+		</if>
+		<if test="feeAmt != null">
+			FEE_AMT= #{feeAmt}
+	           AND 
+		</if>
+		<if test="transSubSeq != null">
+			TRANS_SUB_SEQ= #{transSubSeq}
+	           AND 
+		</if>
+		<if test="merTransDate != null">
+			MER_TRANS_DATE= #{merTransDate}
+	           AND 
+		</if>
+		<if test="merTransSeq != null">
+			MER_TRANS_SEQ= #{merTransSeq}
+	           AND 
+		</if>
+		<if test="brchNo != null">
+			BRCH_NO= #{brchNo}
+	           AND 
+		</if>
+		<if test="tellerNo != null">
+			TELLER_NO= #{tellerNo}
+	           AND 
+		</if>
+		<if test="transferType != null">
+			TRANSFER_TYPE= #{transferType}
+	           AND 
+		</if>
+		<if test="feeAcctType != null">
+			FEE_ACCT_TYPE= #{feeAcctType}
+	           AND 
+		</if>
+		<if test="feeAcctName != null">
+			FEE_ACCT_NAME= #{feeAcctName}
+	           AND 
+		</if>
+		<if test="feeAcctNo != null">
+			FEE_ACCT_NO= #{feeAcctNo}
+	           AND 
+		</if>
+		<if test="trfBatchNo != null">
+			TRF_BATCH_NO= #{trfBatchNo}
+	           AND 
+		</if>
+		<if test="trfSeq != null">
+			TRF_SEQ= #{trfSeq}
+	           AND 
+		</if>
+		<if test="disBatchNo != null">
+			DIS_BATCH_NO= #{disBatchNo}
+	           AND 
+		</if>
+		<if test="transFlag != null">
+			TRANS_FLAG= #{transFlag}
+	           AND 
+		</if>
+		<if test="bankId != null">
+			BANK_ID= #{bankId}
+	           AND 
+		</if>
+		<if test="certType != null">
+			CERT_TYPE= #{certType}
+	           AND 
+		</if>
+		<if test="certNo != null">
+			CERT_NO= #{certNo}
+	           AND 
+		</if>
+		<if test="certMobile != null">
+			CERT_MOBILE= #{certMobile}
+	           AND 
+		</if>
+		<if test="certName != null">
+			CERT_NAME= #{certName}
+	           AND 
+		</if>
+		<if test="chnlid != null">
+			CHNLID= #{chnlid}
+	           AND 
+		</if>
+		<if test="process != null">
+			PROCESS= #{process}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO,
+	</if>
+	<if test="orderDes != null">
+		ORDER_DES,
+	</if>
+	<if test="merNo != null">
+		MER_NO,
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO,
+	</if>
+	<if test="sysDate != null">
+		SYS_DATE,
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE,
+	</if>
+	<if test="payUserId != null">
+		PAY_USER_ID,
+	</if>
+	<if test="payerAcctType != null">
+		PAYER_ACCT_TYPE,
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO,
+	</if>
+	<if test="payerName != null">
+		PAYER_NAME,
+	</if>
+	<if test="payerOrgName != null">
+		PAYER_ORG_NAME,
+	</if>
+	<if test="payerBankNo != null">
+		PAYER_BANK_NO,
+	</if>
+	<if test="payerBankName != null">
+		PAYER_BANK_NAME,
+	</if>
+	<if test="payeeAcctType != null">
+		PAYEE_ACCT_TYPE,
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO,
+	</if>
+	<if test="payeeName != null">
+		PAYEE_NAME,
+	</if>
+	<if test="payeeOrgName != null">
+		PAYEE_ORG_NAME,
+	</if>
+	<if test="payeeBankNo != null">
+		PAYEE_BANK_NO,
+	</if>
+	<if test="payeeBankName != null">
+		PAYEE_BANK_NAME,
+	</if>
+	<if test="ccy != null">
+		CCY,
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT,
+	</if>
+	<if test="transStat != null">
+		TRANS_STAT,
+	</if>
+	<if test="transTime != null">
+		TRANS_TIME,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT,
+	</if>
+	<if test="transSubSeq != null">
+		TRANS_SUB_SEQ,
+	</if>
+	<if test="merTransDate != null">
+		MER_TRANS_DATE,
+	</if>
+	<if test="merTransSeq != null">
+		MER_TRANS_SEQ,
+	</if>
+	<if test="brchNo != null">
+		BRCH_NO,
+	</if>
+	<if test="tellerNo != null">
+		TELLER_NO,
+	</if>
+	<if test="transferType != null">
+		TRANSFER_TYPE,
+	</if>
+	<if test="feeAcctType != null">
+		FEE_ACCT_TYPE,
+	</if>
+	<if test="feeAcctName != null">
+		FEE_ACCT_NAME,
+	</if>
+	<if test="feeAcctNo != null">
+		FEE_ACCT_NO,
+	</if>
+	<if test="trfBatchNo != null">
+		TRF_BATCH_NO,
+	</if>
+	<if test="trfSeq != null">
+		TRF_SEQ,
+	</if>
+	<if test="disBatchNo != null">
+		DIS_BATCH_NO,
+	</if>
+	<if test="transFlag != null">
+		TRANS_FLAG,
+	</if>
+	<if test="bankId != null">
+		BANK_ID,
+	</if>
+	<if test="certType != null">
+		CERT_TYPE,
+	</if>
+	<if test="certNo != null">
+		CERT_NO,
+	</if>
+	<if test="certMobile != null">
+		CERT_MOBILE,
+	</if>
+	<if test="certName != null">
+		CERT_NAME,
+	</if>
+	<if test="chnlid != null">
+		CHNLID,
+	</if>
+	<if test="process != null">
+		PROCESS,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="orderNo != null">
+		#{orderNo},
+	</if>
+	<if test="orderDes != null">
+		#{orderDes},
+	</if>
+	<if test="merNo != null">
+		#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		#{secMerNo},
+	</if>
+	<if test="sysDate != null">
+		#{sysDate},
+	</if>
+	<if test="routeCode != null">
+		#{routeCode},
+	</if>
+	<if test="payUserId != null">
+		#{payUserId},
+	</if>
+	<if test="payerAcctType != null">
+		#{payerAcctType},
+	</if>
+	<if test="payerAcctNo != null">
+		#{payerAcctNo},
+	</if>
+	<if test="payerName != null">
+		#{payerName},
+	</if>
+	<if test="payerOrgName != null">
+		#{payerOrgName},
+	</if>
+	<if test="payerBankNo != null">
+		#{payerBankNo},
+	</if>
+	<if test="payerBankName != null">
+		#{payerBankName},
+	</if>
+	<if test="payeeAcctType != null">
+		#{payeeAcctType},
+	</if>
+	<if test="payeeAcctNo != null">
+		#{payeeAcctNo},
+	</if>
+	<if test="payeeName != null">
+		#{payeeName},
+	</if>
+	<if test="payeeOrgName != null">
+		#{payeeOrgName},
+	</if>
+	<if test="payeeBankNo != null">
+		#{payeeBankNo},
+	</if>
+	<if test="payeeBankName != null">
+		#{payeeBankName},
+	</if>
+	<if test="ccy != null">
+		#{ccy},
+	</if>
+	<if test="transAmt != null">
+		#{transAmt},
+	</if>
+	<if test="transStat != null">
+		#{transStat},
+	</if>
+	<if test="transTime != null">
+		#{transTime},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+	<if test="feeAmt != null">
+		#{feeAmt},
+	</if>
+	<if test="transSubSeq != null">
+		#{transSubSeq},
+	</if>
+	<if test="merTransDate != null">
+		#{merTransDate},
+	</if>
+	<if test="merTransSeq != null">
+		#{merTransSeq},
+	</if>
+	<if test="brchNo != null">
+		#{brchNo},
+	</if>
+	<if test="tellerNo != null">
+		#{tellerNo},
+	</if>
+	<if test="transferType != null">
+		#{transferType},
+	</if>
+	<if test="feeAcctType != null">
+		#{feeAcctType},
+	</if>
+	<if test="feeAcctName != null">
+		#{feeAcctName},
+	</if>
+	<if test="feeAcctNo != null">
+		#{feeAcctNo},
+	</if>
+	<if test="trfBatchNo != null">
+		#{trfBatchNo},
+	</if>
+	<if test="trfSeq != null">
+		#{trfSeq},
+	</if>
+	<if test="disBatchNo != null">
+		#{disBatchNo},
+	</if>
+	<if test="transFlag != null">
+		#{transFlag},
+	</if>
+	<if test="bankId != null">
+		#{bankId},
+	</if>
+	<if test="certType != null">
+		#{certType},
+	</if>
+	<if test="certNo != null">
+		#{certNo},
+	</if>
+	<if test="certMobile != null">
+		#{certMobile},
+	</if>
+	<if test="certName != null">
+		#{certName},
+	</if>
+	<if test="chnlid != null">
+		#{chnlid},
+	</if>
+	<if test="process != null">
+		#{process},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="orderNo != null">
+		ORDER_NO=#{orderNo},
+	</if>
+	<if test="orderDes != null">
+		ORDER_DES=#{orderDes},
+	</if>
+	<if test="merNo != null">
+		MER_NO=#{merNo},
+	</if>
+	<if test="secMerNo != null">
+		SEC_MER_NO=#{secMerNo},
+	</if>
+	<if test="sysDate != null">
+		SYS_DATE=#{sysDate},
+	</if>
+	<if test="routeCode != null">
+		ROUTE_CODE=#{routeCode},
+	</if>
+	<if test="payUserId != null">
+		PAY_USER_ID=#{payUserId},
+	</if>
+	<if test="payerAcctType != null">
+		PAYER_ACCT_TYPE=#{payerAcctType},
+	</if>
+	<if test="payerAcctNo != null">
+		PAYER_ACCT_NO=#{payerAcctNo},
+	</if>
+	<if test="payerName != null">
+		PAYER_NAME=#{payerName},
+	</if>
+	<if test="payerOrgName != null">
+		PAYER_ORG_NAME=#{payerOrgName},
+	</if>
+	<if test="payerBankNo != null">
+		PAYER_BANK_NO=#{payerBankNo},
+	</if>
+	<if test="payerBankName != null">
+		PAYER_BANK_NAME=#{payerBankName},
+	</if>
+	<if test="payeeAcctType != null">
+		PAYEE_ACCT_TYPE=#{payeeAcctType},
+	</if>
+	<if test="payeeAcctNo != null">
+		PAYEE_ACCT_NO=#{payeeAcctNo},
+	</if>
+	<if test="payeeName != null">
+		PAYEE_NAME=#{payeeName},
+	</if>
+	<if test="payeeOrgName != null">
+		PAYEE_ORG_NAME=#{payeeOrgName},
+	</if>
+	<if test="payeeBankNo != null">
+		PAYEE_BANK_NO=#{payeeBankNo},
+	</if>
+	<if test="payeeBankName != null">
+		PAYEE_BANK_NAME=#{payeeBankName},
+	</if>
+	<if test="ccy != null">
+		CCY=#{ccy},
+	</if>
+	<if test="transAmt != null">
+		TRANS_AMT=#{transAmt},
+	</if>
+	<if test="transStat != null">
+		TRANS_STAT=#{transStat},
+	</if>
+	<if test="transTime != null">
+		TRANS_TIME=#{transTime},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+	<if test="feeAmt != null">
+		FEE_AMT=#{feeAmt},
+	</if>
+	<if test="transSubSeq != null">
+		TRANS_SUB_SEQ=#{transSubSeq},
+	</if>
+	<if test="merTransDate != null">
+		MER_TRANS_DATE=#{merTransDate},
+	</if>
+	<if test="merTransSeq != null">
+		MER_TRANS_SEQ=#{merTransSeq},
+	</if>
+	<if test="brchNo != null">
+		BRCH_NO=#{brchNo},
+	</if>
+	<if test="tellerNo != null">
+		TELLER_NO=#{tellerNo},
+	</if>
+	<if test="transferType != null">
+		TRANSFER_TYPE=#{transferType},
+	</if>
+	<if test="feeAcctType != null">
+		FEE_ACCT_TYPE=#{feeAcctType},
+	</if>
+	<if test="feeAcctName != null">
+		FEE_ACCT_NAME=#{feeAcctName},
+	</if>
+	<if test="feeAcctNo != null">
+		FEE_ACCT_NO=#{feeAcctNo},
+	</if>
+	<if test="trfBatchNo != null">
+		TRF_BATCH_NO=#{trfBatchNo},
+	</if>
+	<if test="trfSeq != null">
+		TRF_SEQ=#{trfSeq},
+	</if>
+	<if test="disBatchNo != null">
+		DIS_BATCH_NO=#{disBatchNo},
+	</if>
+	<if test="transFlag != null">
+		TRANS_FLAG=#{transFlag},
+	</if>
+	<if test="bankId != null">
+		BANK_ID=#{bankId},
+	</if>
+	<if test="certType != null">
+		CERT_TYPE=#{certType},
+	</if>
+	<if test="certNo != null">
+		CERT_NO=#{certNo},
+	</if>
+	<if test="certMobile != null">
+		CERT_MOBILE=#{certMobile},
+	</if>
+	<if test="certName != null">
+		CERT_NAME=#{certName},
+	</if>
+	<if test="chnlid != null">
+		CHNLID=#{chnlid},
+	</if>
+	<if test="process != null">
+		PROCESS=#{process},
+	</if>
+		</set>
+		where 
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.id != null">
+                    ID=#{s.id},
+			</if>
+			<if test="s.orderNo != null">
+                    ORDER_NO=#{s.orderNo},
+			</if>
+			<if test="s.orderDes != null">
+                    ORDER_DES=#{s.orderDes},
+			</if>
+			<if test="s.merNo != null">
+                    MER_NO=#{s.merNo},
+			</if>
+			<if test="s.secMerNo != null">
+                    SEC_MER_NO=#{s.secMerNo},
+			</if>
+			<if test="s.sysDate != null">
+                    SYS_DATE=#{s.sysDate},
+			</if>
+			<if test="s.routeCode != null">
+                    ROUTE_CODE=#{s.routeCode},
+			</if>
+			<if test="s.payUserId != null">
+                    PAY_USER_ID=#{s.payUserId},
+			</if>
+			<if test="s.payerAcctType != null">
+                    PAYER_ACCT_TYPE=#{s.payerAcctType},
+			</if>
+			<if test="s.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{s.payerAcctNo},
+			</if>
+			<if test="s.payerName != null">
+                    PAYER_NAME=#{s.payerName},
+			</if>
+			<if test="s.payerOrgName != null">
+                    PAYER_ORG_NAME=#{s.payerOrgName},
+			</if>
+			<if test="s.payerBankNo != null">
+                    PAYER_BANK_NO=#{s.payerBankNo},
+			</if>
+			<if test="s.payerBankName != null">
+                    PAYER_BANK_NAME=#{s.payerBankName},
+			</if>
+			<if test="s.payeeAcctType != null">
+                    PAYEE_ACCT_TYPE=#{s.payeeAcctType},
+			</if>
+			<if test="s.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{s.payeeAcctNo},
+			</if>
+			<if test="s.payeeName != null">
+                    PAYEE_NAME=#{s.payeeName},
+			</if>
+			<if test="s.payeeOrgName != null">
+                    PAYEE_ORG_NAME=#{s.payeeOrgName},
+			</if>
+			<if test="s.payeeBankNo != null">
+                    PAYEE_BANK_NO=#{s.payeeBankNo},
+			</if>
+			<if test="s.payeeBankName != null">
+                    PAYEE_BANK_NAME=#{s.payeeBankName},
+			</if>
+			<if test="s.ccy != null">
+                    CCY=#{s.ccy},
+			</if>
+			<if test="s.transAmt != null">
+                    TRANS_AMT=#{s.transAmt},
+			</if>
+			<if test="s.transStat != null">
+                    TRANS_STAT=#{s.transStat},
+			</if>
+			<if test="s.transTime != null">
+                    TRANS_TIME=#{s.transTime},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3},
+			</if>
+			<if test="s.feeAmt != null">
+                    FEE_AMT=#{s.feeAmt},
+			</if>
+			<if test="s.transSubSeq != null">
+                    TRANS_SUB_SEQ=#{s.transSubSeq},
+			</if>
+			<if test="s.merTransDate != null">
+                    MER_TRANS_DATE=#{s.merTransDate},
+			</if>
+			<if test="s.merTransSeq != null">
+                    MER_TRANS_SEQ=#{s.merTransSeq},
+			</if>
+			<if test="s.brchNo != null">
+                    BRCH_NO=#{s.brchNo},
+			</if>
+			<if test="s.tellerNo != null">
+                    TELLER_NO=#{s.tellerNo},
+			</if>
+			<if test="s.transferType != null">
+                    TRANSFER_TYPE=#{s.transferType},
+			</if>
+			<if test="s.feeAcctType != null">
+                    FEE_ACCT_TYPE=#{s.feeAcctType},
+			</if>
+			<if test="s.feeAcctName != null">
+                    FEE_ACCT_NAME=#{s.feeAcctName},
+			</if>
+			<if test="s.feeAcctNo != null">
+                    FEE_ACCT_NO=#{s.feeAcctNo},
+			</if>
+			<if test="s.trfBatchNo != null">
+                    TRF_BATCH_NO=#{s.trfBatchNo},
+			</if>
+			<if test="s.trfSeq != null">
+                    TRF_SEQ=#{s.trfSeq},
+			</if>
+			<if test="s.disBatchNo != null">
+                    DIS_BATCH_NO=#{s.disBatchNo},
+			</if>
+			<if test="s.transFlag != null">
+                    TRANS_FLAG=#{s.transFlag},
+			</if>
+			<if test="s.bankId != null">
+                    BANK_ID=#{s.bankId},
+			</if>
+			<if test="s.certType != null">
+                    CERT_TYPE=#{s.certType},
+			</if>
+			<if test="s.certNo != null">
+                    CERT_NO=#{s.certNo},
+			</if>
+			<if test="s.certMobile != null">
+                    CERT_MOBILE=#{s.certMobile},
+			</if>
+			<if test="s.certName != null">
+                    CERT_NAME=#{s.certName},
+			</if>
+			<if test="s.chnlid != null">
+                    CHNLID=#{s.chnlid},
+			</if>
+			<if test="s.process != null">
+                    PROCESS=#{s.process}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.orderNo != null">
+                    ORDER_NO=#{w.orderNo}
+                   AND 
+ 			</if>
+			<if test="w.orderDes != null">
+                    ORDER_DES=#{w.orderDes}
+                   AND 
+ 			</if>
+			<if test="w.merNo != null">
+                    MER_NO=#{w.merNo}
+                   AND 
+ 			</if>
+			<if test="w.secMerNo != null">
+                    SEC_MER_NO=#{w.secMerNo}
+                   AND 
+ 			</if>
+			<if test="w.sysDate != null">
+                    SYS_DATE=#{w.sysDate}
+                   AND 
+ 			</if>
+			<if test="w.routeCode != null">
+                    ROUTE_CODE=#{w.routeCode}
+                   AND 
+ 			</if>
+			<if test="w.payUserId != null">
+                    PAY_USER_ID=#{w.payUserId}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctType != null">
+                    PAYER_ACCT_TYPE=#{w.payerAcctType}
+                   AND 
+ 			</if>
+			<if test="w.payerAcctNo != null">
+                    PAYER_ACCT_NO=#{w.payerAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payerName != null">
+                    PAYER_NAME=#{w.payerName}
+                   AND 
+ 			</if>
+			<if test="w.payerOrgName != null">
+                    PAYER_ORG_NAME=#{w.payerOrgName}
+                   AND 
+ 			</if>
+			<if test="w.payerBankNo != null">
+                    PAYER_BANK_NO=#{w.payerBankNo}
+                   AND 
+ 			</if>
+			<if test="w.payerBankName != null">
+                    PAYER_BANK_NAME=#{w.payerBankName}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctType != null">
+                    PAYEE_ACCT_TYPE=#{w.payeeAcctType}
+                   AND 
+ 			</if>
+			<if test="w.payeeAcctNo != null">
+                    PAYEE_ACCT_NO=#{w.payeeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeName != null">
+                    PAYEE_NAME=#{w.payeeName}
+                   AND 
+ 			</if>
+			<if test="w.payeeOrgName != null">
+                    PAYEE_ORG_NAME=#{w.payeeOrgName}
+                   AND 
+ 			</if>
+			<if test="w.payeeBankNo != null">
+                    PAYEE_BANK_NO=#{w.payeeBankNo}
+                   AND 
+ 			</if>
+			<if test="w.payeeBankName != null">
+                    PAYEE_BANK_NAME=#{w.payeeBankName}
+                   AND 
+ 			</if>
+			<if test="w.ccy != null">
+                    CCY=#{w.ccy}
+                   AND 
+ 			</if>
+			<if test="w.transAmt != null">
+                    TRANS_AMT=#{w.transAmt}
+                   AND 
+ 			</if>
+			<if test="w.transStat != null">
+                    TRANS_STAT=#{w.transStat}
+                   AND 
+ 			</if>
+			<if test="w.transTime != null">
+                    TRANS_TIME=#{w.transTime}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+                   AND 
+ 			</if>
+			<if test="w.feeAmt != null">
+                    FEE_AMT=#{w.feeAmt}
+                   AND 
+ 			</if>
+			<if test="w.transSubSeq != null">
+                    TRANS_SUB_SEQ=#{w.transSubSeq}
+                   AND 
+ 			</if>
+			<if test="w.merTransDate != null">
+                    MER_TRANS_DATE=#{w.merTransDate}
+                   AND 
+ 			</if>
+			<if test="w.merTransSeq != null">
+                    MER_TRANS_SEQ=#{w.merTransSeq}
+                   AND 
+ 			</if>
+			<if test="w.brchNo != null">
+                    BRCH_NO=#{w.brchNo}
+                   AND 
+ 			</if>
+			<if test="w.tellerNo != null">
+                    TELLER_NO=#{w.tellerNo}
+                   AND 
+ 			</if>
+			<if test="w.transferType != null">
+                    TRANSFER_TYPE=#{w.transferType}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctType != null">
+                    FEE_ACCT_TYPE=#{w.feeAcctType}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctName != null">
+                    FEE_ACCT_NAME=#{w.feeAcctName}
+                   AND 
+ 			</if>
+			<if test="w.feeAcctNo != null">
+                    FEE_ACCT_NO=#{w.feeAcctNo}
+                   AND 
+ 			</if>
+			<if test="w.trfBatchNo != null">
+                    TRF_BATCH_NO=#{w.trfBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.trfSeq != null">
+                    TRF_SEQ=#{w.trfSeq}
+                   AND 
+ 			</if>
+			<if test="w.disBatchNo != null">
+                    DIS_BATCH_NO=#{w.disBatchNo}
+                   AND 
+ 			</if>
+			<if test="w.transFlag != null">
+                    TRANS_FLAG=#{w.transFlag}
+                   AND 
+ 			</if>
+			<if test="w.bankId != null">
+                    BANK_ID=#{w.bankId}
+                   AND 
+ 			</if>
+			<if test="w.certType != null">
+                    CERT_TYPE=#{w.certType}
+                   AND 
+ 			</if>
+			<if test="w.certNo != null">
+                    CERT_NO=#{w.certNo}
+                   AND 
+ 			</if>
+			<if test="w.certMobile != null">
+                    CERT_MOBILE=#{w.certMobile}
+                   AND 
+ 			</if>
+			<if test="w.certName != null">
+                    CERT_NAME=#{w.certName}
+                   AND 
+ 			</if>
+			<if test="w.chnlid != null">
+                    CHNLID=#{w.chnlid}
+                   AND 
+ 			</if>
+			<if test="w.process != null">
+                    PROCESS=#{w.process}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

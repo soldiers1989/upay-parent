@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 特约商户申请 -->
+	<dubbo:reference id="SI_MER0001"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0001"  check = "false"/>
+	<!-- 二级商户维护 -->
+	<dubbo:reference id="SI_MER0002"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0002"  check = "false"/>
+	<!-- 一级商户查询二级商户基本信息 -->
+	<dubbo:reference id="SI_MER0003"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0003"  check = "false"/>
+	<!-- 一级商户查询二级商户申请信息 -->
+	<dubbo:reference id="SI_MER0004"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0004"  check = "false"/>
+	<!-- 商户类别查询 -->
+	<dubbo:reference id="SI_MER0005"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0005"  check = "false"/>
+	<!-- 一级商户维护二级商户手续费计算方法 -->
+	<dubbo:reference id="SI_MER0006"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0006"  check = "false"/>
+	<!-- 手续费分润方法查询 -->
+    <dubbo:reference id="SI_MER0007" 
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0007" check = "false"/>
+	<!-- 二级商户手续费收取方法查询 -->
+    <dubbo:reference id="SI_MER0008" 
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0008" check = "false"/>
+    <!-- 二级商户手续费收取方法维护 -->
+    <dubbo:reference id="SI_MER0009" 
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0009" check = "false"/>
+    <!-- 商户费率规则信息查询 -->
+    <dubbo:reference id="SI_MER0010" 
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0010" check = "false"/>
+    <!-- 商户资金变动查询 -->
+    <dubbo:reference id="SI_MER0011"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0011" check = "false"/>
+    <!--商户申请检查 -->
+    <dubbo:reference id="SI_MER0012"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0012" check = "false"/>
+    <!--微信特约商户新增{开通微信支付} -->
+    <dubbo:reference id="SI_MER0013"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0013" check = "false"/>
+    <!--微信特约商户删除{关闭微信支付} -->
+    <dubbo:reference id="SI_MER0014"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0014" check = "false"/>
+    <!--商户基本信息查询 -->
+    <dubbo:reference id="SI_MER0017"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0017" check="false"/>
+    	<!--商户基本信息配置 -->
+	<dubbo:reference id="SI_MER0018"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0018" check="false"/>
+	<!--商户名称重复校验 -->
+    <dubbo:reference id="SI_MER0019"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0019" check = "false"/>
+	<!--商户配置接口 -->
+    <dubbo:reference id="SI_MER0020"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0020" check = "false"/>
+	<!--商户注册更新接口 -->
+    <dubbo:reference id="SI_MER0021"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0021" check = "false"/>
+	<!--商户注销接口 -->
+    <dubbo:reference id="SI_MER0022"
+    	interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0022" check = "false"/>
+    	
+    <!-- 微信特约商户配置   对外提供 -->
+	<dubbo:reference id="SI_MER0023"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0023"  check = "false"/>
+	<!-- 微信特约商户新增{开通微信支付} 对外接口 -->
+	<dubbo:reference id="SI_MER0024"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0024"  check = "false"/>
+	<!-- 微信特约商户新增{开通微信支付} 对外接口 -->
+	<dubbo:reference id="SI_MER0064"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0064"  check = "false"/>		
+	<!-- 默认密钥参数配置 -->
+	<dubbo:reference id="SI_MER0025"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0025" check="false"/>
+	<!--开通支付宝支付 -->
+	<dubbo:reference id="SI_MER0026"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0026" check="false"/>
+	<!--支付宝商户信息查询 -->
+	<dubbo:reference id="SI_MER0027"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0027" check="false"/>
+	<!--支付宝商户信息修改 -->
+	<dubbo:reference id="SI_MER0028"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0028" check="false"/>
+		
+	<!--开通支付宝支付 -->
+	<dubbo:reference id="SI_MER0126"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0126" check="false"/>
+	<!--支付宝商户信息查询 -->
+	<dubbo:reference id="SI_MER0127"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0127" check="false"/>
+	<!--支付宝商户信息修改 -->
+	<dubbo:reference id="SI_MER0128"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0128" check="false"/>	
+		
+	<!--根据qrCode获取商户信息-->
+	<dubbo:reference id="SI_MER0029"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0029" check="false"/>
+	<!--生成聚合码链接-->
+	<dubbo:reference id="SI_MER0030"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0030" check="false"/>
+	<!--商户信息查询-->
+	<dubbo:reference id="SI_MER0031"
+		interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0031" check="false"/>
+
+	<!-- 商户信息查询  根据手机号或者邮箱查询名下的多个商户信息-->
+	<dubbo:reference id="SI_MER0032"
+					 interface="com.pactera.dipper.core.IDipperHandler" group="SI_MER0032" check="false"/>
+
+</beans>

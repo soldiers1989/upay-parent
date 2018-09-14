@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+<!-- 	<mappings>vbindBankCode -->
+	<mappings>
+<!-- 		<mapping xpath="$.body.PAYEE_MOBILE" field="payeeMobile" />转账手机号 -->
+		<mapping xpath="$.body.PAYEE_USER_NAME" field="payeeUserName" must="not" /><!-- 转账用户名 -->
+	</mappings>
+</config>

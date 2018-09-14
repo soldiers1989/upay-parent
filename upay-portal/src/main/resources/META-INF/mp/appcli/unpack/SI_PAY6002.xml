@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+    <mappings>
+        <mapping xpath="$.body.QUERY_SCOPE" field="queryScope" must="not" /><!--  查询日期起始标志 -->
+        <mapping xpath="$.body.QUERY_START" field="startDate" must="not"/> <!-- 查询范围开始时间标志 -->
+        <mapping xpath="$.body.QUERY_END" field="endDate" must="not"/> <!-- 查询范围结束时间标志 -->
+        <mapping xpath="$.body.STL_BATCH_NO" field="stlBatchNo" must="not"/> <!-- 批次号 -->
+        <mapping xpath="$.body.STAT" field="stat" must="not"/> <!-- 清算状态 -->
+        <mapping xpath="$.body.MER_NO" field="merNo" must="not"/> <!-- 商户号 -->
+        <mapping xpath="$.body.SEC_MER_NO" field="secMerNo" must="not"/> <!-- 二级商户号 -->
+    </mappings>
+</config>

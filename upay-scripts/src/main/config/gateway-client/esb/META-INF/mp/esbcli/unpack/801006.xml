@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+	   <mapping xpath="BODY.TxnAmt" field="txnAmt" must="not"/>
+	   <mapping xpath="BODY.PcdFee" field="pcdFee" must="not"/>
+	   <mapping xpath="BODY.Ccy" field="ccy" must="not"/>
+	   <mapping xpath="BODY.TxnSt" field="txnSt" must="not"/>
+	</mappings>
+</config>

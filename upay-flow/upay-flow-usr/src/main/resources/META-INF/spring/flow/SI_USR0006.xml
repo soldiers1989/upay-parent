@@ -1,0 +1,91 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+	
+	<!-- 用户登陆 -->
+	<dipper:flow service-id="SI_USR0006">
+		<dipper:try>
+			<dipper:route transaction="lazy">
+				<dipper:invoke>
+					<!-- 交易前检查 -->
+					<dipper:service ref="SrvPreProcessingServiceImpl" />
+				</dipper:invoke>
+				
+				<dipper:invoke>
+				<dipper:if expression="target.bodys contains 'verifyKey' &amp;&amp; target.bodys.verifyKey !=null">
+					<!-- 图形码验证 -->
+					<dipper:service ref="CheckVerifyCodeService" />
+				</dipper:if>
+				</dipper:invoke>
+			</dipper:route>	
+			<dipper:route>
+				<!-- 用户注册信息查询 -->
+				<dipper:invoke>
+					<dipper:service ref="UserRegQueryService" />
+				</dipper:invoke>
+				<!-- 用户状态检查  -->
+				<dipper:invoke>
+					<dipper:service ref="UserStatCheckService" />
+				</dipper:invoke>
+			</dipper:route>
+			<dipper:route transaction="lazy" >
+				<!-- 预计用户登录信息 -->
+				<dipper:invoke>
+					<dipper:service ref="UserPreloginService" />
+				</dipper:invoke>
+				<!-- 用户登陆密码检查 -->
+				<dipper:invoke>
+					<dipper:service ref="UserPwdCheckServiceImpl" />
+				</dipper:invoke>					
+				<!-- 登录成功session处理 -->
+				<dipper:invoke>
+					<dipper:service ref="LogSuccessSessionDealService"/>
+				</dipper:invoke>
+			 </dipper:route >
+			 <dipper:route>
+				<!-- 个人信息查询  -->				
+				<dipper:invoke>
+					<dipper:service ref="UserBaseInfoService" />
+				</dipper:invoke>
+				<!-- 用户是否开户查询  -->
+				<dipper:invoke>
+					<dipper:service ref="AccOpenStatusService" />
+				</dipper:invoke>				 
+			 </dipper:route>				
+		</dipper:try>		
+		<dipper:catchException />
+		<dipper:finally>
+			<dipper:route>
+				<dipper:invoke>
+					<!-- 交易后处理 -->
+					<dipper:service ref="SrvPostProcessingServiceImpl" />
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="fault.code=='BISUSR0016'||fault.code=='BISUSR0023'||fault.code=='BISUSR0015'||fault.code=='BISUSR0021'">
+						<!-- 用户密码错误次数统计 -->
+						<dipper:service ref="UserPwdCountDealService" /><!-- 用户密码错误次数统计 -->
+					</dipper:if>
+				</dipper:invoke>
+				<dipper:invoke>
+					<dipper:if expression="fault.code!='0000000000'">
+							<!-- 登录失败后处理 -->
+						<dipper:service ref="LoginFailService" />
+					</dipper:if>
+					<dipper:else>
+						<!-- 更新用户登录信息表 -->
+						<dipper:service ref="UpdateLastLoginTimeService" /><!-- 用户更新登录时间 -->
+					</dipper:else>					
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

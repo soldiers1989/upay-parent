@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 支付宝商户入驻（新增商户）-->
+<data templateType="OUT"
+	transCode="subMchAdd"
+	>
+<!-- 
+oldName转换前参数名
+newName转换后参数名
+type转换类型
+must是否必输
+dateFormat日期格式
+-->	
+	<!-- 商户编号-->
+	<column oldName="sub_merchant_id" newName="subMerchantId"/>
+	<!-- 支付宝修改信息-->
+	<column oldName="alipay_param" newName="alipayUpdateParam" type="byte"/>
+</data>

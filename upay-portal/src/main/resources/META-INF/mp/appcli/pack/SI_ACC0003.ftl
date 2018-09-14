@@ -1,0 +1,19 @@
+"body" : {
+	"USER_ID":"${userId}",
+	"CERT_TYPE":"${certType}",
+	"CERT_NO":"${certNo}",
+	"CERT_NAME":"${certName}",
+	"USER_STAT":"${userStat}",
+	"MOBILE":"${mobile}",
+	"USER_CERT_LEVEL":"${userCertLevel}",
+	"USER_VALUE_LEVEL":"${userValueLevel}",
+	"USER_NAME":"${userName}",
+	"USER_NICK_NAME":"${userNickName}",
+	"HEAD_PIC":"${headPic}",
+	"LAST_LOGIN_TIME":"${lastLoginTime}",
+	"IF_NO_MOD_PWD":"${ifNoModPwd}",
+	"SESSION_ID":"${sessionId}",
+	"OPEN_ACCT_FLAG":"${openAcctFlag}",
+	"VERIFY_CODE_FLAG":"${verifyCodeFlag}",
+	"USE_BAL":"${useBal}"
+}

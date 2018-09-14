@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+  <!-- 下载 资金结算登记薄-->
+  <dipper:flow service-id="SI_PAY6003">
+	<dipper:try>
+		<dipper:route>
+			<dipper:invoke>
+				<dipper:service ref="SrvPreProcessingServiceImpl" />
+			</dipper:invoke>
+		</dipper:route>
+		<dipper:route>
+			<!-- 资金结算登记薄下载 -->
+			<dipper:invoke>
+				<dipper:service ref="StlBookListQueryDownloadService" />
+			</dipper:invoke>
+		</dipper:route>
+	</dipper:try>
+	<dipper:catchException/>
+	<dipper:finally>
+		<dipper:route>
+			<dipper:invoke>
+				<dipper:service ref="SrvPostProcessingServiceImpl" />
+			</dipper:invoke>
+		</dipper:route>
+	</dipper:finally>
+  </dipper:flow>
+</beans>

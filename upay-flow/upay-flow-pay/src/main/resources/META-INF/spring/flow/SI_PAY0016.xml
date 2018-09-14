@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dipper="http://www.pactera.com/schema/dipper"
+	xmlns:data="http://www.pactera.com/schema/dipper/dict"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.pactera.com/schema/dipper
+	http://www.pactera.com/schema/dipper.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.pactera.com/schema/dipper/dict
+    http://www.pactera.com/schema/dipper/dict.xsd">
+  <!-- 确认收货 -->
+  <dipper:flow service-id="SI_PAY0016">
+		<dipper:try>
+			<dipper:route>
+				<dipper:invoke><!-- 校验商户状态 -->
+					<dipper:service ref="MerStatChkService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- 校验订单状态 -->
+					<dipper:service ref="CheckConfirmDeliveryService"/>
+				</dipper:invoke>
+				<dipper:invoke><!-- 保存订单同步路径 -->
+					<dipper:service ref="OrderStatusManageService"/>
+				</dipper:invoke>
+			</dipper:route>
+		</dipper:try>
+		<dipper:catchException>
+		</dipper:catchException>
+		<dipper:finally>
+		</dipper:finally>
+	</dipper:flow>
+</beans>

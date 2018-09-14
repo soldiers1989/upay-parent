@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccCardConfPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccCardConfPo">
+		<id column="ID" property="id" />
+		<result column="CARD_BIN" property="cardBin" />
+		<result column="SECTION_ONE" property="sectionOne" />
+		<result column="SECTION_TWO" property="sectionTwo" />
+		<result column="SECTION_THREE" property="sectionThree" />
+		<result column="CARD_SEQ" property="cardSeq" />
+		<result column="CARD_LENGTH" property="cardLength" />
+		<result column="CARD_STAT" property="cardStat" />
+		<result column="CARD_TYPE" property="cardType" />
+		<result column="LAST_UPDATE_OPER" property="lastUpdateOper" />
+		<result column="LAST_UPDATE_TIME" property="lastUpdateTime" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_CARD_CONF
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		CARD_BIN,
+		SECTION_ONE,
+		SECTION_TWO,
+		SECTION_THREE,
+		CARD_SEQ,
+		CARD_LENGTH,
+		CARD_STAT,
+		CARD_TYPE,
+		LAST_UPDATE_OPER,
+		LAST_UPDATE_TIME,
+		REMARK1,
+		REMARK2,
+		REMARK3
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="cardBin != null">
+			CARD_BIN= #{cardBin}
+	           AND 
+		</if>
+		<if test="sectionOne != null">
+			SECTION_ONE= #{sectionOne}
+	           AND 
+		</if>
+		<if test="sectionTwo != null">
+			SECTION_TWO= #{sectionTwo}
+	           AND 
+		</if>
+		<if test="sectionThree != null">
+			SECTION_THREE= #{sectionThree}
+	           AND 
+		</if>
+		<if test="cardSeq != null">
+			CARD_SEQ= #{cardSeq}
+	           AND 
+		</if>
+		<if test="cardLength != null">
+			CARD_LENGTH= #{cardLength}
+	           AND 
+		</if>
+		<if test="cardStat != null">
+			CARD_STAT= #{cardStat}
+	           AND 
+		</if>
+		<if test="cardType != null">
+			CARD_TYPE= #{cardType}
+	           AND 
+		</if>
+		<if test="lastUpdateOper != null">
+			LAST_UPDATE_OPER= #{lastUpdateOper}
+	           AND 
+		</if>
+		<if test="lastUpdateTime != null">
+			LAST_UPDATE_TIME= #{lastUpdateTime}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="remark2 != null">
+			REMARK2= #{remark2}
+	           AND 
+		</if>
+		<if test="remark3 != null">
+			REMARK3= #{remark3}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="cardBin != null">
+		CARD_BIN,
+	</if>
+	<if test="sectionOne != null">
+		SECTION_ONE,
+	</if>
+	<if test="sectionTwo != null">
+		SECTION_TWO,
+	</if>
+	<if test="sectionThree != null">
+		SECTION_THREE,
+	</if>
+	<if test="cardSeq != null">
+		CARD_SEQ,
+	</if>
+	<if test="cardLength != null">
+		CARD_LENGTH,
+	</if>
+	<if test="cardStat != null">
+		CARD_STAT,
+	</if>
+	<if test="cardType != null">
+		CARD_TYPE,
+	</if>
+	<if test="lastUpdateOper != null">
+		LAST_UPDATE_OPER,
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="remark2 != null">
+		REMARK2,
+	</if>
+	<if test="remark3 != null">
+		REMARK3,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="cardBin != null">
+		#{cardBin},
+	</if>
+	<if test="sectionOne != null">
+		#{sectionOne},
+	</if>
+	<if test="sectionTwo != null">
+		#{sectionTwo},
+	</if>
+	<if test="sectionThree != null">
+		#{sectionThree},
+	</if>
+	<if test="cardSeq != null">
+		#{cardSeq},
+	</if>
+	<if test="cardLength != null">
+		#{cardLength},
+	</if>
+	<if test="cardStat != null">
+		#{cardStat},
+	</if>
+	<if test="cardType != null">
+		#{cardType},
+	</if>
+	<if test="lastUpdateOper != null">
+		#{lastUpdateOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="remark2 != null">
+		#{remark2},
+	</if>
+	<if test="remark3 != null">
+		#{remark3},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="cardBin != null">
+		CARD_BIN=#{cardBin},
+	</if>
+	<if test="sectionOne != null">
+		SECTION_ONE=#{sectionOne},
+	</if>
+	<if test="sectionTwo != null">
+		SECTION_TWO=#{sectionTwo},
+	</if>
+	<if test="sectionThree != null">
+		SECTION_THREE=#{sectionThree},
+	</if>
+	<if test="cardSeq != null">
+		CARD_SEQ=#{cardSeq},
+	</if>
+	<if test="cardLength != null">
+		CARD_LENGTH=#{cardLength},
+	</if>
+	<if test="cardStat != null">
+		CARD_STAT=#{cardStat},
+	</if>
+	<if test="cardType != null">
+		CARD_TYPE=#{cardType},
+	</if>
+	<if test="lastUpdateOper != null">
+		LAST_UPDATE_OPER=#{lastUpdateOper},
+	</if>
+	<if test="lastUpdateTime != null">
+		LAST_UPDATE_TIME=#{lastUpdateTime},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="remark2 != null">
+		REMARK2=#{remark2},
+	</if>
+	<if test="remark3 != null">
+		REMARK3=#{remark3},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.cardBin != null">
+                    CARD_BIN=#{s.cardBin},
+			</if>
+			<if test="s.sectionOne != null">
+                    SECTION_ONE=#{s.sectionOne},
+			</if>
+			<if test="s.sectionTwo != null">
+                    SECTION_TWO=#{s.sectionTwo},
+			</if>
+			<if test="s.sectionThree != null">
+                    SECTION_THREE=#{s.sectionThree},
+			</if>
+			<if test="s.cardSeq != null">
+                    CARD_SEQ=#{s.cardSeq},
+			</if>
+			<if test="s.cardLength != null">
+                    CARD_LENGTH=#{s.cardLength},
+			</if>
+			<if test="s.cardStat != null">
+                    CARD_STAT=#{s.cardStat},
+			</if>
+			<if test="s.cardType != null">
+                    CARD_TYPE=#{s.cardType},
+			</if>
+			<if test="s.lastUpdateOper != null">
+                    LAST_UPDATE_OPER=#{s.lastUpdateOper},
+			</if>
+			<if test="s.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{s.lastUpdateTime},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.remark2 != null">
+                    REMARK2=#{s.remark2},
+			</if>
+			<if test="s.remark3 != null">
+                    REMARK3=#{s.remark3}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.cardBin != null">
+                    CARD_BIN=#{w.cardBin}
+                   AND 
+ 			</if>
+			<if test="w.sectionOne != null">
+                    SECTION_ONE=#{w.sectionOne}
+                   AND 
+ 			</if>
+			<if test="w.sectionTwo != null">
+                    SECTION_TWO=#{w.sectionTwo}
+                   AND 
+ 			</if>
+			<if test="w.sectionThree != null">
+                    SECTION_THREE=#{w.sectionThree}
+                   AND 
+ 			</if>
+			<if test="w.cardSeq != null">
+                    CARD_SEQ=#{w.cardSeq}
+                   AND 
+ 			</if>
+			<if test="w.cardLength != null">
+                    CARD_LENGTH=#{w.cardLength}
+                   AND 
+ 			</if>
+			<if test="w.cardStat != null">
+                    CARD_STAT=#{w.cardStat}
+                   AND 
+ 			</if>
+			<if test="w.cardType != null">
+                    CARD_TYPE=#{w.cardType}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateOper != null">
+                    LAST_UPDATE_OPER=#{w.lastUpdateOper}
+                   AND 
+ 			</if>
+			<if test="w.lastUpdateTime != null">
+                    LAST_UPDATE_TIME=#{w.lastUpdateTime}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.remark2 != null">
+                    REMARK2=#{w.remark2}
+                   AND 
+ 			</if>
+			<if test="w.remark3 != null">
+                    REMARK3=#{w.remark3}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

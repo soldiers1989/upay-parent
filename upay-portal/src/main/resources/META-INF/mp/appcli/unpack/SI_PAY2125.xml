@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.MER_NO" field="merNo"  must="not"/>
+		<mapping xpath="$.body.TRANS_AMT_STR" field="transAmtStr"  must="not"/>
+		<mapping xpath="$.body.SPBILL_CREATE_IP" field="spbillCreateIp"  must="not"/>
+		<mapping xpath="$.body.ORDER_NO" field="orderNo"  must="not"/>
+	</mappings>
+</config>

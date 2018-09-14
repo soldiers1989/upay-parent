@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="MrchCd" field="merNo" must="not"/>
+		<mapping xpath="TxnStrtDt" field="beginTime"/>
+		<mapping xpath="TxnEndDt" field="endTime"/>
+		<mapping xpath="TxnNm" field="tradeName" must="not"/>
+		<mapping xpath="PyeAcctNo" field="accNumber" must="not"/>
+		<mapping xpath="PyeAcctNm" field="accName" must="not"/>
+		<mapping xpath="PyeBnkNm" field="accOpeningBank" must="not"/>
+		<mapping xpath="PyeSubAcctNo" field="shroffAccNumber" must="not"/>
+		<mapping xpath="PyeSubAcctNoNm" field="shroffAccName" must="not"/>
+	    <mapping xpath="PyrAcctNo" field="payNumber" must="not"/>
+		<mapping xpath="PyrAcctNm" field="payName" must="not"/>
+		<mapping xpath="PyrOpnBnkNo" field="payOpeningBank" must="not"/>
+		<mapping xpath="PyrSubAcctNo" field="shroffPayName" must="not"/>
+		<mapping xpath="PyrSubAcctNoNm" field="shroffPayName" must="not"/>
+	</mappings>
+</config>

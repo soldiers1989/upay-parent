@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.fee.FeeAssPo">
+	<select id="selectByFuzzy" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column"/>
+		 from 
+		 <include refid="Table_Name"/>
+		 <where>
+		 	<trim suffixOverrides="AND">
+		 	<if test="assCode != null">
+				ASS_CODE= #{feeCode}
+		           AND 
+			</if>
+		 	<if test="assName != null">
+				INSTR(ASS_NAME,#{assName})>0
+			</if>
+			</trim>
+		 </where>
+	</select>
+</mapper>

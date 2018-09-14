@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.OFFLINE_MER_NO" field="offlineMerNo" />
+		<mapping xpath="$.body.USER_ID" field="alipayUserId" />
+		<mapping xpath="$.body.TRANS_AMT_STR" field="transAmtStr" />
+		<mapping xpath="$.body.SPBILL_CREATE_IP" field="spbillCreateIp" />
+	</mappings>
+</config>

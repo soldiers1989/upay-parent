@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.gnr.GnrCurviewpicInfoPo">
+	<select id="selectViewPicListQueryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select 
+			<include refid="Base_Column" />
+        from
+        <include refid="Table_Name" />
+        <where>
+             <if test="chnlId != null">
+				AND CHNL_ID=#{chnlId}
+			</if>
+            <if test="devType != null">
+                  AND trim(DEV_TYPE)=#{devType}
+ 			</if>
+        </where>
+        order by  PRIORITY  DESC,REL_TIME DESC
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+
+    <previews>
+        <preview id="smscli" xpath="" datalength="" trancodename="tranCode"
+            charset="GBK" special="" dataSign="true" faultCodeName=""
+            faultStringName="" soaErrCodeName="" soaErrMsgName=""
+            soaErrCodeSuc="" errCodeName="rspCode" errMsgName="rspMsg"
+            errCodeSuc="000000" bodyheadSpecial="false" appIdName="appId" channelIdName="channelId"
+            transIdName="transId" reqTimeName="reqTime" appSignName="appSign"
+            dataSignName="dataSign" serviceAddressName="serviceAddress" sysName="UPAY"
+            relationSysId="60" concreteSysId="50" requrl="true">
+            <pack>
+                <headField length="6" align="left" pad="0" />
+            </pack>
+            <unpack>
+                <headField id="datalength" length="6" />
+            </unpack>
+        </preview>
+    </previews>
+
+</config>

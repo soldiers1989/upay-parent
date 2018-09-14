@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+	<mappings>
+		<mapping xpath="$.body.MOBILE" field="mobile"/>
+		<!--一级商户申请二级商户时  传递的userId一样  需要使用merNo号区分  登陆的是哪个商户-->
+		<mapping xpath="$.body.MER_NO" field="merNo" must="not"/>
+	</mappings>
+</config>

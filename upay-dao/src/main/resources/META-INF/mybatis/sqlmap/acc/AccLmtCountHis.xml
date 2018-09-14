@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.upay.dao.po.acc.AccLmtCountHisPo">
+	<resultMap id="BaseResultMap" type="com.upay.dao.po.acc.AccLmtCountHisPo">
+		<id column="ID" property="id" />
+		<result column="TRANS_DATE" property="transDate" />
+		<result column="USER_ID" property="userId" />
+		<result column="LMT_ACCOUNT_FLAG" property="lmtAccountFlag" />
+		<result column="SYS_LMT_ID" property="sysLmtId" />
+		<result column="SYS_TRANSLMT_ID" property="sysTranslmtId" />
+		<result column="DAY_SUM_AMT_LIMIT" property="daySumAmtLimit" />
+		<result column="DAY_SUM_COUNT_LIMIT" property="daySumCountLimit" />
+		<result column="MON_SUM_AMT_LIMIT" property="monSumAmtLimit" />
+		<result column="MON_SUM_COUNT_LIMIT" property="monSumCountLimit" />
+		<result column="REMARK1" property="remark1" />
+		<result column="YEAR_SUM_AMT_LIMIT" property="yearSumAmtLimit" />
+		<result column="YEAR_SUM_COUNT_LIMIT" property="yearSumCountLimit" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		T_ACC_LMT_COUNT_HIS
+	</sql>
+
+	<sql id="Base_Column">
+		ID,
+		TRANS_DATE,
+		USER_ID,
+		LMT_ACCOUNT_FLAG,
+		SYS_LMT_ID,
+		SYS_TRANSLMT_ID,
+		DAY_SUM_AMT_LIMIT,
+		DAY_SUM_COUNT_LIMIT,
+		MON_SUM_AMT_LIMIT,
+		MON_SUM_COUNT_LIMIT,
+		REMARK1,
+		YEAR_SUM_AMT_LIMIT,
+		YEAR_SUM_COUNT_LIMIT
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			ID= #{id}
+	           AND 
+		</if>
+		<if test="transDate != null">
+			TRANS_DATE= #{transDate}
+	           AND 
+		</if>
+		<if test="userId != null">
+			USER_ID= #{userId}
+	           AND 
+		</if>
+		<if test="lmtAccountFlag != null">
+			LMT_ACCOUNT_FLAG= #{lmtAccountFlag}
+	           AND 
+		</if>
+		<if test="sysLmtId != null">
+			SYS_LMT_ID= #{sysLmtId}
+	           AND 
+		</if>
+		<if test="sysTranslmtId != null">
+			SYS_TRANSLMT_ID= #{sysTranslmtId}
+	           AND 
+		</if>
+		<if test="daySumAmtLimit != null">
+			DAY_SUM_AMT_LIMIT= #{daySumAmtLimit}
+	           AND 
+		</if>
+		<if test="daySumCountLimit != null">
+			DAY_SUM_COUNT_LIMIT= #{daySumCountLimit}
+	           AND 
+		</if>
+		<if test="monSumAmtLimit != null">
+			MON_SUM_AMT_LIMIT= #{monSumAmtLimit}
+	           AND 
+		</if>
+		<if test="monSumCountLimit != null">
+			MON_SUM_COUNT_LIMIT= #{monSumCountLimit}
+	           AND 
+		</if>
+		<if test="remark1 != null">
+			REMARK1= #{remark1}
+	           AND 
+		</if>
+		<if test="yearSumAmtLimit != null">
+			YEAR_SUM_AMT_LIMIT= #{yearSumAmtLimit}
+	           AND 
+		</if>
+		<if test="yearSumCountLimit != null">
+			YEAR_SUM_COUNT_LIMIT= #{yearSumCountLimit}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		ID,
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE,
+	</if>
+	<if test="userId != null">
+		USER_ID,
+	</if>
+	<if test="lmtAccountFlag != null">
+		LMT_ACCOUNT_FLAG,
+	</if>
+	<if test="sysLmtId != null">
+		SYS_LMT_ID,
+	</if>
+	<if test="sysTranslmtId != null">
+		SYS_TRANSLMT_ID,
+	</if>
+	<if test="daySumAmtLimit != null">
+		DAY_SUM_AMT_LIMIT,
+	</if>
+	<if test="daySumCountLimit != null">
+		DAY_SUM_COUNT_LIMIT,
+	</if>
+	<if test="monSumAmtLimit != null">
+		MON_SUM_AMT_LIMIT,
+	</if>
+	<if test="monSumCountLimit != null">
+		MON_SUM_COUNT_LIMIT,
+	</if>
+	<if test="remark1 != null">
+		REMARK1,
+	</if>
+	<if test="yearSumAmtLimit != null">
+		YEAR_SUM_AMT_LIMIT,
+	</if>
+	<if test="yearSumCountLimit != null">
+		YEAR_SUM_COUNT_LIMIT,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="transDate != null">
+		#{transDate},
+	</if>
+	<if test="userId != null">
+		#{userId},
+	</if>
+	<if test="lmtAccountFlag != null">
+		#{lmtAccountFlag},
+	</if>
+	<if test="sysLmtId != null">
+		#{sysLmtId},
+	</if>
+	<if test="sysTranslmtId != null">
+		#{sysTranslmtId},
+	</if>
+	<if test="daySumAmtLimit != null">
+		#{daySumAmtLimit},
+	</if>
+	<if test="daySumCountLimit != null">
+		#{daySumCountLimit},
+	</if>
+	<if test="monSumAmtLimit != null">
+		#{monSumAmtLimit},
+	</if>
+	<if test="monSumCountLimit != null">
+		#{monSumCountLimit},
+	</if>
+	<if test="remark1 != null">
+		#{remark1},
+	</if>
+	<if test="yearSumAmtLimit != null">
+		#{yearSumAmtLimit},
+	</if>
+	<if test="yearSumCountLimit != null">
+		#{yearSumCountLimit},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		ID=#{id},
+	</if>
+	<if test="transDate != null">
+		TRANS_DATE=#{transDate},
+	</if>
+	<if test="userId != null">
+		USER_ID=#{userId},
+	</if>
+	<if test="lmtAccountFlag != null">
+		LMT_ACCOUNT_FLAG=#{lmtAccountFlag},
+	</if>
+	<if test="sysLmtId != null">
+		SYS_LMT_ID=#{sysLmtId},
+	</if>
+	<if test="sysTranslmtId != null">
+		SYS_TRANSLMT_ID=#{sysTranslmtId},
+	</if>
+	<if test="daySumAmtLimit != null">
+		DAY_SUM_AMT_LIMIT=#{daySumAmtLimit},
+	</if>
+	<if test="daySumCountLimit != null">
+		DAY_SUM_COUNT_LIMIT=#{daySumCountLimit},
+	</if>
+	<if test="monSumAmtLimit != null">
+		MON_SUM_AMT_LIMIT=#{monSumAmtLimit},
+	</if>
+	<if test="monSumCountLimit != null">
+		MON_SUM_COUNT_LIMIT=#{monSumCountLimit},
+	</if>
+	<if test="remark1 != null">
+		REMARK1=#{remark1},
+	</if>
+	<if test="yearSumAmtLimit != null">
+		YEAR_SUM_AMT_LIMIT=#{yearSumAmtLimit},
+	</if>
+	<if test="yearSumCountLimit != null">
+		YEAR_SUM_COUNT_LIMIT=#{yearSumCountLimit},
+	</if>
+		</set>
+		where 
+			      ID=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.transDate != null">
+                    TRANS_DATE=#{s.transDate},
+			</if>
+			<if test="s.userId != null">
+                    USER_ID=#{s.userId},
+			</if>
+			<if test="s.lmtAccountFlag != null">
+                    LMT_ACCOUNT_FLAG=#{s.lmtAccountFlag},
+			</if>
+			<if test="s.sysLmtId != null">
+                    SYS_LMT_ID=#{s.sysLmtId},
+			</if>
+			<if test="s.sysTranslmtId != null">
+                    SYS_TRANSLMT_ID=#{s.sysTranslmtId},
+			</if>
+			<if test="s.daySumAmtLimit != null">
+                    DAY_SUM_AMT_LIMIT=#{s.daySumAmtLimit},
+			</if>
+			<if test="s.daySumCountLimit != null">
+                    DAY_SUM_COUNT_LIMIT=#{s.daySumCountLimit},
+			</if>
+			<if test="s.monSumAmtLimit != null">
+                    MON_SUM_AMT_LIMIT=#{s.monSumAmtLimit},
+			</if>
+			<if test="s.monSumCountLimit != null">
+                    MON_SUM_COUNT_LIMIT=#{s.monSumCountLimit},
+			</if>
+			<if test="s.remark1 != null">
+                    REMARK1=#{s.remark1},
+			</if>
+			<if test="s.yearSumAmtLimit != null">
+                    YEAR_SUM_AMT_LIMIT=#{s.yearSumAmtLimit},
+			</if>
+			<if test="s.yearSumCountLimit != null">
+                    YEAR_SUM_COUNT_LIMIT=#{s.yearSumCountLimit}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    ID=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.transDate != null">
+                    TRANS_DATE=#{w.transDate}
+                   AND 
+ 			</if>
+			<if test="w.userId != null">
+                    USER_ID=#{w.userId}
+                   AND 
+ 			</if>
+			<if test="w.lmtAccountFlag != null">
+                    LMT_ACCOUNT_FLAG=#{w.lmtAccountFlag}
+                   AND 
+ 			</if>
+			<if test="w.sysLmtId != null">
+                    SYS_LMT_ID=#{w.sysLmtId}
+                   AND 
+ 			</if>
+			<if test="w.sysTranslmtId != null">
+                    SYS_TRANSLMT_ID=#{w.sysTranslmtId}
+                   AND 
+ 			</if>
+			<if test="w.daySumAmtLimit != null">
+                    DAY_SUM_AMT_LIMIT=#{w.daySumAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.daySumCountLimit != null">
+                    DAY_SUM_COUNT_LIMIT=#{w.daySumCountLimit}
+                   AND 
+ 			</if>
+			<if test="w.monSumAmtLimit != null">
+                    MON_SUM_AMT_LIMIT=#{w.monSumAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.monSumCountLimit != null">
+                    MON_SUM_COUNT_LIMIT=#{w.monSumCountLimit}
+                   AND 
+ 			</if>
+			<if test="w.remark1 != null">
+                    REMARK1=#{w.remark1}
+                   AND 
+ 			</if>
+			<if test="w.yearSumAmtLimit != null">
+                    YEAR_SUM_AMT_LIMIT=#{w.yearSumAmtLimit}
+                   AND 
+ 			</if>
+			<if test="w.yearSumCountLimit != null">
+                    YEAR_SUM_COUNT_LIMIT=#{w.yearSumCountLimit}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+		<include refid="com.pactera.dipper.mybatis.common.Comm_Order_By"/>
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

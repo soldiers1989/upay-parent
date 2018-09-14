@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 扫码下单/公众号下单等 -->
+	<dubbo:service ref="defaultWeiXinClientHandler" group="defaultWeiXinClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+	<!-- 	刷卡支付 -->	
+	<dubbo:service ref="defaultWeiXinMicropayClientHandler" group="defaultWeiXinMicropayClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+
+	<!-- 微信特约商户服务 -->
+	<dubbo:service ref="defaultWeiXinMerchHttpsClientHandler" group="defaultWeiXinMerchHttpsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+
+	<!-- 退款服务 -->
+	<dubbo:service ref="defaultWeiXinHttpsClientHandler" group="defaultWeiXinHttpsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+		
+	<!-- 微信支付撤销订单API -->
+	<dubbo:service ref="defaultWeiXinSecapiClientHandler" group="defaultWeiXinSecapiClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+		
+	<!-- 微信发红包接口 -->
+	<dubbo:service ref="defaultWeiXinMmpaymktHttpsClientHandler" group="defaultWeiXinMmpaymktHttpsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+
+	<!-- 微信商户配置接口 -->
+	<dubbo:service ref="defaultWeiXinMchconfHttpsClientHandler" group="defaultWeiXinMchconfHttpsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+		
+	<!-- 调用微信 根据微信支付授权码获取用户open id -->
+	<dubbo:service ref="defaultWeiXintoolsClientHandler" group="defaultWeiXintoolsClientHandler"
+		interface="com.pactera.dipper.core.IDipperHandler" />
+</beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.pactera.com/schema/dipper/xml">
+    
+    <mappings>
+<!--         <mapping xpath="return_code" field="returnCode" must="not"/> -->
+<!--         <mapping xpath="return_msg" field="returnMsg" must="not"/> -->
+        <mapping xpath="SYS_HEAD.SvcCd" field="svcCd"/>
+        <mapping xpath="SYS_HEAD.SvcScn" field="svcScn"/>
+        <mapping xpath="SYS_HEAD.CnsmSysId" field="cnsmSysId"/>
+        <mapping xpath="SYS_HEAD.ChnlTp" field="chnlTp" must="not"/>
+        <mapping xpath="SYS_HEAD.SrcSysId" field="srcSysId" must="not"/>
+        <mapping xpath="SYS_HEAD.CnsmSysSeqNo" field="cnsmSysSeqNo" must="not"/>
+        <mapping xpath="SYS_HEAD.SrcSysSeqNo" field="srcSysSeqNo"/>
+        <mapping xpath="SYS_HEAD.Mac" field="mac" must="not"/>
+        <mapping xpath="SYS_HEAD.TranDt" field="tranDt"/>
+        <mapping xpath="SYS_HEAD.TranTm" field="tranTm"/>
+        <mapping xpath="SYS_HEAD.TmnlNo" field="tmnlNo" must="not"/>
+        <mapping xpath="SYS_HEAD.SrcSysTmnlNo" field="srcSysTmnlNo" must="not"/>
+        <mapping xpath="SYS_HEAD.PrvdSysSeqNo" field="SerSeqNo" must="not"/>
+        <mapping xpath="SYS_HEAD.CnsmSysSvrId" field="cnsmSysSvrId" must="not"/>
+        <mapping xpath="SYS_HEAD.SrcSysSvrId" field="srcSysSvrId" must="not"/>
+        <mapping xpath="SYS_HEAD.FileFlg" field="fileFlg" must="not"/>
+        <mapping xpath="APP_HEAD.TlrNo" field="tlrNo" must="not"/>
+        <mapping xpath="APP_HEAD.BranchId" field="branchId" must="not"/>
+        <mapping xpath="APP_HEAD.TlrPswd" field="tlrPswd" must="not"/>
+        <mapping xpath="APP_HEAD.TlrLvl" field="tlrLvl" must="not"/>
+        <mapping xpath="APP_HEAD.TlrTp" field="tlrTp" must="not"/>
+        <mapping xpath="APP_HEAD.TlrVrfyMode" field="tlrVrfyMode" must="not"/>
+       	<mapping xpath="SYS_HEAD.RetMsgArryList.RetMsgArry.RetCd" field="retCd" must="not"/>
+       	<mapping xpath="SYS_HEAD.RetMsgArryList.RetMsgArry.RetMsg" field="retMsg" must="not"/>
+    </mappings>
+</config>
